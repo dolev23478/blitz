@@ -8,7 +8,7 @@ import { withFloodWait } from '../tg-realtime/utils/resilience.js';
 import { Watchdog } from '../tg-realtime/utils/watchdog.js';
 import { ChannelsRepository } from '../channels/channels.repository.js';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
-import { MessageEventsService } from '../events/message-events.service.js';
+import { MessageEventsService, type NewMessagesEvent } from '../events/message-events.service.js';
 import { MessagesRepository } from '../messages/messages.repository.js';
 import type { Channel } from '../types.js';
 import { privateLinkId, toParsedMessage } from './telegram.mapper.js';
@@ -67,6 +67,20 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     return this.backfilling.has(id);
   }
 
+  /** Returns a cleanup function for listening to Telegram result events emitted by this service. */
+  listenResults(listener: (event: NewMessagesEvent) => void): () => void {
+    return this.events.subscribe(listener);
+  }
+
+  /** Subscribes once and automatically calls the callback whenever Telegram stores new messages. */
+  watchResults(callback: (event: NewMessagesEvent) => void | Promise<void>): () => void {
+    return this.events.subscribe((event) => {
+      void Promise.resolve(callback(event)).catch((err) => {
+        this.logger.error(`telegram result callback failed: ${err instanceof Error ? err.message : String(err)}`);
+      });
+    });
+  }
+
   /** Connects once; a missing/invalid session string is logged, network errors are retried in the background. */
   onApplicationBootstrap(): void {
     if (!this.enabled) return;
@@ -91,7 +105,7 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
   async addChannel(ref: string | number): Promise<Channel> {
     const c = this.client;
     if (!c || !this.extractor) throw new TelegramSourceError('Telegram account is not connected', 503);
-    let chat;
+    let chat: { id: number; username?: string | null; displayName?: string | null };
     try {
       chat = await withFloodWait(() => c.getChat(ref));
     } catch (err) {
@@ -214,7 +228,7 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     }
     this.me = me;
     this.logger.log(`logged in as ${me.name}`);
-    c.onConnectionState.add((s) => this.logger.log(`connection: ${s}`));
+    c.onConnectionState.add((s: 'connecting' | 'connected' | 'disconnected' | 'error') => this.logger.log(`connection: ${s}`));
 
     this.client = c;
     this.extractor = new ExtractorService(c, cfg);
