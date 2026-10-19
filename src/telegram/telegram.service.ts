@@ -12,6 +12,7 @@ import { MessageEventsService, type NewMessagesEvent } from '../events/message-e
 import { MessagesRepository } from '../messages/messages.repository.js';
 import type { Channel } from '../types.js';
 import { privateLinkId, toParsedMessage } from './telegram.mapper.js';
+import { RedisService } from '../redis/redis.service.js';
 
 export class TelegramSourceError extends Error {
   constructor(message: string, readonly status: number) {
@@ -50,9 +51,20 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     @Inject(ChannelsRepository) private readonly channels: ChannelsRepository,
     @Inject(MessagesRepository) private readonly messages: MessagesRepository,
     @Inject(MessageEventsService) private readonly events: MessageEventsService,
+    private readonly redis: RedisService,
   ) {
     this.enabled = Boolean(config.TG_API_ID && config.TG_API_HASH);
     this.state = this.enabled ? 'connecting' : 'disabled';
+  }
+
+  /** Recovers from last processed Telegram timestamp from Redis, falling back to 24h ago if missing. */
+  private async recoverSince(): Promise<Date> {
+    if (!this.redis.isEnabled()) {
+      return new Date(Date.now() - 24 * 60 * 60 * 1000);
+    }
+
+    const lastTelegramAt = await this.redis.get('telegram:last-scrape-at');
+    return lastTelegramAt ? new Date(lastTelegramAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
   }
 
   get ready(): boolean {
@@ -254,10 +266,9 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     this.byChatId.clear();
     for (const channel of await this.channels.listTelegram()) {
       this.track(channel);
-      // Catch up on anything missed while the service was offline.
       const since = channel.lastPolledAt
         ? new Date(new Date(channel.lastPolledAt).getTime() - 60_000)
-        : new Date(Date.now() - this.config.BACKFILL_DAYS * 86_400_000);
+        : await this.recoverSince();
       void this.runBackfill(channel, since);
     }
     this.lastSyncAt = Date.now();
