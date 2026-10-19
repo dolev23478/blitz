@@ -1,0 +1,28 @@
+{
+  "name": "blitz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/main.js",
+    "test": "tsc && node dist/text-analyzer.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolev23478/blitz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/dolev23478/blitz/issues"
+  },
+  "homepage": "https://github.com/dolev23478/blitz#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  }
+}
