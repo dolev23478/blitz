@@ -101,7 +101,11 @@ export class TwitterApiIoProvider implements IScraperProvider {
   /**
    * Scrapes the most recent tweets from a single Twitter user profile.
    */
-  public async scrapeProfile(handle: string, maxPosts: number): Promise<ScrapedPost[]> {
+  public async scrapeProfile(
+    handle: string,
+    maxPosts: number,
+    sinceTimestamp?: number,
+  ): Promise<ScrapedPost[]> {
     if (!handle || typeof handle !== 'string') {
       throw new Error('Twitter handle must be a non-empty string');
     }
@@ -171,9 +175,22 @@ export class TwitterApiIoProvider implements IScraperProvider {
       }
 
       let newItemsAdded = 0;
+      let reachedOlderThanSince = false;
+
       for (const post of normalized) {
         if (!seenPostIds.has(post.id)) {
           seenPostIds.add(post.id);
+
+          const postTime = post.publishedAt ? Date.parse(post.publishedAt) : NaN;
+          if (sinceTimestamp !== undefined && !isNaN(postTime)) {
+            if (postTime < sinceTimestamp) {
+              if (!post.isPinned) {
+                reachedOlderThanSince = true;
+              }
+              continue;
+            }
+          }
+
           collectedPosts.push(post);
           newItemsAdded++;
 
@@ -183,7 +200,7 @@ export class TwitterApiIoProvider implements IScraperProvider {
         }
       }
 
-      if (collectedPosts.length >= maxPosts || newItemsAdded === 0) {
+      if (collectedPosts.length >= maxPosts || newItemsAdded === 0 || reachedOlderThanSince) {
         break;
       }
 
@@ -209,7 +226,11 @@ export class TwitterApiIoProvider implements IScraperProvider {
    * Scrapes tweets matching an advanced search query using X Boolean operators.
    * Enables batching multiple profiles (e.g. "from:A OR from:B") in a single request.
    */
-  public async searchTweets(query: string, maxPosts: number): Promise<ScrapedPost[]> {
+  public async searchTweets(
+    query: string,
+    maxPosts: number,
+    sinceTimestamp?: number,
+  ): Promise<ScrapedPost[]> {
     if (!query || typeof query !== 'string') {
       throw new Error('Search query must be a non-empty string');
     }
@@ -280,9 +301,22 @@ export class TwitterApiIoProvider implements IScraperProvider {
       }
 
       let newItemsAdded = 0;
+      let reachedOlderThanSince = false;
+
       for (const post of normalized) {
         if (!seenPostIds.has(post.id)) {
           seenPostIds.add(post.id);
+
+          const postTime = post.publishedAt ? Date.parse(post.publishedAt) : NaN;
+          if (sinceTimestamp !== undefined && !isNaN(postTime)) {
+            if (postTime < sinceTimestamp) {
+              if (!post.isPinned) {
+                reachedOlderThanSince = true;
+              }
+              continue;
+            }
+          }
+
           collectedPosts.push(post);
           newItemsAdded++;
 
@@ -292,7 +326,7 @@ export class TwitterApiIoProvider implements IScraperProvider {
         }
       }
 
-      if (collectedPosts.length >= maxPosts || newItemsAdded === 0) {
+      if (collectedPosts.length >= maxPosts || newItemsAdded === 0 || reachedOlderThanSince) {
         break;
       }
 

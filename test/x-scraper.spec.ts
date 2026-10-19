@@ -6,6 +6,12 @@ import {
   XScraperService,
   scrapeBatch,
   scrapeBatchAndExport,
+  scrapeProfile,
+  scrapeAndExport,
+  searchTweets,
+  searchAndExport,
+  parseSinceTimestamp,
+  filterPostsByTimestamp,
 } from '../src/x-scraper/x-scraper.service.js';
 import { MONITORED_X_SOURCES } from '../src/x-scraper/constants/monitored-sources.js';
 import type {
@@ -208,7 +214,217 @@ describe('XScraperService - Batch Scraping', () => {
 
     expect(result.totalPosts).toBe(2);
     expect(exportedFiles.length).toBe(1);
-    expect(exportedFiles[0].endsWith('export_test.json')).toBe(true);
+    expect(exportedFiles[0]).toMatch(/export[-_]test\.json$/);
+  });
+});
+
+describe('Timestamp Filtering Helpers', () => {
+  it('parses Date object to milliseconds', () => {
+    const d = new Date('2026-10-18T14:30:00.000Z');
+    expect(parseSinceTimestamp(d)).toBe(d.getTime());
+  });
+
+  it('parses numeric epoch milliseconds', () => {
+    const ms = 1792333800000;
+    expect(parseSinceTimestamp(ms)).toBe(ms);
+  });
+
+  it('automatically converts epoch seconds to milliseconds', () => {
+    const sec = 1792333800;
+    expect(parseSinceTimestamp(sec)).toBe(sec * 1000);
+  });
+
+  it('parses ISO 8601 string', () => {
+    const iso = '2026-10-18T14:30:00.000Z';
+    expect(parseSinceTimestamp(iso)).toBe(Date.parse(iso));
+  });
+
+  it('parses date-only string', () => {
+    const dateStr = '2026-10-18';
+    expect(parseSinceTimestamp(dateStr)).toBe(Date.parse(dateStr));
+  });
+
+  it('parses numeric string in seconds or milliseconds', () => {
+    expect(parseSinceTimestamp('1792333800')).toBe(1792333800000);
+    expect(parseSinceTimestamp('1792333800000')).toBe(1792333800000);
+  });
+
+  it('throws on invalid date string or unsupported type', () => {
+    expect(() => parseSinceTimestamp('invalid-date')).toThrow('Invalid date string');
+    expect(() => parseSinceTimestamp('')).toThrow('Timestamp string cannot be empty');
+    expect(() => parseSinceTimestamp(-1)).toThrow('Invalid numeric timestamp');
+    expect(() => parseSinceTimestamp(new Date('invalid'))).toThrow('Invalid Date object');
+    expect(() => parseSinceTimestamp({} as any)).toThrow('Unsupported timestamp type');
+  });
+
+  it('filterPostsByTimestamp retains only posts >= timestamp', () => {
+    const normalizer = new ManagedApiNormalizer();
+    const posts = normalizer.normalizeTwitterApiIo(sampleTwitterApiIoPayload);
+    // Post 0: 2026-10-18T14:30:00.000Z
+    // Post 1: 2026-10-17T18:00:00.000Z
+    const cutoff = Date.parse('2026-10-18T00:00:00.000Z');
+    const filtered = filterPostsByTimestamp(posts, cutoff);
+    expect(filtered.length).toBe(1);
+    expect(filtered[0].id).toBe('1847321098492019482');
+  });
+});
+
+describe('XScraperService - Timestamp Filtering', () => {
+  const normalizer = new ManagedApiNormalizer();
+  const mockPosts = normalizer.normalizeTwitterApiIo(sampleTwitterApiIoPayload);
+  const mockProvider = new MockSearchProvider(mockPosts);
+  const jsonExporter = new JsonExporter();
+  const htmlExporter = new HtmlExporter();
+
+  const service = new XScraperService(
+    mockProvider as unknown as any,
+    undefined,
+    jsonExporter,
+    htmlExporter,
+  );
+
+  it('filters posts from a specific timestamp and onwards in scrapeBatch (ISO string)', async () => {
+    const result = await service.scrapeBatch({
+      handles: ['AJArabic'],
+      maxPosts: 10,
+      feedName: 'since-test',
+      since: '2026-10-18T00:00:00.000Z',
+    });
+
+    expect(result.totalPosts).toBe(1);
+    expect(result.posts.length).toBe(1);
+    expect(result.posts[0].id).toBe('1847321098492019482');
+  });
+
+  it('filters posts from a specific timestamp and onwards in scrapeBatch (Date object)', async () => {
+    const result = await service.scrapeBatch({
+      handles: ['AJArabic'],
+      maxPosts: 10,
+      since: new Date('2026-10-18T00:00:00.000Z'),
+    });
+
+    expect(result.totalPosts).toBe(1);
+    expect(result.posts.length).toBe(1);
+  });
+
+  it('filters posts using sinceTimestamp alias', async () => {
+    const result = await service.scrapeBatch({
+      handles: ['AJArabic'],
+      maxPosts: 10,
+      sinceTimestamp: '2026-10-18T00:00:00.000Z',
+    });
+
+    expect(result.totalPosts).toBe(1);
+    expect(result.posts.length).toBe(1);
+  });
+
+  it('returns all posts when timestamp is before all posts', async () => {
+    const result = await service.scrapeBatch({
+      handles: ['AJArabic'],
+      maxPosts: 10,
+      since: '2026-10-01T00:00:00.000Z',
+    });
+
+    expect(result.totalPosts).toBe(2);
+    expect(result.posts.length).toBe(2);
+  });
+
+  it('returns 0 posts when timestamp is after all posts', async () => {
+    const result = await service.scrapeBatch({
+      handles: ['AJArabic'],
+      maxPosts: 10,
+      since: '2026-10-19T00:00:00.000Z',
+    });
+
+    expect(result.totalPosts).toBe(0);
+    expect(result.posts.length).toBe(0);
+  });
+
+  it('supports timestamp filtering in scrapeProfile (positional arguments)', async () => {
+    const result = await service.scrapeProfile('openai', 10, '2026-10-18T00:00:00.000Z');
+    expect(result.totalPosts).toBe(1);
+    expect(result.posts[0].id).toBe('1847321098492019482');
+  });
+
+  it('supports timestamp filtering in scrapeProfile (DTO argument)', async () => {
+    const result = await service.scrapeProfile({
+      handle: 'openai',
+      maxPosts: 10,
+      since: '2026-10-18T00:00:00.000Z',
+    });
+    expect(result.totalPosts).toBe(1);
+    expect(result.posts[0].id).toBe('1847321098492019482');
+  });
+
+  it('supports timestamp filtering in searchTweets', async () => {
+    const result = await service.searchTweets({
+      query: 'openai',
+      maxPosts: 10,
+      since: '2026-10-18T00:00:00.000Z',
+    });
+    expect(result.totalPosts).toBe(1);
+    expect(result.posts.length).toBe(1);
+  });
+
+  it('supports functional export scrapeProfile with timestamp', async () => {
+    const result = await scrapeProfile(service, 'openai', 10, '2026-10-18T00:00:00.000Z');
+    expect(result.totalPosts).toBe(1);
+  });
+
+  it('supports functional export searchTweets with timestamp', async () => {
+    const result = await searchTweets(service, {
+      query: 'openai',
+      maxPosts: 10,
+      since: '2026-10-18T00:00:00.000Z',
+    });
+    expect(result.totalPosts).toBe(1);
+  });
+
+  it('supports scrapeAndExport with timestamp filtering', async () => {
+    const { result, exportedFiles } = await scrapeAndExport(service, {
+      handle: 'openai',
+      maxPosts: 5,
+      outputFormat: 'json',
+      since: '2026-10-18T00:00:00.000Z',
+    });
+    expect(result.totalPosts).toBe(1);
+    expect(exportedFiles.length).toBe(1);
+  });
+
+  it('supports searchAndExport with timestamp filtering', async () => {
+    const { result, exportedFiles } = await searchAndExport(service, {
+      query: 'openai',
+      name: 'search-export-test',
+      maxPosts: 5,
+      outputFormat: 'json',
+      since: '2026-10-18T00:00:00.000Z',
+    });
+    expect(result.totalPosts).toBe(1);
+    expect(exportedFiles.length).toBe(1);
+  });
+
+  it('filters posts and exports valid artifacts with scrapeBatchAndExport', async () => {
+    const { result, exportedFiles } = await scrapeBatchAndExport(service, {
+      handles: ['AJArabic'],
+      maxPosts: 5,
+      outputFormat: 'json',
+      feedName: 'filtered-export',
+      since: '2026-10-18T00:00:00.000Z',
+    });
+
+    expect(result.totalPosts).toBe(1);
+    expect(result.posts.length).toBe(1);
+    expect(exportedFiles.length).toBe(1);
+  });
+
+  it('throws error when invalid timestamp is provided in scrapeBatch', async () => {
+    await expect(
+      service.scrapeBatch({
+        handles: ['AJArabic'],
+        maxPosts: 10,
+        since: 'not-a-valid-date',
+      }),
+    ).rejects.toThrow('Invalid date string for timestamp');
   });
 });
 

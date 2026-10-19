@@ -4,6 +4,9 @@ export interface ScrapeRequestDto {
   handle: string;
   maxPosts: number;
   outputFormat?: OutputFormat;
+  since?: string | number | Date;
+  sinceTimestamp?: string | number | Date;
+  fromTimestamp?: string | number | Date;
 }
 
 export interface SearchRequestDto {
@@ -11,6 +14,9 @@ export interface SearchRequestDto {
   maxPosts: number;
   outputFormat?: OutputFormat;
   name?: string;
+  since?: string | number | Date;
+  sinceTimestamp?: string | number | Date;
+  fromTimestamp?: string | number | Date;
 }
 
 export interface BatchSourcesRequestDto {
@@ -19,6 +25,9 @@ export interface BatchSourcesRequestDto {
   outputFormat?: OutputFormat;
   queryFilter?: string;
   feedName?: string;
+  since?: string | number | Date;
+  sinceTimestamp?: string | number | Date;
+  fromTimestamp?: string | number | Date;
 }
 
 export interface ScrapedPostMedia {
@@ -58,8 +67,8 @@ export interface ProfileScrapeResult {
 
 export interface IScraperProvider {
   readonly providerName: string;
-  scrapeProfile(handle: string, maxPosts: number): Promise<ScrapedPost[]>;
-  searchTweets?(query: string, maxPosts: number): Promise<ScrapedPost[]>;
+  scrapeProfile(handle: string, maxPosts: number, sinceTimestamp?: number): Promise<ScrapedPost[]>;
+  searchTweets?(query: string, maxPosts: number, sinceTimestamp?: number): Promise<ScrapedPost[]>;
 }
 
 export interface IPostExporter {
