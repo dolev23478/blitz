@@ -12,11 +12,13 @@ import { MetaModule } from './meta/meta.module.js';
 import { ReportsModule } from './reports/reports.module.js';
 import { TelegramModule } from './telegram/telegram.module.js';
 import { RedisModule } from './redis/redis.module.js';
+import { XScraperModule } from './x-scraper/x-scraper.module.js';
 
 @Module({
   imports: [
     AppConfigModule, DatabaseModule, RedisModule, EventsModule,
     CollectorModule, TelegramModule, ChannelsModule, MessagesModule, MetaModule, ReportsModule,
+    XScraperModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ApiKeyGuard },
