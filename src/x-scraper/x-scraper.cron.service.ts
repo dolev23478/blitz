@@ -3,6 +3,9 @@ import { MONITORED_X_SOURCES } from './constants/monitored-sources.js';
 import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
 import { XScraperService } from './x-scraper.service.js';
 import { RedisService } from '../redis/redis.service.js';
+import { analyzeText } from '../text-analyzer.js';
+import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
+import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 
 @Injectable()
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
@@ -12,6 +15,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
   constructor(
     private readonly xScraper: XScraperService,
     private readonly redis: RedisService,
+    private readonly transformer: TransformerWorkflow,
   ) {}
 
   onModuleInit(): void {
@@ -67,8 +71,43 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       await this.redis.set('x:last-scrape-at', now);
     }
 
-    // Future hook: call your next function here.
-    // await this.someService.handleXResult(result);
+    const supportedLanguages = getDictionaryStore().languages();
+    const keptPosts: Array<(typeof result.posts)[number] & { matchedLanguage?: string; language?: string }> = [];
+
+    for (const post of result.posts) {
+      if (!post.text || !post.text.trim()) continue;
+
+      let matchedLanguage: string | null = null;
+      for (const language of supportedLanguages) {
+        const analysis = analyzeText(post.text, language);
+        if (analysis.matched) {
+          matchedLanguage = language;
+          this.logger.log(
+            `X language match: lang=${language}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
+          );
+          break;
+        }
+      }
+
+      if (matchedLanguage) {
+        keptPosts.push({
+          ...post,
+          matchedLanguage,
+          language: matchedLanguage,
+        });
+      }
+    }
+
+    result.posts = keptPosts;
+
+    const matches = [...new Set(result.posts.flatMap((post) => ((post as { language?: string }).language ? [(post as { language?: string }).language!] : [])))];
+    await this.transformer.run('ProfileScrapeResult', result, {
+      language: matches[0] ?? undefined,
+      matches,
+      collectedAt: new Date().toISOString(),
+      source: 'x',
+    });
+
     this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${now}`);
   }
 }

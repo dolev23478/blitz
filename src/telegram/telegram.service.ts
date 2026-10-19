@@ -159,7 +159,20 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
       const maxId = Math.max(...dtos.map((d) => d.messageId));
       await this.channels.markPolled(channel.id, maxId, null);
     }
-    if (inserted) this.events.emit({ channelId: channel.id, channel: channel.username, inserted });
+    if (inserted) {
+      this.events.emit({
+        channelId: channel.id,
+        channel: channel.username,
+        inserted,
+        messages: dtos.map((dto) => ({
+          chatId: dto.chatId,
+          messageId: dto.messageId,
+          text: dto.text,
+          date: dto.date,
+          senderName: dto.senderName,
+        })),
+      });
+    }
     return inserted;
   }
 

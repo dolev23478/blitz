@@ -55,6 +55,7 @@ export interface ScrapedPost {
   isRetweet: boolean;
   isPinned: boolean;
   rawHtmlSnippet?: string;
+  matchedLanguage?: string;
 }
 
 export interface ProfileScrapeResult {
