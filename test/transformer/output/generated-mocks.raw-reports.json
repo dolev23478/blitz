@@ -1,0 +1,5600 @@
+[
+  {
+    "report_id": -1544363062,
+    "platform": "twitter",
+    "account_name": "mock_0_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_0/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.280Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 473621218,
+    "platform": "twitter",
+    "account_name": "mock_1_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_1/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.280Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 462887514,
+    "platform": "twitter",
+    "account_name": "mock_1_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_1/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.280Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2103351324,
+    "platform": "twitter",
+    "account_name": "mock_2_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_2/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.281Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1070124996,
+    "platform": "twitter",
+    "account_name": "mock_2_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_2/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.281Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 696215610,
+    "platform": "twitter",
+    "account_name": "mock_2_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_2/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.281Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1486615406,
+    "platform": "twitter",
+    "account_name": "mock_3_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_3/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.281Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2060142760,
+    "platform": "twitter",
+    "account_name": "mock_3_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_3/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.281Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -215975364,
+    "platform": "twitter",
+    "account_name": "mock_3_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_3/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.281Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1789983371,
+    "platform": "twitter",
+    "account_name": "mock_3_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_3/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.281Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1147380357,
+    "platform": "twitter",
+    "account_name": "mock_4_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_4/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.282Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1397222116,
+    "platform": "twitter",
+    "account_name": "mock_4_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_4/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.282Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 585694420,
+    "platform": "twitter",
+    "account_name": "mock_4_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_4/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.282Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1059832010,
+    "platform": "twitter",
+    "account_name": "mock_4_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_4/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.282Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1517807157,
+    "platform": "twitter",
+    "account_name": "mock_4_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_4/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.282Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2006034814,
+    "platform": "twitter",
+    "account_name": "mock_5_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_5/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.282Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 649327090,
+    "platform": "twitter",
+    "account_name": "mock_6_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_6/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.282Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -958639769,
+    "platform": "twitter",
+    "account_name": "mock_6_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_6/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.282Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -382266216,
+    "platform": "twitter",
+    "account_name": "mock_7_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_7/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 220650742,
+    "platform": "twitter",
+    "account_name": "mock_7_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_7/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 36544957,
+    "platform": "twitter",
+    "account_name": "mock_7_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_7/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2048872286,
+    "platform": "twitter",
+    "account_name": "mock_8_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_8/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -788073003,
+    "platform": "twitter",
+    "account_name": "mock_8_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_8/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2110871161,
+    "platform": "twitter",
+    "account_name": "mock_8_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_8/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 83583695,
+    "platform": "twitter",
+    "account_name": "mock_8_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_8/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1212110919,
+    "platform": "twitter",
+    "account_name": "mock_9_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_9/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -23558795,
+    "platform": "twitter",
+    "account_name": "mock_9_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_9/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 139488371,
+    "platform": "twitter",
+    "account_name": "mock_9_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_9/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1828515,
+    "platform": "twitter",
+    "account_name": "mock_9_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_9/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1761149145,
+    "platform": "twitter",
+    "account_name": "mock_9_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_9/status/4?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.283Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1286160631,
+    "platform": "twitter",
+    "account_name": "mock_10_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_10/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.284Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1035038183,
+    "platform": "twitter",
+    "account_name": "mock_11_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_11/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.284Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1043917351,
+    "platform": "twitter",
+    "account_name": "mock_11_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_11/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.284Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1632317520,
+    "platform": "twitter",
+    "account_name": "mock_12_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_12/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.284Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1866203022,
+    "platform": "twitter",
+    "account_name": "mock_12_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_12/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.284Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1098734155,
+    "platform": "twitter",
+    "account_name": "mock_12_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_12/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.284Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1649785360,
+    "platform": "twitter",
+    "account_name": "mock_13_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_13/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 483227918,
+    "platform": "twitter",
+    "account_name": "mock_13_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_13/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -199870257,
+    "platform": "twitter",
+    "account_name": "mock_13_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_13/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1669137778,
+    "platform": "twitter",
+    "account_name": "mock_13_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_13/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 942539428,
+    "platform": "twitter",
+    "account_name": "mock_14_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_14/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -916308851,
+    "platform": "twitter",
+    "account_name": "mock_14_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_14/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 856352159,
+    "platform": "twitter",
+    "account_name": "mock_14_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_14/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1075101662,
+    "platform": "twitter",
+    "account_name": "mock_14_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_14/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1802710114,
+    "platform": "twitter",
+    "account_name": "mock_14_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_14/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1747163772,
+    "platform": "twitter",
+    "account_name": "mock_15_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_15/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -674726604,
+    "platform": "twitter",
+    "account_name": "mock_16_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_16/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1323430852,
+    "platform": "twitter",
+    "account_name": "mock_16_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_16/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.285Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -890585617,
+    "platform": "twitter",
+    "account_name": "mock_17_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_17/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.286Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1169979807,
+    "platform": "twitter",
+    "account_name": "mock_17_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_17/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.286Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1397845905,
+    "platform": "twitter",
+    "account_name": "mock_17_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_17/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.286Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2119855744,
+    "platform": "twitter",
+    "account_name": "mock_18_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_18/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.286Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1272930514,
+    "platform": "twitter",
+    "account_name": "mock_18_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_18/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.286Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1293413317,
+    "platform": "twitter",
+    "account_name": "mock_18_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_18/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.286Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1997588951,
+    "platform": "twitter",
+    "account_name": "mock_18_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_18/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.286Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1150603213,
+    "platform": "twitter",
+    "account_name": "mock_19_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_19/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.287Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -112533693,
+    "platform": "twitter",
+    "account_name": "mock_19_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_19/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.287Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1104566293,
+    "platform": "twitter",
+    "account_name": "mock_19_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_19/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.287Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1442062104,
+    "platform": "twitter",
+    "account_name": "mock_19_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_19/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.287Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 458527585,
+    "platform": "twitter",
+    "account_name": "mock_19_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_19/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.287Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -807839266,
+    "platform": "twitter",
+    "account_name": "mock_20_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_20/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.287Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -516274422,
+    "platform": "twitter",
+    "account_name": "mock_21_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_21/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1082691137,
+    "platform": "twitter",
+    "account_name": "mock_21_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_21/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -933335340,
+    "platform": "twitter",
+    "account_name": "mock_22_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_22/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 390427594,
+    "platform": "twitter",
+    "account_name": "mock_22_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_22/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2131804798,
+    "platform": "twitter",
+    "account_name": "mock_22_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_22/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -980182004,
+    "platform": "twitter",
+    "account_name": "mock_23_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_23/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1137428356,
+    "platform": "twitter",
+    "account_name": "mock_23_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_23/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1243000265,
+    "platform": "twitter",
+    "account_name": "mock_23_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_23/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -687163567,
+    "platform": "twitter",
+    "account_name": "mock_23_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_23/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 894218518,
+    "platform": "twitter",
+    "account_name": "mock_24_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_24/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 352828963,
+    "platform": "twitter",
+    "account_name": "mock_24_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_24/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1546107693,
+    "platform": "twitter",
+    "account_name": "mock_24_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_24/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -498559110,
+    "platform": "twitter",
+    "account_name": "mock_24_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_24/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -864214515,
+    "platform": "twitter",
+    "account_name": "mock_24_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_24/status/4?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -699435739,
+    "platform": "twitter",
+    "account_name": "mock_25_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_25/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -501183410,
+    "platform": "twitter",
+    "account_name": "mock_26_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_26/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 268540464,
+    "platform": "twitter",
+    "account_name": "mock_26_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_26/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.288Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1770925588,
+    "platform": "twitter",
+    "account_name": "mock_27_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_27/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1814291335,
+    "platform": "twitter",
+    "account_name": "mock_27_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_27/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 656865261,
+    "platform": "twitter",
+    "account_name": "mock_27_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_27/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 193905459,
+    "platform": "twitter",
+    "account_name": "mock_28_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_28/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1891623571,
+    "platform": "twitter",
+    "account_name": "mock_28_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_28/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1436039889,
+    "platform": "twitter",
+    "account_name": "mock_28_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_28/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 273763702,
+    "platform": "twitter",
+    "account_name": "mock_28_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_28/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1104545976,
+    "platform": "twitter",
+    "account_name": "mock_29_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_29/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -509835774,
+    "platform": "twitter",
+    "account_name": "mock_29_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_29/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -529950713,
+    "platform": "twitter",
+    "account_name": "mock_29_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_29/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1078185803,
+    "platform": "twitter",
+    "account_name": "mock_29_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_29/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -118723648,
+    "platform": "twitter",
+    "account_name": "mock_29_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_29/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -131951336,
+    "platform": "twitter",
+    "account_name": "mock_30_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_30/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.289Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -580305204,
+    "platform": "twitter",
+    "account_name": "mock_31_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_31/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1152504074,
+    "platform": "twitter",
+    "account_name": "mock_31_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_31/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -837996575,
+    "platform": "twitter",
+    "account_name": "mock_32_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_32/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -179204212,
+    "platform": "twitter",
+    "account_name": "mock_32_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_32/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1549195353,
+    "platform": "twitter",
+    "account_name": "mock_32_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_32/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -55120405,
+    "platform": "twitter",
+    "account_name": "mock_33_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_33/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1776318638,
+    "platform": "twitter",
+    "account_name": "mock_33_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_33/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 90394354,
+    "platform": "twitter",
+    "account_name": "mock_33_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_33/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1535403264,
+    "platform": "twitter",
+    "account_name": "mock_33_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_33/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2048455760,
+    "platform": "twitter",
+    "account_name": "mock_34_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_34/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1080582866,
+    "platform": "twitter",
+    "account_name": "mock_34_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_34/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 984732145,
+    "platform": "twitter",
+    "account_name": "mock_34_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_34/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2008504657,
+    "platform": "twitter",
+    "account_name": "mock_34_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_34/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1588667904,
+    "platform": "twitter",
+    "account_name": "mock_34_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_34/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1502623258,
+    "platform": "twitter",
+    "account_name": "mock_35_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_35/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.290Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 289131600,
+    "platform": "twitter",
+    "account_name": "mock_36_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_36/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1083597666,
+    "platform": "twitter",
+    "account_name": "mock_36_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_36/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -145023426,
+    "platform": "twitter",
+    "account_name": "mock_37_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_37/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 944744300,
+    "platform": "twitter",
+    "account_name": "mock_37_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_37/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 590903042,
+    "platform": "twitter",
+    "account_name": "mock_37_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_37/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2104595185,
+    "platform": "twitter",
+    "account_name": "mock_38_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_38/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1946253669,
+    "platform": "twitter",
+    "account_name": "mock_38_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_38/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 779869688,
+    "platform": "twitter",
+    "account_name": "mock_38_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_38/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1188710524,
+    "platform": "twitter",
+    "account_name": "mock_38_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_38/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2046488875,
+    "platform": "twitter",
+    "account_name": "mock_39_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_39/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 909441514,
+    "platform": "twitter",
+    "account_name": "mock_39_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_39/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -952014693,
+    "platform": "twitter",
+    "account_name": "mock_39_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_39/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1379768808,
+    "platform": "twitter",
+    "account_name": "mock_39_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_39/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 357696304,
+    "platform": "twitter",
+    "account_name": "mock_39_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_39/status/4?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -270378508,
+    "platform": "twitter",
+    "account_name": "mock_40_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_40/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -542191176,
+    "platform": "twitter",
+    "account_name": "mock_41_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_41/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1400674421,
+    "platform": "twitter",
+    "account_name": "mock_41_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_41/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.291Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1920893919,
+    "platform": "twitter",
+    "account_name": "mock_42_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_42/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -439021278,
+    "platform": "twitter",
+    "account_name": "mock_42_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_42/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 234928230,
+    "platform": "twitter",
+    "account_name": "mock_42_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_42/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -12534241,
+    "platform": "twitter",
+    "account_name": "mock_43_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_43/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2088938746,
+    "platform": "twitter",
+    "account_name": "mock_43_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_43/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -210628607,
+    "platform": "twitter",
+    "account_name": "mock_43_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_43/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 743691976,
+    "platform": "twitter",
+    "account_name": "mock_43_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_43/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -588610276,
+    "platform": "twitter",
+    "account_name": "mock_44_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_44/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 140904578,
+    "platform": "twitter",
+    "account_name": "mock_44_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_44/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1580697243,
+    "platform": "twitter",
+    "account_name": "mock_44_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_44/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1649764911,
+    "platform": "twitter",
+    "account_name": "mock_44_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_44/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1971758019,
+    "platform": "twitter",
+    "account_name": "mock_44_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_44/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 241898683,
+    "platform": "twitter",
+    "account_name": "mock_45_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_45/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 828236244,
+    "platform": "twitter",
+    "account_name": "mock_46_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_46/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1811898933,
+    "platform": "twitter",
+    "account_name": "mock_46_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_46/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1472835730,
+    "platform": "twitter",
+    "account_name": "mock_47_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_47/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1147781024,
+    "platform": "twitter",
+    "account_name": "mock_47_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_47/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 581266716,
+    "platform": "twitter",
+    "account_name": "mock_47_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_47/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.292Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 339308560,
+    "platform": "twitter",
+    "account_name": "mock_48_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_48/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1045021907,
+    "platform": "twitter",
+    "account_name": "mock_48_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_48/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2045690529,
+    "platform": "twitter",
+    "account_name": "mock_48_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_48/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 144559205,
+    "platform": "twitter",
+    "account_name": "mock_48_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_48/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 930488376,
+    "platform": "twitter",
+    "account_name": "mock_49_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_49/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1398461325,
+    "platform": "twitter",
+    "account_name": "mock_49_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_49/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1828643002,
+    "platform": "twitter",
+    "account_name": "mock_49_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_49/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1363213110,
+    "platform": "twitter",
+    "account_name": "mock_49_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_49/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1844301541,
+    "platform": "twitter",
+    "account_name": "mock_49_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_49/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1536338482,
+    "platform": "twitter",
+    "account_name": "mock_50_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_50/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1346198024,
+    "platform": "twitter",
+    "account_name": "mock_51_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_51/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1496856837,
+    "platform": "twitter",
+    "account_name": "mock_51_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_51/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1452960335,
+    "platform": "twitter",
+    "account_name": "mock_52_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_52/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 976662596,
+    "platform": "twitter",
+    "account_name": "mock_52_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_52/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -325232597,
+    "platform": "twitter",
+    "account_name": "mock_52_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_52/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.293Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1368568203,
+    "platform": "twitter",
+    "account_name": "mock_53_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_53/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -338795695,
+    "platform": "twitter",
+    "account_name": "mock_53_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_53/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1942127920,
+    "platform": "twitter",
+    "account_name": "mock_53_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_53/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -104880124,
+    "platform": "twitter",
+    "account_name": "mock_53_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_53/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 709411025,
+    "platform": "twitter",
+    "account_name": "mock_54_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_54/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1268909931,
+    "platform": "twitter",
+    "account_name": "mock_54_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_54/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 716983320,
+    "platform": "twitter",
+    "account_name": "mock_54_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_54/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2063593001,
+    "platform": "twitter",
+    "account_name": "mock_54_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_54/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -442934605,
+    "platform": "twitter",
+    "account_name": "mock_54_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_54/status/4?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -449343633,
+    "platform": "twitter",
+    "account_name": "mock_55_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_55/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -267451885,
+    "platform": "twitter",
+    "account_name": "mock_56_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_56/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2105505540,
+    "platform": "twitter",
+    "account_name": "mock_56_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_56/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 684810776,
+    "platform": "twitter",
+    "account_name": "mock_57_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_57/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1495991845,
+    "platform": "twitter",
+    "account_name": "mock_57_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_57/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -986960146,
+    "platform": "twitter",
+    "account_name": "mock_57_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_57/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.294Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1870358116,
+    "platform": "twitter",
+    "account_name": "mock_58_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_58/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -44170570,
+    "platform": "twitter",
+    "account_name": "mock_58_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_58/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -950632618,
+    "platform": "twitter",
+    "account_name": "mock_58_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_58/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -552310620,
+    "platform": "twitter",
+    "account_name": "mock_58_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_58/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 962194483,
+    "platform": "twitter",
+    "account_name": "mock_59_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_59/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -877602649,
+    "platform": "twitter",
+    "account_name": "mock_59_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_59/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1234788776,
+    "platform": "twitter",
+    "account_name": "mock_59_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_59/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -88117689,
+    "platform": "twitter",
+    "account_name": "mock_59_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_59/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1602557047,
+    "platform": "twitter",
+    "account_name": "mock_59_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_59/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -783199079,
+    "platform": "twitter",
+    "account_name": "mock_60_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_60/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1401599578,
+    "platform": "twitter",
+    "account_name": "mock_61_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_61/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1166844647,
+    "platform": "twitter",
+    "account_name": "mock_61_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_61/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -30613141,
+    "platform": "twitter",
+    "account_name": "mock_62_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_62/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1738043393,
+    "platform": "twitter",
+    "account_name": "mock_62_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_62/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1268081078,
+    "platform": "twitter",
+    "account_name": "mock_62_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_62/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1584585850,
+    "platform": "twitter",
+    "account_name": "mock_63_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_63/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -275227160,
+    "platform": "twitter",
+    "account_name": "mock_63_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_63/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1593780681,
+    "platform": "twitter",
+    "account_name": "mock_63_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_63/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -537070881,
+    "platform": "twitter",
+    "account_name": "mock_63_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_63/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.295Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 6391490,
+    "platform": "twitter",
+    "account_name": "mock_64_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_64/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 603363959,
+    "platform": "twitter",
+    "account_name": "mock_64_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_64/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 527806911,
+    "platform": "twitter",
+    "account_name": "mock_64_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_64/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -459450730,
+    "platform": "twitter",
+    "account_name": "mock_64_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_64/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -323467171,
+    "platform": "twitter",
+    "account_name": "mock_64_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_64/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -859338566,
+    "platform": "twitter",
+    "account_name": "mock_65_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_65/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1455453707,
+    "platform": "twitter",
+    "account_name": "mock_66_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_66/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -261398822,
+    "platform": "twitter",
+    "account_name": "mock_66_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_66/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2137236956,
+    "platform": "twitter",
+    "account_name": "mock_67_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_67/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 721642074,
+    "platform": "twitter",
+    "account_name": "mock_67_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_67/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -637272649,
+    "platform": "twitter",
+    "account_name": "mock_67_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_67/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1206381241,
+    "platform": "twitter",
+    "account_name": "mock_68_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_68/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1425526598,
+    "platform": "twitter",
+    "account_name": "mock_68_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_68/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1743660974,
+    "platform": "twitter",
+    "account_name": "mock_68_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_68/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -446667822,
+    "platform": "twitter",
+    "account_name": "mock_68_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_68/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.296Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1164347448,
+    "platform": "twitter",
+    "account_name": "mock_69_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_69/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1525118529,
+    "platform": "twitter",
+    "account_name": "mock_69_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_69/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 45661170,
+    "platform": "twitter",
+    "account_name": "mock_69_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_69/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1398698127,
+    "platform": "twitter",
+    "account_name": "mock_69_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_69/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1406045220,
+    "platform": "twitter",
+    "account_name": "mock_69_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_69/status/4?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1865435005,
+    "platform": "twitter",
+    "account_name": "mock_70_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_70/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -230346515,
+    "platform": "twitter",
+    "account_name": "mock_71_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_71/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1562796824,
+    "platform": "twitter",
+    "account_name": "mock_71_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_71/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1560245449,
+    "platform": "twitter",
+    "account_name": "mock_72_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_72/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -552288597,
+    "platform": "twitter",
+    "account_name": "mock_72_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_72/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -80102349,
+    "platform": "twitter",
+    "account_name": "mock_72_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_72/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1162925186,
+    "platform": "twitter",
+    "account_name": "mock_73_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_73/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -807651601,
+    "platform": "twitter",
+    "account_name": "mock_73_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_73/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -278192739,
+    "platform": "twitter",
+    "account_name": "mock_73_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_73/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -305027931,
+    "platform": "twitter",
+    "account_name": "mock_73_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_73/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1548545389,
+    "platform": "twitter",
+    "account_name": "mock_74_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_74/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 308366996,
+    "platform": "twitter",
+    "account_name": "mock_74_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_74/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1410375284,
+    "platform": "twitter",
+    "account_name": "mock_74_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_74/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 778851700,
+    "platform": "twitter",
+    "account_name": "mock_74_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_74/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 787080032,
+    "platform": "twitter",
+    "account_name": "mock_74_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_74/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.297Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2076705618,
+    "platform": "twitter",
+    "account_name": "mock_75_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_75/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -401595934,
+    "platform": "twitter",
+    "account_name": "mock_76_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_76/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2022628906,
+    "platform": "twitter",
+    "account_name": "mock_76_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_76/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 370473222,
+    "platform": "twitter",
+    "account_name": "mock_77_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_77/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2006236060,
+    "platform": "twitter",
+    "account_name": "mock_77_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_77/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -645222613,
+    "platform": "twitter",
+    "account_name": "mock_77_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_77/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1151281287,
+    "platform": "twitter",
+    "account_name": "mock_78_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_78/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1094772081,
+    "platform": "twitter",
+    "account_name": "mock_78_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_78/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 612558118,
+    "platform": "twitter",
+    "account_name": "mock_78_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_78/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1130397603,
+    "platform": "twitter",
+    "account_name": "mock_78_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_78/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1383703276,
+    "platform": "twitter",
+    "account_name": "mock_79_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_79/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -319649876,
+    "platform": "twitter",
+    "account_name": "mock_79_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_79/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1141145115,
+    "platform": "twitter",
+    "account_name": "mock_79_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_79/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1290302259,
+    "platform": "twitter",
+    "account_name": "mock_79_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_79/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 444782754,
+    "platform": "twitter",
+    "account_name": "mock_79_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_79/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.298Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 928813181,
+    "platform": "twitter",
+    "account_name": "mock_80_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_80/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1025193707,
+    "platform": "twitter",
+    "account_name": "mock_81_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_81/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2006209370,
+    "platform": "twitter",
+    "account_name": "mock_81_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_81/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1539516743,
+    "platform": "twitter",
+    "account_name": "mock_82_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_82/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -638225954,
+    "platform": "twitter",
+    "account_name": "mock_82_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_82/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1356556421,
+    "platform": "twitter",
+    "account_name": "mock_82_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_82/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -70682895,
+    "platform": "twitter",
+    "account_name": "mock_83_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_83/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -634579433,
+    "platform": "twitter",
+    "account_name": "mock_83_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_83/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 613650830,
+    "platform": "twitter",
+    "account_name": "mock_83_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_83/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 351120126,
+    "platform": "twitter",
+    "account_name": "mock_83_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_83/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2065748581,
+    "platform": "twitter",
+    "account_name": "mock_84_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_84/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1869084724,
+    "platform": "twitter",
+    "account_name": "mock_84_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_84/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -582411184,
+    "platform": "twitter",
+    "account_name": "mock_84_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_84/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -307407366,
+    "platform": "twitter",
+    "account_name": "mock_84_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_84/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1004673901,
+    "platform": "twitter",
+    "account_name": "mock_84_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_84/status/4?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.299Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1854129905,
+    "platform": "twitter",
+    "account_name": "mock_85_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_85/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -656872291,
+    "platform": "twitter",
+    "account_name": "mock_86_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_86/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1904609533,
+    "platform": "twitter",
+    "account_name": "mock_86_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_86/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -440922986,
+    "platform": "twitter",
+    "account_name": "mock_87_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_87/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -183554677,
+    "platform": "twitter",
+    "account_name": "mock_87_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_87/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 462822483,
+    "platform": "twitter",
+    "account_name": "mock_87_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_87/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1393906129,
+    "platform": "twitter",
+    "account_name": "mock_88_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_88/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -559540329,
+    "platform": "twitter",
+    "account_name": "mock_88_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_88/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 594147598,
+    "platform": "twitter",
+    "account_name": "mock_88_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_88/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 829863917,
+    "platform": "twitter",
+    "account_name": "mock_88_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_88/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "English generated content 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -992908109,
+    "platform": "twitter",
+    "account_name": "mock_89_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_89/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -785793325,
+    "platform": "twitter",
+    "account_name": "mock_89_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_89/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1623643177,
+    "platform": "twitter",
+    "account_name": "mock_89_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_89/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -790767344,
+    "platform": "twitter",
+    "account_name": "mock_89_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_89/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -897425607,
+    "platform": "twitter",
+    "account_name": "mock_89_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_89/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2010971154,
+    "platform": "twitter",
+    "account_name": "mock_90_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_90/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.300Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 507611798,
+    "platform": "twitter",
+    "account_name": "mock_91_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_91/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 936381942,
+    "platform": "twitter",
+    "account_name": "mock_91_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_91/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2090525675,
+    "platform": "twitter",
+    "account_name": "mock_92_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_92/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -909797044,
+    "platform": "twitter",
+    "account_name": "mock_92_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_92/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1392173345,
+    "platform": "twitter",
+    "account_name": "mock_92_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_92/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "English generated content 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 526890020,
+    "platform": "twitter",
+    "account_name": "mock_93_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_93/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1648247547,
+    "platform": "twitter",
+    "account_name": "mock_93_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_93/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1476108290,
+    "platform": "twitter",
+    "account_name": "mock_93_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_93/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -241806989,
+    "platform": "twitter",
+    "account_name": "mock_93_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_93/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2115276176,
+    "platform": "twitter",
+    "account_name": "mock_94_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_94/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1762590999,
+    "platform": "twitter",
+    "account_name": "mock_94_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_94/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -376396422,
+    "platform": "twitter",
+    "account_name": "mock_94_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_94/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1763103455,
+    "platform": "twitter",
+    "account_name": "mock_94_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_94/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -933072674,
+    "platform": "twitter",
+    "account_name": "mock_94_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_94/status/4?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 834667696,
+    "platform": "twitter",
+    "account_name": "mock_95_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_95/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 172615818,
+    "platform": "twitter",
+    "account_name": "mock_96_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_96/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 429999792,
+    "platform": "twitter",
+    "account_name": "mock_96_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_96/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "English generated content 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.301Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -2010820536,
+    "platform": "twitter",
+    "account_name": "mock_97_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_97/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 2076572222,
+    "platform": "twitter",
+    "account_name": "mock_97_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_97/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -818776309,
+    "platform": "twitter",
+    "account_name": "mock_97_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_97/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "محتوى اختبار عربي 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -106139880,
+    "platform": "twitter",
+    "account_name": "mock_98_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_98/status/0?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 578248749,
+    "platform": "twitter",
+    "account_name": "mock_98_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_98/status/1?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 427336720,
+    "platform": "twitter",
+    "account_name": "mock_98_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_98/status/2?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1704157669,
+    "platform": "twitter",
+    "account_name": "mock_98_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_98/status/3?original=%2F",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "תוכן בדיקה בעברית 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 122687628,
+    "platform": "twitter",
+    "account_name": "mock_99_0",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_99/status/0?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 0",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 83826864,
+    "platform": "twitter",
+    "account_name": "mock_99_1",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_99/status/1?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 1",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 360564521,
+    "platform": "twitter",
+    "account_name": "mock_99_2",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_99/status/2?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 2",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": 1853002214,
+    "platform": "twitter",
+    "account_name": "mock_99_3",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_99/status/3?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 3",
+    "language": "ar",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -1605757443,
+    "platform": "twitter",
+    "account_name": "mock_99_4",
+    "channel_name": null,
+    "report_url": "https://x.com/mock_99/status/4?original=%2F",
+    "media_type": [
+      "text"
+    ],
+    "report_title": null,
+    "content": "Café: 1 < 2 & 3 > 2 4",
+    "language": "unknown",
+    "matches": [],
+    "published_at": "2026-10-19T14:30:00.000Z",
+    "collected_at": "2026-10-19T13:26:55.302Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  }
+]
