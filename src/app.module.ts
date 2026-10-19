@@ -13,6 +13,7 @@ import { ReportsModule } from './reports/reports.module.js';
 import { TelegramModule } from './telegram/telegram.module.js';
 import { RedisModule } from './redis/redis.module.js';
 import { XScraperModule } from './x-scraper/x-scraper.module.js';
+import { XScraperCronService } from './x-scraper/x-scraper.cron.service.js';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { XScraperModule } from './x-scraper/x-scraper.module.js';
     XScraperModule,
   ],
   providers: [
+    XScraperCronService,
     { provide: APP_GUARD, useClass: ApiKeyGuard },
     { provide: APP_FILTER, useClass: HttpErrorFilter },
   ],

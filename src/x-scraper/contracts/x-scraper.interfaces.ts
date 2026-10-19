@@ -21,7 +21,7 @@ export interface SearchRequestDto {
 
 export interface BatchSourcesRequestDto {
   handles: string[];
-  maxPosts: number;
+  maxPosts?: number;
   outputFormat?: OutputFormat;
   queryFilter?: string;
   feedName?: string;
