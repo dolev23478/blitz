@@ -11,11 +11,13 @@ import { MessagesModule } from './messages/messages.module.js';
 import { MetaModule } from './meta/meta.module.js';
 import { ReportsModule } from './reports/reports.module.js';
 import { TelegramModule } from './telegram/telegram.module.js';
+import { XScraperModule } from './x-scraper/x-scraper.module.js';
 
 @Module({
   imports: [
     AppConfigModule, DatabaseModule, EventsModule,
     CollectorModule, TelegramModule, ChannelsModule, MessagesModule, MetaModule, ReportsModule,
+    XScraperModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ApiKeyGuard },
