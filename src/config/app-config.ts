@@ -22,6 +22,7 @@ const schema = z.object({
   /** Transformer Kafka settings. An empty broker list is allowed until publishing is needed. */
   KAFKA_BROKERS: z.string().optional(),
   KAFKA_CLIENT_ID: z.string().optional().transform((v) => v || undefined),
+  KAFKA_RETRY_INTERVAL_MS: z.coerce.number().int().min(1).max(2147483647).default(60000),
   KAFKA_SSL: z.enum(['true', 'false']).optional(),
   KAFKA_SASL_MECHANISM: z.string().optional().transform((v) => v || undefined),
   KAFKA_SASL_USERNAME: z.string().optional().transform((v) => v || undefined),
