@@ -1,12 +1,11 @@
-import type { TransformerFailure } from './interfaces.js';
+import { TransformerErrorCode } from './enums.js';
 
-/** Domain/application error, independent of HTTP status codes and Nest filters. */
 export class TransformerException extends Error {
   constructor(
-    public readonly failure: TransformerFailure,
-    options?: ErrorOptions,
+    public readonly code: TransformerErrorCode,
+    message: string,
   ) {
-    super(failure.message, options);
+    super(message);
     this.name = 'TransformerException';
   }
 }

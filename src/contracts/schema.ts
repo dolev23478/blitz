@@ -1,53 +1,28 @@
-import type { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
-import type { UtcTimestamp } from '../common/utils.js';
+﻿import type { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
 
-export interface RawReport<TReportId extends string | number> {
-  readonly report_id: TReportId;
-
-  // Default values.
-  readonly schema_version: typeof SCHEMA_VERSION;
-  readonly is_official: typeof IS_OFFICIAL;
-
-  // Free text
-  readonly platform: string;
-
-  // Local nullable placeholder
-  readonly account_name: string | null;
-  readonly channel_name: string | null;
-
-  readonly report_url: string;
-
-  // Examples include text/photo/video; the final allowed values are unconfirmed.
-  readonly media_type: readonly string[];
-
-  // Null when no title exists.
-  readonly report_title: string | null;
-
-  // Required non-empty parsed text, never HTML;
-  readonly content: string;
-
-  // Collector-provided ISO 639-1 language code;
-  readonly language: string;
-
-  // Preserve the collector's trigger keywords.
-  readonly matches: readonly string[];
-
-  readonly published_at: UtcTimestamp | null;
-  readonly collected_at: UtcTimestamp;
+/** Provisional local report model until DE provides its JSON Schema. */
+export interface RawReport {
+  report_id: string;
+  schema_version: typeof SCHEMA_VERSION;
+  is_official: typeof IS_OFFICIAL;
+  platform: string;
+  account_name: string | null;
+  channel_name: string | null;
+  report_url: string;
+  media_type: string[];
+  report_title: string | null;
+  content: string;
+  language: string;
+  matches: string[];
+  published_at: string | null;
+  collected_at: string;
 }
 
-/** Internal target model; its string ID is not yet an approved wire contract. */
-export type NormalizedRawReport = RawReport<string>;
+/** Unvalidated mapping output: values may be missing or have the wrong type. */
+export type RawReportCandidate = Partial<Record<keyof RawReport, unknown>>;
 
-export type RawReportField = keyof NormalizedRawReport;
-
-/** Mapping output is untrusted and may be incomplete or incorrectly typed. */
-export type RawReportCandidate = Readonly<
-  Partial<Record<RawReportField, unknown>>
->;
-
-/** Both identities participate in dedup; no hashing/retention policy is chosen. */
-export type ReportIdentity = Pick<
-  NormalizedRawReport,
-  'report_id' | 'platform' | 'report_url'
->;
+export interface ReportIdentity {
+  report_id: string;
+  platform: string;
+  report_url: string;
+}

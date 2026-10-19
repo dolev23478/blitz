@@ -12,10 +12,9 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  await app.listen(
-    Number(process.env.PORT ?? 3000),
-    '0.0.0.0',
-  );
+  app.enableShutdownHooks();
+
+  await app.listen(Number(process.env.PORT ?? 3000), '0.0.0.0');
 }
 
 await bootstrap();
