@@ -25,7 +25,11 @@ export class ApifyXProvider implements IScraperProvider {
     return isNaN(parsed) || parsed <= 0 ? 30000 : parsed;
   }
 
-  public async scrapeProfile(handle: string, maxPosts: number): Promise<ScrapedPost[]> {
+  public async scrapeProfile(
+    handle: string,
+    maxPosts: number,
+    sinceTimestamp?: number,
+  ): Promise<ScrapedPost[]> {
     if (!handle || typeof handle !== 'string') {
       throw new Error('Twitter handle must be a non-empty string');
     }
@@ -84,7 +88,13 @@ export class ApifyXProvider implements IScraperProvider {
       }
     }
 
-    const posts = this.normalizer.normalizeApify(payload);
+    let posts = this.normalizer.normalizeApify(payload);
+    if (sinceTimestamp !== undefined) {
+      posts = posts.filter((post) => {
+        const postTime = post.publishedAt ? Date.parse(post.publishedAt) : NaN;
+        return !isNaN(postTime) && postTime >= sinceTimestamp;
+      });
+    }
     return posts.slice(0, maxPosts);
   }
 }
