@@ -1,15 +1,11 @@
 ﻿import { Injectable, type OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Kafka, logLevel, type Producer, type SASLOptions } from 'kafkajs';
-import { REPORT_TOPIC } from '../../../common/constants.js';
-import { State, TransformerErrorCode } from '../../../common/enums.js';
-import { TransformerException } from '../../../common/exceptions.js';
-import type { RawReport } from '../../../contracts/schema.js';
-import { DeduplicationStore } from '../deduplication.store.js';
-import type {
-  PublicationResult,
-  TransformContext,
-} from '../transformer.types.js';
+import { REPORT_TOPIC } from '../../common/constants.js';
+import { State, TransformerErrorCode } from '../../common/enums.js';
+import { TransformerException } from '../../common/exceptions.js';
+import type { RawReport } from '../../contracts/schema.js';
+import type { TransformContext } from '../transformer.types.js';
 
 @Injectable()
 export class PublishingProcessor implements OnModuleDestroy {
@@ -17,20 +13,21 @@ export class PublishingProcessor implements OnModuleDestroy {
   private producer?: Producer;
   private connection?: Promise<void>;
   private closing = false;
-  private readonly pending = new Set<Promise<PublicationResult>>();
+  private readonly pending = new Set<Promise<void>>();
 
-  constructor(
-    private readonly config: ConfigService,
-    private readonly deduplication: DeduplicationStore,
-  ) {}
+  constructor(private readonly config: ConfigService) {}
 
   async execute(context: TransformContext): Promise<void> {
-    if (!context.report)
-      throw new Error('Validation must produce a report before publishing.');
-    context.publication = await this.publish(context.report);
+    if (!context.reports)
+      throw new Error('Validation must produce reports before publishing.');
+    context.publishedReports = [];
+    for (const report of context.reports) {
+      await this.publish(report);
+      context.publishedReports.push(report);
+    }
   }
 
-  private publish(report: RawReport): Promise<PublicationResult> {
+  private publish(report: RawReport): Promise<void> {
     if (this.closing)
       return Promise.reject(
         new TransformerException(
@@ -47,8 +44,7 @@ export class PublishingProcessor implements OnModuleDestroy {
     return operation;
   }
 
-  private async send(report: RawReport): Promise<PublicationResult> {
-    if (!(await this.deduplication.reserve(report))) return 'duplicate';
+  private async send(report: RawReport): Promise<void> {
     try {
       const producer = await this.connect();
       await producer.send({
@@ -56,14 +52,11 @@ export class PublishingProcessor implements OnModuleDestroy {
         acks: -1,
         messages: [{ key: report.report_id, value: JSON.stringify(report) }],
       });
-      this.deduplication.markPublished(report);
-      return 'published';
     } catch (error) {
-      this.deduplication.release(report);
       if (error instanceof TransformerException) throw error;
       throw new TransformerException(
         TransformerErrorCode.PublicationFailed,
-        'Kafka publication failed; the caller can retry this input.',
+        'Kafka publication was not confirmed; some reports may already have been delivered.',
       );
     }
   }
@@ -80,6 +73,14 @@ export class PublishingProcessor implements OnModuleDestroy {
           TransformerErrorCode.PublicationFailed,
           'KAFKA_BROKERS is required.',
         );
+      for (const broker of brokers) {
+        const address = /^(\[[\da-f:]+\]|[a-z\d._-]+):(\d+)$/i.exec(broker);
+        if (!address || Number(address[2]) < 1 || Number(address[2]) > 65535)
+          throw new TransformerException(
+            TransformerErrorCode.PublicationFailed,
+            'KAFKA_BROKERS must contain native Kafka host:port addresses.',
+          );
+      }
       const username = this.config.get<string>('KAFKA_SASL_USERNAME');
       const password = this.config.get<string>('KAFKA_SASL_PASSWORD');
       const mechanism =

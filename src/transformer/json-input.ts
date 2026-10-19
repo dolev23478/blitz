@@ -1,5 +1,3 @@
-import { Injectable } from '@nestjs/common';
-
 export const MAX_PAYLOAD_BYTES = 1024 * 1024;
 
 /** Reject unsafe numbers rather than silently publishing a rounded report ID. */
@@ -23,6 +21,13 @@ export function checkJson(value: unknown): void {
           'JSON contains a non-finite or unsafe numeric value. Send large IDs as strings.',
         );
       }
+    } else if (current instanceof Date) {
+      // StoredMessage uses Date instances when passed directly inside Nest.
+      if (
+        !Number.isFinite(current.getTime()) ||
+        Reflect.ownKeys(current).length
+      )
+        throw new Error('Invalid collector Date.');
     } else if (current !== null && typeof current === 'object') {
       if (seen.has(current))
         throw new Error(
@@ -49,6 +54,7 @@ export function checkJson(value: unknown): void {
       }
     } else if (
       current !== null &&
+      current !== undefined && // Optional properties in in-process collector DTOs.
       typeof current !== 'string' &&
       typeof current !== 'boolean'
     ) {
@@ -57,39 +63,5 @@ export function checkJson(value: unknown): void {
   }
   if (Buffer.byteLength(JSON.stringify(value), 'utf8') > MAX_PAYLOAD_BYTES) {
     throw new Error('JSON payload exceeds 1 MiB.');
-  }
-}
-
-@Injectable()
-export class JsonParsingStrategy {
-  parse(data: unknown): unknown {
-    if (
-      typeof data === 'string' &&
-      Buffer.byteLength(data, 'utf8') > MAX_PAYLOAD_BYTES
-    ) {
-      throw new Error('JSON payload exceeds 1 MiB.');
-    }
-    const parsed: unknown =
-      typeof data === 'string'
-        ? JSON.parse(
-            data,
-            (_key: string, value: unknown, context?: { source?: string }) => {
-              // Do not accept a fractional/exponent token rounded into an integer ID.
-              if (
-                typeof value === 'number' &&
-                Number.isInteger(value) &&
-                context?.source &&
-                /[.eE]/.test(context.source)
-              ) {
-                throw new Error(
-                  'Integer values must use plain integer notation or strings.',
-                );
-              }
-              return value;
-            },
-          )
-        : data;
-    checkJson(parsed);
-    return typeof data === 'string' ? parsed : structuredClone(parsed);
   }
 }

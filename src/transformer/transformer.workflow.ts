@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import StateMachine from 'javascript-state-machine';
-import { State } from '../../common/enums.js';
+import { randomUUID } from 'node:crypto';
+import { State } from '../common/enums.js';
+import type { ProfileScrapeResult } from '../x-scraper/contracts/x-scraper.interfaces.js';
+import type { StoredMessage } from '../types.js';
+import type { MessageDto } from '../tg-realtime/types.js';
+import type { MappingFormat } from '../contracts/mappings.js';
 import { CompletionProcessor } from './processors/completion.processor.js';
 import { MappingProcessor } from './processors/mapping.processor.js';
 import { ParsingProcessor } from './processors/parsing.processor.js';
 import { PublishingProcessor } from './processors/publishing.processor.js';
-import { receiveInput } from './input.js';
 import { ValidationProcessor } from './processors/validation.processor.js';
 import type {
   Processor,
@@ -24,13 +28,34 @@ export class TransformerWorkflow {
     private readonly completion: CompletionProcessor,
   ) {}
 
-  /** Another service passes one collected item. The caller owns retries. */
-  async run(data: unknown, options: RunOptions = {}): Promise<WorkflowResult> {
-    const input = receiveInput(data);
+  run(
+    format: 'ProfileScrapeResult',
+    data: ProfileScrapeResult,
+    options: RunOptions,
+  ): Promise<WorkflowResult[]>;
+  run(
+    format: 'StoredMessage',
+    data: StoredMessage,
+    options: RunOptions,
+  ): Promise<WorkflowResult[]>;
+  run(
+    format: 'MessageDto',
+    data: MessageDto,
+    options: RunOptions & { reportUrl: string; collectedAt: string },
+  ): Promise<WorkflowResult[]>;
+
+  /** Pass the collector's object directly and select its format's mapper. */
+  async run(
+    format: MappingFormat,
+    data: unknown,
+    options: RunOptions,
+  ): Promise<WorkflowResult[]> {
     const context: TransformContext = {
-      input,
-      inputId: input.inputId,
-      sourceId: input.source.id,
+      format,
+      input: data,
+      metadata: options,
+      inputId: options.inputId ?? randomUUID(),
+      sourceId: format,
       attempt: options.attempt ?? 1,
       correlationId: options.correlationId,
     };

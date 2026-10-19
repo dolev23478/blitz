@@ -3,10 +3,10 @@ import { ConfigService } from '@nestjs/config';
 import { readFileSync } from 'node:fs';
 import { Ajv, type ValidateFunction } from 'ajv';
 import addFormats from 'ajv-formats';
-import { State, TransformerErrorCode } from '../../../common/enums.js';
-import { TransformerException } from '../../../common/exceptions.js';
-import { provisionalRawReportSchema } from '../../../contracts/provisional-raw-report.schema.js';
-import type { RawReport } from '../../../contracts/schema.js';
+import { State, TransformerErrorCode } from '../../common/enums.js';
+import { TransformerException } from '../../common/exceptions.js';
+import { provisionalRawReportSchema } from '../../contracts/provisional-raw-report.schema.js';
+import type { RawReport, RawReportCandidate } from '../../contracts/schema.js';
 import type { TransformContext } from '../transformer.types.js';
 
 @Injectable()
@@ -35,7 +35,15 @@ export class ValidationProcessor {
   }
 
   async execute(context: TransformContext): Promise<void> {
-    const { candidate } = context;
+    if (!context.candidates)
+      throw new Error('Mapping must produce candidates before validation.');
+    // Validate the entire response before publishing any of its reports.
+    context.reports = context.candidates.map((candidate) =>
+      this.validate(candidate),
+    );
+  }
+
+  private validate(candidate: RawReportCandidate): RawReport {
     if (!this.validateLocal(candidate)) {
       const issues = this.validateLocal.errors
         ?.map((issue) => `${issue.instancePath || '/'}: ${issue.keyword}`)
@@ -63,6 +71,6 @@ export class ValidationProcessor {
         'RAW_REPORT does not satisfy the configured DE contract.',
       );
     }
-    context.report = candidate;
+    return candidate;
   }
 }

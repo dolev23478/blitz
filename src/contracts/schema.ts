@@ -20,9 +20,3 @@ export interface RawReport {
 
 /** Unvalidated mapping output: values may be missing or have the wrong type. */
 export type RawReportCandidate = Partial<Record<keyof RawReport, unknown>>;
-
-export interface ReportIdentity {
-  report_id: string;
-  platform: string;
-  report_url: string;
-}

@@ -1,8 +1,7 @@
 import { Ajv } from 'ajv';
 import addFormats from 'ajv-formats';
-import { load } from 'cheerio';
-import { IS_OFFICIAL, SCHEMA_VERSION } from '../../common/constants.js';
-import type { RawReportCandidate } from '../../contracts/schema.js';
+import { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
+import type { RawReportCandidate } from '../contracts/schema.js';
 
 const ajv = new Ajv();
 addFormats.default(ajv);
@@ -10,6 +9,7 @@ const validTimestamp = ajv.compile({ type: 'string', format: 'date-time' });
 
 function utc(value: unknown): unknown {
   if (value === undefined || value === null) return value;
+  if (value instanceof Date) return value.toISOString();
   if (!validTimestamp(value)) throw new Error('Invalid collector timestamp.');
   return new Date(value as string).toISOString();
 }
@@ -26,11 +26,7 @@ export function normalizeReport(
 
   let content = candidate.content;
   if (typeof content === 'string') {
-    const document = load(content);
-    document('script, style, template, noscript').remove();
-    document('br').replaceWith('\n');
-    document('p, div, li').append('\n');
-    content = document.root().text().normalize('NFC').trim();
+    content = content.normalize('NFC').trim();
   }
 
   return {

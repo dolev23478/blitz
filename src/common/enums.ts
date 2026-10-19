@@ -1,8 +1,3 @@
-export enum PayloadFormat {
-  Json = 'json',
-  Web = 'html',
-}
-
 export enum State {
   Parsing = 'parsing',
   Mapping = 'mapping',
