@@ -8,4 +8,5 @@ export interface ReportMetadata {
   matches?: string[];
   reportUrl?: string;
   collectedAt?: string;
+  source?: 'x' | 'telegram';
 }

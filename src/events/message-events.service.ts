@@ -1,10 +1,18 @@
 import { EventEmitter } from 'node:events';
 import { Injectable } from '@nestjs/common';
 
+export interface TelegramMatchedMessage {
+  chatId: number;
+  messageId: number;
+  text: string;
+  matchedLanguage?: string;
+}
+
 export interface NewMessagesEvent {
   channelId: number;
   channel: string;
   inserted: number;
+  messages?: TelegramMatchedMessage[];
 }
 
 /** In-process event bus used to push collector updates to connected clients (SSE). */
