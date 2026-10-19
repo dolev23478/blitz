@@ -51,10 +51,7 @@ export class DictionaryTermMatcher implements TermMatcher {
           continue;
         }
 
-        const candidates =
-          length === 1
-            ? normalizer.tokenVariants(first)
-            : [span.join(" ")];
+        const candidates = this.buildCandidates(span, normalizer);
 
         for (const candidate of candidates) {
           const entries = index.byNormalizedTerm.get(candidate);
@@ -82,6 +79,59 @@ export class DictionaryTermMatcher implements TermMatcher {
     }
 
     return found;
+  }
+
+  private buildCandidates(
+    span: string[],
+    normalizer: TextNormalizer,
+  ): string[] {
+    if (span.length === 0) {
+      return [];
+    }
+    const first = span[0];
+    if (first === undefined) {
+      return [];
+    }
+    if (span.length === 1) {
+      return normalizer.tokenVariants(first);
+    }
+
+    const raw = span.join(" ");
+
+    if (span.length >= 4) {
+      const last = span[span.length - 1];
+      if (last === undefined) {
+        return [raw];
+      }
+      const lastVariants = normalizer.tokenVariants(last);
+      const prefix = span.slice(0, -1).join(" ");
+      const res = new Set<string>([raw]);
+      for (const lv of lastVariants) {
+        res.add(`${prefix} ${lv}`);
+      }
+      return [...res];
+    }
+
+    const variantLists = span.map((t) => normalizer.tokenVariants(t));
+    let combinations = [""];
+    for (const list of variantLists) {
+      const next: string[] = [];
+      for (const prefix of combinations) {
+        for (const item of list) {
+          next.push(prefix ? `${prefix} ${item}` : item);
+          if (next.length >= 32) {
+            break;
+          }
+        }
+        if (next.length >= 32) {
+          break;
+        }
+      }
+      combinations = next;
+    }
+
+    const set = new Set<string>([raw, ...combinations]);
+    return [...set];
   }
 }
 

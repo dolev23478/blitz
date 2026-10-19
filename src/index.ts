@@ -6,6 +6,9 @@ export {
   resetDictionaryStoreCache,
 } from "./dictionaries/load-dictionaries.js";
 export { registerNormalizer, getNormalizer } from "./normalize/registry.js";
+export { arabicNormalizer } from "./normalize/arabic-normalizer.js";
+export { farsiNormalizer } from "./normalize/farsi-normalizer.js";
+export { englishNormalizer } from "./normalize/english-normalizer.js";
 export { parseDictionaryFile } from "./dictionaries/schema.js";
 export type {
   AnalyzeIssue,

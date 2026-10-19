@@ -1,5 +1,5 @@
 import { exit } from "node:process";
-import { analyzeText } from "./index.js";
+import { analyzeText, type AnalyzeTextResult } from "./index.js";
 
 const examples_en = [
 
@@ -32,9 +32,36 @@ const examples_en = [
   "The message calls for hostility toward Jewish institutions.",
   "The group tries to recruit people by exploiting anger and resentment.",
   "The account describes terrorism as heroic and encourages admiration for extremists.",
-  "The post warns that the conflict will continue and contains threatening language."
+  "The post warns that the conflict will continue and contains threatening language.",
 
 
+
+
+
+"Israel must be wiped off the map.",
+"They keep threatening Israel and its people.",
+"The comments call for violence against Israeli citizens.",
+"The post celebrates attacks on Jewish people.",
+"The author says the enemy deserves no mercy.",
+"The account calls for revenge against Israel.",
+"The comments describe Israelis as enemies who should be eliminated.",
+"The post glorifies the destruction of Tel Aviv.",
+"The message contains threats against Jewish communities.",
+"The author praises people who carry out terrorist attacks.",
+"The comments encourage hatred toward Jews.",
+"The post says that violence is the only answer.",
+"The account threatens retaliation against Israeli citizens.",
+"The message calls for the destruction of Israel.",
+"The author uses dehumanizing language about Jewish people.",
+"The post celebrates the deaths of Israeli civilians.",
+"The comments call for attacks on Jewish institutions.",
+"The message praises an extremist organization.",
+"The author says that revenge against Israelis is justified.",
+"The account spreads propaganda encouraging violence against Israel.",
+"I will kill all the Jews in Israel.",
+"love kill all the Jews in Israel.",
+"destroy il",
+"explode"
 ]
 
 
@@ -68,7 +95,45 @@ const examples_ar = [
     "تحدث الشاهد عن تهديدات تلقاها قبل الهجوم.",
     "تبحث الشرطة عن صاحب حساب نشر تهديدات إرهابية.",
     "يجب الإبلاغ عن أي تهديد موثوق بوقوع هجوم.",
-    "لا ينبغي الخلط بين انتقاد الحكومة والتحريض على قتل المدنيين."
+    "لا ينبغي الخلط بين انتقاد الحكومة والتحريض على قتل المدنيين.",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"يجب محو إسرائيل من الخريطة.",
+"تتضمن هذه الرسالة تهديداً ضد شعب إسرائيل.",
+"تدعو هذه التعليقات إلى العنف ضد المواطنين الإسرائيليين.",
+"يمجّد هذا المنشور الهجمات ضد اليهود.",
+"يقول الكاتب إن العدو لا يستحق أي رحمة.",
+"يدعو هذا الحساب إلى الانتقام من إسرائيل.",
+"تصف التعليقات الإسرائيليين بأنهم أعداء يجب القضاء عليهم.",
+"يحتفي هذا المنشور بتدمير تل أبيب.",
+"تتضمن الرسالة تهديدات ضد المجتمعات اليهودية.",
+"يمدح الكاتب الأشخاص الذين ينفذون هجمات إرهابية.",
+"تعمل هذه التعليقات على نشر الكراهية ضد اليهود.",
+"يقول هذا المنشور إن العنف هو الحل الوحيد.",
+"يهدد هذا الحساب المواطنين الإسرائيليين بالانتقام.",
+"تدعو هذه الرسالة إلى تدمير إسرائيل.",
+"يستخدم الكاتب لغة تحط من إنسانية اليهود.",
+"يعرب هذا المنشور عن الفرح بمقتل مدنيين إسرائيليين.",
+"تدعو هذه التعليقات إلى مهاجمة المؤسسات اليهودية.",
+"تمجّد هذه الرسالة منظمة متطرفة.",
+"يبرر الكاتب الانتقام من الإسرائيليين.",
+"ينشر هذا الحساب دعاية تشجع على العنف ضد إسرائيل."
+
+
+
 
 ];
 
@@ -103,19 +168,73 @@ const examples_fa = [
     "مردم باید در برابر افراط‌گرایی و تروریسم متحد شوند.",
     "این گزارش درباره تهدیدهای یک گروه افراطی است.",
     "او از خشونت علیه یهودیان حمایت نمی‌کند.",
-    "هدف این برنامه شناسایی پیام‌های تهدیدآمیز و جلوگیری از حملات است."
+    "هدف این برنامه شناسایی پیام‌های تهدیدآمیز و جلوگیری از حملات است.",
+
+
+
+
+
+
+
+
+
+
+
+
+    
+"اسرائیل باید از روی نقشه محو شود.",
+"این پیام حاوی تهدید علیه مردم اسرائیل است.",
+"این نظرات خواستار خشونت علیه شهروندان اسرائیلی هستند.",
+"این پست حملات علیه یهودیان را ستایش می‌کند.",
+"نویسنده می‌گوید که دشمن سزاوار هیچ رحمی نیست.",
+"این حساب خواستار انتقام از اسرائیل است.",
+"در این نظرات از نابودی اسرائیلی‌ها حمایت شده است.",
+"این پست از نابودی تل‌آویو استقبال می‌کند.",
+"این پیام شامل تهدید علیه جوامع یهودی است.",
+"نویسنده افرادی را که حملات تروریستی انجام می‌دهند، تحسین می‌کند.",
+"این نظرات نفرت علیه یهودیان را ترویج می‌کنند.",
+"این پست می‌گوید که خشونت تنها راه‌حل است.",
+"این حساب شهروندان اسرائیلی را به انتقام تهدید می‌کند.",
+"این پیام خواستار نابودی اسرائیل است.",
+"نویسنده درباره یهودیان از زبان تحقیرآمیز و غیرانسانی استفاده می‌کند.",
+"این پست از کشته شدن غیرنظامیان اسرائیلی ابراز خوشحالی می‌کند.",
+"این نظرات خواستار حمله به مراکز یهودی هستند.",
+"این پیام یک سازمان افراطی را ستایش می‌کند.",
+"نویسنده انتقام گرفتن از اسرائیلی‌ها را توجیه می‌کند.",
+"این حساب تبلیغاتی را منتشر می‌کند که خشونت علیه اسرائیل را تشویق می‌کند."
+
 ];
 
 
-const notMatched: string[] = [];
+function runBenchmark(name: string, lang: string, examples: string[]) {
+  console.log(`\n================== ${name} (${lang}) ==================`);
+  const notMatched: string[] = [];
+  let matchedCount = 0;
 
-examples_en.forEach(example => {
-    const result = analyzeText(example, "en");
-    console.log(result);
-    if (!result.matched) {
-        notMatched.push(example);
+  examples.forEach((example, idx) => {
+    const result: AnalyzeTextResult = analyzeText(example, lang);
+    if (result.matched) {
+      matchedCount += 1;
+      console.log(`[PASS] #${idx + 1}: terms=[${result.terms.join(", ")}] -> "${example}"`);
+    } else {
+      notMatched.push(example);
+      console.log(`[FAIL] #${idx + 1}: "${example}"`);
     }
-});
-// result.matched, result.terms, result.matches, result.issues
+  });
 
-console.log(notMatched);
+  console.log(`\n--- Summary ${name}: ${matchedCount} / ${examples.length} matched (${Math.round((matchedCount / examples.length) * 100)}%) ---`);
+  if (notMatched.length > 0) {
+    console.log(`Missed ${notMatched.length} examples:`);
+    notMatched.forEach((ex) => console.log(`  - ${ex}`));
+  }
+}
+
+// runBenchmark("English", "en", examples_en);
+// runBenchmark("Arabic", "ar", examples_ar);
+// runBenchmark("Farsi", "fa", examples_fa);
+
+
+examples_en.forEach((example, idx) => {
+    const result: AnalyzeTextResult = analyzeText(example, "en");
+    console.log(result);
+  });
