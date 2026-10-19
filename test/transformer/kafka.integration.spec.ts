@@ -66,12 +66,12 @@ describe.skipIf(!brokers)('real Kafka round trip', () => {
         received,
       ]);
       const report = JSON.parse(record.value);
-      expect(record.key).toBe(report.report_id);
+      expect(record.key).toBe(String(report.report_id));
       expect(results).toEqual([
         {
           status: 'completed',
           inputId: 'integration-test',
-          reportId: record.key,
+          reportId: report.report_id,
         },
       ]);
       expect(report).toMatchObject({

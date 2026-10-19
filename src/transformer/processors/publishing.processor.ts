@@ -50,7 +50,9 @@ export class PublishingProcessor implements OnModuleDestroy {
       await producer.send({
         topic: REPORT_TOPIC,
         acks: -1,
-        messages: [{ key: report.report_id, value: JSON.stringify(report) }],
+        messages: [
+          { key: String(report.report_id), value: JSON.stringify(report) },
+        ],
       });
     } catch (error) {
       if (error instanceof TransformerException) throw error;

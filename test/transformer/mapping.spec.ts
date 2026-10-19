@@ -46,7 +46,7 @@ describe('collector JSON mapping', () => {
     const reports = await mapReports(input);
     expect(reports).toHaveLength(1);
     expect(reports[0]).toEqual({
-      report_id: expect.stringMatching(/^\d+$/),
+      report_id: expect.any(Number),
       schema_version: '1.0.0',
       is_official: false,
       platform: 'twitter',
@@ -93,7 +93,7 @@ describe('collector JSON mapping', () => {
     input.media = [{ type: 'video', url: 'https://example.com/video.mp4' }];
     const [report] = await mapReports(input);
     expect(report).toEqual({
-      report_id: expect.stringMatching(/^\d+$/),
+      report_id: expect.any(Number),
       schema_version: '1.0.0',
       is_official: false,
       platform: 'telegram',

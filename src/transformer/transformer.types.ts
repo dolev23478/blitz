@@ -11,7 +11,7 @@ export interface RunOptions extends ReportMetadata {
 export interface WorkflowResult {
   readonly status: 'completed';
   readonly inputId: string;
-  readonly reportId: string;
+  readonly reportId: number;
 }
 
 /** Original collector object and processing data for one workflow invocation. */

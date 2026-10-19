@@ -4,7 +4,7 @@ export type MappingFormat =
 
 /** Only fields missing from collector JSON; passed separately from the payload. */
 export interface ReportMetadata {
-  language: string;
+  language?: string | null;
   matches?: string[];
   reportUrl?: string;
   collectedAt?: string;

@@ -20,18 +20,22 @@ async function validate(overrides: Record<string, unknown>) {
 }
 
 describe('provisional RAW_REPORT validation', () => {
-  it.each(['9223372036854775807', '-9223372036854775808', '0'])(
-    'preserves signed int64 ID %s exactly without numeric conversion',
+  it.each([-2147483648, -1, 0, 1, 2147483647])(
+    'preserves signed int32 ID %s as a JSON number',
     async (report_id) => {
       expect((await validate({ report_id })).report_id).toBe(report_id);
     },
   );
 
   it.each([
-    { report_id: '9223372036854775808' },
-    { report_id: '-9223372036854775809' },
-    { report_id: '123.5' },
-    { report_id: '001' },
+    { report_id: 2147483648 },
+    { report_id: -2147483649 },
+    { report_id: 1.5 },
+    { report_id: '123' },
+    { report_id: null },
+    { report_id: undefined },
+    { report_id: NaN },
+    { report_id: Infinity },
     { report_id: 9007199254740992 },
     { content: '' },
     { content: ' \n ' },
@@ -53,6 +57,12 @@ describe('provisional RAW_REPORT validation', () => {
     });
   });
 
+  it('rejects bigint IDs because the contract requires a JSON number', async () => {
+    await expect(validate({ report_id: 2147483647n })).rejects.toMatchObject({
+      code: 'validation_failed',
+    });
+  });
+
   it('accepts nullable optional report fields', async () => {
     const report = await validate({
       account_name: null,
@@ -63,10 +73,14 @@ describe('provisional RAW_REPORT validation', () => {
     expect(report.published_at).toBeNull();
   });
 
-  it('does not invent collection timestamps or language', () => {
+  it('keeps missing collection timestamps and defaults missing language to unknown', () => {
     const result = normalizeReport({ content: 'text' });
     expect(result.collected_at).toBeUndefined();
-    expect(result.language).toBeUndefined();
+    expect(result.language).toBe('unknown');
+  });
+
+  it('accepts the explicit unknown-language marker', async () => {
+    expect((await validate({ language: 'unknown' })).language).toBe('unknown');
   });
 
   it('forces Blitz-owned fixed fields during normalization', () => {

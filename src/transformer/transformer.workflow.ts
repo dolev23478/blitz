@@ -31,12 +31,12 @@ export class TransformerWorkflow {
   run(
     format: 'ProfileScrapeResult',
     data: ProfileScrapeResult,
-    options: RunOptions,
+    options?: RunOptions,
   ): Promise<WorkflowResult[]>;
   run(
     format: 'StoredMessage',
     data: StoredMessage,
-    options: RunOptions,
+    options?: RunOptions,
   ): Promise<WorkflowResult[]>;
   run(
     format: 'MessageDto',
@@ -48,7 +48,7 @@ export class TransformerWorkflow {
   async run(
     format: MappingFormat,
     data: unknown,
-    options: RunOptions,
+    options: RunOptions = {},
   ): Promise<WorkflowResult[]> {
     const context: TransformContext = {
       format,

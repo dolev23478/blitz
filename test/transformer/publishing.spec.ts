@@ -67,6 +67,19 @@ function deferred() {
 }
 
 describe('Kafka publication', () => {
+  it.each([-2147483648, 0, 2147483647])(
+    'serializes int32 boundary %s as a JSON number with a string Kafka key',
+    async (id) => {
+      const ctx = { ...context(), reports: [rawReport({ report_id: id })] };
+      await publisher().execute(ctx);
+      const record = kafka.send.mock.calls[0]![0] as ProducerRecord;
+      expect(record.messages[0]!.key).toBe(String(id));
+      const parsed = JSON.parse(record.messages[0]!.value as string);
+      expect(parsed.report_id).toBe(id);
+      expect(typeof parsed.report_id).toBe('number');
+    },
+  );
+
   it('sends JSON to reports.raw with the exact decimal string key and all-replica acknowledgment', async () => {
     const processor = publisher();
     const ctx = publishingContext();
@@ -74,9 +87,7 @@ describe('Kafka publication', () => {
     expect(kafka.send).toHaveBeenCalledExactlyOnceWith({
       topic: 'reports.raw',
       acks: -1,
-      messages: [
-        { key: '9223372036854775807', value: JSON.stringify(ctx.reports[0]) },
-      ],
+      messages: [{ key: '2147483647', value: JSON.stringify(ctx.reports[0]) }],
     });
     expect(kafka.producer).toHaveBeenCalledWith({
       allowAutoTopicCreation: false,
@@ -202,10 +213,7 @@ describe('Kafka publication', () => {
       .mockResolvedValueOnce([])
       .mockRejectedValueOnce(new Error('unavailable'));
     const ctx = publishingContext();
-    ctx.reports.push(
-      rawReport({ report_id: '2' }),
-      rawReport({ report_id: '3' }),
-    );
+    ctx.reports.push(rawReport({ report_id: 2 }), rawReport({ report_id: 3 }));
     await expect(publisher().execute(ctx)).rejects.toMatchObject({
       code: 'publication_failed',
     });

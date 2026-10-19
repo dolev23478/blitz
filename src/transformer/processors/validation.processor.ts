@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { Ajv, type ValidateFunction } from 'ajv';
 import addFormats from 'ajv-formats';
 import { State, TransformerErrorCode } from '../../common/enums.js';
+import { UNKNOWN_LANGUAGE } from '../../common/constants.js';
 import { TransformerException } from '../../common/exceptions.js';
 import { provisionalRawReportSchema } from '../../contracts/provisional-raw-report.schema.js';
 import type { RawReport, RawReportCandidate } from '../../contracts/schema.js';
@@ -53,16 +54,14 @@ export class ValidationProcessor {
         `Invalid RAW_REPORT fields: ${issues}`,
       );
     }
-    const id = BigInt(candidate.report_id);
     if (
-      id < -(2n ** 63n) ||
-      id > 2n ** 63n - 1n ||
       /<\/?[a-z][^>]*>/i.test(candidate.content) ||
-      !this.languages.of(candidate.language)
+      (candidate.language !== UNKNOWN_LANGUAGE &&
+        !this.languages.of(candidate.language))
     ) {
       throw new TransformerException(
         TransformerErrorCode.ValidationFailed,
-        'Invalid report ID, parsed content or language code.',
+        'Invalid parsed content or language code.',
       );
     }
     if (this.validateDE && !this.validateDE(candidate)) {

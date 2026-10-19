@@ -1,4 +1,9 @@
-import { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
+import {
+  INT32_MIN,
+  INT32_MAX,
+  IS_OFFICIAL,
+  SCHEMA_VERSION,
+} from '../common/constants.js';
 
 /** LOCAL MVP rules only. Replace/reconcile with the actual DE contract. */
 export const provisionalRawReportSchema = {
@@ -22,9 +27,9 @@ export const provisionalRawReportSchema = {
   ],
   properties: {
     report_id: {
-      type: 'string',
-      pattern: '^(0|-?[1-9][0-9]*)$',
-      maxLength: 20,
+      type: 'integer',
+      minimum: INT32_MIN,
+      maximum: INT32_MAX,
     },
     schema_version: { const: SCHEMA_VERSION },
     is_official: { const: IS_OFFICIAL },
@@ -35,7 +40,7 @@ export const provisionalRawReportSchema = {
     media_type: { type: 'array', items: { type: 'string', minLength: 1 } },
     report_title: { type: ['string', 'null'] },
     content: { type: 'string', minLength: 1, pattern: '\\S' },
-    language: { type: 'string', pattern: '^[a-z]{2}$' },
+    language: { type: 'string', pattern: '^(unknown|[a-z]{2})$' },
     matches: { type: 'array', items: { type: 'string' } },
     published_at: {
       anyOf: [

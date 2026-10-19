@@ -1,6 +1,10 @@
 import { Ajv } from 'ajv';
 import addFormats from 'ajv-formats';
-import { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
+import {
+  IS_OFFICIAL,
+  SCHEMA_VERSION,
+  UNKNOWN_LANGUAGE,
+} from '../common/constants.js';
 import type { RawReportCandidate } from '../contracts/schema.js';
 
 const ajv = new Ajv();
@@ -14,16 +18,10 @@ function utc(value: unknown): unknown {
   return new Date(value as string).toISOString();
 }
 
-/** Convert representations without inventing collection times, IDs or language. */
+/** Normalize values; an absent language stays explicitly unknown. */
 export function normalizeReport(
   candidate: RawReportCandidate,
 ): RawReportCandidate {
-  let reportId = candidate.report_id;
-  if (typeof reportId === 'number') {
-    if (!Number.isSafeInteger(reportId)) throw new Error('Unsafe report ID.');
-    reportId = String(reportId);
-  }
-
   let content = candidate.content;
   if (typeof content === 'string') {
     content = content.normalize('NFC').trim();
@@ -31,7 +29,6 @@ export function normalizeReport(
 
   return {
     ...candidate,
-    report_id: reportId,
     schema_version: SCHEMA_VERSION,
     is_official: IS_OFFICIAL,
     account_name: candidate.account_name ?? null,
@@ -41,12 +38,16 @@ export function normalizeReport(
         ? candidate.report_title.trim() || null
         : (candidate.report_title ?? null),
     content,
+    language:
+      typeof candidate.language === 'string'
+        ? candidate.language.trim() || UNKNOWN_LANGUAGE
+        : (candidate.language ?? UNKNOWN_LANGUAGE),
     media_type:
       typeof candidate.media_type === 'string'
         ? [candidate.media_type]
         : candidate.media_type,
     published_at: utc(candidate.published_at ?? null),
     collected_at: utc(candidate.collected_at),
-    // report_url, language and matches retain the collector's values.
+    // report_url and matches retain the collector's values.
   };
 }
