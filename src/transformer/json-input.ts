@@ -1,0 +1,67 @@
+export const MAX_PAYLOAD_BYTES = 1024 * 1024;
+
+/** Reject unsafe numbers rather than silently publishing a rounded report ID. */
+export function checkJson(value: unknown): void {
+  const pending = [{ value, depth: 0 }];
+  const seen = new WeakSet<object>();
+  let nodes = 0;
+
+  while (pending.length) {
+    const item = pending.pop()!;
+    if (++nodes > 10000 || item.depth > 64) {
+      throw new Error('JSON payload exceeds the supported complexity.');
+    }
+    const current = item.value;
+    if (typeof current === 'number') {
+      if (
+        !Number.isFinite(current) ||
+        (Number.isInteger(current) && !Number.isSafeInteger(current))
+      ) {
+        throw new Error(
+          'JSON contains a non-finite or unsafe numeric value. Send large IDs as strings.',
+        );
+      }
+    } else if (current instanceof Date) {
+      // StoredMessage uses Date instances when passed directly inside Nest.
+      if (
+        !Number.isFinite(current.getTime()) ||
+        Reflect.ownKeys(current).length
+      )
+        throw new Error('Invalid collector Date.');
+    } else if (current !== null && typeof current === 'object') {
+      if (seen.has(current))
+        throw new Error(
+          'JSON must not contain circular/shared object references.',
+        );
+      seen.add(current);
+      if (
+        !Array.isArray(current) &&
+        Object.getPrototypeOf(current) !== Object.prototype &&
+        Object.getPrototypeOf(current) !== null
+      ) {
+        throw new Error('JSON must contain only plain objects and arrays.');
+      }
+      const keys = Reflect.ownKeys(current);
+      if (nodes + pending.length + keys.length > 10000)
+        throw new Error('Too many JSON fields.');
+      for (const key of keys) {
+        if (typeof key === 'symbol')
+          throw new Error('JSON symbol keys are not supported.');
+        const descriptor = Object.getOwnPropertyDescriptor(current, key)!;
+        if (descriptor.get || descriptor.set)
+          throw new Error('JSON accessors are not supported.');
+        pending.push({ value: descriptor.value, depth: item.depth + 1 });
+      }
+    } else if (
+      current !== null &&
+      current !== undefined && // Optional properties in in-process collector DTOs.
+      typeof current !== 'string' &&
+      typeof current !== 'boolean'
+    ) {
+      throw new Error('Payload contains a value that JSON cannot represent.');
+    }
+  }
+  if (Buffer.byteLength(JSON.stringify(value), 'utf8') > MAX_PAYLOAD_BYTES) {
+    throw new Error('JSON payload exceeds 1 MiB.');
+  }
+}

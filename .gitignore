@@ -1,3 +1,30 @@
+<<<<<<< HEAD
+# Nestjs specific
+/dist
+/node_modules
+/build
+/tmp
+/dictionaries
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# dotenv environment variable files
+.env
+.env.development
+.env.test
+.env.production
+
+# temp directory
+.temp
+.tmp
+=======
 # compiled output
 /dist
 /node_modules
@@ -58,3 +85,9 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+AGENTS.md
+BLITZ_CONTEXT.md
+reference/
+
+>>>>>>> cc53fbff870766b34808ebaf0d1ac54bf54a432f

@@ -14,12 +14,14 @@ import { TelegramModule } from './telegram/telegram.module.js';
 import { RedisModule } from './redis/redis.module.js';
 import { XScraperModule } from './x-scraper/x-scraper.module.js';
 import { XScraperCronService } from './x-scraper/x-scraper.cron.service.js';
+import { TransformerModule } from './transformer/transformer.module.js';
 
 @Module({
   imports: [
     AppConfigModule, DatabaseModule, RedisModule, EventsModule,
     CollectorModule, TelegramModule, ChannelsModule, MessagesModule, MetaModule, ReportsModule,
     XScraperModule,
+    TransformerModule,
   ],
   providers: [
     XScraperCronService,

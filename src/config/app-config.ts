@@ -20,6 +20,14 @@ const schema = z.object({
   /** Safety-net catch-up interval for chats, in case live push stalls silently. */
   TG_SYNC_SECONDS: z.coerce.number().nonnegative().default(300),
   CORS_ORIGIN: z.string().default('*'),
+  /** Transformer Kafka settings. An empty broker list is allowed until publishing is needed. */
+  KAFKA_BROKERS: z.string().optional(),
+  KAFKA_CLIENT_ID: z.string().optional().transform((v) => v || undefined),
+  KAFKA_SSL: z.enum(['true', 'false']).optional(),
+  KAFKA_SASL_MECHANISM: z.string().optional().transform((v) => v || undefined),
+  KAFKA_SASL_USERNAME: z.string().optional().transform((v) => v || undefined),
+  KAFKA_SASL_PASSWORD: z.string().optional().transform((v) => v || undefined),
+  DE_RAW_REPORT_SCHEMA_PATH: z.string().optional().transform((v) => v || undefined),
 });
 
 export type AppConfig = z.output<typeof schema>;
