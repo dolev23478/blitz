@@ -1,5 +1,6 @@
 import { arabicNormalizer } from "./arabic-normalizer.js";
 import { defaultNormalizer, DefaultNormalizer } from "./default-normalizer.js";
+import { emojiNormalizer } from "./emoji-normalizer.js";
 import { englishNormalizer } from "./english-normalizer.js";
 import { farsiNormalizer } from "./farsi-normalizer.js";
 import { hebrewNormalizer } from "./hebrew-normalizer.js";
@@ -16,6 +17,8 @@ const dedicated = new Map<string, TextNormalizer>([
   ["he", hebrewNormalizer],
   ["heb", hebrewNormalizer],
   ["iw", hebrewNormalizer],
+  ["emoji", emojiNormalizer],
+  ["emojis", emojiNormalizer],
 ]);
 
 const fallbacks = new Map<string, TextNormalizer>();

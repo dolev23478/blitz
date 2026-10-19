@@ -7,12 +7,33 @@ export function collapseSpaces(text: string): string {
   return text.replace(/\s+/g, " ").trim();
 }
 
+const graphemeSegmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
+
 /**
- * Keep letters, numbers and apostrophes. Everything else becomes a space so
+ * Ensures emojis are separated by spaces even if typed consecutively without spaces (e.g. 🔪💣🩸 -> 🔪 💣 🩸).
+ */
+export function padEmojis(text: string): string {
+  if (!/\p{Extended_Pictographic}/u.test(text)) {
+    return text;
+  }
+  let result = "";
+  for (const { segment } of graphemeSegmenter.segment(text)) {
+    if (/\p{Extended_Pictographic}/u.test(segment)) {
+      result += ` ${segment} `;
+    } else {
+      result += segment;
+    }
+  }
+  return result;
+}
+
+/**
+ * Keep letters, numbers, apostrophes, and emojis. Everything else becomes a space so
  * matching is token-based rather than raw substring search.
  */
 export function punctuationToSpace(text: string): string {
-  return text.replace(/[^\p{L}\p{N}\p{Extended_Pictographic}']+/gu, " ");
+  const padded = padEmojis(text);
+  return padded.replace(/[^\p{L}\p{N}\p{Extended_Pictographic}']+/gu, " ");
 }
 
 export function tokenizeNormalized(text: string): string[] {
