@@ -214,12 +214,14 @@ describe('XScraperService - Batch Scraping', () => {
 
 describe('MONITORED_X_SOURCES', () => {
   it('contains verified OSINT channels with valid handles', () => {
-    expect(MONITORED_X_SOURCES.length).toBeGreaterThan(10);
+    expect(MONITORED_X_SOURCES.length).toBe(83);
     for (const source of MONITORED_X_SOURCES) {
       expect(source.name).toBeTruthy();
       expect(source.handle).toBeTruthy();
+      expect(source.handle.startsWith('@')).toBe(false);
       expect(source.category).toBeTruthy();
       expect(source.lang).toBeTruthy();
+      expect(source.region).toBeTruthy();
     }
   });
 });
