@@ -12,7 +12,7 @@ export function collapseSpaces(text: string): string {
  * matching is token-based rather than raw substring search.
  */
 export function punctuationToSpace(text: string): string {
-  return text.replace(/[^\p{L}\p{N}']+/gu, " ");
+  return text.replace(/[^\p{L}\p{N}\p{Extended_Pictographic}']+/gu, " ");
 }
 
 export function tokenizeNormalized(text: string): string[] {

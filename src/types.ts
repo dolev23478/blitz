@@ -31,6 +31,8 @@ export interface AnalyzeMatch {
 }
 
 export interface AnalyzeTextResult {
+  text: string;
+  content: string;
   language: string;
   matched: boolean;
   terms: string[];
@@ -45,4 +47,15 @@ export interface AnalyzeTextOptions {
    * Useful when this module is later mounted inside a larger application.
    */
   dictionariesDir?: string;
+
+  /**
+   * Filter matches by concept prefix (e.g. ['violence', 'intent.threat']).
+   * If provided, only matches with matching concepts are returned.
+   */
+  concepts?: string[];
+
+  /**
+   * Cap on the number of matches to return per text.
+   */
+  maxMatches?: number;
 }

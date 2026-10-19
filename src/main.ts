@@ -3,65 +3,65 @@ import { analyzeText, type AnalyzeTextResult } from "./index.js";
 
 const examples_en = [
 
-  "Our enemies think we have forgotten what they did. They are wrong.",
-  "The time for revenge has come, and our anger will not disappear.",
-  "Anyone who supports Israel is our enemy.",
-  "They keep talking about peace while hatred continues to grow.",
-  "Our movement will never stop fighting against its enemies.",
-  "The occupation must end, and those responsible must face the consequences.",
-  "We will never forgive those who have harmed our people.",
-  "Their actions have created a generation filled with anger and resentment.",
-  "Some people believe violence is the only language our enemies understand.",
-  "The struggle will continue until our demands are heard.",
-  "Our supporters believe that retaliation is justified.",
-  "Hatred against Jewish people is spreading in extremist online communities.",
-  "This channel shares propaganda from a radical organization.",
-  "The group glorifies past attacks and praises those responsible.",
-  "The speaker encourages followers to join the movement.",
-  "The post calls for revenge against Israeli citizens.",
-  "The message contains threatening language directed at Jewish communities.",
-  "The author describes civilians as legitimate targets.",
-  "The group claims that violence is necessary to achieve its political goals.",
-  "The account repeatedly publishes extremist slogans and threats.",
-  "Supporters are encouraged to spread the group's ideology online.",
-  "The message celebrates an attack and expresses support for further violence.",
-  "The speaker portrays an entire nationality as an enemy.",
-  "The post uses dehumanizing language to justify hatred.",
-  "The organization presents itself as a resistance movement while praising attacks on civilians.",
-  "The author threatens retaliation against people who disagree with the group's ideology.",
-  "The message calls for hostility toward Jewish institutions.",
-  "The group tries to recruit people by exploiting anger and resentment.",
-  "The account describes terrorism as heroic and encourages admiration for extremists.",
-  "The post warns that the conflict will continue and contains threatening language.",
+    "Our enemies think we have forgotten what they did. They are wrong.",
+    "The time for revenge has come, and our anger will not disappear.",
+    "Anyone who supports Israel is our enemy.",
+    "They keep talking about peace while hatred continues to grow.",
+    "Our movement will never stop fighting against its enemies.",
+    "The occupation must end, and those responsible must face the consequences.",
+    "We will never forgive those who have harmed our people.",
+    "Their actions have created a generation filled with anger and resentment.",
+    "Some people believe violence is the only language our enemies understand.",
+    "The struggle will continue until our demands are heard.",
+    "Our supporters believe that retaliation is justified.",
+    "Hatred against Jewish people is spreading in extremist online communities.",
+    "This channel shares propaganda from a radical organization.",
+    "The group glorifies past attacks and praises those responsible.",
+    "The speaker encourages followers to join the movement.",
+    "The post calls for revenge against Israeli citizens.",
+    "The message contains threatening language directed at Jewish communities.",
+    "The author describes civilians as legitimate targets.",
+    "The group claims that violence is necessary to achieve its political goals.",
+    "The account repeatedly publishes extremist slogans and threats.",
+    "Supporters are encouraged to spread the group's ideology online.",
+    "The message celebrates an attack and expresses support for further violence.",
+    "The speaker portrays an entire nationality as an enemy.",
+    "The post uses dehumanizing language to justify hatred.",
+    "The organization presents itself as a resistance movement while praising attacks on civilians.",
+    "The author threatens retaliation against people who disagree with the group's ideology.",
+    "The message calls for hostility toward Jewish institutions.",
+    "The group tries to recruit people by exploiting anger and resentment.",
+    "The account describes terrorism as heroic and encourages admiration for extremists.",
+    "The post warns that the conflict will continue and contains threatening language.",
 
 
 
 
 
-"Israel must be wiped off the map.",
-"They keep threatening Israel and its people.",
-"The comments call for violence against Israeli citizens.",
-"The post celebrates attacks on Jewish people.",
-"The author says the enemy deserves no mercy.",
-"The account calls for revenge against Israel.",
-"The comments describe Israelis as enemies who should be eliminated.",
-"The post glorifies the destruction of Tel Aviv.",
-"The message contains threats against Jewish communities.",
-"The author praises people who carry out terrorist attacks.",
-"The comments encourage hatred toward Jews.",
-"The post says that violence is the only answer.",
-"The account threatens retaliation against Israeli citizens.",
-"The message calls for the destruction of Israel.",
-"The author uses dehumanizing language about Jewish people.",
-"The post celebrates the deaths of Israeli civilians.",
-"The comments call for attacks on Jewish institutions.",
-"The message praises an extremist organization.",
-"The author says that revenge against Israelis is justified.",
-"The account spreads propaganda encouraging violence against Israel.",
-"I will kill all the Jews in Israel.",
-"love kill all the Jews in Israel.",
-"destroy il",
-"explode"
+    "Israel must be wiped off the map.",
+    "They keep threatening Israel and its people.",
+    "The comments call for violence against Israeli citizens.",
+    "The post celebrates attacks on Jewish people.",
+    "The author says the enemy deserves no mercy.",
+    "The account calls for revenge against Israel.",
+    "The comments describe Israelis as enemies who should be eliminated.",
+    "The post glorifies the destruction of Tel Aviv.",
+    "The message contains threats against Jewish communities.",
+    "The author praises people who carry out terrorist attacks.",
+    "The comments encourage hatred toward Jews.",
+    "The post says that violence is the only answer.",
+    "The account threatens retaliation against Israeli citizens.",
+    "The message calls for the destruction of Israel.",
+    "The author uses dehumanizing language about Jewish people.",
+    "The post celebrates the deaths of Israeli civilians.",
+    "The comments call for attacks on Jewish institutions.",
+    "The message praises an extremist organization.",
+    "The author says that revenge against Israelis is justified.",
+    "The account spreads propaganda encouraging violence against Israel.",
+    "I will kill all the Jews in Israel.",
+    "love kill all the Jews in Israel.",
+    "destroy il",
+    "explode"
 ]
 
 
@@ -111,26 +111,26 @@ const examples_ar = [
 
 
 
-"يجب محو إسرائيل من الخريطة.",
-"تتضمن هذه الرسالة تهديداً ضد شعب إسرائيل.",
-"تدعو هذه التعليقات إلى العنف ضد المواطنين الإسرائيليين.",
-"يمجّد هذا المنشور الهجمات ضد اليهود.",
-"يقول الكاتب إن العدو لا يستحق أي رحمة.",
-"يدعو هذا الحساب إلى الانتقام من إسرائيل.",
-"تصف التعليقات الإسرائيليين بأنهم أعداء يجب القضاء عليهم.",
-"يحتفي هذا المنشور بتدمير تل أبيب.",
-"تتضمن الرسالة تهديدات ضد المجتمعات اليهودية.",
-"يمدح الكاتب الأشخاص الذين ينفذون هجمات إرهابية.",
-"تعمل هذه التعليقات على نشر الكراهية ضد اليهود.",
-"يقول هذا المنشور إن العنف هو الحل الوحيد.",
-"يهدد هذا الحساب المواطنين الإسرائيليين بالانتقام.",
-"تدعو هذه الرسالة إلى تدمير إسرائيل.",
-"يستخدم الكاتب لغة تحط من إنسانية اليهود.",
-"يعرب هذا المنشور عن الفرح بمقتل مدنيين إسرائيليين.",
-"تدعو هذه التعليقات إلى مهاجمة المؤسسات اليهودية.",
-"تمجّد هذه الرسالة منظمة متطرفة.",
-"يبرر الكاتب الانتقام من الإسرائيليين.",
-"ينشر هذا الحساب دعاية تشجع على العنف ضد إسرائيل."
+    "يجب محو إسرائيل من الخريطة.",
+    "تتضمن هذه الرسالة تهديداً ضد شعب إسرائيل.",
+    "تدعو هذه التعليقات إلى العنف ضد المواطنين الإسرائيليين.",
+    "يمجّد هذا المنشور الهجمات ضد اليهود.",
+    "يقول الكاتب إن العدو لا يستحق أي رحمة.",
+    "يدعو هذا الحساب إلى الانتقام من إسرائيل.",
+    "تصف التعليقات الإسرائيليين بأنهم أعداء يجب القضاء عليهم.",
+    "يحتفي هذا المنشور بتدمير تل أبيب.",
+    "تتضمن الرسالة تهديدات ضد المجتمعات اليهودية.",
+    "يمدح الكاتب الأشخاص الذين ينفذون هجمات إرهابية.",
+    "تعمل هذه التعليقات على نشر الكراهية ضد اليهود.",
+    "يقول هذا المنشور إن العنف هو الحل الوحيد.",
+    "يهدد هذا الحساب المواطنين الإسرائيليين بالانتقام.",
+    "تدعو هذه الرسالة إلى تدمير إسرائيل.",
+    "يستخدم الكاتب لغة تحط من إنسانية اليهود.",
+    "يعرب هذا المنشور عن الفرح بمقتل مدنيين إسرائيليين.",
+    "تدعو هذه التعليقات إلى مهاجمة المؤسسات اليهودية.",
+    "تمجّد هذه الرسالة منظمة متطرفة.",
+    "يبرر الكاتب الانتقام من الإسرائيليين.",
+    "ينشر هذا الحساب دعاية تشجع على العنف ضد إسرائيل."
 
 
 
@@ -181,60 +181,86 @@ const examples_fa = [
 
 
 
-    
-"اسرائیل باید از روی نقشه محو شود.",
-"این پیام حاوی تهدید علیه مردم اسرائیل است.",
-"این نظرات خواستار خشونت علیه شهروندان اسرائیلی هستند.",
-"این پست حملات علیه یهودیان را ستایش می‌کند.",
-"نویسنده می‌گوید که دشمن سزاوار هیچ رحمی نیست.",
-"این حساب خواستار انتقام از اسرائیل است.",
-"در این نظرات از نابودی اسرائیلی‌ها حمایت شده است.",
-"این پست از نابودی تل‌آویو استقبال می‌کند.",
-"این پیام شامل تهدید علیه جوامع یهودی است.",
-"نویسنده افرادی را که حملات تروریستی انجام می‌دهند، تحسین می‌کند.",
-"این نظرات نفرت علیه یهودیان را ترویج می‌کنند.",
-"این پست می‌گوید که خشونت تنها راه‌حل است.",
-"این حساب شهروندان اسرائیلی را به انتقام تهدید می‌کند.",
-"این پیام خواستار نابودی اسرائیل است.",
-"نویسنده درباره یهودیان از زبان تحقیرآمیز و غیرانسانی استفاده می‌کند.",
-"این پست از کشته شدن غیرنظامیان اسرائیلی ابراز خوشحالی می‌کند.",
-"این نظرات خواستار حمله به مراکز یهودی هستند.",
-"این پیام یک سازمان افراطی را ستایش می‌کند.",
-"نویسنده انتقام گرفتن از اسرائیلی‌ها را توجیه می‌کند.",
-"این حساب تبلیغاتی را منتشر می‌کند که خشونت علیه اسرائیل را تشویق می‌کند."
+
+    "اسرائیل باید از روی نقشه محو شود.",
+    "این پیام حاوی تهدید علیه مردم اسرائیل است.",
+    "این نظرات خواستار خشونت علیه شهروندان اسرائیلی هستند.",
+    "این پست حملات علیه یهودیان را ستایش می‌کند.",
+    "نویسنده می‌گوید که دشمن سزاوار هیچ رحمی نیست.",
+    "این حساب خواستار انتقام از اسرائیل است.",
+    "در این نظرات از نابودی اسرائیلی‌ها حمایت شده است.",
+    "این پست از نابودی تل‌آویو استقبال می‌کند.",
+    "این پیام شامل تهدید علیه جوامع یهودی است.",
+    "نویسنده افرادی را که حملات تروریستی انجام می‌دهند، تحسین می‌کند.",
+    "این نظرات نفرت علیه یهودیان را ترویج می‌کنند.",
+    "این پست می‌گوید که خشونت تنها راه‌حل است.",
+    "این حساب شهروندان اسرائیلی را به انتقام تهدید می‌کند.",
+    "این پیام خواستار نابودی اسرائیل است.",
+    "نویسنده درباره یهودیان از زبان تحقیرآمیز و غیرانسانی استفاده می‌کند.",
+    "این پست از کشته شدن غیرنظامیان اسرائیلی ابراز خوشحالی می‌کند.",
+    "این نظرات خواستار حمله به مراکز یهودی هستند.",
+    "این پیام یک سازمان افراطی را ستایش می‌کند.",
+    "نویسنده انتقام گرفتن از اسرائیلی‌ها را توجیه می‌کند.",
+    "این حساب تبلیغاتی را منتشر می‌کند که خشونت علیه اسرائیل را تشویق می‌کند."
 
 ];
 
 
+
+const examples_he = [
+    "מוות לישראל ולכל מי שתומך בה.",
+    "צריך למחוק את ישראל מהמפה.",
+    "ישראל עוד תשלם על כל מה שעשתה.",
+    "נקמה בישראל היא רק עניין של זמן.",
+    "כל הישראלים הם אויבים וצריך לגרש אותם.",
+    "צריך לחסל את הציונים בכל מקום.",
+    "הלוואי שישראל תישרף ותיעלם.",
+    "צריך לפגוע ביהודים בגלל מה שישראל עושה.",
+    "הפוסט קורא להרוג יהודים ולתקוף בתי כנסת.",
+    "התגובות מלאות באיומים נגד ישראלים.",
+    "הוא כתב שצריך להשמיד את ישראל.",
+    "הקבוצה משבחת פיגועים ומעודדת טרור נגד ישראל.",
+    "הם קוראים לנקום באזרחים ישראלים.",
+    "מישהו פרסם איום לפגוע בקהילה יהודית.",
+    "הסרטון מהלל מחבלים ואת הפיגועים שלהם.",
+    "כל מי שתומך בישראל ראוי למוות.",
+    "לא נסלח ולא נשכח, והם עוד יראו מה יקרה.",
+    "צריך לתקוף מוסדות יהודיים בכל העולם.",
+    "הכתבה מתעדת קריאות להשמיד את ישראל ולפגוע בישראלים.",
+    "התגובות כוללות איומים, הסתה לאלימות ושנאה נגד יהודים."
+];
+
+
 function runBenchmark(name: string, lang: string, examples: string[]) {
-  console.log(`\n================== ${name} (${lang}) ==================`);
-  const notMatched: string[] = [];
-  let matchedCount = 0;
+    console.log(`\n================== ${name} (${lang}) ==================`);
+    const notMatched: string[] = [];
+    let matchedCount = 0;
 
-  examples.forEach((example, idx) => {
-    const result: AnalyzeTextResult = analyzeText(example, lang);
-    if (result.matched) {
-      matchedCount += 1;
-      console.log(`[PASS] #${idx + 1}: terms=[${result.terms.join(", ")}] -> "${example}"`);
-    } else {
-      notMatched.push(example);
-      console.log(`[FAIL] #${idx + 1}: "${example}"`);
+    examples.forEach((example, idx) => {
+        const result: AnalyzeTextResult = analyzeText(example, lang);
+        if (result.matched) {
+            matchedCount += 1;
+            console.log(`[PASS] #${idx + 1}: terms=[${result.terms.join(", ")}] -> "${example}"`);
+        } else {
+            notMatched.push(example);
+            console.log(`[FAIL] #${idx + 1}: "${example}"`);
+        }
+    });
+
+    console.log(`\n--- Summary ${name}: ${matchedCount} / ${examples.length} matched (${Math.round((matchedCount / examples.length) * 100)}%) ---`);
+    if (notMatched.length > 0) {
+        console.log(`Missed ${notMatched.length} examples:`);
+        notMatched.forEach((ex) => console.log(`  - ${ex}`));
     }
-  });
-
-  console.log(`\n--- Summary ${name}: ${matchedCount} / ${examples.length} matched (${Math.round((matchedCount / examples.length) * 100)}%) ---`);
-  if (notMatched.length > 0) {
-    console.log(`Missed ${notMatched.length} examples:`);
-    notMatched.forEach((ex) => console.log(`  - ${ex}`));
-  }
 }
 
-// runBenchmark("English", "en", examples_en);
-// runBenchmark("Arabic", "ar", examples_ar);
-// runBenchmark("Farsi", "fa", examples_fa);
+runBenchmark("English", "en", examples_en);
+runBenchmark("Arabic", "ar", examples_ar);
+runBenchmark("Farsi", "fa", examples_fa);
+runBenchmark("Hebrew", "he", examples_he);
 
 
-examples_en.forEach((example, idx) => {
-    const result: AnalyzeTextResult = analyzeText(example, "en");
-    console.log(result);
-  });
+// examples_en.forEach((example, idx) => {
+//     const result: AnalyzeTextResult = analyzeText(example, "en");
+//     console.log(result);
+//   });

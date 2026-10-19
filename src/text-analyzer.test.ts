@@ -1,14 +1,17 @@
 import assert from "node:assert/strict";
-import { analyzeText, getDictionaryStore } from "./index.js";
+import { analyzeText, analyzeBatch, getDictionaryStore, getNormalizer } from "./index.js";
 
 const store = getDictionaryStore();
 assert.ok(store.getIndex("en"), "English dictionary must load");
 assert.ok(store.getIndex("ar"), "Arabic dictionary must load");
 assert.ok(store.getIndex("fa"), "Farsi dictionary must load");
+assert.ok(store.getIndex("he"), "Hebrew dictionary must load");
 
 // 1. English tests
 const english = analyzeText("I will KILL the jews with a bomb!!!", "en");
 assert.equal(english.matched, true);
+assert.equal(english.text, "I will KILL the jews with a bomb!!!");
+assert.equal(english.content, "I will KILL the jews with a bomb!!!");
 assert.ok(english.terms.includes("kill"));
 assert.ok(english.terms.includes("bomb"));
 assert.ok(english.terms.includes("i will kill the jews"));
@@ -23,7 +26,7 @@ assert.equal(boundary.terms.includes("kill"), false);
 const hyphen = analyzeText("That dirty-jew slur", "en");
 assert.ok(hyphen.terms.includes("dirty-jew") || hyphen.terms.includes("dirty jew"));
 
-const unknown = analyzeText("hello", "he");
+const unknown = analyzeText("hello", "xx");
 assert.equal(unknown.matched, false);
 assert.equal(unknown.issues[0]?.code, "NO_DICTIONARIES");
 
@@ -77,7 +80,80 @@ assert.ok(
     farsiLoanwordPlural.terms.includes("تروریستی"),
 );
 
+// 4. Hebrew tests
+const hebrewNorm = getNormalizer("he");
+assert.equal(hebrewNorm.language, "he");
+
+// Test Niqqud removal
+const withoutNiqqud = hebrewNorm.normalize("פִּגּוּעַ");
+assert.equal(withoutNiqqud, "פגוע");
+
+// Test acronym quote removal (prevents acronym splitting)
+const acronymClean = hebrewNorm.normalize('ארגון צה"ל וגורמי אמל"ח');
+assert.deepEqual(hebrewNorm.tokenize(acronymClean), ["ארגון", "צהל", "וגורמי", "אמלח"]);
+
+// Test prefix & suffix stripping with sofit conversion
+const hebrewVariants1 = hebrewNorm.tokenVariants("והמחבלים");
+assert.ok(hebrewVariants1.includes("מחבל"), "והמחבלים should yield מחבל");
+
+const hebrewVariants2 = hebrewNorm.tokenVariants("בפיגוע");
+assert.ok(hebrewVariants2.includes("פיגוע"), "בפיגוע should yield פיגוע");
+
+const hebrewVariants3 = hebrewNorm.tokenVariants("סכינים");
+assert.ok(hebrewVariants3.includes("סכין"), "סכינים should yield sofit סכין");
+
+const hebrewVariants4 = hebrewNorm.tokenVariants("פיצוצים");
+assert.ok(hebrewVariants4.includes("פיצוץ"), "פיצוצים should yield sofit פיצוץ");
+
+const hebrewVariants5 = hebrewNorm.tokenVariants("מתקפות");
+assert.ok(hebrewVariants5.includes("מתקפה"), "מתקפות should yield מתקפה");
+
+const hebrewVariants6 = hebrewNorm.tokenVariants("מתקפת");
+assert.ok(hebrewVariants6.includes("מתקפה"), "מתקפת construct should yield מתקפה");
+
+const hebrewAnalyzeExact = analyzeText("פיגוע טרור", "he");
+assert.equal(hebrewAnalyzeExact.matched, true);
+assert.ok(hebrewAnalyzeExact.terms.includes("פיגוע") || hebrewAnalyzeExact.terms.includes("טרור"));
+
+const hebrewAnalyzeClitics = analyzeText("והטרוריסטים ביצעו מתקפה", "he");
+assert.equal(hebrewAnalyzeClitics.matched, true);
+assert.ok(
+  hebrewAnalyzeClitics.terms.includes("טרוריסטים") ||
+    hebrewAnalyzeClitics.terms.includes("טרוריסט") ||
+    hebrewAnalyzeClitics.terms.includes("מתקפה"),
+);
+
+// 5. Options and Batch tests
+const batchRes = analyzeBatch(["I will kill", "peaceful greeting"], "en");
+assert.equal(batchRes.length, 2);
+assert.equal(batchRes[0]?.matched, true);
+assert.equal(batchRes[1]?.matched, false);
+
+const filtered = analyzeText("I will kill the jews with a bomb", "en", {
+  concepts: ["violence.killing"],
+});
+assert.ok(filtered.terms.includes("kill"));
+assert.equal(
+  filtered.matches.every((m) => m.concept?.startsWith("violence.killing")),
+  true,
+);
+
+const capped = analyzeText("I will kill the jews with a bomb", "en", {
+  maxMatches: 1,
+});
+assert.equal(capped.matches.length, 1);
+
+// 6. Emoji token preservation test
+const englishNorm = getNormalizer("en");
+const emojiText = englishNorm.normalize("Attack with 🔪 and 💣");
+const emojiTokens = englishNorm.tokenize(emojiText);
+assert.ok(emojiTokens.includes("🔪"), "Emoji 🔪 should be preserved");
+assert.ok(emojiTokens.includes("💣"), "Emoji 💣 should be preserved");
+
 console.log("ALL TESTS PASSED SUCCESSFULLY!");
 console.log("Loaded languages:", store.languages());
 console.log("Farsi indefinite matched terms:", farsiIndefinite.terms);
 console.log("Farsi ZWNJ matched terms:", farsiZwnj.terms);
+console.log("Hebrew normalized acronyms:", hebrewNorm.tokenize(acronymClean));
+console.log("Hebrew variants for והמחבלים:", hebrewVariants1);
+console.log("Hebrew variants for סכינים:", hebrewVariants3);

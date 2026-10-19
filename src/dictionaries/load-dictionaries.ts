@@ -127,12 +127,25 @@ export function loadDictionaries(
     }
     bucket.sourceFiles.push(fileName);
 
-    const seenInFile = new Set<string>();
-
     for (const entry of parsed.entries) {
       const normalizedTerm = normalizer.normalize(entry.term);
       if (normalizedTerm.length === 0) {
         continue;
+      }
+
+      const existing = bucket.terms.get(normalizedTerm);
+      if (existing) {
+        const duplicate = existing.find(
+          (e) =>
+            e.term.trim().toLowerCase() === entry.term.trim().toLowerCase() &&
+            (e.concept ?? "") === (entry.concept ?? ""),
+        );
+        if (duplicate) {
+          if (!duplicate.sourceFile.includes(fileName)) {
+            duplicate.sourceFile = `${duplicate.sourceFile}, ${fileName}`;
+          }
+          continue;
+        }
       }
 
       const indexed: IndexedTerm = {
@@ -142,13 +155,6 @@ export function loadDictionaries(
         language: parsed.language,
       };
 
-      const dedupeKey = indexKey(indexed);
-      if (seenInFile.has(dedupeKey)) {
-        continue;
-      }
-      seenInFile.add(dedupeKey);
-
-      const existing = bucket.terms.get(normalizedTerm);
       if (existing) {
         existing.push(indexed);
       } else {

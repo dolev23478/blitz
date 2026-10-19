@@ -2,6 +2,7 @@ import { arabicNormalizer } from "./arabic-normalizer.js";
 import { defaultNormalizer, DefaultNormalizer } from "./default-normalizer.js";
 import { englishNormalizer } from "./english-normalizer.js";
 import { farsiNormalizer } from "./farsi-normalizer.js";
+import { hebrewNormalizer } from "./hebrew-normalizer.js";
 import type { TextNormalizer } from "./types.js";
 
 const dedicated = new Map<string, TextNormalizer>([
@@ -12,6 +13,9 @@ const dedicated = new Map<string, TextNormalizer>([
   ["per", farsiNormalizer],
   ["en", englishNormalizer],
   ["eng", englishNormalizer],
+  ["he", hebrewNormalizer],
+  ["heb", hebrewNormalizer],
+  ["iw", hebrewNormalizer],
 ]);
 
 const fallbacks = new Map<string, TextNormalizer>();

@@ -29,12 +29,16 @@ export class TextAnalyzer {
     this.matcher = dependencies.matcher ?? defaultTermMatcher;
   }
 
-  analyze(text: string, language: string): AnalyzeTextResult {
+  analyze(
+    text: string,
+    language: string,
+    options?: AnalyzeTextOptions,
+  ): AnalyzeTextResult {
     const normalizedLanguage = language.trim().toLowerCase();
     const issues: AnalyzeIssue[] = [];
 
     if (normalizedLanguage.length === 0) {
-      return emptyResult("", [
+      return emptyResult(text, "", [
         { code: "INVALID_LANGUAGE", message: "language must be a non-empty string" },
       ]);
     }
@@ -48,13 +52,24 @@ export class TextAnalyzer {
         code: "NO_DICTIONARIES",
         message: `no dictionaries loaded for language "${normalizedLanguage}" (available: ${availableText})`,
       });
-      return emptyResult(normalizedLanguage, issues);
+      return emptyResult(text, normalizedLanguage, issues);
     }
 
     const normalizer = getNormalizer(normalizedLanguage);
     const normalizedText = normalizer.normalize(text);
     const tokens = normalizer.tokenize(normalizedText);
-    const matches = this.matcher.match(tokens, index, normalizer);
+    let matches = this.matcher.match(tokens, index, normalizer);
+
+    if (options?.concepts && options.concepts.length > 0) {
+      const allowed = options.concepts;
+      matches = matches.filter(
+        (m) => m.concept && allowed.some((c) => m.concept!.startsWith(c)),
+      );
+    }
+
+    if (options?.maxMatches !== undefined && options.maxMatches > 0) {
+      matches = matches.slice(0, options.maxMatches);
+    }
 
     const terms = [...new Set(matches.map((match) => match.term))];
     const usedSources = [
@@ -62,6 +77,8 @@ export class TextAnalyzer {
     ].sort();
 
     return {
+      text,
+      content: text,
       language: normalizedLanguage,
       matched: matches.length > 0,
       terms,
@@ -70,13 +87,24 @@ export class TextAnalyzer {
       issues,
     };
   }
+
+  analyzeBatch(
+    texts: string[],
+    language: string,
+    options?: AnalyzeTextOptions,
+  ): AnalyzeTextResult[] {
+    return texts.map((t) => this.analyze(t, language, options));
+  }
 }
 
 function emptyResult(
+  text: string,
   language: string,
   issues: AnalyzeIssue[],
 ): AnalyzeTextResult {
   return {
+    text,
+    content: text,
     language,
     matched: false,
     terms: [],
@@ -106,5 +134,18 @@ export function analyzeText(
     cachedAnalyzer = new TextAnalyzer({ store });
     cachedStore = store;
   }
-  return cachedAnalyzer.analyze(text, language);
+  return cachedAnalyzer.analyze(text, language, options);
+}
+
+export function analyzeBatch(
+  texts: string[],
+  language: string,
+  options: AnalyzeTextOptions = {},
+): AnalyzeTextResult[] {
+  const store = getDictionaryStore(options);
+  if (!cachedAnalyzer || cachedStore !== store) {
+    cachedAnalyzer = new TextAnalyzer({ store });
+    cachedStore = store;
+  }
+  return cachedAnalyzer.analyzeBatch(texts, language, options);
 }
