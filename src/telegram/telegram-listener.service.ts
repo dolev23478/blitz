@@ -38,14 +38,20 @@ export class TelegramListenerService {
         if (!message || !message.text || !message.text.trim()) continue;
 
         const analysis = analyzeText(message.text, candidateLanguages);
-        if (!analysis.matched || analysis.languages?.length === 0) continue;
+        if (!analysis.matched || analysis.languages?.length === 0) {
+          this.logger.log(`Telegram no match: channel=${event.channel}, text=${message.text.slice(0, 200)}`);
+          continue;
+        }
 
         const matchedLanguages = analysis.languages?.length
           ? analysis.languages
           : [analysis.language].filter(Boolean);
         const matchedLanguage = matchedLanguages[0] ?? null;
 
-        if (!matchedLanguage) continue;
+        if (!matchedLanguage) {
+          this.logger.log(`Telegram no match: channel=${event.channel}, text=${message.text.slice(0, 200)}`);
+          continue;
+        }
 
         this.logger.log(
           `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,
