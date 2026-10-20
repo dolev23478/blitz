@@ -2,6 +2,7 @@ import type { TextNormalizer } from "./types.js";
 import {
   applyUnicode,
   collapseSpaces,
+  getRepeatedCharVariants,
   punctuationToSpace,
   tokenizeNormalized,
 } from "./shared.js";
@@ -167,7 +168,9 @@ export function cleanHebrewText(text: string): string {
     .replace(/׳/g, "'")
     .replace(/״/g, '"')
     // Strip quotes/gershayim inside acronyms (e.g. צה"ל -> צהל, אמל"ח -> אמלח)
-    .replace(/(\p{L})["'](\p{L})/gu, "$1$2");
+    .replace(/(\p{L})["'](\p{L})/gu, "$1$2")
+    // Strip dots between Hebrew letters (e.g. ק.ל.א.ש -> קלאש, נ..ר..צ..ח -> נרצח)
+    .replace(/(?<=[\u0590-\u05FF])\.+(?=[\u0590-\u05FF])/gu, "");
 }
 
 /**
@@ -190,25 +193,29 @@ export class HebrewNormalizer implements TextNormalizer {
   }
 
   tokenVariants(token: string): string[] {
-    const variants = new Set<string>([token]);
+    // Expand 3+ repeated characters safely (e.g. פפפצצה -> פצצה)
+    const baseTokens = getRepeatedCharVariants(token);
+    const variants = new Set<string>(baseTokens);
 
-    // Sofit letter alternation on the token itself
-    const sofit = applySofit(token);
-    if (sofit !== token) {
-      variants.add(sofit);
-    }
+    for (const base of baseTokens) {
+      // Sofit letter alternation on the token itself
+      const sofit = applySofit(base);
+      if (sofit !== base) {
+        variants.add(sofit);
+      }
 
-    // Affix stripping
-    for (const stem of stripHebrewAffixes(token)) {
-      variants.add(stem);
-    }
+      // Affix stripping
+      for (const stem of stripHebrewAffixes(base)) {
+        variants.add(stem);
+      }
 
-    // Ktiv Male / Haser variants (collapsing double Vav/Yud e.g. חייל -> חיל)
-    if (token.includes("יי")) {
-      variants.add(token.replace(/יי/g, "י"));
-    }
-    if (token.includes("וו")) {
-      variants.add(token.replace(/וו/g, "ו"));
+      // Ktiv Male / Haser variants (collapsing double Vav/Yud e.g. חייל -> חיל)
+      if (base.includes("יי")) {
+        variants.add(base.replace(/יי/g, "י"));
+      }
+      if (base.includes("וו")) {
+        variants.add(base.replace(/וו/g, "ו"));
+      }
     }
 
     return [...variants];

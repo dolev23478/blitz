@@ -2,6 +2,7 @@ import type { TextNormalizer } from "./types.js";
 import {
   applyUnicode,
   collapseSpaces,
+  getRepeatedCharVariants,
   punctuationToSpace,
   tokenizeNormalized,
 } from "./shared.js";
@@ -185,9 +186,12 @@ export class ArabicNormalizer implements TextNormalizer {
   }
 
   tokenVariants(token: string): string[] {
-    const variants = new Set<string>([token]);
-    for (const arabizi of convertArabizi(token)) {
-      variants.add(arabizi);
+    const baseTokens = getRepeatedCharVariants(token);
+    const variants = new Set<string>(baseTokens);
+    for (const b of baseTokens) {
+      for (const arabizi of convertArabizi(b)) {
+        variants.add(arabizi);
+      }
     }
     for (const base of [...variants]) {
       for (const stem of stripAffixes(base)) {

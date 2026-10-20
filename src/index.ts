@@ -1,4 +1,11 @@
-export { analyzeText, analyzeBatch, createTextAnalyzer, TextAnalyzer } from "./text-analyzer.js";
+export {
+  analyzeText,
+  analyzeBatch,
+  createTextAnalyzer,
+  detectLanguages,
+  evaluateThreat,
+  TextAnalyzer,
+} from "./text-analyzer.js";
 export {
   DictionaryStore,
   getDictionaryStore,
@@ -10,13 +17,23 @@ export { arabicNormalizer } from "./normalize/arabic-normalizer.js";
 export { farsiNormalizer } from "./normalize/farsi-normalizer.js";
 export { englishNormalizer } from "./normalize/english-normalizer.js";
 export { hebrewNormalizer } from "./normalize/hebrew-normalizer.js";
+export { emojiNormalizer } from "./normalize/emoji-normalizer.js";
+export { padEmojis } from "./normalize/shared.js";
 export { parseDictionaryFile } from "./dictionaries/schema.js";
+export {
+  ThreatCategory,
+  ThreatMode,
+} from "./types.js";
 export type {
   AnalyzeIssue,
   AnalyzeMatch,
   AnalyzeTextOptions,
   AnalyzeTextResult,
+  CanonicalThreatCategory,
   DictionaryEntry,
   DictionaryLoadIssue,
   IndexedTerm,
+  RiskLevel,
+  ThreatEvaluation,
+  ThreatEvaluationMode,
 } from "./types.js";

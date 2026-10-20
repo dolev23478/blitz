@@ -2,11 +2,311 @@
   "language": "emoji",
   "entries": [
     {
+      "term": "☠️",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "☠",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "☠",
+      "concept": "violence.general"
+    },
+    {
+      "term": "☠️",
+      "concept": "violence.general"
+    },
+    {
+      "term": "☠️",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "☢️",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "☢️☠️",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "☣️",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "☣️💀",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "☪️",
+      "concept": "target.general"
+    },
+    {
+      "term": "⚔️",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "⚔",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "⚔️💀",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "⚗️",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "⚠️",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "⚡",
+      "concept": "context.general"
+    },
+    {
+      "term": "⚰️",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "⚰",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "⚰️",
+      "concept": "violence.general"
+    },
+    {
+      "term": "⛏️",
+      "concept": "weapon.general"
+    },
+    {
+      "term": "⛪🔥",
+      "concept": "target.general"
+    },
+    {
+      "term": "⛴️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🇮🇱",
+      "concept": "target.israel"
+    },
+    {
+      "term": "🇮🇱💥",
+      "concept": "target.israel"
+    },
+    {
+      "term": "🇮🇱🔥",
+      "concept": "target.israel"
+    },
+    {
+      "term": "🇮🇱🔫",
+      "concept": "target.israel"
+    },
+    {
+      "term": "✈️",
+      "concept": "context.general"
+    },
+    {
+      "term": "✊",
+      "concept": "context.general"
+    },
+    {
+      "term": "✊🏻",
+      "concept": "context.general"
+    },
+    {
+      "term": "✊🏼",
+      "concept": "context.general"
+    },
+    {
+      "term": "✊🏽",
+      "concept": "context.general"
+    },
+    {
+      "term": "✊🏾",
+      "concept": "context.general"
+    },
+    {
+      "term": "✊🏿",
+      "concept": "context.general"
+    },
+    {
+      "term": "✝️",
+      "concept": "target.general"
+    },
+    {
+      "term": "✡️",
+      "concept": "target.jewish"
+    },
+    {
+      "term": "✡️🔥",
+      "concept": "target.jewish"
+    },
+    {
+      "term": "❌",
+      "concept": "context.general"
+    },
+    {
+      "term": "❗",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "🌉",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🌊",
+      "concept": "context.general"
+    },
+    {
+      "term": "🌋",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "🌪️",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🌫️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🎖️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🎯",
+      "concept": "context.general"
+    },
+    {
+      "term": "🎯🇮🇱",
+      "concept": "target.israel"
+    },
+    {
+      "term": "🏅",
+      "concept": "context.general"
+    },
+    {
+      "term": "🏚️",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🏛️",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🏟️",
+      "concept": "target.general"
+    },
+    {
+      "term": "🏠",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🏢",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🏥",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🏦",
+      "concept": "target.general"
+    },
+    {
+      "term": "🏫",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🏬",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🏳️‍🌈",
+      "concept": "context.general"
+    },
+    {
+      "term": "🏴",
+      "concept": "context.general"
+    },
+    {
+      "term": "🏴‍☠️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🏴‍☠️🔫",
+      "concept": "context.general"
+    },
+    {
+      "term": "🏹",
+      "concept": "weapon.general"
+    },
+    {
+      "term": "👀",
+      "concept": "context.general"
+    },
+    {
+      "term": "👁️",
+      "concept": "context.general"
+    },
+    {
+      "term": "👊",
+      "concept": "context.general"
+    },
+    {
+      "term": "👊🩸",
+      "concept": "violence.general"
+    },
+    {
+      "term": "👥",
+      "concept": "context.general"
+    },
+    {
+      "term": "👹",
+      "concept": "context.general"
+    },
+    {
+      "term": "👺",
+      "concept": "context.general"
+    },
+    {
+      "term": "👿",
+      "concept": "context.general"
+    },
+    {
+      "term": "💀",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "💀",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "💀🩸",
+      "concept": "violence.general"
+    },
+    {
+      "term": "💉",
+      "concept": "weapon.general"
+    },
+    {
+      "term": "💢",
+      "concept": "context.general"
+    },
+    {
       "term": "💣",
       "concept": "violence.explosion"
     },
     {
-      "term": "🧨",
+      "term": "💣",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "💣💥",
       "concept": "violence.explosion"
     },
     {
@@ -14,68 +314,440 @@
       "concept": "violence.explosion"
     },
     {
+      "term": "💨",
+      "concept": "context.general"
+    },
+    {
+      "term": "💬",
+      "concept": "context.general"
+    },
+    {
+      "term": "📍",
+      "concept": "context.general"
+    },
+    {
+      "term": "📛",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "📡",
+      "concept": "context.general"
+    },
+    {
+      "term": "📢",
+      "concept": "context.general"
+    },
+    {
+      "term": "📣",
+      "concept": "context.general"
+    },
+    {
+      "term": "🔊",
+      "concept": "context.general"
+    },
+    {
+      "term": "🔐",
+      "concept": "context.general"
+    },
+    {
+      "term": "🔒",
+      "concept": "context.general"
+    },
+    {
+      "term": "🔗",
+      "concept": "context.general"
+    },
+    {
+      "term": "🔥",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🔥🏠",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🔥🏢",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🔨",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "🔩",
+      "concept": "context.general"
+    },
+    {
       "term": "🔪",
-      "concept": "violence.weapon.knife"
+      "concept": "violence.general"
     },
     {
-      "term": "🗡️",
-      "concept": "violence.weapon.blade"
+      "term": "🔪",
+      "concept": "weapon.blade"
     },
     {
-      "term": "🗡",
-      "concept": "violence.weapon.blade"
-    },
-    {
-      "term": "⚔️",
-      "concept": "violence.weapon.blade"
-    },
-    {
-      "term": "⚔",
-      "concept": "violence.weapon.blade"
-    },
-    {
-      "term": "🪓",
-      "concept": "violence.weapon.axe"
+      "term": "🔪🩸",
+      "concept": "violence.general"
     },
     {
       "term": "🔫",
-      "concept": "violence.weapon.gun"
+      "concept": "weapon.firearm"
     },
     {
-      "term": "🩸",
-      "concept": "violence.blood"
+      "term": "🔫🎯",
+      "concept": "context.general"
     },
     {
-      "term": "☠️",
-      "concept": "threat.death"
+      "term": "🔫💥",
+      "concept": "violence.explosion"
     },
     {
-      "term": "☠",
-      "concept": "threat.death"
-    },
-    {
-      "term": "💀",
-      "concept": "threat.death"
-    },
-    {
-      "term": "⚰️",
-      "concept": "threat.death"
-    },
-    {
-      "term": "⚰",
-      "concept": "threat.death"
+      "term": "🔴",
+      "concept": "context.alert"
     },
     {
       "term": "🔻",
-      "concept": "target.terrorist_marker"
+      "concept": "violence.terrorism"
     },
     {
-      "term": "🏴‍☠️",
-      "concept": "extremism.flag"
+      "term": "🕌",
+      "concept": "target.general"
     },
     {
-      "term": "🏴",
-      "concept": "extremism.flag"
+      "term": "🕌🔥",
+      "concept": "target.general"
+    },
+    {
+      "term": "🕍",
+      "concept": "target.jewish"
+    },
+    {
+      "term": "🕍💥",
+      "concept": "target.jewish"
+    },
+    {
+      "term": "🕍🔥",
+      "concept": "target.jewish"
+    },
+    {
+      "term": "🕎",
+      "concept": "target.jewish"
+    },
+    {
+      "term": "🕳️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🕵️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🖕",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "🗡️",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "🗡",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "🗯️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🤐",
+      "concept": "context.general"
+    },
+    {
+      "term": "🤒",
+      "concept": "context.general"
+    },
+    {
+      "term": "🤕",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "🤛",
+      "concept": "context.general"
+    },
+    {
+      "term": "🤜",
+      "concept": "context.general"
+    },
+    {
+      "term": "🤫",
+      "concept": "context.general"
+    },
+    {
+      "term": "🤬",
+      "concept": "context.general"
+    },
+    {
+      "term": "🤬🔫",
+      "concept": "context.general"
+    },
+    {
+      "term": "🥀",
+      "concept": "context.general"
+    },
+    {
+      "term": "🥊",
+      "concept": "context.general"
+    },
+    {
+      "term": "🥋",
+      "concept": "context.general"
+    },
+    {
+      "term": "🦠",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "🦴",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🦾",
+      "concept": "context.general"
+    },
+    {
+      "term": "🧑‍🤝‍🧑",
+      "concept": "context.general"
+    },
+    {
+      "term": "🧠",
+      "concept": "context.general"
+    },
+    {
+      "term": "🧨",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "🧨",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "🧨💥",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "🧪",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "🧪☠️",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "🧫",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "🧬",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "🧯",
+      "concept": "context.general"
+    },
+    {
+      "term": "🧱",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🧿",
+      "concept": "context.general"
+    },
+    {
+      "term": "🩸",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🩹",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🩼",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🪂",
+      "concept": "context.general"
+    },
+    {
+      "term": "🪃",
+      "concept": "weapon.general"
+    },
+    {
+      "term": "🪈",
+      "concept": "context.general"
+    },
+    {
+      "term": "🪓",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "🪓🩸",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "🪖",
+      "concept": "context.general"
+    },
+    {
+      "term": "🪚",
+      "concept": "weapon.general"
+    },
+    {
+      "term": "🪛",
+      "concept": "weapon.general"
+    },
+    {
+      "term": "🪢",
+      "concept": "context.general"
+    },
+    {
+      "term": "🪤",
+      "concept": "context.general"
+    },
+    {
+      "term": "🪦",
+      "concept": "violence.general"
+    },
+    {
+      "term": "🪧",
+      "concept": "context.general"
+    },
+    {
+      "term": "🫀",
+      "concept": "context.general"
+    },
+    {
+      "term": "🫁",
+      "concept": "context.general"
+    },
+    {
+      "term": "😈",
+      "concept": "context.general"
+    },
+    {
+      "term": "😠",
+      "concept": "context.general"
+    },
+    {
+      "term": "😡",
+      "concept": "context.general"
+    },
+    {
+      "term": "😡🔪",
+      "concept": "context.general"
+    },
+    {
+      "term": "😵",
+      "concept": "context.general"
+    },
+    {
+      "term": "😵‍💫",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚀",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "🚀💥",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "🚁",
+      "concept": "weapon.military"
+    },
+    {
+      "term": "🚑",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚒",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚓",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚔",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚢",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚤",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚧",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚨",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "🚨💥",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "🚩",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "🚪",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚫",
+      "concept": "context.general"
+    },
+    {
+      "term": "🚬",
+      "concept": "context.general"
+    },
+    {
+      "term": "🛐",
+      "concept": "target.general"
+    },
+    {
+      "term": "🛞",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🛡️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🛣️",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🛤️",
+      "concept": "target.infrastructure"
+    },
+    {
+      "term": "🛩️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🛰️",
+      "concept": "context.general"
+    },
+    {
+      "term": "🆘",
+      "concept": "context.general"
     }
   ]
 }
