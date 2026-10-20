@@ -1,4 +1,5 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, Optional } from '@nestjs/common';
+import { randomUUID } from 'node:crypto';
 import type { NewMessagesEvent } from '../events/message-events.service.js';
 import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
 import { analyzeText } from '../text-analyzer.js';
@@ -7,6 +8,7 @@ import { TelegramService } from './telegram.service.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 import { LANGUAGE_ALIASES, resolveLanguageAlias } from '../normalize/registry.js';
 import type { ParsedMessage } from '../types.js';
+import { KafkaAnalyticsService } from '../analytics/kafka-analytics.service.js';
 
 @Injectable()
 export class TelegramListenerService {
@@ -16,6 +18,7 @@ export class TelegramListenerService {
     private readonly telegram: TelegramService,
     private readonly redis: RedisService,
     private readonly transformer: TransformerWorkflow,
+    @Optional() private readonly analytics?: KafkaAnalyticsService,
   ) {
     this.telegram.watchResults((event) => this.onTelegramResult(event));
   }
@@ -54,6 +57,16 @@ export class TelegramListenerService {
             ...message,
             matchedLanguage,
             language: matchedLanguage,
+          });
+        } else {
+          this.analytics?.recordRejected({
+            id: String(message.messageId ?? randomUUID()),
+            channel: event.channel,
+            source: 'telegram',
+            content: message.text,
+            reason: 'Keyword filter rejected: did not match any threat terms',
+            attemptedLanguages: aliasAwareLanguages,
+            timestamp: new Date().toISOString(),
           });
         }
       }

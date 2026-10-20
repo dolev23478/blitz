@@ -24,7 +24,10 @@
     "check:text": "tsx scripts/test-text.ts",
     "benchmark": "tsx scripts/benchmark-dataset.ts",
     "merge:dicts": "tsx scripts/merge-dictionaries.ts",
-    "auth": "tsx scripts/generate-session.ts"
+    "auth": "tsx scripts/generate-session.ts",
+    "ui:dev": "npm --prefix frontend run dev",
+    "ui:build": "npm --prefix frontend run build",
+    "ui:start": "npm --prefix frontend run start"
   },
   "dependencies": {
     "@fastify/cors": "^11.3.1",

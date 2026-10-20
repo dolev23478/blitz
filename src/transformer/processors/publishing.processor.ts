@@ -1,4 +1,4 @@
-import { Injectable, Logger, type OnModuleDestroy } from '@nestjs/common';
+import { Injectable, Logger, Optional, type OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Kafka, logLevel, type Producer, type SASLOptions } from 'kafkajs';
 import { REPORT_TOPIC } from '../../common/constants.js';
@@ -6,6 +6,7 @@ import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
 import type { RawReport } from '../../contracts/schema.js';
 import type { TransformContext } from '../transformer.types.js';
+import { KafkaAnalyticsService } from '../../analytics/kafka-analytics.service.js';
 
 interface PendingReport {
   report: RawReport;
@@ -26,7 +27,10 @@ export class PublishingProcessor implements OnModuleDestroy {
   private connection?: Promise<void>;
   private closing = false;
 
-  constructor(private readonly config: ConfigService) {
+  constructor(
+    private readonly config: ConfigService,
+    @Optional() private readonly analytics?: KafkaAnalyticsService,
+  ) {
     this.retryIntervalMs = Number(
       config.get('KAFKA_RETRY_INTERVAL_MS') ?? 60000,
     );
@@ -125,6 +129,17 @@ export class PublishingProcessor implements OnModuleDestroy {
         return; // Keep the failed head in place; newer reports must wait behind it.
       }
       this.queue.shift();
+      this.analytics?.recordPublished({
+        id: String(entry.report.report_id),
+        channel: entry.report.channel_name || entry.report.account_name || 'unknown_channel',
+        source: entry.report.platform || 'kafka',
+        content: entry.report.content,
+        reportId: entry.report.report_id,
+        termsMatched: entry.report.matches,
+        language: entry.report.language,
+        timestamp: entry.report.collected_at || new Date().toISOString(),
+        topic: REPORT_TOPIC,
+      });
       entry.resolve();
     }
   }

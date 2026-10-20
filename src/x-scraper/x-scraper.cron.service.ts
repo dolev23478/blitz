@@ -1,4 +1,5 @@
-import { Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, Optional, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
+import { randomUUID } from 'node:crypto';
 import { MONITORED_X_SOURCES } from './constants/monitored-sources.js';
 import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
 import { XScraperService } from './x-scraper.service.js';
@@ -7,6 +8,7 @@ import { analyzeText } from '../text-analyzer.js';
 import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 import { resolveLanguageAlias, LANGUAGE_ALIASES } from '../normalize/registry.js';
+import { KafkaAnalyticsService } from '../analytics/kafka-analytics.service.js';
 
 @Injectable()
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
@@ -17,6 +19,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     private readonly xScraper: XScraperService,
     private readonly redis: RedisService,
     private readonly transformer: TransformerWorkflow,
+    @Optional() private readonly analytics?: KafkaAnalyticsService,
   ) {}
 
   onModuleInit(): void {
@@ -97,6 +100,16 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
           ...post,
           matchedLanguage,
           language: matchedLanguage,
+        });
+      } else {
+        this.analytics?.recordRejected({
+          id: post.id || randomUUID(),
+          channel: result.handle,
+          source: 'x',
+          content: post.text,
+          reason: 'Keyword filter rejected: did not match any threat terms',
+          attemptedLanguages: aliasAwareLanguages,
+          timestamp: new Date().toISOString(),
         });
       }
     }
