@@ -1,15 +1,10 @@
 import 'reflect-metadata';
 import 'dotenv/config';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import fastifyStatic from '@fastify/static';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module.js';
 import { APP_CONFIG, type AppConfig } from './config/app-config.js';
-
-const publicDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../public');
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), { bodyParser: false });
@@ -26,7 +21,6 @@ async function bootstrap(): Promise<void> {
     }
   });
 
-  await app.register(fastifyStatic, { root: publicDir, wildcard: false });
   app.enableCors({
     origin: config.CORS_ORIGIN,
     methods: 'GET,POST,PATCH,DELETE,OPTIONS',

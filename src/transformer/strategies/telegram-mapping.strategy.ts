@@ -26,7 +26,10 @@ export class TelegramMappingStrategy {
       report_title: null,
       content: message.text,
       ...collectorFields(message, metadata),
-      matches: metadata.matches ?? [],
+      matches:
+        Array.isArray(message.matches) && message.matches.length
+          ? message.matches
+          : (metadata.matches ?? []),
       published_at: message.postedAt,
       collected_at: metadata.collectedAt,
     };

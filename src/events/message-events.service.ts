@@ -1,4 +1,3 @@
-import { EventEmitter } from 'node:events';
 import { Injectable } from '@nestjs/common';
 import type { ParsedMessage } from '../types.js';
 
@@ -9,22 +8,21 @@ export interface NewMessagesEvent {
   messages?: ParsedMessage[];
 }
 
-/** In-process event bus used to push collector updates to connected clients (SSE). */
+/** In-process bus between the Telegram collector and its listeners; emit() resolves once every listener finished. */
 @Injectable()
 export class MessageEventsService {
-  private readonly emitter = new EventEmitter<{ messages: [NewMessagesEvent] }>();
+  private readonly listeners = new Set<(event: NewMessagesEvent) => void | Promise<void>>();
 
-  constructor() {
-    this.emitter.setMaxListeners(100);
-  }
-
-  emit(event: NewMessagesEvent): void {
-    this.emitter.emit('messages', event);
+  /** Resolves when all listeners are done and rejects if any of them failed. */
+  async emit(event: NewMessagesEvent): Promise<void> {
+    const results = await Promise.allSettled([...this.listeners].map((listener) => listener(event)));
+    const failed = results.find((r): r is PromiseRejectedResult => r.status === 'rejected');
+    if (failed) throw failed.reason;
   }
 
   /** Subscribes to new-message events; returns an unsubscribe function. */
-  subscribe(listener: (event: NewMessagesEvent) => void): () => void {
-    this.emitter.on('messages', listener);
-    return () => void this.emitter.off('messages', listener);
+  subscribe(listener: (event: NewMessagesEvent) => void | Promise<void>): () => void {
+    this.listeners.add(listener);
+    return () => void this.listeners.delete(listener);
   }
 }

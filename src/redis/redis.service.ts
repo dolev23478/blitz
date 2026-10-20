@@ -24,16 +24,24 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
       return;
     }
 
-    this.client = createClient({
-      url: this.config.REDIS_URL!,
-      disableOfflineQueue: true,
-    });
-    this.client.on('error', (err: Error) =>
-      this.logger.error(`Redis error: ${err.message}`),
-    );
+    try {
+      this.client = createClient({
+        url: this.config.REDIS_URL!,
+        disableOfflineQueue: true,
+      });
+      this.client.on('error', (err: Error) => {
+        this.logger.warn(`Redis error: ${err.message}`);
+        this.client = null;
+      });
 
-    await this.client.connect();
-    this.logger.log('Redis connected');
+      await this.client.connect();
+      this.logger.log('Redis connected');
+    } catch (error) {
+      this.client = null;
+      this.logger.warn(
+        `Redis is unavailable; continuing without Redis. ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
   }
 
   async onModuleDestroy(): Promise<void> {
@@ -60,34 +68,66 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   }
 
   async publish(channel: string, message: string): Promise<number> {
-    if (!this.client) throw new Error('Redis is not connected');
+    if (!this.client) {
+      this.logger.warn(
+        `Redis publish skipped for channel=${channel} because Redis is unavailable.`,
+      );
+      return 0;
+    }
     return this.client.publish(channel, message);
   }
 
   async set(key: string, value: string): Promise<string> {
-    if (!this.client) throw new Error('Redis is not connected');
+    if (!this.client) {
+      this.logger.warn(
+        `Redis set skipped for key=${key} because Redis is unavailable.`,
+      );
+      return '';
+    }
     const result = await this.client.set(key, value);
     if (result !== 'OK') throw new Error('Redis did not confirm the write.');
     return result;
   }
 
   async get(key: string): Promise<string | null> {
-    if (!this.client) throw new Error('Redis is not connected');
+    if (!this.client) {
+      return null;
+    }
     return this.client.get(key);
   }
 
-  async hset(hash: string, field: string, value: string): Promise<number> {
+  /** Atomically sets the key only when it does not exist yet; true when this call claimed it. */
+  async setIfAbsent(key: string, value: string, ttlSeconds: number): Promise<boolean> {
     if (!this.client) throw new Error('Redis is not connected');
+    return (await this.client.set(key, value, { NX: true, EX: ttlSeconds })) === 'OK';
+  }
+
+  async del(key: string): Promise<number> {
+    if (!this.client) throw new Error('Redis is not connected');
+    return this.client.del(key);
+  }
+
+  async hset(hash: string, field: string, value: string): Promise<number> {
+    if (!this.client) {
+      this.logger.warn(
+        `Redis hset skipped for hash=${hash} field=${field} because Redis is unavailable.`,
+      );
+      return 0;
+    }
     return this.client.hSet(hash, field, value);
   }
 
   async hget(hash: string, field: string): Promise<string | null> {
-    if (!this.client) throw new Error('Redis is not connected');
+    if (!this.client) {
+      return null;
+    }
     return this.client.hGet(hash, field);
   }
 
   async hgetall(hash: string): Promise<Record<string, string>> {
-    if (!this.client) throw new Error('Redis is not connected');
+    if (!this.client) {
+      return {};
+    }
     return this.client.hGetAll(hash);
   }
 }

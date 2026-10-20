@@ -12,6 +12,7 @@ export class TwitterMappingStrategy {
     result: ProfileScrapeResult,
     metadata: ReportMetadata,
   ): RawReportCandidate[] {
+    const batchFields = collectorFields(result, metadata);
     return result.posts.map((post) => ({
       report_id: reportId('twitter', post.url, post.report_id),
       platform: 'twitter',
@@ -21,8 +22,14 @@ export class TwitterMappingStrategy {
       media_type: reportMediaTypes(post.media),
       report_title: null,
       content: post.text,
-      ...collectorFields(post, collectorFields(result, metadata)),
-      matches: metadata.matches ?? [],
+      ...collectorFields(post, {
+        ...batchFields,
+        languages: post.matchedLanguage ?? batchFields.languages,
+      }),
+      matches:
+        Array.isArray(post.matches) && post.matches.length
+          ? post.matches
+          : (metadata.matches ?? []),
       published_at: post.publishedAt,
       collected_at: result.scrapedAt,
     }));

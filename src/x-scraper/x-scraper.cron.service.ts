@@ -41,6 +41,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         return;
       }
 
+      const startedAt = new Date();
       const lastScrapeAt = this.redis.isEnabled() ? await this.redis.get('x:last-scrape-at') : null;
       const since = lastScrapeAt ? new Date(lastScrapeAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
 
@@ -56,21 +57,16 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         `X cycle finished: handle=${result.handle}, totalPosts=${result.totalPosts}, provider=${result.providerUsed}`,
       );
 
-      await this.onXResult(result);
+      await this.onXResult(result, startedAt);
     } catch (err) {
       this.logger.error(`X scraper cycle failed: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
 
   /** Called automatically every time the cron cycle gets a result from X. */
-  private async onXResult(result: ProfileScrapeResult): Promise<void> {
-    const now = new Date().toISOString();
-
-    if (this.redis.isEnabled()) {
-      await this.redis.set('x:last-scrape-at', now);
-    }
-
-    const keptPosts: Array<{ post: (typeof result.posts)[number]; matchedLanguage: string; matches: string[] }> = [];
+  private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
+    const cursor = startedAt.toISOString();
+    const keptPosts: Array<(typeof result.posts)[number]> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
@@ -85,23 +81,51 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
       );
 
-      keptPosts.push({
-        post,
-        matchedLanguage,
-        matches: analysis.terms,
-      });
+      post.language = matchedLanguage;
+      post.matches = analysis.terms;
+      keptPosts.push(post);
     }
 
-    result.posts = keptPosts.map((item) => item.post);
+    if (!keptPosts.length) {
+      if (this.redis.isEnabled()) {
+        await this.redis.set('x:last-scrape-at', cursor);
+      }
+      this.logger.log(`X result ready: 0 posts from ${result.handle}; saved timestamp=${cursor}`);
+      return;
+    }
 
-    const matches = [...new Set(keptPosts.flatMap((item) => item.matches))];
-    await this.transformer.run('ProfileScrapeResult', result, {
-      language: undefined,
-      matches,
-      collectedAt: new Date().toISOString(),
-      source: 'x',
-    });
+    let failed = 0;
+    for (const post of keptPosts) {
+      const singleResult: ProfileScrapeResult = {
+        ...result,
+        totalPosts: 1,
+        posts: [post],
+      };
+      try {
+        await this.transformer.run('ProfileScrapeResult', singleResult, {
+          language: post.language,
+          matches: post.matches,
+          collectedAt: new Date().toISOString(),
+          source: 'x',
+        });
+      } catch (err) {
+        failed++;
+        this.logger.error(
+          `X post failed: ${post.url}: ${err instanceof Error ? err.message : String(err)}`,
+        );
+      }
+    }
 
-    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${now}`);
+    // Only advance the cursor once every post was handed over, so a failed cycle re-pulls it next time.
+    if (failed) {
+      this.logger.warn(`X result: ${failed}/${keptPosts.length} posts failed from ${result.handle}; cursor not advanced`);
+      return;
+    }
+
+    if (this.redis.isEnabled()) {
+      await this.redis.set('x:last-scrape-at', cursor);
+    }
+
+    this.logger.log(`X result ready: ${keptPosts.length} posts from ${result.handle}; saved timestamp=${cursor}`);
   }
 }

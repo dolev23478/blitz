@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "@fastify/cors": "^11.3.1",
-    "@fastify/static": "^10.1.6",
     "@mtcute/dispatcher": "^0.32.5",
     "@mtcute/node": "^0.32.5",
     "@nestjs/common": "^12.0.1",

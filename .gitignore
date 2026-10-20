@@ -92,3 +92,6 @@ reference/
 /.venv-radio/
 **/__pycache__/
 
+/.radio
+
+ca.crt
