@@ -41,6 +41,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         return;
       }
 
+      const startedAt = new Date();
       const lastScrapeAt = this.redis.isEnabled() ? await this.redis.get('x:last-scrape-at') : null;
       const since = lastScrapeAt ? new Date(lastScrapeAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
 
@@ -56,15 +57,15 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         `X cycle finished: handle=${result.handle}, totalPosts=${result.totalPosts}, provider=${result.providerUsed}`,
       );
 
-      await this.onXResult(result);
+      await this.onXResult(result, startedAt);
     } catch (err) {
       this.logger.error(`X scraper cycle failed: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
 
   /** Called automatically every time the cron cycle gets a result from X. */
-  private async onXResult(result: ProfileScrapeResult): Promise<void> {
-    const now = new Date().toISOString();
+  private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
+    const cursor = startedAt.toISOString();
     const keptPosts: Array<(typeof result.posts)[number]> = [];
 
     for (const post of result.posts) {
@@ -87,12 +88,13 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
 
     if (!keptPosts.length) {
       if (this.redis.isEnabled()) {
-        await this.redis.set('x:last-scrape-at', now);
+        await this.redis.set('x:last-scrape-at', cursor);
       }
-      this.logger.log(`X result ready: 0 posts from ${result.handle}; saved timestamp=${now}`);
+      this.logger.log(`X result ready: 0 posts from ${result.handle}; saved timestamp=${cursor}`);
       return;
     }
 
+    let failed = 0;
     for (const post of keptPosts) {
       const singleResult: ProfileScrapeResult = {
         ...result,
@@ -107,16 +109,23 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
           source: 'x',
         });
       } catch (err) {
+        failed++;
         this.logger.error(
           `X post failed: ${post.url}: ${err instanceof Error ? err.message : String(err)}`,
         );
       }
     }
 
-    if (this.redis.isEnabled()) {
-      await this.redis.set('x:last-scrape-at', now);
+    // Only advance the cursor once every post was handed over, so a failed cycle re-pulls it next time.
+    if (failed) {
+      this.logger.warn(`X result: ${failed}/${keptPosts.length} posts failed from ${result.handle}; cursor not advanced`);
+      return;
     }
 
-    this.logger.log(`X result ready: ${keptPosts.length} posts from ${result.handle}; saved timestamp=${now}`);
+    if (this.redis.isEnabled()) {
+      await this.redis.set('x:last-scrape-at', cursor);
+    }
+
+    this.logger.log(`X result ready: ${keptPosts.length} posts from ${result.handle}; saved timestamp=${cursor}`);
   }
 }
