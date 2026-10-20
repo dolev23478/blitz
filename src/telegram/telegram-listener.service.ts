@@ -21,11 +21,6 @@ export class TelegramListenerService {
   /** Runs automatically every time Telegram emits a stored-message result. */
   private async onTelegramResult(event: NewMessagesEvent): Promise<void> {
     const now = new Date().toISOString();
-
-    if (this.redis.isEnabled()) {
-      await this.redis.set('telegram:last-scrape-at', now);
-    }
-
     const filteredMessages: Array<{ message: ParsedMessage; matchedLanguage: string; matches: string[] }> = [];
 
     if (event.messages?.length) {
@@ -42,6 +37,9 @@ export class TelegramListenerService {
           `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,
         );
 
+        (message as ParsedMessage & { language?: string; matches?: string[] }).language = matchedLanguage;
+        (message as ParsedMessage & { language?: string; matches?: string[] }).matches = analysis.terms;
+
         filteredMessages.push({
           message,
           matchedLanguage,
@@ -50,13 +48,26 @@ export class TelegramListenerService {
       }
     }
 
+    if (!filteredMessages.length) {
+      this.logger.log(
+        `telegram result: channel=${event.channel}, inserted=${event.inserted}, matched=0; saved timestamp=${now}`,
+      );
+      return;
+    }
+
     for (const item of filteredMessages) {
-      await this.transformer.run('ParsedMessage', item.message, {
-        language: item.matchedLanguage,
-        matches: item.matches,
-        channelName: event.channel,
-        source: 'telegram',
-      });
+      try {
+        await this.transformer.run('ParsedMessage', item.message, {
+          language: item.matchedLanguage,
+          matches: item.matches,
+          channelName: event.channel,
+          source: 'telegram',
+        });
+      } catch (err) {
+        this.logger.error(
+          `Telegram message failed: ${item.message.url}: ${err instanceof Error ? err.message : String(err)}`,
+        );
+      }
     }
 
     this.logger.log(

@@ -2,17 +2,20 @@ import { randomUUID } from 'node:crypto';
 import { ConfigService } from '@nestjs/config';
 import { Kafka, logLevel } from 'kafkajs';
 import { describe, expect, it } from 'vitest';
+import { REPORT_TOPIC } from '../../src/common/constants.js';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import { metadata, twitterInput, workflow } from './fixtures.js';
 
-// Opt in only against an isolated plaintext test cluster. Never use production brokers.
-const brokers = process.env.KAFKA_TEST_BROKERS?.trim();
+const brokers = process.env.KAFKA_TEST_BROKERS?.split(',')
+  .map((address) => address.trim())
+  .filter(Boolean);
 
-describe.skipIf(!brokers)('real Kafka round trip', () => {
+describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
   it('publishes a mapped report and consumes the exact key and JSON value', async () => {
+    const kafkaBrokers = brokers!;
     const client = new Kafka({
       clientId: 'blitz-transformer-test',
-      brokers: brokers!.split(',').map((address) => address.trim()),
+      brokers: kafkaBrokers,
       logLevel: logLevel.NOTHING,
       connectionTimeout: 3000,
       retry: { retries: 0 },
@@ -22,22 +25,26 @@ describe.skipIf(!brokers)('real Kafka round trip', () => {
       groupId: `blitz-transformer-test-${randomUUID()}`,
     });
     const publisher = new PublishingProcessor(
-      new ConfigService({ KAFKA_BROKERS: brokers, KAFKA_SSL: false }),
+      new ConfigService({
+        KAFKA_BROKERS: kafkaBrokers.join(','),
+        KAFKA_SSL: false,
+      }),
     );
     let timeout: ReturnType<typeof setTimeout> | undefined;
+
     try {
       await admin.connect();
       await admin.createTopics({
-        topics: [
-          { topic: 'reports.raw', numPartitions: 1, replicationFactor: 1 },
-        ],
+        topics: [{ topic: REPORT_TOPIC, numPartitions: 1, replicationFactor: 1 }],
       });
       await consumer.connect();
-      await consumer.subscribe({ topic: 'reports.raw', fromBeginning: true });
+      await consumer.subscribe({ topic: REPORT_TOPIC, fromBeginning: true });
+
       const input = twitterInput();
       const marker = `Transformer integration ${randomUUID()}`;
       input.posts[0]!.text = marker;
       input.posts[0]!.url = `https://x.com/blitz/status/1?run=${randomUUID()}`;
+
       let accept!: (record: { key: string; value: string }) => void;
       const received = new Promise<{ key: string; value: string }>(
         (resolve, reject) => {
@@ -49,15 +56,21 @@ describe.skipIf(!brokers)('real Kafka round trip', () => {
           );
         },
       );
-      // Attach a rejection handler before awaiting consumer startup.
+
       void received.catch(() => undefined);
       await consumer.run({
         eachMessage: async ({ message }) => {
           const value = message.value?.toString();
-          if (value && JSON.parse(value).content === marker)
-            accept({ key: message.key!.toString(), value });
+          if (!value) return;
+          try {
+            const report = JSON.parse(value);
+            if (report.content === marker) accept({ key: message.key!.toString(), value });
+          } catch {
+            // Ignore malformed messages from a shared test topic.
+          }
         },
       });
+
       const [results, record] = await Promise.all([
         workflow(publisher).run('ProfileScrapeResult', input, {
           ...metadata(),
@@ -65,6 +78,7 @@ describe.skipIf(!brokers)('real Kafka round trip', () => {
         }),
         received,
       ]);
+
       const report = JSON.parse(record.value);
       expect(record.key).toBe(String(report.report_id));
       expect(results).toEqual([
@@ -85,9 +99,10 @@ describe.skipIf(!brokers)('real Kafka round trip', () => {
     } finally {
       clearTimeout(timeout);
       await Promise.allSettled([
-        publisher.onModuleDestroy(),
+        consumer.stop(),
         consumer.disconnect(),
         admin.disconnect(),
+        publisher.onModuleDestroy(),
       ]);
     }
   }, 60000);

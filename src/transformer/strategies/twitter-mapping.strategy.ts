@@ -19,8 +19,13 @@ export class TwitterMappingStrategy {
       media_type: ['text', ...new Set(post.media.map((media) => media.type))],
       report_title: null,
       content: post.text,
-      language: 'language' in post ? post.language : metadata.language,
-      matches: metadata.matches ?? [],
+      language:
+        (typeof post.language === 'string' && post.language.trim()) ||
+        (typeof post.matchedLanguage === 'string' && post.matchedLanguage.trim()) ||
+        metadata.language,
+      matches: Array.isArray(post.matches) && post.matches.length
+        ? post.matches
+        : metadata.matches ?? [],
       published_at: post.publishedAt,
       collected_at: result.scrapedAt,
     }));

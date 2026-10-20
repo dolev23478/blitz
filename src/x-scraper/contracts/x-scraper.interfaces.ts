@@ -57,6 +57,8 @@ export interface ScrapedPost {
   isPinned: boolean;
   rawHtmlSnippet?: string;
   matchedLanguage?: string;
+  language?: string;
+  matches?: string[];
 }
 
 export interface ProfileScrapeResult {
