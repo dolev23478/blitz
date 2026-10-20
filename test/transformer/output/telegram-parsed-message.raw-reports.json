@@ -1,153 +1,158 @@
 [
   {
-    "report_id": 2079044450,
-    "platform": "telegram",
     "account_name": "Dana",
+    "categories": [],
     "channel_name": null,
-    "report_url": "https://t.me/c/123456/1?single&x=%2f",
+    "collected_at": "2026-10-20T13:12:50.935Z",
+    "content": "Telegram report 1",
+    "is_official": false,
+    "languages": [],
+    "matches": [],
     "media_type": [
       "text"
     ],
-    "report_title": null,
-    "content": "Telegram report 1",
-    "language": "unknown",
-    "matches": [],
+    "platform": "telegram",
     "published_at": "2026-10-19T12:30:00.000Z",
-    "collected_at": "2026-10-20T05:52:56.301Z",
-    "schema_version": "1.0.0",
-    "is_official": false
+    "report_id": 2079044450,
+    "report_title": null,
+    "report_url": "https://t.me/c/123456/1?single&x=%2f",
+    "schema_version": 1
   },
   {
-    "report_id": -777040689,
-    "platform": "telegram",
     "account_name": null,
+    "categories": [],
     "channel_name": null,
-    "report_url": "https://t.me/c/123456/2?single&x=%2f",
-    "media_type": [
-      "text",
-      "photo"
-    ],
-    "report_title": null,
+    "collected_at": "2026-10-20T13:12:50.942Z",
     "content": "Telegram report 2",
-    "language": "unknown",
+    "is_official": false,
+    "languages": [],
     "matches": [],
-    "published_at": "2026-10-19T12:30:00.000Z",
-    "collected_at": "2026-10-20T05:52:56.317Z",
-    "schema_version": "1.0.0",
-    "is_official": false
-  },
-  {
-    "report_id": 3088148,
-    "platform": "telegram",
-    "account_name": "Dana",
-    "channel_name": null,
-    "report_url": "https://t.me/c/123456/3?single&x=%2f",
-    "media_type": [
-      "text",
-      "video"
-    ],
-    "report_title": null,
-    "content": "Telegram report 3",
-    "language": "unknown",
-    "matches": [],
-    "published_at": "2026-10-19T12:30:00.000Z",
-    "collected_at": "2026-10-20T05:52:56.319Z",
-    "schema_version": "1.0.0",
-    "is_official": false
-  },
-  {
-    "report_id": 1642255832,
-    "platform": "telegram",
-    "account_name": null,
-    "channel_name": null,
-    "report_url": "https://t.me/c/123456/4?single&x=%2f",
-    "media_type": [
-      "text",
-      "audio"
-    ],
-    "report_title": null,
-    "content": "Telegram report 4",
-    "language": "unknown",
-    "matches": [],
-    "published_at": "2026-10-19T12:30:00.000Z",
-    "collected_at": "2026-10-20T05:52:56.320Z",
-    "schema_version": "1.0.0",
-    "is_official": false
-  },
-  {
-    "report_id": -650184465,
-    "platform": "telegram",
-    "account_name": "Dana",
-    "channel_name": null,
-    "report_url": "https://t.me/c/123456/5?single&x=%2f",
-    "media_type": [
-      "text",
-      "document"
-    ],
-    "report_title": null,
-    "content": "Telegram report 5",
-    "language": "unknown",
-    "matches": [],
-    "published_at": "2026-10-19T12:30:00.000Z",
-    "collected_at": "2026-10-20T05:52:56.322Z",
-    "schema_version": "1.0.0",
-    "is_official": false
-  },
-  {
-    "report_id": 111849609,
-    "platform": "telegram",
-    "account_name": null,
-    "channel_name": null,
-    "report_url": "https://t.me/c/123456/6?single&x=%2f",
-    "media_type": [
-      "text",
-      "other"
-    ],
-    "report_title": null,
-    "content": "Telegram report 6",
-    "language": "unknown",
-    "matches": [],
-    "published_at": "2026-10-19T12:30:00.000Z",
-    "collected_at": "2026-10-20T05:52:56.323Z",
-    "schema_version": "1.0.0",
-    "is_official": false
-  },
-  {
-    "report_id": 1154055436,
-    "platform": "telegram",
-    "account_name": "Dana",
-    "channel_name": null,
-    "report_url": "https://t.me/c/123456/1001?single&x=%2f",
     "media_type": [
       "text",
       "photo"
     ],
-    "report_title": null,
-    "content": "Telegram report 1001",
-    "language": "unknown",
-    "matches": [],
+    "platform": "telegram",
     "published_at": "2026-10-19T12:30:00.000Z",
-    "collected_at": "2026-10-20T05:52:56.325Z",
-    "schema_version": "1.0.0",
-    "is_official": false
+    "report_id": 1370442959,
+    "report_title": null,
+    "report_url": "https://t.me/c/123456/2?single&x=%2f",
+    "schema_version": 1
   },
   {
-    "report_id": -1073470183,
-    "platform": "telegram",
-    "account_name": null,
+    "account_name": "Dana",
+    "categories": [],
     "channel_name": null,
-    "report_url": "https://t.me/c/123456/1002?single&x=%2f",
+    "collected_at": "2026-10-20T13:12:50.943Z",
+    "content": "Telegram report 3",
+    "is_official": false,
+    "languages": [],
+    "matches": [],
     "media_type": [
       "text",
       "video"
     ],
-    "report_title": null,
-    "content": "Telegram report 1002",
-    "language": "unknown",
-    "matches": [],
+    "platform": "telegram",
     "published_at": "2026-10-19T12:30:00.000Z",
-    "collected_at": "2026-10-20T05:52:56.325Z",
-    "schema_version": "1.0.0",
-    "is_official": false
+    "report_id": 3088148,
+    "report_title": null,
+    "report_url": "https://t.me/c/123456/3?single&x=%2f",
+    "schema_version": 1
+  },
+  {
+    "account_name": null,
+    "categories": [],
+    "channel_name": null,
+    "collected_at": "2026-10-20T13:12:50.944Z",
+    "content": "Telegram report 4",
+    "is_official": false,
+    "languages": [],
+    "matches": [],
+    "media_type": [
+      "text"
+    ],
+    "platform": "telegram",
+    "published_at": "2026-10-19T12:30:00.000Z",
+    "report_id": 1642255832,
+    "report_title": null,
+    "report_url": "https://t.me/c/123456/4?single&x=%2f",
+    "schema_version": 1
+  },
+  {
+    "account_name": "Dana",
+    "categories": [],
+    "channel_name": null,
+    "collected_at": "2026-10-20T13:12:50.944Z",
+    "content": "Telegram report 5",
+    "is_official": false,
+    "languages": [],
+    "matches": [],
+    "media_type": [
+      "text"
+    ],
+    "platform": "telegram",
+    "published_at": "2026-10-19T12:30:00.000Z",
+    "report_id": 1497299183,
+    "report_title": null,
+    "report_url": "https://t.me/c/123456/5?single&x=%2f",
+    "schema_version": 1
+  },
+  {
+    "account_name": null,
+    "categories": [],
+    "channel_name": null,
+    "collected_at": "2026-10-20T13:12:50.945Z",
+    "content": "Telegram report 6",
+    "is_official": false,
+    "languages": [],
+    "matches": [],
+    "media_type": [
+      "text"
+    ],
+    "platform": "telegram",
+    "published_at": "2026-10-19T12:30:00.000Z",
+    "report_id": 111849609,
+    "report_title": null,
+    "report_url": "https://t.me/c/123456/6?single&x=%2f",
+    "schema_version": 1
+  },
+  {
+    "account_name": "Dana",
+    "categories": [],
+    "channel_name": null,
+    "collected_at": "2026-10-20T13:12:50.945Z",
+    "content": "Telegram report 1001",
+    "is_official": false,
+    "languages": [],
+    "matches": [],
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "platform": "telegram",
+    "published_at": "2026-10-19T12:30:00.000Z",
+    "report_id": 1154055436,
+    "report_title": null,
+    "report_url": "https://t.me/c/123456/1001?single&x=%2f",
+    "schema_version": 1
+  },
+  {
+    "account_name": null,
+    "categories": [],
+    "channel_name": null,
+    "collected_at": "2026-10-20T13:12:50.945Z",
+    "content": "Telegram report 1002",
+    "is_official": false,
+    "languages": [],
+    "matches": [],
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "platform": "telegram",
+    "published_at": "2026-10-19T12:30:00.000Z",
+    "report_id": 1074013465,
+    "report_title": null,
+    "report_url": "https://t.me/c/123456/1002?single&x=%2f",
+    "schema_version": 1
   }
 ]

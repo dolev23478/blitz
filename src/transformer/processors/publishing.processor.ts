@@ -1,32 +1,51 @@
-import { Injectable, Logger, type OnModuleDestroy } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  type OnApplicationBootstrap,
+  type OnModuleDestroy,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { randomUUID } from 'node:crypto';
 import { Kafka, logLevel, type Producer, type SASLOptions } from 'kafkajs';
 import { REPORT_TOPIC } from '../../common/constants.js';
 import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
-import type { RawReport } from '../../contracts/schema.js';
 import type { TransformContext } from '../transformer.types.js';
+import { ReportValidator } from '../report-validator.js';
+import {
+  RedisRetryQueue,
+  RETRY_LEASE_MS,
+  RETRY_POLL_MS,
+  MAX_PUBLISH_ATTEMPTS,
+  type RetryJob,
+} from '../retry-queue.js';
 
-interface PendingReport {
-  report: RawReport;
-  value: string;
+interface Waiter {
   resolve: () => void;
   reject: (error: Error) => void;
 }
 
 @Injectable()
-export class PublishingProcessor implements OnModuleDestroy {
+export class PublishingProcessor
+  implements OnApplicationBootstrap, OnModuleDestroy
+{
   readonly stage = State.Publishing;
   private readonly logger = new Logger(PublishingProcessor.name);
-  private readonly queue: PendingReport[] = [];
+  private readonly waiters = new Map<string, Set<Waiter>>();
+  private readonly validator: ReportValidator;
   private readonly retryIntervalMs: number;
-  private retryTimer?: NodeJS.Timeout;
-  private draining?: Promise<void>;
+  private timer?: NodeJS.Timeout;
+  private ticking?: Promise<void>;
   private producer?: Producer;
   private connection?: Promise<void>;
   private closing = false;
+  private background = false;
 
-  constructor(private readonly config: ConfigService) {
+  constructor(
+    private readonly config: ConfigService,
+    private readonly queue: RedisRetryQueue,
+  ) {
+    this.validator = new ReportValidator(config);
     this.retryIntervalMs = Number(
       config.get('KAFKA_RETRY_INTERVAL_MS') ?? 60000,
     );
@@ -41,63 +60,161 @@ export class PublishingProcessor implements OnModuleDestroy {
       );
   }
 
+  onApplicationBootstrap(): void {
+    if (
+      !this.queue.isEnabled() ||
+      !this.config.get<string>('KAFKA_BROKERS')?.trim()
+    )
+      return;
+    this.background = true;
+    this.kick(); // Also recovers jobs persisted by a previous application instance.
+  }
+
   async execute(context: TransformContext): Promise<void> {
     if (!context.reports)
       throw new Error('Validation must produce reports before publishing.');
-    if (this.closing)
-      throw new TransformerException(
-        TransformerErrorCode.PublicationFailed,
-        'Transformer is shutting down.',
-      );
+    if (this.closing) throw this.failure('Transformer is shutting down.');
     context.publishedReports = [];
     if (!context.reports.length) return;
-
-    // Reject invalid configuration before accepting responsibility for a batch.
     this.getProducer();
-    const reports = context.reports.map((original) => {
-      const report = structuredClone(original);
-      return { report, value: JSON.stringify(report) };
-    });
-    // Enqueue the entire batch before starting, so concurrent calls cannot overtake it.
-    const confirmed = reports.map(
-      ({ report, value }) =>
+    // Validate and serialize the ENTIRE batch before any Redis write or Kafka publication.
+    const values = context.reports.map((report) =>
+      this.validator.serialize(report),
+    );
+    const snapshots = values.map((value) => JSON.parse(value));
+    let ids: string[];
+    try {
+      ids = await this.queue.enqueue(values);
+    } catch {
+      throw this.failure(
+        'Redis did not confirm durable admission; caller must retain the reports.',
+      );
+    }
+    const confirmed = ids.map(
+      (id, index) =>
         new Promise<void>((resolve, reject) => {
-          this.queue.push({
-            report,
-            value,
+          const waiter = {
             resolve: () => {
-              context.publishedReports!.push(report);
+              context.publishedReports!.push(snapshots[index]);
               resolve();
             },
             reject,
-          });
+          };
+          const listeners = this.waiters.get(id) ?? new Set<Waiter>();
+          listeners.add(waiter);
+          this.waiters.set(id, listeners);
         }),
     );
-    this.startDrain();
+    this.kick();
     await Promise.all(confirmed);
   }
 
-  private startDrain(): void {
-    if (this.draining || this.retryTimer || this.closing || !this.queue.length)
-      return;
-    this.draining = this.drain().finally(() => {
-      this.draining = undefined;
-      this.startDrain();
+  private failure(message: string): TransformerException {
+    return new TransformerException(
+      TransformerErrorCode.PublicationFailed,
+      message,
+    );
+  }
+
+  private kick(): void {
+    if (this.closing || this.ticking) return;
+    clearTimeout(this.timer);
+    this.timer = undefined;
+    this.ticking = this.tick()
+      .catch(() => {
+        this.logger.warn({ event: 'redis_publication_recovery_pending' });
+      })
+      .finally(() => {
+        this.ticking = undefined;
+        if (!this.closing && (this.background || this.waiters.size)) {
+          this.timer = setTimeout(
+            () => {
+              this.timer = undefined;
+              this.kick();
+            },
+            Math.min(RETRY_POLL_MS, this.retryIntervalMs),
+          );
+          this.timer.unref();
+        }
+      });
+  }
+
+  private async settle(): Promise<void> {
+    const ids = [...this.waiters.keys()];
+    const outcomes = await this.queue.outcomes(ids);
+    ids.forEach((id, index) => {
+      const outcome = outcomes[index];
+      if (outcome === 'pending') return;
+      const listeners = this.waiters.get(id);
+      this.waiters.delete(id);
+      for (const listener of listeners ?? []) {
+        if (outcome === 'confirmed') listener.resolve();
+        else
+          listener.reject(
+            this.failure(
+              outcome === 'discarded'
+                ? 'Kafka publication failed after the initial attempt and 3 retries; report discarded by user policy.'
+                : 'Redis publication receipt is unavailable; publication outcome is uncertain.',
+            ),
+          );
+      }
     });
   }
 
-  private async drain(): Promise<void> {
-    while (this.queue.length && !this.closing) {
-      const entry = this.queue[0]!;
+  private async tick(): Promise<void> {
+    await this.settle();
+    while (!this.closing) {
+      const token = randomUUID();
+      const job = await this.queue.claim(token);
+      if (!job) return;
       try {
+        await this.publish(job, token);
+      } finally {
+        await this.queue.release(token);
+      }
+      await this.settle();
+    }
+  }
+
+  private async publish(job: RetryJob, token: string): Promise<void> {
+    let leaseValid = true;
+    let renewing = false;
+    const heartbeat = setInterval(() => {
+      if (renewing) return;
+      renewing = true;
+      void this.queue
+        .renew(token)
+        .then((valid) => {
+          leaseValid = leaseValid && valid;
+        })
+        .catch(() => {
+          leaseValid = false;
+        })
+        .finally(() => {
+          renewing = false;
+        });
+    }, RETRY_LEASE_MS / 3);
+    heartbeat.unref();
+    try {
+      if (job.exhausted) {
+        await this.queue.finish(job, token, 'discarded');
+        this.logger.error({
+          event: 'kafka_report_discarded',
+          reportId: job.report.report_id,
+          attempts: job.attempts,
+        });
+        return;
+      }
+      try {
+        const value = this.validator.serialize(job.report);
         const producer = await this.connect();
+        if (!leaseValid || !(await this.queue.renew(token)))
+          throw new Error('Publication lease lost.');
         const acknowledgment = await producer.send({
           topic: REPORT_TOPIC,
           acks: -1,
           timeout: 30000,
-          messages: [
-            { key: String(entry.report.report_id), value: entry.value },
-          ],
+          messages: [{ key: String(job.report.report_id), value }],
         });
         if (
           !Array.isArray(acknowledgment) ||
@@ -108,24 +225,49 @@ export class PublishingProcessor implements OnModuleDestroy {
           )
         )
           throw new Error('Kafka publication was not confirmed.');
-      } catch {
+      } catch (error) {
         this.connection = undefined;
-        if (!this.closing) {
+        if (!leaseValid)
+          throw new Error('Publication lease lost; record retained.');
+        if (job.attempts >= MAX_PUBLISH_ATTEMPTS) {
+          await this.queue.finish(job, token, 'discarded');
+          this.logger.error({
+            event: 'kafka_report_discarded',
+            reportId: job.report.report_id,
+            attempts: job.attempts,
+          });
+        } else {
+          await this.queue.retry(
+            job,
+            token,
+            {
+              at: Date.now(),
+              name: error instanceof Error ? error.name : 'Error',
+              message:
+                error instanceof Error
+                  ? error.message.slice(0, 500)
+                  : 'Unknown publication error',
+            },
+            this.retryIntervalMs,
+          );
           this.logger.warn({
             event: 'kafka_publish_retry',
-            reportId: entry.report.report_id,
-            queuedReports: this.queue.length,
+            reportId: job.report.report_id,
+            retryCount: job.retryCount,
             retryInMs: this.retryIntervalMs,
           });
-          this.retryTimer = setTimeout(() => {
-            this.retryTimer = undefined;
-            this.startDrain();
-          }, this.retryIntervalMs);
         }
-        return; // Keep the failed head in place; newer reports must wait behind it.
+        return;
       }
-      this.queue.shift();
-      entry.resolve();
+      // Redis acknowledgment errors MUST NOT be treated as Kafka send failures.
+      // A lost reply may mean FINISH already succeeded. Otherwise recovery retains the head.
+      if (!leaseValid)
+        throw new Error(
+          'Publication lease lost after acknowledgment; record retained.',
+        );
+      await this.queue.finish(job, token, 'confirmed');
+    } finally {
+      clearInterval(heartbeat);
     }
   }
 
@@ -185,10 +327,16 @@ export class PublishingProcessor implements OnModuleDestroy {
         sasl,
         logLevel: logLevel.NOTHING,
         requestTimeout: 30000,
+        connectionTimeout: 5000,
         enforceRequestTimeout: true,
         retry: { retries: 0 }, // The queue owns retries and their interval.
       });
-      this.producer = kafka.producer({ allowAutoTopicCreation: false });
+      this.producer = kafka.producer({
+        allowAutoTopicCreation: false,
+        idempotent: true,
+        maxInFlightRequests: 1,
+        retry: { retries: 1 },
+      });
     }
     return this.producer;
   }
@@ -207,21 +355,19 @@ export class PublishingProcessor implements OnModuleDestroy {
 
   async onModuleDestroy(): Promise<void> {
     this.closing = true;
-    clearTimeout(this.retryTimer);
-    this.retryTimer = undefined;
-    await this.draining;
-    if (this.queue.length) {
-      this.logger.warn({
-        event: 'kafka_queue_shutdown',
-        queuedReports: this.queue.length,
-      });
-      const error = new TransformerException(
-        TransformerErrorCode.PublicationFailed,
-        'Transformer shut down before Kafka confirmed publication; the in-memory queue is not persisted.',
-      );
-      for (const entry of this.queue) entry.reject(error);
-      this.queue.length = 0;
-    }
+    clearTimeout(this.timer);
+    this.timer = undefined;
+    await this.ticking;
+    // Complete only confirmed sends; all remaining data stays in Redis for restart recovery.
+    await this.settle().catch(() => undefined);
+    for (const listeners of this.waiters.values())
+      for (const listener of listeners)
+        listener.reject(
+          this.failure(
+            'Transformer shut down; pending reports remain persisted in Redis.',
+          ),
+        );
+    this.waiters.clear();
     await this.producer?.disconnect();
   }
 }

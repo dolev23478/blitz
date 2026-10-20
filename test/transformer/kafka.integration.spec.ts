@@ -5,6 +5,9 @@ import { describe, expect, it } from 'vitest';
 import { REPORT_TOPIC } from '../../src/common/constants.js';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import { metadata, twitterInput, workflow } from './fixtures.js';
+import { RedisService } from '../../src/redis/redis.service.js';
+import { loadConfig } from '../../src/config/app-config.js';
+import { RedisRetryQueue } from '../../src/transformer/retry-queue.js';
 
 const brokers = process.env.KAFKA_TEST_BROKERS?.split(',')
   .map((address) => address.trim())
@@ -24,6 +27,14 @@ describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
     const consumer = client.consumer({
       groupId: `blitz-transformer-test-${randomUUID()}`,
     });
+    const prefix = `blitz:{kafka-test-${randomUUID()}}:outbox`;
+    const settings = loadConfig({
+      REDIS_URL: redisUrl,
+      KAFKA_BROKERS: brokers,
+      TRANSFORMER_RETRY_PREFIX: prefix,
+    });
+    const redis = new RedisService(settings);
+    const config = new ConfigService(settings);
     const publisher = new PublishingProcessor(
       new ConfigService({
         KAFKA_BROKERS: kafkaBrokers.join(','),
@@ -33,6 +44,7 @@ describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
     let timeout: ReturnType<typeof setTimeout> | undefined;
 
     try {
+      await redis.onModuleInit();
       await admin.connect();
       await admin.createTopics({
         topics: [{ topic: REPORT_TOPIC, numPartitions: 1, replicationFactor: 1 }],
@@ -93,7 +105,9 @@ describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
         platform: 'twitter',
         is_official: false,
         report_url: input.posts[0]!.url,
-        language: 'he',
+        languages: ['he'],
+        categories: [],
+        schema_version: 1,
         matches: ['news'],
       });
     } finally {
@@ -104,6 +118,12 @@ describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
         admin.disconnect(),
         publisher.onModuleDestroy(),
       ]);
+      await redis.eval(
+        "return redis.call('DEL',unpack(KEYS))",
+        [prefix + ':queue', prefix + ':jobs', prefix + ':lease'],
+        [],
+      );
+      await redis.onModuleDestroy();
     }
   }, 60000);
 });

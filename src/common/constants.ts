@@ -1,6 +1,7 @@
 export const REPORT_TOPIC = 'reports.raw';
 export const IS_OFFICIAL = false;
-export const SCHEMA_VERSION = '1.0.0';
+export const SCHEMA_VERSION = 1;
+/** Collector-internal marker; it is not a valid RAW_REPORT language code. */
 export const UNKNOWN_LANGUAGE = 'unknown';
-export const INT32_MIN = -2147483648;   
+export const REPORT_ID_MIN = 0;
 export const INT32_MAX = 2147483647;

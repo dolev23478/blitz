@@ -1,7 +1,10 @@
 // Run: npm run build
 // Then: node --import tsx test/transformer/run-batch-sample.mjs
-// Boots the compiled TransformerModule. Only the Kafka network transport is replaced.
+// Boots the compiled TransformerModule. Redis storage and Kafka transport are test doubles; all processors are real.
 import 'reflect-metadata';
+import { FakeRetryQueue } from './fake-retry-queue.ts';
+import { RedisRetryQueue } from '../../dist/transformer/retry-queue.js';
+import { RedisService } from '../../dist/redis/redis.service.js';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { ConfigService } from '@nestjs/config';
@@ -52,9 +55,13 @@ const config = new ConfigService({
   KAFKA_SASL_PASSWORD: '',
   DE_RAW_REPORT_SCHEMA_PATH: '', // No authoritative DE schema is present in the repo.
 });
+// Test doubles have no Redis socket to keep Node alive while retry timers are unrefed.
+const keepAlive = setInterval(() => undefined, 1000);
 let module;
 try {
   module = await Test.createTestingModule({ imports: [TransformerModule] })
+    .overrideProvider(RedisRetryQueue).useValue(new FakeRetryQueue())
+    .overrideProvider(RedisService).useValue({isEnabled:()=>false})
     .overrideProvider(ConfigService)
     .useValue(config)
     .compile();
@@ -112,8 +119,8 @@ try {
     return report;
   });
   assert.deepEqual(
-    wholeBatchReports.map((report) => report.language),
-    ['unknown', 'unknown'],
+    wholeBatchReports.map((report) => report.languages),
+    [[], []],
   );
   assert.deepEqual(
     stages.filter((stage) => stage.startsWith('original-whole-batch:')),
@@ -143,8 +150,8 @@ try {
     JSON.parse(record.messages[0].value),
   );
   assert.deepEqual(
-    splitReports.map((report) => report.language),
-    ['en', 'ar'],
+    splitReports.map((report) => report.languages),
+    [['en'], ['ar']],
   );
   for (const report of splitReports) assert.ok(validate(report));
   assert.deepEqual(input, before);
@@ -194,12 +201,12 @@ try {
         [...provisionalRawReportSchema.required].sort(),
       );
       assert.equal(record.messages[0].key, String(report.report_id));
-      assert.equal(report.schema_version, '1.0.0');
+      assert.equal(report.schema_version, 1);
       assert.equal(report.is_official, false);
       assert.equal(report.content, posts[index].text.normalize('NFC').trim());
       assert.equal(report.report_url, posts[index].url);
       assert.equal(report.account_name, posts[index].authorHandle);
-      assert.equal(report.language, index % 2 ? 'ar' : 'unknown');
+      assert.deepEqual(report.languages, index % 2 ? ['ar'] : []);
       assert.deepEqual(report.media_type, [
         'text',
         ...posts[index].media.map((media) => media.type),
@@ -226,7 +233,7 @@ try {
       kafkaSends: 0,
     });
   }
-  for (const language of ['zz', 'eng', 'EN', 42, {}, ['en']]) {
+  for (const language of ['zz', 'eng', 'EN', 42, {}, ['en', 'zz']]) {
     const post = createMockScrapedPost();
     post.language = language;
     captured.length = 0;
@@ -251,7 +258,7 @@ try {
     [{ authorHandle: 42 }, 'validation_failed'],
     [
       { media: [{ type: '', url: 'https://example.com/media' }] },
-      'validation_failed',
+      'mapping_failed',
     ],
     [{ publishedAt: 'not a date' }, 'mapping_failed'],
   ]) {
@@ -287,10 +294,10 @@ try {
     execution:
       'Compiled TransformerModule instantiated through Nest DI; all real processors executed.',
     transport:
-      'KafkaJS producer transport captured; no broker contacted and no real broker acknowledgment.',
+      'Kafka and Redis are doubles; no infrastructure integration is claimed.',
     schemaUsed: 'src/contracts/provisional-raw-report.schema.ts',
     authoritativeDESchemaAvailable: false,
-    missingLanguageDefaultsToUnknown: true,
+    missingLanguageDefaultsToEmptyArray: true,
     generatedRuns: {
       batches: 100,
       reports: generatedReports.length,
@@ -298,25 +305,25 @@ try {
       inputUnchanged: true,
     },
     invalidCases: { count: invalidCases.length, allRejectedBeforeKafka: true },
-    schemaVersion: '1.0.0',
+    schemaVersion: 1,
     unchangedBatch: {
       metadata: {},
       reports: wholeBatchReports.length,
       exactLocalSchemaValidation: true,
-      actualLanguages: wholeBatchReports.map((report) => report.language),
+      actualLanguages: wholeBatchReports.map((report) => report.languages),
       contentLanguagesForReference: ['en', 'ar'],
       languagePolicy:
-        'No language detection. Missing collector language is explicitly unknown.',
+        'No language detection. Missing collector language becomes an empty array.',
     },
     separateCallsWithExplicitLanguages: {
-      actualLanguages: splitReports.map((report) => report.language),
+      actualLanguages: splitReports.map((report) => report.languages),
       exactLocalSchemaValidation: true,
     },
     contractNotes: {
-      schema_version: 'Always the string 1.0.0, as confirmed by the user.',
-      language: 'ISO 639-1 or unknown, as confirmed by the user.',
+      schema_version: 'Integer major version 1.',
+      language: 'ISO 639-1 array; missing language is []. Final DE schema pending.',
       report_id:
-        'Signed int32 JSON integer, as confirmed by the user; Kafka key is its decimal string.',
+        'Non-negative signed-int32-compatible JSON integer; Kafka key is String(report_id).',
       nullableNames:
         'account_name and channel_name remain nullable in the provisional local rules.',
     },
@@ -353,6 +360,7 @@ try {
     ),
   );
 } finally {
+  clearInterval(keepAlive);
   await module?.close();
   Kafka.prototype.producer = originalProducer;
 }

@@ -1,3 +1,4 @@
+import { FakeRetryQueue } from './fake-retry-queue.js';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -57,6 +58,7 @@ afterEach(() => {
 function publisher(overrides: Record<string, unknown> = {}) {
   return new PublishingProcessor(
     new ConfigService({ KAFKA_BROKERS: 'broker:9092', ...overrides }),
+    new FakeRetryQueue(),
   );
 }
 
@@ -81,7 +83,7 @@ function deferred<T = void>() {
 }
 
 describe('Kafka publication', () => {
-  it.each([-2147483648, 0, 2147483647])(
+  it.each([0, 1, 2147483647])(
     'serializes int32 boundary %s as a JSON number with a string Kafka key',
     async (id) => {
       const ctx = { ...context(), reports: [rawReport({ report_id: id })] };
@@ -102,11 +104,18 @@ describe('Kafka publication', () => {
       topic: 'reports.raw',
       acks: -1,
       timeout: 30000,
-      messages: [{ key: '2147483647', value: JSON.stringify(ctx.reports[0]) }],
+      messages: [{ key: '2147483647', value: expect.any(String) }],
     });
-    expect(kafka.producer).toHaveBeenCalledWith({
-      allowAutoTopicCreation: false,
-    });
+    expect(JSON.parse(kafka.send.mock.calls[0]![0].messages[0].value)).toEqual(
+      ctx.reports[0],
+    );
+    expect(kafka.producer).toHaveBeenCalledWith(
+      expect.objectContaining({
+        allowAutoTopicCreation: false,
+        idempotent: true,
+        maxInFlightRequests: 1,
+      }),
+    );
     expect(ctx.publishedReports).toEqual(ctx.reports);
     await processor.onModuleDestroy();
     expect(kafka.disconnect).toHaveBeenCalledOnce();
@@ -183,13 +192,13 @@ describe('Kafka publication', () => {
     expect(ctx.publishedReports).toEqual(ctx.reports);
   });
 
-  it('sends every supplied report, including repeated identities, without filtering', async () => {
+  it('joins identical durable submissions while retaining distinct caller completions', async () => {
     const processor = publisher();
     const ctx = publishingContext();
     ctx.reports.push(structuredClone(ctx.reports[0]!));
     await processor.execute(ctx);
     await processor.execute(publishingContext());
-    expect(kafka.send).toHaveBeenCalledTimes(3);
+    expect(kafka.send).toHaveBeenCalledTimes(1);
     expect(kafka.connect).toHaveBeenCalledOnce();
   });
 
@@ -199,11 +208,11 @@ describe('Kafka publication', () => {
     const processor = publisher();
     const first = processor.execute(publishingContext());
     const second = processor.execute(publishingContext());
-    expect(kafka.connect).toHaveBeenCalledOnce();
+    await vi.waitFor(() => expect(kafka.connect).toHaveBeenCalledOnce());
     expect(kafka.send).not.toHaveBeenCalled();
     connected.resolve();
     await Promise.all([first, second]);
-    expect(kafka.send).toHaveBeenCalledTimes(2);
+    expect(kafka.send).toHaveBeenCalledTimes(1);
   });
 
   it('retains the batch and reconnects after 60 seconds without exposing Kafka error details', async () => {
@@ -314,7 +323,7 @@ describe('Kafka publication', () => {
     },
   );
 
-  it('retries indefinitely at the configured interval, including request timeout errors', async () => {
+  it('uses the configured interval for at most three retries, including request timeout errors', async () => {
     vi.useFakeTimers();
     kafka.send
       .mockRejectedValueOnce(new Error('request timeout'))
@@ -392,7 +401,7 @@ describe('Kafka publication', () => {
     const running = processor.execute(ctx);
     const rejected = expect(running).rejects.toMatchObject({
       code: 'publication_failed',
-      message: expect.stringContaining('not persisted'),
+      message: expect.stringContaining('persisted in Redis'),
     });
     await vi.advanceTimersByTimeAsync(0);
     await processor.onModuleDestroy();
@@ -456,9 +465,10 @@ describe('Transformer workflow through the Kafka boundary', () => {
         },
       ]);
       expect(report).toMatchObject({
-        schema_version: '1.0.0',
+        schema_version: 1,
         is_official: false,
-        language: options.language,
+        languages: [options.language],
+        categories: [],
       });
     },
   );
@@ -565,7 +575,8 @@ describe('Transformer workflow through the Kafka boundary', () => {
       collected_at: '2026-10-20T08:00:00.000Z',
       published_at: new Date(input.postedAt).toISOString(),
       report_url: input.url,
-      language: 'unknown',
+      languages: [],
+      categories: [],
     });
     expect(input).toEqual(snapshot);
   });
