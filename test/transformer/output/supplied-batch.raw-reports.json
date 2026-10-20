@@ -1,0 +1,40 @@
+[
+  {
+    "report_id": 3047412,
+    "platform": "twitter",
+    "account_name": "AJEnglish",
+    "channel_name": null,
+    "report_url": "https://x.com/AJEnglish/status/1847321098492019482",
+    "media_type": [
+      "text",
+      "photo"
+    ],
+    "report_title": null,
+    "content": "Breaking: Regional developments update following high-level diplomatic talks in Geneva.",
+    "language": [],
+    "matches": [],
+    "published_at": "2026-10-19T14:15:00.000Z",
+    "collected_at": "2026-10-19T14:30:00.000Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  },
+  {
+    "report_id": -886798368,
+    "platform": "twitter",
+    "account_name": "AJArabic",
+    "channel_name": null,
+    "report_url": "https://x.com/AJArabic/status/1847318045123984120",
+    "media_type": [
+      "text",
+      "video"
+    ],
+    "report_title": null,
+    "content": "موجز الأخبار: استمرار المشاورات الدولية بشأن سبل التهدئة.",
+    "language": [],
+    "matches": [],
+    "published_at": "2026-10-19T14:02:10.000Z",
+    "collected_at": "2026-10-19T14:30:00.000Z",
+    "schema_version": "1.0.0",
+    "is_official": false
+  }
+]

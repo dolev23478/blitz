@@ -1,0 +1,125 @@
+[
+  {
+    "field": "content",
+    "value": "",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "content",
+    "value": " ",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "content",
+    "value": "\n\t",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "content",
+    "value": null,
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "content",
+    "value": "(missing)",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "content",
+    "value": 42,
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "content",
+    "value": "<p>HTML</p>",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "language",
+    "value": "zz",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "language",
+    "value": "eng",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "language",
+    "value": "EN",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "language",
+    "value": 42,
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "language",
+    "value": {},
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "language",
+    "value": [
+      "en",
+      "zz"
+    ],
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "fields": {
+      "url": "not a URL"
+    },
+    "code": "validation_failed",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "fields": {
+      "authorHandle": 42
+    },
+    "code": "validation_failed",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "fields": {
+      "media": [
+        {
+          "type": "",
+          "url": "https://example.com/media"
+        }
+      ]
+    },
+    "code": "validation_failed",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "fields": {
+      "publishedAt": "not a date"
+    },
+    "code": "mapping_failed",
+    "rejected": true,
+    "kafkaSends": 0
+  },
+  {
+    "field": "collected_at",
+    "rejected": true,
+    "kafkaSends": 0
+  }
+]

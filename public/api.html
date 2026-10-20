@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>API Console</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { display: block; }
+    #console { max-width: 1100px; margin: 0 auto; padding: 16px; direction: ltr; text-align: left; }
+    .row { display: flex; gap: 8px; margin-bottom: 8px; }
+    .row select, .row input { padding: 6px; }
+    #url { flex: 1; font-family: monospace; }
+    textarea { width: 100%; min-height: 90px; font-family: monospace; direction: ltr; box-sizing: border-box; }
+    pre { background: #111; color: #d8f3dc; padding: 12px; border-radius: 6px; overflow: auto; max-height: 60vh; white-space: pre-wrap; word-break: break-all; }
+    .presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .presets button { font-size: 12px; }
+    #meta { font-family: monospace; margin: 6px 0; }
+    .ok { color: #2d9a4b; } .bad { color: #d33; }
+  </style>
+</head>
+<body>
+  <div id="console">
+    <h1>API Console <a href="/" style="font-size:14px">← UI</a></h1>
+    <div class="presets" id="presets"></div>
+    <div class="row">
+      <select id="method"><option>GET</option><option>POST</option><option>PATCH</option><option>DELETE</option></select>
+      <input id="url" value="/api/reports?limit=20" />
+      <button id="send">Send</button>
+      <button id="stream">Stream (SSE)</button>
+    </div>
+    <div class="row"><input id="key" placeholder="API key (x-api-key)" style="flex:1" /></div>
+    <textarea id="body" placeholder='JSON body, e.g. {"username":"durov"}'></textarea>
+    <div id="meta"></div>
+    <div class="row">
+      <button id="copy-resp">Copy response</button>
+      <button id="copy-curl">Copy curl</button>
+      <button id="download">Download .json</button>
+    </div>
+    <pre id="out"></pre>
+  </div>
+  <script type="module" src="api.js"></script>
+</body>
+</html>
