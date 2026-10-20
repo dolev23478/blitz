@@ -96,6 +96,17 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     return this.client.get(key);
   }
 
+  /** Atomically sets the key only when it does not exist yet; true when this call claimed it. */
+  async setIfAbsent(key: string, value: string, ttlSeconds: number): Promise<boolean> {
+    if (!this.client) throw new Error('Redis is not connected');
+    return (await this.client.set(key, value, { NX: true, EX: ttlSeconds })) === 'OK';
+  }
+
+  async del(key: string): Promise<number> {
+    if (!this.client) throw new Error('Redis is not connected');
+    return this.client.del(key);
+  }
+
   async hset(hash: string, field: string, value: string): Promise<number> {
     if (!this.client) {
       this.logger.warn(

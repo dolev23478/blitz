@@ -22,4 +22,5 @@ export const TELEGRAM_CHANNELS: readonly string[] = [
   'blitz111222',
 ];
 
-export const TELEGRAM_CURSOR_KEY = 'telegram:last-scrape-at';
+/** Redis key prefix of the per-channel resume point: telegram:cursor:<chatId> -> { channelId, channel, messageId, date }. */
+export const TELEGRAM_CURSOR_PREFIX = 'telegram:cursor:';
