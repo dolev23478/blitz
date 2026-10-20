@@ -1,3 +1,5 @@
+import type { CollectorReportFields } from './contracts/collector-report.js';
+
 export interface MediaItem {
   type: 'photo' | 'video' | 'document' | 'audio' | 'other';
   url: string;
@@ -12,7 +14,7 @@ export interface Reaction {
   count: number;
 }
 
-export interface ParsedMessage {
+export interface ParsedMessage extends CollectorReportFields {
   messageId: number;
   postedAt: Date;
   text: string | null;
@@ -28,6 +30,8 @@ export interface ParsedMessage {
   senderName?: string | null;
   forwards?: number | null;
   reactions?: Reaction[];
+  language?: string;
+  matches?: string[];
 }
 
 export interface ChannelPage {

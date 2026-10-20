@@ -41,7 +41,7 @@ describe('collector JSON mapping', () => {
     expect(reports).toHaveLength(1);
     expect(reports[0]).toEqual({
       report_id: expect.any(Number),
-      schema_version: '1.0.0',
+      schema_version: 1,
       is_official: false,
       platform: 'twitter',
       account_name: 'blitz',
@@ -50,7 +50,8 @@ describe('collector JSON mapping', () => {
       media_type: ['text', 'photo'],
       report_title: null,
       content: 'דיווח חדש',
-      language: 'he',
+      languages: ['he'],
+      categories: [],
       matches: ['news'],
       published_at: '2026-10-19T09:00:00.000Z',
       collected_at: '2026-10-19T10:00:00.000Z',
@@ -88,7 +89,7 @@ describe('collector JSON mapping', () => {
     const [report] = await mapReports(input);
     expect(report).toEqual({
       report_id: expect.any(Number),
-      schema_version: '1.0.0',
+      schema_version: 1,
       is_official: false,
       platform: 'telegram',
       account_name: 'Dana',
@@ -97,7 +98,8 @@ describe('collector JSON mapping', () => {
       media_type: ['text', 'video'],
       report_title: null,
       content: 'Telegram report',
-      language: 'en',
+      languages: ['en'],
+      categories: [],
       matches: [],
       published_at: '2026-10-19T09:00:00.000Z',
       collected_at: '2026-10-19T10:00:00.000Z',
@@ -145,7 +147,9 @@ describe('collector JSON mapping', () => {
       const input = telegramInput();
       input.media = [{ type: kind, url: 'https://example.com/media' }];
       const [report] = await mapReports(input);
-      expect(report!.media_type).toEqual(['text', kind]);
+      expect(report!.media_type).toEqual(
+        kind === 'photo' || kind === 'video' ? ['text', kind] : ['text'],
+      );
     },
   );
 

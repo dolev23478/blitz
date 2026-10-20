@@ -1,3 +1,4 @@
+import { FakeRetryQueue } from './fake-retry-queue.js';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Ajv } from 'ajv';
@@ -37,6 +38,7 @@ beforeEach(() => {
       KAFKA_SASL_USERNAME: '',
       KAFKA_SASL_PASSWORD: '',
     }),
+    new FakeRetryQueue(),
   );
 });
 
@@ -48,7 +50,7 @@ afterEach(async () => {
 const expectedReportsWithSharedLanguage = [
   {
     report_id: 3047412,
-    schema_version: '1.0.0',
+    schema_version: 1,
     is_official: false,
     platform: 'twitter',
     account_name: 'AJEnglish',
@@ -58,14 +60,15 @@ const expectedReportsWithSharedLanguage = [
     report_title: null,
     content:
       'Breaking: Regional developments update following high-level diplomatic talks in Geneva.',
-    language: 'en',
+    languages: ['en'],
+    categories: [],
     matches: [],
     published_at: '2026-10-19T14:15:00.000Z',
     collected_at: '2026-10-19T14:30:00.000Z',
   },
   {
-    report_id: -886798368,
-    schema_version: '1.0.0',
+    report_id: 1260685280,
+    schema_version: 1,
     is_official: false,
     platform: 'twitter',
     account_name: 'AJArabic',
@@ -75,7 +78,8 @@ const expectedReportsWithSharedLanguage = [
     report_title: null,
     content: 'موجز الأخبار: استمرار المشاورات الدولية بشأن سبل التهدئة.',
     // Existing batch-level metadata applies this code to every post; this is a known limitation.
-    language: 'en',
+    languages: ['en'],
+    categories: [],
     matches: [],
     published_at: '2026-10-19T14:02:10.000Z',
     collected_at: '2026-10-19T14:30:00.000Z',
@@ -91,7 +95,8 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
       payload,
       {
         inputId: 'supplied-example',
-        language: 'en',
+        languages: ['en'],
+        categories: [],
       },
     );
     const ajv = new Ajv({ allErrors: true });
@@ -121,9 +126,9 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
     );
     expect(payload).toEqual(original);
     // Schema validity alone cannot establish the actual language of the Arabic content.
-    expect(actualReports.map((report) => report.language)).not.toEqual([
-      'en',
-      'ar',
+    expect(actualReports.map((report) => report.languages)).not.toEqual([
+      ['en'],
+      ['ar'],
     ]);
   });
 
@@ -135,7 +140,7 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
     expect(reports).toEqual(
       expectedReportsWithSharedLanguage.map((report) => ({
         ...report,
-        language: 'unknown',
+        languages: [],
       })),
     );
   });
@@ -159,7 +164,7 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
     expect(actual).toEqual(
       expectedReportsWithSharedLanguage.map((report, index) => ({
         ...report,
-        language: index === 0 ? 'en' : 'ar',
+        languages: [index === 0 ? 'en' : 'ar'],
       })),
     );
   });
@@ -169,7 +174,8 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
     payload.posts[1]!.text = ' ';
     await expect(
       workflow(publisher).run('ProfileScrapeResult', payload, {
-        language: 'en',
+        languages: ['en'],
+        categories: [],
       }),
     ).rejects.toMatchObject({ code: 'validation_failed' });
     expect(send).not.toHaveBeenCalled();

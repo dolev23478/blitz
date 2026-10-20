@@ -4,9 +4,7 @@ import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
 import { XScraperService } from './x-scraper.service.js';
 import { RedisService } from '../redis/redis.service.js';
 import { analyzeText } from '../text-analyzer.js';
-import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
-import { resolveLanguageAlias, LANGUAGE_ALIASES } from '../normalize/registry.js';
 
 @Injectable()
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
@@ -67,50 +65,67 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
 
   /** Called automatically every time the cron cycle gets a result from X. */
   private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
-    const supportedLanguages = getDictionaryStore().languages();
-    const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
-      .map((language) => resolveLanguageAlias(language));
-    const keptPosts: Array<{ post: (typeof result.posts)[number]; matchedLanguage: string; matches: string[] }> = [];
+    const cursor = startedAt.toISOString();
+    const keptPosts: Array<(typeof result.posts)[number]> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
 
-      const analysis = analyzeText(post.text, candidateLanguages);
-      if (!analysis.matched || analysis.languages?.length === 0) continue;
+      const analysis = analyzeText(post.text, 'auto');
+      if (!analysis.matched) continue;
 
-      const matchedLanguages = analysis.languages?.length
-        ? analysis.languages
-        : [analysis.language].filter(Boolean);
-      const matchedLanguage = matchedLanguages[0] ?? null;
-
+      const matchedLanguage = analysis.languages?.[0] ?? analysis.language ?? null;
       if (!matchedLanguage) continue;
 
       this.logger.log(
         `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
       );
 
-      keptPosts.push({
-        post,
-        matchedLanguage,
-        matches: analysis.terms,
-      });
+      post.language = matchedLanguage;
+      post.matches = analysis.terms;
+      keptPosts.push(post);
     }
 
-    result.posts = keptPosts.map((item) => item.post);
+    if (!keptPosts.length) {
+      if (this.redis.isEnabled()) {
+        await this.redis.set('x:last-scrape-at', cursor);
+      }
+      this.logger.log(`X result ready: 0 posts from ${result.handle}; saved timestamp=${cursor}`);
+      return;
+    }
 
-    const matches = [...new Set(keptPosts.flatMap((item) => item.matches))];
-    await this.transformer.run('ProfileScrapeResult', result, {
-      language: undefined,
-      matches,
-      collectedAt: new Date().toISOString(),
-      source: 'x',
-    });
+    let failed = 0;
+    for (const post of keptPosts) {
+      const singleResult: ProfileScrapeResult = {
+        ...result,
+        totalPosts: 1,
+        posts: [post],
+      };
+      try {
+        await this.transformer.run('ProfileScrapeResult', singleResult, {
+          language: post.language,
+          matches: post.matches,
+          collectedAt: new Date().toISOString(),
+          source: 'x',
+        });
+      } catch (err) {
+        failed++;
+        this.logger.error(
+          `X post failed: ${post.url}: ${err instanceof Error ? err.message : String(err)}`,
+        );
+      }
+    }
 
-    // Only advance the cursor once the batch was handed over, so a failed cycle re-pulls it next time.
+    // Only advance the cursor once every post was handed over, so a failed cycle re-pulls it next time.
+    if (failed) {
+      this.logger.warn(`X result: ${failed}/${keptPosts.length} posts failed from ${result.handle}; cursor not advanced`);
+      return;
+    }
+
     if (this.redis.isEnabled()) {
-      await this.redis.set('x:last-scrape-at', startedAt.toISOString());
+      await this.redis.set('x:last-scrape-at', cursor);
     }
 
-    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${startedAt.toISOString()}`);
+    this.logger.log(`X result ready: ${keptPosts.length} posts from ${result.handle}; saved timestamp=${cursor}`);
   }
 }

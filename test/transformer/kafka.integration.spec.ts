@@ -4,11 +4,15 @@ import { Kafka, logLevel } from 'kafkajs';
 import { describe, expect, it } from 'vitest';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import { metadata, twitterInput, workflow } from './fixtures.js';
+import { RedisService } from '../../src/redis/redis.service.js';
+import { loadConfig } from '../../src/config/app-config.js';
+import { RedisRetryQueue } from '../../src/transformer/retry-queue.js';
 
 // Opt in only against an isolated plaintext test cluster. Never use production brokers.
 const brokers = process.env.KAFKA_TEST_BROKERS?.trim();
+const redisUrl = process.env.REDIS_TEST_URL;
 
-describe.skipIf(!brokers)('real Kafka round trip', () => {
+describe.skipIf(!brokers || !redisUrl)('real Redis/Kafka round trip', () => {
   it('publishes a mapped report and consumes the exact key and JSON value', async () => {
     const client = new Kafka({
       clientId: 'blitz-transformer-test',
@@ -21,11 +25,21 @@ describe.skipIf(!brokers)('real Kafka round trip', () => {
     const consumer = client.consumer({
       groupId: `blitz-transformer-test-${randomUUID()}`,
     });
+    const prefix = `blitz:{kafka-test-${randomUUID()}}:outbox`;
+    const settings = loadConfig({
+      REDIS_URL: redisUrl,
+      KAFKA_BROKERS: brokers,
+      TRANSFORMER_RETRY_PREFIX: prefix,
+    });
+    const redis = new RedisService(settings);
+    const config = new ConfigService(settings);
     const publisher = new PublishingProcessor(
-      new ConfigService({ KAFKA_BROKERS: brokers, KAFKA_SSL: false }),
+      config,
+      new RedisRetryQueue(redis, config),
     );
     let timeout: ReturnType<typeof setTimeout> | undefined;
     try {
+      await redis.onModuleInit();
       await admin.connect();
       await admin.createTopics({
         topics: [
@@ -79,7 +93,9 @@ describe.skipIf(!brokers)('real Kafka round trip', () => {
         platform: 'twitter',
         is_official: false,
         report_url: input.posts[0]!.url,
-        language: 'he',
+        languages: ['he'],
+        categories: [],
+        schema_version: 1,
         matches: ['news'],
       });
     } finally {
@@ -89,6 +105,12 @@ describe.skipIf(!brokers)('real Kafka round trip', () => {
         consumer.disconnect(),
         admin.disconnect(),
       ]);
+      await redis.eval(
+        "return redis.call('DEL',unpack(KEYS))",
+        [prefix + ':queue', prefix + ':jobs', prefix + ':lease'],
+        [],
+      );
+      await redis.onModuleDestroy();
     }
   }, 60000);
 });

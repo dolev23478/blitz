@@ -1,11 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { NewMessagesEvent } from '../events/message-events.service.js';
-import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
 import { analyzeText } from '../text-analyzer.js';
 import { RedisService } from '../redis/redis.service.js';
 import { TelegramService } from './telegram.service.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
-import { LANGUAGE_ALIASES, resolveLanguageAlias } from '../normalize/registry.js';
 import type { ParsedMessage } from '../types.js';
 
 /** Longer than the pull overlap and the sync interval, so re-pulled messages are always recognised. */
@@ -25,34 +23,25 @@ export class TelegramListenerService {
 
   /** Runs automatically every time Telegram emits a stored-message result. The pull cursor is owned by TelegramService only. */
   private async onTelegramResult(event: NewMessagesEvent): Promise<void> {
-    const supportedLanguages = getDictionaryStore().languages();
-    const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
-      .map((language) => resolveLanguageAlias(language));
     const filteredMessages: Array<{ message: ParsedMessage; matchedLanguage: string; matches: string[] }> = [];
 
     if (event.messages?.length) {
       for (const message of event.messages) {
         if (!message || !message.text || !message.text.trim()) continue;
         if (!(await this.claim(event.channel, message))) continue;
-        const analysis = analyzeText(message.text, candidateLanguages);
-        if (!analysis.matched || analysis.languages?.length === 0) {
-          this.logger.log(`Telegram no match: channel=${event.channel}, text=${message.text.slice(0, 200)}`);
-          continue;
-        }
 
-        const matchedLanguages = analysis.languages?.length
-          ? analysis.languages
-          : [analysis.language].filter(Boolean);
-        const matchedLanguage = matchedLanguages[0] ?? null;
+        const analysis = analyzeText(message.text, 'auto');
+        if (!analysis.matched) continue;
 
-        if (!matchedLanguage) {
-          this.logger.log(`Telegram no match: channel=${event.channel}, text=${message.text.slice(0, 200)}`);
-          continue;
-        }
+        const matchedLanguage = analysis.languages?.[0] ?? analysis.language ?? null;
+        if (!matchedLanguage) continue;
 
         this.logger.log(
           `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,
         );
+
+        (message as ParsedMessage & { language?: string; matches?: string[] }).language = matchedLanguage;
+        (message as ParsedMessage & { language?: string; matches?: string[] }).matches = analysis.terms;
 
         filteredMessages.push({
           message,
@@ -62,6 +51,14 @@ export class TelegramListenerService {
       }
     }
 
+    if (!filteredMessages.length) {
+      this.logger.log(
+        `telegram result: channel=${event.channel}, inserted=${event.inserted}, matched=0`,
+      );
+      return;
+    }
+
+    let failed = 0;
     for (const item of filteredMessages) {
       try {
         await this.transformer.run('ParsedMessage', item.message, {
@@ -72,14 +69,19 @@ export class TelegramListenerService {
           source: 'telegram',
         });
       } catch (err) {
+        failed++;
+        // Free the claim so the next pull retries this message; keep going with the rest.
         await this.release(event.channel, item.message);
-        throw err;
+        this.logger.error(
+          `Telegram message failed: ${item.message.url}: ${err instanceof Error ? err.message : String(err)}`,
+        );
       }
     }
 
     this.logger.log(
-      `telegram result: channel=${event.channel}, inserted=${event.inserted}, matched=${filteredMessages.length}`,
+      `telegram result: channel=${event.channel}, inserted=${event.inserted}, matched=${filteredMessages.length}, failed=${failed}`,
     );
+    if (failed) throw new Error(`${failed} Telegram message(s) failed to publish on ${event.channel}.`);
   }
 
   private seenKey(channel: string, message: ParsedMessage): string {

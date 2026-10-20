@@ -1,9 +1,10 @@
 import {
-  INT32_MIN,
+  REPORT_ID_MIN,
   INT32_MAX,
   IS_OFFICIAL,
   SCHEMA_VERSION,
 } from '../common/constants.js';
+import { ISO_639_1_CODES } from '../common/languages.js';
 
 /** LOCAL MVP rules only. Replace/reconcile with the actual DE contract. */
 export const provisionalRawReportSchema = {
@@ -20,7 +21,8 @@ export const provisionalRawReportSchema = {
     'media_type',
     'report_title',
     'content',
-    'language',
+    'languages',
+    'categories',
     'matches',
     'published_at',
     'collected_at',
@@ -28,19 +30,26 @@ export const provisionalRawReportSchema = {
   properties: {
     report_id: {
       type: 'integer',
-      minimum: INT32_MIN,
+      minimum: REPORT_ID_MIN,
       maximum: INT32_MAX,
     },
-    schema_version: { const: SCHEMA_VERSION },
+    schema_version: { type: 'integer', const: SCHEMA_VERSION },
     is_official: { const: IS_OFFICIAL },
     platform: { type: 'string', minLength: 1, pattern: '\\S' },
     account_name: { type: ['string', 'null'] },
     channel_name: { type: ['string', 'null'] },
     report_url: { type: 'string', minLength: 1, format: 'uri' },
-    media_type: { type: 'array', items: { type: 'string', minLength: 1 } },
+    media_type: {
+      type: 'array',
+      items: { type: 'string', enum: ['text', 'photo', 'video'] },
+    },
     report_title: { type: ['string', 'null'] },
     content: { type: 'string', minLength: 1, pattern: '\\S' },
-    language: { type: 'string', pattern: '^(unknown|[a-z]{2})$' },
+    languages: {
+      type: 'array',
+      items: { type: 'string', enum: ISO_639_1_CODES },
+    },
+    categories: { type: 'array', items: { type: 'string' } },
     matches: { type: 'array', items: { type: 'string' } },
     published_at: {
       anyOf: [
