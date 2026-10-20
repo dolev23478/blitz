@@ -1,11 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { NewMessagesEvent } from '../events/message-events.service.js';
-import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
 import { analyzeText } from '../text-analyzer.js';
 import { RedisService } from '../redis/redis.service.js';
 import { TelegramService } from './telegram.service.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
-import { LANGUAGE_ALIASES, resolveLanguageAlias } from '../normalize/registry.js';
 import type { ParsedMessage } from '../types.js';
 
 @Injectable()
@@ -28,30 +26,17 @@ export class TelegramListenerService {
       await this.redis.set('telegram:last-scrape-at', now);
     }
 
-    const supportedLanguages = getDictionaryStore().languages();
-    const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
-      .map((language) => resolveLanguageAlias(language));
     const filteredMessages: Array<{ message: ParsedMessage; matchedLanguage: string; matches: string[] }> = [];
 
     if (event.messages?.length) {
       for (const message of event.messages) {
         if (!message || !message.text || !message.text.trim()) continue;
 
-        const analysis = analyzeText(message.text, candidateLanguages);
-        if (!analysis.matched || analysis.languages?.length === 0) {
-          this.logger.log(`Telegram no match: channel=${event.channel}, text=${message.text.slice(0, 200)}`);
-          continue;
-        }
+        const analysis = analyzeText(message.text, 'auto');
+        if (!analysis.matched) continue;
 
-        const matchedLanguages = analysis.languages?.length
-          ? analysis.languages
-          : [analysis.language].filter(Boolean);
-        const matchedLanguage = matchedLanguages[0] ?? null;
-
-        if (!matchedLanguage) {
-          this.logger.log(`Telegram no match: channel=${event.channel}, text=${message.text.slice(0, 200)}`);
-          continue;
-        }
+        const matchedLanguage = analysis.languages?.[0] ?? analysis.language ?? null;
+        if (!matchedLanguage) continue;
 
         this.logger.log(
           `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,

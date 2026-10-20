@@ -4,9 +4,7 @@ import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
 import { XScraperService } from './x-scraper.service.js';
 import { RedisService } from '../redis/redis.service.js';
 import { analyzeText } from '../text-analyzer.js';
-import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
-import { resolveLanguageAlias, LANGUAGE_ALIASES } from '../normalize/registry.js';
 
 @Injectable()
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
@@ -72,22 +70,15 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       await this.redis.set('x:last-scrape-at', now);
     }
 
-    const supportedLanguages = getDictionaryStore().languages();
-    const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
-      .map((language) => resolveLanguageAlias(language));
     const keptPosts: Array<{ post: (typeof result.posts)[number]; matchedLanguage: string; matches: string[] }> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
 
-      const analysis = analyzeText(post.text, candidateLanguages);
-      if (!analysis.matched || analysis.languages?.length === 0) continue;
+      const analysis = analyzeText(post.text, 'auto');
+      if (!analysis.matched) continue;
 
-      const matchedLanguages = analysis.languages?.length
-        ? analysis.languages
-        : [analysis.language].filter(Boolean);
-      const matchedLanguage = matchedLanguages[0] ?? null;
-
+      const matchedLanguage = analysis.languages?.[0] ?? analysis.language ?? null;
       if (!matchedLanguage) continue;
 
       this.logger.log(
