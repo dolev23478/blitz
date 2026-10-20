@@ -6,6 +6,28 @@ import { farsiNormalizer } from "./farsi-normalizer.js";
 import { hebrewNormalizer } from "./hebrew-normalizer.js";
 import type { TextNormalizer } from "./types.js";
 
+export const LANGUAGE_ALIASES = new Set<string>([
+  "ar",
+  "ara",
+  "fa",
+  "fas",
+  "per",
+  "en",
+  "eng",
+  "he",
+  "heb",
+  "iw",
+  "em",
+  "emoji",
+  "emojis",
+]);
+
+export function resolveLanguageAlias(language: string): string {
+  const key = language.trim().toLowerCase();
+  if (key === "em" || key === "emojis") return "emoji";
+  return key;
+}
+
 const dedicated = new Map<string, TextNormalizer>([
   ["ar", arabicNormalizer],
   ["ara", arabicNormalizer],
@@ -26,10 +48,11 @@ const fallbacks = new Map<string, TextNormalizer>();
 
 export function registerNormalizer(normalizer: TextNormalizer): void {
   dedicated.set(normalizer.language.toLowerCase(), normalizer);
+  LANGUAGE_ALIASES.add(normalizer.language.toLowerCase());
 }
 
 export function getNormalizer(language: string): TextNormalizer {
-  const key = language.toLowerCase();
+  const key = resolveLanguageAlias(language);
   const found = dedicated.get(key);
   if (found) {
     return found;

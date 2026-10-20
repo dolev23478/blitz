@@ -3,8 +3,7 @@ import StateMachine from 'javascript-state-machine';
 import { randomUUID } from 'node:crypto';
 import { State } from '../common/enums.js';
 import type { ProfileScrapeResult } from '../x-scraper/contracts/x-scraper.interfaces.js';
-import type { StoredMessage } from '../types.js';
-import type { MessageDto } from '../tg-realtime/types.js';
+import type { ParsedMessage } from '../types.js';
 import type { MappingFormat } from '../contracts/mappings.js';
 import { CompletionProcessor } from './processors/completion.processor.js';
 import { MappingProcessor } from './processors/mapping.processor.js';
@@ -34,14 +33,9 @@ export class TransformerWorkflow {
     options?: RunOptions,
   ): Promise<WorkflowResult[]>;
   run(
-    format: 'StoredMessage',
-    data: StoredMessage,
+    format: 'ParsedMessage',
+    data: ParsedMessage,
     options?: RunOptions,
-  ): Promise<WorkflowResult[]>;
-  run(
-    format: 'MessageDto',
-    data: MessageDto,
-    options: RunOptions & { reportUrl: string; collectedAt: string },
   ): Promise<WorkflowResult[]>;
 
   /** Pass the collector's object directly and select its format's mapper. */
@@ -53,7 +47,10 @@ export class TransformerWorkflow {
     const context: TransformContext = {
       format,
       input: data,
-      metadata: options,
+      metadata:
+        format === 'ParsedMessage'
+          ? { ...options, collectedAt: new Date().toISOString() }
+          : options,
       inputId: options.inputId ?? randomUUID(),
       sourceId: format,
       attempt: options.attempt ?? 1,

@@ -11,7 +11,7 @@ export interface ScrapeRequestDto {
 
 export interface SearchRequestDto {
   query: string;
-  maxPosts: number;
+  maxPosts?: number;
   outputFormat?: OutputFormat;
   name?: string;
   since?: string | number | Date;
@@ -21,7 +21,8 @@ export interface SearchRequestDto {
 
 export interface BatchSourcesRequestDto {
   handles: string[];
-  maxPosts: number;
+  /** Maximum posts in the combined batch; defaults to 100 when omitted. */
+  maxPosts?: number;
   outputFormat?: OutputFormat;
   queryFilter?: string;
   feedName?: string;
@@ -55,6 +56,7 @@ export interface ScrapedPost {
   isRetweet: boolean;
   isPinned: boolean;
   rawHtmlSnippet?: string;
+  matchedLanguage?: string;
 }
 
 export interface ProfileScrapeResult {

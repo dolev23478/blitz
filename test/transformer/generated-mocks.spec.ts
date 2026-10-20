@@ -2,7 +2,12 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Ajv } from 'ajv';
 import addFormats from 'ajv-formats';
-import { Kafka, type Producer, type ProducerRecord } from 'kafkajs';
+import {
+  Kafka,
+  type Producer,
+  type ProducerRecord,
+  type RecordMetadata,
+} from 'kafkajs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { ScrapedPost } from '../../src/x-scraper/contracts/x-scraper.interfaces.js';
 import { provisionalRawReportSchema } from '../../src/contracts/provisional-raw-report.schema.js';
@@ -11,16 +16,20 @@ import {
   createMockBatchResult,
   createMockScrapedPost,
 } from './fixtures/mock-generators.js';
-import { realtimeInput, telegramInput, workflow } from './fixtures.js';
+import { telegramInput, workflow } from './fixtures.js';
 
-const send = vi.fn<(record: ProducerRecord) => Promise<[]>>();
+const send = vi.fn<(record: ProducerRecord) => Promise<RecordMetadata[]>>();
 let publisher: PublishingProcessor;
 const ajv = new Ajv({ allErrors: true });
 addFormats.default(ajv);
 const validate = ajv.compile(provisionalRawReportSchema);
 
 beforeEach(() => {
-  send.mockReset().mockResolvedValue([]);
+  send
+    .mockReset()
+    .mockResolvedValue([
+      { topicName: 'reports.raw', partition: 0, errorCode: 0 },
+    ]);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Kafka.prototype, 'producer').mockReturnValue({
@@ -40,6 +49,7 @@ beforeEach(() => {
 
 afterEach(async () => {
   await publisher.onModuleDestroy();
+  vi.useRealTimers();
   vi.restoreAllMocks();
 });
 
@@ -231,32 +241,133 @@ describe('generated ProfileScrapeResult variations', () => {
   });
 });
 
-describe('language handling in both Telegram formats', () => {
-  it('defaults a StoredMessage language to unknown and preserves a supplied collector code', async () => {
+describe('language handling in Telegram ParsedMessage', () => {
+  it('defaults language to unknown and preserves a supplied collector code', async () => {
     const runner = workflow(publisher);
-    await runner.run('StoredMessage', telegramInput());
+    await runner.run('ParsedMessage', telegramInput());
     const message = telegramInput();
     Reflect.set(message, 'language', 'he');
-    await runner.run('StoredMessage', message);
+    await runner.run('ParsedMessage', message);
     expect(reports().map((report) => report.language)).toEqual([
       'unknown',
       'he',
     ]);
   });
 
-  it('defaults MessageDto language to unknown and preserves a supplied collector code', async () => {
+  it('uses caller language metadata when the collector did not provide a language field', async () => {
     const runner = workflow(publisher);
-    const options = {
-      reportUrl: 'https://t.me/blitz/8',
-      collectedAt: '2026-10-19T10:00:00Z',
-    };
-    await runner.run('MessageDto', realtimeInput(), options);
-    const message = realtimeInput();
-    Reflect.set(message, 'language', 'ar');
-    await runner.run('MessageDto', message, options);
-    expect(reports().map((report) => report.language)).toEqual([
-      'unknown',
-      'ar',
-    ]);
+    await runner.run('ParsedMessage', telegramInput(), { language: 'ar' });
+    expect(reports().map((report) => report.language)).toEqual(['ar']);
+  });
+});
+
+describe('Telegram ParsedMessage through the complete workflow', () => {
+  it.each(Array.from({ length: 20 }, (_, index) => index))(
+    'maps Telegram variation %i to the exact local schema and Kafka record',
+    async (index) => {
+      const message = telegramInput();
+      message.messageId = index + 1;
+      message.url =
+        index % 2
+          ? `https://t.me/c/123456/${index + 1}?single&x=%2f`
+          : `https://t.me/blitz/${index + 1}?single&x=%2f`;
+      message.text = [
+        '  Telegram report  ',
+        '  הודעה בעברית  ',
+        '  تقرير عربي  ',
+        '  Cafe\u0301: 1 < 2  ',
+      ][index % 4]!;
+      message.senderName = index % 3 ? 'Dana' : null;
+      const kind = (['photo', 'video', 'audio', 'document', 'other'] as const)[
+        index % 5
+      ]!;
+      message.media =
+        index % 2
+          ? [
+              { type: kind, url: 'https://example.com/media-1' },
+              { type: kind, url: 'https://example.com/media-2' },
+            ]
+          : [];
+      const input = index % 2 ? JSON.parse(JSON.stringify(message)) : message;
+      const snapshot = structuredClone(input);
+
+      const receivedBefore = Date.now();
+      const result = await workflow(publisher).run('ParsedMessage', input);
+      const [report] = reports(); // Validates the serialized output with Ajv and checks every field.
+      expect(report).toEqual({
+        report_id: expect.any(Number),
+        schema_version: '1.0.0',
+        is_official: false,
+        platform: 'telegram',
+        account_name: message.senderName,
+        channel_name: null,
+        report_url: message.url,
+        media_type: index % 2 ? ['text', kind] : ['text'],
+        report_title: null,
+        content: message.text!.normalize('NFC').trim(),
+        language: 'unknown',
+        matches: [],
+        published_at: message.postedAt.toISOString(),
+        collected_at: expect.any(String),
+      });
+      expect(Date.parse(report.collected_at)).toBeGreaterThanOrEqual(
+        receivedBefore,
+      );
+      expect(Date.parse(report.collected_at)).toBeLessThanOrEqual(Date.now());
+      expect(result).toEqual([
+        {
+          status: 'completed',
+          inputId: expect.any(String),
+          reportId: report.report_id,
+        },
+      ]);
+      expect(input).toEqual(snapshot);
+      expect(send).toHaveBeenCalledOnce();
+    },
+  );
+
+  it.each(['', ' ', '\n\t', null, undefined, 42, '<p>HTML</p>'])(
+    'rejects invalid Telegram content %j before Kafka',
+    async (content) => {
+      const input = telegramInput();
+      Reflect.set(input, 'text', content);
+      await expect(
+        workflow(publisher).run('ParsedMessage', input),
+      ).rejects.toMatchObject({ code: 'validation_failed' });
+      expect(send).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each(['', 'not a URL', null, undefined])(
+    'rejects invalid Telegram URL %j without inventing a replacement',
+    async (url) => {
+      const input = telegramInput();
+      Reflect.set(input, 'url', url);
+      await expect(
+        workflow(publisher).run('ParsedMessage', input),
+      ).rejects.toMatchObject({ code: 'validation_failed' });
+      expect(send).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each(['zz', 'eng', 'EN', 42])(
+    'rejects invalid Telegram language %j before Kafka',
+    async (language) => {
+      const input = telegramInput();
+      Reflect.set(input, 'language', language);
+      await expect(
+        workflow(publisher).run('ParsedMessage', input),
+      ).rejects.toMatchObject({ code: 'validation_failed' });
+      expect(send).not.toHaveBeenCalled();
+    },
+  );
+
+  it('rejects an invalid Telegram publication timestamp', async () => {
+    const input = telegramInput();
+    Reflect.set(input, 'postedAt', 'not a date');
+    await expect(
+      workflow(publisher).run('ParsedMessage', input),
+    ).rejects.toMatchObject({ code: 'mapping_failed' });
+    expect(send).not.toHaveBeenCalled();
   });
 });

@@ -11,17 +11,20 @@ import { MessagesModule } from './messages/messages.module.js';
 import { MetaModule } from './meta/meta.module.js';
 import { ReportsModule } from './reports/reports.module.js';
 import { TelegramModule } from './telegram/telegram.module.js';
+import { RedisModule } from './redis/redis.module.js';
 import { XScraperModule } from './x-scraper/x-scraper.module.js';
+import { XScraperCronService } from './x-scraper/x-scraper.cron.service.js';
 import { TransformerModule } from './transformer/transformer.module.js';
 
 @Module({
   imports: [
-    AppConfigModule, DatabaseModule, EventsModule,
+    AppConfigModule, DatabaseModule, RedisModule, EventsModule,
     CollectorModule, TelegramModule, ChannelsModule, MessagesModule, MetaModule, ReportsModule,
     XScraperModule,
     TransformerModule,
   ],
   providers: [
+    XScraperCronService,
     { provide: APP_GUARD, useClass: ApiKeyGuard },
     { provide: APP_FILTER, useClass: HttpErrorFilter },
   ],

@@ -1,10 +1,12 @@
 import { EventEmitter } from 'node:events';
 import { Injectable } from '@nestjs/common';
+import type { ParsedMessage } from '../types.js';
 
 export interface NewMessagesEvent {
   channelId: number;
   channel: string;
   inserted: number;
+  messages?: ParsedMessage[];
 }
 
 /** In-process event bus used to push collector updates to connected clients (SSE). */
