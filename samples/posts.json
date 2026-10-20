@@ -1,0 +1,477 @@
+{
+  "description": "Fixed synthetic BLITZ samples in the collectors' own output formats: StoredMessage (Telegram, src/types.ts) and ProfileScrapeResult with one post (X, src/x-scraper/contracts). Every source and URL is fake (.invalid). 'post' is fed to the pipeline; 'expect' is only compared after the run and never fed in.",
+  "samples": [
+    {
+      "id": "tg-he-text",
+      "tags": ["telegram", "he", "text", "passes"],
+      "note": "Hebrew, text only, one dictionary term",
+      "format": "StoredMessage",
+      "post": {
+        "id": 1,
+        "channelId": 1,
+        "channel": "blitz_fixture_he_news",
+        "channelTitle": "BLITZ fixture – חדשות בעברית",
+        "messageId": 1001,
+        "postedAt": "2026-10-19T07:58:00Z",
+        "text": "דיווח ראשוני: נשמעה אזעקה באזור החוף לפני כמה דקות. פרטים נוספים בהמשך.",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_he_news/1001",
+        "fetchedAt": "2026-10-19T08:00:00Z",
+        "senderName": "fixture editor"
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "he",
+        "matchesInclude": ["אזעקה"]
+      }
+    },
+    {
+      "id": "tg-he-photo-multi-match",
+      "tags": ["telegram", "he", "photo", "multi-match", "passes"],
+      "note": "Hebrew with a photo and several dictionary terms",
+      "format": "StoredMessage",
+      "post": {
+        "id": 2,
+        "channelId": 1,
+        "channel": "blitz_fixture_he_news",
+        "channelTitle": "BLITZ fixture – חדשות בעברית",
+        "messageId": 1002,
+        "postedAt": "2026-10-19T08:03:00Z",
+        "text": "פיצוץ עז נשמע אחרי אזעקה, ובהמשך דיווחים על יירוט רקטה מעל הים.",
+        "views": null,
+        "media": [
+          {
+            "type": "photo",
+            "url": "https://fixtures.blitz.invalid/media/1002-1.jpg"
+          }
+        ],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_he_news/1002",
+        "fetchedAt": "2026-10-19T08:05:00Z",
+        "senderName": "fixture editor"
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "he",
+        "matchesInclude": ["פיצוץ", "אזעקה", "רקטה", "יירוט"]
+      }
+    },
+    {
+      "id": "tg-he-no-match",
+      "tags": ["telegram", "he", "text", "filtered"],
+      "note": "Hebrew without any dictionary term",
+      "format": "StoredMessage",
+      "post": {
+        "id": 3,
+        "channelId": 1,
+        "channel": "blitz_fixture_he_news",
+        "channelTitle": "BLITZ fixture – חדשות בעברית",
+        "messageId": 1003,
+        "postedAt": "2026-10-19T08:10:00Z",
+        "text": "מתכון לעוגת שוקולד בלי אפייה, מוכנה תוך עשרים דקות.",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_he_news/1003",
+        "fetchedAt": "2026-10-19T08:12:00Z"
+      },
+      "expect": {
+        "outcome": "filtered"
+      }
+    },
+    {
+      "id": "tg-ar-video",
+      "tags": ["telegram", "ar", "video", "passes", "missing-optional"],
+      "note": "Arabic with a video; channelTitle null and no senderName (both optional in StoredMessage)",
+      "format": "StoredMessage",
+      "post": {
+        "id": 4,
+        "channelId": 2,
+        "channel": "blitz_fixture_ar_news",
+        "channelTitle": null,
+        "messageId": 2001,
+        "postedAt": "2026-10-19T08:15:00Z",
+        "text": "مقطع مصور يظهر انفجار قرب الميناء مساء اليوم، والتفاصيل غير مؤكدة بعد.",
+        "views": null,
+        "media": [
+          {
+            "type": "video",
+            "url": "https://fixtures.blitz.invalid/media/2001.mp4"
+          }
+        ],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_ar_news/2001",
+        "fetchedAt": "2026-10-19T08:16:00Z"
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "ar",
+        "matchesInclude": ["انفجار"]
+      }
+    },
+    {
+      "id": "tg-ar-no-match",
+      "tags": ["telegram", "ar", "text", "filtered"],
+      "note": "Arabic without any dictionary term",
+      "format": "StoredMessage",
+      "post": {
+        "id": 5,
+        "channelId": 2,
+        "channel": "blitz_fixture_ar_news",
+        "channelTitle": "BLITZ fixture – أخبار",
+        "messageId": 2002,
+        "postedAt": "2026-10-19T08:20:00Z",
+        "text": "توقعات الطقس لغد: أجواء مشمسة ودرجات حرارة معتدلة في معظم المناطق.",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_ar_news/2002",
+        "fetchedAt": "2026-10-19T08:21:00Z"
+      },
+      "expect": {
+        "outcome": "filtered"
+      }
+    },
+    {
+      "id": "tg-en-photo-video",
+      "tags": ["telegram", "en", "photo", "video", "mixed-media", "passes"],
+      "note": "English with a photo and a video",
+      "format": "StoredMessage",
+      "post": {
+        "id": 6,
+        "channelId": 3,
+        "channel": "blitz_fixture_en_news",
+        "channelTitle": "BLITZ fixture – English news",
+        "messageId": 3001,
+        "postedAt": "2026-10-19T08:25:00Z",
+        "text": "Footage shows a rocket launch seen from the northern hills tonight.",
+        "views": null,
+        "media": [
+          {
+            "type": "photo",
+            "url": "https://fixtures.blitz.invalid/media/3001-1.jpg"
+          },
+          {
+            "type": "video",
+            "url": "https://fixtures.blitz.invalid/media/3001-2.mp4"
+          }
+        ],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_en_news/3001",
+        "fetchedAt": "2026-10-19T08:26:00Z"
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "en",
+        "matchesInclude": ["rocket"]
+      }
+    },
+    {
+      "id": "tg-mixed-he-en",
+      "tags": ["telegram", "he", "en", "mixed-language", "passes"],
+      "note": "Mostly Hebrew with an English sentence; main language is Hebrew",
+      "format": "StoredMessage",
+      "post": {
+        "id": 7,
+        "channelId": 1,
+        "channel": "blitz_fixture_he_news",
+        "channelTitle": "BLITZ fixture – חדשות בעברית",
+        "messageId": 1004,
+        "postedAt": "2026-10-19T08:30:00Z",
+        "text": "התרעת צבע אדום הופעלה באזור הדרום, התושבים התבקשו להישאר במרחב המוגן עד להודעה חדשה. Source: local residents.",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_he_news/1004",
+        "fetchedAt": "2026-10-19T08:31:00Z"
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "he",
+        "matchesInclude": ["צבע אדום"]
+      }
+    },
+    {
+      "id": "x-en-text-minimal",
+      "tags": ["x", "en", "text", "missing-optional", "passes"],
+      "note": "X post with only the required ScrapedPost fields (no authorAvatarUrl, rawHtmlSnippet)",
+      "format": "ProfileScrapeResult",
+      "post": {
+        "handle": "fixture_x_en",
+        "scrapedAt": "2026-10-19T08:35:00Z",
+        "providerUsed": "fixture",
+        "totalPosts": 1,
+        "posts": [
+          {
+            "id": "1980000000000000001",
+            "url": "https://fixtures.blitz.invalid/x/fixture_x_en/status/1980000000000000001",
+            "authorHandle": "fixture_x_en",
+            "authorName": "fixture_x_en",
+            "text": "Loud explosion reported near the industrial zone, no official statement yet.",
+            "publishedAt": "2026-10-19T08:35:00Z",
+            "metrics": {
+              "replies": 0,
+              "retweets": 0,
+              "likes": 0,
+              "views": 0,
+              "bookmarks": 0
+            },
+            "media": [],
+            "isRetweet": false,
+            "isPinned": false
+          }
+        ]
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "en",
+        "matchesInclude": ["explosion"]
+      }
+    },
+    {
+      "id": "x-en-no-match",
+      "tags": ["x", "en", "text", "filtered"],
+      "note": "English without any dictionary term",
+      "format": "ProfileScrapeResult",
+      "post": {
+        "handle": "fixture_x_en",
+        "scrapedAt": "2026-10-19T08:41:00Z",
+        "providerUsed": "fixture",
+        "totalPosts": 1,
+        "posts": [
+          {
+            "id": "1980000000000000002",
+            "url": "https://fixtures.blitz.invalid/x/fixture_x_en/status/1980000000000000002",
+            "authorHandle": "fixture_x_en",
+            "authorName": "Fixture X EN",
+            "text": "The local football club won the regional cup after extra time.",
+            "publishedAt": "2026-10-19T08:40:00Z",
+            "metrics": {
+              "replies": 0,
+              "retweets": 0,
+              "likes": 0,
+              "views": 0,
+              "bookmarks": 0
+            },
+            "media": [],
+            "isRetweet": false,
+            "isPinned": false
+          }
+        ]
+      },
+      "expect": {
+        "outcome": "filtered"
+      }
+    },
+    {
+      "id": "x-mixed-ar-en-video",
+      "tags": ["x", "ar", "en", "mixed-language", "video", "passes"],
+      "note": "Mostly Arabic with English; main language is Arabic",
+      "format": "ProfileScrapeResult",
+      "post": {
+        "handle": "fixture_x_mixed",
+        "scrapedAt": "2026-10-19T08:46:00Z",
+        "providerUsed": "fixture",
+        "totalPosts": 1,
+        "posts": [
+          {
+            "id": "1980000000000000003",
+            "url": "https://fixtures.blitz.invalid/x/fixture_x_mixed/status/1980000000000000003",
+            "authorHandle": "fixture_x_mixed",
+            "authorName": "Fixture Reporter",
+            "text": "سماع صفارات الإنذار في المدينة والسكان يتوجهون إلى الملاجئ الآن breaking update",
+            "publishedAt": "2026-10-19T08:45:00Z",
+            "metrics": {
+              "replies": 0,
+              "retweets": 0,
+              "likes": 0,
+              "views": 0,
+              "bookmarks": 0
+            },
+            "media": [
+              {
+                "type": "video",
+                "url": "https://fixtures.blitz.invalid/media/x-3.mp4"
+              }
+            ],
+            "isRetweet": false,
+            "isPinned": false
+          }
+        ]
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "ar",
+        "matchesInclude": ["صفارات الإنذار"]
+      }
+    },
+    {
+      "id": "x-he-photo",
+      "tags": ["x", "he", "photo", "passes"],
+      "note": "Hebrew on X with a photo, no channelTitle",
+      "format": "ProfileScrapeResult",
+      "post": {
+        "handle": "fixture_x_he",
+        "scrapedAt": "2026-10-19T08:51:00Z",
+        "providerUsed": "fixture",
+        "totalPosts": 1,
+        "posts": [
+          {
+            "id": "1980000000000000004",
+            "url": "https://fixtures.blitz.invalid/x/fixture_x_he/status/1980000000000000004",
+            "authorHandle": "fixture_x_he",
+            "authorName": "חשבון דמה",
+            "text": "תמונה מהשטח: שרידי רקטה שנמצאו בשטח פתוח.",
+            "publishedAt": "2026-10-19T08:50:00Z",
+            "metrics": {
+              "replies": 0,
+              "retweets": 0,
+              "likes": 0,
+              "views": 0,
+              "bookmarks": 0
+            },
+            "media": [
+              {
+                "type": "photo",
+                "url": "https://fixtures.blitz.invalid/media/x-4.jpg"
+              }
+            ],
+            "isRetweet": false,
+            "isPinned": false
+          }
+        ]
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "he",
+        "matchesInclude": ["רקטה"]
+      }
+    },
+    {
+      "id": "x-en-multi-media-multi-match",
+      "tags": [
+        "x",
+        "en",
+        "photo",
+        "video",
+        "mixed-media",
+        "multi-match",
+        "passes"
+      ],
+      "note": "Two photos and a video (media_type keeps each type once) and several terms",
+      "format": "ProfileScrapeResult",
+      "post": {
+        "handle": "fixture_x_en",
+        "scrapedAt": "2026-10-19T08:56:00Z",
+        "providerUsed": "fixture",
+        "totalPosts": 1,
+        "posts": [
+          {
+            "id": "1980000000000000005",
+            "url": "https://fixtures.blitz.invalid/x/fixture_x_en/status/1980000000000000005",
+            "authorHandle": "fixture_x_en",
+            "authorName": "Fixture X EN",
+            "text": "Sirens heard across the coast, then an explosion; reports of a rocket interception.",
+            "publishedAt": "2026-10-19T08:55:00Z",
+            "metrics": {
+              "replies": 0,
+              "retweets": 0,
+              "likes": 0,
+              "views": 0,
+              "bookmarks": 0
+            },
+            "media": [
+              {
+                "type": "photo",
+                "url": "https://fixtures.blitz.invalid/media/x-5-1.jpg"
+              },
+              {
+                "type": "photo",
+                "url": "https://fixtures.blitz.invalid/media/x-5-2.jpg"
+              },
+              {
+                "type": "video",
+                "url": "https://fixtures.blitz.invalid/media/x-5-3.mp4"
+              }
+            ],
+            "isRetweet": false,
+            "isPinned": false
+          }
+        ]
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "en",
+        "matchesInclude": ["sirens", "explosion", "rocket", "interception"]
+      }
+    },
+    {
+      "id": "dup-first",
+      "tags": ["telegram", "he", "duplicate", "passes"],
+      "note": "First copy of a post collected twice",
+      "format": "StoredMessage",
+      "post": {
+        "id": 8,
+        "channelId": 1,
+        "channel": "blitz_fixture_he_news",
+        "channelTitle": "BLITZ fixture – חדשות בעברית",
+        "messageId": 1005,
+        "postedAt": "2026-10-19T09:00:00Z",
+        "text": "עדכון: דיווח על פיצוץ במתחם המחסנים, כוחות בדרך למקום.",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_he_news/1005",
+        "fetchedAt": "2026-10-19T09:01:00Z"
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "he",
+        "matchesInclude": ["פיצוץ"]
+      }
+    },
+    {
+      "id": "dup-second",
+      "tags": ["telegram", "he", "duplicate"],
+      "note": "The same post collected again a minute later: same platform and url, so the same report_id",
+      "format": "StoredMessage",
+      "post": {
+        "id": 9,
+        "channelId": 1,
+        "channel": "blitz_fixture_he_news",
+        "channelTitle": "BLITZ fixture – חדשות בעברית",
+        "messageId": 1005,
+        "postedAt": "2026-10-19T09:00:00Z",
+        "text": "עדכון: דיווח על פיצוץ במתחם המחסנים, כוחות בדרך למקום.",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_he_news/1005",
+        "fetchedAt": "2026-10-19T09:02:00Z"
+      },
+      "expect": {
+        "outcome": "duplicate"
+      }
+    }
+  ]
+}

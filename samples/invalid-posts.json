@@ -1,0 +1,264 @@
+{
+  "description": "Invalid-input scenario, kept out of the default file so it never breaks the default run. Each sample has one kind of problem; 'valid-control' shows that valid samples in the same file still run.",
+  "samples": [
+    {
+      "id": "invalid-photo-without-text",
+      "tags": ["invalid"],
+      "note": "A photo with no text: RAW_REPORT.content can never be empty",
+      "format": "StoredMessage",
+      "post": {
+        "id": 901,
+        "channelId": 9,
+        "channel": "blitz_fixture_en_news",
+        "channelTitle": null,
+        "messageId": 9001,
+        "postedAt": "2026-10-19T09:10:00Z",
+        "text": null,
+        "views": null,
+        "media": [
+          {
+            "type": "photo",
+            "url": "https://fixtures.blitz.invalid/media/9001.jpg"
+          }
+        ],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_en_news/9001",
+        "fetchedAt": "2026-10-19T09:11:00Z"
+      }
+    },
+    {
+      "id": "invalid-blank-text",
+      "tags": ["invalid"],
+      "format": "StoredMessage",
+      "post": {
+        "id": 902,
+        "channelId": 9,
+        "channel": "blitz_fixture_en_news",
+        "channelTitle": null,
+        "messageId": 9002,
+        "postedAt": "2026-10-19T09:10:00Z",
+        "text": "   ",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_en_news/9000",
+        "fetchedAt": "2026-10-19T09:11:00Z"
+      }
+    },
+    {
+      "id": "invalid-x-media-type",
+      "tags": ["invalid"],
+      "format": "ProfileScrapeResult",
+      "post": {
+        "handle": "fixture_x_en",
+        "scrapedAt": "2026-10-19T09:13:00Z",
+        "providerUsed": "fixture",
+        "totalPosts": 1,
+        "posts": [
+          {
+            "id": "1980000000000009003",
+            "url": "https://fixtures.blitz.invalid/x/fixture_x_en/status/1980000000000009003",
+            "authorHandle": "fixture_x_en",
+            "authorName": "Fixture X EN",
+            "text": "Rocket seen over the bay",
+            "publishedAt": "2026-10-19T09:12:00Z",
+            "metrics": {
+              "replies": 0,
+              "retweets": 0,
+              "likes": 0,
+              "views": 0,
+              "bookmarks": 0
+            },
+            "media": [
+              {
+                "type": "gif",
+                "url": "https://fixtures.blitz.invalid/media/9003.gif"
+              }
+            ],
+            "isRetweet": false,
+            "isPinned": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-posted-at",
+      "tags": ["invalid"],
+      "format": "StoredMessage",
+      "post": {
+        "id": 904,
+        "channelId": 9,
+        "channel": "blitz_fixture_en_news",
+        "channelTitle": null,
+        "messageId": 9004,
+        "postedAt": "19/10/2026 10:00",
+        "text": "Sirens in the north",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_en_news/9000",
+        "fetchedAt": "2026-10-19T09:11:00Z"
+      }
+    },
+    {
+      "id": "invalid-missing-url-and-fetched-at",
+      "tags": ["invalid"],
+      "format": "StoredMessage",
+      "post": {
+        "id": 905,
+        "channelId": 9,
+        "channel": "blitz_fixture_en_news",
+        "channelTitle": null,
+        "messageId": 9005,
+        "postedAt": "2026-10-19T09:10:00Z",
+        "text": "Sirens in the north",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false
+      }
+    },
+    {
+      "id": "invalid-precomputed-results",
+      "tags": ["invalid"],
+      "note": "The transformer would use a language inside the post as is, bypassing language detection",
+      "format": "StoredMessage",
+      "post": {
+        "id": 906,
+        "channelId": 9,
+        "channel": "blitz_fixture_en_news",
+        "channelTitle": null,
+        "messageId": 9006,
+        "postedAt": "2026-10-19T09:10:00Z",
+        "text": "אזעקה באזור המרכז",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_en_news/9000",
+        "fetchedAt": "2026-10-19T09:11:00Z",
+        "language": "he",
+        "matches": ["אזעקה"],
+        "postedat": "2026-10-19T09:15:00Z"
+      }
+    },
+    {
+      "id": "invalid-x-two-posts",
+      "tags": ["invalid"],
+      "note": "One post per sample, so language and matches belong to that post",
+      "format": "ProfileScrapeResult",
+      "post": {
+        "handle": "fixture_x_en",
+        "scrapedAt": "2026-10-19T09:13:00Z",
+        "providerUsed": "fixture",
+        "totalPosts": 2,
+        "posts": [
+          {
+            "id": "1980000000000009003",
+            "url": "https://fixtures.blitz.invalid/x/fixture_x_en/status/1980000000000009003",
+            "authorHandle": "fixture_x_en",
+            "authorName": "Fixture X EN",
+            "text": "Rocket seen over the bay",
+            "publishedAt": "2026-10-19T09:12:00Z",
+            "metrics": {
+              "replies": 0,
+              "retweets": 0,
+              "likes": 0,
+              "views": 0,
+              "bookmarks": 0
+            },
+            "media": [],
+            "isRetweet": false,
+            "isPinned": false
+          },
+          {
+            "id": "1980000000000009004",
+            "url": "https://fixtures.blitz.invalid/x/fixture_x_en/status/1980000000000009003",
+            "authorHandle": "fixture_x_en",
+            "authorName": "Fixture X EN",
+            "text": "Rocket seen over the bay",
+            "publishedAt": "2026-10-19T09:12:00Z",
+            "metrics": {
+              "replies": 0,
+              "retweets": 0,
+              "likes": 0,
+              "views": 0,
+              "bookmarks": 0
+            },
+            "media": [],
+            "isRetweet": false,
+            "isPinned": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "invalid-format",
+      "tags": ["invalid"],
+      "format": "Tweet",
+      "post": {
+        "text": "Explosion heard downtown"
+      }
+    },
+    {
+      "id": "transformer-rejects-html",
+      "tags": ["invalid"],
+      "note": "Valid collector input whose text still holds HTML: Yoav's validation must reject it before publishing",
+      "format": "StoredMessage",
+      "post": {
+        "id": 908,
+        "channelId": 9,
+        "channel": "blitz_fixture_en_news",
+        "channelTitle": null,
+        "messageId": 9008,
+        "postedAt": "2026-10-19T09:10:00Z",
+        "text": "<b>Explosion</b> heard near the port",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_en_news/9008",
+        "fetchedAt": "2026-10-19T09:11:00Z"
+      },
+      "expect": {
+        "outcome": "failed"
+      }
+    },
+    {
+      "id": "valid-control",
+      "tags": ["invalid"],
+      "note": "Valid: still runs even though the file has invalid samples",
+      "format": "StoredMessage",
+      "post": {
+        "id": 907,
+        "channelId": 9,
+        "channel": "blitz_fixture_en_news",
+        "channelTitle": null,
+        "messageId": 9007,
+        "postedAt": "2026-10-19T09:10:00Z",
+        "text": "Air strike reported east of the river.",
+        "views": null,
+        "media": [],
+        "links": [],
+        "forwardedFrom": null,
+        "edited": false,
+        "url": "https://fixtures.blitz.invalid/telegram/blitz_fixture_en_news/9007",
+        "fetchedAt": "2026-10-19T09:11:00Z"
+      },
+      "expect": {
+        "outcome": "processed",
+        "language": "en",
+        "matchesInclude": ["air strike"]
+      }
+    }
+  ]
+}

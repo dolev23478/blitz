@@ -20,7 +20,9 @@
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
-    "auth": "tsx scripts/generate-session.ts"
+    "auth": "tsx scripts/generate-session.ts",
+    "samples": "nest build && node dist/sample-feed/cli.js",
+    "test:samples": "vitest run --config vitest.sample-feed.config.ts"
   },
   "dependencies": {
     "@fastify/cors": "^11.3.1",

@@ -1,0 +1,25 @@
+{
+  "language": "en",
+  "entries": [
+    {
+      "term": "explosion",
+      "concept": "demo"
+    },
+    {
+      "term": "rocket",
+      "concept": "demo"
+    },
+    {
+      "term": "sirens",
+      "concept": "demo"
+    },
+    {
+      "term": "air strike",
+      "concept": "demo"
+    },
+    {
+      "term": "interception",
+      "concept": "demo"
+    }
+  ]
+}

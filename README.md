@@ -46,6 +46,8 @@ Login is headless (no phone/code prompt, no session file). Treat the string like
 | `npm test` | vitest (`test/*.spec.ts`) |
 | `npm run lint` | oxlint |
 | `npm run auth` | One-time Telegram login (local only; uses `tsx`) |
+| `npm run samples` | Feed fixed sample posts through the real components (Nest context), local by default ([docs/sample-feed.md](docs/sample-feed.md)) |
+| `npm run test:samples` | Sample-feed tests, including an end-to-end CLI run |
 
 ## Config
 
