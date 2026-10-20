@@ -1,4 +1,4 @@
-import { Injectable, Logger, Optional } from '@nestjs/common';
+import { Inject, Injectable, Logger, Optional } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import type { NewMessagesEvent } from '../events/message-events.service.js';
 import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
@@ -15,10 +15,10 @@ export class TelegramListenerService {
   private readonly logger = new Logger(TelegramListenerService.name);
 
   constructor(
-    private readonly telegram: TelegramService,
-    private readonly redis: RedisService,
-    private readonly transformer: TransformerWorkflow,
-    @Optional() private readonly analytics?: KafkaAnalyticsService,
+    @Inject(TelegramService) private readonly telegram: TelegramService,
+    @Inject(RedisService) private readonly redis: RedisService,
+    @Inject(TransformerWorkflow) private readonly transformer: TransformerWorkflow,
+    @Optional() @Inject(KafkaAnalyticsService) private readonly analytics?: KafkaAnalyticsService,
   ) {
     this.telegram.watchResults((event) => this.onTelegramResult(event));
   }

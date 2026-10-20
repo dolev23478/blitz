@@ -1,4 +1,4 @@
-import { Injectable, Logger, Optional, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, Logger, Optional, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { MONITORED_X_SOURCES } from './constants/monitored-sources.js';
 import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
@@ -16,10 +16,10 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
   private intervalId: NodeJS.Timeout | null = null;
 
   constructor(
-    private readonly xScraper: XScraperService,
-    private readonly redis: RedisService,
-    private readonly transformer: TransformerWorkflow,
-    @Optional() private readonly analytics?: KafkaAnalyticsService,
+    @Inject(XScraperService) private readonly xScraper: XScraperService,
+    @Inject(RedisService) private readonly redis: RedisService,
+    @Inject(TransformerWorkflow) private readonly transformer: TransformerWorkflow,
+    @Optional() @Inject(KafkaAnalyticsService) private readonly analytics?: KafkaAnalyticsService,
   ) {}
 
   onModuleInit(): void {

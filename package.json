@@ -7,13 +7,13 @@
   "license": "UNLICENSED",
   "type": "module",
   "scripts": {
-    "build": "nest build",
+    "build": "tsc -p tsconfig.build.json",
     "deploy": "nest deploy",
     "format": "prettier --write \"src/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start": "node dist/main.js",
+    "start:dev": "tsc -p tsconfig.build.json && node --watch dist/main.js",
+    "start:debug": "node --inspect-brk dist/main.js",
+    "start:prod": "node dist/main.js",
     "lint": "oxlint src/ test/",
     "test": "vitest run",
     "test:analyzer": "vitest run src/text-analyzer.test.ts",
@@ -41,6 +41,7 @@
     "@nestjs/schedule": "^12.0.2",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
+    "content-disposition": "0.5.4",
     "depcheck": "^1.4.7",
     "dotenv": "^18.0.8",
     "javascript-state-machine": "^3.1.0",
@@ -71,5 +72,9 @@
     "typescript": "^6.0.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.1.2"
+  },
+  "overrides": {
+    "content-disposition": "0.5.4",
+    "magic-string": "0.30.21"
   }
 }
