@@ -38,13 +38,12 @@ export class TelegramListenerService {
       if (!matchedLanguage) continue;
       matched++;
 
-      await this.transformer.run('MessageDto', { ...message, chatTitle: event.channel } as any, {
+      await this.transformer.run('ParsedMessage', message, {
         language: matchedLanguage,
         matches: [matchedLanguage],
-        reportUrl: `https://t.me/${event.channel}/${message.messageId}`,
-        collectedAt: new Date().toISOString(),
+        channelName: event.channel,
         source: 'telegram',
-      } as any);
+      });
     }
 
     this.logger.log(`telegram result: channel=${event.channel}, received=${event.messages.length}, matched=${matched}`);

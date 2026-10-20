@@ -1,13 +1,12 @@
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { ProducerRecord } from 'kafkajs';
+import type { ProducerRecord, RecordMetadata } from 'kafkajs';
 import { CompletionProcessor } from '../../src/transformer/processors/completion.processor.js';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import {
   context,
   rawReport,
-  realtimeInput,
   telegramInput,
   twitterInput,
   workflow,
@@ -20,6 +19,10 @@ const kafka = vi.hoisted(() => ({
   send: vi.fn(),
   disconnect: vi.fn(),
 }));
+
+const acknowledgment: RecordMetadata[] = [
+  { topicName: 'reports.raw', partition: 0, errorCode: 0 },
+];
 
 vi.mock('kafkajs', () => ({
   logLevel: { NOTHING: 0 },
@@ -41,12 +44,15 @@ vi.mock('kafkajs', () => ({
 beforeEach(() => {
   vi.resetAllMocks();
   kafka.connect.mockResolvedValue(undefined);
-  kafka.send.mockResolvedValue([]);
+  kafka.send.mockResolvedValue(acknowledgment);
   kafka.disconnect.mockResolvedValue(undefined);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
 });
-afterEach(() => vi.restoreAllMocks());
+afterEach(() => {
+  vi.useRealTimers();
+  vi.restoreAllMocks();
+});
 
 function publisher(overrides: Record<string, unknown> = {}) {
   return new PublishingProcessor(
@@ -58,9 +64,17 @@ function publishingContext() {
   return { ...context(), reports: [rawReport()] };
 }
 
-function deferred() {
-  let resolve!: () => void;
-  const promise = new Promise<void>((done) => {
+function sentIds(): number[] {
+  return kafka.send.mock.calls.map(
+    ([record]) =>
+      JSON.parse((record as ProducerRecord).messages[0]!.value as string)
+        .report_id,
+  );
+}
+
+function deferred<T = void>() {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>((done) => {
     resolve = done;
   });
   return { promise, resolve };
@@ -87,6 +101,7 @@ describe('Kafka publication', () => {
     expect(kafka.send).toHaveBeenCalledExactlyOnceWith({
       topic: 'reports.raw',
       acks: -1,
+      timeout: 30000,
       messages: [{ key: '2147483647', value: JSON.stringify(ctx.reports[0]) }],
     });
     expect(kafka.producer).toHaveBeenCalledWith({
@@ -155,7 +170,7 @@ describe('Kafka publication', () => {
   });
 
   it('waits for the broker acknowledgment before recording completion', async () => {
-    const ack = deferred();
+    const ack = deferred<RecordMetadata[]>();
     kafka.send.mockReturnValueOnce(ack.promise);
     const processor = publisher();
     const ctx = publishingContext();
@@ -163,7 +178,7 @@ describe('Kafka publication', () => {
     await vi.waitFor(() => expect(kafka.send).toHaveBeenCalledOnce());
     expect(ctx.publishedReports).toEqual([]);
     await expect(new CompletionProcessor().execute(ctx)).rejects.toThrow();
-    ack.resolve();
+    ack.resolve(acknowledgment);
     await running;
     expect(ctx.publishedReports).toEqual(ctx.reports);
   });
@@ -191,38 +206,46 @@ describe('Kafka publication', () => {
     expect(kafka.send).toHaveBeenCalledTimes(2);
   });
 
-  it('does not expose Kafka error details and allows a fresh connection after a failed connect', async () => {
+  it('retains the batch and reconnects after 60 seconds without exposing Kafka error details', async () => {
+    vi.useFakeTimers();
     kafka.connect.mockRejectedValueOnce(
       new Error('sensitive broker information'),
     );
     const processor = publisher();
     const ctx = publishingContext();
-    await expect(processor.execute(ctx)).rejects.toMatchObject({
-      code: 'publication_failed',
-      message:
-        'Kafka publication was not confirmed; some reports may already have been delivered.',
-    });
+    const running = processor.execute(ctx);
+    await vi.advanceTimersByTimeAsync(0);
     expect(ctx.publishedReports).toEqual([]);
-    await processor.execute(ctx);
+    expect(
+      JSON.stringify(vi.mocked(Logger.prototype.warn).mock.calls),
+    ).not.toContain('sensitive');
+    await vi.advanceTimersByTimeAsync(59999);
+    expect(kafka.connect).toHaveBeenCalledOnce();
+    await vi.advanceTimersByTimeAsync(1);
+    await running;
     expect(kafka.connect).toHaveBeenCalledTimes(2);
     expect(kafka.send).toHaveBeenCalledOnce();
   });
 
-  it('stops a batch on a failed send and only records acknowledged reports', async () => {
+  it('retries the failed head and retains the rest of a batch without resending confirmed reports', async () => {
+    vi.useFakeTimers();
     kafka.send
-      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce(acknowledgment)
       .mockRejectedValueOnce(new Error('unavailable'));
     const ctx = publishingContext();
     ctx.reports.push(rawReport({ report_id: 2 }), rawReport({ report_id: 3 }));
-    await expect(publisher().execute(ctx)).rejects.toMatchObject({
-      code: 'publication_failed',
-    });
+    const running = publisher().execute(ctx);
+    await vi.advanceTimersByTimeAsync(0);
     expect(kafka.send).toHaveBeenCalledTimes(2);
     expect(ctx.publishedReports).toEqual([ctx.reports[0]]);
+    await vi.advanceTimersByTimeAsync(60000);
+    await running;
+    expect(sentIds()).toEqual([2147483647, 2, 2, 3]);
+    expect(ctx.publishedReports).toEqual(ctx.reports);
   });
 
   it('waits for an in-flight send before disconnecting and rejects new work during shutdown', async () => {
-    const ack = deferred();
+    const ack = deferred<RecordMetadata[]>();
     kafka.send.mockReturnValueOnce(ack.promise);
     const processor = publisher();
     const running = processor.execute(publishingContext());
@@ -232,7 +255,7 @@ describe('Kafka publication', () => {
     await expect(processor.execute(publishingContext())).rejects.toMatchObject({
       code: 'publication_failed',
     });
-    ack.resolve();
+    ack.resolve(acknowledgment);
     await Promise.all([running, closing]);
     expect(kafka.disconnect).toHaveBeenCalledOnce();
   });
@@ -243,25 +266,186 @@ describe('Kafka publication', () => {
     expect(kafka.connect).not.toHaveBeenCalled();
     expect(ctx.publishedReports).toEqual([]);
   });
+
+  it('keeps concurrent batches in FIFO order and does not reset the retry timer on new arrivals', async () => {
+    vi.useFakeTimers();
+    kafka.send.mockRejectedValueOnce(new Error('unavailable'));
+    const processor = publisher();
+    const first = {
+      ...context(),
+      reports: [rawReport({ report_id: 1 }), rawReport({ report_id: 2 })],
+    };
+    const second = {
+      ...context(),
+      reports: [rawReport({ report_id: 3 }), rawReport({ report_id: 4 })],
+    };
+    const runningFirst = processor.execute(first);
+    await vi.advanceTimersByTimeAsync(30000);
+    const runningSecond = processor.execute(second);
+    await vi.advanceTimersByTimeAsync(29999);
+    expect(sentIds()).toEqual([1]);
+    expect(first.publishedReports).toEqual([]);
+    expect(second.publishedReports).toEqual([]);
+    await vi.advanceTimersByTimeAsync(1);
+    await Promise.all([runningFirst, runningSecond]);
+    expect(sentIds()).toEqual([1, 1, 2, 3, 4]);
+    expect(first.publishedReports).toEqual(first.reports);
+    expect(second.publishedReports).toEqual(second.reports);
+  });
+
+  it.each([
+    undefined,
+    [],
+    [{ topicName: 'reports.raw', partition: 0, errorCode: 7 }],
+    [{ topicName: 'wrong-topic', partition: 0, errorCode: 0 }],
+  ])(
+    'retains a report when send returns no successful acknowledgment (%j)',
+    async (response) => {
+      vi.useFakeTimers();
+      kafka.send.mockResolvedValueOnce(response);
+      const ctx = publishingContext();
+      const running = publisher().execute(ctx);
+      await vi.advanceTimersByTimeAsync(0);
+      expect(ctx.publishedReports).toEqual([]);
+      await vi.advanceTimersByTimeAsync(60000);
+      await running;
+      expect(sentIds()).toEqual([2147483647, 2147483647]);
+      expect(ctx.publishedReports).toEqual(ctx.reports);
+    },
+  );
+
+  it('retries indefinitely at the configured interval, including request timeout errors', async () => {
+    vi.useFakeTimers();
+    kafka.send
+      .mockRejectedValueOnce(new Error('request timeout'))
+      .mockRejectedValueOnce(new Error('broker unavailable'))
+      .mockRejectedValueOnce(new Error('not enough replicas'));
+    const ctx = publishingContext();
+    const running = publisher({ KAFKA_RETRY_INTERVAL_MS: '2500' }).execute(ctx);
+    await vi.advanceTimersByTimeAsync(0);
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      expect(kafka.send).toHaveBeenCalledTimes(attempt);
+      expect(ctx.publishedReports).toEqual([]);
+      await vi.advanceTimersByTimeAsync(2500);
+    }
+    await running;
+    expect(kafka.send).toHaveBeenCalledTimes(4);
+    expect(
+      new Set(kafka.send.mock.calls.map(([record]) => JSON.stringify(record)))
+        .size,
+    ).toBe(1);
+    expect(kafka.configure).toHaveBeenCalledWith(
+      expect.objectContaining({
+        requestTimeout: 30000,
+        enforceRequestTimeout: true,
+        retry: { retries: 0 },
+      }),
+    );
+  });
+
+  it('allows only one send at a time, even when new input arrives during an active send', async () => {
+    const ack = deferred<RecordMetadata[]>();
+    kafka.send.mockReturnValueOnce(ack.promise);
+    const processor = publisher();
+    const first = processor.execute({
+      ...context(),
+      reports: [rawReport({ report_id: 1 })],
+    });
+    await vi.waitFor(() => expect(kafka.send).toHaveBeenCalledOnce());
+    const second = processor.execute({
+      ...context(),
+      reports: [rawReport({ report_id: 2 })],
+    });
+    expect(sentIds()).toEqual([1]);
+    ack.resolve(acknowledgment);
+    await Promise.all([first, second]);
+    expect(sentIds()).toEqual([1, 2]);
+  });
+
+  it('retains an independent payload snapshot while queued, including later reports in the batch', async () => {
+    vi.useFakeTimers();
+    kafka.send.mockRejectedValueOnce(new Error('unavailable'));
+    const ctx = publishingContext();
+    ctx.reports.push(rawReport({ report_id: 2 }));
+    const original = structuredClone(ctx.reports);
+    const running = publisher().execute(ctx);
+    await vi.advanceTimersByTimeAsync(0);
+    ctx.reports[0]!.content = 'changed after admission';
+    ctx.reports[1]!.report_id = 99;
+    ctx.reports[1]!.matches.push('changed');
+    await vi.advanceTimersByTimeAsync(60000);
+    await running;
+    expect(sentIds()).toEqual([2147483647, 2147483647, 2]);
+    expect(
+      kafka.send.mock.calls
+        .slice(1)
+        .map(([record]) => JSON.parse(record.messages[0].value)),
+    ).toEqual(original);
+    expect(ctx.publishedReports).toEqual(original);
+  });
+
+  it('cancels pending retries on shutdown and rejects queued callers without marking reports completed', async () => {
+    vi.useFakeTimers();
+    kafka.send.mockRejectedValue(new Error('unavailable'));
+    const processor = publisher();
+    const ctx = publishingContext();
+    const running = processor.execute(ctx);
+    const rejected = expect(running).rejects.toMatchObject({
+      code: 'publication_failed',
+      message: expect.stringContaining('not persisted'),
+    });
+    await vi.advanceTimersByTimeAsync(0);
+    await processor.onModuleDestroy();
+    await rejected;
+    await vi.advanceTimersByTimeAsync(120000);
+    expect(kafka.send).toHaveBeenCalledOnce();
+    expect(kafka.disconnect).toHaveBeenCalledOnce();
+    expect(vi.getTimerCount()).toBe(0);
+    expect(ctx.publishedReports).toEqual([]);
+  });
+
+  it('finishes an active send during shutdown but rejects later queued reports', async () => {
+    const ack = deferred<RecordMetadata[]>();
+    kafka.send.mockReturnValueOnce(ack.promise);
+    const processor = publisher();
+    const ctx = publishingContext();
+    ctx.reports.push(rawReport({ report_id: 2 }));
+    const running = processor.execute(ctx);
+    const rejected = expect(running).rejects.toMatchObject({
+      code: 'publication_failed',
+    });
+    await vi.waitFor(() => expect(kafka.send).toHaveBeenCalledOnce());
+    const closing = processor.onModuleDestroy();
+    ack.resolve(acknowledgment);
+    await closing;
+    await rejected;
+    expect(kafka.send).toHaveBeenCalledOnce();
+    expect(ctx.publishedReports).toEqual([ctx.reports[0]]);
+  });
+
+  it.each([0, -1, 1.5, 'invalid', '', 2147483648])(
+    'rejects an invalid retry interval (%s)',
+    (interval) => {
+      expect(() => publisher({ KAFKA_RETRY_INTERVAL_MS: interval })).toThrow(
+        'KAFKA_RETRY_INTERVAL_MS',
+      );
+    },
+  );
 });
 
 describe('Transformer workflow through the Kafka boundary', () => {
-  it.each(['ProfileScrapeResult', 'StoredMessage', 'MessageDto'] as const)(
+  it.each(['ProfileScrapeResult', 'ParsedMessage'] as const)(
     'accepts the original %s object directly',
     async (format) => {
       const runner = workflow(publisher());
       const options = {
         inputId: 'workflow-input',
         language: format === 'ProfileScrapeResult' ? 'he' : 'en',
-        reportUrl: 'https://t.me/blitz/8',
-        collectedAt: '2026-10-19T10:00:00Z',
       };
       const result =
         format === 'ProfileScrapeResult'
           ? await runner.run(format, twitterInput(), options)
-          : format === 'StoredMessage'
-            ? await runner.run(format, telegramInput(), options)
-            : await runner.run(format, realtimeInput(), options);
+          : await runner.run(format, telegramInput(), options);
       const sent = kafka.send.mock.calls[0]![0] as ProducerRecord;
       const report = JSON.parse(sent.messages[0]!.value as string);
       expect(result).toEqual([
@@ -301,14 +485,21 @@ describe('Transformer workflow through the Kafka boundary', () => {
     expect(kafka.send).not.toHaveBeenCalled();
   });
 
-  it('rejects a failed publication without logging a completed result', async () => {
+  it('does not complete the workflow until a failed publication has been retried and confirmed', async () => {
+    vi.useFakeTimers();
     kafka.send.mockRejectedValueOnce(new Error('unavailable'));
-    await expect(
-      workflow(publisher()).run('ProfileScrapeResult', twitterInput(), {
+    const running = workflow(publisher()).run(
+      'ProfileScrapeResult',
+      twitterInput(),
+      {
         language: 'he',
-      }),
-    ).rejects.toMatchObject({ code: 'publication_failed' });
+      },
+    );
+    await vi.advanceTimersByTimeAsync(0);
     expect(Logger.prototype.log).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(60000);
+    expect((await running)[0]?.status).toBe('completed');
+    expect(Logger.prototype.log).toHaveBeenCalledOnce();
   });
 
   it('handles an empty ProfileScrapeResult without connecting to Kafka', async () => {
@@ -324,32 +515,59 @@ describe('Transformer workflow through the Kafka boundary', () => {
 
   it('does not require the caller to create inputId or source fields', async () => {
     const result = await workflow(publisher()).run(
-      'StoredMessage',
+      'ParsedMessage',
       telegramInput(),
       { language: 'en' },
     );
     expect(result[0]!.inputId).toMatch(/^[a-f0-9-]{36}$/);
   });
 
-  it('rejects an array where a single StoredMessage is expected', async () => {
+  it('rejects an array where a single ParsedMessage is expected', async () => {
     await expect(
-      workflow(publisher()).run('StoredMessage', [telegramInput()] as never, {
+      workflow(publisher()).run('ParsedMessage', [telegramInput()] as never, {
         language: 'en',
       }),
     ).rejects.toMatchObject({ code: 'parsing_failed' });
     expect(kafka.send).not.toHaveBeenCalled();
   });
 
-  it('reports missing MessageDto URL or collection time explicitly', async () => {
-    await expect(
-      workflow(publisher()).run('MessageDto', realtimeInput(), {
-        language: 'en',
-      } as never),
-    ).rejects.toMatchObject({
-      code: 'mapping_failed',
-      message: expect.stringContaining('reportUrl and collectedAt'),
+  it.each(['MessageDto', 'StoredMessage'])(
+    'rejects the removed Telegram format %s',
+    async (format) => {
+      await expect(
+        workflow(publisher()).run(format as never, telegramInput()),
+      ).rejects.toMatchObject({
+        code: 'unsupported_format',
+      });
+      expect(kafka.send).not.toHaveBeenCalled();
+    },
+  );
+
+  it('captures Telegram receipt time before processing and keeps it unchanged during a Kafka retry', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-10-20T08:00:00.000Z'));
+    kafka.send.mockRejectedValueOnce(new Error('unavailable'));
+    const input = JSON.parse(JSON.stringify(telegramInput()));
+    const snapshot = structuredClone(input);
+    const running = workflow(publisher()).run('ParsedMessage', input, {
+      // Receipt time is authoritative for Telegram, even if stale metadata is supplied.
+      collectedAt: '2000-01-01T00:00:00Z',
     });
-    expect(kafka.send).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(60000);
+    await running;
+    const reports = kafka.send.mock.calls.map(([record]) =>
+      JSON.parse(record.messages[0].value),
+    );
+    expect(reports).toHaveLength(2);
+    expect(reports[0]).toEqual(reports[1]);
+    expect(reports[0]).toMatchObject({
+      collected_at: '2026-10-20T08:00:00.000Z',
+      published_at: new Date(input.postedAt).toISOString(),
+      report_url: input.url,
+      language: 'unknown',
+    });
+    expect(input).toEqual(snapshot);
   });
 
   it('rejects unsupported formats instead of guessing from object fields', async () => {

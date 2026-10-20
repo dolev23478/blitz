@@ -15,6 +15,7 @@ import { Watchdog } from '../tg-realtime/utils/watchdog.js';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
 import { MessageEventsService, type NewMessagesEvent } from '../events/message-events.service.js';
 import { RedisService } from '../redis/redis.service.js';
+import { toParsedMessage } from './telegram.mapper.js';
 import { TELEGRAM_CHANNELS, TELEGRAM_CURSOR_KEY } from './telegram-channels.js';
 
 export type TelegramState = 'disabled' | 'connecting' | 'ready' | 'error';
@@ -131,7 +132,7 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
   private publish(chatId: number, dtos: MessageDto[]): void {
     const channel = this.usernameByChatId.get(chatId);
     if (!channel || dtos.length === 0) return;
-    this.events.emit({ chatId, channel, messages: dtos });
+    this.events.emit({ chatId, channel, messages: dtos.map((dto) => toParsedMessage(dto, channel)) });
   }
 
   /** Pulls one chat's history since the given time; true when it completed. */

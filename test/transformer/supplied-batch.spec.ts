@@ -2,18 +2,27 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Ajv } from 'ajv';
 import addFormats from 'ajv-formats';
-import { Kafka, type Producer, type ProducerRecord } from 'kafkajs';
+import {
+  Kafka,
+  type Producer,
+  type ProducerRecord,
+  type RecordMetadata,
+} from 'kafkajs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { provisionalRawReportSchema } from '../../src/contracts/provisional-raw-report.schema.js';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import { mockBatchScrapeResult } from './fixtures/mock-batch-scrape-result.js';
 import { workflow } from './fixtures.js';
 
-const send = vi.fn<(record: ProducerRecord) => Promise<[]>>();
+const send = vi.fn<(record: ProducerRecord) => Promise<RecordMetadata[]>>();
 let publisher: PublishingProcessor;
 
 beforeEach(() => {
-  send.mockReset().mockResolvedValue([]);
+  send
+    .mockReset()
+    .mockResolvedValue([
+      { topicName: 'reports.raw', partition: 0, errorCode: 0 },
+    ]);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Kafka.prototype, 'producer').mockReturnValue({

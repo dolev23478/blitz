@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import type { MessageDto } from '../tg-realtime/types.js';
+import type { ParsedMessage } from '../types.js';
 
 export interface NewMessagesEvent {
   chatId: number;
   channel: string;
-  messages: MessageDto[];
+  messages: ParsedMessage[];
 }
 
 type Listener = (event: NewMessagesEvent) => void;

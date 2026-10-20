@@ -22,7 +22,7 @@ export function checkJson(value: unknown): void {
         );
       }
     } else if (current instanceof Date) {
-      // StoredMessage uses Date instances when passed directly inside Nest.
+      // ParsedMessage uses Date instances when passed directly inside Nest.
       if (
         !Number.isFinite(current.getTime()) ||
         Reflect.ownKeys(current).length
