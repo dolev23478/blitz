@@ -10,6 +10,9 @@ import type {
   AnalyzeMatch,
   AnalyzeTextOptions,
   AnalyzeTextResult,
+  RiskLevel,
+  ThreatEvaluation,
+  ThreatEvaluationMode,
 } from "./types.js";
 
 export interface TextAnalyzerDependencies {
@@ -37,6 +40,79 @@ export function toInternalLanguage(lang: string, available: string[]): string {
 }
 
 /**
+ * Helper to resolve polymorphic arguments for analyze / analyzeBatch:
+ * - analyzeText(text)
+ * - analyzeText(text, true) -> smart mode ON
+ * - analyzeText(text, false) -> basic dictionary_only mode
+ * - analyzeText(text, "smart") -> mode string
+ * - analyzeText(text, { smart: true }) -> boolean option
+ * - analyzeText(text, { filter: true }) -> category_filter mode
+ * - analyzeText(text, "ar", { smart: true })
+ */
+export function resolveAnalyzeArgs(
+  languageOrOptions?:
+    | string
+    | string[]
+    | boolean
+    | ThreatEvaluationMode
+    | AnalyzeTextOptions,
+  options?: AnalyzeTextOptions,
+): {
+  language: string | string[] | undefined;
+  effectiveOptions: AnalyzeTextOptions;
+} {
+  let language: string | string[] | undefined;
+  let effectiveOptions: AnalyzeTextOptions;
+
+  if (typeof languageOrOptions === "boolean") {
+    language = "auto";
+    effectiveOptions = {
+      mode: languageOrOptions ? "smart" : "dictionary_only",
+      ...options,
+    };
+  } else if (
+    typeof languageOrOptions === "string" &&
+    (languageOrOptions === "smart" ||
+      languageOrOptions === "category_filter" ||
+      languageOrOptions === "dictionary_only" ||
+      languageOrOptions === "basic")
+  ) {
+    language = "auto";
+    effectiveOptions = {
+      mode: languageOrOptions as ThreatEvaluationMode,
+      ...options,
+    };
+  } else if (
+    languageOrOptions &&
+    typeof languageOrOptions === "object" &&
+    !Array.isArray(languageOrOptions)
+  ) {
+    language = "auto";
+    effectiveOptions = { ...(languageOrOptions as AnalyzeTextOptions) };
+  } else {
+    language = languageOrOptions as string | string[] | undefined;
+    effectiveOptions = { ...(options ?? {}) };
+  }
+
+  // Support simple boolean toggles in options:
+  if (effectiveOptions.smart === true && !effectiveOptions.mode) {
+    effectiveOptions.mode = "smart";
+  } else if (effectiveOptions.filter === true && !effectiveOptions.mode) {
+    effectiveOptions.mode = "category_filter";
+  }
+
+  // Optional alias: smartThreshold -> threatThreshold
+  if (
+    effectiveOptions.smartThreshold !== undefined &&
+    effectiveOptions.threatThreshold === undefined
+  ) {
+    effectiveOptions.threatThreshold = effectiveOptions.smartThreshold;
+  }
+
+  return { language, effectiveOptions };
+}
+
+/**
  * Primary analysis entry for a known language. Extra checks can be added
  * later as injected matchers or by wrapping this class.
  */
@@ -51,9 +127,19 @@ export class TextAnalyzer {
 
   analyze(
     text: string,
-    language?: string | string[],
+    languageOrOptions?:
+      | string
+      | string[]
+      | boolean
+      | ThreatEvaluationMode
+      | AnalyzeTextOptions,
     options?: AnalyzeTextOptions,
   ): AnalyzeTextResult {
+    const { language, effectiveOptions } = resolveAnalyzeArgs(
+      languageOrOptions,
+      options,
+    );
+
     const available = this.store.languages();
     let targetLanguages: string[] = [];
 
@@ -103,26 +189,22 @@ export class TextAnalyzer {
           code: "INVALID_LANGUAGE",
           message: "no valid target languages specified or detected",
         },
-      ]);
+      ], effectiveOptions.mode);
     }
 
     if (targetLanguages.length === 1) {
-      return this.analyzeSingle(text, targetLanguages[0]!, options);
+      return this.analyzeSingle(text, targetLanguages[0]!, effectiveOptions);
     }
 
     // Multi-language scan: run against all target languages and merge results
     const allMatches: AnalyzeMatch[] = [];
     const allIssues: AnalyzeIssue[] = [];
     const seenMatchKeys = new Set<string>();
-    const matchedLanguages: string[] = [];
 
     for (const lang of targetLanguages) {
-      const single = this.analyzeSingle(text, lang, options);
+      const single = this.analyzeSingle(text, lang, effectiveOptions);
       for (const issue of single.issues) {
         allIssues.push(issue);
-      }
-      if (single.matches.length > 0) {
-        matchedLanguages.push(lang);
       }
       for (const match of single.matches) {
         const key = `${match.term}\u0000${match.concept ?? ""}\u0000${match.tokenStart}\u0000${match.tokenEnd}`;
@@ -133,8 +215,8 @@ export class TextAnalyzer {
       }
     }
 
-    if (options?.maxMatches !== undefined && options.maxMatches > 0) {
-      allMatches.splice(options.maxMatches);
+    if (effectiveOptions.maxMatches !== undefined && effectiveOptions.maxMatches > 0) {
+      allMatches.splice(effectiveOptions.maxMatches);
     }
 
     const terms = [...new Set(allMatches.map((match) => match.term))];
@@ -142,21 +224,37 @@ export class TextAnalyzer {
       ...new Set(allMatches.map((match) => match.sourceFile)),
     ].sort();
 
-    // Report only the languages that produced matches; with no matches, report what was scanned.
-    const outputLanguages = (
-      matchedLanguages.length > 0 ? matchedLanguages : targetLanguages
-    ).map(toOutputLanguage);
+    const outputLanguages = targetLanguages.map(toOutputLanguage);
+    const matchedLangs = [
+      ...new Set(
+        allMatches.map((m) =>
+          toOutputLanguage(m.sourceFile.replace(/\.json$/, "")),
+        ),
+      ),
+    ];
+    const otherLangs = outputLanguages.filter((l) => !matchedLangs.includes(l));
+    const finalLanguages =
+      matchedLangs.length > 0 ? [...matchedLangs, ...otherLangs] : outputLanguages;
+
+    const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+    const { matched, evaluation } = evaluateThreat(
+      allMatches,
+      effectiveOptions.mode,
+      effectiveOptions.threatThreshold,
+      wordCount,
+    );
 
     return {
       text,
       content: text,
-      language: outputLanguages.join(", "),
-      languages: outputLanguages,
-      matched: allMatches.length > 0,
+      language: finalLanguages.join(", "),
+      languages: finalLanguages,
+      matched,
       terms,
       matches: allMatches,
       usedSources,
       issues: allIssues,
+      evaluation,
     };
   }
 
@@ -173,7 +271,7 @@ export class TextAnalyzer {
           code: "INVALID_LANGUAGE",
           message: "language must be a non-empty string",
         },
-      ]);
+      ], options?.mode);
     }
 
     const index = this.store.getIndex(normalizedLanguage);
@@ -185,7 +283,7 @@ export class TextAnalyzer {
         code: "NO_DICTIONARIES",
         message: `no dictionaries loaded for language "${normalizedLanguage}" (available: ${availableText})`,
       });
-      return emptyResult(text, normalizedLanguage, issues);
+      return emptyResult(text, normalizedLanguage, issues, options?.mode);
     }
 
     const normalizer = getNormalizer(normalizedLanguage);
@@ -211,25 +309,43 @@ export class TextAnalyzer {
 
     const outputLang = toOutputLanguage(normalizedLanguage);
 
+    const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+    const { matched, evaluation } = evaluateThreat(
+      matches,
+      options?.mode,
+      options?.threatThreshold,
+      wordCount,
+    );
+
     return {
       text,
       content: text,
       language: outputLang,
       languages: [outputLang],
-      matched: matches.length > 0,
+      matched,
       terms,
       matches,
       usedSources,
       issues,
+      evaluation,
     };
   }
 
   analyzeBatch(
     texts: string[],
-    language?: string | string[],
+    languageOrOptions?:
+      | string
+      | string[]
+      | boolean
+      | ThreatEvaluationMode
+      | AnalyzeTextOptions,
     options?: AnalyzeTextOptions,
   ): AnalyzeTextResult[] {
-    return texts.map((t) => this.analyze(t, language, options));
+    const { language, effectiveOptions } = resolveAnalyzeArgs(
+      languageOrOptions,
+      options,
+    );
+    return texts.map((t) => this.analyze(t, language, effectiveOptions));
   }
 }
 
@@ -281,12 +397,224 @@ export function detectLanguages(
   return [...set];
 }
 
+export function evaluateThreat(
+  matches: AnalyzeMatch[],
+  mode: ThreatEvaluationMode = "dictionary_only",
+  threshold = 40,
+  wordCount?: number,
+): { matched: boolean; evaluation: ThreatEvaluation } {
+  const normMode: "dictionary_only" | "category_filter" | "smart" =
+    mode === "basic" ? "dictionary_only" : mode;
+
+  const words = Math.max(1, wordCount ?? 1);
+  const threatDensity = Number(((matches.length / words) * 100).toFixed(2));
+
+  if (matches.length === 0) {
+    return {
+      matched: false,
+      evaluation: {
+        mode: normMode,
+        riskScore: 0,
+        riskLevel: "none",
+        threatCategories: [],
+        flaggedReasons: [],
+        wordCount: words,
+        threatDensity: 0,
+      },
+    };
+  }
+
+  const concepts = new Set(
+    matches.map((m) => m.concept?.toLowerCase() ?? "").filter(Boolean),
+  );
+
+  const threatCategories = [...concepts];
+  const flaggedReasons: string[] = [];
+
+  const hasWeapon = [...concepts].some((c) => c.startsWith("weapon."));
+  const hasViolence = [...concepts].some((c) => c.startsWith("violence."));
+  const hasDirectThreat = [...concepts].some(
+    (c) => c.startsWith("threat.direct") || c.startsWith("threat.annihilation"),
+  );
+  const hasIntimidation = [...concepts].some(
+    (c) =>
+      c.startsWith("threat.intimidation") || c.startsWith("threat.retaliation"),
+  );
+  const hasHate = [...concepts].some((c) => c.startsWith("hate."));
+  const hasTarget = [...concepts].some((c) => c.startsWith("target."));
+  const hasDualUse = [...concepts].some((c) => c === "context.dual_use_material");
+  const hasTemporal = [...concepts].some((c) => c === "context.temporal");
+
+  // Mode 1: Dictionary Only (Legacy / Default)
+  if (normMode === "dictionary_only") {
+    let score = 20;
+    if (hasWeapon || hasViolence) score += 50;
+    if (hasDirectThreat) score += 30;
+    const finalScore = Math.min(100, score);
+    const riskLevel: RiskLevel =
+      finalScore >= 70 ? "critical" : finalScore >= 40 ? "high" : "medium";
+
+    flaggedReasons.push(`Matched ${matches.length} dictionary term(s)`);
+
+    return {
+      matched: true,
+      evaluation: {
+        mode: "dictionary_only",
+        riskScore: finalScore,
+        riskLevel,
+        threatCategories,
+        flaggedReasons,
+      },
+    };
+  }
+
+  // Mode 2: Category Filter
+  if (normMode === "category_filter") {
+    const isThreatDomain =
+      hasWeapon || hasViolence || hasDirectThreat || hasIntimidation || hasHate;
+    const isDualUseWithViolentAction =
+      hasDualUse && (hasWeapon || hasViolence || hasDirectThreat);
+
+    const isOnlyNeutral =
+      !isThreatDomain &&
+      [...concepts].every(
+        (c) =>
+          c === "context.dual_use_material" ||
+          c === "context.temporal" ||
+          c === "context.general" ||
+          c === "context.slang" ||
+          c === "target.israel_location" ||
+          c === "target.general",
+      );
+
+    const isFlagged =
+      !isOnlyNeutral && (isThreatDomain || isDualUseWithViolentAction);
+
+    if (hasWeapon) flaggedReasons.push("Weapon category matched");
+    if (hasViolence) flaggedReasons.push("Violence or terrorism category matched");
+    if (hasDirectThreat) flaggedReasons.push("Direct threat or annihilation matched");
+    if (hasIntimidation) flaggedReasons.push("Intimidation or retaliation threat matched");
+    if (hasHate) flaggedReasons.push("Hate speech or extremist group matched");
+    if (isDualUseWithViolentAction)
+      flaggedReasons.push("Dual-use material combined with violent action/weapon");
+    if (!isFlagged && hasDualUse)
+      flaggedReasons.push("Dual-use material alone: not flagged");
+    if (!isFlagged && hasTemporal)
+      flaggedReasons.push("Temporal reference alone: not flagged");
+
+    const riskScore = isFlagged
+      ? hasWeapon || hasViolence
+        ? 85
+        : 60
+      : hasDualUse
+        ? 15
+        : 5;
+    const riskLevel: RiskLevel = !isFlagged
+      ? "low"
+      : riskScore >= 75
+        ? "critical"
+        : "high";
+
+    return {
+      matched: isFlagged,
+      evaluation: {
+        mode: "category_filter",
+        riskScore,
+        riskLevel,
+        threatCategories,
+        flaggedReasons,
+      },
+    };
+  }
+
+  // Mode 3: Smart Risk Scoring with Text Length & Density Normalization
+  let score = 0;
+
+  if (hasWeapon) {
+    score += 50;
+    flaggedReasons.push("Weapon detected (+50)");
+  }
+  if (hasViolence) {
+    score += 45;
+    flaggedReasons.push("Violence/terror action detected (+45)");
+  }
+  if (hasDirectThreat) {
+    score += 40;
+    flaggedReasons.push("Direct threat detected (+40)");
+  }
+  if (hasIntimidation) {
+    score += 40;
+    flaggedReasons.push("Intimidation/retaliation detected (+40)");
+  }
+  if (hasHate) {
+    score += 25;
+    flaggedReasons.push("Hate speech detected (+25)");
+  }
+  if (hasTarget) {
+    score += 15;
+    flaggedReasons.push("Specific target identified (+15)");
+  }
+  if (hasDualUse) {
+    if (hasViolence || hasWeapon || hasDirectThreat) {
+      score += 40;
+      flaggedReasons.push("Dual-use material in violent context (+40)");
+    } else {
+      score += 5;
+      flaggedReasons.push("Dual-use material in neutral context (+5)");
+    }
+  }
+
+  // Length and Density adjustments:
+  // 1. Concentrated short message (e.g. <= 30 words with high threat density):
+  if (words <= 30 && threatDensity >= 8.0 && (hasWeapon || hasViolence || hasDirectThreat)) {
+    score = Math.min(100, score + 10);
+    flaggedReasons.push(`High threat concentration in short text (+10)`);
+  }
+
+  // 2. Long text (e.g. news article / long report > 120 words with sparse, isolated matches):
+  // If text is long and lacks critical weapon/violence/direct threats, apply dampening to prevent false alarms
+  if (words > 120 && threatDensity < 2.0 && !hasWeapon && !hasViolence && !hasDirectThreat) {
+    score = Math.round(score * 0.6);
+    flaggedReasons.push(`Long text sparsity dampening applied (density: ${threatDensity}%)`);
+  }
+
+  const finalScore = Math.min(100, score);
+  const isFlagged = finalScore >= threshold;
+  const riskLevel: RiskLevel =
+    finalScore >= 80
+      ? "critical"
+      : finalScore >= 50
+        ? "high"
+        : finalScore >= 25
+          ? "medium"
+          : finalScore > 0
+            ? "low"
+            : "none";
+
+  return {
+    matched: isFlagged,
+    evaluation: {
+      mode: "smart",
+      riskScore: finalScore,
+      riskLevel,
+      threatCategories,
+      flaggedReasons,
+      wordCount: words,
+      threatDensity,
+    },
+  };
+}
+
 function emptyResult(
   text: string,
   language: string,
   issues: AnalyzeIssue[],
+  mode: ThreatEvaluationMode = "dictionary_only",
 ): AnalyzeTextResult {
   const outputLang = toOutputLanguage(language);
+  const normMode: "dictionary_only" | "category_filter" | "smart" =
+    mode === "basic" ? "dictionary_only" : mode;
+  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
   return {
     text,
     content: text,
@@ -297,6 +625,15 @@ function emptyResult(
     matches: [],
     usedSources: [],
     issues,
+    evaluation: {
+      mode: normMode,
+      riskScore: 0,
+      riskLevel: "none",
+      threatCategories: [],
+      flaggedReasons: [],
+      wordCount,
+      threatDensity: 0,
+    },
   };
 }
 
@@ -312,26 +649,62 @@ export function createTextAnalyzer(
 
 export function analyzeText(
   text: string,
+  modeOrOptions?: ThreatEvaluationMode | boolean | AnalyzeTextOptions,
+): AnalyzeTextResult;
+export function analyzeText(
+  text: string,
   language?: string | string[],
-  options: AnalyzeTextOptions = {},
+  options?: AnalyzeTextOptions,
+): AnalyzeTextResult;
+export function analyzeText(
+  text: string,
+  languageOrOptions?:
+    | string
+    | string[]
+    | boolean
+    | ThreatEvaluationMode
+    | AnalyzeTextOptions,
+  options?: AnalyzeTextOptions,
 ): AnalyzeTextResult {
-  const store = getDictionaryStore(options);
+  const { language, effectiveOptions } = resolveAnalyzeArgs(
+    languageOrOptions,
+    options,
+  );
+  const store = getDictionaryStore(effectiveOptions);
   if (!cachedAnalyzer || cachedStore !== store) {
     cachedAnalyzer = new TextAnalyzer({ store });
     cachedStore = store;
   }
-  return cachedAnalyzer.analyze(text, language, options);
+  return cachedAnalyzer.analyze(text, language, effectiveOptions);
 }
 
 export function analyzeBatch(
   texts: string[],
+  modeOrOptions?: ThreatEvaluationMode | boolean | AnalyzeTextOptions,
+): AnalyzeTextResult[];
+export function analyzeBatch(
+  texts: string[],
   language?: string | string[],
-  options: AnalyzeTextOptions = {},
+  options?: AnalyzeTextOptions,
+): AnalyzeTextResult[];
+export function analyzeBatch(
+  texts: string[],
+  languageOrOptions?:
+    | string
+    | string[]
+    | boolean
+    | ThreatEvaluationMode
+    | AnalyzeTextOptions,
+  options?: AnalyzeTextOptions,
 ): AnalyzeTextResult[] {
-  const store = getDictionaryStore(options);
+  const { language, effectiveOptions } = resolveAnalyzeArgs(
+    languageOrOptions,
+    options,
+  );
+  const store = getDictionaryStore(effectiveOptions);
   if (!cachedAnalyzer || cachedStore !== store) {
     cachedAnalyzer = new TextAnalyzer({ store });
     cachedStore = store;
   }
-  return cachedAnalyzer.analyzeBatch(texts, language, options);
+  return cachedAnalyzer.analyzeBatch(texts, language, effectiveOptions);
 }

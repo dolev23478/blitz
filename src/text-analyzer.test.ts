@@ -4,8 +4,11 @@ import {
   analyzeBatch,
   analyzeText,
   detectLanguages,
+  evaluateThreat,
   getDictionaryStore,
   getNormalizer,
+  ThreatCategory,
+  ThreatMode,
 } from "./index.js";
 
 describe("TextAnalyzer & Multi-Language Engine", () => {
@@ -180,6 +183,109 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
     expect(batch.length).toBe(2);
     expect(batch[0]?.matched).toBe(true);
     expect(batch[1]?.matched).toBe(false);
+  });
+
+  it("supports mode switching between dictionary_only, category_filter, and smart", () => {
+    // 1. Direct evaluateThreat test: neutral context term without weapon/violence
+    const neutralSampleMatches = [
+      {
+        term: "neutral_sample",
+        concept: "context.general",
+        sourceFile: "en.json",
+        normalizedTerm: "neutral_sample",
+        tokenStart: 0,
+        tokenEnd: 1,
+      },
+    ];
+    const legacyEval = evaluateThreat(neutralSampleMatches, "dictionary_only");
+    expect(legacyEval.matched).toBe(true); // Legacy mode matches any dictionary word
+
+    const filteredEval = evaluateThreat(neutralSampleMatches, "category_filter");
+    expect(filteredEval.matched).toBe(false); // Filtered mode ignores neutral terms!
+
+    const neutralContext = "peaceful diplomatic meeting between nations";
+    const neutralRes = analyzeText(neutralContext, "en", { mode: "dictionary_only" });
+    expect(neutralRes.matched).toBe(false);
+
+    // 2. Violent context with weapons
+    const violentGas = "I will attack the building with rockets and bombs";
+    const violentFiltered = analyzeText(violentGas, "en", { mode: "category_filter" });
+    expect(violentFiltered.matched).toBe(true); // Flagged because combined with weapon/violence!
+
+    // 3. Smart mode with risk scoring
+    const smartRes = analyzeText(violentGas, "en", { mode: "smart" });
+    expect(smartRes.matched).toBe(true);
+    expect(smartRes.evaluation?.riskScore).toBeGreaterThanOrEqual(40);
+    expect(smartRes.evaluation?.riskLevel).toBe("critical");
+
+    // 4. Calling WITHOUT specifying language (auto-detection + options directly as 2nd arg)
+    const noLangOptions = analyzeText(neutralContext, { mode: "category_filter" });
+    expect(noLangOptions.languages).toContain("en");
+    expect(noLangOptions.matched).toBe(false); // Ignored in category_filter mode
+    expect(noLangOptions.evaluation?.mode).toBe("category_filter");
+
+    // 5. Super-simple calling: boolean ON/OFF toggle, direct mode string, and { smart: true }
+    const boolSmart = analyzeText("I will kill you with a bomb 💣", true);
+    expect(boolSmart.matched).toBe(true);
+    expect(boolSmart.evaluation?.mode).toBe("smart");
+
+    const directModeString = analyzeText("I will kill you with a bomb 💣", "smart");
+    expect(directModeString.evaluation?.mode).toBe("smart");
+
+    const optionSmartBool = analyzeText("I will kill you with a bomb 💣", { smart: true });
+    expect(optionSmartBool.evaluation?.mode).toBe("smart");
+
+    const optionFilterBool = analyzeText(neutralContext, { filter: true });
+    expect(optionFilterBool.matched).toBe(false);
+    expect(optionFilterBool.evaluation?.mode).toBe("category_filter");
+
+    const batchBool = analyzeBatch(["I will kill you with a bomb 💣", neutralContext], true);
+    expect(batchBool[0].matched).toBe(true);
+    expect(batchBool[0].evaluation?.mode).toBe("smart");
+    expect(batchBool[1].matched).toBe(false);
+  });
+
+  it("supports ThreatMode and ThreatCategory const objects and text length density in smart mode", () => {
+    expect(ThreatMode.Smart).toBe("smart");
+    expect(ThreatMode.CategoryFilter).toBe("category_filter");
+    expect(ThreatCategory.WeaponFirearm).toBe("weapon.firearm");
+
+    // Short concentrated message receives high concentration bonus
+    const shortThreat = analyzeText("I will kill you with a bomb", { mode: ThreatMode.Smart });
+    expect(shortThreat.matched).toBe(true);
+    expect(shortThreat.evaluation?.wordCount).toBe(7);
+    expect(shortThreat.evaluation?.threatDensity).toBeGreaterThan(10);
+    expect(shortThreat.evaluation?.riskScore).toBeGreaterThanOrEqual(80);
+
+    // Long peaceful article that happens to mention an isolated non-violent word
+    const longPeacefulArticle =
+      "The university lecture on astronomy discussed the stars, planets, and galaxies. ".repeat(15) +
+      " The researchers were not afraid of the challenges.";
+    const longRes = analyzeText(longPeacefulArticle, { mode: ThreatMode.Smart });
+    expect(longRes.evaluation?.wordCount).toBeGreaterThan(120);
+    expect(longRes.matched).toBe(false); // Dampened! Doesn't flag whole article as a terror threat!
+    expect(longRes.evaluation?.flaggedReasons).toContain("Long text sparsity dampening applied (density: 0.58%)");
+  });
+
+  it("handles character repetition evasion without corrupting double-letter words like killer", () => {
+    // 1. Double-letter word 'killer' must remain 'killer' and NOT become 'kiler'
+    const killerRes = analyzeText("the serial killer was arrested", "en");
+    expect(killerRes.matched).toBe(true);
+    expect(killerRes.terms).toContain("killer");
+    expect(killerRes.terms).not.toContain("kiler");
+
+    // 2. Character repetition with 3+ identical letters (e.g. shoooooot riiiifles, kiiiill)
+    const repeatedRes = analyzeText("We will shoooooot everyone with riiiifles and kiiiill them", "en");
+    expect(repeatedRes.matched).toBe(true);
+    expect(repeatedRes.terms).toContain("shoot");
+    expect(repeatedRes.terms).toContain("rifles");
+    expect(repeatedRes.terms).toContain("kill");
+
+    // 3. Hebrew dotted acronyms and letter spacing (ק.ל.א.ש and נ..ר..צ..ח)
+    const hebrewDottedRes = analyzeText("אנחנו נ..ר..צ..ח את כולכם עם ק.ל.א.ש", "he");
+    expect(hebrewDottedRes.matched).toBe(true);
+    expect(hebrewDottedRes.terms).toContain("נרצח");
+    expect(hebrewDottedRes.terms).toContain("קלאש");
   });
 
   it("successfully tests against terror-dataset.json fixture", () => {

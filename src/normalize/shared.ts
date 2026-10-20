@@ -43,9 +43,24 @@ function tokenizeNormalized(text: string): string[] {
   return text.split(" ").filter((token) => token.length > 0);
 }
 
+/**
+ * Collapses 3 or more consecutive identical characters into 1 and 2 characters.
+ * Guarantees that words with 2 repeated characters (e.g. 'killer', 'shoot', 'attack')
+ * are NEVER modified, because the regex requires 3 or more repetitions.
+ */
+function getRepeatedCharVariants(token: string): string[] {
+  if (!/(.)\1{2,}/u.test(token)) {
+    return [token];
+  }
+  const v1 = token.replace(/(.)\1{2,}/gu, (m, c) => c);
+  const v2 = token.replace(/(.)\1{2,}/gu, (m, c) => c + c);
+  return [...new Set([token, v1, v2])];
+}
+
 export {
   applyUnicode,
   collapseSpaces,
+  getRepeatedCharVariants,
   padEmojis,
   punctuationToSpace,
   tokenizeNormalized,
