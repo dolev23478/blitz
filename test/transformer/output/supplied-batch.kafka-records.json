@@ -6,7 +6,7 @@
     "messages": [
       {
         "key": "3047412",
-        "value": "{\"report_id\":3047412,\"platform\":\"twitter\",\"account_name\":\"AJEnglish\",\"channel_name\":null,\"report_url\":\"https://x.com/AJEnglish/status/1847321098492019482\",\"media_type\":[\"text\",\"photo\"],\"report_title\":null,\"content\":\"Breaking: Regional developments update following high-level diplomatic talks in Geneva.\",\"language\":\"unknown\",\"matches\":[],\"published_at\":\"2026-10-19T14:15:00.000Z\",\"collected_at\":\"2026-10-19T14:30:00.000Z\",\"schema_version\":\"1.0.0\",\"is_official\":false}"
+        "value": "{\"account_name\":\"AJEnglish\",\"categories\":[],\"channel_name\":null,\"collected_at\":\"2026-10-19T14:30:00.000Z\",\"content\":\"Breaking: Regional developments update following high-level diplomatic talks in Geneva.\",\"is_official\":false,\"languages\":[],\"matches\":[],\"media_type\":[\"text\",\"photo\"],\"platform\":\"twitter\",\"published_at\":\"2026-10-19T14:15:00.000Z\",\"report_id\":3047412,\"report_title\":null,\"report_url\":\"https://x.com/AJEnglish/status/1847321098492019482\",\"schema_version\":1}"
       }
     ]
   },
@@ -16,8 +16,8 @@
     "timeout": 30000,
     "messages": [
       {
-        "key": "-886798368",
-        "value": "{\"report_id\":-886798368,\"platform\":\"twitter\",\"account_name\":\"AJArabic\",\"channel_name\":null,\"report_url\":\"https://x.com/AJArabic/status/1847318045123984120\",\"media_type\":[\"text\",\"video\"],\"report_title\":null,\"content\":\"موجز الأخبار: استمرار المشاورات الدولية بشأن سبل التهدئة.\",\"language\":\"unknown\",\"matches\":[],\"published_at\":\"2026-10-19T14:02:10.000Z\",\"collected_at\":\"2026-10-19T14:30:00.000Z\",\"schema_version\":\"1.0.0\",\"is_official\":false}"
+        "key": "1260685280",
+        "value": "{\"account_name\":\"AJArabic\",\"categories\":[],\"channel_name\":null,\"collected_at\":\"2026-10-19T14:30:00.000Z\",\"content\":\"موجز الأخبار: استمرار المشاورات الدولية بشأن سبل التهدئة.\",\"is_official\":false,\"languages\":[],\"matches\":[],\"media_type\":[\"text\",\"video\"],\"platform\":\"twitter\",\"published_at\":\"2026-10-19T14:02:10.000Z\",\"report_id\":1260685280,\"report_title\":null,\"report_url\":\"https://x.com/AJArabic/status/1847318045123984120\",\"schema_version\":1}"
       }
     ]
   }

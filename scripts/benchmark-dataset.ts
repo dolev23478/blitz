@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { performance } from "node:perf_hooks";
 import { analyzeText } from "../src/index.js";
-import type { LanguageInput } from "../src/types.js";
+type LanguageInput = Parameters<typeof analyzeText>[1];
 
 interface DatasetItem {
   id: string;

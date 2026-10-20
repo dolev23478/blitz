@@ -74,7 +74,8 @@
   {
     "field": "language",
     "value": [
-      "en"
+      "en",
+      "zz"
     ],
     "rejected": true,
     "kafkaSends": 0
@@ -104,7 +105,7 @@
         }
       ]
     },
-    "code": "validation_failed",
+    "code": "mapping_failed",
     "rejected": true,
     "kafkaSends": 0
   },
