@@ -303,6 +303,230 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
     }
   });
 
+  it("prevents false alarms on everyday innocent sentences across English, Hebrew, Arabic, and Farsi", () => {
+    // 1. English: words like club, scissors, laptop, driving, shoes, entity
+    const innocentEn = [
+      "Welcome to the chess club meeting",
+      "I am driving my car to the office",
+      "I bought a new pair of shoes at the mall",
+      "My laptop is on the wooden table",
+      "We traveled across the country by railway",
+      "Let us know what you think about this proposal",
+      "Join our team for lunch tomorrow",
+      "This is a legal business entity",
+      "Please pass me the scissors for cutting paper",
+      "I ate a banana and an apple for breakfast",
+      "Let us schedule a conference call tomorrow morning"
+    ];
+    for (const s of innocentEn) {
+      const res = analyzeText(s, "en");
+      expect(res.matched).toBe(false);
+      expect(res.terms).toHaveLength(0);
+    }
+
+    // 2. Hebrew: words like שאלה, מפתח, בירה, שנקל, בנקל, מטבח, יהלום, שירה, צרור, סופה
+    const innocentHe = [
+      "יש לי שאלה קטנה לגבי הפרויקט",
+      "אני מפתח תוכנה בחברה בינלאומית",
+      "בוא נשתה בירה בפאב הערב",
+      "שילמתי שנקל על המסטיק בקיוסק",
+      "הוא עבר את המבחן בנקל בלי בעיה",
+      "אני במטבח מכין ארוחת ערב",
+      "קניתי טבעת יהלום יפה",
+      "שירה היא חברה טובה שלי",
+      "יש לו צרור מפתחות בכיס",
+      "סופה חזקה מתקרבת לאזור הצפון",
+      "המהנדס בדק את התוכניות של הדירה",
+      "אין לו שום כוונת רווח בפרויקט הזה"
+    ];
+    for (const s of innocentHe) {
+      const res = analyzeText(s, "he");
+      expect(res.matched).toBe(false);
+      expect(res.terms).toHaveLength(0);
+    }
+
+    // 3. Arabic: words like أراك, أبيض, إنسانية, إليك, الأسرة, الطائرة, إبرة, مقص, ألماس, على الإطلاق, أطلقت
+    const innocentAr = [
+      "أنا أراك غداً إن شاء الله في المساء",
+      "اشتريت قميصاً أبيض وحذاء جديداً",
+      "قدمت المنظمة مساعدات إنسانية وإمدادات غذائية",
+      "تفضل هذا الكتاب المفيد إليك",
+      "الأطفال يلعبون في حديقة المنزل مع الأسرة",
+      "سافرت بالطائرة إلى مدينة دبي لحضور المؤتمر",
+      "ركبت السفينة في رحلة بحرية ممتعة",
+      "استخدمت إبرة الخياطة لإصلاح الثوب",
+      "قصصت الورقة بالمقص في المكتب",
+      "استخدمت المفك والشاكوش لتثبيت الرف",
+      "اشتريت خاتم ألماس جميل لزوجتي",
+      "هذا ليس صحيحاً على الإطلاق",
+      "أطلقت الشركة موقعاً إلكترونياً جديداً",
+      "عاش أجدادي في وادي جميل بجانب الجبل",
+      "رأيت قوس قزح في السماء بعد نزول المطر",
+      "أطعمنا الكلب في الحديقة",
+      "شاهدنا النمر في حديقة الحيوان",
+      "اشتريت جزمة مريحة للمشي"
+    ];
+    for (const s of innocentAr) {
+      const res = analyzeText(s, "ar");
+      expect(res.matched).toBe(false);
+      expect(res.terms).toHaveLength(0);
+    }
+
+    // 4. Farsi: words like می‌کنم, می‌کنند, هواپیما, قدم زدیم, بیمار, قیچی, چکش, الماس, سگ, سطل زباله
+    const innocentFa = [
+      "سلام صبح بخیر حال شما چطوره",
+      "من در یک شرکت نرم‌افزاری به عنوان برنامه‌نویس کار می‌کنم",
+      "بچه‌ها در حیاط خانه با هم بازی می‌کنند",
+      "من با هواپیما به شهر مشهد سفر کردم",
+      "من با دوستم در پارک قدم زدیم و صحبت کردیم",
+      "خیاط با نخ و سوزن لباس را دوخت",
+      "با قیچی کاغذ را به دو نیم بریدم",
+      "با چکش میخ را به دیوار زدم",
+      "یک حلقه الماس زیبا برای همسرم خریدم",
+      "سگ باوفا در باغ کنار درخت خوابیده بود",
+      "پلنگ در جنگل‌های دور زندگی می‌کند",
+      "پزشک به بیمار یک نسخه دارو داد",
+      "او در بیمارستان بستری است",
+      "آشغال‌ها را در سطل زباله ریختم"
+    ];
+    for (const s of innocentFa) {
+      const res = analyzeText(s, "fa");
+      expect(res.matched).toBe(false);
+      expect(res.terms).toHaveLength(0);
+    }
+  });
+
+  it("detects restraint and abduction tools across all supported languages", () => {
+    // English: handcuffs, shackles, gag, tied with ropes
+    const enRestraints = analyzeText("The kidnapper bound him in handcuffs and put a gag in his mouth", "en");
+    expect(enRestraints.matched).toBe(true);
+    expect(enRestraints.terms).toContain("handcuffs");
+    expect(enRestraints.terms).toContain("gag");
+
+    // Hebrew: אזיקים, כפתו, שלשלאות, מחסום פה
+    const heRestraints1 = analyzeText("החוטפים כפתו אותו באזיקים וסתמו את פיו במחסום פה", "he");
+    expect(heRestraints1.matched).toBe(true);
+    expect(heRestraints1.terms.some(t => t.includes("אזיק") || t.includes("כפת") || t.includes("מחסום פה"))).toBe(true);
+
+    const heRestraints2 = analyzeText("קשרו אותו בשלשלאות וכבלו את רגליו", "he");
+    expect(heRestraints2.matched).toBe(true);
+    expect(heRestraints2.terms.some(t => t.includes("שלשלאות"))).toBe(true);
+
+    // Arabic: أصفاد, سلاسل, تكبيل
+    const arRestraints1 = analyzeText("قيدوا الضحية بالأصفاد وكمموا فمه بالسلاسل", "ar");
+    expect(arRestraints1.matched).toBe(true);
+    expect(arRestraints1.terms.some(t => t.includes("أصفاد") || t.includes("اصفاد") || t.includes("سلاسل"))).toBe(true);
+
+    const arRestraints2 = analyzeText("قاموا بتكبيل يديه ووضعوا عصابة على عينيه", "ar");
+    expect(arRestraints2.matched).toBe(true);
+    expect(arRestraints2.terms.some(t => t.includes("تكبيل"))).toBe(true);
+
+    // Farsi: دستبند, طناب‌پیچ, غل و زنجیر, چشم‌بند
+    const faRestraints1 = analyzeText("گروگان را با دستبند بستند و با طناب‌پیچ دهانش را بستند", "fa");
+    expect(faRestraints1.matched).toBe(true);
+    expect(faRestraints1.terms.some(t => t.includes("دستبند") || t.includes("طناب‌پیچ") || t.includes("گروگان"))).toBe(true);
+
+    const faRestraints2 = analyzeText("دست و پای اسیر را با غل و زنجیر بستند و چشم‌بند زدند", "fa");
+    expect(faRestraints2.matched).toBe(true);
+    expect(faRestraints2.terms.some(t => t.includes("زنجیر") || t.includes("چشم‌بند") || t.includes("چشمبند") || t.includes("اسیر"))).toBe(true);
+  });
+
+  it("detects vehicle ramming attacks across all supported languages", () => {
+    // English
+    const enRamming1 = analyzeText("The terrorist carried out a vehicle ramming attack into the crowd", "en");
+    expect(enRamming1.matched).toBe(true);
+    expect(enRamming1.terms.some(t => t.includes("ramming"))).toBe(true);
+
+    const enRamming2 = analyzeText("A truck rammed pedestrians at the bus stop", "en");
+    expect(enRamming2.matched).toBe(true);
+    expect(enRamming2.terms.some(t => t.includes("rammed") || t.includes("ram"))).toBe(true);
+
+    // Hebrew: דריסה, דרס
+    const heRamming1 = analyzeText("המחבל ביצע פיגוע דריסה עם משאית", "he");
+    expect(heRamming1.matched).toBe(true);
+    expect(heRamming1.terms.some(t => t.includes("דריסה"))).toBe(true);
+
+    const heRamming2 = analyzeText("נהג דרס הולכי רגל בכוונה תחילה", "he");
+    expect(heRamming2.matched).toBe(true);
+    expect(heRamming2.terms.some(t => t.includes("דרס"))).toBe(true);
+
+    // Arabic: دهس, عملية دهس
+    const arRamming = analyzeText("قام الإرهابي بعملية دهس للمشاة بالشاحنة", "ar");
+    expect(arRamming.matched).toBe(true);
+    expect(arRamming.terms.some(t => t.includes("دهس"))).toBe(true);
+
+    // Farsi: زیر گرفتن
+    const faRamming = analyzeText("تروریست با خودرو اقدام به زیر گرفتن عابران پیاده کرد", "fa");
+    expect(faRamming.matched).toBe(true);
+    expect(faRamming.terms.some(t => t.includes("زیر گرفتن") || t.includes("زير گرفتن"))).toBe(true);
+  });
+
+  it("detects weapons, shootings, bombings, and terror attacks across all supported languages", () => {
+    // English
+    const enThreat = analyzeText("He drew a combat knife and stabbed multiple victims", "en");
+    expect(enThreat.matched).toBe(true);
+    expect(enThreat.terms.some(t => t.includes("knife") || t.includes("stabbed"))).toBe(true);
+
+    // Hebrew
+    const heThreat1 = analyzeText("המחבל שלף סכין ודקר שלושה עוברי אורח", "he");
+    expect(heThreat1.matched).toBe(true);
+    expect(heThreat1.terms.some(t => t.includes("סכין") || t.includes("דקר") || t.includes("מחבל"))).toBe(true);
+
+    const heThreat2 = analyzeText("ירי של רקטות ופצצות לעבר הישוב", "he");
+    expect(heThreat2.matched).toBe(true);
+    expect(heThreat2.terms.some(t => t.includes("ירי") || t.includes("רקטות") || t.includes("פצצות"))).toBe(true);
+
+    const heThreat3 = analyzeText("מתכננים פיגוע התאבדות באוטובוס", "he");
+    expect(heThreat3.matched).toBe(true);
+    expect(heThreat3.terms.some(t => t.includes("פיגוע התאבדות") || t.includes("התאבדות"))).toBe(true);
+
+    // Arabic
+    const arThreat1 = analyzeText("استل سكيناً وطعن جنوداً في السوق", "ar");
+    expect(arThreat1.matched).toBe(true);
+    expect(arThreat1.terms.some(t => t.includes("طعن") || t.includes("سكينا"))).toBe(true);
+
+    const arThreat2 = analyzeText("أطلق النار من رشاش كلاشنكوف على المارة", "ar");
+    expect(arThreat2.matched).toBe(true);
+    expect(arThreat2.terms.some(t => t.includes("أطلق النار") || t.includes("اطلق النار") || t.includes("رشاش") || t.includes("كلاشنكوف"))).toBe(true);
+
+    const arThreat3 = analyzeText("تخطيط لتنفيذ عملية استشهادية وتفجير حزام ناسف", "ar");
+    expect(arThreat3.matched).toBe(true);
+    expect(arThreat3.terms.some(t => t.includes("استشهادية") || t.includes("تفجير") || t.includes("حزام ناسف"))).toBe(true);
+
+    // Farsi
+    const faThreat1 = analyzeText("او با چاقو و قمه به مردم حمله کرد و آن‌ها را زخمی نمود", "fa");
+    expect(faThreat1.matched).toBe(true);
+    expect(faThreat1.terms.some(t => t.includes("چاقو") || t.includes("قمه"))).toBe(true);
+
+    const faThreat2 = analyzeText("شلیک گلوله با تفنگ کلاشنکوف به سوی سربازان", "fa");
+    expect(faThreat2.matched).toBe(true);
+    expect(faThreat2.terms.some(t => t.includes("کلاشنکوف") || t.includes("شلیک گلوله") || t.includes("تفنگ"))).toBe(true);
+
+    const faThreat3 = analyzeText("بمب‌گذاری انتحاری در مرکز شهر و انفجار شدید", "fa");
+    expect(faThreat3.matched).toBe(true);
+    expect(faThreat3.terms.some(t => t.includes("بمب‌گذاری") || t.includes("انتحاری") || t.includes("انفجار"))).toBe(true);
+  });
+
+  it("verifies dictionary-only matching semantics and match metadata", () => {
+    // In dictionary-only mode, matching is purely based on vocabulary present in dictionaries
+    const res = analyzeText("The suspect carried a bomb into the station", "en", { mode: "dictionary_only" });
+    expect(res.matched).toBe(true);
+    expect(res.terms).toContain("bomb");
+
+    const matchMeta = res.matches.find(m => m.term === "bomb");
+    expect(matchMeta).toBeDefined();
+    expect(matchMeta?.sourceFile).toBe("en.json");
+    expect(matchMeta?.normalizedTerm).toBe("bomb");
+    expect(matchMeta?.tokenStart).toBeGreaterThanOrEqual(0);
+    expect(matchMeta?.tokenEnd).toBeGreaterThan(matchMeta?.tokenStart ?? 0);
+
+    // Purely non-dictionary text returns clean empty results
+    const nonDict = analyzeText("random neutral string of unrelated syllables", "en", { mode: "dictionary_only" });
+    expect(nonDict.matched).toBe(false);
+    expect(nonDict.terms).toHaveLength(0);
+    expect(nonDict.matches).toHaveLength(0);
+  });
+
 
   console.log("All tests passed successfully.");
 });
