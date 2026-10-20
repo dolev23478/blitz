@@ -38,7 +38,7 @@ export class BackfillService {
       maxId = Math.max(maxId ?? 0, ...result.messages.map((m) => m.messageId));
       const inserted = await this.messages.upsertMany(channel.id, msgs);
       total += inserted;
-      if (inserted) this.events.emit({ channelId: channel.id, channel: channel.username, inserted });
+      if (inserted) this.events.emit({ channelId: channel.id, channel: channel.username, inserted, messages: msgs });
 
       const oldest = result.messages[0]!;
       if (oldest.postedAt.getTime() < cutoff || oldest.messageId <= 1) break;

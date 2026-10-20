@@ -1,19 +1,17 @@
 import { TwitterMappingStrategy } from '../../src/transformer/strategies/twitter-mapping.strategy.js';
 import { TelegramMappingStrategy } from '../../src/transformer/strategies/telegram-mapping.strategy.js';
-import { TelegramRealtimeMappingStrategy } from '../../src/transformer/strategies/telegram-realtime-mapping.strategy.js';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import type { ProfileScrapeResult } from '../../src/x-scraper/contracts/x-scraper.interfaces.js';
-import type { StoredMessage } from '../../src/types.js';
-import type { MessageDto } from '../../src/tg-realtime/types.js';
+import type { ParsedMessage } from '../../src/types.js';
+import type { ReportMetadata } from '../../src/contracts/mappings.js';
 import { ParsingProcessor } from '../../src/transformer/processors/parsing.processor.js';
 import { ValidationProcessor } from '../../src/transformer/processors/validation.processor.js';
 import {
   context,
   metadata,
   mappingProcessor,
-  realtimeInput,
   telegramInput,
   twitterInput,
 } from './fixtures.js';
@@ -24,15 +22,11 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks());
 
 async function mapReports(
-  input: ProfileScrapeResult | StoredMessage | MessageDto,
+  input: ProfileScrapeResult | ParsedMessage,
+  overrides: ReportMetadata = {},
 ) {
-  const format =
-    'posts' in input
-      ? 'ProfileScrapeResult'
-      : 'chatId' in input
-        ? 'MessageDto'
-        : 'StoredMessage';
-  const ctx = context(input, format);
+  const format = 'posts' in input ? 'ProfileScrapeResult' : 'ParsedMessage';
+  const ctx = context(input, format, { ...metadata(format), ...overrides });
   await new ParsingProcessor().execute(ctx);
   await mappingProcessor().execute(ctx);
   await new ValidationProcessor(new ConfigService()).execute(ctx);
@@ -88,7 +82,7 @@ describe('collector JSON mapping', () => {
     expect(report!.content).toBe('Café: 1 < 2 & 3 > 2');
   });
 
-  it('maps stored Telegram messages with Date timestamps and sender metadata', async () => {
+  it('maps ParsedMessage without StoredMessage fields, preserving its Date and URL', async () => {
     const input = telegramInput();
     input.media = [{ type: 'video', url: 'https://example.com/video.mp4' }];
     const [report] = await mapReports(input);
@@ -98,7 +92,7 @@ describe('collector JSON mapping', () => {
       is_official: false,
       platform: 'telegram',
       account_name: 'Dana',
-      channel_name: 'Blitz News',
+      channel_name: null,
       report_url: input.url,
       media_type: ['text', 'video'],
       report_title: null,
@@ -113,60 +107,47 @@ describe('collector JSON mapping', () => {
   it('also accepts Telegram ISO timestamps received through JSON transport', async () => {
     const input = JSON.parse(JSON.stringify(telegramInput()));
     input.postedAt = '2026-10-19T12:00:00+03:00';
-    input.fetchedAt = '2026-10-19T13:00:00+03:00';
-    const [report] = await mapReports(input);
+    const [report] = await mapReports(input, {
+      collectedAt: '2026-10-19T13:00:00+03:00',
+    });
     expect(report!.published_at).toBe('2026-10-19T09:00:00.000Z');
     expect(report!.collected_at).toBe('2026-10-19T10:00:00.000Z');
   });
 
-  it('uses the Telegram channel when the sender is unavailable', async () => {
+  it('leaves unavailable Telegram names null instead of inventing them', async () => {
     const input = telegramInput();
     input.senderName = null;
-    input.channelTitle = null;
     const [report] = await mapReports(input);
-    expect(report!.account_name).toBe('blitz');
-    expect(report!.channel_name).toBe('blitz');
+    expect(report!.account_name).toBeNull();
+    expect(report!.channel_name).toBeNull();
   });
 
-  it('maps live MessageDto with caller-supplied URL and collection time', async () => {
-    const input = realtimeInput();
-    const [report] = await mapReports(input);
+  it('accepts optional source names separately, while keeping the original sender name', async () => {
+    const input = telegramInput();
+    const names = {
+      accountName: 'Fallback account',
+      channelName: 'Blitz News',
+    };
+    const [report] = await mapReports(input, names);
     expect(report).toMatchObject({
-      platform: 'telegram',
       account_name: 'Dana',
       channel_name: 'Blitz News',
-      report_url: metadata('MessageDto').reportUrl,
-      media_type: ['text'],
-      content: input.text,
-      language: 'en',
-      matches: [],
-      published_at: '2026-10-19T09:00:00.000Z',
-      collected_at: '2026-10-19T10:00:00.000Z',
     });
+    input.senderName = null;
+    expect((await mapReports(input, names))[0]!.account_name).toBe(
+      'Fallback account',
+    );
   });
 
-  it.each([
-    'photo',
-    'video',
-    'voice',
-    'audio',
-    'document',
-    'sticker',
-    'other',
-  ] as const)('preserves live Telegram media kind %s', async (kind) => {
-    const input = realtimeInput();
-    input.media = {
-      kind,
-      fileName: null,
-      mimeType: null,
-      sizeBytes: null,
-      durationSec: null,
-      width: null,
-      height: null,
-    };
-    const [report] = await mapReports(input);
-    expect(report!.media_type).toEqual(['text', kind]);
-  });
+  it.each(['photo', 'video', 'audio', 'document', 'other'] as const)(
+    'preserves ParsedMessage media type %s',
+    async (kind) => {
+      const input = telegramInput();
+      input.media = [{ type: kind, url: 'https://example.com/media' }];
+      const [report] = await mapReports(input);
+      expect(report!.media_type).toEqual(['text', kind]);
+    },
+  );
 
   it('returns no reports for an empty ProfileScrapeResult', async () => {
     const input = twitterInput();
@@ -181,15 +162,10 @@ describe('collector JSON mapping', () => {
     );
     const telegram = new TelegramMappingStrategy().map(
       telegramInput(),
-      metadata('StoredMessage'),
-    );
-    const realtime = new TelegramRealtimeMappingStrategy().map(
-      realtimeInput(),
-      metadata('MessageDto'),
+      metadata('ParsedMessage'),
     );
     expect(twitter).toHaveLength(1);
     expect(telegram.report_url).toBe(telegramInput().url);
-    expect(realtime.report_url).toBe(metadata('MessageDto').reportUrl);
   });
 
   it('rejects missing Telegram text instead of publishing an empty report', async () => {

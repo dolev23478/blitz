@@ -4,13 +4,7 @@ import {
   MAX_PAYLOAD_BYTES,
 } from '../../src/transformer/json-input.js';
 import { ParsingProcessor } from '../../src/transformer/processors/parsing.processor.js';
-import {
-  context,
-  metadata,
-  realtimeInput,
-  telegramInput,
-  twitterInput,
-} from './fixtures.js';
+import { context, metadata, telegramInput, twitterInput } from './fixtures.js';
 
 describe('Transformer input boundary', () => {
   it.each([null, undefined, 'HTML or JSON text', []])(
@@ -36,18 +30,19 @@ describe('Transformer input boundary', () => {
     });
   });
 
-  it('accepts a single StoredMessage object without wrapping it in an array', async () => {
+  it('accepts a single ParsedMessage object without wrapping it in an array', async () => {
     await expect(
-      new ParsingProcessor().execute(context(telegramInput(), 'StoredMessage')),
+      new ParsingProcessor().execute(context(telegramInput(), 'ParsedMessage')),
     ).resolves.toBeUndefined();
   });
 
   it('snapshots metadata separately from the collector object', async () => {
-    const values = metadata('MessageDto');
-    const ctx = context(realtimeInput(), 'MessageDto', values);
+    const values = metadata('ParsedMessage');
+    values.channelName = 'Blitz News';
+    const ctx = context(telegramInput(), 'ParsedMessage', values);
     await new ParsingProcessor().execute(ctx);
-    values.reportUrl = 'changed';
-    expect(ctx.metadata.reportUrl).toBe('https://t.me/blitz/8');
+    values.channelName = 'changed';
+    expect(ctx.metadata.channelName).toBe('Blitz News');
   });
 
   it('takes a snapshot so later caller changes cannot modify processor data', async () => {

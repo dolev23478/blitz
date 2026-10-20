@@ -7,7 +7,6 @@ import { PublishingProcessor } from '../../src/transformer/processors/publishing
 import {
   context,
   rawReport,
-  realtimeInput,
   telegramInput,
   twitterInput,
   workflow,
@@ -435,22 +434,18 @@ describe('Kafka publication', () => {
 });
 
 describe('Transformer workflow through the Kafka boundary', () => {
-  it.each(['ProfileScrapeResult', 'StoredMessage', 'MessageDto'] as const)(
+  it.each(['ProfileScrapeResult', 'ParsedMessage'] as const)(
     'accepts the original %s object directly',
     async (format) => {
       const runner = workflow(publisher());
       const options = {
         inputId: 'workflow-input',
         language: format === 'ProfileScrapeResult' ? 'he' : 'en',
-        reportUrl: 'https://t.me/blitz/8',
-        collectedAt: '2026-10-19T10:00:00Z',
       };
       const result =
         format === 'ProfileScrapeResult'
           ? await runner.run(format, twitterInput(), options)
-          : format === 'StoredMessage'
-            ? await runner.run(format, telegramInput(), options)
-            : await runner.run(format, realtimeInput(), options);
+          : await runner.run(format, telegramInput(), options);
       const sent = kafka.send.mock.calls[0]![0] as ProducerRecord;
       const report = JSON.parse(sent.messages[0]!.value as string);
       expect(result).toEqual([
@@ -520,32 +515,59 @@ describe('Transformer workflow through the Kafka boundary', () => {
 
   it('does not require the caller to create inputId or source fields', async () => {
     const result = await workflow(publisher()).run(
-      'StoredMessage',
+      'ParsedMessage',
       telegramInput(),
       { language: 'en' },
     );
     expect(result[0]!.inputId).toMatch(/^[a-f0-9-]{36}$/);
   });
 
-  it('rejects an array where a single StoredMessage is expected', async () => {
+  it('rejects an array where a single ParsedMessage is expected', async () => {
     await expect(
-      workflow(publisher()).run('StoredMessage', [telegramInput()] as never, {
+      workflow(publisher()).run('ParsedMessage', [telegramInput()] as never, {
         language: 'en',
       }),
     ).rejects.toMatchObject({ code: 'parsing_failed' });
     expect(kafka.send).not.toHaveBeenCalled();
   });
 
-  it('reports missing MessageDto URL or collection time explicitly', async () => {
-    await expect(
-      workflow(publisher()).run('MessageDto', realtimeInput(), {
-        language: 'en',
-      } as never),
-    ).rejects.toMatchObject({
-      code: 'mapping_failed',
-      message: expect.stringContaining('reportUrl and collectedAt'),
+  it.each(['MessageDto', 'StoredMessage'])(
+    'rejects the removed Telegram format %s',
+    async (format) => {
+      await expect(
+        workflow(publisher()).run(format as never, telegramInput()),
+      ).rejects.toMatchObject({
+        code: 'unsupported_format',
+      });
+      expect(kafka.send).not.toHaveBeenCalled();
+    },
+  );
+
+  it('captures Telegram receipt time before processing and keeps it unchanged during a Kafka retry', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-10-20T08:00:00.000Z'));
+    kafka.send.mockRejectedValueOnce(new Error('unavailable'));
+    const input = JSON.parse(JSON.stringify(telegramInput()));
+    const snapshot = structuredClone(input);
+    const running = workflow(publisher()).run('ParsedMessage', input, {
+      // Receipt time is authoritative for Telegram, even if stale metadata is supplied.
+      collectedAt: '2000-01-01T00:00:00Z',
     });
-    expect(kafka.send).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(60000);
+    await running;
+    const reports = kafka.send.mock.calls.map(([record]) =>
+      JSON.parse(record.messages[0].value),
+    );
+    expect(reports).toHaveLength(2);
+    expect(reports[0]).toEqual(reports[1]);
+    expect(reports[0]).toMatchObject({
+      collected_at: '2026-10-20T08:00:00.000Z',
+      published_at: new Date(input.postedAt).toISOString(),
+      report_url: input.url,
+      language: 'unknown',
+    });
+    expect(input).toEqual(snapshot);
   });
 
   it('rejects unsupported formats instead of guessing from object fields', async () => {
