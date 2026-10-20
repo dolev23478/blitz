@@ -25,7 +25,9 @@ export class ExtractorService {
     return sleepRandom(this.opts.scanDelayMinMs, this.opts.scanDelayMaxMs);
   }
 
-  /** Messages newer than `since`, oldest last (newest first as Telegram returns). */
+  /**
+   * Messages posted at or after `since`. Telegram returns them newest first.
+   */
   async getHistory(chat: InputPeerLike, since: Date, maxMessages = 5000): Promise<MessageDto[]> {
     const out: MessageDto[] = [];
     let offset: { id: number; date: number } | undefined;
