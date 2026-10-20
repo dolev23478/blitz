@@ -2,13 +2,14 @@ import { randomUUID } from 'node:crypto';
 import { ConfigService } from '@nestjs/config';
 import { Kafka, logLevel, type EachMessagePayload } from 'kafkajs';
 import { describe, expect, it } from 'vitest';
-import { REPORT_TOPIC } from '../../src/common/constants.js';
+import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
+import { metadata, twitterInput, workflow } from './fixtures.js';
 import { RedisService } from '../../src/redis/redis.service.js';
 import { loadConfig } from '../../src/config/app-config.js';
 import { RedisRetryQueue } from '../../src/transformer/retry-queue.js';
-import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
-import { metadata, twitterInput, workflow } from './fixtures.js';
+import { REPORT_TOPIC } from '../../src/common/constants.js';
 
+// Opt in only against isolated plaintext test infrastructure, never production brokers.
 const brokers =
   process.env.KAFKA_TEST_BROKERS?.split(',')
     .map((address) => address.trim())

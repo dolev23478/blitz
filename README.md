@@ -4,7 +4,8 @@ NestJS (Fastify) service that collects OSINT posts and forwards dictionary match
 
 - **Telegram** — pulls the channels listed in `src/telegram/telegram-channels.ts` (`TELEGRAM_CHANNELS`) through a Telegram account (MTProto, `TG_API_ID`, `TG_API_HASH`, `TG_SESSION_STRING`; generate the session with `npm run auth`). Live push plus a watchdog catch-up.
 - **X** — polls the handles in `src/x-scraper/constants/monitored-sources.ts` every 5 minutes.
-- **No database.** The last successful pull time is kept in Redis (`REDIS_URL`; keys `telegram:last-scrape-at` and `x:last-scrape-at`). On start/reconnect each source re-pulls from that time (24h fallback), so there are no gaps; duplicates are handled downstream (deterministic report ids).
+- **No database.** Resume points live in Redis (`REDIS_URL`): Telegram keeps one cursor per channel (`telegram:cursor:<channelId>` = channel, time of the last handled message; the resume is by time, not id) and X keeps `x:last-scrape-at`. Each pull continues from the saved point (24h fallback when none), so there are no gaps. Telegram messages are also claimed in Redis (`telegram:seen:*`, 2 days) so overlapping pulls don't publish a message twice.
+- **Kafka** — reports go to `reports.raw` on `KAFKA_BROKERS`. Set `KAFKA_REMOTE_BROKERS` (+ `KAFKA_REMOTE_SASL_*`, `KAFKA_REMOTE_SSL_CA_FILE`) to also mirror them to a remote cluster. See `docs/ARCHITECTURE.md`.
 
 ## Run
 

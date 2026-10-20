@@ -8,6 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'node:crypto';
 import { Kafka, logLevel, type Producer, type SASLOptions } from 'kafkajs';
 import { REPORT_TOPIC } from '../../common/constants.js';
+import { KafkaMirror } from './kafka-mirror.js';
 import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
 import type { TransformContext } from '../transformer.types.js';
@@ -40,12 +41,14 @@ export class PublishingProcessor
   private connection?: Promise<void>;
   private closing = false;
   private background = false;
+  private readonly mirror: KafkaMirror | null;
 
   constructor(
     private readonly config: ConfigService,
     private readonly queue: RedisRetryQueue,
   ) {
     this.validator = new ReportValidator(config);
+    this.mirror = KafkaMirror.fromConfig(config);
     this.retryIntervalMs = Number(
       config.get('KAFKA_RETRY_INTERVAL_MS') ?? 60000,
     );
@@ -225,6 +228,8 @@ export class PublishingProcessor
           )
         )
           throw new Error('Kafka publication was not confirmed.');
+        // Best-effort copy to the remote cluster, only once the primary confirmed it.
+        this.mirror?.enqueue(String(job.report.report_id), value);
       } catch (error) {
         this.connection = undefined;
         if (!leaseValid)
@@ -369,5 +374,6 @@ export class PublishingProcessor
         );
     this.waiters.clear();
     await this.producer?.disconnect();
+    await this.mirror?.close();
   }
 }
