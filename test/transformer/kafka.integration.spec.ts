@@ -11,6 +11,7 @@ import { metadata, twitterInput, workflow } from './fixtures.js';
 
 const brokers = process.env.KAFKA_TEST_BROKERS?.split(',')
   .map((address) => address.trim())
+<<<<<<< HEAD
   .filter(Boolean) ?? [];
 const redisUrl = process.env.REDIS_TEST_URL;
 
@@ -36,6 +37,45 @@ describe.runIf(Boolean(brokers.length) && Boolean(redisUrl))(
         KAFKA_BROKERS: kafkaBrokers.join(','),
         KAFKA_SSL: false,
         TRANSFORMER_RETRY_PREFIX: prefix,
+=======
+  .filter(Boolean);
+
+describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
+  it('publishes a mapped report and consumes the exact key and JSON value', async () => {
+    const kafkaBrokers = brokers!;
+    const client = new Kafka({
+      clientId: 'blitz-transformer-test',
+      brokers: kafkaBrokers,
+      logLevel: logLevel.NOTHING,
+      connectionTimeout: 3000,
+      retry: { retries: 0 },
+    });
+    const admin = client.admin();
+    const consumer = client.consumer({
+      groupId: `blitz-transformer-test-${randomUUID()}`,
+    });
+    const prefix = `blitz:{kafka-test-${randomUUID()}}:outbox`;
+    const settings = loadConfig({
+      REDIS_URL: redisUrl,
+      KAFKA_BROKERS: brokers,
+      TRANSFORMER_RETRY_PREFIX: prefix,
+    });
+    const redis = new RedisService(settings);
+    const config = new ConfigService(settings);
+    const publisher = new PublishingProcessor(
+      new ConfigService({
+        KAFKA_BROKERS: kafkaBrokers.join(','),
+        KAFKA_SSL: false,
+      }),
+    );
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+
+    try {
+      await redis.onModuleInit();
+      await admin.connect();
+      await admin.createTopics({
+        topics: [{ topic: REPORT_TOPIC, numPartitions: 1, replicationFactor: 1 }],
+>>>>>>> d98d5b0edd8c2cf00136ae015c27ee1facd6f801
       });
       const redis = new RedisService(settings);
       const config = new ConfigService(settings);

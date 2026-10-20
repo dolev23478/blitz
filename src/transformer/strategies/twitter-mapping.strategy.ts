@@ -21,6 +21,7 @@ export class TwitterMappingStrategy {
       media_type: reportMediaTypes(post.media),
       report_title: null,
       content: post.text,
+<<<<<<< HEAD
       ...collectorFields(post, {
         languages: metadata.languages ?? metadata.language,
         categories: metadata.categories,
@@ -29,6 +30,15 @@ export class TwitterMappingStrategy {
         Array.isArray(post.matches) && post.matches.length
           ? post.matches
           : metadata.matches ?? [],
+=======
+      language:
+        (typeof post.language === 'string' && post.language.trim()) ||
+        (typeof post.matchedLanguage === 'string' && post.matchedLanguage.trim()) ||
+        metadata.language,
+      matches: Array.isArray(post.matches) && post.matches.length
+        ? post.matches
+        : metadata.matches ?? [],
+>>>>>>> d98d5b0edd8c2cf00136ae015c27ee1facd6f801
       published_at: post.publishedAt,
       collected_at: result.scrapedAt,
     }));

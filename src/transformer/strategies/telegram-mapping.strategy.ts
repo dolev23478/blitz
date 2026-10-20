@@ -33,6 +33,7 @@ export class TelegramMappingStrategy {
       media_type: reportMediaTypes(message.media),
       report_title: null,
       content: message.text,
+<<<<<<< HEAD
       ...collectorFields(message, {
         languages: metadata.languages ?? messageLanguage ?? metadata.language,
         categories: metadata.categories,
@@ -41,6 +42,10 @@ export class TelegramMappingStrategy {
         messageMatches && messageMatches.length
           ? messageMatches
           : metadata.matches ?? [],
+=======
+      language: messageLanguage || metadata.language,
+      matches: messageMatches && messageMatches.length ? messageMatches : metadata.matches ?? [],
+>>>>>>> d98d5b0edd8c2cf00136ae015c27ee1facd6f801
       published_at: message.postedAt,
       collected_at: metadata.collectedAt,
     };
