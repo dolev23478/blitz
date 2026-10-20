@@ -225,6 +225,16 @@ export class TextAnalyzer {
     ].sort();
 
     const outputLanguages = targetLanguages.map(toOutputLanguage);
+    const matchedLangs = [
+      ...new Set(
+        allMatches.map((m) =>
+          toOutputLanguage(m.sourceFile.replace(/\.json$/, "")),
+        ),
+      ),
+    ];
+    const otherLangs = outputLanguages.filter((l) => !matchedLangs.includes(l));
+    const finalLanguages =
+      matchedLangs.length > 0 ? [...matchedLangs, ...otherLangs] : outputLanguages;
 
     const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
     const { matched, evaluation } = evaluateThreat(
@@ -237,8 +247,8 @@ export class TextAnalyzer {
     return {
       text,
       content: text,
-      language: outputLanguages.join(", "),
-      languages: outputLanguages,
+      language: finalLanguages.join(", "),
+      languages: finalLanguages,
       matched,
       terms,
       matches: allMatches,
@@ -533,8 +543,8 @@ export function evaluateThreat(
     flaggedReasons.push("Direct threat detected (+40)");
   }
   if (hasIntimidation) {
-    score += 30;
-    flaggedReasons.push("Intimidation/retaliation detected (+30)");
+    score += 40;
+    flaggedReasons.push("Intimidation/retaliation detected (+40)");
   }
   if (hasHate) {
     score += 25;

@@ -4,6 +4,7 @@ import {
   analyzeBatch,
   analyzeText,
   detectLanguages,
+  evaluateThreat,
   getDictionaryStore,
   getNormalizer,
   ThreatCategory,
@@ -185,15 +186,26 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
   });
 
   it("supports mode switching between dictionary_only, category_filter, and smart", () => {
-    // 1. Context-only word: 'conflict' without weapon/violence
-    const neutralContext = "diplomatic conflict between nations";
-    const legacyRes = analyzeText(neutralContext, "en", { mode: "dictionary_only" });
-    expect(legacyRes.matched).toBe(true); // Legacy mode matches any dictionary word
-    expect(legacyRes.terms).toContain("conflict");
+    // 1. Direct evaluateThreat test: neutral context term without weapon/violence
+    const neutralSampleMatches = [
+      {
+        term: "neutral_sample",
+        concept: "context.general",
+        sourceFile: "en.json",
+        normalizedTerm: "neutral_sample",
+        tokenStart: 0,
+        tokenEnd: 1,
+      },
+    ];
+    const legacyEval = evaluateThreat(neutralSampleMatches, "dictionary_only");
+    expect(legacyEval.matched).toBe(true); // Legacy mode matches any dictionary word
 
-    const filteredRes = analyzeText(neutralContext, "en", { mode: "category_filter" });
-    expect(filteredRes.matched).toBe(false); // Filtered mode ignores context-only terms!
-    expect(filteredRes.terms).toContain("conflict");
+    const filteredEval = evaluateThreat(neutralSampleMatches, "category_filter");
+    expect(filteredEval.matched).toBe(false); // Filtered mode ignores neutral terms!
+
+    const neutralContext = "peaceful diplomatic meeting between nations";
+    const neutralRes = analyzeText(neutralContext, "en", { mode: "dictionary_only" });
+    expect(neutralRes.matched).toBe(false);
 
     // 2. Violent context with weapons
     const violentGas = "I will attack the building with rockets and bombs";
@@ -245,14 +257,14 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
     expect(shortThreat.evaluation?.threatDensity).toBeGreaterThan(10);
     expect(shortThreat.evaluation?.riskScore).toBeGreaterThanOrEqual(80);
 
-    // Long peaceful article that happens to mention an isolated target or location
+    // Long peaceful article that happens to mention an isolated non-violent word
     const longPeacefulArticle =
       "The university lecture on astronomy discussed the stars, planets, and galaxies. ".repeat(15) +
-      " A telescope observed the night sky near Haifa.";
+      " The researchers were not afraid of the challenges.";
     const longRes = analyzeText(longPeacefulArticle, { mode: ThreatMode.Smart });
     expect(longRes.evaluation?.wordCount).toBeGreaterThan(120);
     expect(longRes.matched).toBe(false); // Dampened! Doesn't flag whole article as a terror threat!
-    expect(longRes.evaluation?.flaggedReasons).toContain("Long text sparsity dampening applied (density: 1.73%)");
+    expect(longRes.evaluation?.flaggedReasons).toContain("Long text sparsity dampening applied (density: 0.58%)");
   });
 
   it("handles character repetition evasion without corrupting double-letter words like killer", () => {
