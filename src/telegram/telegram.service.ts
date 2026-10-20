@@ -8,10 +8,11 @@ import { withFloodWait } from '../tg-realtime/utils/resilience.js';
 import { Watchdog } from '../tg-realtime/utils/watchdog.js';
 import { ChannelsRepository } from '../channels/channels.repository.js';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
-import { MessageEventsService } from '../events/message-events.service.js';
+import { MessageEventsService, type NewMessagesEvent } from '../events/message-events.service.js';
 import { MessagesRepository } from '../messages/messages.repository.js';
 import type { Channel } from '../types.js';
 import { privateLinkId, toParsedMessage } from './telegram.mapper.js';
+import { RedisService } from '../redis/redis.service.js';
 
 export class TelegramSourceError extends Error {
   constructor(message: string, readonly status: number) {
@@ -50,9 +51,20 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     @Inject(ChannelsRepository) private readonly channels: ChannelsRepository,
     @Inject(MessagesRepository) private readonly messages: MessagesRepository,
     @Inject(MessageEventsService) private readonly events: MessageEventsService,
+    private readonly redis: RedisService,
   ) {
     this.enabled = Boolean(config.TG_API_ID && config.TG_API_HASH);
     this.state = this.enabled ? 'connecting' : 'disabled';
+  }
+
+  /** Recovers from last processed Telegram timestamp from Redis, falling back to 24h ago if missing. */
+  private async recoverSince(): Promise<Date> {
+    if (!this.redis.isEnabled()) {
+      return new Date(Date.now() - 24 * 60 * 60 * 1000);
+    }
+
+    const lastTelegramAt = await this.redis.get('telegram:last-scrape-at');
+    return lastTelegramAt ? new Date(lastTelegramAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
   }
 
   get ready(): boolean {
@@ -65,6 +77,20 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
 
   isBusy(id: number): boolean {
     return this.backfilling.has(id);
+  }
+
+  /** Returns a cleanup function for listening to Telegram result events emitted by this service. */
+  listenResults(listener: (event: NewMessagesEvent) => void): () => void {
+    return this.events.subscribe(listener);
+  }
+
+  /** Subscribes once and automatically calls the callback whenever Telegram stores new messages. */
+  watchResults(callback: (event: NewMessagesEvent) => void | Promise<void>): () => void {
+    return this.events.subscribe((event) => {
+      void Promise.resolve(callback(event)).catch((err) => {
+        this.logger.error(`telegram result callback failed: ${err instanceof Error ? err.message : String(err)}`);
+      });
+    });
   }
 
   /** Connects once; a missing/invalid session string is logged, network errors are retried in the background. */
@@ -91,7 +117,7 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
   async addChannel(ref: string | number): Promise<Channel> {
     const c = this.client;
     if (!c || !this.extractor) throw new TelegramSourceError('Telegram account is not connected', 503);
-    let chat;
+    let chat: { id: number; username?: string | null; displayName?: string | null };
     try {
       chat = await withFloodWait(() => c.getChat(ref));
     } catch (err) {
@@ -145,7 +171,20 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
       const maxId = Math.max(...dtos.map((d) => d.messageId));
       await this.channels.markPolled(channel.id, maxId, null);
     }
-    if (inserted) this.events.emit({ channelId: channel.id, channel: channel.username, inserted });
+    if (inserted) {
+      this.events.emit({
+        channelId: channel.id,
+        channel: channel.username,
+        inserted,
+        messages: dtos.map((dto) => ({
+          chatId: dto.chatId,
+          messageId: dto.messageId,
+          text: dto.text,
+          date: dto.date,
+          senderName: dto.senderName,
+        })),
+      });
+    }
     return inserted;
   }
 
@@ -214,7 +253,7 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     }
     this.me = me;
     this.logger.log(`logged in as ${me.name}`);
-    c.onConnectionState.add((s) => this.logger.log(`connection: ${s}`));
+    c.onConnectionState.add((s: 'connecting' | 'connected' | 'disconnected' | 'error') => this.logger.log(`connection: ${s}`));
 
     this.client = c;
     this.extractor = new ExtractorService(c, cfg);
@@ -227,10 +266,9 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     this.byChatId.clear();
     for (const channel of await this.channels.listTelegram()) {
       this.track(channel);
-      // Catch up on anything missed while the service was offline.
       const since = channel.lastPolledAt
         ? new Date(new Date(channel.lastPolledAt).getTime() - 60_000)
-        : new Date(Date.now() - this.config.BACKFILL_DAYS * 86_400_000);
+        : await this.recoverSince();
       void this.runBackfill(channel, since);
     }
     this.lastSyncAt = Date.now();
