@@ -3,7 +3,8 @@ import { MONITORED_X_SOURCES } from './constants/monitored-sources.js';
 import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
 import { XScraperService } from './x-scraper.service.js';
 import { RedisService } from '../redis/redis.service.js';
-import { detectDictionaryMatch } from '../match/detect-dictionary.js';
+import { analyzeText } from '../text-analyzer.js';
+import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 import { resolveLanguageAlias, LANGUAGE_ALIASES } from '../normalize/registry.js';
 
@@ -46,7 +47,6 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       const since = lastScrapeAt ? new Date(lastScrapeAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
 
       this.logger.log(`Running X scraper cycle for ${handles.length} handles since ${since.toISOString()}`);
-      const startedAt = new Date();
       const result = await this.xScraper.scrapeBatch({
         handles,
         since,
@@ -58,42 +58,59 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         `X cycle finished: handle=${result.handle}, totalPosts=${result.totalPosts}, provider=${result.providerUsed}`,
       );
 
-      await this.onXResult(result, startedAt);
+      await this.onXResult(result);
     } catch (err) {
       this.logger.error(`X scraper cycle failed: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
 
   /** Called automatically every time the cron cycle gets a result from X. */
-  private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
-    const keptPosts: Array<(typeof result.posts)[number] & { matchedLanguage?: string; language?: string }> = [];
+  private async onXResult(result: ProfileScrapeResult): Promise<void> {
+    const now = new Date().toISOString();
+
+    if (this.redis.isEnabled()) {
+      await this.redis.set('x:last-scrape-at', now);
+    }
+
+    const supportedLanguages = getDictionaryStore().languages();
+    const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
+      .map((language) => resolveLanguageAlias(language));
+    const keptPosts: Array<{ post: (typeof result.posts)[number]; matchedLanguage: string; matches: string[] }> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
 
-      const detection = detectDictionaryMatch(post.text);
-      if (!detection) continue;
+      const analysis = analyzeText(post.text, candidateLanguages);
+      if (!analysis.matched || analysis.languages?.length === 0) continue;
+
+      const matchedLanguages = analysis.languages?.length
+        ? analysis.languages
+        : [analysis.language].filter(Boolean);
+      const matchedLanguage = matchedLanguages[0] ?? null;
+
+      if (!matchedLanguage) continue;
+
       this.logger.log(
-        `X language match: lang=${detection.language}, terms=${detection.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
+        `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
       );
-      keptPosts.push({ ...post, matchedLanguage: detection.language, language: detection.language });
+
+      keptPosts.push({
+        post,
+        matchedLanguage,
+        matches: analysis.terms,
+      });
     }
 
-    result.posts = keptPosts;
+    result.posts = keptPosts.map((item) => item.post);
 
-    const matches = [...new Set(result.posts.flatMap((post) => ((post as { language?: string }).language ? [(post as { language?: string }).language!] : [])))];
+    const matches = [...new Set(keptPosts.flatMap((item) => item.matches))];
     await this.transformer.run('ProfileScrapeResult', result, {
-      language: matches[0] ?? undefined,
+      language: undefined,
       matches,
       collectedAt: new Date().toISOString(),
       source: 'x',
     });
 
-    // Only advance the cursor once the batch was handed over, so a failure re-pulls it next cycle.
-    if (this.redis.isEnabled()) {
-      await this.redis.set('x:last-scrape-at', startedAt.toISOString());
-    }
-
-    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${startedAt.toISOString()}`);
+    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${now}`);
   }
 }

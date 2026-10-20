@@ -5,13 +5,15 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { NewMessagesEvent } from '../../src/events/message-events.service.js';
 import { TelegramListenerService } from '../../src/telegram/telegram-listener.service.js';
 import type { TelegramService } from '../../src/telegram/telegram.service.js';
+import type { RedisService } from '../../src/redis/redis.service.js';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import { telegramInput, workflow } from './fixtures.js';
 
-// Exercise the actual handoff and Transformer without starting collectors.
+// Exercise the actual handoff and Transformer without starting collectors, Redis or PostgreSQL.
 vi.mock('../../src/telegram/telegram.service.js', () => ({
   TelegramService: class {},
 }));
+vi.mock('../../src/redis/redis.service.js', () => ({ RedisService: class {} }));
 vi.mock('../../src/dictionaries/load-dictionaries.js', () => ({
   getDictionaryStore: () => ({ languages: () => ['en'] }),
 }));
@@ -45,7 +47,8 @@ beforeEach(() => {
       return () => undefined;
     },
   } as unknown as TelegramService;
-  new TelegramListenerService(telegram, workflow(publisher));
+  const redis = { isEnabled: () => false } as unknown as RedisService;
+  new TelegramListenerService(telegram, redis, workflow(publisher));
 });
 
 afterEach(async () => {
@@ -59,8 +62,9 @@ describe('Telegram collector handoff', () => {
     message.media = [{ type: 'video', url: 'https://example.com/video.mp4' }];
     const snapshot = structuredClone(message);
     await deliver({
-      chatId: 2,
+      channelId: 2,
       channel: 'blitz',
+      inserted: 1,
       messages: [message],
     });
     expect(send).toHaveBeenCalledOnce();
@@ -83,8 +87,9 @@ describe('Telegram collector handoff', () => {
     await deliver(
       JSON.parse(
         JSON.stringify({
-          chatId: 2,
+          channelId: 2,
           channel: 'blitz',
+          inserted: 1,
           messages: [telegramInput()],
         }),
       ),
@@ -99,10 +104,16 @@ describe('Telegram collector handoff', () => {
   it('keeps upstream filtering when no keyword matched', async () => {
     analyze.mockReturnValue({ matched: false, terms: [] });
     await deliver({
-      chatId: 2,
+      channelId: 2,
       channel: 'blitz',
+      inserted: 1,
       messages: [telegramInput()],
     });
+    expect(send).not.toHaveBeenCalled();
+  });
+
+  it('handles a notification without attached messages', async () => {
+    await deliver({ channelId: 2, channel: 'blitz', inserted: 0 });
     expect(send).not.toHaveBeenCalled();
   });
 });

@@ -1,26 +1,30 @@
+import { EventEmitter } from 'node:events';
 import { Injectable } from '@nestjs/common';
 import type { ParsedMessage } from '../types.js';
 
 export interface NewMessagesEvent {
-  chatId: number;
+  channelId: number;
   channel: string;
-  messages: ParsedMessage[];
+  inserted: number;
+  messages?: ParsedMessage[];
 }
 
-type Listener = (event: NewMessagesEvent) => void;
-
-/** In-process bus carrying collected Telegram messages to the analysis/transform pipeline. */
+/** In-process event bus used to push collector updates to connected clients (SSE). */
 @Injectable()
 export class MessageEventsService {
-  private readonly listeners = new Set<Listener>();
+  private readonly emitter = new EventEmitter<{ messages: [NewMessagesEvent] }>();
+
+  constructor() {
+    this.emitter.setMaxListeners(100);
+  }
 
   emit(event: NewMessagesEvent): void {
-    for (const listener of this.listeners) listener(event);
+    this.emitter.emit('messages', event);
   }
 
   /** Subscribes to new-message events; returns an unsubscribe function. */
-  subscribe(listener: Listener): () => void {
-    this.listeners.add(listener);
-    return () => void this.listeners.delete(listener);
+  subscribe(listener: (event: NewMessagesEvent) => void): () => void {
+    this.emitter.on('messages', listener);
+    return () => void this.emitter.off('messages', listener);
   }
 }

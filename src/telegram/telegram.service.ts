@@ -133,7 +133,7 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     const channel = this.usernameByChatId.get(chatId);
     if (!channel || dtos.length === 0) return;
     const ordered = [...dtos].sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
-    this.events.emit({ chatId, channel, messages: ordered.map((dto) => toParsedMessage(dto, channel)) });
+    this.events.emit({ channelId: chatId, channel, inserted: ordered.length, messages: ordered.map((dto) => toParsedMessage(dto, channel)) });
   }
 
   /** Pulls one chat's history since the given time; true when it completed. */

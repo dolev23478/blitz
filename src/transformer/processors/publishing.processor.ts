@@ -108,7 +108,7 @@ export class PublishingProcessor implements OnModuleDestroy {
           )
         )
           throw new Error('Kafka publication was not confirmed.');
-      } catch (error) {
+      } catch {
         this.connection = undefined;
         if (!this.closing) {
           this.logger.warn({
