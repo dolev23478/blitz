@@ -23,6 +23,12 @@ const schema = z.object({
   KAFKA_SASL_MECHANISM: z.string().optional().transform((v) => v || undefined),
   KAFKA_SASL_USERNAME: z.string().optional().transform((v) => v || undefined),
   KAFKA_SASL_PASSWORD: z.string().optional().transform((v) => v || undefined),
+  KAFKA_REMOTE_BROKERS: z.string().optional().transform((v) => v || undefined),
+  KAFKA_REMOTE_TOPIC: z.string().optional().transform((v) => v || undefined),
+  KAFKA_REMOTE_SASL_MECHANISM: z.string().optional().transform((v) => v || undefined),
+  KAFKA_REMOTE_SASL_USERNAME: z.string().optional().transform((v) => v || undefined),
+  KAFKA_REMOTE_SASL_PASSWORD: z.string().optional().transform((v) => v || undefined),
+  KAFKA_REMOTE_SSL_CA_FILE: z.string().optional().transform((v) => v || undefined),
   DE_RAW_REPORT_SCHEMA_PATH: z.string().optional().transform((v) => v || undefined),
 });
 

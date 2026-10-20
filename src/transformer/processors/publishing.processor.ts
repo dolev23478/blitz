@@ -2,6 +2,7 @@ import { Injectable, Logger, type OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Kafka, logLevel, type Producer, type SASLOptions } from 'kafkajs';
 import { REPORT_TOPIC } from '../../common/constants.js';
+import { KafkaMirror } from './kafka-mirror.js';
 import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
 import type { RawReport } from '../../contracts/schema.js';
@@ -25,8 +26,10 @@ export class PublishingProcessor implements OnModuleDestroy {
   private producer?: Producer;
   private connection?: Promise<void>;
   private closing = false;
+  private readonly mirror: KafkaMirror | null;
 
   constructor(private readonly config: ConfigService) {
+    this.mirror = KafkaMirror.fromConfig(config);
     this.retryIntervalMs = Number(
       config.get('KAFKA_RETRY_INTERVAL_MS') ?? 60000,
     );
@@ -58,6 +61,7 @@ export class PublishingProcessor implements OnModuleDestroy {
       const report = structuredClone(original);
       return { report, value: JSON.stringify(report) };
     });
+    for (const { report, value } of reports) this.mirror?.enqueue(String(report.report_id), value);
     // Enqueue the entire batch before starting, so concurrent calls cannot overtake it.
     const confirmed = reports.map(
       ({ report, value }) =>
@@ -223,5 +227,6 @@ export class PublishingProcessor implements OnModuleDestroy {
       this.queue.length = 0;
     }
     await this.producer?.disconnect();
+    await this.mirror?.close();
   }
 }
