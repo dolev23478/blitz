@@ -19,7 +19,11 @@ export class ParsingProcessor {
         !isRecord(context.metadata) ||
         (context.metadata.language !== undefined &&
           context.metadata.language !== null &&
-          typeof context.metadata.language !== 'string') ||
+          typeof context.metadata.language !== 'string' &&
+          (!Array.isArray(context.metadata.language) ||
+            !context.metadata.language.every(
+              (code) => typeof code === 'string',
+            ))) ||
         (context.metadata.matches !== undefined &&
           (!Array.isArray(context.metadata.matches) ||
             !context.metadata.matches.every(

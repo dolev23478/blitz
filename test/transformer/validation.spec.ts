@@ -41,8 +41,19 @@ describe('provisional RAW_REPORT validation', () => {
     { content: ' \n ' },
     { content: '<p>raw HTML</p>' },
     { language: null },
-    { language: 'zz' },
-    { language: 'eng' },
+    { language: 'en' },
+    { language: ['en', 'zz'] },
+    { language: ['en', 'eng'] },
+    { language: ['en', 'EN'] },
+    { language: ['en', ''] },
+    { language: ['en', ' ar '] },
+    { language: ['en', 'unknown'] },
+    { language: ['en', null] },
+    { language: ['en', 42] },
+    { language: ['en', ['ar']] },
+    { language: ['iw'] },
+    { language: ['in'] },
+    { language: ['sh'] },
     { report_url: 'not a URL' },
     { collected_at: null },
     { collected_at: 'yesterday' },
@@ -73,14 +84,32 @@ describe('provisional RAW_REPORT validation', () => {
     expect(report.published_at).toBeNull();
   });
 
-  it('keeps missing collection timestamps and defaults missing language to unknown', () => {
+  it('keeps missing collection timestamps and defaults missing language to an empty array', () => {
     const result = normalizeReport({ content: 'text' });
     expect(result.collected_at).toBeUndefined();
-    expect(result.language).toBe('unknown');
+    expect(result.language).toEqual([]);
   });
 
-  it('accepts the explicit unknown-language marker', async () => {
-    expect((await validate({ language: 'unknown' })).language).toBe('unknown');
+  it.each(
+    [[], ['en'], ['ar', 'he', 'fa'], ['en', 'en']].map((codes) => ({ codes })),
+  )('accepts ISO language array $codes', async ({ codes }) => {
+    expect((await validate({ language: codes })).language).toEqual(codes);
+  });
+
+  it.each(['en', ' ar '])(
+    'wraps scalar language %j in an array',
+    (language) => {
+      expect(normalizeReport({ language }).language).toEqual([language.trim()]);
+    },
+  );
+
+  it('preserves invalid array entries so validation can reject the whole value', async () => {
+    const codes = ['en', 'bad-code'];
+    const normalized = normalizeReport({ language: codes });
+    expect(normalized.language).toEqual(codes);
+    await expect(validate(normalized)).rejects.toMatchObject({
+      code: 'validation_failed',
+    });
   });
 
   it('forces Blitz-owned fixed fields during normalization', () => {

@@ -11,7 +11,9 @@
     ],
     "report_title": null,
     "content": "Breaking: Regional developments update following high-level diplomatic talks in Geneva.",
-    "language": "en",
+    "language": [
+      "en"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:15:00.000Z",
     "collected_at": "2026-10-19T14:30:00.000Z",
@@ -30,7 +32,9 @@
     ],
     "report_title": null,
     "content": "موجز الأخبار: استمرار المشاورات الدولية بشأن سبل التهدئة.",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:02:10.000Z",
     "collected_at": "2026-10-19T14:30:00.000Z",

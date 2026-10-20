@@ -10,10 +10,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.280Z",
+    "collected_at": "2026-10-20T08:16:40.537Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -29,10 +29,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.280Z",
+    "collected_at": "2026-10-20T08:16:40.538Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -48,10 +48,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.280Z",
+    "collected_at": "2026-10-20T08:16:40.538Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -67,10 +69,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.281Z",
+    "collected_at": "2026-10-20T08:16:40.538Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -86,10 +88,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.281Z",
+    "collected_at": "2026-10-20T08:16:40.538Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -105,10 +109,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.281Z",
+    "collected_at": "2026-10-20T08:16:40.538Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -123,10 +127,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.281Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -141,10 +145,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.281Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -159,10 +165,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.281Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -177,10 +183,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.281Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -196,10 +204,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.282Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -215,10 +223,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.282Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -234,10 +244,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.282Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -253,10 +263,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.282Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -272,10 +284,10 @@
     ],
     "report_title": null,
     "content": "English generated content 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.282Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -291,10 +303,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.282Z",
+    "collected_at": "2026-10-20T08:16:40.539Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -309,10 +321,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.282Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -327,10 +339,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.282Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -346,10 +360,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -365,10 +379,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -384,10 +400,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -403,10 +419,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -422,10 +438,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -441,10 +459,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -460,10 +478,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.540Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -478,10 +498,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -496,10 +516,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -514,10 +536,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -532,10 +554,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -550,10 +574,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.283Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -569,10 +593,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.284Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -588,10 +612,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.284Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -607,10 +631,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.284Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -625,10 +651,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.284Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -643,10 +669,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.284Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -661,10 +689,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.284Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -680,10 +708,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -699,10 +727,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -718,10 +748,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -737,10 +767,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.541Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -756,10 +788,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -775,10 +807,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -794,10 +828,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -813,10 +847,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -832,10 +868,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -850,10 +886,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -869,10 +905,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -888,10 +924,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.285Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -907,10 +945,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.286Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -926,10 +964,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.286Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -945,10 +985,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.286Z",
+    "collected_at": "2026-10-20T08:16:40.542Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -963,10 +1003,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.286Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -981,10 +1021,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.286Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -999,10 +1041,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.286Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1017,10 +1059,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.286Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1036,10 +1080,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.287Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1055,10 +1099,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.287Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1074,10 +1120,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.287Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1093,10 +1139,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.287Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1112,10 +1160,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.287Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1131,10 +1179,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.287Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1149,10 +1197,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1167,10 +1215,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.543Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1186,10 +1236,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1205,10 +1255,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1224,10 +1276,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1243,10 +1295,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1262,10 +1314,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1281,10 +1335,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1300,10 +1354,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1318,10 +1374,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1336,10 +1392,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1354,10 +1412,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1372,10 +1430,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1390,10 +1450,10 @@
     ],
     "report_title": null,
     "content": "English generated content 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1409,10 +1469,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1428,10 +1488,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1447,10 +1507,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.288Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1465,10 +1527,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1483,10 +1545,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1501,10 +1565,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.544Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1520,10 +1584,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1539,10 +1603,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1558,10 +1624,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1577,10 +1643,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1596,10 +1664,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1615,10 +1683,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1634,10 +1704,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1653,10 +1723,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1672,10 +1744,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1690,10 +1762,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.289Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1709,10 +1781,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1728,10 +1800,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.545Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1747,10 +1821,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1766,10 +1840,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1785,10 +1861,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1803,10 +1879,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1821,10 +1897,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1839,10 +1917,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1857,10 +1935,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1876,10 +1956,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1895,10 +1975,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1914,10 +1996,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1933,10 +2015,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1952,10 +2036,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1971,10 +2055,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.290Z",
+    "collected_at": "2026-10-20T08:16:40.546Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -1989,10 +2073,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2007,10 +2091,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2026,10 +2112,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2045,10 +2131,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2064,10 +2152,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2083,10 +2171,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2102,10 +2190,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2121,10 +2211,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2140,10 +2230,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2158,10 +2250,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2176,10 +2268,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2194,10 +2288,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2212,10 +2306,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2230,10 +2326,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2249,10 +2345,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.547Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2268,10 +2364,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2287,10 +2383,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.291Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2305,10 +2403,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2323,10 +2421,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2341,10 +2441,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2360,10 +2460,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2379,10 +2479,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2398,10 +2500,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2417,10 +2519,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.548Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2436,10 +2540,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.549Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2455,10 +2559,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.549Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2474,10 +2580,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.549Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2493,10 +2599,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.549Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2512,10 +2620,10 @@
     ],
     "report_title": null,
     "content": "English generated content 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.549Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2530,10 +2638,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2549,10 +2657,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2568,10 +2676,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2587,10 +2697,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2606,10 +2716,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2625,10 +2737,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.292Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2643,10 +2755,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2661,10 +2773,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2679,10 +2793,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2697,10 +2811,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.550Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2716,10 +2832,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2735,10 +2851,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2754,10 +2872,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2773,10 +2891,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2792,10 +2912,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2811,10 +2931,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2829,10 +2949,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2847,10 +2967,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2866,10 +2988,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2885,10 +3007,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2904,10 +3028,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.293Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2923,10 +3047,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2942,10 +3066,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2961,10 +3087,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2980,10 +3106,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.551Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -2998,10 +3126,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3016,10 +3144,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3034,10 +3164,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3052,10 +3182,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3070,10 +3202,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3089,10 +3221,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3108,10 +3240,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3127,10 +3259,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3145,10 +3279,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3163,10 +3297,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3181,10 +3317,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.294Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3200,10 +3336,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3219,10 +3355,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3238,10 +3376,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3257,10 +3395,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3276,10 +3416,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3295,10 +3435,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3314,10 +3456,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3333,10 +3475,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3352,10 +3496,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.552Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3370,10 +3514,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3389,10 +3533,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3408,10 +3552,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3427,10 +3573,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3446,10 +3592,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3465,10 +3613,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3483,10 +3631,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3501,10 +3649,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3519,10 +3669,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3537,10 +3687,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.295Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3556,10 +3708,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3575,10 +3727,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3594,10 +3748,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3613,10 +3767,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3632,10 +3788,10 @@
     ],
     "report_title": null,
     "content": "English generated content 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3651,10 +3807,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3669,10 +3825,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3687,10 +3843,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.553Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3706,10 +3864,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3725,10 +3883,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3744,10 +3904,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3763,10 +3923,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3782,10 +3942,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3801,10 +3963,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3820,10 +3982,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.296Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3838,10 +4002,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3856,10 +4020,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3874,10 +4040,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3892,10 +4058,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3910,10 +4078,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3929,10 +4097,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3948,10 +4116,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3967,10 +4135,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.554Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -3985,10 +4155,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4003,10 +4173,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4021,10 +4193,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4040,10 +4212,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4059,10 +4231,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4078,10 +4252,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4097,10 +4271,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4116,10 +4292,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4135,10 +4311,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4154,10 +4332,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4173,10 +4351,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4192,10 +4372,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.297Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4210,10 +4390,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4229,10 +4409,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4248,10 +4428,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4267,10 +4449,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4286,10 +4468,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4305,10 +4489,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4323,10 +4507,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4341,10 +4525,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4359,10 +4545,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4377,10 +4563,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.555Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4396,10 +4584,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4415,10 +4603,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4434,10 +4624,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4453,10 +4643,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4472,10 +4664,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.298Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4491,10 +4683,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4509,10 +4701,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4527,10 +4719,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4546,10 +4740,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4565,10 +4759,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4584,10 +4780,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4603,10 +4799,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4622,10 +4818,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4641,10 +4839,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4660,10 +4858,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4678,10 +4878,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4696,10 +4896,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4714,10 +4916,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4732,10 +4934,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4750,10 +4954,10 @@
     ],
     "report_title": null,
     "content": "English generated content 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.299Z",
+    "collected_at": "2026-10-20T08:16:40.556Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4769,10 +4973,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4788,10 +4992,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4807,10 +5011,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4825,10 +5031,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4843,10 +5049,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4861,10 +5069,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4880,10 +5088,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4899,10 +5107,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4918,10 +5128,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4937,10 +5147,12 @@
     ],
     "report_title": null,
     "content": "English generated content 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4956,10 +5168,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4975,10 +5187,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -4994,10 +5208,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5013,10 +5227,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5032,10 +5248,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5050,10 +5266,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.300Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5069,10 +5285,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5088,10 +5304,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.557Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5107,10 +5325,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5126,10 +5344,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5145,10 +5365,10 @@
     ],
     "report_title": null,
     "content": "English generated content 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5163,10 +5383,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5181,10 +5401,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5199,10 +5421,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5217,10 +5439,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5236,10 +5460,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5255,10 +5479,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5274,10 +5500,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5293,10 +5519,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5312,10 +5540,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5331,10 +5559,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5349,10 +5577,10 @@
     ],
     "report_title": null,
     "content": "English generated content 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5367,10 +5595,12 @@
     ],
     "report_title": null,
     "content": "English generated content 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.301Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5386,10 +5616,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5405,10 +5635,12 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5424,10 +5656,10 @@
     ],
     "report_title": null,
     "content": "محتوى اختبار عربي 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5443,10 +5675,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5462,10 +5694,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5481,10 +5715,10 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5500,10 +5734,12 @@
     ],
     "report_title": null,
     "content": "תוכן בדיקה בעברית 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.558Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5518,10 +5754,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 0",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.559Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5536,10 +5772,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 1",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.559Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5554,10 +5792,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 2",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.559Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5572,10 +5810,12 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 3",
-    "language": "ar",
+    "language": [
+      "ar"
+    ],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.559Z",
     "schema_version": "1.0.0",
     "is_official": false
   },
@@ -5590,10 +5830,10 @@
     ],
     "report_title": null,
     "content": "Café: 1 < 2 & 3 > 2 4",
-    "language": "unknown",
+    "language": [],
     "matches": [],
     "published_at": "2026-10-19T14:30:00.000Z",
-    "collected_at": "2026-10-19T13:26:55.302Z",
+    "collected_at": "2026-10-20T08:16:40.559Z",
     "schema_version": "1.0.0",
     "is_official": false
   }

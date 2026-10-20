@@ -86,7 +86,7 @@ try {
     assert.equal(report.published_at, original.postedAt.toISOString());
     assert.equal(report.account_name, original.senderName);
     assert.equal(report.channel_name, null);
-    assert.equal(report.language, 'unknown');
+    assert.deepEqual(report.language, []);
     assert.ok(Date.parse(report.collected_at) >= receivedBefore);
     assert.ok(Date.parse(report.collected_at) <= Date.now());
     assert.deepEqual(report.media_type, type ? ['text', type] : ['text']);

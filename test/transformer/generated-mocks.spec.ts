@@ -10,6 +10,7 @@ import {
 } from 'kafkajs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { ScrapedPost } from '../../src/x-scraper/contracts/x-scraper.interfaces.js';
+import type { ReportMetadata } from '../../src/contracts/mappings.js';
 import { provisionalRawReportSchema } from '../../src/contracts/provisional-raw-report.schema.js';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import {
@@ -75,6 +76,83 @@ function reports() {
   });
 }
 
+describe.each(['ProfileScrapeResult', 'ParsedMessage'] as const)(
+  '%s language arrays through Kafka serialization',
+  (format) => {
+    function input(language?: unknown) {
+      const payload =
+        format === 'ProfileScrapeResult'
+          ? createMockBatchResult()
+          : telegramInput();
+      const message = 'posts' in payload ? payload.posts[0]! : payload;
+      if (language !== undefined) Reflect.set(message, 'language', language);
+      return payload;
+    }
+
+    function run(
+      payload: ReturnType<typeof input>,
+      metadata: ReportMetadata = {},
+    ) {
+      const runner = workflow(publisher);
+      return 'posts' in payload
+        ? runner.run('ProfileScrapeResult', payload, metadata)
+        : runner.run('ParsedMessage', payload, metadata);
+    }
+
+    it.each([
+      { language: 'en', expected: ['en'] },
+      { language: ['ar', 'he', 'fa'], expected: ['ar', 'he', 'fa'] },
+      { language: [], expected: [] },
+    ])('serializes $language as $expected', async ({ language, expected }) => {
+      const payload = input(language);
+      const original = structuredClone(payload);
+      await run(payload);
+      expect(reports()[0]!.language).toEqual(expected);
+      expect(payload).toEqual(original);
+    });
+
+    it('supports an array in fallback caller metadata', async () => {
+      await run(input(), {
+        language: ['ar', 'en'],
+      });
+      expect(reports()[0]!.language).toEqual(['ar', 'en']);
+    });
+
+    it('preserves collector arrays over fallback metadata', async () => {
+      await run(input(['he', 'ar']), {
+        language: 'en',
+      });
+      expect(reports()[0]!.language).toEqual(['he', 'ar']);
+    });
+
+    it.each([
+      { language: ['en', 'zz'] },
+      { language: ['ar', 'eng'] },
+      { language: ['en', 'unknown'] },
+      { language: ['en', ''] },
+      { language: ['en', 'AR'] },
+      { language: ['en', 42] },
+      { language: ['en', null] },
+      { language: ['en', {}] },
+    ])(
+      'rejects the entire collector array $language before Kafka',
+      async ({ language }) => {
+        await expect(run(input(language))).rejects.toMatchObject({
+          code: 'validation_failed',
+        });
+        expect(send).not.toHaveBeenCalled();
+      },
+    );
+
+    it('rejects invalid codes in fallback metadata before Kafka', async () => {
+      await expect(
+        run(input(), { language: ['en', 'zz'] }),
+      ).rejects.toMatchObject({ code: 'validation_failed' });
+      expect(send).not.toHaveBeenCalled();
+    });
+  },
+);
+
 describe('generated ProfileScrapeResult variations', () => {
   it.each(Array.from({ length: 30 }, (_, index) => index))(
     'runs variation %i through every processor and checks the serialized Kafka schema',
@@ -127,7 +205,7 @@ describe('generated ProfileScrapeResult variations', () => {
           posts[postIndex]!.text.normalize('NFC').trim(),
         );
         expect(report.report_url).toBe(posts[postIndex]!.url);
-        expect(report.language).toBe(postIndex % 2 ? 'ar' : 'unknown');
+        expect(report.language).toEqual(postIndex % 2 ? ['ar'] : []);
         expect(report.media_type).toEqual([
           'text',
           ...posts[postIndex]!.media.map((media) => media.type),
@@ -139,8 +217,8 @@ describe('generated ProfileScrapeResult variations', () => {
     },
   );
 
-  it.each([undefined, null, '', '   ', '\n\t', 'unknown'])(
-    'defaults missing/empty collector language %j to unknown',
+  it.each([undefined, null, '', '   ', '\n\t'])(
+    'defaults missing/empty collector language %j to an empty array',
     async (language) => {
       const post = createMockScrapedPost();
       Reflect.set(post, 'language', language);
@@ -148,7 +226,7 @@ describe('generated ProfileScrapeResult variations', () => {
         'ProfileScrapeResult',
         createMockBatchResult({ posts: [post] }),
       );
-      expect(reports()[0]!.language).toBe('unknown');
+      expect(reports()[0]!.language).toEqual([]);
     },
   );
 
@@ -164,9 +242,9 @@ describe('generated ProfileScrapeResult variations', () => {
       { language: 'fr' },
     );
     expect(reports().map((report) => report.language)).toEqual([
-      'en',
-      'ar',
-      'he',
+      ['en'],
+      ['ar'],
+      ['he'],
     ]);
   });
 
@@ -178,11 +256,20 @@ describe('generated ProfileScrapeResult variations', () => {
         createMockBatchResult(),
         { language },
       );
-      expect(reports()[0]!.language).toBe('unknown');
+      expect(reports()[0]!.language).toEqual([]);
     },
   );
 
-  it.each(['zz', 'eng', 'EN', 'not-a-language', 42, {}, ['en']])(
+  it.each([
+    'zz',
+    'eng',
+    'EN',
+    'unknown',
+    'not-a-language',
+    42,
+    {},
+    ['en', 'zz'],
+  ])(
     'rejects an invalid collector language %j without publishing',
     async (language) => {
       const post = createMockScrapedPost();
@@ -242,22 +329,19 @@ describe('generated ProfileScrapeResult variations', () => {
 });
 
 describe('language handling in Telegram ParsedMessage', () => {
-  it('defaults language to unknown and preserves a supplied collector code', async () => {
+  it('defaults language to an empty array and wraps a supplied collector code', async () => {
     const runner = workflow(publisher);
     await runner.run('ParsedMessage', telegramInput());
     const message = telegramInput();
     Reflect.set(message, 'language', 'he');
     await runner.run('ParsedMessage', message);
-    expect(reports().map((report) => report.language)).toEqual([
-      'unknown',
-      'he',
-    ]);
+    expect(reports().map((report) => report.language)).toEqual([[], ['he']]);
   });
 
   it('uses caller language metadata when the collector did not provide a language field', async () => {
     const runner = workflow(publisher);
     await runner.run('ParsedMessage', telegramInput(), { language: 'ar' });
-    expect(reports().map((report) => report.language)).toEqual(['ar']);
+    expect(reports().map((report) => report.language)).toEqual([['ar']]);
   });
 });
 
@@ -305,7 +389,7 @@ describe('Telegram ParsedMessage through the complete workflow', () => {
         media_type: index % 2 ? ['text', kind] : ['text'],
         report_title: null,
         content: message.text!.normalize('NFC').trim(),
-        language: 'unknown',
+        language: [],
         matches: [],
         published_at: message.postedAt.toISOString(),
         collected_at: expect.any(String),

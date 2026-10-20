@@ -13,8 +13,8 @@ export interface RawReport {
   media_type: string[];
   report_title: string | null;
   content: string;
-  /** Collector ISO 639-1 code, or unknown when no language was supplied. */
-  language: string;
+  /** Collector ISO 639-1 codes; empty when no language was supplied. */
+  language: string[];
   matches: string[];
   published_at: string | null;
   collected_at: string;

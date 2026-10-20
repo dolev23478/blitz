@@ -113,7 +113,7 @@ try {
   });
   assert.deepEqual(
     wholeBatchReports.map((report) => report.language),
-    ['unknown', 'unknown'],
+    [[], []],
   );
   assert.deepEqual(
     stages.filter((stage) => stage.startsWith('original-whole-batch:')),
@@ -144,7 +144,7 @@ try {
   );
   assert.deepEqual(
     splitReports.map((report) => report.language),
-    ['en', 'ar'],
+    [['en'], ['ar']],
   );
   for (const report of splitReports) assert.ok(validate(report));
   assert.deepEqual(input, before);
@@ -199,7 +199,7 @@ try {
       assert.equal(report.content, posts[index].text.normalize('NFC').trim());
       assert.equal(report.report_url, posts[index].url);
       assert.equal(report.account_name, posts[index].authorHandle);
-      assert.equal(report.language, index % 2 ? 'ar' : 'unknown');
+      assert.deepEqual(report.language, index % 2 ? ['ar'] : []);
       assert.deepEqual(report.media_type, [
         'text',
         ...posts[index].media.map((media) => media.type),
@@ -226,7 +226,7 @@ try {
       kafkaSends: 0,
     });
   }
-  for (const language of ['zz', 'eng', 'EN', 42, {}, ['en']]) {
+  for (const language of ['zz', 'eng', 'EN', 42, {}, ['en', 'zz']]) {
     const post = createMockScrapedPost();
     post.language = language;
     captured.length = 0;
@@ -290,7 +290,7 @@ try {
       'KafkaJS producer transport captured; no broker contacted and no real broker acknowledgment.',
     schemaUsed: 'src/contracts/provisional-raw-report.schema.ts',
     authoritativeDESchemaAvailable: false,
-    missingLanguageDefaultsToUnknown: true,
+    missingLanguageDefaultsToEmptyArray: true,
     generatedRuns: {
       batches: 100,
       reports: generatedReports.length,
@@ -306,7 +306,7 @@ try {
       actualLanguages: wholeBatchReports.map((report) => report.language),
       contentLanguagesForReference: ['en', 'ar'],
       languagePolicy:
-        'No language detection. Missing collector language is explicitly unknown.',
+        'No language detection. Missing collector language is an empty array.',
     },
     separateCallsWithExplicitLanguages: {
       actualLanguages: splitReports.map((report) => report.language),
@@ -314,7 +314,7 @@ try {
     },
     contractNotes: {
       schema_version: 'Always the string 1.0.0, as confirmed by the user.',
-      language: 'ISO 639-1 or unknown, as confirmed by the user.',
+      language: 'Array of ISO 639-1 codes; a scalar code is wrapped; missing language is [].',
       report_id:
         'Signed int32 JSON integer, as confirmed by the user; Kafka key is its decimal string.',
       nullableNames:

@@ -4,6 +4,7 @@ import {
   IS_OFFICIAL,
   SCHEMA_VERSION,
 } from '../common/constants.js';
+import { ISO_639_1_CODES } from '../common/languages.js';
 
 /** LOCAL MVP rules only. Replace/reconcile with the actual DE contract. */
 export const provisionalRawReportSchema = {
@@ -40,7 +41,10 @@ export const provisionalRawReportSchema = {
     media_type: { type: 'array', items: { type: 'string', minLength: 1 } },
     report_title: { type: ['string', 'null'] },
     content: { type: 'string', minLength: 1, pattern: '\\S' },
-    language: { type: 'string', pattern: '^(unknown|[a-z]{2})$' },
+    language: {
+      type: 'array',
+      items: { type: 'string', enum: ISO_639_1_CODES },
+    },
     matches: { type: 'array', items: { type: 'string' } },
     published_at: {
       anyOf: [

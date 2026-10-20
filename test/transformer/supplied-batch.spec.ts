@@ -58,7 +58,7 @@ const expectedReportsWithSharedLanguage = [
     report_title: null,
     content:
       'Breaking: Regional developments update following high-level diplomatic talks in Geneva.',
-    language: 'en',
+    language: ['en'],
     matches: [],
     published_at: '2026-10-19T14:15:00.000Z',
     collected_at: '2026-10-19T14:30:00.000Z',
@@ -75,7 +75,7 @@ const expectedReportsWithSharedLanguage = [
     report_title: null,
     content: 'موجز الأخبار: استمرار المشاورات الدولية بشأن سبل التهدئة.',
     // Existing batch-level metadata applies this code to every post; this is a known limitation.
-    language: 'en',
+    language: ['en'],
     matches: [],
     published_at: '2026-10-19T14:02:10.000Z',
     collected_at: '2026-10-19T14:30:00.000Z',
@@ -122,12 +122,12 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
     expect(payload).toEqual(original);
     // Schema validity alone cannot establish the actual language of the Arabic content.
     expect(actualReports.map((report) => report.language)).not.toEqual([
-      'en',
-      'ar',
+      ['en'],
+      ['ar'],
     ]);
   });
 
-  it('publishes the original example without metadata using unknown for both languages', async () => {
+  it('publishes the original example without metadata using empty language arrays', async () => {
     await workflow(publisher).run('ProfileScrapeResult', mockBatchScrapeResult);
     const reports = send.mock.calls.map(([record]) =>
       JSON.parse(record.messages[0]!.value as string),
@@ -135,7 +135,7 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
     expect(reports).toEqual(
       expectedReportsWithSharedLanguage.map((report) => ({
         ...report,
-        language: 'unknown',
+        language: [],
       })),
     );
   });
@@ -159,7 +159,7 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
     expect(actual).toEqual(
       expectedReportsWithSharedLanguage.map((report, index) => ({
         ...report,
-        language: index === 0 ? 'en' : 'ar',
+        language: [index === 0 ? 'en' : 'ar'],
       })),
     );
   });

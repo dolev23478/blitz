@@ -77,7 +77,7 @@ describe('Telegram collector handoff', () => {
       media_type: ['text', 'video'],
       account_name: 'Dana',
       channel_name: 'blitz',
-      language: 'en',
+      language: ['en'],
       content: 'Telegram report',
     });
     expect(message).toEqual(snapshot);

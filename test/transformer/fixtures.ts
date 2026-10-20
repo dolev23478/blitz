@@ -75,7 +75,7 @@ export function rawReport(overrides: Partial<RawReport> = {}): RawReport {
     media_type: ['text'],
     report_title: null,
     content: 'Telegram report',
-    language: 'en',
+    language: ['en'],
     matches: [],
     published_at: '2026-10-19T09:00:00.000Z',
     collected_at: '2026-10-19T10:00:00.000Z',

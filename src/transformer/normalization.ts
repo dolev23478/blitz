@@ -1,10 +1,6 @@
 import { Ajv } from 'ajv';
 import addFormats from 'ajv-formats';
-import {
-  IS_OFFICIAL,
-  SCHEMA_VERSION,
-  UNKNOWN_LANGUAGE,
-} from '../common/constants.js';
+import { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
 import type { RawReportCandidate } from '../contracts/schema.js';
 
 const ajv = new Ajv();
@@ -18,7 +14,17 @@ function utc(value: unknown): unknown {
   return new Date(value as string).toISOString();
 }
 
-/** Normalize values; an absent language stays explicitly unknown. */
+/** Wrap a scalar code, preserving array entries for validation without filtering them. */
+function languageCodes(value: unknown): unknown {
+  if (value === undefined || value === null) return [];
+  if (typeof value === 'string') {
+    const code = value.trim();
+    return code ? [code] : [];
+  }
+  return value;
+}
+
+/** Normalize collector values to the report's wire types. */
 export function normalizeReport(
   candidate: RawReportCandidate,
 ): RawReportCandidate {
@@ -38,10 +44,7 @@ export function normalizeReport(
         ? candidate.report_title.trim() || null
         : (candidate.report_title ?? null),
     content,
-    language:
-      typeof candidate.language === 'string'
-        ? candidate.language.trim() || UNKNOWN_LANGUAGE
-        : (candidate.language ?? UNKNOWN_LANGUAGE),
+    language: languageCodes(candidate.language),
     media_type:
       typeof candidate.media_type === 'string'
         ? [candidate.media_type]

@@ -458,7 +458,7 @@ describe('Transformer workflow through the Kafka boundary', () => {
       expect(report).toMatchObject({
         schema_version: '1.0.0',
         is_official: false,
-        language: options.language,
+        language: [options.language],
       });
     },
   );
@@ -565,7 +565,7 @@ describe('Transformer workflow through the Kafka boundary', () => {
       collected_at: '2026-10-20T08:00:00.000Z',
       published_at: new Date(input.postedAt).toISOString(),
       report_url: input.url,
-      language: 'unknown',
+      language: [],
     });
     expect(input).toEqual(snapshot);
   });

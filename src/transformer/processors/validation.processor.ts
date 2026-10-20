@@ -4,7 +4,6 @@ import { readFileSync } from 'node:fs';
 import { Ajv, type ValidateFunction } from 'ajv';
 import addFormats from 'ajv-formats';
 import { State, TransformerErrorCode } from '../../common/enums.js';
-import { UNKNOWN_LANGUAGE } from '../../common/constants.js';
 import { TransformerException } from '../../common/exceptions.js';
 import { provisionalRawReportSchema } from '../../contracts/provisional-raw-report.schema.js';
 import type { RawReport, RawReportCandidate } from '../../contracts/schema.js';
@@ -15,10 +14,6 @@ export class ValidationProcessor {
   readonly stage = State.Validation;
   private readonly validateLocal: ValidateFunction<RawReport>;
   private readonly validateDE?: ValidateFunction;
-  private readonly languages = new Intl.DisplayNames(['en'], {
-    type: 'language',
-    fallback: 'none',
-  });
 
   constructor(config: ConfigService) {
     const ajv = new Ajv({ allErrors: true });
@@ -54,11 +49,7 @@ export class ValidationProcessor {
         `Invalid RAW_REPORT fields: ${issues}`,
       );
     }
-    if (
-      /<\/?[a-z][^>]*>/i.test(candidate.content) ||
-      (candidate.language !== UNKNOWN_LANGUAGE &&
-        !this.languages.of(candidate.language))
-    ) {
+    if (/<\/?[a-z][^>]*>/i.test(candidate.content)) {
       throw new TransformerException(
         TransformerErrorCode.ValidationFailed,
         'Invalid parsed content or language code.',
