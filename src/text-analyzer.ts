@@ -114,11 +114,15 @@ export class TextAnalyzer {
     const allMatches: AnalyzeMatch[] = [];
     const allIssues: AnalyzeIssue[] = [];
     const seenMatchKeys = new Set<string>();
+    const matchedLanguages: string[] = [];
 
     for (const lang of targetLanguages) {
       const single = this.analyzeSingle(text, lang, options);
       for (const issue of single.issues) {
         allIssues.push(issue);
+      }
+      if (single.matches.length > 0) {
+        matchedLanguages.push(lang);
       }
       for (const match of single.matches) {
         const key = `${match.term}\u0000${match.concept ?? ""}\u0000${match.tokenStart}\u0000${match.tokenEnd}`;
@@ -138,7 +142,10 @@ export class TextAnalyzer {
       ...new Set(allMatches.map((match) => match.sourceFile)),
     ].sort();
 
-    const outputLanguages = targetLanguages.map(toOutputLanguage);
+    // Report only the languages that produced matches; with no matches, report what was scanned.
+    const outputLanguages = (
+      matchedLanguages.length > 0 ? matchedLanguages : targetLanguages
+    ).map(toOutputLanguage);
 
     return {
       text,

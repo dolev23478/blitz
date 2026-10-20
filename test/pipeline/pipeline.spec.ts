@@ -5,7 +5,7 @@
  *   -> the message that would go to Kafka.
  * Only the Kafka send is replaced: RecordingPublisher stands in for PublishingProcessor and
  * serializes with Yoav's ReportValidator, so the recorded key and value are what Kafka would get.
- * Redis is off. Run: npm run test:pipeline
+ * Redis is in-memory for Telegram (dedup claims) and off for X. Run: npm run test:pipeline
  */
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -59,6 +59,16 @@ const noRedis = {
   set: async () => 'OK',
 };
 
+/** In-memory stand-in for the Telegram listener's "seen message" claims (setIfAbsent/del). */
+function memoryRedis() {
+  const keys = new Set<string>();
+  return {
+    isEnabled: () => true,
+    setIfAbsent: async (key: string) => !keys.has(key) && Boolean(keys.add(key)),
+    del: async (key: string) => Number(keys.delete(key)),
+  };
+}
+
 /** Errors the pipeline logged, so a failing case says why nothing was sent. */
 const logged: string[] = [];
 beforeAll(() => {
@@ -81,7 +91,7 @@ async function runTelegram(
   };
   new TelegramListenerService(
     telegram as never,
-    noRedis as never,
+    memoryRedis() as never,
     workflow(publisher as unknown as PublishingProcessor),
   );
   const errors: string[] = [];
