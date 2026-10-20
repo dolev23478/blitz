@@ -43,6 +43,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         return;
       }
 
+      const startedAt = new Date();
       const lastScrapeAt = this.redis.isEnabled() ? await this.redis.get('x:last-scrape-at') : null;
       const since = lastScrapeAt ? new Date(lastScrapeAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
 
@@ -58,20 +59,14 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         `X cycle finished: handle=${result.handle}, totalPosts=${result.totalPosts}, provider=${result.providerUsed}`,
       );
 
-      await this.onXResult(result);
+      await this.onXResult(result, startedAt);
     } catch (err) {
       this.logger.error(`X scraper cycle failed: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
 
   /** Called automatically every time the cron cycle gets a result from X. */
-  private async onXResult(result: ProfileScrapeResult): Promise<void> {
-    const now = new Date().toISOString();
-
-    if (this.redis.isEnabled()) {
-      await this.redis.set('x:last-scrape-at', now);
-    }
-
+  private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
     const supportedLanguages = getDictionaryStore().languages();
     const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
       .map((language) => resolveLanguageAlias(language));
@@ -111,6 +106,11 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       source: 'x',
     });
 
-    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${now}`);
+    // Only advance the cursor once the batch was handed over, so a failed cycle re-pulls it next time.
+    if (this.redis.isEnabled()) {
+      await this.redis.set('x:last-scrape-at', startedAt.toISOString());
+    }
+
+    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${startedAt.toISOString()}`);
   }
 }
