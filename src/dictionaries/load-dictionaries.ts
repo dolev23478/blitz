@@ -18,7 +18,18 @@ export class DictionaryStore {
   ) {}
 
   getIndex(language: string): LanguageTermIndex | undefined {
-    return this.byLanguage.get(language.toLowerCase());
+    const key = language.toLowerCase();
+    if (key === "em") {
+      return (
+        this.byLanguage.get("em") ??
+        this.byLanguage.get("emoji") ??
+        this.byLanguage.get("emojis")
+      );
+    }
+    if (key === "emoji" || key === "emojis") {
+      return this.byLanguage.get(key) ?? this.byLanguage.get("em");
+    }
+    return this.byLanguage.get(key);
   }
 
   languages(): string[] {
