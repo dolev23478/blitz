@@ -94,11 +94,12 @@ function parseRawDataset(rawContent: string, filePath: string): DatasetItem[] {
 }
 
 async function runBenchmark() {
-  const customPath = process.argv[2];
+  const modeArg = (process.argv.find((a) => a.startsWith("--mode="))?.split("=")[1] as any) || "category_filter";
+  const customPath = process.argv.find((a) => !a.startsWith("--") && a !== process.argv[0] && a !== process.argv[1]);
   const targetPath = resolve(process.cwd(), customPath || "test/fixtures/terror-dataset.json");
 
   console.log("================================================================");
-  console.log("       TEXT ANALYZER BENCHMARK & DATASET VERIFICATION           ");
+  console.log(`  TEXT ANALYZER BENCHMARK [Mode: ${modeArg.toUpperCase()}]`);
   console.log("================================================================");
   console.log(`Loading dataset from: ${targetPath}\n`);
 
@@ -135,7 +136,7 @@ async function runBenchmark() {
 
   for (const item of dataset) {
     const lang = item.lang ?? "auto";
-    const result = analyzeText(item.text, lang);
+    const result = analyzeText(item.text, lang, { mode: modeArg });
 
     // Track languages
     if (result.languages) {

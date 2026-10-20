@@ -3,6 +3,7 @@ export {
   analyzeBatch,
   createTextAnalyzer,
   detectLanguages,
+  evaluateThreat,
   TextAnalyzer,
 } from "./text-analyzer.js";
 export {
@@ -19,12 +20,20 @@ export { hebrewNormalizer } from "./normalize/hebrew-normalizer.js";
 export { emojiNormalizer } from "./normalize/emoji-normalizer.js";
 export { padEmojis } from "./normalize/shared.js";
 export { parseDictionaryFile } from "./dictionaries/schema.js";
+export {
+  ThreatCategory,
+  ThreatMode,
+} from "./types.js";
 export type {
   AnalyzeIssue,
   AnalyzeMatch,
   AnalyzeTextOptions,
   AnalyzeTextResult,
+  CanonicalThreatCategory,
   DictionaryEntry,
   DictionaryLoadIssue,
   IndexedTerm,
+  RiskLevel,
+  ThreatEvaluation,
+  ThreatEvaluationMode,
 } from "./types.js";

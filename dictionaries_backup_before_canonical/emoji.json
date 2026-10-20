@@ -1,0 +1,781 @@
+{
+  "language": "emoji",
+  "entries": [
+    {
+      "term": "☠️",
+      "concept": "threat.death"
+    },
+    {
+      "term": "☠",
+      "concept": "threat.death"
+    },
+    {
+      "term": "☠",
+      "concept": "violence.death_or_poison"
+    },
+    {
+      "term": "☠️",
+      "concept": "violence.death_or_poison"
+    },
+    {
+      "term": "☠️",
+      "concept": "violence.death"
+    },
+    {
+      "term": "☢️",
+      "concept": "weapon.radiological_or_nuclear_context"
+    },
+    {
+      "term": "☢️☠️",
+      "concept": "weapon.radiological_or_nuclear_context"
+    },
+    {
+      "term": "☣️",
+      "concept": "weapon.biological_hazard_context"
+    },
+    {
+      "term": "☣️💀",
+      "concept": "weapon.biological_hazard_context"
+    },
+    {
+      "term": "☪️",
+      "concept": "target.muslim_identity_or_symbol"
+    },
+    {
+      "term": "⚔️",
+      "concept": "violence.weapon.blade"
+    },
+    {
+      "term": "⚔",
+      "concept": "violence.weapon.blade"
+    },
+    {
+      "term": "⚔️",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "⚔️💀",
+      "concept": "violence.blade_or_combat"
+    },
+    {
+      "term": "⚗️",
+      "concept": "weapon.chemical_or_biological_context"
+    },
+    {
+      "term": "⚠️",
+      "concept": "context.warning_or_alert"
+    },
+    {
+      "term": "⚡",
+      "concept": "context.impact_or_electricity"
+    },
+    {
+      "term": "⚰️",
+      "concept": "threat.death"
+    },
+    {
+      "term": "⚰",
+      "concept": "threat.death"
+    },
+    {
+      "term": "⚰️",
+      "concept": "violence.death_or_funeral"
+    },
+    {
+      "term": "⛏️",
+      "concept": "weapon.tool_potentially_violent"
+    },
+    {
+      "term": "⛪🔥",
+      "concept": "target.church"
+    },
+    {
+      "term": "⛴️",
+      "concept": "context.naval_or_transport"
+    },
+    {
+      "term": "🇮🇱",
+      "concept": "target.israel"
+    },
+    {
+      "term": "🇮🇱💥",
+      "concept": "target.israel"
+    },
+    {
+      "term": "🇮🇱🔥",
+      "concept": "target.israel"
+    },
+    {
+      "term": "🇮🇱🔫",
+      "concept": "target.israel"
+    },
+    {
+      "term": "✈️",
+      "concept": "context.aircraft_or_airstrike"
+    },
+    {
+      "term": "✊",
+      "concept": "context.protest_or_resistance"
+    },
+    {
+      "term": "✊🏻",
+      "concept": "context.protest_or_resistance"
+    },
+    {
+      "term": "✊🏼",
+      "concept": "context.protest_or_resistance"
+    },
+    {
+      "term": "✊🏽",
+      "concept": "context.protest_or_resistance"
+    },
+    {
+      "term": "✊🏾",
+      "concept": "context.protest_or_resistance"
+    },
+    {
+      "term": "✊🏿",
+      "concept": "context.protest_or_resistance"
+    },
+    {
+      "term": "✝️",
+      "concept": "target.christian_identity_or_symbol"
+    },
+    {
+      "term": "✡️",
+      "concept": "target.jewish_identity_or_symbol"
+    },
+    {
+      "term": "✡️🔥",
+      "concept": "target.jewish_identity_or_symbol"
+    },
+    {
+      "term": "❌",
+      "concept": "context.negation_or_rejection"
+    },
+    {
+      "term": "❗",
+      "concept": "context.warning_or_emphasis"
+    },
+    {
+      "term": "🌉",
+      "concept": "context.infrastructure"
+    },
+    {
+      "term": "🌊",
+      "concept": "context.disaster_or_threat"
+    },
+    {
+      "term": "🌋",
+      "concept": "violence.explosion_or_disaster"
+    },
+    {
+      "term": "🌪️",
+      "concept": "violence.disaster"
+    },
+    {
+      "term": "🌫️",
+      "concept": "context.smoke_or_haze"
+    },
+    {
+      "term": "🎖️",
+      "concept": "context.military_or_award"
+    },
+    {
+      "term": "🎯",
+      "concept": "context.targeting_or_aim"
+    },
+    {
+      "term": "🎯🇮🇱",
+      "concept": "target.israel"
+    },
+    {
+      "term": "🏅",
+      "concept": "context.award_or_achievement"
+    },
+    {
+      "term": "🏚️",
+      "concept": "violence.destruction_or_damage"
+    },
+    {
+      "term": "🏛️",
+      "concept": "target.government_or_cultural_building"
+    },
+    {
+      "term": "🏟️",
+      "concept": "target.stadium_or_venue"
+    },
+    {
+      "term": "🏠",
+      "concept": "target.building_or_residence"
+    },
+    {
+      "term": "🏢",
+      "concept": "target.building"
+    },
+    {
+      "term": "🏥",
+      "concept": "target.hospital"
+    },
+    {
+      "term": "🏦",
+      "concept": "target.bank"
+    },
+    {
+      "term": "🏫",
+      "concept": "target.school"
+    },
+    {
+      "term": "🏬",
+      "concept": "target.commercial_building"
+    },
+    {
+      "term": "🏳️‍🌈",
+      "concept": "context.identity_or_pride_ambiguous"
+    },
+    {
+      "term": "🏴",
+      "concept": "extremism.flag"
+    },
+    {
+      "term": "🏴",
+      "concept": "context.black_flag_or_protest"
+    },
+    {
+      "term": "🏴‍☠️",
+      "concept": "extremism.flag"
+    },
+    {
+      "term": "🏴‍☠️",
+      "concept": "context.piracy_or_militancy"
+    },
+    {
+      "term": "🏴‍☠️🔫",
+      "concept": "context.militancy_or_weapon"
+    },
+    {
+      "term": "🏹",
+      "concept": "weapon.projectile"
+    },
+    {
+      "term": "👀",
+      "concept": "context.observation_or_attention"
+    },
+    {
+      "term": "👁️",
+      "concept": "context.observation_or_surveillance"
+    },
+    {
+      "term": "👊",
+      "concept": "context.aggression_or_fighting"
+    },
+    {
+      "term": "👊🩸",
+      "concept": "violence.assault_or_injury"
+    },
+    {
+      "term": "👥",
+      "concept": "context.group_or_people"
+    },
+    {
+      "term": "👹",
+      "concept": "context.hostility_or_monster"
+    },
+    {
+      "term": "👺",
+      "concept": "context.hostility_or_monster"
+    },
+    {
+      "term": "👿",
+      "concept": "context.hostility_or_malice"
+    },
+    {
+      "term": "💀",
+      "concept": "threat.death"
+    },
+    {
+      "term": "💀",
+      "concept": "violence.death"
+    },
+    {
+      "term": "💀🩸",
+      "concept": "violence.death_or_injury"
+    },
+    {
+      "term": "💉",
+      "concept": "weapon.injection_or_medical_ambiguous"
+    },
+    {
+      "term": "💢",
+      "concept": "context.anger"
+    },
+    {
+      "term": "💣",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "💣",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "💣💥",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "💥",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "💨",
+      "concept": "context.smoke_or_speed"
+    },
+    {
+      "term": "💬",
+      "concept": "context.message_or_quote"
+    },
+    {
+      "term": "📍",
+      "concept": "context.location_marker"
+    },
+    {
+      "term": "📛",
+      "concept": "context.warning_or_identifier"
+    },
+    {
+      "term": "📡",
+      "concept": "context.communication_or_surveillance"
+    },
+    {
+      "term": "📢",
+      "concept": "context.announcement_or_slogan"
+    },
+    {
+      "term": "📣",
+      "concept": "context.announcement_or_slogan"
+    },
+    {
+      "term": "🔊",
+      "concept": "context.loud_message_or_signal"
+    },
+    {
+      "term": "🔐",
+      "concept": "context.lock_or_security"
+    },
+    {
+      "term": "🔒",
+      "concept": "context.lock_or_restriction"
+    },
+    {
+      "term": "🔗",
+      "concept": "context.connection_or_restraint"
+    },
+    {
+      "term": "🔥",
+      "concept": "violence.fire_or_burning"
+    },
+    {
+      "term": "🔥🏠",
+      "concept": "violence.arson_or_property_attack"
+    },
+    {
+      "term": "🔥🏢",
+      "concept": "violence.arson_or_property_attack"
+    },
+    {
+      "term": "🔨",
+      "concept": "weapon.blunt_object"
+    },
+    {
+      "term": "🔩",
+      "concept": "context.tool_or_hardware"
+    },
+    {
+      "term": "🔪",
+      "concept": "violence.weapon.knife"
+    },
+    {
+      "term": "🔪",
+      "concept": "weapon.knife"
+    },
+    {
+      "term": "🔪🩸",
+      "concept": "violence.stabbing_or_injury"
+    },
+    {
+      "term": "🔫",
+      "concept": "violence.weapon.gun"
+    },
+    {
+      "term": "🔫",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "🔫🎯",
+      "concept": "context.targeting_or_aim"
+    },
+    {
+      "term": "🔫💥",
+      "concept": "violence.shooting_or_explosion"
+    },
+    {
+      "term": "🔴",
+      "concept": "context.alert_color_marker"
+    },
+    {
+      "term": "🔻",
+      "concept": "target.terrorist_marker"
+    },
+    {
+      "term": "🕌",
+      "concept": "target.mosque"
+    },
+    {
+      "term": "🕌🔥",
+      "concept": "target.mosque"
+    },
+    {
+      "term": "🕍",
+      "concept": "target.synagogue"
+    },
+    {
+      "term": "🕍💥",
+      "concept": "target.synagogue"
+    },
+    {
+      "term": "🕍🔥",
+      "concept": "target.synagogue"
+    },
+    {
+      "term": "🕎",
+      "concept": "target.jewish_identity_or_symbol"
+    },
+    {
+      "term": "🕳️",
+      "concept": "context.ambiguous_hole_or_disappearance"
+    },
+    {
+      "term": "🕵️",
+      "concept": "context.investigation_or_surveillance"
+    },
+    {
+      "term": "🖕",
+      "concept": "context.insult_or_hostility"
+    },
+    {
+      "term": "🗡️",
+      "concept": "violence.weapon.blade"
+    },
+    {
+      "term": "🗡",
+      "concept": "violence.weapon.blade"
+    },
+    {
+      "term": "🗡️",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "🗯️",
+      "concept": "context.angry_speech"
+    },
+    {
+      "term": "🤐",
+      "concept": "context.secrecy_or_silence"
+    },
+    {
+      "term": "🤒",
+      "concept": "context.illness"
+    },
+    {
+      "term": "🤕",
+      "concept": "violence.injury"
+    },
+    {
+      "term": "🤛",
+      "concept": "context.aggression_or_fighting"
+    },
+    {
+      "term": "🤜",
+      "concept": "context.aggression_or_fighting"
+    },
+    {
+      "term": "🤫",
+      "concept": "context.secrecy_or_silence"
+    },
+    {
+      "term": "🤬",
+      "concept": "context.hostility_or_abuse"
+    },
+    {
+      "term": "🤬🔫",
+      "concept": "context.hostility_with_weapon_symbol"
+    },
+    {
+      "term": "🥀",
+      "concept": "context.death_or_sadness"
+    },
+    {
+      "term": "🥊",
+      "concept": "context.fighting_or_sport"
+    },
+    {
+      "term": "🥋",
+      "concept": "context.combat_or_sport"
+    },
+    {
+      "term": "🦠",
+      "concept": "weapon.biological_context"
+    },
+    {
+      "term": "🦴",
+      "concept": "violence.injury_or_body"
+    },
+    {
+      "term": "🦾",
+      "concept": "context.strength_or_cyborg"
+    },
+    {
+      "term": "🧑‍🤝‍🧑",
+      "concept": "context.group_or_people"
+    },
+    {
+      "term": "🧠",
+      "concept": "context.anatomy_or_injury"
+    },
+    {
+      "term": "🧨",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "🧨",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "🧨💥",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "🧪",
+      "concept": "weapon.chemical_or_biological_context"
+    },
+    {
+      "term": "🧪☠️",
+      "concept": "weapon.chemical_or_biological_context"
+    },
+    {
+      "term": "🧫",
+      "concept": "weapon.biological_context"
+    },
+    {
+      "term": "🧬",
+      "concept": "weapon.biological_context"
+    },
+    {
+      "term": "🧯",
+      "concept": "context.fire_safety"
+    },
+    {
+      "term": "🧱",
+      "concept": "violence.destruction_or_damage"
+    },
+    {
+      "term": "🧿",
+      "concept": "context.protective_or_cultural_symbol"
+    },
+    {
+      "term": "🩸",
+      "concept": "violence.blood"
+    },
+    {
+      "term": "🩸",
+      "concept": "violence.blood_or_injury"
+    },
+    {
+      "term": "🩹",
+      "concept": "violence.injury_or_first_aid"
+    },
+    {
+      "term": "🩼",
+      "concept": "violence.injury_or_disability"
+    },
+    {
+      "term": "🪂",
+      "concept": "context.parachute_or_airborne"
+    },
+    {
+      "term": "🪃",
+      "concept": "weapon.projectile"
+    },
+    {
+      "term": "🪈",
+      "concept": "context.ambiguous_object"
+    },
+    {
+      "term": "🪓",
+      "concept": "violence.weapon.axe"
+    },
+    {
+      "term": "🪓",
+      "concept": "weapon.axe"
+    },
+    {
+      "term": "🪓🩸",
+      "concept": "violence.blunt_or_blade_injury"
+    },
+    {
+      "term": "🪖",
+      "concept": "context.military"
+    },
+    {
+      "term": "🪚",
+      "concept": "weapon.tool_potentially_violent"
+    },
+    {
+      "term": "🪛",
+      "concept": "weapon.tool_potentially_violent"
+    },
+    {
+      "term": "🪢",
+      "concept": "context.binding_or_restraint"
+    },
+    {
+      "term": "🪤",
+      "concept": "context.trap"
+    },
+    {
+      "term": "🪦",
+      "concept": "violence.death_or_funeral"
+    },
+    {
+      "term": "🪧",
+      "concept": "context.protest_or_sign"
+    },
+    {
+      "term": "🫀",
+      "concept": "context.anatomy_or_injury"
+    },
+    {
+      "term": "🫁",
+      "concept": "context.anatomy_or_injury"
+    },
+    {
+      "term": "😈",
+      "concept": "context.malice_or_mischief"
+    },
+    {
+      "term": "😠",
+      "concept": "context.anger"
+    },
+    {
+      "term": "😡",
+      "concept": "context.anger"
+    },
+    {
+      "term": "😡🔪",
+      "concept": "context.anger_with_weapon_symbol"
+    },
+    {
+      "term": "😵",
+      "concept": "context.distress_or_injury"
+    },
+    {
+      "term": "😵‍💫",
+      "concept": "context.distress_or_injury"
+    },
+    {
+      "term": "🚀",
+      "concept": "weapon.missile_or_rocket"
+    },
+    {
+      "term": "🚀💥",
+      "concept": "violence.explosion_or_missile"
+    },
+    {
+      "term": "🚁",
+      "concept": "context.military_vehicle_or_aircraft"
+    },
+    {
+      "term": "🚑",
+      "concept": "context.medical_emergency"
+    },
+    {
+      "term": "🚒",
+      "concept": "context.fire_response"
+    },
+    {
+      "term": "🚓",
+      "concept": "context.police_or_emergency"
+    },
+    {
+      "term": "🚔",
+      "concept": "context.police_or_emergency"
+    },
+    {
+      "term": "🚢",
+      "concept": "context.naval_or_transport"
+    },
+    {
+      "term": "🚤",
+      "concept": "context.watercraft"
+    },
+    {
+      "term": "🚧",
+      "concept": "context.barrier_or_restricted_area"
+    },
+    {
+      "term": "🚨",
+      "concept": "context.warning_or_emergency"
+    },
+    {
+      "term": "🚨💥",
+      "concept": "context.emergency_with_explosion"
+    },
+    {
+      "term": "🚩",
+      "concept": "context.flag_or_warning"
+    },
+    {
+      "term": "🚪",
+      "concept": "context.entry_or_exit"
+    },
+    {
+      "term": "🚫",
+      "concept": "context.prohibition"
+    },
+    {
+      "term": "🚬",
+      "concept": "context.smoke_or_ambiguous"
+    },
+    {
+      "term": "🛐",
+      "concept": "target.religious_site_or_practice"
+    },
+    {
+      "term": "🛞",
+      "concept": "context.vehicle_or_infrastructure"
+    },
+    {
+      "term": "🛡️",
+      "concept": "context.defense_or_military"
+    },
+    {
+      "term": "🛣️",
+      "concept": "context.infrastructure"
+    },
+    {
+      "term": "🛤️",
+      "concept": "context.infrastructure"
+    },
+    {
+      "term": "🛩️",
+      "concept": "context.aircraft"
+    },
+    {
+      "term": "🛰️",
+      "concept": "context.surveillance_or_military_technology"
+    },
+    {
+      "term": "🆘",
+      "concept": "context.distress_or_emergency"
+    }
+  ]
+}
