@@ -30,7 +30,7 @@ beforeEach(() => {
     .mockResolvedValue([
       { topicName: 'reports.raw', partition: 0, errorCode: 0 },
     ]);
-  analyze.mockReset().mockReturnValue({ matched: true, terms: ['report'] });
+  analyze.mockReset().mockReturnValue({ matched: true, language: 'en', languages: ['en'], terms: ['report'] });
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Kafka.prototype, 'producer').mockReturnValue({
