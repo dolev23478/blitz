@@ -11,7 +11,7 @@ export interface ScrapeRequestDto {
 
 export interface SearchRequestDto {
   query: string;
-  maxPosts: number;
+  maxPosts?: number;
   outputFormat?: OutputFormat;
   name?: string;
   since?: string | number | Date;

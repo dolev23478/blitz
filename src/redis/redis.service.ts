@@ -40,7 +40,7 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     return this.client.publish(channel, message);
   }
 
-  async set(key: string, value: string): Promise<'OK'> {
+  async set(key: string, value: string): Promise<string> {
     if (!this.client) throw new Error('Redis is not connected');
     const result = await this.client.set(key, value);
     if (result !== 'OK') throw new Error('Redis did not confirm the write.');

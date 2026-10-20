@@ -5,6 +5,7 @@ import { analyzeText } from '../text-analyzer.js';
 import { RedisService } from '../redis/redis.service.js';
 import { TelegramService } from './telegram.service.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
+import { LANGUAGE_ALIASES, resolveLanguageAlias } from '../normalize/registry.js';
 import type { ParsedMessage } from '../types.js';
 
 @Injectable()
@@ -28,14 +29,16 @@ export class TelegramListenerService {
     }
 
     const supportedLanguages = getDictionaryStore().languages();
-    const filteredMessages: Array<ParsedMessage & { matchedLanguage: string; language: string }> = [];
+    const aliasAwareLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
+      .map((language) => resolveLanguageAlias(language));
+    const filteredMessages: Array<ParsedMessage & { matchedLanguage?: string; language?: string }> = [];
 
     if (event.messages?.length) {
       for (const message of event.messages) {
         if (!message || !message.text || !message.text.trim()) continue;
 
         let matchedLanguage: string | null = null;
-        for (const language of supportedLanguages) {
+        for (const language of aliasAwareLanguages) {
           const analysis = analyzeText(message.text, language);
           if (analysis.matched) {
             matchedLanguage = language;

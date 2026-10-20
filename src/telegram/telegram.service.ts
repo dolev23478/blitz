@@ -20,7 +20,7 @@ export class TelegramSourceError extends Error {
   }
 }
 
-export type TelegramState = 'disabled' | 'connecting' | 'ready' | 'error';
+export type TelegramState = 'disabled' | 'connecting' | 'ready' | 'offline' | 'error';
 
 export interface TelegramStatus {
   enabled: boolean;
@@ -248,7 +248,11 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     }
     this.me = me;
     this.logger.log(`logged in as ${me.name}`);
+<<<<<<< HEAD
+    c.onConnectionState.add((s: 'connecting' | 'connected' | 'disconnected' | 'offline' | 'error') => this.logger.log(`connection: ${s}`));
+=======
     c.onConnectionState.add((state) => this.logger.log(`connection: ${state}`));
+>>>>>>> 63f290e3a900ed0137fef64b2e62b6232df18478
 
     this.client = c;
     this.extractor = new ExtractorService(c, cfg);
