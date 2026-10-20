@@ -19,6 +19,7 @@ const dedicated = new Map<string, TextNormalizer>([
   ["iw", hebrewNormalizer],
   ["emoji", emojiNormalizer],
   ["emojis", emojiNormalizer],
+  ["em", emojiNormalizer],
 ]);
 
 const fallbacks = new Map<string, TextNormalizer>();

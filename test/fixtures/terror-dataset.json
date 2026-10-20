@@ -1,0 +1,138 @@
+[
+  {
+    "id": "HE-01",
+    "text": "פיגוע דקירה קטלני התרחש הבוקר ליד תחנת הרכבת",
+    "lang": "he",
+    "expected": true,
+    "category": "terror_attack",
+    "note": "Hebrew stabbing attack"
+  },
+  {
+    "id": "HE-02",
+    "text": "שיגור של עשרות רקטות ופצצות מרגמה לעבר יישובי הדרום",
+    "lang": "he",
+    "expected": true,
+    "category": "rockets_mortar",
+    "note": "Hebrew rocket barrage"
+  },
+  {
+    "id": "HE-03",
+    "text": "חוליית מחבלים חמושה ברובי קלצ'ניקוב ניסתה לחדור ליישוב",
+    "lang": "he",
+    "expected": true,
+    "category": "terror_squad",
+    "note": "Hebrew terrorist squad with weapons"
+  },
+  {
+    "id": "HE-04",
+    "text": "שלום לכולם, מזג האוויר היום חם ויפה לטיולים בשמורת הטבע",
+    "lang": "he",
+    "expected": false,
+    "category": "peaceful",
+    "note": "Hebrew negative control (peaceful)"
+  },
+  {
+    "id": "AR-01",
+    "text": "عملية إطلاق نار استهدفت حافلة ركاب في وسط المدينة",
+    "lang": "ar",
+    "expected": true,
+    "category": "shooting_attack",
+    "note": "Arabic shooting attack"
+  },
+  {
+    "id": "AR-02",
+    "text": "تفجير سيارة مفخخة وعبوة ناسفة شديدة الانفجار قرب السوق",
+    "lang": "ar",
+    "expected": true,
+    "category": "car_bomb",
+    "note": "Arabic car bomb and IED"
+  },
+  {
+    "id": "AR-03",
+    "text": "كتائب المقاومة تجهز صواريخ مضادة للدروع وقذائف هاون",
+    "lang": "ar",
+    "expected": true,
+    "category": "anti_tank_rockets",
+    "note": "Arabic anti-tank and mortar preparation"
+  },
+  {
+    "id": "AR-04",
+    "text": "صباح الخير، نتمنى لكم يوما سعيدا وموفقا في العمل والدراسة",
+    "lang": "ar",
+    "expected": false,
+    "category": "peaceful",
+    "note": "Arabic negative control (peaceful)"
+  },
+  {
+    "id": "FA-01",
+    "text": "حمله تروریستی با انفجار جلیقه انتحاری در میدان شلوغ",
+    "lang": "fa",
+    "expected": true,
+    "category": "suicide_vest",
+    "note": "Farsi suicide vest terror attack"
+  },
+  {
+    "id": "FA-02",
+    "text": "پرتاب پهپاد انتحاری و شلیک موشک های بالستیک به پایگاه هوایی",
+    "lang": "fa",
+    "expected": true,
+    "category": "drone_missile",
+    "note": "Farsi suicide drone and ballistic missiles"
+  },
+  {
+    "id": "FA-03",
+    "text": "امروز هوا بسیار معتدل است و برای گردش و پیاده روی مناسب است",
+    "lang": "fa",
+    "expected": false,
+    "category": "peaceful",
+    "note": "Farsi negative control (peaceful)"
+  },
+  {
+    "id": "EN-01",
+    "text": "A suicide bomber detonated an improvised explosive device in the subway station",
+    "lang": "en",
+    "expected": true,
+    "category": "bombing",
+    "note": "English suicide bomber / IED"
+  },
+  {
+    "id": "EN-02",
+    "text": "Armed terrorists opened fire with automatic rifles taking hostages inside the mall",
+    "lang": "en",
+    "expected": true,
+    "category": "mass_shooting_hostages",
+    "note": "English active shooter and hostages"
+  },
+  {
+    "id": "EN-03",
+    "text": "The quick brown fox jumps over the lazy dog and enjoys the sunny afternoon",
+    "lang": "en",
+    "expected": false,
+    "category": "peaceful",
+    "note": "English negative control (peaceful)"
+  },
+  {
+    "id": "EMOJI-01",
+    "text": "Target acquired tonight 🎯 🔫 💣 💥 ☠️",
+    "lang": "auto",
+    "expected": true,
+    "category": "threat_emoji",
+    "note": "Mixed English + violent threat emojis"
+  },
+  {
+    "id": "EMOJI-02",
+    "text": "Happy birthday my dear friend! 🎂 🎉 🌸 ✨",
+    "lang": "auto",
+    "expected": false,
+    "category": "peaceful_emoji",
+    "note": "Peaceful emojis"
+  },
+  {
+    "id": "MIXED-01",
+    "text": "تحضير هجوم صاروخي الليلة עם שיגור רקטות 🚀 💥",
+    "lang": "auto",
+    "expected": true,
+    "category": "multilingual_mix",
+    "note": "Arabic + Hebrew + Rocket emojis in a single text"
+  }
+]

@@ -94,6 +94,7 @@ export interface AnalyzeTextResult {
   text: string;
   content: string;
   language: string;
+  languages?: string[];
   matched: boolean;
   terms: string[];
   matches: AnalyzeMatch[];
