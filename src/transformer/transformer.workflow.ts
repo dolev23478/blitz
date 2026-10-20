@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { State } from '../common/enums.js';
 import type { ProfileScrapeResult } from '../x-scraper/contracts/x-scraper.interfaces.js';
 import type { ParsedMessage } from '../types.js';
+import type { RadioTranscript } from '../radio/radio.types.js';
 import type { MappingFormat } from '../contracts/mappings.js';
 import { CompletionProcessor } from './processors/completion.processor.js';
 import { MappingProcessor } from './processors/mapping.processor.js';
@@ -35,6 +36,11 @@ export class TransformerWorkflow {
   run(
     format: 'ParsedMessage',
     data: ParsedMessage,
+    options?: RunOptions,
+  ): Promise<WorkflowResult[]>;
+  run(
+    format: 'RadioTranscript',
+    data: RadioTranscript,
     options?: RunOptions,
   ): Promise<WorkflowResult[]>;
 

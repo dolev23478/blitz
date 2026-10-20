@@ -16,6 +16,7 @@ import {
   radioDataDirectory,
   radioStationsSchema,
   readRadioSettings,
+  radioPublicBaseUrlSchema,
 } from '../src/radio/radio.config.js';
 import { RadioService } from '../src/radio/radio.service.js';
 import {
@@ -65,6 +66,14 @@ afterEach(async () => {
 });
 
 describe('radio configuration', () => {
+  it.each([
+    'file:///outside',
+    'https://user:password@example.com',
+    'https://example.com?token=secret',
+    'https://example.com#fragment',
+  ])('rejects an invalid public clip URL base %s', (value) => {
+    expect(() => radioPublicBaseUrlSchema.parse(value)).toThrow();
+  });
   it('starts with the app by default and uses the three constants', () => {
     const settings = readRadioSettings(loadConfig({}));
     expect(settings.RADIO_ENABLED).toBe(true);
@@ -108,6 +117,32 @@ describe('radio configuration', () => {
 });
 
 describe('radio capture and archive', () => {
+  it('waits for an optional Transformer handoff after archiving, and supports removing it', async () => {
+    let finish!: () => void;
+    const listener = vi.fn(async (clip) => {
+      expect(await radio.readClip(clip.clipId)).toEqual(clip);
+      await new Promise<void>((resolve) => {
+        finish = resolve;
+      });
+    });
+    const unsubscribe = radio.watchTranscripts(listener);
+    const active = radio.collectOnce([station]);
+    await vi.waitFor(() => expect(listener).toHaveBeenCalledOnce());
+    expect((await radio.collectOnce([station])).skipped).toBe(true);
+    finish();
+    await active;
+    unsubscribe();
+    await radio.collectOnce([station]);
+    expect(listener).toHaveBeenCalledOnce();
+  });
+  it('does not hold shutdown open while a handed-off report waits for Kafka retries', async () => {
+    const listener = vi.fn(() => new Promise<void>(() => undefined));
+    radio.watchTranscripts(listener);
+    const active = radio.collectOnce([station]);
+    await vi.waitFor(() => expect(listener).toHaveBeenCalledOnce());
+    await radio.onModuleDestroy();
+    expect((await active).clips).toHaveLength(1);
+  });
   it('archives complete JSON and readable text and logs the actual transcript', async () => {
     const result = await radio.collectOnce([station]);
     expect(result.failedStations).toEqual([]);

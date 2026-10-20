@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { ISO_639_1_CODES } from '../common/languages.js';
+import { INT32_MAX } from '../common/constants.js';
 import { radioStationSchema } from './radio.config.js';
 
 export const captureResultSchema = z
@@ -45,6 +46,11 @@ export const radioTranscriptSchema = captureResultSchema.safeExtend({
   clipId: z.uuidv4(),
   station: radioStationSchema,
   status: z.enum(['transcribed', 'no_speech']),
+  /** Optional shared collector metadata; absent from the Python ASR result. */
+  report_id: z.number().int().min(0).max(INT32_MAX).optional(),
+  languages: z.array(z.enum(ISO_639_1_CODES)).nullable().optional(),
+  categories: z.array(z.string()).nullable().optional(),
+  matches: z.array(z.string()).optional(),
 });
 export type RadioTranscript = z.infer<typeof radioTranscriptSchema>;
 export interface RadioCycleResult {

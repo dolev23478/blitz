@@ -32,6 +32,23 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
   private timer?: NodeJS.Timeout;
   private active?: Promise<RadioCycleResult>;
   private closing = false;
+  private finishHandoffOnShutdown!: () => void;
+  private readonly shutdown = new Promise<void>((resolve) => {
+    this.finishHandoffOnShutdown = resolve;
+  });
+  private readonly transcriptListeners = new Set<
+    (clip: RadioTranscript) => Promise<void>
+  >();
+
+  /** Collection stays usable alone; the application registers its Transformer handoff. */
+  watchTranscripts(
+    listener: (clip: RadioTranscript) => Promise<void>,
+  ): () => void {
+    this.transcriptListeners.add(listener);
+    return () => {
+      this.transcriptListeners.delete(listener);
+    };
+  }
 
   constructor(
     @Inject(APP_CONFIG) config: AppConfig,
@@ -72,7 +89,7 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
     }
   }
 
-  /** One sequential cycle. Existing work prevents overlap; no downstream service is called. */
+  /** One sequential cycle; waits for any registered handoff before moving to the next station. */
   async collectOnce(input?: RadioStation[]): Promise<RadioCycleResult> {
     if (this.active || this.closing)
       return {
@@ -156,6 +173,13 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
           language: clip.language,
           transcript: clip.text,
         });
+        if (clip.status === 'transcribed' && clip.text.trim()) {
+          for (const listener of this.transcriptListeners) {
+            if (this.closing) break;
+            // Publisher shutdown retains admitted reports in Redis; do not block Nest teardown on retries.
+            await Promise.race([listener(clip), this.shutdown]);
+          }
+        }
       } catch (error) {
         result.failedStations.push(station.id);
         const reason = this.reason(error);
@@ -241,6 +265,7 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
 
   async onModuleDestroy(): Promise<void> {
     this.closing = true;
+    this.finishHandoffOnShutdown();
     clearTimeout(this.timer);
     await this.worker.onModuleDestroy();
     await this.active?.catch(() => undefined);

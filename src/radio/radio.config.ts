@@ -11,8 +11,26 @@ const flag = z
   .union([z.boolean(), z.enum(['true', 'false'])])
   .transform((value) => value === true || value === 'true');
 
+export const radioPublicBaseUrlSchema = z.preprocess(
+  (value) => (value === '' ? undefined : value),
+  z
+    .url()
+    .refine((value) => {
+      const url = new URL(value);
+      return (
+        ['http:', 'https:'].includes(url.protocol) &&
+        !url.username &&
+        !url.password &&
+        !url.search &&
+        !url.hash
+      );
+    }, 'Expected an HTTP(S) base URL without credentials, query or fragment.')
+    .optional(),
+);
+
 export const radioEnvironment = {
   RADIO_ENABLED: flag.default(true),
+  RADIO_PUBLIC_BASE_URL: radioPublicBaseUrlSchema,
   RADIO_DATA_DIR: z.string().min(1).default('.radio'),
   RADIO_PYTHON_PATH: z
     .string()

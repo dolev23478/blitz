@@ -1,10 +1,10 @@
 # Internet radio collector
 
 Radio runs inside the existing Nest application, alongside Telegram and X.
-It records public internet audio and transcribes locally on CPU. This version
-only saves local evidence and logs text: it has no Transformer, Kafka, Redis,
-database or event-bus handoff. The rebuild guide's old publishing and RAW_REPORT
-mapping instructions are deliberately not implemented for this request.
+It records public internet audio and transcribes locally on CPU. In the full
+application, nonempty transcripts now pass through the shared Transformer after
+archiving and logging. Local diagnostic commands still collect without
+publishing or starting Redis/Kafka.
 
 ## Run
 
@@ -36,10 +36,24 @@ To run continuously with the entire existing application:
 npm run start
 ```
 
-`RadioModule` is imported by `AppModule`. Collection starts immediately after
-Nest initializes, and repeats until shutdown. The normal app still needs its
+`AppModule` imports `RadioTransformerModule`, connecting radio to the existing
+Transformer. Collection starts after Nest initializes and repeats until shutdown.
+The normal app still needs its
 existing collector credentials/infrastructure; use `radio:once` to test radio
 independently. No background process is installed by this feature.
+
+The handoff calls `transformer.run('RadioTranscript', clip)` and awaits the normal
+Kafka publisher. It uses `platform: 'internet_radio'`, `media_type: ['text']` and
+`languages: [clip.language]`. Original audio remains archived; `audio` is not
+added to the RAW_REPORT enum. Unknown original broadcast time becomes
+`published_at: null`; observed capture end becomes `collected_at`.
+
+Set `RADIO_PUBLIC_BASE_URL=https://your-reachable-blitz-host.example` for report
+URLs reachable by remote consumers; locally it defaults to `http://localhost:PORT`.
+Each URL identifies `/api/radio/clips/<uuid>`, not a shared station stream.
+Access still follows the API-key guard. No-speech clips stay local. A failed
+handoff preserves evidence without automatic archive replay. Kafka retry storage
+and policy remain owned by the existing Transformer publisher.
 
 ## Change recording behavior
 
@@ -58,7 +72,7 @@ there can be 1–10 stations with unique IDs and direct HTTP(S) audio URLs.
 
 Stations run sequentially. After ALL stations have finished recording and
 transcribing, a full pause begins. There is no recording during the pause,
-and a slow station cannot start overlapping cycles. Shutdown cancels the timer,
+and a slow station or pending publication cannot start overlapping cycles. Shutdown cancels the timer,
 kills active Python jobs, waits for their exit and preserves partial evidence.
 
 The initial list restores Al-Balad, Nisaa, Hayat, Iran International, Husna,

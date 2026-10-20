@@ -1,5 +1,6 @@
 /** Each name selects the mapper for that existing collector interface. */
-export type MappingFormat = 'ProfileScrapeResult' | 'ParsedMessage';
+export type MappingFormat =
+  'ProfileScrapeResult' | 'ParsedMessage' | 'RadioTranscript';
 
 /** Only fields missing from collector JSON; passed separately from the payload. */
 export interface ReportMetadata {
@@ -13,5 +14,5 @@ export interface ReportMetadata {
   channelName?: string | null;
   /** Telegram receipt time, captured by the workflow before processing. */
   collectedAt?: string;
-  source?: 'x' | 'telegram';
+  source?: 'x' | 'telegram' | 'radio';
 }
