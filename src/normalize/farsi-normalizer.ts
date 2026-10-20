@@ -2,6 +2,7 @@ import type { TextNormalizer } from "./types.js";
 import {
   applyUnicode,
   collapseSpaces,
+  getRepeatedCharVariants,
   punctuationToSpace,
   tokenizeNormalized,
 } from "./shared.js";
@@ -144,9 +145,12 @@ export class FarsiNormalizer implements TextNormalizer {
   }
 
   tokenVariants(token: string): string[] {
-    const variants = new Set<string>([token]);
-    for (const stem of stripAffixes(token)) {
-      variants.add(stem);
+    const baseTokens = getRepeatedCharVariants(token);
+    const variants = new Set<string>(baseTokens);
+    for (const b of baseTokens) {
+      for (const stem of stripAffixes(b)) {
+        variants.add(stem);
+      }
     }
     return [...variants];
   }

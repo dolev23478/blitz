@@ -354,10 +354,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "אדם",
-      "concept": "hate.slur"
-    },
-    {
       "term": "אדמה חרוכה",
       "concept": "violence.general"
     },
@@ -884,10 +880,6 @@
     {
       "term": "אירוע רב נפגעים",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "איש",
-      "concept": "target.civilian"
     },
     {
       "term": "אישה",
@@ -7374,10 +7366,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "בור",
-      "concept": "violence.torture"
-    },
-    {
       "term": "בור שיגור",
       "concept": "weapon.missile_rocket"
     },
@@ -9320,10 +9308,6 @@
     {
       "term": "בןזונה",
       "concept": "hate.slur"
-    },
-    {
-      "term": "בנזין",
-      "concept": "context.dual_use_material"
     },
     {
       "term": "בנח\"ל",
@@ -12174,10 +12158,6 @@
       "concept": "target.israel_location"
     },
     {
-      "term": "גבר",
-      "concept": "target.civilian"
-    },
-    {
       "term": "גברים",
       "concept": "target.civilian"
     },
@@ -12506,10 +12486,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "גמל",
-      "concept": "violence.general"
-    },
-    {
       "term": "גמלו",
       "concept": "violence.general"
     },
@@ -12768,10 +12744,6 @@
     {
       "term": "דליקה",
       "concept": "violence.arson"
-    },
-    {
-      "term": "דלק",
-      "concept": "context.dual_use_material"
     },
     {
       "term": "דם",
@@ -13676,10 +13648,6 @@
     {
       "term": "הבלפור",
       "concept": "target.israel"
-    },
-    {
-      "term": "הבנזין",
-      "concept": "violence.arson"
     },
     {
       "term": "הבנט",
@@ -17594,10 +17562,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "המשפחה",
-      "concept": "target.civilian"
-    },
-    {
       "term": "המשפיל",
       "concept": "violence.torture"
     },
@@ -18324,10 +18288,6 @@
     {
       "term": "הסולימאני",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "הסולר",
-      "concept": "violence.arson"
     },
     {
       "term": "הסופה",
@@ -20044,10 +20004,6 @@
     {
       "term": "הרכב הפוגע",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "הרם",
-      "concept": "context.general"
     },
     {
       "term": "הרמאללה",
@@ -35022,10 +34978,6 @@
       "concept": "target.israel_location"
     },
     {
-      "term": "חדש",
-      "concept": "target.israel_institution"
-    },
-    {
       "term": "חובט",
       "concept": "violence.assault"
     },
@@ -45040,10 +44992,6 @@
     {
       "term": "לוטר",
       "concept": "target.israel_institution"
-    },
-    {
-      "term": "לום",
-      "concept": "weapon.general"
     },
     {
       "term": "לז'יד",
@@ -56282,10 +56230,6 @@
       "concept": "target.israel_institution"
     },
     {
-      "term": "מחה",
-      "concept": "violence.general"
-    },
-    {
       "term": "מחו",
       "concept": "violence.general"
     },
@@ -61294,10 +61238,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "משפחה",
-      "concept": "target.civilian"
-    },
-    {
       "term": "משפחות",
       "concept": "target.civilian"
     },
@@ -62826,14 +62766,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "נפט",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "נפט",
-      "concept": "violence.arson"
-    },
-    {
       "term": "נפילה",
       "concept": "context.alert"
     },
@@ -63472,10 +63404,6 @@
     {
       "term": "סולימאני",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "סולר",
-      "concept": "context.dual_use_material"
     },
     {
       "term": "סופה",
@@ -68032,10 +67960,6 @@
     {
       "term": "שברים",
       "concept": "violence.assault"
-    },
-    {
-      "term": "שבת",
-      "concept": "target.jewish"
     },
     {
       "term": "שג'אוולין",
@@ -78984,6 +78908,150 @@
     {
       "term": "תתפשטי",
       "concept": "context.general"
+    },
+    {
+      "term": "קלאש",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "קלצ",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "החשבון בינינו ייסגר",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "החשבון ייסגר",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "החשבון איתכם פתוח",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "ייסגר בדם",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "לא תצאו מזה בחיים",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "לא תצאו מזה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "אתם הבאים בתור",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "אתם על הכוונת",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "הספירה לאחור החלה",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "הספירה לאחור",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עוקבים אחרי כל צעד",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עוקבים אחריכם",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אנחנו עוקבים אחרי",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אל תעופו על עצמכם",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עוד תשלמו על זה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "תשלמו על זה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "הפעם זה לא יעבור בשקט",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "זה לא יעבור לכם בשקט",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לא יעבור בשקט",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לא יהיה לכם שקט",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עוד תצטערו על היום",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "תצטערו על היום",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אל תחשבו שאתם חסינים",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אתם עוד תראו מה זה",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "הגיע הזמן למעשים",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "נמאס מהדיבורים",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "אנחנו לא שוכחים ולא סולחים",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לא שוכחים ולא סולחים",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "שתרגישו בעצמכם את הפחד",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "מישהו עוד ישלם על זה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "עוד ישלם על זה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "תאכלו את הכובע",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אתם לא יודעים מה מחכה לכם",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "הזמן שלכם הולך ואוזל",
+      "concept": "threat.intimidation"
     }
   ]
 }

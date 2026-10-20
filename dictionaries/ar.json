@@ -4202,10 +4202,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "إن",
-      "concept": "violence.explosion"
-    },
-    {
       "term": "إن إس أو",
       "concept": "target.israel_institution"
     },
@@ -9162,14 +9158,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "البنزين",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "البنزين",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "البهائم",
       "concept": "hate.slur"
     },
@@ -9854,16 +9842,8 @@
       "concept": "target.general"
     },
     {
-      "term": "الجامعة",
-      "concept": "target.general"
-    },
-    {
       "term": "الجامعة العبرية",
       "concept": "target.israel_institution"
-    },
-    {
-      "term": "الجامعه",
-      "concept": "target.general"
     },
     {
       "term": "الجامعه العبريه",
@@ -11854,10 +11834,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "السوق",
-      "concept": "target.general"
-    },
-    {
       "term": "السوكوت",
       "concept": "target.jewish"
     },
@@ -13114,20 +13090,8 @@
       "concept": "violence.assault"
     },
     {
-      "term": "الغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "الغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "الغاز المسيل للدموع",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "الغازات",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "الغالانت",
@@ -14716,14 +14680,6 @@
     {
       "term": "المحروق",
       "concept": "violence.arson"
-    },
-    {
-      "term": "المحطة",
-      "concept": "target.general"
-    },
-    {
-      "term": "المحطه",
-      "concept": "target.general"
     },
     {
       "term": "المحق",
@@ -17224,10 +17180,6 @@
     {
       "term": "امين الحسيني",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "ان",
-      "concept": "violence.explosion"
     },
     {
       "term": "ان اس او",
@@ -20634,10 +20586,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "بالبنزين",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "بالبهائم",
       "concept": "hate.slur"
     },
@@ -23584,18 +23532,6 @@
     {
       "term": "بالغاره",
       "concept": "violence.assault"
-    },
-    {
-      "term": "بالغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "بالغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "بالغازات",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "بالغالانت",
@@ -29306,10 +29242,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "بغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "بغالانت",
       "concept": "target.israel_institution"
     },
@@ -29520,10 +29452,6 @@
     {
       "term": "بقذيفه",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "بقر",
-      "concept": "violence.killing"
     },
     {
       "term": "بقر البطن",
@@ -31072,10 +31000,6 @@
     {
       "term": "بنزيف",
       "concept": "violence.assault"
-    },
-    {
-      "term": "بنزين",
-      "concept": "context.dual_use_material"
     },
     {
       "term": "بنسحق",
@@ -33610,10 +33534,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "تي",
-      "concept": "violence.explosion"
-    },
-    {
       "term": "تي إن تى",
       "concept": "weapon.explosive"
     },
@@ -33867,14 +33787,6 @@
     },
     {
       "term": "جامعات",
-      "concept": "target.general"
-    },
-    {
-      "term": "جامعة",
-      "concept": "target.general"
-    },
-    {
-      "term": "جامعه",
       "concept": "target.general"
     },
     {
@@ -34218,10 +34130,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "جزر",
-      "concept": "violence.killing"
-    },
-    {
       "term": "جزمة",
       "concept": "hate.slur"
     },
@@ -34354,10 +34262,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "جمع",
-      "concept": "context.general"
-    },
-    {
       "term": "جمعة الغضب",
       "concept": "threat.direct"
     },
@@ -34456,10 +34360,6 @@
     {
       "term": "جهاز تفجير",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "جهز",
-      "concept": "context.general"
     },
     {
       "term": "جهزوا",
@@ -34616,10 +34516,6 @@
     {
       "term": "حارقه",
       "concept": "violence.arson"
-    },
-    {
-      "term": "حاز",
-      "concept": "context.general"
     },
     {
       "term": "حاصر",
@@ -35208,10 +35104,6 @@
     {
       "term": "حصد الارواح",
       "concept": "violence.general"
-    },
-    {
-      "term": "حضر",
-      "concept": "context.general"
     },
     {
       "term": "حضروا",
@@ -38926,10 +38818,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "سوق",
-      "concept": "target.general"
-    },
-    {
       "term": "سوقا",
       "concept": "target.general"
     },
@@ -39220,10 +39108,6 @@
     {
       "term": "شذاذ الافاق",
       "concept": "hate.anti_israel"
-    },
-    {
-      "term": "شراء",
-      "concept": "context.general"
     },
     {
       "term": "شراميط",
@@ -42290,10 +42174,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "غاز",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "غاز أعصاب",
       "concept": "weapon.cbrn"
     },
@@ -43356,10 +43236,6 @@
     {
       "term": "فالعنيفه",
       "concept": "violence.general"
-    },
-    {
-      "term": "فالغاز",
-      "concept": "context.dual_use_material"
     },
     {
       "term": "فالغازات",
@@ -46562,14 +46438,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "كالغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "كالغازات",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "كالغدر",
       "concept": "context.conflict"
     },
@@ -49136,10 +49004,6 @@
     {
       "term": "لالبندقيه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "لالبنزين",
-      "concept": "context.dual_use_material"
     },
     {
       "term": "لالبوق",
@@ -52882,10 +52746,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "لغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "لغالانت",
       "concept": "target.israel_institution"
     },
@@ -53380,10 +53240,6 @@
     {
       "term": "لكلبشات",
       "concept": "violence.torture"
-    },
-    {
-      "term": "لكم",
-      "concept": "violence.assault"
     },
     {
       "term": "لكمائن",
@@ -54960,10 +54816,6 @@
     {
       "term": "للبندقيه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "للبنزين",
-      "concept": "context.dual_use_material"
     },
     {
       "term": "للبهائم",
@@ -57656,18 +57508,6 @@
     {
       "term": "للغاره",
       "concept": "violence.assault"
-    },
-    {
-      "term": "للغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "للغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "للغازات",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "للغالانت",
@@ -63074,14 +62914,6 @@
       "concept": "target.general"
     },
     {
-      "term": "محطة",
-      "concept": "target.general"
-    },
-    {
-      "term": "محطه",
-      "concept": "target.general"
-    },
-    {
       "term": "محق",
       "concept": "violence.genocide"
     },
@@ -66284,14 +66116,6 @@
     {
       "term": "نحيل ليلهم نهارا",
       "concept": "violence.general"
-    },
-    {
-      "term": "نخبة",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "نخبه",
-      "concept": "violence.terrorism"
     },
     {
       "term": "نختطف",
@@ -70466,10 +70290,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "والبنزين",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "والبهائم",
       "concept": "hate.slur"
     },
@@ -73428,18 +73248,6 @@
     {
       "term": "والغاره",
       "concept": "violence.assault"
-    },
-    {
-      "term": "والغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "والغاز",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "والغازات",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "والغالانت",
@@ -76726,10 +76534,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "وبنزين",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "وتأديب",
       "concept": "violence.general"
     },
@@ -79364,10 +79168,6 @@
     {
       "term": "وغاره",
       "concept": "violence.assault"
-    },
-    {
-      "term": "وغاز",
-      "concept": "context.dual_use_material"
     },
     {
       "term": "وغالانت",
@@ -83444,6 +83244,14 @@
     {
       "term": "سلاح آلي",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "كتائب النخبة",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "وحدة النخبة",
+      "concept": "violence.terrorism"
     }
   ]
 }

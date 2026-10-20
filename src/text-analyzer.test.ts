@@ -185,31 +185,30 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
   });
 
   it("supports mode switching between dictionary_only, category_filter, and smart", () => {
-    // 1. Dual-use word: бензин (بنزين) alone
-    const neutralGas = "محطة بيع بنزين"; // Gas station selling petrol
-    const legacyRes = analyzeText(neutralGas, "ar", { mode: "dictionary_only" });
+    // 1. Context-only word: 'conflict' without weapon/violence
+    const neutralContext = "diplomatic conflict between nations";
+    const legacyRes = analyzeText(neutralContext, "en", { mode: "dictionary_only" });
     expect(legacyRes.matched).toBe(true); // Legacy mode matches any dictionary word
-    expect(legacyRes.terms).toContain("بنزين");
+    expect(legacyRes.terms).toContain("conflict");
 
-    const filteredRes = analyzeText(neutralGas, "ar", { mode: "category_filter" });
-    expect(filteredRes.matched).toBe(false); // Filtered mode ignores dual-use alone!
-    expect(filteredRes.terms).toContain("بنزين");
-    expect(filteredRes.evaluation?.riskLevel).toBe("low");
+    const filteredRes = analyzeText(neutralContext, "en", { mode: "category_filter" });
+    expect(filteredRes.matched).toBe(false); // Filtered mode ignores context-only terms!
+    expect(filteredRes.terms).toContain("conflict");
 
-    // 2. Dual-use word with violence: сожгу бензином (حرق بالبنزين)
-    const violentGas = "سأحرق المبنى بالبنزين"; // Burn building with petrol
-    const violentFiltered = analyzeText(violentGas, "ar", { mode: "category_filter" });
-    expect(violentFiltered.matched).toBe(true); // Flagged because combined with arson/violence!
+    // 2. Violent context with weapons
+    const violentGas = "I will attack the building with rockets and bombs";
+    const violentFiltered = analyzeText(violentGas, "en", { mode: "category_filter" });
+    expect(violentFiltered.matched).toBe(true); // Flagged because combined with weapon/violence!
 
     // 3. Smart mode with risk scoring
-    const smartRes = analyzeText(violentGas, "ar", { mode: "smart" });
+    const smartRes = analyzeText(violentGas, "en", { mode: "smart" });
     expect(smartRes.matched).toBe(true);
     expect(smartRes.evaluation?.riskScore).toBeGreaterThanOrEqual(40);
     expect(smartRes.evaluation?.riskLevel).toBe("critical");
 
     // 4. Calling WITHOUT specifying language (auto-detection + options directly as 2nd arg)
-    const noLangOptions = analyzeText(neutralGas, { mode: "category_filter" });
-    expect(noLangOptions.languages).toContain("ar");
+    const noLangOptions = analyzeText(neutralContext, { mode: "category_filter" });
+    expect(noLangOptions.languages).toContain("en");
     expect(noLangOptions.matched).toBe(false); // Ignored in category_filter mode
     expect(noLangOptions.evaluation?.mode).toBe("category_filter");
 
@@ -224,11 +223,11 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
     const optionSmartBool = analyzeText("I will kill you with a bomb 💣", { smart: true });
     expect(optionSmartBool.evaluation?.mode).toBe("smart");
 
-    const optionFilterBool = analyzeText(neutralGas, { filter: true });
+    const optionFilterBool = analyzeText(neutralContext, { filter: true });
     expect(optionFilterBool.matched).toBe(false);
     expect(optionFilterBool.evaluation?.mode).toBe("category_filter");
 
-    const batchBool = analyzeBatch(["I will kill you with a bomb 💣", neutralGas], true);
+    const batchBool = analyzeBatch(["I will kill you with a bomb 💣", neutralContext], true);
     expect(batchBool[0].matched).toBe(true);
     expect(batchBool[0].evaluation?.mode).toBe("smart");
     expect(batchBool[1].matched).toBe(false);
@@ -254,6 +253,27 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
     expect(longRes.evaluation?.wordCount).toBeGreaterThan(120);
     expect(longRes.matched).toBe(false); // Dampened! Doesn't flag whole article as a terror threat!
     expect(longRes.evaluation?.flaggedReasons).toContain("Long text sparsity dampening applied (density: 1.73%)");
+  });
+
+  it("handles character repetition evasion without corrupting double-letter words like killer", () => {
+    // 1. Double-letter word 'killer' must remain 'killer' and NOT become 'kiler'
+    const killerRes = analyzeText("the serial killer was arrested", "en");
+    expect(killerRes.matched).toBe(true);
+    expect(killerRes.terms).toContain("killer");
+    expect(killerRes.terms).not.toContain("kiler");
+
+    // 2. Character repetition with 3+ identical letters (e.g. shoooooot riiiifles, kiiiill)
+    const repeatedRes = analyzeText("We will shoooooot everyone with riiiifles and kiiiill them", "en");
+    expect(repeatedRes.matched).toBe(true);
+    expect(repeatedRes.terms).toContain("shoot");
+    expect(repeatedRes.terms).toContain("rifles");
+    expect(repeatedRes.terms).toContain("kill");
+
+    // 3. Hebrew dotted acronyms and letter spacing (ק.ל.א.ש and נ..ר..צ..ח)
+    const hebrewDottedRes = analyzeText("אנחנו נ..ר..צ..ח את כולכם עם ק.ל.א.ש", "he");
+    expect(hebrewDottedRes.matched).toBe(true);
+    expect(hebrewDottedRes.terms).toContain("נרצח");
+    expect(hebrewDottedRes.terms).toContain("קלאש");
   });
 
   it("successfully tests against terror-dataset.json fixture", () => {

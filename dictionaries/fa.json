@@ -1354,10 +1354,6 @@
       "concept": "violence.arson"
     },
     {
-      "term": "آجر",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "آجر ها",
       "concept": "weapon.blade"
     },
@@ -2858,10 +2854,6 @@
       "concept": "target.israel_institution"
     },
     {
-      "term": "آهن",
-      "concept": "weapon.general"
-    },
-    {
       "term": "آهن ها",
       "concept": "weapon.general"
     },
@@ -3620,10 +3612,6 @@
     {
       "term": "اتوماتیکها",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "اجر",
-      "concept": "weapon.blade"
     },
     {
       "term": "اجر ها",
@@ -8202,14 +8190,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "امروز",
-      "concept": "context.temporal"
-    },
-    {
-      "term": "امشب",
-      "concept": "context.temporal"
-    },
-    {
       "term": "امعا و احشا",
       "concept": "violence.assault"
     },
@@ -9600,10 +9580,6 @@
     {
       "term": "اهریمنی‌های",
       "concept": "hate.dehumanization"
-    },
-    {
-      "term": "اهن",
-      "concept": "weapon.general"
     },
     {
       "term": "اهن ها",
@@ -13962,14 +13938,6 @@
       "concept": "target.israel_location"
     },
     {
-      "term": "بنزين",
-      "concept": "context.dual_use_material"
-    },
-    {
-      "term": "بنزین",
-      "concept": "context.dual_use_material"
-    },
-    {
       "term": "بن‌گوير",
       "concept": "target.israel_institution"
     },
@@ -15146,10 +15114,6 @@
       "concept": "context.conflict"
     },
     {
-      "term": "بيل",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "بيمارستان هداسا",
       "concept": "target.israel_institution"
     },
@@ -15972,10 +15936,6 @@
     {
       "term": "بیکیسیها",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "بیل",
-      "concept": "weapon.blade"
     },
     {
       "term": "بیمارستان هداسا",
@@ -18352,14 +18312,6 @@
     {
       "term": "تاراجها",
       "concept": "violence.assault"
-    },
-    {
-      "term": "تاريخ",
-      "concept": "context.temporal"
-    },
-    {
-      "term": "تاریخ",
-      "concept": "context.temporal"
     },
     {
       "term": "تازيانه",
@@ -24464,10 +24416,6 @@
     {
       "term": "جسدها",
       "concept": "violence.killing"
-    },
-    {
-      "term": "جشن",
-      "concept": "threat.direct"
     },
     {
       "term": "جشنواره نوا",
@@ -34750,22 +34698,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "زمانبندي",
-      "concept": "context.temporal"
-    },
-    {
-      "term": "زمان‌بندي",
-      "concept": "context.temporal"
-    },
-    {
-      "term": "زمانبندی",
-      "concept": "context.temporal"
-    },
-    {
-      "term": "زمان‌بندی",
-      "concept": "context.temporal"
-    },
-    {
       "term": "زمين سوخته",
       "concept": "violence.arson"
     },
@@ -35798,10 +35730,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "ساعت",
-      "concept": "context.temporal"
-    },
-    {
       "term": "ساعت صفر",
       "concept": "threat.direct"
     },
@@ -36076,10 +36004,6 @@
     {
       "term": "سجیلها",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "سحر",
-      "concept": "context.temporal"
     },
     {
       "term": "سحق كردن",
@@ -47538,10 +47462,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "فردا",
-      "concept": "context.temporal"
-    },
-    {
       "term": "فردو",
       "concept": "weapon.cbrn"
     },
@@ -55454,10 +55374,6 @@
       "concept": "context.conflict"
     },
     {
-      "term": "گاز",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "گاز اشك آور",
       "concept": "weapon.firearm"
     },
@@ -62434,10 +62350,6 @@
       "concept": "context.alert"
     },
     {
-      "term": "موعد",
-      "concept": "context.temporal"
-    },
-    {
       "term": "موقعيتيابي",
       "concept": "context.general"
     },
@@ -65962,22 +65874,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "نخبه",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "نخبه ها",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "نخبه‌ها",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "نخبهها",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "ندزد",
       "concept": "violence.kidnapping"
     },
@@ -68722,14 +68618,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "نيمهشب",
-      "concept": "context.temporal"
-    },
-    {
-      "term": "نيمه‌شب",
-      "concept": "context.temporal"
-    },
-    {
       "term": "نيونازي",
       "concept": "violence.genocide"
     },
@@ -68884,14 +68772,6 @@
     {
       "term": "نیمهخودکارها",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "نیمهشب",
-      "concept": "context.temporal"
-    },
-    {
-      "term": "نیمه‌شب",
-      "concept": "context.temporal"
     },
     {
       "term": "نیونازی",
