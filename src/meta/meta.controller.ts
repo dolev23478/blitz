@@ -11,9 +11,4 @@ export class MetaController {
   health() {
     return this.meta.health();
   }
-
-  @Get('stats')
-  stats() {
-    return this.meta.stats();
-  }
 }
