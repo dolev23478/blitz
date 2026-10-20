@@ -1,4 +1,10 @@
-import { Inject, Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  Logger,
+  type OnModuleDestroy,
+  type OnModuleInit,
+} from '@nestjs/common';
 import { createClient, type RedisClientType } from 'redis';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
 
@@ -19,7 +25,10 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     }
 
     try {
-      this.client = createClient({ url: this.config.REDIS_URL! });
+      this.client = createClient({
+        url: this.config.REDIS_URL!,
+        disableOfflineQueue: true,
+      });
       this.client.on('error', (err: Error) => {
         this.logger.warn(`Redis error: ${err.message}`);
         this.client = null;
@@ -45,9 +54,24 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     return this.enabled && this.client !== null;
   }
 
+  /** Atomic queue/lease operations reuse this application's existing connection. */
+  async eval(
+    script: string,
+    keys: string[],
+    arguments_: string[],
+  ): Promise<unknown> {
+    if (!this.client)
+      throw new Error(
+        'Redis is not connected; publication requires REDIS_URL.',
+      );
+    return this.client.eval(script, { keys, arguments: arguments_ });
+  }
+
   async publish(channel: string, message: string): Promise<number> {
     if (!this.client) {
-      this.logger.warn(`Redis publish skipped for channel=${channel} because Redis is unavailable.`);
+      this.logger.warn(
+        `Redis publish skipped for channel=${channel} because Redis is unavailable.`,
+      );
       return 0;
     }
     return this.client.publish(channel, message);
@@ -55,7 +79,9 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
 
   async set(key: string, value: string): Promise<string> {
     if (!this.client) {
-      this.logger.warn(`Redis set skipped for key=${key} because Redis is unavailable.`);
+      this.logger.warn(
+        `Redis set skipped for key=${key} because Redis is unavailable.`,
+      );
       return '';
     }
     const result = await this.client.set(key, value);
@@ -72,7 +98,9 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
 
   async hset(hash: string, field: string, value: string): Promise<number> {
     if (!this.client) {
-      this.logger.warn(`Redis hset skipped for hash=${hash} field=${field} because Redis is unavailable.`);
+      this.logger.warn(
+        `Redis hset skipped for hash=${hash} field=${field} because Redis is unavailable.`,
+      );
       return 0;
     }
     return this.client.hSet(hash, field, value);

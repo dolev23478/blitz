@@ -1,10 +1,6 @@
 import { Ajv } from 'ajv';
 import addFormats from 'ajv-formats';
-import {
-  IS_OFFICIAL,
-  SCHEMA_VERSION,
-  UNKNOWN_LANGUAGE,
-} from '../common/constants.js';
+import { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
 import type { RawReportCandidate } from '../contracts/schema.js';
 
 const ajv = new Ajv();
@@ -18,17 +14,26 @@ function utc(value: unknown): unknown {
   return new Date(value as string).toISOString();
 }
 
-/** Normalize values; an absent language stays explicitly unknown. */
+/** Normalize aliases once; legacy language must never survive into the wire object. */
 export function normalizeReport(
   candidate: RawReportCandidate,
 ): RawReportCandidate {
+  const { language, ...report } = candidate;
+  const incomingLanguages =
+    candidate.languages !== undefined ? candidate.languages : language;
+  const languages =
+    typeof incomingLanguages === 'string'
+      ? incomingLanguages.trim()
+        ? [incomingLanguages.trim()]
+        : []
+      : (incomingLanguages ?? []);
   let content = candidate.content;
   if (typeof content === 'string') {
     content = content.normalize('NFC').trim();
   }
 
   return {
-    ...candidate,
+    ...report,
     schema_version: SCHEMA_VERSION,
     is_official: IS_OFFICIAL,
     account_name: candidate.account_name ?? null,
@@ -38,10 +43,8 @@ export function normalizeReport(
         ? candidate.report_title.trim() || null
         : (candidate.report_title ?? null),
     content,
-    language:
-      typeof candidate.language === 'string'
-        ? candidate.language.trim() || UNKNOWN_LANGUAGE
-        : (candidate.language ?? UNKNOWN_LANGUAGE),
+    languages,
+    categories: candidate.categories ?? [],
     media_type:
       typeof candidate.media_type === 'string'
         ? [candidate.media_type]

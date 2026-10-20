@@ -8,6 +8,7 @@ const client = vi.hoisted(() => ({
   connect: vi.fn(),
   quit: vi.fn(),
   set: vi.fn(),
+  eval: vi.fn(),
 }));
 vi.mock('redis', () => ({ createClient: () => client }));
 
@@ -24,6 +25,12 @@ afterEach(async () => {
 });
 
 describe('Redis write acknowledgment', () => {
+  it('executes atomic retry operations on the existing client connection', async () => {
+    client.eval.mockResolvedValue(1);
+    await expect(redis.eval('return 1', ['queue-key'], ['owner-token'])).resolves.toBe(1);
+    expect(client.eval).toHaveBeenCalledWith('return 1', { keys: ['queue-key'], arguments: ['owner-token'] });
+    expect(client.connect).toHaveBeenCalledOnce();
+  });
   it('returns OK only after the client confirms a write', async () => {
     client.set.mockResolvedValue('OK');
     await expect(redis.set('last-scrape-at', 'timestamp')).resolves.toBe('OK');

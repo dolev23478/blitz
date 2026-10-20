@@ -1,3 +1,4 @@
+import { FakeRetryQueue } from './fake-retry-queue.js';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Kafka, type Producer, type ProducerRecord } from 'kafkajs';
@@ -30,7 +31,14 @@ beforeEach(() => {
     .mockResolvedValue([
       { topicName: 'reports.raw', partition: 0, errorCode: 0 },
     ]);
-  analyze.mockReset().mockReturnValue({ matched: true, language: 'en', languages: ['en'], terms: ['report'] });
+  analyze
+    .mockReset()
+    .mockReturnValue({
+      matched: true,
+      language: 'en',
+      languages: ['en'],
+      terms: ['report'],
+    });
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Kafka.prototype, 'producer').mockReturnValue({
@@ -40,6 +48,7 @@ beforeEach(() => {
   } as unknown as Producer);
   publisher = new PublishingProcessor(
     new ConfigService({ KAFKA_BROKERS: 'capture.invalid:9092' }),
+    new FakeRetryQueue(),
   );
   const telegram = {
     watchResults: (callback: typeof deliver) => {
@@ -77,7 +86,8 @@ describe('Telegram collector handoff', () => {
       media_type: ['text', 'video'],
       account_name: 'Dana',
       channel_name: 'blitz',
-      language: 'en',
+      languages: ['en'],
+      categories: [],
       content: 'Telegram report',
     });
     expect(message).toEqual(snapshot);
