@@ -118,7 +118,9 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     for (const username of TELEGRAM_CHANNELS) {
       if (this.resolved.has(username)) continue;
       try {
-        const chat = await withFloodWait(() => c.getChat(username));
+        const chat = await withFloodWait(() => c.getChat(username), {
+          onWait: (s) => this.logger.warn(`Telegram flood wait: sleeping ${s}s while resolving @${username}`),
+        });
         this.chatIds.add(chat.id);
         this.usernameByChatId.set(chat.id, username);
         this.resolved.add(username);
@@ -208,7 +210,19 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
 
     this.client = c;
     this.extractor = new ExtractorService(c, cfg);
-    startMessageListener(c, this.chatIds, (dto) => this.publish(dto.chatId, [dto]));
+    startMessageListener(
+      c,
+      this.chatIds,
+      (dto) => this.publish(dto.chatId, [dto]),
+      (msg) => {
+        const username = TELEGRAM_CHANNELS.find((u) => u.toLowerCase() === msg.chat.username?.toLowerCase());
+        if (!username) return false;
+        this.chatIds.add(msg.chat.id);
+        this.usernameByChatId.set(msg.chat.id, username);
+        this.resolved.add(username);
+        return true;
+      },
+    );
 
     this.chatIds.clear();
     this.usernameByChatId.clear();
