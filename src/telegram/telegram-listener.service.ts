@@ -5,6 +5,7 @@ import { analyzeText } from '../text-analyzer.js';
 import { RedisService } from '../redis/redis.service.js';
 import { TelegramService } from './telegram.service.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
+import type { ParsedMessage } from '../types.js';
 
 @Injectable()
 export class TelegramListenerService {
@@ -27,10 +28,10 @@ export class TelegramListenerService {
     }
 
     const supportedLanguages = getDictionaryStore().languages();
-    const filteredMessages: Array<{ chatId: number; messageId: number; text: string; matchedLanguage?: string }> = [];
+    const filteredMessages: Array<ParsedMessage & { matchedLanguage: string; language: string }> = [];
 
-    if (Array.isArray((event as any).messages) && (event as any).messages.length > 0) {
-      for (const message of (event as any).messages) {
+    if (event.messages?.length) {
+      for (const message of event.messages) {
         if (!message || !message.text || !message.text.trim()) continue;
 
         let matchedLanguage: string | null = null;
@@ -56,27 +57,12 @@ export class TelegramListenerService {
     }
 
     for (const message of filteredMessages) {
-      const dto = {
-        chatId: message.chatId,
-        chatTitle: event.channel,
-        messageId: message.messageId,
-        date: new Date().toISOString(),
-        editDate: null,
-        isEdit: false,
-        senderId: null,
-        senderName: null,
-        text: message.text,
-        metrics: { views: null, forwards: null, reactions: [], commentsCount: null },
-        media: null,
-      };
-
-      await this.transformer.run('MessageDto', dto as any, {
+      await this.transformer.run('ParsedMessage', message, {
         language: message.matchedLanguage,
         matches: message.matchedLanguage ? [message.matchedLanguage] : [],
-        reportUrl: `https://telegram/${event.channelId}/${message.messageId}`,
-        collectedAt: new Date().toISOString(),
+        channelName: event.channel,
         source: 'telegram',
-      } as any);
+      });
     }
 
     this.logger.log(

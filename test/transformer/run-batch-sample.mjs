@@ -36,7 +36,8 @@ Kafka.prototype.producer = function (options) {
     },
     async send(record) {
       captured.push(structuredClone(record));
-      return []; // Simulated transport acknowledgment, not a real broker ACK.
+      // Simulated transport acknowledgment, not a real broker ACK.
+      return [{ topicName: record.topic, partition: 0, errorCode: 0 }];
     },
     async disconnect() {
       disconnections += 1;

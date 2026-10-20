@@ -2,6 +2,7 @@
   {
     "topic": "reports.raw",
     "acks": -1,
+    "timeout": 30000,
     "messages": [
       {
         "key": "3047412",
@@ -12,6 +13,7 @@
   {
     "topic": "reports.raw",
     "acks": -1,
+    "timeout": 30000,
     "messages": [
       {
         "key": "-886798368",

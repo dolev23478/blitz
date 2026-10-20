@@ -21,6 +21,7 @@ export interface SearchRequestDto {
 
 export interface BatchSourcesRequestDto {
   handles: string[];
+  /** Maximum posts in the combined batch; defaults to 100 when omitted. */
   maxPosts?: number;
   outputFormat?: OutputFormat;
   queryFilter?: string;
