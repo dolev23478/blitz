@@ -1,68 +1,67 @@
 # syntax=docker/dockerfile:1
 
-ARG NODE_VERSION=22-bookworm-slim
+# Node 24, as used in development (@types/node 24, docs/ARCHITECTURE.md).
+ARG NODE_VERSION=24-bookworm-slim
 
 # ==============================================================================
-# Build Stage: Install dependencies and compile TypeScript
+# Build stage: install dependencies and compile TypeScript
 # ==============================================================================
 FROM node:${NODE_VERSION} AS builder
 
 WORKDIR /app
 
-# Install build dependencies for native addons (e.g. better-sqlite3 / node-gyp fallback)
+# Toolchain for native addons: better-sqlite3 (via @mtcute/node) compiles when no prebuilt binary fits.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     make \
     g++ \
   && rm -rf /var/lib/apt/lists/*
 
-# Copy package manifests for reproducible dependency installation
+# Package manifests first, so the dependency layer is cached between source changes
 COPY package*.json ./
-
-# Install all dependencies (including devDependencies required for compilation)
 RUN npm ci
 
-# Copy TypeScript and Nest CLI configuration files
+# Compile with tsc (nest build): Nest DI needs the decorator metadata only tsc emits.
+# nest-cli.json copies src/database/migrations/*.sql into dist/.
 COPY tsconfig*.json nest-cli.json ./
-
-# Copy application source code (includes database migrations)
 COPY src/ ./src/
-
-# Compile TypeScript to dist/ and copy assets (e.g. SQL migrations)
 RUN npm run build
 
-# Prune development dependencies to keep production image size minimal
+# Keep only production dependencies for the runtime image
 RUN npm prune --omit=dev
 
 # ==============================================================================
-# Production Stage: Minimal runtime container
+# Runtime stage
 # ==============================================================================
 FROM node:${NODE_VERSION} AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV=production
-ENV PORT=3000
+# DICTIONARIES_DIR: read at runtime by the filter (src/dictionaries/load-dictionaries.ts).
+# OUTPUT_DIR: the X scraper writes its JSON/HTML exports here (src/x-scraper/x-scraper.service.ts).
+ENV NODE_ENV=production \
+    PORT=3000 \
+    DICTIONARIES_DIR=/app/dictionaries \
+    OUTPUT_DIR=/app/output
 
-# Copy package definition for ESM support ("type": "module")
+# package.json is needed at runtime for ESM ("type": "module")
 COPY --chown=node:node package*.json ./
-
-# Copy production node_modules and compiled distribution from builder
 COPY --from=builder --chown=node:node /app/node_modules ./node_modules
 COPY --from=builder --chown=node:node /app/dist ./dist
-
-# Copy static frontend assets served by Fastify at runtime
+# Static UI served by Fastify (src/main.ts resolves ../public from dist/)
 COPY --chown=node:node public ./public
+# Dictionaries for filtering and language matching. Without them the first post fails.
+COPY --chown=node:node dictionaries ./dictionaries
 
-# Run as non-root user for security
+# Writable directory for the non-root user
+RUN mkdir -p /app/output && chown node:node /app/output
+
 USER node
 
-# Expose HTTP port
 EXPOSE 3000
 
-# Health check using built-in Node fetch against the /api/health endpoint
-HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+# /api/health is public even when API_KEY is set
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD node -e "fetch('http://127.0.0.1:' + (process.env.PORT || 3000) + '/api/health').then((r) => { if (!r.ok) process.exit(1); }).catch(() => process.exit(1));"
 
-# Launch the NestJS application
 CMD ["node", "dist/main.js"]

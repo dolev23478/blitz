@@ -18,7 +18,7 @@ import { RedisService } from '../redis/redis.service.js';
 import { toParsedMessage } from './telegram.mapper.js';
 import { TELEGRAM_CHANNELS, TELEGRAM_CURSOR_KEY } from './telegram-channels.js';
 
-export type TelegramState = 'disabled' | 'connecting' | 'ready' | 'error';
+export type TelegramState = 'disabled' | 'connecting' | 'ready' | 'offline' | 'error';
 
 export interface TelegramStatus {
   enabled: boolean;

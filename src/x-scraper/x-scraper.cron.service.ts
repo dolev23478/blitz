@@ -5,6 +5,7 @@ import { XScraperService } from './x-scraper.service.js';
 import { RedisService } from '../redis/redis.service.js';
 import { detectDictionaryMatch } from '../match/detect-dictionary.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
+import { resolveLanguageAlias, LANGUAGE_ALIASES } from '../normalize/registry.js';
 
 @Injectable()
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
