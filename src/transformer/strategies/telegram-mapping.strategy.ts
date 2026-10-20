@@ -16,14 +16,6 @@ export class TelegramMappingStrategy {
         TransformerErrorCode.MappingFailed,
         'The workflow must capture Telegram receipt time before mapping.',
       );
-    const messageLanguage =
-      'language' in message && typeof (message as { language?: unknown }).language === 'string'
-        ? (message as { language?: string }).language?.trim()
-        : undefined;
-    const messageMatches =
-      'matches' in message && Array.isArray((message as { matches?: unknown[] }).matches)
-        ? (message as { matches?: string[] }).matches ?? []
-        : undefined;
     return {
       report_id: reportId('telegram', message.url, message.report_id),
       platform: 'telegram',
@@ -33,19 +25,11 @@ export class TelegramMappingStrategy {
       media_type: reportMediaTypes(message.media),
       report_title: null,
       content: message.text,
-<<<<<<< HEAD
-      ...collectorFields(message, {
-        languages: metadata.languages ?? messageLanguage ?? metadata.language,
-        categories: metadata.categories,
-      }),
+      ...collectorFields(message, metadata),
       matches:
-        messageMatches && messageMatches.length
-          ? messageMatches
-          : metadata.matches ?? [],
-=======
-      language: messageLanguage || metadata.language,
-      matches: messageMatches && messageMatches.length ? messageMatches : metadata.matches ?? [],
->>>>>>> d98d5b0edd8c2cf00136ae015c27ee1facd6f801
+        Array.isArray(message.matches) && message.matches.length
+          ? message.matches
+          : (metadata.matches ?? []),
       published_at: message.postedAt,
       collected_at: metadata.collectedAt,
     };

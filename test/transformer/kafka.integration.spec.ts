@@ -9,10 +9,10 @@ import { RedisRetryQueue } from '../../src/transformer/retry-queue.js';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import { metadata, twitterInput, workflow } from './fixtures.js';
 
-const brokers = process.env.KAFKA_TEST_BROKERS?.split(',')
-  .map((address) => address.trim())
-<<<<<<< HEAD
-  .filter(Boolean) ?? [];
+const brokers =
+  process.env.KAFKA_TEST_BROKERS?.split(',')
+    .map((address) => address.trim())
+    .filter(Boolean) ?? [];
 const redisUrl = process.env.REDIS_TEST_URL;
 
 describe.runIf(Boolean(brokers.length) && Boolean(redisUrl))(
@@ -35,47 +35,8 @@ describe.runIf(Boolean(brokers.length) && Boolean(redisUrl))(
       const settings = loadConfig({
         REDIS_URL: redisUrl,
         KAFKA_BROKERS: kafkaBrokers.join(','),
-        KAFKA_SSL: false,
+        KAFKA_SSL: 'false',
         TRANSFORMER_RETRY_PREFIX: prefix,
-=======
-  .filter(Boolean);
-
-describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
-  it('publishes a mapped report and consumes the exact key and JSON value', async () => {
-    const kafkaBrokers = brokers!;
-    const client = new Kafka({
-      clientId: 'blitz-transformer-test',
-      brokers: kafkaBrokers,
-      logLevel: logLevel.NOTHING,
-      connectionTimeout: 3000,
-      retry: { retries: 0 },
-    });
-    const admin = client.admin();
-    const consumer = client.consumer({
-      groupId: `blitz-transformer-test-${randomUUID()}`,
-    });
-    const prefix = `blitz:{kafka-test-${randomUUID()}}:outbox`;
-    const settings = loadConfig({
-      REDIS_URL: redisUrl,
-      KAFKA_BROKERS: brokers,
-      TRANSFORMER_RETRY_PREFIX: prefix,
-    });
-    const redis = new RedisService(settings);
-    const config = new ConfigService(settings);
-    const publisher = new PublishingProcessor(
-      new ConfigService({
-        KAFKA_BROKERS: kafkaBrokers.join(','),
-        KAFKA_SSL: false,
-      }),
-    );
-    let timeout: ReturnType<typeof setTimeout> | undefined;
-
-    try {
-      await redis.onModuleInit();
-      await admin.connect();
-      await admin.createTopics({
-        topics: [{ topic: REPORT_TOPIC, numPartitions: 1, replicationFactor: 1 }],
->>>>>>> d98d5b0edd8c2cf00136ae015c27ee1facd6f801
       });
       const redis = new RedisService(settings);
       const config = new ConfigService(settings);
@@ -89,7 +50,9 @@ describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
         await redis.onModuleInit();
         await admin.connect();
         await admin.createTopics({
-          topics: [{ topic: REPORT_TOPIC, numPartitions: 1, replicationFactor: 1 }],
+          topics: [
+            { topic: REPORT_TOPIC, numPartitions: 1, replicationFactor: 1 },
+          ],
         });
         await consumer.connect();
         await consumer.subscribe({ topic: REPORT_TOPIC, fromBeginning: true });
@@ -100,13 +63,18 @@ describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
         input.posts[0]!.url = `https://x.com/blitz/status/1?run=${randomUUID()}`;
 
         let accept!: (record: { key: string; value: string }) => void;
-        const received = new Promise<{ key: string; value: string }>((resolve, reject) => {
-          accept = resolve;
-          timeout = setTimeout(
-            () => reject(new Error('No matching Kafka record within 20 seconds.')),
-            20000,
-          );
-        });
+        const received = new Promise<{ key: string; value: string }>(
+          (resolve, reject) => {
+            accept = resolve;
+            timeout = setTimeout(
+              () =>
+                reject(
+                  new Error('No matching Kafka record within 20 seconds.'),
+                ),
+              20000,
+            );
+          },
+        );
 
         void received.catch(() => undefined);
         await consumer.run({
@@ -115,7 +83,8 @@ describe.runIf(Boolean(brokers?.length))('real Kafka round trip', () => {
             if (!value) return;
             try {
               const report = JSON.parse(value);
-              if (report.content === marker) accept({ key: message.key!.toString(), value });
+              if (report.content === marker)
+                accept({ key: message.key!.toString(), value });
             } catch {
               // Ignore malformed messages from a shared test topic.
             }
