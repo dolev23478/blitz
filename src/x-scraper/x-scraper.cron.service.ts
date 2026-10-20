@@ -75,7 +75,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     const supportedLanguages = getDictionaryStore().languages();
     const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
       .map((language) => resolveLanguageAlias(language));
-    const keptPosts: Array<(typeof result.posts)[number] & { matchedLanguage?: string; matches?: string[] }> = [];
+    const keptPosts: Array<{ post: (typeof result.posts)[number]; matchedLanguage: string; matches: string[] }> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
@@ -95,17 +95,17 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       );
 
       keptPosts.push({
-        ...post,
+        post,
         matchedLanguage,
         matches: analysis.terms,
       });
     }
 
-    result.posts = keptPosts;
+    result.posts = keptPosts.map((item) => item.post);
 
-    const matches = [...new Set(result.posts.flatMap((post) => (post.matches ?? []).filter(Boolean)))];
+    const matches = [...new Set(keptPosts.flatMap((item) => item.matches))];
     await this.transformer.run('ProfileScrapeResult', result, {
-      language: matches[0] ? undefined : undefined,
+      language: undefined,
       matches,
       collectedAt: new Date().toISOString(),
       source: 'x',
