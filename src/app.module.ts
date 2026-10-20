@@ -10,12 +10,14 @@ import { RedisModule } from './redis/redis.module.js';
 import { XScraperModule } from './x-scraper/x-scraper.module.js';
 import { XScraperCronService } from './x-scraper/x-scraper.cron.service.js';
 import { TransformerModule } from './transformer/transformer.module.js';
+import { RadioModule } from './radio/radio.module.js';
 
 @Module({
   imports: [
     AppConfigModule, RedisModule, EventsModule, TelegramModule, MetaModule,
     XScraperModule,
     TransformerModule,
+    RadioModule,
   ],
   providers: [
     XScraperCronService,

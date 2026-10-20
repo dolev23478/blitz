@@ -1,0 +1,3 @@
+# Tested with Python 3.13; keep PyAV compatible with this faster-whisper decoder.
+faster-whisper==1.2.1
+av==16.0.1

@@ -1,6 +1,8 @@
 import { z } from 'zod';
+import { radioEnvironment } from '../radio/radio.config.js';
 
 const schema = z.object({
+  ...radioEnvironment,
   REDIS_URL: z
     .string()
     .optional()
