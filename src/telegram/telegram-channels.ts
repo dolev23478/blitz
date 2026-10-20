@@ -19,6 +19,7 @@ export const TELEGRAM_CHANNELS: readonly string[] = [
   'wolpalestine',
   'youthdemand',
   'NationalSJP',
+  'blitz',
 ];
 
 export const TELEGRAM_CURSOR_KEY = 'telegram:last-scrape-at';
