@@ -20,7 +20,7 @@ describe('Transformer input boundary', () => {
 
   it.each([
     { language: 42 },
-    { language: [] },
+    { language: ['en', 42] },
     { language: 'en', matches: [1] },
   ])('rejects invalid supplemental metadata (%j)', async (value) => {
     const ctx = context();

@@ -5,6 +5,8 @@ import { TransformerException } from '../../common/exceptions.js';
 import type { ReportMetadata } from '../../contracts/mappings.js';
 import type { RawReportCandidate } from '../../contracts/schema.js';
 import { reportId } from '../report-id.js';
+import { collectorFields } from '../collector-fields.js';
+import { reportMediaTypes } from '../media-types.js';
 
 @Injectable()
 export class TelegramMappingStrategy {
@@ -15,18 +17,15 @@ export class TelegramMappingStrategy {
         'The workflow must capture Telegram receipt time before mapping.',
       );
     return {
-      report_id: reportId('telegram', message.url),
+      report_id: reportId('telegram', message.url, message.report_id),
       platform: 'telegram',
       account_name: message.senderName ?? metadata.accountName ?? null,
       channel_name: metadata.channelName ?? null,
       report_url: message.url,
-      media_type: [
-        'text',
-        ...new Set(message.media.map((media) => media.type)),
-      ],
+      media_type: reportMediaTypes(message.media),
       report_title: null,
       content: message.text,
-      language: 'language' in message ? message.language : metadata.language,
+      ...collectorFields(message, metadata),
       matches: metadata.matches ?? [],
       published_at: message.postedAt,
       collected_at: metadata.collectedAt,

@@ -1,4 +1,10 @@
-import { Inject, Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  Logger,
+  type OnModuleDestroy,
+  type OnModuleInit,
+} from '@nestjs/common';
 import { createClient, type RedisClientType } from 'redis';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
 
@@ -18,8 +24,13 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
       return;
     }
 
-    this.client = createClient({ url: this.config.REDIS_URL! });
-    this.client.on('error', (err: Error) => this.logger.error(`Redis error: ${err.message}`));
+    this.client = createClient({
+      url: this.config.REDIS_URL!,
+      disableOfflineQueue: true,
+    });
+    this.client.on('error', (err: Error) =>
+      this.logger.error(`Redis error: ${err.message}`),
+    );
 
     await this.client.connect();
     this.logger.log('Redis connected');
@@ -33,6 +44,19 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
 
   isEnabled(): boolean {
     return this.enabled && this.client !== null;
+  }
+
+  /** Atomic queue/lease operations reuse this application's existing connection. */
+  async eval(
+    script: string,
+    keys: string[],
+    arguments_: string[],
+  ): Promise<unknown> {
+    if (!this.client)
+      throw new Error(
+        'Redis is not connected; publication requires REDIS_URL.',
+      );
+    return this.client.eval(script, { keys, arguments: arguments_ });
   }
 
   async publish(channel: string, message: string): Promise<number> {

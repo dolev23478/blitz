@@ -1,6 +1,9 @@
 // Run after building: node --import tsx test/transformer/run-telegram-sample.mjs
-// Uses the compiled Nest module and real processors; only Kafka transport is mocked.
+// Uses the compiled Nest module and real processors; Redis storage and Kafka transport are test doubles.
 import 'reflect-metadata';
+import { FakeRetryQueue } from './fake-retry-queue.ts';
+import { RedisRetryQueue } from '../../dist/transformer/retry-queue.js';
+import { RedisService } from '../../dist/redis/redis.service.js';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { Test } from '@nestjs/testing';
@@ -47,9 +50,13 @@ function message(id, type) {
   };
 }
 
+// Test doubles have no Redis socket to keep Node alive while retry timers are unrefed.
+const keepAlive = setInterval(() => undefined, 1000);
 let module;
 try {
   module = await Test.createTestingModule({ imports: [TransformerModule] })
+    .overrideProvider(RedisRetryQueue).useValue(new FakeRetryQueue())
+    .overrideProvider(RedisService).useValue({isEnabled:()=>false})
     .overrideProvider(ConfigService)
     .useValue(
       new ConfigService({
@@ -86,10 +93,10 @@ try {
     assert.equal(report.published_at, original.postedAt.toISOString());
     assert.equal(report.account_name, original.senderName);
     assert.equal(report.channel_name, null);
-    assert.equal(report.language, 'unknown');
+    assert.deepEqual(report.languages, []);
     assert.ok(Date.parse(report.collected_at) >= receivedBefore);
     assert.ok(Date.parse(report.collected_at) <= Date.now());
-    assert.deepEqual(report.media_type, type ? ['text', type] : ['text']);
+    assert.deepEqual(report.media_type, type === 'photo' || type === 'video' ? ['text', type] : ['text']);
     assert.equal(result[0].status, 'completed');
     assert.deepEqual(input, snapshot);
   }
@@ -136,13 +143,14 @@ try {
         localSchemaValidation: 'passed (provisional schema)',
         kafkaRetryAndFIFO: 'passed',
         invalidReportsRejectedBeforeKafka: 4,
-        transport: 'Mocked Kafka producer; no real broker contacted',
+        transport: 'Redis storage and Kafka transport mocked; no real infrastructure contacted',
       },
       null,
       2,
     ),
   );
 } finally {
+  clearInterval(keepAlive);
   await module?.close();
   Kafka.prototype.producer = originalProducer;
 }
