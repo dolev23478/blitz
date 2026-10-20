@@ -16,6 +16,7 @@
     "start:prod": "node dist/main",
     "lint": "oxlint src/ test/",
     "test": "vitest run",
+    "test:pipeline": "vitest run test/pipeline",
     "test:analyzer": "vitest run src/text-analyzer.test.ts",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
