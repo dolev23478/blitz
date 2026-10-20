@@ -19,10 +19,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Package manifests first, so the dependency layer is cached between source changes
 COPY package*.json ./
-RUN npm ci
+RUN --mount=type=cache,target=/root/.npm npm ci
 
 # Compile with tsc (nest build): Nest DI needs the decorator metadata only tsc emits.
-# nest-cli.json copies src/database/migrations/*.sql into dist/.
 COPY tsconfig*.json nest-cli.json ./
 COPY src/ ./src/
 RUN npm run build
@@ -48,8 +47,6 @@ ENV NODE_ENV=production \
 COPY --chown=node:node package*.json ./
 COPY --from=builder --chown=node:node /app/node_modules ./node_modules
 COPY --from=builder --chown=node:node /app/dist ./dist
-# Static UI served by Fastify (src/main.ts resolves ../public from dist/)
-COPY --chown=node:node public ./public
 # Dictionaries for filtering and language matching. Without them the first post fails.
 COPY --chown=node:node dictionaries ./dictionaries
 
