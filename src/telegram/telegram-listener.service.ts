@@ -31,7 +31,7 @@ export class TelegramListenerService {
     const supportedLanguages = getDictionaryStore().languages();
     const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
       .map((language) => resolveLanguageAlias(language));
-    const filteredMessages: Array<ParsedMessage & { matchedLanguage?: string; matches?: string[] }> = [];
+    const filteredMessages: Array<{ message: ParsedMessage; matchedLanguage: string; matches: string[] }> = [];
 
     if (event.messages?.length) {
       for (const message of event.messages) {
@@ -52,17 +52,17 @@ export class TelegramListenerService {
         );
 
         filteredMessages.push({
-          ...message,
+          message,
           matchedLanguage,
           matches: analysis.terms,
         });
       }
     }
 
-    for (const message of filteredMessages) {
-      await this.transformer.run('ParsedMessage', message, {
-        language: message.matchedLanguage,
-        matches: message.matches ?? [],
+    for (const item of filteredMessages) {
+      await this.transformer.run('ParsedMessage', item.message, {
+        language: item.matchedLanguage,
+        matches: item.matches,
         channelName: event.channel,
         source: 'telegram',
       });
