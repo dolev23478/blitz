@@ -46,26 +46,22 @@ function filterTelegramMessages(
   event: FakeTelegramEvent,
 ): Array<FakeTelegramMessage & { matchedLanguage: string }> {
   const supportedLanguages = getDictionaryStore(dictionaryOptions).languages();
+  const candidateLanguages = [...new Set([...supportedLanguages, 'em'])];
   const kept: Array<FakeTelegramMessage & { matchedLanguage: string }> = [];
 
   for (const message of event.messages ?? []) {
     if (!message?.text || !message.text.trim()) continue;
 
-    let matchedLanguage: string | null = null;
-    for (const language of supportedLanguages) {
-      const analysis = analyzeText(message.text, language, dictionaryOptions);
-      if (analysis.matched) {
-        matchedLanguage = language;
-        break;
-      }
-    }
+    const analysis = analyzeText(message.text, candidateLanguages, dictionaryOptions);
+    if (!analysis.matched || analysis.languages?.length === 0) continue;
 
-    if (matchedLanguage) {
-      kept.push({
-        ...message,
-        matchedLanguage,
-      });
-    }
+    const matchedLanguage = analysis.languages?.[0] ?? analysis.language;
+    if (!matchedLanguage) continue;
+
+    kept.push({
+      ...message,
+      matchedLanguage,
+    });
   }
 
   return kept;
@@ -73,26 +69,22 @@ function filterTelegramMessages(
 
 function filterXPosts(result: FakeXResult): FakeXPost[] {
   const supportedLanguages = getDictionaryStore(dictionaryOptions).languages();
+  const candidateLanguages = [...new Set([...supportedLanguages, 'em'])];
   const kept: FakeXPost[] = [];
 
   for (const post of result.posts) {
     if (!post.text || !post.text.trim()) continue;
 
-    let matchedLanguage: string | null = null;
-    for (const language of supportedLanguages) {
-      const analysis = analyzeText(post.text, language, dictionaryOptions);
-      if (analysis.matched) {
-        matchedLanguage = language;
-        break;
-      }
-    }
+    const analysis = analyzeText(post.text, candidateLanguages, dictionaryOptions);
+    if (!analysis.matched || analysis.languages?.length === 0) continue;
 
-    if (matchedLanguage) {
-      kept.push({
-        ...post,
-        matchedLanguage,
-      });
-    }
+    const matchedLanguage = analysis.languages?.[0] ?? analysis.language;
+    if (!matchedLanguage) continue;
+
+    kept.push({
+      ...post,
+      matchedLanguage,
+    });
   }
 
   return kept;
