@@ -1,138 +1,151 @@
 [
-  {
-    "id": "HE-01",
-    "text": "פיגוע דקירה קטלני התרחש הבוקר ליד תחנת הרכבת",
-    "lang": "he",
-    "expected": true,
-    "category": "terror_attack",
-    "note": "Hebrew stabbing attack"
-  },
-  {
-    "id": "HE-02",
-    "text": "שיגור של עשרות רקטות ופצצות מרגמה לעבר יישובי הדרום",
-    "lang": "he",
-    "expected": true,
-    "category": "rockets_mortar",
-    "note": "Hebrew rocket barrage"
-  },
-  {
-    "id": "HE-03",
-    "text": "חוליית מחבלים חמושה ברובי קלצ'ניקוב ניסתה לחדור ליישוב",
-    "lang": "he",
-    "expected": true,
-    "category": "terror_squad",
-    "note": "Hebrew terrorist squad with weapons"
-  },
-  {
-    "id": "HE-04",
-    "text": "שלום לכולם, מזג האוויר היום חם ויפה לטיולים בשמורת הטבע",
-    "lang": "he",
-    "expected": false,
-    "category": "peaceful",
-    "note": "Hebrew negative control (peaceful)"
-  },
-  {
-    "id": "AR-01",
-    "text": "عملية إطلاق نار استهدفت حافلة ركاب في وسط المدينة",
-    "lang": "ar",
-    "expected": true,
-    "category": "shooting_attack",
-    "note": "Arabic shooting attack"
-  },
-  {
-    "id": "AR-02",
-    "text": "تفجير سيارة مفخخة وعبوة ناسفة شديدة الانفجار قرب السوق",
-    "lang": "ar",
-    "expected": true,
-    "category": "car_bomb",
-    "note": "Arabic car bomb and IED"
-  },
-  {
-    "id": "AR-03",
-    "text": "كتائب المقاومة تجهز صواريخ مضادة للدروع وقذائف هاون",
-    "lang": "ar",
-    "expected": true,
-    "category": "anti_tank_rockets",
-    "note": "Arabic anti-tank and mortar preparation"
-  },
-  {
-    "id": "AR-04",
-    "text": "صباح الخير، نتمنى لكم يوما سعيدا وموفقا في العمل والدراسة",
-    "lang": "ar",
-    "expected": false,
-    "category": "peaceful",
-    "note": "Arabic negative control (peaceful)"
-  },
-  {
-    "id": "FA-01",
-    "text": "حمله تروریستی با انفجار جلیقه انتحاری در میدان شلوغ",
-    "lang": "fa",
-    "expected": true,
-    "category": "suicide_vest",
-    "note": "Farsi suicide vest terror attack"
-  },
-  {
-    "id": "FA-02",
-    "text": "پرتاب پهپاد انتحاری و شلیک موشک های بالستیک به پایگاه هوایی",
-    "lang": "fa",
-    "expected": true,
-    "category": "drone_missile",
-    "note": "Farsi suicide drone and ballistic missiles"
-  },
-  {
-    "id": "FA-03",
-    "text": "امروز هوا بسیار معتدل است و برای گردش و پیاده روی مناسب است",
-    "lang": "fa",
-    "expected": false,
-    "category": "peaceful",
-    "note": "Farsi negative control (peaceful)"
-  },
-  {
-    "id": "EN-01",
-    "text": "A suicide bomber detonated an improvised explosive device in the subway station",
-    "lang": "en",
-    "expected": true,
-    "category": "bombing",
-    "note": "English suicide bomber / IED"
-  },
-  {
-    "id": "EN-02",
-    "text": "Armed terrorists opened fire with automatic rifles taking hostages inside the mall",
-    "lang": "en",
-    "expected": true,
-    "category": "mass_shooting_hostages",
-    "note": "English active shooter and hostages"
-  },
-  {
-    "id": "EN-03",
-    "text": "The quick brown fox jumps over the lazy dog and enjoys the sunny afternoon",
-    "lang": "en",
-    "expected": false,
-    "category": "peaceful",
-    "note": "English negative control (peaceful)"
-  },
-  {
-    "id": "EMOJI-01",
-    "text": "Target acquired tonight 🎯 🔫 💣 💥 ☠️",
-    "lang": "auto",
-    "expected": true,
-    "category": "threat_emoji",
-    "note": "Mixed English + violent threat emojis"
-  },
-  {
-    "id": "EMOJI-02",
-    "text": "Happy birthday my dear friend! 🎂 🎉 🌸 ✨",
-    "lang": "auto",
-    "expected": false,
-    "category": "peaceful_emoji",
-    "note": "Peaceful emojis"
-  },
-  {
-    "id": "MIXED-01",
-    "text": "تحضير هجوم صاروخي الليلة עם שיגור רקטות 🚀 💥",
-    "lang": "auto",
-    "expected": true,
-    "category": "multilingual_mix",
-    "note": "Arabic + Hebrew + Rocket emojis in a single text"
-  }
+"חכו חכו, אתם עוד תשלמו על זה.",
+"אל תעופו על עצמכם, הסיפור הזה עוד לא נגמר.",
+"אתם על הכוונת, אל תחשבו ששכחנו.",
+"זה לא איום באוויר, כדאי שתבינו את הרמז.",
+"עוד תצטערו על היום שהתעסקתם איתנו.",
+"החשבון איתכם פתוח, והוא עוד ייסגר.",
+"אל תחשבו שאתם חסינים לנצח.",
+"אתם עוד תראו מה זה, מילה שלי.",
+"נמאס מהדיבורים, הגיע הזמן למעשים.",
+"הפעם זה לא יעבור לכם בשקט.",
+"תמשיכו לזלזל, אתם עוד תאכלו את הכובע.",
+"אנחנו לא שוכחים ולא סולחים, תזכרו את זה.",
+"עוד יבוא היום שבו תצטערו על כל זה.",
+"אתם הבאים בתור, אל תגידו שלא הזהרנו.",
+"לא יהיה לכם שקט אחרי מה שעשיתם.",
+"הגיע הזמן שתרגישו בעצמכם את הפחד שאתם גורמים לאחרים.",
+"אתם חושבים שהכול משחק, אבל זה ממש לא נגמר.",
+"כל מי שחושב שהוא יכול לאיים בלי לשלם מחיר טועה.",
+"הפעם עברתם את הגבול, ומישהו עוד ישלם על זה.",
+"תפסיקו לשחק אותה גיבורים, אתם לא יודעים מה מחכה לכם.",
+"ישראל עוד תצטרך לתת דין וחשבון על המעשים שלה.",
+"הממשלה הישראלית עוד תצטער על ההחלטות שלה.",
+"העולם עוד ישמע על מה שקורה, והאחראים לא יוכלו להתחמק.",
+"האיומים האלה לא ייעלמו כאילו כלום לא קרה.",
+"מי שחושב שהכול נשכח פשוט חי בסרט.",
+"מספיק עם ההצגות, כולם יודעים שהסיפור הזה רחוק מסיום.",
+"אתם לא יכולים להסתתר מאחורי מסך לנצח.",
+"עוד תבינו שלא כדאי לזלזל באנשים שכועסים עליכם.",
+"כל הדיבורים האלה על שקט לא משכנעים אף אחד.",
+"הפוסט הזה כולל איום מפורש והבטחה לנקמה.",
+
+
+
+
+
+
+
+
+
+
+"يجب محو إسرائيل من الخريطة.",
+"تتضمن هذه الرسالة تهديداً ضد شعب إسرائيل.",
+"تدعو هذه التعليقات إلى العنف ضد المواطنين الإسرائيليين.",
+"يمجّد هذا المنشور الهجمات ضد اليهود.",
+"يقول الكاتب إن العدو لا يستحق أي رحمة.",
+"يدعو هذا الحساب إلى الانتقام من إسرائيل.",
+"تصف التعليقات الإسرائيليين بأنهم أعداء يجب القضاء عليهم.",
+"يحتفي هذا المنشور بتدمير تل أبيب.",
+"تتضمن الرسالة تهديدات ضد المجتمعات اليهودية.",
+"يمدح الكاتب الأشخاص الذين ينفذون هجمات إرهابية.",
+"تعمل هذه التعليقات على نشر الكراهية ضد اليهود.",
+"يقول هذا المنشور إن العنف هو الحل الوحيد.",
+"يهدد هذا الحساب المواطنين الإسرائيليين بالانتقام.",
+"تدعو هذه الرسالة إلى تدمير إسرائيل.",
+"يستخدم الكاتب لغة تحط من إنسانية اليهود.",
+"يعرب هذا المنشور عن الفرح بمقتل مدنيين إسرائيليين.",
+"تدعو هذه التعليقات إلى مهاجمة المؤسسات اليهودية.",
+"تمجّد هذه الرسالة منظمة متطرفة.",
+"يبرر الكاتب الانتقام من الإسرائيليين.",
+"ينشر هذا الحساب دعاية تشجع على العنف ضد إسرائيل.",
+
+
+
+
+
+
+
+
+"اسرائیل باید از روی نقشه محو شود.",
+"این پیام حاوی تهدید علیه مردم اسرائیل است.",
+"این نظرات خواستار خشونت علیه شهروندان اسرائیلی هستند.",
+"این پست حملات علیه یهودیان را ستایش می‌کند.",
+"نویسنده می‌گوید که دشمن سزاوار هیچ رحمی نیست.",
+"این حساب خواستار انتقام از اسرائیل است.",
+"در این نظرات از نابودی اسرائیلی‌ها حمایت شده است.",
+"این پست از نابودی تل‌آویو استقبال می‌کند.",
+"این پیام شامل تهدید علیه جوامع یهودی است.",
+"نویسنده افرادی را که حملات تروریستی انجام می‌دهند، تحسین می‌کند.",
+"این نظرات نفرت علیه یهودیان را ترویج می‌کنند.",
+"این پست می‌گوید که خشونت تنها راه‌حل است.",
+"این حساب شهروندان اسرائیلی را به انتقام تهدید می‌کند.",
+"این پیام خواستار نابودی اسرائیل است.",
+"نویسنده درباره یهودیان از زبان تحقیرآمیز و غیرانسانی استفاده می‌کند.",
+"این پست از کشته شدن غیرنظامیان اسرائیلی ابراز خوشحالی می‌کند.",
+"این نظرات خواستار حمله به مراکز یهودی هستند.",
+"این پیام یک سازمان افراطی را ستایش می‌کند.",
+"نویسنده انتقام گرفتن از اسرائیلی‌ها را توجیه می‌کند.",
+"این حساب تبلیغاتی را منتشر می‌کند که خشونت علیه اسرائیل را تشویق می‌کند.",
+
+
+
+
+
+
+"Israel must be wiped off the map.",
+"They keep threatening Israel and its people.",
+"The comments call for violence against Israeli citizens.",
+"The post celebrates attacks on Jewish people.",
+"The author says the enemy deserves no mercy.",
+"The account calls for revenge against Israel.",
+"The comments describe Israelis as enemies who should be eliminated.",
+"The post glorifies the destruction of Tel Aviv.",
+"The message contains threats against Jewish communities.",
+"The author praises people who carry out terrorist attacks.",
+"The comments encourage hatred toward Jews.",
+"The post says that violence is the only answer.",
+"The account threatens retaliation against Israeli citizens.",
+"The message calls for the destruction of Israel.",
+"The author uses dehumanizing language about Jewish people.",
+"The post celebrates the deaths of Israeli civilians.",
+"The comments call for attacks on Jewish institutions.",
+"The message praises an extremist organization.",
+"The author says that revenge against Israelis is justified.",
+"The account spreads propaganda encouraging violence against Israel.",
+
+
+
+
+
+"Our enemies think we have forgotten what they did. They are wrong.",
+"The time for revenge has come, and our anger will not disappear.",
+"Anyone who supports Israel is our enemy.",
+"They keep talking about peace while hatred continues to grow.",
+"Our movement will never stop fighting against its enemies.",
+"The occupation must end, and those responsible must face the consequences.",
+"We will never forgive those who have harmed our people.",
+"Their actions have created a generation filled with anger and resentment.",
+"Some people believe violence is the only language our enemies understand.",
+"The struggle will continue until our demands are heard.",
+"Our supporters believe that retaliation is justified.",
+"Hatred against Jewish people is spreading in extremist online communities.",
+"This channel shares propaganda from a radical organization.",
+"The group glorifies past attacks and praises those responsible.",
+"The speaker encourages followers to join the movement.",
+"The post calls for revenge against Israeli citizens.",
+"The message contains threatening language directed at Jewish communities.",
+"The author describes civilians as legitimate targets.",
+"The group claims that violence is necessary to achieve its political goals.",
+"The account repeatedly publishes extremist slogans and threats.",
+"Supporters are encouraged to spread the group's ideology online.",
+"The message celebrates an attack and expresses support for further violence.",
+"The speaker portrays an entire nationality as an enemy.",
+"The post uses dehumanizing language to justify hatred.",
+"The organization presents itself as a resistance movement while praising attacks on civilians.",
+"The author threatens retaliation against people who disagree with the group's ideology.",
+"The message calls for hostility toward Jewish institutions.",
+"The group tries to recruit people by exploiting anger and resentment.",
+"The account describes terrorism as heroic and encourages admiration for extremists.",
+"The post warns that the conflict will continue and contains threatening language."
 ]

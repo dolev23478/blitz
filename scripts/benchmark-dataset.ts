@@ -15,11 +15,16 @@ interface DatasetItem {
 
 function parseRawDataset(rawContent: string, filePath: string): DatasetItem[] {
   let parsed: unknown;
+  const stripped = rawContent
+    .replace(/\/\/.*$/gm, "")
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .trim();
+
   try {
-    parsed = JSON.parse(rawContent);
+    parsed = JSON.parse(stripped);
   } catch {
     // If not valid JSON, treat as newline-delimited text
-    const lines = rawContent
+    const lines = stripped
       .split(/\r?\n/)
       .map((l) => l.trim())
       .filter((l) => l.length > 0 && !l.startsWith("#"));
