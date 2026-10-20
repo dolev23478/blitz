@@ -3,8 +3,7 @@ import { MONITORED_X_SOURCES } from './constants/monitored-sources.js';
 import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
 import { XScraperService } from './x-scraper.service.js';
 import { RedisService } from '../redis/redis.service.js';
-import { analyzeText } from '../text-analyzer.js';
-import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
+import { detectDictionaryMatch } from '../match/detect-dictionary.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 
 @Injectable()
@@ -46,6 +45,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       const since = lastScrapeAt ? new Date(lastScrapeAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
 
       this.logger.log(`Running X scraper cycle for ${handles.length} handles since ${since.toISOString()}`);
+      const startedAt = new Date();
       const result = await this.xScraper.scrapeBatch({
         handles,
         since,
@@ -57,45 +57,25 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         `X cycle finished: handle=${result.handle}, totalPosts=${result.totalPosts}, provider=${result.providerUsed}`,
       );
 
-      await this.onXResult(result);
+      await this.onXResult(result, startedAt);
     } catch (err) {
       this.logger.error(`X scraper cycle failed: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
 
   /** Called automatically every time the cron cycle gets a result from X. */
-  private async onXResult(result: ProfileScrapeResult): Promise<void> {
-    const now = new Date().toISOString();
-
-    if (this.redis.isEnabled()) {
-      await this.redis.set('x:last-scrape-at', now);
-    }
-
-    const supportedLanguages = getDictionaryStore().languages();
+  private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
     const keptPosts: Array<(typeof result.posts)[number] & { matchedLanguage?: string; language?: string }> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
 
-      let matchedLanguage: string | null = null;
-      for (const language of supportedLanguages) {
-        const analysis = analyzeText(post.text, language);
-        if (analysis.matched) {
-          matchedLanguage = language;
-          this.logger.log(
-            `X language match: lang=${language}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
-          );
-          break;
-        }
-      }
-
-      if (matchedLanguage) {
-        keptPosts.push({
-          ...post,
-          matchedLanguage,
-          language: matchedLanguage,
-        });
-      }
+      const detection = detectDictionaryMatch(post.text);
+      if (!detection) continue;
+      this.logger.log(
+        `X language match: lang=${detection.language}, terms=${detection.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
+      );
+      keptPosts.push({ ...post, matchedLanguage: detection.language, language: detection.language });
     }
 
     result.posts = keptPosts;
@@ -108,6 +88,11 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       source: 'x',
     });
 
-    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${now}`);
+    // Only advance the cursor once the batch was handed over, so a failure re-pulls it next cycle.
+    if (this.redis.isEnabled()) {
+      await this.redis.set('x:last-scrape-at', startedAt.toISOString());
+    }
+
+    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${startedAt.toISOString()}`);
   }
 }

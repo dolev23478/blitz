@@ -132,7 +132,8 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
   private publish(chatId: number, dtos: MessageDto[]): void {
     const channel = this.usernameByChatId.get(chatId);
     if (!channel || dtos.length === 0) return;
-    this.events.emit({ chatId, channel, messages: dtos.map((dto) => toParsedMessage(dto, channel)) });
+    const ordered = [...dtos].sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    this.events.emit({ chatId, channel, messages: ordered.map((dto) => toParsedMessage(dto, channel)) });
   }
 
   /** Pulls one chat's history since the given time; true when it completed. */
@@ -147,18 +148,17 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     }
   }
 
-  /** Pulls every tracked chat since `since`; the Redis cursor only advances when every channel resolved and succeeded. */
+  /** Pulls every resolved chat since `since`; the Redis cursor only advances when every pull succeeded. */
   private async pullSince(since: Date): Promise<void> {
     if (this.pulling) return;
     this.pulling = true;
     try {
       const startedAt = Date.now();
       await this.resolveChannels();
-      const results = await Promise.all([...this.chatIds].map((id) => this.pullChat(id, since)));
+      const results: boolean[] = [];
+      for (const id of this.chatIds) results.push(await this.pullChat(id, since));
       this.logger.log(`pulled ${results.length} chat(s) since ${since.toISOString()}`);
-      if (results.every(Boolean) && this.resolved.size === TELEGRAM_CHANNELS.length) {
-        await this.saveCursor(startedAt);
-      }
+      if (results.every(Boolean)) await this.saveCursor(startedAt);
     } finally {
       this.pulling = false;
     }
