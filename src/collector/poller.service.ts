@@ -47,7 +47,7 @@ export class PollerService {
     const maxId = fresh.length ? Math.max(...fresh.map((m) => m.messageId)) : null;
     await this.channels.markPolled(channel.id, maxId, title);
     if (inserted) {
-      this.events.emit({ channelId: channel.id, channel: channel.username, inserted });
+      this.events.emit({ channelId: channel.id, channel: channel.username, inserted, messages: fresh });
       this.logger.log(`@${channel.username}: ${inserted} new`);
     }
     return inserted;

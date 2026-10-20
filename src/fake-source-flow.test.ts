@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { analyzeText, getDictionaryStore } from './index.js';
+import { fileURLToPath } from 'node:url';
+
+// Keep flow tests independent of additions to the production OSINT dictionaries.
+const dictionaryOptions = {
+  dictionariesDir: fileURLToPath(
+    new URL('../test/fixtures/dictionaries/', import.meta.url),
+  ),
+};
 
 interface FakeTelegramMessage {
   chatId: number;
@@ -34,16 +42,18 @@ interface FakeXResult {
   posts: FakeXPost[];
 }
 
-function filterTelegramMessages(event: FakeTelegramEvent): FakeTelegramMessage[] {
-  const supportedLanguages = getDictionaryStore().languages();
-  const kept: Array<FakeTelegramMessage & { matchedLanguage?: string }> = [];
+function filterTelegramMessages(
+  event: FakeTelegramEvent,
+): Array<FakeTelegramMessage & { matchedLanguage: string }> {
+  const supportedLanguages = getDictionaryStore(dictionaryOptions).languages();
+  const kept: Array<FakeTelegramMessage & { matchedLanguage: string }> = [];
 
   for (const message of event.messages ?? []) {
     if (!message?.text || !message.text.trim()) continue;
 
     let matchedLanguage: string | null = null;
     for (const language of supportedLanguages) {
-      const analysis = analyzeText(message.text, language);
+      const analysis = analyzeText(message.text, language, dictionaryOptions);
       if (analysis.matched) {
         matchedLanguage = language;
         break;
@@ -62,7 +72,7 @@ function filterTelegramMessages(event: FakeTelegramEvent): FakeTelegramMessage[]
 }
 
 function filterXPosts(result: FakeXResult): FakeXPost[] {
-  const supportedLanguages = getDictionaryStore().languages();
+  const supportedLanguages = getDictionaryStore(dictionaryOptions).languages();
   const kept: FakeXPost[] = [];
 
   for (const post of result.posts) {
@@ -70,7 +80,7 @@ function filterXPosts(result: FakeXResult): FakeXPost[] {
 
     let matchedLanguage: string | null = null;
     for (const language of supportedLanguages) {
-      const analysis = analyzeText(post.text, language);
+      const analysis = analyzeText(post.text, language, dictionaryOptions);
       if (analysis.matched) {
         matchedLanguage = language;
         break;
@@ -171,8 +181,22 @@ describe('fake source flow', () => {
       providerUsed: 'fake-provider',
       totalPosts: 2,
       posts: [
-        { id: 'a', url: 'https://x.com/a', authorHandle: 'a', authorName: 'A', text: 'اقتل', publishedAt: new Date().toISOString(), matchedLanguage: 'ar' },
-        { id: 'b', url: 'https://x.com/b', authorHandle: 'b', authorName: 'B', text: 'nice weather', publishedAt: new Date().toISOString(), matchedLanguage: 'en' },
+        {
+          id: 'a',
+          url: 'https://x.com/a',
+          authorHandle: 'a',
+          authorName: 'A',
+          text: 'اقتل',
+          publishedAt: new Date().toISOString(),
+        },
+        {
+          id: 'b',
+          url: 'https://x.com/b',
+          authorHandle: 'b',
+          authorName: 'B',
+          text: 'nice weather',
+          publishedAt: new Date().toISOString(),
+        },
       ],
     });
 

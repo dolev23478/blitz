@@ -11,7 +11,7 @@ export interface ScrapeRequestDto {
 
 export interface SearchRequestDto {
   query: string;
-  maxPosts: number;
+  maxPosts?: number;
   outputFormat?: OutputFormat;
   name?: string;
   since?: string | number | Date;
@@ -21,6 +21,7 @@ export interface SearchRequestDto {
 
 export interface BatchSourcesRequestDto {
   handles: string[];
+  /** Maximum posts in the combined batch; defaults to 100 when omitted. */
   maxPosts?: number;
   outputFormat?: OutputFormat;
   queryFilter?: string;

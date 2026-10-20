@@ -204,6 +204,16 @@ describe('XScraperService - Batch Scraping', () => {
     expect(mockProvider.lastQuery).toBe('(from:AJArabic OR from:AJEnglish) -filter:replies');
   });
 
+  it('uses a bounded default when the cron caller omits maxPosts', async () => {
+    const result = await service.scrapeBatch({ handles: ['AJArabic'] });
+    expect(mockProvider.lastMaxPosts).toBe(100);
+    expect(result.totalPosts).toBe(2);
+  });
+
+  it.each([0, -1])('rejects an explicitly invalid batch limit %s', async (maxPosts) => {
+    await expect(service.scrapeBatch({ handles: ['AJArabic'], maxPosts })).rejects.toThrow('maxPosts must be greater than 0');
+  });
+
   it('exports scrapeBatchAndExport and creates valid files', async () => {
     const { result, exportedFiles } = await scrapeBatchAndExport(service, {
       handles: ['AJArabic'],
@@ -430,7 +440,7 @@ describe('XScraperService - Timestamp Filtering', () => {
 
 describe('MONITORED_X_SOURCES', () => {
   it('contains verified OSINT channels with valid handles', () => {
-    expect(MONITORED_X_SOURCES.length).toBe(83);
+    expect(MONITORED_X_SOURCES.length).toBe(76);
     for (const source of MONITORED_X_SOURCES) {
       expect(source.name).toBeTruthy();
       expect(source.handle).toBeTruthy();

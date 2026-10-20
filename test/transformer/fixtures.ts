@@ -1,7 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 import type { ProfileScrapeResult } from '../../src/x-scraper/contracts/x-scraper.interfaces.js';
-import type { StoredMessage } from '../../src/types.js';
-import type { MessageDto } from '../../src/tg-realtime/types.js';
+import type { ParsedMessage } from '../../src/types.js';
 import type {
   MappingFormat,
   ReportMetadata,
@@ -13,7 +12,6 @@ import { ParsingProcessor } from '../../src/transformer/processors/parsing.proce
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import { ValidationProcessor } from '../../src/transformer/processors/validation.processor.js';
 import { TelegramMappingStrategy } from '../../src/transformer/strategies/telegram-mapping.strategy.js';
-import { TelegramRealtimeMappingStrategy } from '../../src/transformer/strategies/telegram-realtime-mapping.strategy.js';
 import { TwitterMappingStrategy } from '../../src/transformer/strategies/twitter-mapping.strategy.js';
 import { TransformerWorkflow } from '../../src/transformer/transformer.workflow.js';
 import type { TransformContext } from '../../src/transformer/transformer.types.js';
@@ -42,15 +40,10 @@ export function twitterInput(): ProfileScrapeResult {
   };
 }
 
-export function telegramInput(): StoredMessage {
+export function telegramInput(): ParsedMessage {
   return {
-    id: 1,
-    channelId: 2,
     messageId: 7,
-    channel: 'blitz',
-    channelTitle: 'Blitz News',
     postedAt: new Date('2026-10-19T09:00:00Z'),
-    fetchedAt: new Date('2026-10-19T10:00:00Z'),
     senderName: 'Dana',
     text: '  Telegram report  ',
     url: 'https://t.me/blitz/7?single',
@@ -62,39 +55,12 @@ export function telegramInput(): StoredMessage {
   };
 }
 
-export function realtimeInput(): MessageDto {
-  return {
-    chatId: -10012345,
-    chatTitle: 'Blitz News',
-    messageId: 8,
-    date: '2026-10-19T09:00:00Z',
-    editDate: null,
-    isEdit: false,
-    senderId: 20,
-    senderName: 'Dana',
-    text: 'Live Telegram report',
-    metrics: {
-      views: null,
-      forwards: null,
-      reactions: [],
-      commentsCount: null,
-    },
-    media: null,
-  };
-}
-
 export function metadata(
   format: MappingFormat = 'ProfileScrapeResult',
 ): ReportMetadata {
   if (format === 'ProfileScrapeResult')
     return { language: 'he', matches: ['news'] };
-  if (format === 'MessageDto')
-    return {
-      language: 'en',
-      reportUrl: 'https://t.me/blitz/8',
-      collectedAt: '2026-10-19T10:00:00Z',
-    };
-  return { language: 'en' };
+  return { language: 'en', collectedAt: '2026-10-19T10:00:00Z' };
 }
 
 export function rawReport(overrides: Partial<RawReport> = {}): RawReport {
@@ -136,7 +102,6 @@ export function mappingProcessor(): MappingProcessor {
   return new MappingProcessor(
     new TwitterMappingStrategy(),
     new TelegramMappingStrategy(),
-    new TelegramRealtimeMappingStrategy(),
   );
 }
 

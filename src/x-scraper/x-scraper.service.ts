@@ -60,7 +60,6 @@ export class XScraperService {
 
     return this.searchTweets({
       query,
-      maxPosts,
       name: dto.feedName || 'osint-network',
       since,
     });
