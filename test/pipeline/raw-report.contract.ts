@@ -36,7 +36,7 @@ export const rawReportContract = {
     is_official: { const: false },
     platform: { type: 'string', minLength: 1 },
     account_name: string,
-    channel_name: string,
+    channel_name: { type: ['string', 'null'] },
     report_url: { type: 'string', minLength: 1 },
     media_type: {
       type: 'array',
@@ -61,7 +61,7 @@ const ajv = new Ajv({ allErrors: true });
 addFormats.default(ajv);
 const validate = ajv.compile(rawReportContract);
 
-/** Contract problems as readable lines, e.g. "/channel_name: must be string". */
+/** Contract problems as readable lines, e.g. "/content: must be string". */
 export function contractProblems(report: unknown): string[] {
   if (validate(report)) return [];
   return (validate.errors ?? []).map(
