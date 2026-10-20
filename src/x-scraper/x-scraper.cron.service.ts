@@ -76,49 +76,61 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     }
 
     const supportedLanguages = getDictionaryStore().languages();
-    const aliasAwareLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
+    const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
       .map((language) => resolveLanguageAlias(language));
-    const keptPosts: Array<(typeof result.posts)[number] & { matchedLanguage?: string; language?: string }> = [];
+    const keptPosts: Array<{ post: (typeof result.posts)[number]; matchedLanguage: string; matches: string[] }> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
 
-      let matchedLanguage: string | null = null;
-      for (const language of aliasAwareLanguages) {
-        const analysis = analyzeText(post.text, language);
-        if (analysis.matched) {
-          matchedLanguage = language;
-          this.logger.log(
-            `X language match: lang=${language}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
-          );
-          break;
-        }
-      }
-
-      if (matchedLanguage) {
-        keptPosts.push({
-          ...post,
-          matchedLanguage,
-          language: matchedLanguage,
-        });
-      } else {
+      const analysis = analyzeText(post.text, candidateLanguages);
+      if (!analysis.matched || analysis.languages?.length === 0) {
         this.analytics?.recordRejected({
           id: post.id || randomUUID(),
           channel: result.handle,
           source: 'x',
           content: post.text,
           reason: 'Keyword filter rejected: did not match any threat terms',
-          attemptedLanguages: aliasAwareLanguages,
+          attemptedLanguages: candidateLanguages,
           timestamp: new Date().toISOString(),
         });
+        continue;
       }
+
+      const matchedLanguages = analysis.languages?.length
+        ? analysis.languages
+        : [analysis.language].filter((l): l is string => Boolean(l));
+      const matchedLanguage = matchedLanguages[0] ?? null;
+
+      if (!matchedLanguage) {
+        this.analytics?.recordRejected({
+          id: post.id || randomUUID(),
+          channel: result.handle,
+          source: 'x',
+          content: post.text,
+          reason: 'Keyword filter rejected: did not match any threat terms',
+          attemptedLanguages: candidateLanguages,
+          timestamp: new Date().toISOString(),
+        });
+        continue;
+      }
+
+      this.logger.log(
+        `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
+      );
+
+      keptPosts.push({
+        post,
+        matchedLanguage,
+        matches: analysis.terms,
+      });
     }
 
-    result.posts = keptPosts;
+    result.posts = keptPosts.map((item) => item.post);
 
-    const matches = [...new Set(result.posts.flatMap((post) => ((post as { language?: string }).language ? [(post as { language?: string }).language!] : [])))];
+    const matches = [...new Set(keptPosts.flatMap((item) => item.matches))];
     await this.transformer.run('ProfileScrapeResult', result, {
-      language: matches[0] ?? undefined,
+      language: undefined,
       matches,
       collectedAt: new Date().toISOString(),
       source: 'x',

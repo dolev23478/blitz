@@ -1,24 +1,22 @@
-import { Inject, Injectable, Logger, type OnApplicationBootstrap, type OnApplicationShutdown } from '@nestjs/common';
+﻿import {
+  Inject,
+  Injectable,
+  Logger,
+  type OnApplicationBootstrap,
+  type OnApplicationShutdown,
+} from '@nestjs/common';
 import { createClient, login } from '../tg-realtime/client.js';
 import type { Config as TgConfig } from '../tg-realtime/config.js';
 import { startMessageListener } from '../tg-realtime/listeners/messageListener.js';
 import { ExtractorService } from '../tg-realtime/services/extractorService.js';
 import type { MessageDto } from '../tg-realtime/types.js';
-import { withFloodWait } from '../tg-realtime/utils/resilience.js';
+import { sleepRandom, withFloodWait } from '../tg-realtime/utils/resilience.js';
 import { Watchdog } from '../tg-realtime/utils/watchdog.js';
-import { ChannelsRepository } from '../channels/channels.repository.js';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
 import { MessageEventsService, type NewMessagesEvent } from '../events/message-events.service.js';
-import { MessagesRepository } from '../messages/messages.repository.js';
-import type { Channel } from '../types.js';
-import { privateLinkId, toParsedMessage } from './telegram.mapper.js';
 import { RedisService } from '../redis/redis.service.js';
-
-export class TelegramSourceError extends Error {
-  constructor(message: string, readonly status: number) {
-    super(message);
-  }
-}
+import { toParsedMessage } from './telegram.mapper.js';
+import { TELEGRAM_CHANNELS, TELEGRAM_CURSOR_KEY } from './telegram-channels.js';
 
 export type TelegramState = 'disabled' | 'connecting' | 'ready' | 'offline' | 'error';
 
@@ -29,7 +27,10 @@ export interface TelegramStatus {
   user: { id: number; name: string } | null;
 }
 
-/** Collects groups / private chats through the Telegram account (MTProto), headless via TG_SESSION_STRING. */
+const DEFAULT_LOOKBACK_MS = 24 * 60 * 60 * 1000;
+const CURSOR_OVERLAP_MS = 60_000;
+
+/** Collects the monitored channels (TELEGRAM_CHANNELS) through the Telegram account (MTProto), headless via TG_SESSION_STRING. */
 @Injectable()
 export class TelegramService implements OnApplicationBootstrap, OnApplicationShutdown {
   private readonly logger = new Logger('Telegram');
@@ -37,19 +38,16 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
   private extractor: ExtractorService | null = null;
   private watchdog: Watchdog | null = null;
   private readonly chatIds = new Set<number>(); // O(1) filter shared with the live listener
-  private readonly byChatId = new Map<number, Channel>();
-  private readonly backfilling = new Set<number>();
-  private readonly mediaCache = new Map<string, { data: Uint8Array; mimeType: string | null }>();
+  private readonly usernameByChatId = new Map<number, string>();
+  private readonly resolved = new Set<string>();
+  private pulling = false;
   private state: TelegramState;
   private lastError: string | null = null;
   private me: { id: number; name: string } | null = null;
-  private lastSyncAt = Date.now();
   readonly enabled: boolean;
 
   constructor(
     @Inject(APP_CONFIG) private readonly config: AppConfig,
-    @Inject(ChannelsRepository) private readonly channels: ChannelsRepository,
-    @Inject(MessagesRepository) private readonly messages: MessagesRepository,
     @Inject(MessageEventsService) private readonly events: MessageEventsService,
     private readonly redis: RedisService,
   ) {
@@ -57,34 +55,16 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     this.state = this.enabled ? 'connecting' : 'disabled';
   }
 
-  /** Recovers from last processed Telegram timestamp from Redis, falling back to 24h ago if missing. */
-  private async recoverSince(): Promise<Date> {
-    if (!this.redis.isEnabled()) {
-      return new Date(Date.now() - 24 * 60 * 60 * 1000);
-    }
-
-    const lastTelegramAt = await this.redis.get('telegram:last-scrape-at');
-    return lastTelegramAt ? new Date(lastTelegramAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
-  }
-
-  get ready(): boolean {
-    return this.client !== null && this.extractor !== null;
-  }
-
   status(): TelegramStatus {
-    return { enabled: this.enabled, state: this.state, error: this.lastError, user: this.state === 'ready' ? this.me : null };
+    return {
+      enabled: this.enabled,
+      state: this.state,
+      error: this.lastError,
+      user: this.state === 'ready' ? this.me : null,
+    };
   }
 
-  isBusy(id: number): boolean {
-    return this.backfilling.has(id);
-  }
-
-  /** Returns a cleanup function for listening to Telegram result events emitted by this service. */
-  listenResults(listener: (event: NewMessagesEvent) => void): () => void {
-    return this.events.subscribe(listener);
-  }
-
-  /** Subscribes once and automatically calls the callback whenever Telegram stores new messages. */
+  /** Subscribes once and calls the callback whenever Telegram delivers new messages. */
   watchResults(callback: (event: NewMessagesEvent) => void | Promise<void>): () => void {
     return this.events.subscribe((event) => {
       void Promise.resolve(callback(event)).catch((err) => {
@@ -96,7 +76,9 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
   /** Connects once; a missing/invalid session string is logged, network errors are retried in the background. */
   onApplicationBootstrap(): void {
     if (!this.enabled) return;
-    void this.start().catch((err) => this.logger.error(`failed to start: ${err instanceof Error ? err.message : err}`));
+    void this.start().catch((err) =>
+      this.logger.error(`failed to start: ${err instanceof Error ? err.message : err}`),
+    );
   }
 
   async onApplicationShutdown(): Promise<void> {
@@ -108,109 +90,85 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
       await this.connect();
     } catch (err) {
       if (err instanceof Error && /TG_SESSION_STRING/.test(err.message)) throw err;
-      this.logger.error(`initial connect failed, retrying in the background: ${err instanceof Error ? err.message : err}`);
+      this.logger.error(
+        `initial connect failed, retrying in the background: ${err instanceof Error ? err.message : err}`,
+      );
       void this.reconnectForever();
     }
   }
 
-  /** Resolves a username / numeric id / link with the account, stores it and starts collecting. */
-  async addChannel(ref: string | number): Promise<Channel> {
+  /** Last successful pull time from Redis (same key semantics as X's x:last-scrape-at); 24h ago if missing. */
+  private async recoverSince(): Promise<Date> {
+    const fallback = new Date(Date.now() - DEFAULT_LOOKBACK_MS);
+    if (!this.redis.isEnabled()) return fallback;
+    const saved = await this.redis.get(TELEGRAM_CURSOR_KEY).catch(() => null);
+    const parsed = saved ? new Date(saved) : fallback;
+    return Number.isNaN(parsed.getTime()) ? fallback : parsed;
+  }
+
+  private async saveCursor(at: number): Promise<void> {
+    if (!this.redis.isEnabled()) return;
+    await this.redis.set(TELEGRAM_CURSOR_KEY, new Date(at).toISOString()).catch(() => undefined);
+  }
+
+  /** Resolves every not-yet-resolved username to its chat id and starts tracking it. */
+  private async resolveChannels(): Promise<void> {
     const c = this.client;
-    if (!c || !this.extractor) throw new TelegramSourceError('Telegram account is not connected', 503);
-    let chat: { id: number; username?: string | null; displayName?: string | null };
+    if (!c) return;
+    for (const username of TELEGRAM_CHANNELS) {
+      if (this.resolved.has(username)) continue;
+      try {
+        const chat = await withFloodWait(() => c.getChat(username), {
+          onWait: (s) => this.logger.warn(`Telegram flood wait: sleeping ${s}s while resolving @${username}`),
+        });
+        this.chatIds.add(chat.id);
+        this.usernameByChatId.set(chat.id, username);
+        this.resolved.add(username);
+      } catch (err) {
+        this.logger.warn(`cannot resolve @${username}: ${err instanceof Error ? err.message : String(err)}`);
+      }
+      await sleepRandom(300, 800);
+    }
+  }
+
+  private publish(chatId: number, dtos: MessageDto[]): void {
+    const channel = this.usernameByChatId.get(chatId);
+    if (!channel || dtos.length === 0) return;
+    const ordered = [...dtos].sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    this.events.emit({ channelId: chatId, channel, inserted: ordered.length, messages: ordered.map((dto) => toParsedMessage(dto, channel)) });
+  }
+
+  /** Pulls one chat's history since the given time; true when it completed. */
+  private async pullChat(chatId: number, since: Date): Promise<boolean> {
+    if (!this.extractor) return false;
     try {
-      chat = await withFloodWait(() => c.getChat(ref));
+      this.publish(chatId, await this.extractor.getHistory(chatId, since));
+      return true;
     } catch (err) {
-      const reason = err instanceof Error ? err.message : String(err);
-      throw new TelegramSourceError(
-        `Cannot access ${ref} with the Telegram account (join the chat first): ${reason}`, 422,
-      );
+      this.logger.error(`@${this.usernameByChatId.get(chatId)}: ${err instanceof Error ? err.message : String(err)}`);
+      return false;
     }
-    const existing = await this.channels.getByTgChatId(chat.id);
-    if (existing) throw new TelegramSourceError(`Chat ${chat.id} already exists`, 409);
-
-    const priv = privateLinkId(chat.id);
-    const label = chat.username ?? (priv ? `c${priv}` : `g${Math.abs(chat.id)}`);
-    const channel = await this.channels.createTelegram(chat.id, label.toLowerCase(), chat.displayName ?? null);
-    this.track(channel);
-    void this.runBackfill(channel, new Date(Date.now() - this.config.BACKFILL_DAYS * 86_400_000));
-    return channel;
   }
 
-  /** Re-pulls history through the account; false if not connected or already running. */
-  backfill(channel: Channel, days = this.config.BACKFILL_DAYS): boolean {
-    if (!this.ready || this.backfilling.has(channel.id)) return false;
-    void this.runBackfill(channel, new Date(Date.now() - days * 86_400_000));
-    return true;
-  }
-
-  /** Downloads a message's media through the account, with a small in-memory cache (Telegram files are immutable). */
-  async downloadMedia(channelId: number, messageId: number): Promise<{ data: Uint8Array; mimeType: string | null }> {
-    const key = `${channelId}:${messageId}`;
-    const cached = this.mediaCache.get(key);
-    if (cached) return cached;
-    if (!this.extractor) throw new TelegramSourceError('Telegram account is not connected', 503);
-    const channel = await this.channels.get(channelId);
-    if (!channel || channel.tgChatId === null) throw new TelegramSourceError('Media not found', 404);
-    const file = await this.extractor.downloadMessageMedia(channel.tgChatId, messageId);
-    if (!file) throw new TelegramSourceError('Media not found', 404);
-    this.mediaCache.set(key, file);
-    if (this.mediaCache.size > 50) this.mediaCache.delete(this.mediaCache.keys().next().value!);
-    return file;
-  }
-
-  untrack(channel: Channel): void {
-    if (channel.tgChatId === null) return;
-    this.chatIds.delete(channel.tgChatId);
-    this.byChatId.delete(channel.tgChatId);
-  }
-
-  private async store(channel: Channel, dtos: MessageDto[]): Promise<number> {
-    const parsedMessages = dtos.map((dto) => toParsedMessage(dto, channel));
-    const inserted = await this.messages.upsertMany(channel.id, parsedMessages);
-    if (dtos.length) {
-      const maxId = Math.max(...dtos.map((d) => d.messageId));
-      await this.channels.markPolled(channel.id, maxId, null);
-    }
-    if (inserted) {
-      this.events.emit({
-        channelId: channel.id,
-        channel: channel.username,
-        inserted,
-        messages: parsedMessages,
-      });
-    }
-    return inserted;
-  }
-
-  private track(channel: Channel): void {
-    if (channel.tgChatId === null) return;
-    this.chatIds.add(channel.tgChatId);
-    this.byChatId.set(channel.tgChatId, channel);
-  }
-
-  private async runBackfill(channel: Channel, since: Date, quiet = false): Promise<void> {
-    if (!this.extractor || channel.tgChatId === null || this.backfilling.has(channel.id)) return;
-    this.backfilling.add(channel.id);
+  /** Pulls every resolved chat since `since`; the Redis cursor only advances when every pull succeeded. */
+  private async pullSince(since: Date): Promise<void> {
+    if (this.pulling) return;
+    this.pulling = true;
     try {
-      const dtos = await this.extractor.getHistory(channel.tgChatId, since);
-      const inserted = await this.store(channel, dtos);
-      await this.channels.markBackfilled(channel.id);
-      if (!quiet || inserted) this.logger.log(`${channel.username}: ${inserted} new messages since ${since.toISOString()}`);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      this.logger.error(`${channel.username}: ${message}`);
-      await this.channels.markError(channel.id, message).catch(() => undefined);
+      const startedAt = Date.now();
+      await this.resolveChannels();
+      const results: boolean[] = [];
+      for (const id of this.chatIds) results.push(await this.pullChat(id, since));
+      this.logger.log(`pulled ${results.length} chat(s) since ${since.toISOString()}`);
+      if (results.every(Boolean)) await this.saveCursor(startedAt);
     } finally {
-      this.backfilling.delete(channel.id);
+      this.pulling = false;
     }
   }
 
-  /** Pulls recent history of every tracked chat; fills anything the live push missed. */
+  /** Safety net in case live push stalls silently: re-pull from the saved cursor. */
   private async catchUp(): Promise<void> {
-    const since = new Date(this.lastSyncAt - 120_000);
-    this.lastSyncAt = Date.now();
-    for (const channel of [...this.byChatId.values()]) await this.runBackfill(channel, since, true);
+    await this.pullSince(new Date((await this.recoverSince()).getTime() - CURSOR_OVERLAP_MS));
   }
 
   private async teardown(): Promise<void> {
@@ -248,31 +206,34 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     }
     this.me = me;
     this.logger.log(`logged in as ${me.name}`);
-
-
-
-    c.onConnectionState.add((state) => this.logger.log(`connection: ${state}`));
-
+    c.onConnectionState.add((s) => this.logger.log(`connection: ${s}`));
 
     this.client = c;
     this.extractor = new ExtractorService(c, cfg);
-    startMessageListener(c, this.chatIds, async (dto) => {
-      const channel = this.byChatId.get(dto.chatId);
-      if (channel) await this.store(channel, [dto]);
-    });
+    startMessageListener(
+      c,
+      this.chatIds,
+      (dto) => this.publish(dto.chatId, [dto]),
+      (msg) => {
+        const username = TELEGRAM_CHANNELS.find((u) => u.toLowerCase() === msg.chat.username?.toLowerCase());
+        if (!username) return false;
+        this.chatIds.add(msg.chat.id);
+        this.usernameByChatId.set(msg.chat.id, username);
+        this.resolved.add(username);
+        return true;
+      },
+    );
 
     this.chatIds.clear();
-    this.byChatId.clear();
-    for (const channel of await this.channels.listTelegram()) {
-      this.track(channel);
-      const since = channel.lastPolledAt
-        ? new Date(new Date(channel.lastPolledAt).getTime() - 60_000)
-        : await this.recoverSince();
-      void this.runBackfill(channel, since);
-    }
-    this.lastSyncAt = Date.now();
+    this.usernameByChatId.clear();
+    this.resolved.clear();
+    // Resume from the saved cursor (24h fallback) and re-pull everything missed while down.
+    const since = new Date((await this.recoverSince()).getTime() - CURSOR_OVERLAP_MS);
+    this.logger.log(`recovering missed messages since ${since.toISOString()}`);
+    void this.pullSince(since).catch((err) =>
+      this.logger.error(`initial pull failed: ${err instanceof Error ? err.message : String(err)}`),
+    );
     this.state = 'ready';
-    this.logger.log(`live: tracking ${this.chatIds.size} chat(s)`);
 
     const client = c;
     this.watchdog = new Watchdog({
