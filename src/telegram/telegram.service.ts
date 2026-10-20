@@ -166,7 +166,8 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
   }
 
   private async store(channel: Channel, dtos: MessageDto[]): Promise<number> {
-    const inserted = await this.messages.upsertMany(channel.id, dtos.map((d) => toParsedMessage(d, channel)));
+    const parsedMessages = dtos.map((dto) => toParsedMessage(dto, channel));
+    const inserted = await this.messages.upsertMany(channel.id, parsedMessages);
     if (dtos.length) {
       const maxId = Math.max(...dtos.map((d) => d.messageId));
       await this.channels.markPolled(channel.id, maxId, null);
@@ -176,13 +177,7 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
         channelId: channel.id,
         channel: channel.username,
         inserted,
-        messages: dtos.map((dto) => ({
-          chatId: dto.chatId,
-          messageId: dto.messageId,
-          text: dto.text,
-          date: dto.date,
-          senderName: dto.senderName,
-        })),
+        messages: parsedMessages,
       });
     }
     return inserted;
@@ -253,7 +248,7 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     }
     this.me = me;
     this.logger.log(`logged in as ${me.name}`);
-    c.onConnectionState.add((s: 'connecting' | 'connected' | 'disconnected' | 'error') => this.logger.log(`connection: ${s}`));
+    c.onConnectionState.add((state) => this.logger.log(`connection: ${state}`));
 
     this.client = c;
     this.extractor = new ExtractorService(c, cfg);

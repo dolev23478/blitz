@@ -2,14 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
 import type { ProfileScrapeResult } from '../../x-scraper/contracts/x-scraper.interfaces.js';
-import type { StoredMessage } from '../../types.js';
-import type { MessageDto } from '../../tg-realtime/types.js';
+import type { ParsedMessage } from '../../types.js';
 import type { RawReportCandidate } from '../../contracts/schema.js';
 import type { TransformContext } from '../transformer.types.js';
 import { normalizeReport } from '../normalization.js';
 import { TwitterMappingStrategy } from '../strategies/twitter-mapping.strategy.js';
 import { TelegramMappingStrategy } from '../strategies/telegram-mapping.strategy.js';
-import { TelegramRealtimeMappingStrategy } from '../strategies/telegram-realtime-mapping.strategy.js';
 
 @Injectable()
 export class MappingProcessor {
@@ -18,7 +16,6 @@ export class MappingProcessor {
   constructor(
     private readonly twitter: TwitterMappingStrategy,
     private readonly telegram: TelegramMappingStrategy,
-    private readonly telegramRealtime: TelegramRealtimeMappingStrategy,
   ) {}
 
   async execute(context: TransformContext): Promise<void> {
@@ -29,13 +26,8 @@ export class MappingProcessor {
         case 'ProfileScrapeResult':
           candidates = this.twitter.map(input as ProfileScrapeResult, metadata);
           break;
-        case 'StoredMessage':
-          candidates = [this.telegram.map(input as StoredMessage, metadata)];
-          break;
-        case 'MessageDto':
-          candidates = [
-            this.telegramRealtime.map(input as MessageDto, metadata),
-          ];
+        case 'ParsedMessage':
+          candidates = [this.telegram.map(input as ParsedMessage, metadata)];
           break;
         default:
           throw new TransformerException(

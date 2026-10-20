@@ -59,7 +59,7 @@ export class XScraperService {
 
     return this.searchTweets({
       query,
-      maxPosts: dto.maxPosts,
+      maxPosts: dto.maxPosts ?? 100,
       name: dto.feedName || 'osint-network',
       since,
     });
