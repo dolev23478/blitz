@@ -52,17 +52,24 @@ export class XScraperService {
       throw new Error('Batch handles list must contain at least one non-empty handle');
     }
 
-    const fromClause = cleanHandles.map((h) => `from:${h}`).join(' OR ');
     const filter = dto.queryFilter !== undefined ? dto.queryFilter.trim() : '-filter:replies';
-    const query = filter ? `(${fromClause}) ${filter}` : `(${fromClause})`;
     const since = dto.since ?? dto.sinceTimestamp ?? dto.fromTimestamp;
-    const maxPosts = dto.maxPosts ?? 25;
+    const name = dto.feedName || 'osint-network';
 
-    return this.searchTweets({
-      query,
-      name: dto.feedName || 'osint-network',
-      since,
-    });
+    // twitterapi.io rejects queries over 512 characters, so split the handles across several queries.
+    const results: ProfileScrapeResult[] = [];
+    for (const [index, chunk] of chunkHandlesForQuery(cleanHandles, filter).entries()) {
+      if (index > 0) await new Promise((r) => setTimeout(r, QUERY_DELAY_MS));
+      const fromClause = chunk.map((h) => `from:${h}`).join(' OR ');
+      const query = filter ? `(${fromClause}) ${filter}` : `(${fromClause})`;
+      results.push(await this.searchTweets({ query, maxPosts: dto.maxPosts ?? 100, name, since }));
+    }
+    if (results.length === 1) return results[0]!;
+
+    const posts = results
+      .flatMap((r) => r.posts)
+      .sort((a, b) => Date.parse(a.publishedAt ?? '') - Date.parse(b.publishedAt ?? ''));
+    return { ...results[0]!, scrapedAt: new Date().toISOString(), totalPosts: posts.length, posts };
   }
 
   /**
@@ -214,6 +221,30 @@ export class XScraperService {
 
     return exportedFiles;
   }
+}
+
+const MAX_QUERY_LENGTH = 500;
+/** twitterapi.io rate-limits to about one request per 5s on low tiers; pace the chunked queries accordingly. */
+const QUERY_DELAY_MS = Number(process.env.X_QUERY_DELAY_MS ?? 5500);
+
+/** Groups handles so that each "(from:A OR from:B) <filter>" query stays within the API length limit. */
+export function chunkHandlesForQuery(handles: string[], filter: string): string[][] {
+  const overhead = filter.length + 4; // parentheses, space and slack
+  const chunks: string[][] = [];
+  let current: string[] = [];
+  let length = overhead;
+  for (const handle of handles) {
+    const added = `from:${handle}`.length + (current.length ? 4 : 0);
+    if (current.length && length + added > MAX_QUERY_LENGTH) {
+      chunks.push(current);
+      current = [];
+      length = overhead;
+    }
+    length += `from:${handle}`.length + (current.length ? 4 : 0);
+    current.push(handle);
+  }
+  if (current.length) chunks.push(current);
+  return chunks;
 }
 
 /**

@@ -18,11 +18,13 @@ export function startMessageListener(
   client: TelegramClient,
   chatIds: ReadonlySet<number>,
   onMessage: MessageHandler,
+  /** Optional fallback for chats not in the Set yet (e.g. not resolved at startup); may register the chat and return true. */
+  acceptUnknown?: (msg: Message) => boolean,
 ): Dispatcher {
   const dp = Dispatcher.for(client);
 
   const handle = (msg: Message, isEdit: boolean): void => {
-    if (!isTargetChat(chatIds, msg.chat.id)) return;
+    if (!isTargetChat(chatIds, msg.chat.id) && !acceptUnknown?.(msg)) return;
     Promise.resolve(onMessage(mapMessage(msg, isEdit))).catch((e) =>
       console.error('message handler failed:', e),
     );
