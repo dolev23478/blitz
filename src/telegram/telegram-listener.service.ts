@@ -40,6 +40,9 @@ export class TelegramListenerService {
           `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,
         );
 
+        (message as ParsedMessage & { language?: string; matches?: string[] }).language = matchedLanguage;
+        (message as ParsedMessage & { language?: string; matches?: string[] }).matches = analysis.terms;
+
         filteredMessages.push({
           message,
           matchedLanguage,
