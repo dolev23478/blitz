@@ -65,12 +65,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
   /** Called automatically every time the cron cycle gets a result from X. */
   private async onXResult(result: ProfileScrapeResult): Promise<void> {
     const now = new Date().toISOString();
-
-    if (this.redis.isEnabled()) {
-      await this.redis.set('x:last-scrape-at', now);
-    }
-
-    const keptPosts: Array<{ post: (typeof result.posts)[number]; matchedLanguage: string; matches: string[] }> = [];
+    const keptPosts: Array<(typeof result.posts)[number]> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
@@ -85,23 +80,43 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
       );
 
-      keptPosts.push({
-        post,
-        matchedLanguage,
-        matches: analysis.terms,
-      });
+      post.language = matchedLanguage;
+      post.matches = analysis.terms;
+      keptPosts.push(post);
     }
 
-    result.posts = keptPosts.map((item) => item.post);
+    if (!keptPosts.length) {
+      if (this.redis.isEnabled()) {
+        await this.redis.set('x:last-scrape-at', now);
+      }
+      this.logger.log(`X result ready: 0 posts from ${result.handle}; saved timestamp=${now}`);
+      return;
+    }
 
-    const matches = [...new Set(keptPosts.flatMap((item) => item.matches))];
-    await this.transformer.run('ProfileScrapeResult', result, {
-      language: undefined,
-      matches,
-      collectedAt: new Date().toISOString(),
-      source: 'x',
-    });
+    for (const post of keptPosts) {
+      const singleResult: ProfileScrapeResult = {
+        ...result,
+        totalPosts: 1,
+        posts: [post],
+      };
+      try {
+        await this.transformer.run('ProfileScrapeResult', singleResult, {
+          language: post.language,
+          matches: post.matches,
+          collectedAt: new Date().toISOString(),
+          source: 'x',
+        });
+      } catch (err) {
+        this.logger.error(
+          `X post failed: ${post.url}: ${err instanceof Error ? err.message : String(err)}`,
+        );
+      }
+    }
 
-    this.logger.log(`X result ready: ${result.posts.length} posts from ${result.handle}; saved timestamp=${now}`);
+    if (this.redis.isEnabled()) {
+      await this.redis.set('x:last-scrape-at', now);
+    }
+
+    this.logger.log(`X result ready: ${keptPosts.length} posts from ${result.handle}; saved timestamp=${now}`);
   }
 }
