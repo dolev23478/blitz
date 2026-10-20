@@ -29,33 +29,32 @@ export class TelegramListenerService {
     }
 
     const supportedLanguages = getDictionaryStore().languages();
-    const aliasAwareLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
+    const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
       .map((language) => resolveLanguageAlias(language));
-    const filteredMessages: Array<ParsedMessage & { matchedLanguage?: string; language?: string }> = [];
+    const filteredMessages: Array<ParsedMessage & { matchedLanguage?: string }> = [];
 
     if (event.messages?.length) {
       for (const message of event.messages) {
         if (!message || !message.text || !message.text.trim()) continue;
 
-        let matchedLanguage: string | null = null;
-        for (const language of aliasAwareLanguages) {
-          const analysis = analyzeText(message.text, language);
-          if (analysis.matched) {
-            matchedLanguage = language;
-            this.logger.log(
-              `Telegram language match: lang=${language}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,
-            );
-            break;
-          }
-        }
+        const analysis = analyzeText(message.text, candidateLanguages);
+        if (!analysis.matched || analysis.languages?.length === 0) continue;
 
-        if (matchedLanguage) {
-          filteredMessages.push({
-            ...message,
-            matchedLanguage,
-            language: matchedLanguage,
-          });
-        }
+        const matchedLanguages = analysis.languages?.length
+          ? analysis.languages
+          : [analysis.language].filter(Boolean);
+        const matchedLanguage = matchedLanguages[0] ?? null;
+
+        if (!matchedLanguage) continue;
+
+        this.logger.log(
+          `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,
+        );
+
+        filteredMessages.push({
+          ...message,
+          matchedLanguage,
+        });
       }
     }
 

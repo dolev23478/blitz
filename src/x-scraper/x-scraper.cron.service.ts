@@ -73,37 +73,36 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     }
 
     const supportedLanguages = getDictionaryStore().languages();
-    const aliasAwareLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
+    const candidateLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
       .map((language) => resolveLanguageAlias(language));
-    const keptPosts: Array<(typeof result.posts)[number] & { matchedLanguage?: string; language?: string }> = [];
+    const keptPosts: Array<(typeof result.posts)[number] & { matchedLanguage?: string }> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
 
-      let matchedLanguage: string | null = null;
-      for (const language of aliasAwareLanguages) {
-        const analysis = analyzeText(post.text, language);
-        if (analysis.matched) {
-          matchedLanguage = language;
-          this.logger.log(
-            `X language match: lang=${language}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
-          );
-          break;
-        }
-      }
+      const analysis = analyzeText(post.text, candidateLanguages);
+      if (!analysis.matched || analysis.languages?.length === 0) continue;
 
-      if (matchedLanguage) {
-        keptPosts.push({
-          ...post,
-          matchedLanguage,
-          language: matchedLanguage,
-        });
-      }
+      const matchedLanguages = analysis.languages?.length
+        ? analysis.languages
+        : [analysis.language].filter(Boolean);
+      const matchedLanguage = matchedLanguages[0] ?? null;
+
+      if (!matchedLanguage) continue;
+
+      this.logger.log(
+        `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
+      );
+
+      keptPosts.push({
+        ...post,
+        matchedLanguage,
+      });
     }
 
     result.posts = keptPosts;
 
-    const matches = [...new Set(result.posts.flatMap((post) => ((post as { language?: string }).language ? [(post as { language?: string }).language!] : [])))];
+    const matches = [...new Set(result.posts.flatMap((post) => (post.matchedLanguage ? [post.matchedLanguage] : [])))];
     await this.transformer.run('ProfileScrapeResult', result, {
       language: matches[0] ?? undefined,
       matches,
