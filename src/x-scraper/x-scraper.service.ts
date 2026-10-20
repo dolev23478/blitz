@@ -56,10 +56,11 @@ export class XScraperService {
     const filter = dto.queryFilter !== undefined ? dto.queryFilter.trim() : '-filter:replies';
     const query = filter ? `(${fromClause}) ${filter}` : `(${fromClause})`;
     const since = dto.since ?? dto.sinceTimestamp ?? dto.fromTimestamp;
+    const maxPosts = dto.maxPosts ?? 25;
 
     return this.searchTweets({
       query,
-      maxPosts: dto.maxPosts,
+      maxPosts,
       name: dto.feedName || 'osint-network',
       since,
     });

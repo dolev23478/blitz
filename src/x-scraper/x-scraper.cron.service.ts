@@ -6,6 +6,7 @@ import { RedisService } from '../redis/redis.service.js';
 import { analyzeText } from '../text-analyzer.js';
 import { getDictionaryStore } from '../dictionaries/load-dictionaries.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
+import { resolveLanguageAlias, LANGUAGE_ALIASES } from '../normalize/registry.js';
 
 @Injectable()
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
@@ -72,13 +73,15 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     }
 
     const supportedLanguages = getDictionaryStore().languages();
+    const aliasAwareLanguages = [...new Set([...supportedLanguages, ...LANGUAGE_ALIASES])]
+      .map((language) => resolveLanguageAlias(language));
     const keptPosts: Array<(typeof result.posts)[number] & { matchedLanguage?: string; language?: string }> = [];
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
 
       let matchedLanguage: string | null = null;
-      for (const language of supportedLanguages) {
+      for (const language of aliasAwareLanguages) {
         const analysis = analyzeText(post.text, language);
         if (analysis.matched) {
           matchedLanguage = language;

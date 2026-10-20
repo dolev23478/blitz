@@ -6,6 +6,7 @@ interface FakeTelegramMessage {
   messageId: number;
   text: string;
   senderName?: string | null;
+  matchedLanguage?: string;
 }
 
 interface FakeTelegramEvent {
@@ -99,12 +100,14 @@ describe('fake source flow', () => {
           messageId: 1,
           text: 'I will KILL the jews with a bomb!!!',
           senderName: 'Alice',
+          matchedLanguage: 'en',
         },
         {
           chatId: 1001,
           messageId: 2,
           text: 'Good morning everyone, have a nice day',
           senderName: 'Bob',
+          matchedLanguage: 'en',
         },
       ],
     };
@@ -130,6 +133,7 @@ describe('fake source flow', () => {
           authorName: 'User One',
           text: 'I will KILL the jews with a bomb!!!',
           publishedAt: new Date().toISOString(),
+          matchedLanguage: 'en',
         },
         {
           id: 'x-2',
@@ -138,6 +142,7 @@ describe('fake source flow', () => {
           authorName: 'User Two',
           text: 'Weekend plans and coffee',
           publishedAt: new Date().toISOString(),
+          matchedLanguage: 'en',
         },
       ],
     };
@@ -155,8 +160,8 @@ describe('fake source flow', () => {
       channel: 'group-a',
       inserted: 1,
       messages: [
-        { chatId: 99, messageId: 7, text: 'اقتل' },
-        { chatId: 99, messageId: 8, text: 'hello friend' },
+        { chatId: 99, messageId: 7, text: 'اقتل', matchedLanguage: 'ar' },
+        { chatId: 99, messageId: 8, text: 'hello friend', matchedLanguage: 'en' },
       ],
     });
 
@@ -166,8 +171,8 @@ describe('fake source flow', () => {
       providerUsed: 'fake-provider',
       totalPosts: 2,
       posts: [
-        { id: 'a', url: 'https://x.com/a', authorHandle: 'a', authorName: 'A', text: 'اقتل', publishedAt: new Date().toISOString() },
-        { id: 'b', url: 'https://x.com/b', authorHandle: 'b', authorName: 'B', text: 'nice weather', publishedAt: new Date().toISOString() },
+        { id: 'a', url: 'https://x.com/a', authorHandle: 'a', authorName: 'A', text: 'اقتل', publishedAt: new Date().toISOString(), matchedLanguage: 'ar' },
+        { id: 'b', url: 'https://x.com/b', authorHandle: 'b', authorName: 'B', text: 'nice weather', publishedAt: new Date().toISOString(), matchedLanguage: 'en' },
       ],
     });
 
