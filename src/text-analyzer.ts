@@ -224,7 +224,7 @@ export class TextAnalyzer {
       ...new Set(allMatches.map((match) => match.sourceFile)),
     ].sort();
 
-    const outputLanguages = targetLanguages.map(toOutputLanguage);
+    const outputLanguages = [...new Set(targetLanguages.map(toOutputLanguage))];
     const matchedLangs = [
       ...new Set(
         allMatches.map((m) =>
@@ -232,9 +232,8 @@ export class TextAnalyzer {
         ),
       ),
     ];
-    const otherLangs = outputLanguages.filter((l) => !matchedLangs.includes(l));
     const finalLanguages =
-      matchedLangs.length > 0 ? [...matchedLangs, ...otherLangs] : outputLanguages;
+      matchedLangs.length > 0 ? matchedLangs : outputLanguages;
 
     const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
     const { matched, evaluation } = evaluateThreat(
