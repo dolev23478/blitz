@@ -1,3 +1,5 @@
+import type { CollectorReportFields } from '../../contracts/collector-report.js';
+
 export type OutputFormat = 'json' | 'html' | 'both';
 
 export interface ScrapeRequestDto {
@@ -37,7 +39,7 @@ export interface ScrapedPostMedia {
   previewUrl?: string;
 }
 
-export interface ScrapedPost {
+export interface ScrapedPost extends CollectorReportFields {
   id: string;
   url: string;
   authorHandle: string;
@@ -59,7 +61,7 @@ export interface ScrapedPost {
   matchedLanguage?: string;
 }
 
-export interface ProfileScrapeResult {
+export interface ProfileScrapeResult extends CollectorReportFields {
   handle: string;
   scrapedAt: string;
   providerUsed: string;
