@@ -30,6 +30,8 @@ export interface ParsedMessage extends CollectorReportFields {
   senderName?: string | null;
   forwards?: number | null;
   reactions?: Reaction[];
+  language?: string;
+  matches?: string[];
 }
 
 export interface ChannelPage {

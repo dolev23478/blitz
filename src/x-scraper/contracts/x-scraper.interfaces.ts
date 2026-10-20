@@ -59,6 +59,8 @@ export interface ScrapedPost extends CollectorReportFields {
   isPinned: boolean;
   rawHtmlSnippet?: string;
   matchedLanguage?: string;
+  language?: string;
+  matches?: string[];
 }
 
 export interface ProfileScrapeResult extends CollectorReportFields {
