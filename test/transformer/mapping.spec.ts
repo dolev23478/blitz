@@ -104,7 +104,6 @@ describe('collector JSON mapping', () => {
     const reports = await mapReports(input);
     expect(reports).toHaveLength(1);
     expect(reports[0]).toEqual({
-      report_id: expect.any(Number),
       schema_version: 1,
       is_official: false,
       platform: 'twitter',
@@ -137,7 +136,6 @@ describe('collector JSON mapping', () => {
       'blitz',
       'other',
     ]);
-    expect(reports[0]!.report_id).not.toBe(reports[1]!.report_id);
   });
 
   it('keeps plain text angle brackets and normalizes Unicode without HTML parsing', async () => {
@@ -152,7 +150,6 @@ describe('collector JSON mapping', () => {
     input.media = [{ type: 'video', url: 'https://example.com/video.mp4' }];
     const [report] = await mapReports(input);
     expect(report).toEqual({
-      report_id: expect.any(Number),
       schema_version: 1,
       is_official: false,
       platform: 'telegram',

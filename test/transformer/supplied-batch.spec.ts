@@ -49,7 +49,6 @@ afterEach(async () => {
 
 const expectedReportsWithSharedLanguage = [
   {
-    report_id: 3047412,
     schema_version: 1,
     is_official: false,
     platform: 'twitter',
@@ -67,7 +66,6 @@ const expectedReportsWithSharedLanguage = [
     collected_at: '2026-10-19T14:30:00.000Z',
   },
   {
-    report_id: 1260685280,
     schema_version: 1,
     is_official: false,
     platform: 'twitter',
@@ -113,15 +111,14 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
       expect(Object.keys(report).sort()).toEqual(
         [...provisionalRawReportSchema.required].sort(),
       );
-      expect(record.messages[0]!.key).toBe(String(report.report_id));
+      expect(record.messages[0]!.key).toBeUndefined();
       return report;
     });
     expect(actualReports).toEqual(expectedReportsWithSharedLanguage);
     expect(result).toEqual(
-      actualReports.map((report) => ({
+      actualReports.map(() => ({
         status: 'completed',
         inputId: 'supplied-example',
-        reportId: report.report_id,
       })),
     );
     expect(payload).toEqual(original);
