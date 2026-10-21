@@ -51,6 +51,19 @@ describe('Watchdog', () => {
     expect(calls.soft).toBe(1);
   });
 
+  it('runs the heartbeat every tick, even when the probe fails, and survives its errors', async () => {
+    let beats = 0;
+    const { wd } = make(async () => { throw new Error('down'); }, {
+      heartbeat: async () => {
+        beats++;
+        throw new Error('redis down');
+      },
+    });
+    await wd.tick();
+    await wd.tick();
+    expect(beats).toBe(2);
+  });
+
   it('runs the periodic safety-net sync even when healthy', async () => {
     const { wd, calls } = make(async () => 'ok', { syncEveryMs: 5000 });
     await wd.tick();

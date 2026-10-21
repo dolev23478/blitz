@@ -246,7 +246,7 @@ export class TextAnalyzer {
       ...new Set(allMatches.map((match) => match.sourceFile)),
     ].sort();
 
-    const outputLanguages = targetLanguages.map(toOutputLanguage);
+    const outputLanguages = [...new Set(targetLanguages.map(toOutputLanguage))];
     const matchedLangs = [
       ...new Set(
         allMatches.map((m) =>
