@@ -90,6 +90,8 @@ reference/
 # Local radio recordings, transcripts, model downloads and Python environment
 /.radio/
 /.venv-radio/
+/vendor/radio-models/**/.cache/
+/vendor/radio-models/**/model.bin
 **/__pycache__/
 
 ca.crt

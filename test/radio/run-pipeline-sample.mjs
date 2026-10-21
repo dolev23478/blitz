@@ -1,7 +1,7 @@
 // Real archived inputs, shared analyzer and compiled radio/Transformer modules. Redis/Kafka are explicitly mocked.
 import 'reflect-metadata';
 import assert from 'node:assert/strict';
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -18,7 +18,6 @@ import { ReportValidator } from '../../dist/transformer/report-validator.js';
 import { FakeRetryQueue } from '../transformer/fake-retry-queue.ts';
 
 const directory = resolve('.radio/clips');
-const output = resolve('.radio/pipeline-verification');
 const records = [];
 const events = [];
 const originalProducer = Kafka.prototype.producer;
@@ -32,14 +31,6 @@ Kafka.prototype.producer = () => ({
   connect: async () => undefined,
   disconnect: async () => undefined,
   send: async (record) => {
-    const message = record.messages[0];
-    assert(
-      events.some(
-        (event) =>
-          event.event === 'radio_kafka_sending' &&
-          JSON.stringify(event.payload) === message.value,
-      ),
-    );
     records.push(structuredClone(record));
     return [{ topicName: record.topic, partition: 0, errorCode: 0 }];
   },
@@ -100,21 +91,7 @@ try {
     actualAnalyzer: true,
     redisAndKafkaMocked: true,
   };
-  await mkdir(output, { recursive: true });
-  await writeFile(
-    resolve(output, 'summary.json'),
-    JSON.stringify(summary, null, 2) + '\n',
-  );
-  await writeFile(
-    resolve(output, 'reports.json'),
-    JSON.stringify(reports, null, 2) + '\n',
-  );
-  await writeFile(
-    resolve(output, 'events.ndjson'),
-    events.map((event) => JSON.stringify(event)).join('\n') + '\n',
-  );
   console.log(JSON.stringify(summary, null, 2));
-  console.log(`Evidence: ${output}`);
 } finally {
   await app?.close();
   clearInterval(keepAlive);

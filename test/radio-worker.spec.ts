@@ -45,9 +45,7 @@ afterEach(async () => {
 });
 
 it('runs Python directly with bounded resources and JSON stdin, keeping caches in the project', async () => {
-  await expect(
-    worker.capture(station, resolve('.radio/clips/test.wav'), settings),
-  ).resolves.toEqual(result);
+  await expect(worker.capture(station, settings)).resolves.toEqual(result);
   const [file, args, options] = processMock.exec.mock.calls[0]!;
   expect(file).toBe(resolve(settings.RADIO_PYTHON_PATH));
   expect(args).toHaveLength(1);
@@ -60,7 +58,14 @@ it('runs Python directly with bounded resources and JSON stdin, keeping caches i
   });
   expect(options.shell).toBeUndefined();
   expect(options.env.HF_HOME).toBe(resolve('.radio/models'));
-  expect(options.env.TEMP).toBe(resolve('.radio/tmp'));
+  expect(options.env.HF_HUB_OFFLINE).toBe('1');
+  expect(options.env.TRANSFORMERS_OFFLINE).toBe('1');
+  expect(JSON.parse(processMock.end.mock.calls[0]![0])).not.toHaveProperty(
+    'audioPath',
+  );
+  expect(JSON.parse(processMock.end.mock.calls[0]![0]).modelDirectory).toBe(
+    resolve('vendor/radio-models'),
+  );
   expect(JSON.parse(processMock.end.mock.calls[0]![0])).toMatchObject({
     streamUrl: station.streamUrl,
     seconds: settings.recordingSeconds,
@@ -86,9 +91,9 @@ describe.each([
         };
       },
     );
-    await expect(
-      worker.capture(station, resolve('.radio/clips/test.wav'), settings),
-    ).rejects.toThrow('invalid result');
+    await expect(worker.capture(station, settings)).rejects.toThrow(
+      'invalid result',
+    );
   });
 });
 
@@ -108,7 +113,7 @@ it('includes bounded diagnostics for missing dependencies or a broken stream', a
       };
     },
   );
-  await expect(worker.capture(station, 'test.wav', settings)).rejects.toThrow(
+  await expect(worker.capture(station, settings)).rejects.toThrow(
     "No module named 'av'",
   );
 });
@@ -131,12 +136,12 @@ it('kills an active child, awaits its exit and rejects new jobs after shutdown',
       };
     },
   );
-  const running = worker.capture(station, 'test.wav', settings);
+  const running = worker.capture(station, settings);
   const rejection = expect(running).rejects.toThrow('stopped');
   await worker.onModuleDestroy();
   await rejection;
   expect(processMock.kill).toHaveBeenCalledWith('SIGKILL');
-  await expect(worker.capture(station, 'test.wav', settings)).rejects.toThrow(
+  await expect(worker.capture(station, settings)).rejects.toThrow(
     'shutting down',
   );
 });

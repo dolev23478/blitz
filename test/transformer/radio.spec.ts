@@ -17,7 +17,6 @@ import { FakeRetryQueue } from './fake-retry-queue.js';
 
 const config = new ConfigService({
   KAFKA_BROKERS: 'capture.invalid:9092',
-  RADIO_PUBLIC_BASE_URL: 'https://blitz.example.com',
 });
 function clip(): RadioTranscript {
   return {
@@ -60,7 +59,7 @@ beforeEach(() => {
     new MappingProcessor(
       new TwitterMappingStrategy(),
       new TelegramMappingStrategy(),
-      new RadioMappingStrategy(config),
+      new RadioMappingStrategy(),
     ),
     new ValidationProcessor(config),
     publisher,
@@ -95,7 +94,7 @@ describe('radio JSON through the shared Transformer workflow', () => {
       account_name: input.station.name,
       channel_name: input.station.name,
       report_title: input.station.name,
-      report_url: `https://blitz.example.com/api/radio/clips/${input.clipId}`,
+      report_url: `${input.station.streamUrl}#clip=${input.clipId}`,
       media_type: ['text'],
       content: input.text.trim(),
       languages: ['ar'],
@@ -115,8 +114,8 @@ describe('radio JSON through the shared Transformer workflow', () => {
     expect(input).toEqual(original);
   });
 
-  it('gives two clips of the same station distinct archive URLs', () => {
-    const mapper = new RadioMappingStrategy(config);
+  it('gives two clips of the same station distinct observation URLs', () => {
+    const mapper = new RadioMappingStrategy();
     const first = mapper.map(clip(), {});
     const second = mapper.map(
       { ...clip(), clipId: 'c9f51a4a-387c-4f5f-b540-1d3ed20a115d' },
@@ -153,13 +152,12 @@ describe('radio JSON through the shared Transformer workflow', () => {
     });
   });
 
-  it('uses the current local port if no public base URL is configured', () => {
-    expect(
-      new RadioMappingStrategy(new ConfigService({ PORT: 3210 })).map(
-        clip(),
-        {},
-      ).report_url,
-    ).toBe(`http://localhost:3210/api/radio/clips/${clip().clipId}`);
+  it('preserves the stream URL and any existing fragment', () => {
+    const input = clip();
+    input.station.streamUrl = 'https://example.com/live?token=a%2fb#listen';
+    expect(new RadioMappingStrategy().map(input, {}).report_url).toBe(
+      `${input.station.streamUrl}&clip=${input.clipId}`,
+    );
   });
 
   it('maps Persian ASR language without depending on the station hint', async () => {

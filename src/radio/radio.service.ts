@@ -6,20 +6,10 @@ import {
   type OnModuleDestroy,
 } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import {
-  mkdir,
-  readFile,
-  readdir,
-  rename,
-  rm,
-  writeFile,
-} from 'node:fs/promises';
-import { resolve } from 'node:path';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
 import { LocalRadioWorker } from './local-radio.worker.js';
 import { analyzeText } from '../text-analyzer.js';
 import {
-  radioDataDirectory,
   radioStationsSchema,
   readRadioSettings,
   type RadioStation,
@@ -29,9 +19,6 @@ import {
   type RadioCycleResult,
   type RadioTranscript,
 } from './radio.types.js';
-
-const clipIdPattern =
-  /^[a-f\d]{8}-[a-f\d]{4}-4[a-f\d]{3}-[89ab][a-f\d]{3}-[a-f\d]{12}$/i;
 
 @Injectable()
 export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
@@ -108,7 +95,6 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
     if (this.active || this.closing)
       return {
         skipped: true,
-        archiveFull: false,
         clips: [],
         failedStations: [],
       };
@@ -126,29 +112,12 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
   ): Promise<RadioCycleResult> {
     const result: RadioCycleResult = {
       skipped: false,
-      archiveFull: false,
       clips: [],
       failedStations: [],
     };
-    await mkdir(this.clipsDirectory(), { recursive: true });
-    await mkdir(resolve(this.dataDirectory(), 'tmp'), { recursive: true });
     for (const station of stations) {
       if (this.closing) break;
-      if ((await this.archiveSize()) >= this.settings.RADIO_MAX_CLIPS) {
-        result.archiveFull = true;
-        this.logger.warn({
-          event: 'radio_archive_full',
-          capacity: this.settings.RADIO_MAX_CLIPS,
-        });
-        break; // Pause collection; never evict audio or the user's saves directory.
-      }
       const clipId = randomUUID();
-      const temporaryAudio = resolve(
-        this.dataDirectory(),
-        'tmp',
-        `${clipId}.wav`,
-      );
-      let archived = false;
       try {
         this.logger.log({
           event: 'radio_capture_started',
@@ -157,21 +126,12 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
           clipId,
           clipSeconds: this.settings.recordingSeconds,
         });
-        const captured = await this.worker.capture(
-          station,
-          temporaryAudio,
-          this.settings,
-        );
+        const captured = await this.worker.capture(station, this.settings);
         const clip: RadioTranscript = radioTranscriptSchema.parse({
           ...captured,
           clipId,
           station,
           status: captured.text.trim() ? 'transcribed' : 'no_speech',
-        });
-        this.logger.log({
-          event: 'radio_input_received',
-          clipId,
-          payload: clip,
         });
         const analysis = clip.text.trim()
           ? analyzeText(clip.text, 'auto')
@@ -189,19 +149,6 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
         });
         if (!analysis?.matched) continue;
 
-        // Only accepted clips become an archive. Never expose rejected audio over HTTP.
-        await rename(temporaryAudio, this.audioPath(clipId));
-        // JSON is the completion marker; rename exposes a complete file to HTTP readers.
-        await writeFile(
-          this.clipFile(clipId, 'json.tmp'),
-          JSON.stringify(clip, null, 2) + '\n',
-          { flag: 'wx' },
-        );
-        await rename(
-          this.clipFile(clipId, 'json.tmp'),
-          this.clipFile(clipId, 'json'),
-        );
-        archived = true;
         result.clips.push(clip);
         this.logger.log({
           event:
@@ -228,74 +175,16 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
           clipId,
           reason,
         });
-      } finally {
-        await rm(temporaryAudio, { force: true });
-        if (!archived) {
-          // Remove only this job's known paths; never touch historical clips or saves.
-          for (const extension of ['wav', 'json.tmp', 'json']) {
-            await rm(this.clipFile(clipId, extension), { force: true });
-          }
-        }
       }
     }
     return result;
   }
 
-  async readClip(id: string): Promise<RadioTranscript> {
-    return radioTranscriptSchema.parse(
-      JSON.parse(await readFile(this.clipFile(id, 'json'), 'utf8')),
-    );
-  }
-
-  /** Newest completed clips only. */
-  async listClips(): Promise<RadioTranscript[]> {
-    const files = await readdir(this.clipsDirectory()).catch(
-      (error: NodeJS.ErrnoException) => {
-        if (error.code === 'ENOENT') return [];
-        throw error;
-      },
-    );
-    const clips: RadioTranscript[] = [];
-    for (const file of files) {
-      const id = file.replace(/\.json$/, '');
-      if (!clipIdPattern.test(id)) continue;
-      try {
-        clips.push(await this.readClip(id));
-      } catch {
-        this.logger.warn({ event: 'radio_archive_unreadable', clipId: id });
-      }
-    }
-    return clips.sort((a, b) => b.startedAt.localeCompare(a.startedAt));
-  }
-
-  audioPath(id: string): string {
-    return this.clipFile(id, 'wav');
-  }
-
-  private clipFile(id: string, extension: string): string {
-    if (!clipIdPattern.test(id)) throw new Error('Invalid radio clip ID.');
-    return resolve(this.clipsDirectory(), `${id}.${extension}`);
-  }
-  private dataDirectory(): string {
-    return radioDataDirectory(this.settings.RADIO_DATA_DIR);
-  }
-  private clipsDirectory(): string {
-    return resolve(this.dataDirectory(), 'clips');
-  }
   private reason(error: unknown): string {
     return error instanceof Error
       ? error.message.slice(0, 2000)
       : 'Unknown radio failure.';
   }
-  private async archiveSize(): Promise<number> {
-    const files = await readdir(this.clipsDirectory());
-    return new Set(
-      files
-        .map((file) => file.split('.')[0]!)
-        .filter((id) => clipIdPattern.test(id)),
-    ).size;
-  }
-
   async onModuleDestroy(): Promise<void> {
     this.closing = true;
     this.finishHandoffOnShutdown();

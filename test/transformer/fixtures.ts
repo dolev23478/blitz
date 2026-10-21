@@ -103,7 +103,7 @@ export function mappingProcessor(): MappingProcessor {
   return new MappingProcessor(
     new TwitterMappingStrategy(),
     new TelegramMappingStrategy(),
-    new RadioMappingStrategy(new ConfigService()),
+    new RadioMappingStrategy(),
   );
 }
 

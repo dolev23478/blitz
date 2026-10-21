@@ -36,20 +36,27 @@ FROM node:${NODE_VERSION} AS runner
 
 WORKDIR /app
 
-# Local radio ASR runs in the same container; model downloads stay in /app/.radio.
+# Local radio ASR runs in the same container. The Whisper model is downloaded here, at build time,
+# into vendor/radio-models: at runtime the worker only reads local files and never contacts the model hub.
+ARG RADIO_MODEL=tiny
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 python3-venv ca-certificates libgomp1 \
   && rm -rf /var/lib/apt/lists/*
 COPY requirements-radio.txt ./
 RUN python3 -m venv /app/.venv-radio \
   && /app/.venv-radio/bin/python -m pip install --no-cache-dir -r requirements-radio.txt
+COPY scripts/prepare-radio-model.py ./scripts/prepare-radio-model.py
+RUN HF_HUB_DISABLE_TELEMETRY=1 /app/.venv-radio/bin/python scripts/prepare-radio-model.py ${RADIO_MODEL} \
+  && rm -rf /app/.radio
 
 # DICTIONARIES_DIR: read at runtime by the filter (src/dictionaries/load-dictionaries.ts).
 # OUTPUT_DIR: the X scraper writes its JSON/HTML exports here (src/x-scraper/x-scraper.service.ts).
 ENV NODE_ENV=production \
     PORT=3000 \
     DICTIONARIES_DIR=/app/dictionaries \
-    OUTPUT_DIR=/app/output
+    OUTPUT_DIR=/app/output \
+    RADIO_MODELS_DIR=vendor/radio-models \
+    RADIO_MODEL=${RADIO_MODEL}
 
 # package.json is needed at runtime for ESM ("type": "module")
 COPY --chown=node:node package*.json ./

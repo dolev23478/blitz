@@ -16,14 +16,10 @@ import {
   radioDataDirectory,
   radioStationsSchema,
   readRadioSettings,
-  radioPublicBaseUrlSchema,
 } from '../src/radio/radio.config.js';
 import * as textAnalyzer from '../src/text-analyzer.js';
 import { RadioService } from '../src/radio/radio.service.js';
-import {
-  captureResultSchema,
-  type CaptureResult,
-} from '../src/radio/radio.types.js';
+import { type CaptureResult } from '../src/radio/radio.types.js';
 
 const station = {
   id: 'test-radio',
@@ -45,10 +41,7 @@ let capture: ReturnType<typeof vi.fn>;
 let stop: ReturnType<typeof vi.fn>;
 beforeEach(() => {
   directory = resolve('.tmp', `radio-test-${randomUUID()}`);
-  capture = vi.fn().mockImplementation(async (_station, path) => {
-    await writeFile(path, 'test audio');
-    return captured;
-  });
+  capture = vi.fn().mockResolvedValue(captured);
   vi.spyOn(textAnalyzer, 'analyzeText').mockReturnValue({
     text: captured.text,
     content: captured.text,
@@ -82,14 +75,6 @@ afterEach(async () => {
 });
 
 describe('radio configuration', () => {
-  it.each([
-    'file:///outside',
-    'https://user:password@example.com',
-    'https://example.com?token=secret',
-    'https://example.com#fragment',
-  ])('rejects an invalid public clip URL base %s', (value) => {
-    expect(() => radioPublicBaseUrlSchema.parse(value)).toThrow();
-  });
   it('starts with the app by default and uses the three constants', () => {
     const settings = readRadioSettings(loadConfig({}));
     expect(settings.RADIO_ENABLED).toBe(true);
@@ -131,11 +116,10 @@ describe('radio configuration', () => {
   });
 });
 
-describe('radio capture and archive', () => {
-  it('waits for an optional Transformer handoff after archiving, and supports removing it', async () => {
+describe('radio memory-only capture', () => {
+  it('waits for the Transformer handoff and supports unsubscribing without saving anything', async () => {
     let finish!: () => void;
-    const listener = vi.fn(async (clip) => {
-      expect(await radio.readClip(clip.clipId)).toEqual(clip);
+    const listener = vi.fn(async () => {
       await new Promise<void>((resolve) => {
         finish = resolve;
       });
@@ -149,26 +133,16 @@ describe('radio capture and archive', () => {
     unsubscribe();
     await radio.collectOnce([station]);
     expect(listener).toHaveBeenCalledOnce();
+    await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
   });
-  it('does not hold shutdown open while a handed-off report waits for Kafka retries', async () => {
-    const listener = vi.fn(() => new Promise<void>(() => undefined));
-    radio.watchTranscripts(listener);
-    const active = radio.collectOnce([station]);
-    await vi.waitFor(() => expect(listener).toHaveBeenCalledOnce());
-    await radio.onModuleDestroy();
-    expect((await active).clips).toHaveLength(1);
-  });
-  it('archives only WAV and JSON with the transcript and station name', async () => {
+
+  it('logs only accepted transcript text and never creates an audio or JSON file', async () => {
     const result = await radio.collectOnce([station]);
     expect(result.failedStations).toEqual([]);
-    const clip = result.clips[0]!;
-    expect(clip.status).toBe('transcribed');
-    expect(await radio.readClip(clip.clipId)).toEqual(clip);
-    expect((await radio.readClip(clip.clipId)).text).toBe(captured.text);
-    expect((await radio.readClip(clip.clipId)).station.name).toBe(station.name);
+    expect(result.clips).toHaveLength(1);
+    expect(result.clips[0]!.station.name).toBe(station.name);
     expect(capture).toHaveBeenCalledWith(
       station,
-      resolve(directory, 'tmp', clip.clipId + '.wav'),
       expect.objectContaining({ recordingSeconds: RECORDING_SECONDS }),
     );
     expect(Logger.prototype.log).toHaveBeenCalledWith(
@@ -177,127 +151,89 @@ describe('radio capture and archive', () => {
         transcript: captured.text,
       }),
     );
-    expect(await radio.listClips()).toEqual([clip]);
-    expect((await readdir(resolve(directory, 'clips'))).sort()).toEqual([
-      clip.clipId + '.json',
-      clip.clipId + '.wav',
-    ]);
-    expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
+    const transcriptLogs = vi
+      .mocked(Logger.prototype.log)
+      .mock.calls.filter(([event]) => event?.transcript);
+    expect(transcriptLogs).toHaveLength(1);
+    await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
   });
-  it('uses a fresh UUID for every clip of the same station', async () => {
-    const first = (await radio.collectOnce([station])).clips[0]!;
-    const second = (await radio.collectOnce([station])).clips[0]!;
-    expect(second.clipId).not.toBe(first.clipId);
-    expect(await radio.listClips()).toHaveLength(2);
-  });
-  it.each(['', 'Good morning everyone'])(
-    'does not archive rejected text %s or notify the publisher',
+
+  it.each(['', 'Rejected private transcript'])(
+    'does not persist or log rejected transcript %s',
     async (text) => {
       vi.mocked(textAnalyzer.analyzeText).mockReturnValue({
         matched: false,
       } as ReturnType<typeof textAnalyzer.analyzeText>);
-      capture.mockImplementationOnce(async (_station, path) => {
-        await writeFile(path, 'rejected audio');
-        return {
-          ...captured,
-          text,
-          language: text ? 'en' : 'unknown',
-          segments: [],
-        };
+      capture.mockResolvedValue({
+        ...captured,
+        text,
+        language: text ? 'en' : 'unknown',
+        segments: [],
       });
       const listener = vi.fn();
       radio.watchTranscripts(listener);
       const result = await radio.collectOnce([station]);
       expect(result.clips).toEqual([]);
-      expect(result.failedStations).toEqual([]);
       expect(listener).not.toHaveBeenCalled();
-      expect(await readdir(resolve(directory, 'clips'))).toEqual([]);
-      expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
+      if (text)
+        expect(
+          JSON.stringify(vi.mocked(Logger.prototype.log).mock.calls),
+        ).not.toContain(text);
+      expect(Logger.prototype.log).not.toHaveBeenCalledWith(
+        expect.objectContaining({ event: 'radio_transcribed' }),
+      );
+      await expect(readdir(directory)).rejects.toMatchObject({
+        code: 'ENOENT',
+      });
     },
   );
-  it('continues after a station failure and removes partial audio', async () => {
-    capture.mockImplementationOnce(async (_station, path) => {
-      await writeFile(path, 'partial audio');
-      throw new Error('ASR failed');
-    });
+
+  it('continues after a failed capture without creating partial files', async () => {
+    capture.mockRejectedValueOnce(new Error('ASR failed'));
     const result = await radio.collectOnce([
       station,
       { ...station, id: 'second' },
     ]);
     expect(result.failedStations).toEqual([station.id]);
     expect(result.clips).toHaveLength(1);
-    expect(await radio.listClips()).toHaveLength(1);
-    expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
-    const files = await readdir(resolve(directory, 'clips'));
-    expect(files).toHaveLength(2);
-    expect(
-      files.every((file) => file.startsWith(result.clips[0]!.clipId)),
-    ).toBe(true);
+    await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
   });
-  it('stops at archive capacity without deleting or modifying existing clips or saves', async () => {
-    radio.settings.RADIO_MAX_CLIPS = 1;
-    await mkdir(resolve(directory, 'saves'), { recursive: true });
-    await writeFile(resolve(directory, 'saves', 'saved.txt'), 'keep');
-    const first = (await radio.collectOnce([station])).clips[0]!;
-    const before = await readFile(
-      resolve(directory, 'clips', first.clipId + '.json'),
-      'utf8',
-    );
-    const result = await radio.collectOnce([station]);
-    expect(result.archiveFull).toBe(true);
-    expect(capture).toHaveBeenCalledOnce();
-    expect(
-      await readFile(
-        resolve(directory, 'clips', first.clipId + '.json'),
-        'utf8',
-      ),
-    ).toBe(before);
-    expect(
-      await readFile(resolve(directory, 'saves', 'saved.txt'), 'utf8'),
-    ).toBe('keep');
-  });
-  it('counts partial and failed clips toward capacity', async () => {
-    radio.settings.RADIO_MAX_CLIPS = 1;
+
+  it('does not stop at the old archive limit or modify historical saved files', async () => {
     await mkdir(resolve(directory, 'clips'), { recursive: true });
-    await writeFile(
-      resolve(directory, 'clips', randomUUID() + '.wav'),
-      'partial',
+    await writeFile(resolve(directory, 'clips', 'old.json'), 'historical');
+    for (let i = 0; i < 3; i++) await radio.collectOnce([station]);
+    expect(capture).toHaveBeenCalledTimes(3);
+    expect(await readdir(resolve(directory, 'clips'))).toEqual(['old.json']);
+    expect(
+      await readFile(resolve(directory, 'clips', 'old.json'), 'utf8'),
+    ).toBe('historical');
+  });
+
+  it('does not hold shutdown open while publication waits for retries', async () => {
+    const listener = vi.fn(() => new Promise<void>(() => undefined));
+    radio.watchTranscripts(listener);
+    const active = radio.collectOnce([station]);
+    await vi.waitFor(() => expect(listener).toHaveBeenCalledOnce());
+    await radio.onModuleDestroy();
+    expect((await active).clips).toHaveLength(1);
+  });
+
+  it('uses a fresh UUID for every transient transcript', async () => {
+    const first = (await radio.collectOnce([station])).clips[0]!;
+    expect((await radio.collectOnce([station])).clips[0]!.clipId).not.toBe(
+      first.clipId,
     );
-    expect((await radio.collectOnce([station])).archiveFull).toBe(true);
-    expect(capture).not.toHaveBeenCalled();
   });
-  it.each(['../secret', '..\\secret', 'not-a-uuid'])(
-    'rejects path traversal/non-UUID archive lookup %s',
-    async (id) => {
-      expect(() => radio.audioPath(id)).toThrow();
-      await expect(radio.readClip(id)).rejects.toThrow();
-    },
-  );
-  it('lists an empty archive before the first cycle', async () => {
-    expect(await radio.listClips()).toEqual([]);
-  });
-  it('rejects inconsistent ASR results rather than archiving a false success', async () => {
+
+  it('rejects invalid ASR metadata without retaining or logging its text', async () => {
     capture.mockResolvedValue({ ...captured, language: 'zz' });
     const result = await radio.collectOnce([station]);
     expect(result.clips).toEqual([]);
     expect(result.failedStations).toEqual([station.id]);
-  });
-  it('validates segment bounds and capture timestamp order', () => {
-    expect(() =>
-      captureResultSchema.parse({
-        ...captured,
-        endedAt: '2026-10-19T00:00:00Z',
-      }),
-    ).toThrow();
-    expect(() =>
-      captureResultSchema.parse({
-        ...captured,
-        segments: [{ start: 0, end: 31, text: 'x' }],
-      }),
-    ).toThrow();
-    expect(() =>
-      captureResultSchema.parse({ ...captured, language: 'unknown' }),
-    ).toThrow();
+    expect(
+      JSON.stringify(vi.mocked(Logger.prototype.log).mock.calls),
+    ).not.toContain(captured.text);
   });
 });
 
@@ -309,17 +245,15 @@ describe('radio scheduling and shutdown', () => {
         loadConfig({
           RADIO_ENABLED: 'true',
           RADIO_DATA_DIR: directory,
-          RADIO_MAX_CLIPS: '1',
         }),
       )
       .overrideProvider(LocalRadioWorker)
       .useValue({ capture, onModuleDestroy: stop })
       .compile();
     try {
+      app.get(RadioService).settings.stations = [station];
       await app.init();
-      await vi.waitFor(async () =>
-        expect(await app.get(RadioService).listClips()).toHaveLength(1),
-      );
+      await vi.waitFor(() => expect(capture).toHaveBeenCalledOnce());
       expect(capture).toHaveBeenCalledOnce();
       expect(Logger.prototype.log).toHaveBeenCalledWith(
         expect.objectContaining({ event: 'radio_started' }),
@@ -354,7 +288,6 @@ describe('radio scheduling and shutdown', () => {
     const cycle = vi.spyOn(radio, 'collectOnce');
     cycle.mockResolvedValue({
       skipped: false,
-      archiveFull: false,
       clips: [],
       failedStations: [],
     });
@@ -373,7 +306,6 @@ describe('radio scheduling and shutdown', () => {
     expect(cycle).toHaveBeenCalledOnce();
     complete({
       skipped: false,
-      archiveFull: false,
       clips: [],
       failedStations: [],
     });

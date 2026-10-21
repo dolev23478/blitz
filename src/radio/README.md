@@ -1,279 +1,225 @@
-# Internet radio collector
+﻿# Internet radio collector
 
-Radio runs inside the existing Nest application, alongside Telegram and X.
-It records public internet audio and transcribes locally on CPU. In the full
-application, transcripts pass through the same `analyzeText(text, 'auto')`
-dictionary gate used by Telegram and X before archiving. Only accepted
-clips are retained and continue through the shared Transformer. Local diagnostic
-commands apply the same filter without publishing or starting Redis/Kafka.
+Radio runs inside the same Nest application as Telegram and X. Public HTTP(S)
+audio is captured sequentially into bounded RAM, transcribed by local
+faster-whisper, filtered by the shared dictionaries, then passed to the shared
+Transformer and durable Redis outbox for Kafka publication.
 
-## Run
+No recordings or JSON/TXT transcripts are written, even temporarily. Only
+accepted transcript text is logged, once (`radio_transcribed`). Rejected speech
+is not logged. Station metadata, filter decisions, processing stages and errors
+remain visible. Historical files are left untouched. There is no clip archive
+HTTP API.
 
-From the project root, install Python dependencies into the project environment:
+## Prepare
+
+For Linux Docker deployment from Git, use the
+[offline deployment guide](../../docs/OFFLINE_DEPLOYMENT.md). Python packages and
+model files must be prepared on the connected machine. Git contains the small
+metadata; transfer `runtime-*.part` and `model.bin` manually into their vendor
+paths. Normal image builds need only npm registry access; runtime does not
+install packages or download models.
+
+For development on a connected Windows machine:
 
 ```powershell
 python -m venv .venv-radio
 .\.venv-radio\Scripts\python.exe -m pip install -r requirements-radio.txt
+npm ci
+npm run radio:prepare-model
 npm run build
-npm run radio:once
 ```
 
-If `.venv-radio` already exists, reuse it and run the pip command. Use `npm.cmd`
-if PowerShell blocks npm's script wrapper. On Linux/macOS the Python executable
-is `.venv-radio/bin/python`. Tested dependency pins are faster-whisper 1.2.1 and
-PyAV 16.0.1; no separate FFmpeg executable is needed. Dependencies/model cache
-are local to the project; no global Python installation is modified.
+Linux uses `.venv-radio/bin/python`. Model files live in
+`vendor/radio-models/<RADIO_MODEL>`. Runtime loads only these local files with
+Hugging Face offline mode enabled. Missing files fail before contacting a station;
+there is no download fallback or external transcription API. Changing the model
+requires preparing its files before deployment.
 
-`radio:once` records one cycle and exits. It does not start Telegram/X or require
-Redis/Kafka. To check just one configured station:
-
-```powershell
-npm run radio:once -- --station=iran-international
-```
-
-To run continuously with the entire existing application:
+## Run
 
 ```powershell
 npm run start
-```
-
-To run **only radio with the full filter/Transformer/Kafka path** (build included):
-
-```powershell
 npm run radio:start
+npm run radio:start -- --once --station=radio-al-nour
+npm run radio:once -- --station=radio-al-nour
 ```
 
-For one cycle, or one selected station:
-
-```powershell
-npm run radio:start -- --once
-npm run radio:start -- --once --station=iran-international
-```
-
-This imports the same `RadioTransformerModule` as the full app, starts no Telegram
-or X collectors, and serves the protected radio clip routes on `PORT` while it
-runs. It uses the existing `REDIS_URL`, `KAFKA_BROKERS`, TLS/SASL and outbox settings
-for actual publication. The once mode closes HTTP and workers at the end. Normal
-mode repeats according to the recording/pause constants. `radio:once` remains
-the separate capture-only diagnostic, with filtering but without publication.
-
-`AppModule` imports `RadioTransformerModule`, connecting radio to the existing
-Transformer. Collection starts after Nest initializes and repeats until shutdown.
-The normal app still needs its
-existing collector credentials/infrastructure; use `radio:once` to test radio
-independently. No background process is installed by this feature.
-
-The handoff first applies the shared analyzer's default `dictionary_only` mode,
-matching the current Telegram/X integrations. A non-matching clip is discarded, including temporary audio,
-and is not submitted to the Transformer. Analyzer errors discard the unapproved
-clip and log a failure; they do not bypass filtering. Accepted input receives unique dictionary terms
-in `matches` and report categories from `analysis.categories` unless collector
-categories were already provided. Existing multilingual metadata is preserved;
-otherwise ASR language supplies `languages`. Dictionary languages are logged
-separately; emoji dictionary labels are not ISO language codes.
-
-The handoff then calls `transformer.run('RadioTranscript', clip)` and awaits the normal
-Kafka publisher. It uses `platform: 'AM/FM-RADIO'`, `media_type: ['text']` and
-`languages: [clip.language]`. Original audio remains archived; `audio` is not
-added to the RAW_REPORT enum. Unknown original broadcast time becomes
-`published_at: null`; observed capture end becomes `collected_at`.
-
-Set `RADIO_PUBLIC_BASE_URL=https://your-reachable-blitz-host.example` for report
-URLs reachable by remote consumers; locally it defaults to `http://localhost:PORT`.
-Each URL identifies `/api/radio/clips/<uuid>`, not a shared station stream.
-Access still follows the API-key guard. No-speech clips are discarded. A failed
-handoff preserves evidence without automatic archive replay. Kafka retry storage
-and policy remain owned by the existing Transformer publisher.
-
-## Read each processing stage in the logs
-
-| Event                                                     | What it shows                                                                                              |
-| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `radio_capture_started`, `radio_transcribed`              | Station, capture ID, audio duration and original transcript                                                |
-| `radio_input_received`                                    | The full collector JSON received by the pipeline                                                           |
-| `radio_analysis_completed`                                | ASR/ISO languages, dictionary languages, matches, categories/evaluation and issues                         |
-| `radio_filter_result`                                     | `passed: true/false` and the explicit reason (including no speech)                                         |
-| `radio_transformer_input`                                 | Accepted JSON with collector-side analysis metadata                                                        |
-| `radio_transformer_stage_completed`                       | Parsing, mapping, validation and publishing; mapping/validation include report data                        |
-| `radio_kafka_sending`                                     | Exact validated wire payload, topic, internal publication ID and attempt, immediately before producer.send |
-| `radio_kafka_acknowledged`                                | Successful Kafka acknowledgment, not just a queued attempt                                                 |
-| `radio_pipeline_completed`                                | Workflow completed after the publisher's confirmation                                                      |
-| `radio_pipeline_failed`, `radio_transformer_stage_failed` | Failure reason and the stage that failed                                                                   |
-
-`clipId` connects input/filter/Transformer events; the internal `publicationId`
-and the UUID in `report_url` connect the publisher events. Reports contain no
-`report_id`; consumers assign their own IDs. Report categories are
-the Hebrew report categories (`פח"ע`, `חירום אזרחי ורפואי`, `הפרעות סדר ואלימות המונית`, `תלול מסלול, ירי רקטי ואווירי`),
-not the evaluator's concept labels. Validation logs show the formatted
-report even when broker configuration/connectivity prevents a send. A sending
-event alone does not mean Kafka accepted the report. Retries log each attempt.
-
-## Change recording behavior
+`start` runs the full application with all three collectors. `radio:start`
+builds and runs radio, filtering and Transformer/Kafka publication without
+Telegram/X. `radio:once` is a capture/filter diagnostic without Redis/Kafka.
+Neither radio command starts an HTTP archive server or installs dependencies.
+Publication requires reachable internal `REDIS_URL`, `KAFKA_BROKERS` and the
+existing TLS/SASL settings when applicable.
 
 Edit [radio.constants.ts](./radio.constants.ts), then rebuild/restart:
 
 ```typescript
 export const RECORDING_SECONDS = 30;
 export const PAUSE_SECONDS = 60;
-export const RADIO_STATIONS: RadioStation[] = [/* stations */];
+export const RADIO_STATIONS: RadioStation[] = [/* sources */];
 ```
 
-The constants are the only source for duration, pause and stations. Old
-`RADIO_CLIP_SECONDS`, `RADIO_INTERVAL_SECONDS`, `RADIO_STATIONS_FILE` settings
-are ignored. Recording accepts 1–300 seconds; pause accepts 0–86400 seconds;
-there can be 1–10 stations with unique IDs and direct HTTP(S) audio URLs.
+Recording is 1-300 seconds per station; pause is 0-86400 seconds after the entire
+cycle, including transcription and publication handoff. Up to ten stations with
+unique IDs and HTTP(S) audio URLs are supported. Cycles cannot overlap. Shutdown
+cancels timers, stops Python processes and releases pending handoffs; admitted
+publication jobs remain in Redis. At 300 seconds, mono PCM occupies approximately
+9.6 MB; decoder/model memory is additional.
 
-Stations run sequentially. After ALL stations have finished recording and
-transcribing, a full pause begins. There is no recording during the pause,
-and a slow station or pending publication cannot start overlapping cycles. Shutdown cancels the timer,
-kills active Python jobs, waits for their exit and removes unaccepted temporary audio.
-
-The list in `radio.constants.ts` includes the existing community stations,
-Al-Nour, and two public TV feeds captured as **audio only**. Nothing records or
-archives video. The same transcript filter and accepted-only archive policy
-apply to all sources. Public reporting/interviews may include statements of
-interest; source affiliation does not establish that an individual clip is an
-actual threat or that a report about an attack is accurate.
-
-| Source ID             | Source / documented affiliation                                                                                                                      | Capture                                                    |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `radio-al-nour`       | Lebanese Al-Nour; [US Treasury identifies it as a Hezbollah media arm](https://home.treasury.gov/news/press-releases/js4134)                         | Radio, Arabic                                              |
-| `al-aqsa-tv-audio`    | Al-Aqsa Television; [US Treasury documents Hamas control](https://home.treasury.gov/news/press-releases/tg594)                                       | Public TV audio relay, Arabic; **not** Al-Aqsa Voice Radio |
-| `al-masirah-tv-audio` | Al-Masirah; described as Houthi media in [UN Panel of Experts report S/2025/650](https://documents.un.org/doc/undoc/gen/n25/234/10/pdf/n2523410.pdf) | Public TV audio relay, Arabic                              |
-
-The HLS relay URLs were discovered in public player/channel listings and tested
-with the actual PyAV worker settings. They are third-party delivery endpoints,
-not an authenticity guarantee; URLs and programming may change. Al-Masirah's
-[own public channel](https://t.me/s/almasirah2/125578) also advertises audio listening.
-To sample the newly added sources without Kafka:
-
-```powershell
-npm run build
-npm run radio:once -- --station=al-aqsa-tv-audio --station=al-masirah-tv-audio
-```
-
-For the complete filter/Transformer/publication path, use `npm run radio:start`
-with the same `--station` arguments and `--once`. The full application includes
-all configured sources automatically after rebuild/restart.
-
-Al-Balad now uses the HTTPS relay supplied by its
-[official player](https://ammannet.net/live); the old port-8964 URL returned
-`ICY 401 Service Unavailable` during investigation.
-
-Not enabled: Al-Aqsa Voice Radio (its discovered radio feed did not decode),
-Al-Quds Radio (audio host did not resolve), and IRIB Goftogoo/Radio Iran (stream
-hosts did not resolve from this environment). Goftogoo is an interview/talk
-candidate, but belongs to Iran's **state** broadcaster, unlike Iran International.
-No unverified Iranian stream was enabled. Existing stations are not classified
-as hostile merely because they are Arabic-speaking or pro-Palestinian.
+The configured sources include community radio and public TV feeds captured as
+audio only. Availability and speech quality depend on each remote stream. No
+video or audio archive is created. Source affiliation and dictionary matches do
+not establish that a report is an actual threat.
 
 ## Settings
 
-These optional `.env` settings are validated through the app's existing
-`APP_CONFIG` provider:
-
 ```dotenv
 RADIO_ENABLED=true
-RADIO_DATA_DIR=.radio
 RADIO_MODEL=tiny
+RADIO_MODELS_DIR=vendor/radio-models
+RADIO_DATA_DIR=.radio
 RADIO_CPU_THREADS=2
 RADIO_JOB_TIMEOUT_SECONDS=900
-RADIO_MAX_CLIPS=100
+# Windows default; Linux uses .venv-radio/bin/python:
 # RADIO_PYTHON_PATH=.venv-radio/Scripts/python.exe
 ```
 
-Collection is enabled by default, as requested. Set `RADIO_ENABLED=false` to
-disable automatic collection. The one-cycle/demo commands disable scheduling
-only in their own process and explicitly call collection once.
+Data/model paths must stay inside the project. `RADIO_DATA_DIR` is reserved for
+library cache/temp locations, not recordings. `RADIO_MAX_CLIPS`,
+`RADIO_PUBLIC_BASE_URL`, `RADIO_CLIP_SECONDS`, `RADIO_INTERVAL_SECONDS` and
+`RADIO_STATIONS_FILE` no longer control behavior.
 
-First transcription downloads the model into `.radio/models`; allow network
-access and time for that initial download. Cached models are tried before any
-hub access. `tiny` is a quick CPU smoke-test model; Arabic/Persian accuracy can
-be poor. `base` or `small` can improve quality at greater download/CPU cost.
-Changing `RADIO_MODEL` does not translate speech. The optional station language
-is an ASR hint. A nonempty transcript is not evidence of transcription accuracy.
+## Filtering and output
 
-Python jobs have bounded open/read timeouts, a total job deadline, a 2 MiB
-stdout/stderr limit, and no shell interpolation. WAV is PCM mono 16 kHz,
-bounded by sample count. A stream buffer may yield 30 seconds of audio in less
-than 30 seconds of wall time. `startedAt`/`endedAt` are observed capture times,
-not verified original broadcast timestamps or ASR completion times.
+The collector uses `analyzeText(text, 'auto')`, as Telegram/X do. Silence and
+non-matching speech are discarded before transformation. Accepted input receives
+matches and report categories from `analysis.categories`; explicitly supplied
+collector categories/languages are preserved. ASR language supplies ISO language
+metadata when collector languages are absent. Dictionary language labels,
+including emoji labels, are not passed as ISO codes.
 
-## Find the recordings and text
+The handoff calls `TransformerWorkflow.run('RadioTranscript', clip)` and awaits
+confirmed publication. RAW_REPORT uses `platform: 'AM/FM-RADIO'`,
+`media_type: ['text']`, integer `schema_version: 1`, `languages: string[]` and
+`categories: string[]`. Content must be nonblank parsed text. Unknown original
+broadcast time is null; `collected_at` is the observed capture end. Consumers
+assign report IDs; Blitz does not generate them.
 
-Each capture uses a fresh UUID:
+`report_url` is the station stream URL plus `#clip=<UUID>` (or `&clip=<UUID>`
+after an existing fragment). This identifies an observation at the live source,
+not a downloadable historical recording. Kafka keys are exactly this URL,
+including retries and remote mirroring.
 
-```text
-.radio/
-  clips/
-    <uuid>.wav          # recorded audio
-    <uuid>.json         # station, observed times, language, text and segments
-  models/               # local Whisper cache
-  tmp/                  # worker temporary files
-```
+The existing Redis FIFO retains the original validated report and retry errors
+until Kafka confirms delivery. Its approved policy is an initial attempt plus
+three retries, followed by discard. Multiple instances use token-checked leases.
+Delivery is at least once: a crash between Kafka acknowledgment and Redis
+completion can still cause a duplicate.
 
-`radio_input_received` logs each received transcript; `radio_filter_result`
-shows acceptance/rejection. Audio is recorded temporarily under `.radio/tmp`.
-Only a nonempty transcript accepted by `analyzeText(text, 'auto')` is moved into
-`clips`, alongside one JSON file containing `text`, `station.name` and the other clip metadata. Both `radio:once` and
-the full pipeline use this rule. Analysis runs once per captured clip; its result
-is passed to the handoff. No-speech, unmatched, invalid or failed captures leave
-no recording/transcript archive, and their temporary WAV is removed in `finally`.
-A hard process termination can leave a temporary WAV; it is not an archived clip.
+## Logs
 
-JSON is written via a temporary file and renamed only when complete. If Kafka or
-Transformer processing fails AFTER filter acceptance, the accepted recording is
-kept as the same two files; failure diagnostics go to the logs, without a separate
-error file. This is independent of Kafka success.
-The archive counts each UUID once; at `RADIO_MAX_CLIPS`, collection pauses.
-Existing historical clips and `.radio/saves` are not modified by this change.
-Move/archive old captures manually or increase capacity to resume.
+| Event                                           | Contents                                                |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| `radio_capture_started`                         | Station name/ID, clip ID, configured duration           |
+| `radio_filter_result`                           | Pass/fail and reason, without rejected text             |
+| `radio_transcribed`                             | Accepted transcript, once, with clip/station ID         |
+| `radio_analysis_completed`                      | Accepted matches, categories and language metadata      |
+| `radio_transformer_input`                       | Accepted clip/station identity                          |
+| `radio_transformer_stage_completed`             | Completed processing stage, metadata only               |
+| `radio_kafka_sending`                           | Topic, key, publication ID and attempt, without content |
+| `radio_kafka_acknowledged`                      | Broker acknowledgment                                   |
+| `radio_pipeline_completed`                      | Confirmed publication                                   |
+| `radio_station_failed`, `radio_pipeline_failed` | Failure and stage metadata                              |
 
-All output/cache/temp paths stay inside the project. `.radio`, `.venv-radio`
-and Python bytecode are gitignored. A path outside the project (including the
-Desktop archive from an earlier branch) is not used. The Dockerfile installs the
-Python dependencies; persist `/app/.radio` for model storage and accepted clips.
-The first model download and station access still require network connectivity.
+A sending event alone does not confirm Kafka accepted a report. The executable
+local schema remains provisional unless the final DE JSON Schema is configured
+through `DE_RAW_REPORT_SCHEMA_PATH`.
 
-While the full app is running:
-
-| Route                               | Result                                        |
-| ----------------------------------- | --------------------------------------------- |
-| `GET /api/radio/clips`              | Completed clips, newest first, including text |
-| `GET /api/radio/clips/<uuid>`       | One clip's JSON                               |
-| `GET /api/radio/clips/<uuid>/audio` | WAV audio                                     |
-
-These routes inherit the application's API-key guard. If `API_KEY` is set,
-send `X-API-Key` or the existing Bearer/query authentication. Invalid UUIDs
-return 400; missing clips return 404. No unauthenticated public override is added.
-
-## Verification
+## Verify
 
 ```powershell
 npm run build
 npx tsc --noEmit
 npm run lint
-npx vitest run test/radio.spec.ts test/radio-worker.spec.ts
 npm test
+.\.venv-radio\Scripts\python.exe -B -m unittest discover -s test/radio -p 'test_*.py'
+.\.venv-radio\Scripts\python.exe -B scripts/check-radio-offline.py
 npm run radio:demo
-npm run radio:once
-node --import tsx test/radio/run-pipeline-sample.mjs
 ```
 
-The pipeline sample runs actual archived JSON through the actual analyzer and
-compiled integration modules, with Redis/Kafka test doubles. Full stage logs,
-filtered/published counts and validated wire reports are written under
-`.radio/pipeline-verification`. It does not contact real Kafka or prove real
-broker integration. Real-analyzer unit tests use controlled fixture dictionaries.
+The Python tests exercise real PyAV frames and RAM WAV bounds. Offline checking
+verifies model hashes and actual silence ASR with socket connections blocked.
+`radio:demo` performs real loopback HTTP capture, ASR and filtering. If its public
+speech fixture is absent, this explicit diagnostic fetches it into RAM only.
 
-Unit tests use controlled workers for scheduling, failures, shutdown and archive
-rules. `radio:demo` uses actual Python/PyAV/faster-whisper with public recorded
-English speech replayed over local HTTP, plus generated silence. It verifies
-WAV duration/format, UTF-8 JSON transcripts with station names and exactly two files per accepted clip, unique clips and protected HTTP routes.
-Evidence is in `.radio/demo/sample-run.json`; it is not a live Arabic/Persian
-quality benchmark and never calls Kafka. `radio:once` checks real public streams;
-listen to the WAV and compare the text before claiming accuracy. Neither command
-deletes existing clips. Both use temporary processes/listeners that close on exit.
+To run real infrastructure tests, configure isolated test services, never
+production endpoints:
 
-Implementation references: [faster-whisper](https://github.com/SYSTRAN/faster-whisper)
-and [PyAV stream opening/timeouts](https://pyav.org/docs/stable/api/_globals.html).
+```powershell
+$env:REDIS_TEST_URL='redis://127.0.0.1:16379'
+$env:KAFKA_TEST_BROKERS='127.0.0.1:19092'
+npm test
+# An EXISTING audio fixture whose speech passes the current dictionaries:
+$env:RADIO_E2E_AUDIO_PATH='path/to/existing-arabic-speech.wav'
+# Optional existing speech that does not pass the dictionaries:
+$env:RADIO_E2E_REJECTED_AUDIO_PATH='path/to/existing-nonmatching-speech.wav'
+npm run radio:test:e2e
+```
+
+`radio:test:e2e` builds, then uses real Python/ASR, dictionaries, Nest modules,
+Redis and Kafka. Audio fixtures are read into RAM and never copied or saved.
+It checks acceptance, silence, optional non-matching speech, stream failure,
+payload/key, logging and absence of output files. It also forces an actual TCP
+publication failure, restarts publisher/client instances, verifies the persisted
+retry delay and report, and checks concurrent recovery publishes one record.
+The retry recovery phase deliberately waits about 60 seconds. Only a unique test
+Redis namespace is removed; existing radio files and application queues are left
+untouched. Normal unit tests use I/O doubles unless test endpoints are supplied.
+
+The E2E runner also verifies discard after the initial attempt plus three retries.
+To additionally restart the isolated Redis server during recovery, explicitly set
+`RADIO_E2E_RESTART_REDIS_CONTAINER=blitz-radio-e2e-redis`. Docker must be available
+to the runner; only container names beginning with `blitz-radio-e2e-` are accepted.
+Redis needs persistence enabled for that server-restart check.
+
+To sample all configured live streams with short RAM-only captures:
+
+```powershell
+$env:RADIO_SMOKE_SECONDS='3'
+node test/radio/run-live-smoke.mjs
+# Optionally restrict the diagnostic:
+$env:RADIO_SMOKE_STATIONS='mosaique-fm,al-aqsa-tv-audio'
+node test/radio/run-live-smoke.mjs
+```
+
+This uses the same isolated test endpoints and real pipeline. Production recording
+constants remain unchanged. Three seconds checks connectivity and short ASR, not
+speech accuracy or continuous availability. Accepted samples are published only
+to the configured test broker. Opening/probing is bounded to 20 seconds; stalled
+reads to 15 seconds, in addition to the configured whole-worker timeout.
+
+## Verification performed on 2026-10-21
+
+- Build, TypeScript checking and lint passed; lint retains two existing spread
+  warnings outside radio. All 466 Vitest tests passed with real Redis/Kafka
+  integration enabled. Four Python tests passed, including delayed HTTP opening.
+- Full real-ASR pipeline accepted one Arabic speech fixture, rejected speech
+  without dictionary matches and silence, and handled an unavailable stream.
+  Kafka consumption verified the JSON contract fields and exact URL key.
+- A real TCP failure retained the report/error/due time in Redis. Publisher/client
+  restart and a separate Redis container restart preserved it. Two publishers
+  recovered one observed Kafka record. Initial attempt plus three failed retries
+  discarded a separate report according to the approved policy.
+- The full pipeline also passed inside the final Linux image with a read-only
+  filesystem. No recordings or transcript files were written. Model ASR and full
+  Nest health checks passed with Docker networking disabled.
+- All nine configured live feeds were sampled for three seconds. Intermittent
+  opening timeouts recovered on recheck after increasing the bounded opening
+  timeout to 20 seconds. This is a connectivity sample, not an availability or
+  transcription-accuracy guarantee.
+- A source-transfer snapshot without host Node/Python dependencies or radio
+  caches rebuilt successfully using the local vendor image and npm registry
+  access. A completely network-disabled clean build requires a complete npm
+  cache; the optional check initially found a missing npm tarball. Non-npm build
+  stages and runtime model loading need no internet access.

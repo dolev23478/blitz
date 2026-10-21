@@ -2,7 +2,7 @@
 // Actual archived JSON and compiled processors; Redis storage and Kafka transport are mocked.
 import 'reflect-metadata';
 import assert from 'node:assert/strict';
-import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
@@ -93,33 +93,20 @@ try {
     );
   }
   assert.equal(records.length, count, 'Invalid content must not be published.');
-  const output = resolve('.radio/transformer-verification');
-  await mkdir(output, { recursive: true });
-  await writeFile(
-    resolve(output, 'raw-reports.json'),
+  console.log(
     JSON.stringify(
-      records.map((record) => JSON.parse(record.messages[0].value)),
+      {
+        actualArchivedInputs: names.length,
+        reportsMappedAndValidated: count,
+        noSpeechSkipped: noSpeech,
+        invalidContentRejected: 3,
+        recordingsWritten: 0,
+        redisAndKafkaMocked: true,
+      },
       null,
       2,
-    ) + '\n',
+    ),
   );
-  await writeFile(
-    resolve(output, 'kafka-records.json'),
-    JSON.stringify(records, null, 2) + '\n',
-  );
-  const summary = {
-    actualArchivedInputs: names.length,
-    reportsMappedAndValidated: count,
-    noSpeechSkipped: noSpeech,
-    invalidContentRejected: 3,
-    redisAndKafkaMocked: true,
-  };
-  await writeFile(
-    resolve(output, 'summary.json'),
-    JSON.stringify(summary, null, 2) + '\n',
-  );
-  console.log(JSON.stringify(summary, null, 2));
-  console.log(`Evidence: ${output}`);
 } finally {
   await app?.close();
   clearInterval(keepAlive);

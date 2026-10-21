@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import { Kafka, type Producer } from 'kafkajs';
 import { randomUUID } from 'node:crypto';
-import { readFile, rm, readdir, writeFile } from 'node:fs/promises';
+import { rm, readdir } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { APP_CONFIG, loadConfig } from '../../src/config/app-config.js';
@@ -42,7 +42,6 @@ beforeEach(async () => {
   const settings = loadConfig({
     RADIO_ENABLED: 'false',
     RADIO_DATA_DIR: directory,
-    RADIO_PUBLIC_BASE_URL: 'https://blitz.example.com',
     KAFKA_BROKERS: 'capture.invalid:9092',
     KAFKA_RETRY_INTERVAL_MS: '5',
   });
@@ -51,10 +50,7 @@ beforeEach(async () => {
     .mockResolvedValue([
       { topicName: 'reports.raw', partition: 0, errorCode: 0 },
     ]);
-  capture.mockReset().mockImplementation(async (_station, path) => {
-    await writeFile(path, 'test audio');
-    return captured;
-  });
+  capture.mockReset().mockResolvedValue(captured);
   analyze.mockReset().mockReturnValue({
     matched: true,
     languages: ['en'],
@@ -103,21 +99,15 @@ afterEach(async () => {
   await rm(directory, { recursive: true, force: true });
 });
 
-it('automatically hands archived radio JSON to the real shared workflow before continuing the cycle', async () => {
+it('automatically hands transient radio JSON to the real shared workflow without saving files', async () => {
   send.mockImplementation(async (record) => {
-    const report = JSON.parse(record.messages[0].value);
-    const clipId = report.report_url.split('/').at(-1);
-    const archived = JSON.parse(
-      await readFile(resolve(directory, 'clips', clipId + '.json'), 'utf8'),
-    );
-    expect(archived.text).toBe(captured.text); // Archive confirmed before any Kafka attempt.
+    await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
     expect(Logger.prototype.log).toHaveBeenCalledWith(
       expect.objectContaining({
         event: 'radio_kafka_sending',
         publicationId: expect.any(String),
-        payload: report,
       }),
-    ); // This exact wire payload is logged before the transport is called.
+    ); // Publication metadata is logged before transport, without repeating the transcript.
     return [{ topicName: record.topic, partition: 0, errorCode: 0 }];
   });
   const result = await radio.collectOnce([station]);
@@ -131,7 +121,7 @@ it('automatically hands archived radio JSON to the real shared workflow before c
     content: captured.text,
     matches: ['report'],
     categories: ['פח"ע'],
-    report_url: `https://blitz.example.com/api/radio/clips/${result.clips[0]!.clipId}`,
+    report_url: `${station.streamUrl}#clip=${result.clips[0]!.clipId}`,
   });
 });
 
@@ -139,7 +129,6 @@ it('discards no-speech clips and never sends them to Kafka', async () => {
   capture.mockResolvedValue({ ...captured, text: '', language: 'unknown' });
   const result = await radio.collectOnce([station]);
   expect(result.clips).toEqual([]);
-  expect(await radio.listClips()).toEqual([]);
   expect(result.failedStations).toEqual([]);
   expect(send).not.toHaveBeenCalled();
   expect(analyze).not.toHaveBeenCalled();
@@ -172,15 +161,11 @@ it('discards unmatched text, logs its rejection and never invokes publication', 
       reason: 'no_dictionary_match',
     }),
   );
-  expect(await readdir(resolve(directory, 'clips'))).toEqual([]);
-  expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
+  await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
 });
 
 it('keeps ASR language as ISO metadata when an emoji dictionary was matched', async () => {
-  capture.mockImplementation(async (_station, path) => {
-    await writeFile(path, 'test audio');
-    return { ...captured, language: 'fa' };
-  });
+  capture.mockResolvedValue({ ...captured, language: 'fa' });
   analyze.mockReturnValue({
     matched: true,
     languages: ['em'],
@@ -193,9 +178,7 @@ it('keeps ASR language as ISO metadata when an emoji dictionary was matched', as
   expect(
     JSON.parse(send.mock.calls[0]![0].messages[0].value).languages,
   ).toEqual(['fa']);
-  expect(
-    (await radio.readClip(result.clips[0]!.clipId)).languages,
-  ).toBeUndefined(); // Original archive is not enriched in place.
+  expect(result.clips[0]!.languages).toBeUndefined(); // Original archive is not enriched in place.
 });
 
 it('fails closed on analyzer errors without keeping an unfiltered clip', async () => {
@@ -206,8 +189,7 @@ it('fails closed on analyzer errors without keeping an unfiltered clip', async (
   expect(result.failedStations).toEqual([station.id]);
   expect(send).not.toHaveBeenCalled();
   expect(result.clips).toEqual([]);
-  expect(await readdir(resolve(directory, 'clips'))).toEqual([]);
-  expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
+  await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
 });
 
 it('retries a radio report using the existing publisher without recapturing audio', async () => {
@@ -219,12 +201,10 @@ it('retries a radio report using the existing publisher without recapturing audi
   expect(send.mock.calls[1]![0].messages).toEqual(
     send.mock.calls[0]![0].messages,
   );
-  expect((await radio.readClip(result.clips[0]!.clipId)).text).toBe(
-    captured.text,
-  );
+  expect(result.clips[0]!.text).toBe(captured.text);
 });
 
-it('keeps the clip after 3 failed retries and continues with the next station', async () => {
+it('discards publication after 3 failed retries without saving files and continues with the next station', async () => {
   for (let attempt = 0; attempt < 4; attempt++)
     send.mockRejectedValueOnce(new Error('Kafka unavailable'));
   vi.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined);
@@ -236,20 +216,14 @@ it('keeps the clip after 3 failed retries and continues with the next station', 
   expect(result.clips).toHaveLength(2);
   expect(capture).toHaveBeenCalledTimes(2);
   expect(send).toHaveBeenCalledTimes(5);
-  expect((await readdir(resolve(directory, 'clips'))).sort()).toEqual(
-    result.clips
-      .flatMap((clip) => [clip.clipId + '.json', clip.clipId + '.wav'])
-      .sort(),
-  );
-  expect((await radio.readClip(result.clips[0]!.clipId)).text).toBe(
-    captured.text,
-  );
+  await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
+  expect(result.clips[0]!.text).toBe(captured.text);
 });
 
-it('keeps the archive when Transformer validation fails and continues to the next station', async () => {
-  capture.mockImplementationOnce(async (_station, path) => {
-    await writeFile(path, 'test audio');
-    return { ...captured, text: '<div>not parsed text</div>' };
+it('does not create an archive when Transformer validation fails and continues to the next station', async () => {
+  capture.mockResolvedValueOnce({
+    ...captured,
+    text: '<div>not parsed text</div>',
   });
   const result = await radio.collectOnce([
     station,
@@ -257,8 +231,6 @@ it('keeps the archive when Transformer validation fails and continues to the nex
   ]);
   expect(result.failedStations).toEqual(['test-radio']);
   expect(result.clips).toHaveLength(2);
-  expect((await radio.readClip(result.clips[0]!.clipId)).text).toContain(
-    '<div>',
-  );
+  expect(result.clips[0]!.text).toContain('<div>');
   expect(send).toHaveBeenCalledOnce();
 });

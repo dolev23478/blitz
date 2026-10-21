@@ -16,7 +16,6 @@ export class LocalRadioWorker implements OnModuleDestroy {
 
   capture(
     station: RadioStation,
-    audioPath: string,
     settings: RadioSettings,
   ): Promise<CaptureResult> {
     if (this.closing)
@@ -35,6 +34,10 @@ export class LocalRadioWorker implements OnModuleDestroy {
           env: {
             ...process.env,
             PYTHONUTF8: '1',
+            PYTHONDONTWRITEBYTECODE: '1',
+            HF_HUB_OFFLINE: '1',
+            TRANSFORMERS_OFFLINE: '1',
+            HF_HUB_DISABLE_TELEMETRY: '1',
             HF_HOME: resolve(dataDirectory, 'models'),
             XDG_CACHE_HOME: resolve(dataDirectory, 'cache'),
             TMP: resolve(dataDirectory, 'tmp'),
@@ -69,10 +72,9 @@ export class LocalRadioWorker implements OnModuleDestroy {
           streamUrl: station.streamUrl,
           language: station.language,
           seconds: settings.recordingSeconds,
-          audioPath,
           model: settings.RADIO_MODEL,
           cpuThreads: settings.RADIO_CPU_THREADS,
-          modelCache: resolve(dataDirectory, 'models'),
+          modelDirectory: radioDataDirectory(settings.RADIO_MODELS_DIR),
         }),
       );
     });

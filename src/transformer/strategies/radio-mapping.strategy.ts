@@ -1,26 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import type { ReportMetadata } from '../../contracts/mappings.js';
 import type { RawReportCandidate } from '../../contracts/schema.js';
 import {
   radioTranscriptSchema,
   type RadioTranscript,
 } from '../../radio/radio.types.js';
-import { radioPublicBaseUrlSchema } from '../../radio/radio.config.js';
 import { collectorFields } from '../collector-fields.js';
 import { RADIO_PLATFORM } from '../../common/constants.js';
 
 @Injectable()
 export class RadioMappingStrategy {
-  constructor(private readonly config: ConfigService) {}
-
   map(input: RadioTranscript, metadata: ReportMetadata): RawReportCandidate {
     const clip = radioTranscriptSchema.parse(input);
-    const baseUrl =
-      radioPublicBaseUrlSchema.parse(
-        this.config.get<string>('RADIO_PUBLIC_BASE_URL'),
-      ) ?? `http://localhost:${this.config.get<number>('PORT') ?? 3000}`;
-    const reportUrl = `${baseUrl.replace(/\/+$/, '')}/api/radio/clips/${clip.clipId}`;
+    // The fragment identifies this observation without changing the stream request.
+    const separator = clip.station.streamUrl.includes('#') ? '&' : '#';
+    const reportUrl = `${clip.station.streamUrl}${separator}clip=${clip.clipId}`;
     return {
       platform: RADIO_PLATFORM,
       account_name: clip.station.name,
