@@ -90,6 +90,14 @@
       "concept": "weapon.blade"
     },
     {
+      "term": "bomb",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "bomb",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "bombe",
       "concept": "weapon.explosive"
     },
@@ -124,6 +132,10 @@
     {
       "term": "chomagh",
       "concept": "weapon.blade"
+    },
+    {
+      "term": "colt",
+      "concept": "weapon.firearm"
     },
     {
       "term": "dinamit",
@@ -166,12 +178,20 @@
       "concept": "threat.retaliation"
     },
     {
+      "term": "explosiv",
+      "concept": "violence.explosion"
+    },
+    {
       "term": "fattah",
       "concept": "threat.direct"
     },
     {
       "term": "G3",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "genocide",
+      "concept": "violence.killing"
     },
     {
       "term": "ghameh",
@@ -220,6 +240,10 @@
     {
       "term": "hefttir",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "holocaust",
+      "concept": "violence.killing"
     },
     {
       "term": "jahood",
@@ -276,6 +300,10 @@
     {
       "term": "kikes",
       "concept": "hate.antisemitism"
+    },
+    {
+      "term": "kill",
+      "concept": "violence.killing"
     },
     {
       "term": "killing",
@@ -364,6 +392,10 @@
     {
       "term": "MP5",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "murder",
+      "concept": "violence.killing"
     },
     {
       "term": "murderer",
@@ -542,6 +574,14 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "terror",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "terrorist",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "tirandazi",
       "concept": "weapon.firearm"
     },
@@ -620,10 +660,6 @@
     {
       "term": "آبکش ها",
       "concept": "violence.general"
-    },
-    {
-      "term": "آبله",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "آبله ها",
@@ -1048,10 +1084,6 @@
     {
       "term": "آتیش‌زدن",
       "concept": "violence.arson"
-    },
-    {
-      "term": "آخرالزمان",
-      "concept": "threat.direct"
     },
     {
       "term": "آدم ربايي",
@@ -2122,78 +2154,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "آشغال‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفت",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغالصفتان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغالصفت‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفتان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفت‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغالصفتها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغالصفت‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفتها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفت‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغالصفتهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغالصفت‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفتهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفت‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغالصفتهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغالصفت‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفتهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "آشغال‌صفت‌های",
-      "concept": "hate.slur"
-    },
-    {
       "term": "آشوب",
       "concept": "violence.assault"
     },
@@ -2256,14 +2216,6 @@
     {
       "term": "آشویتسها",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "آفرين",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "آفرین",
-      "concept": "threat.direct"
     },
     {
       "term": "آكا-۴۷",
@@ -2492,10 +2444,6 @@
     {
       "term": "ابکش ها",
       "concept": "violence.general"
-    },
-    {
-      "term": "ابله",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "ابله ها",
@@ -3042,26 +2990,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "احمق‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "احمقهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "احمق‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "احمقهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "احمق‌های",
-      "concept": "hate.slur"
-    },
-    {
       "term": "اخاذي",
       "concept": "violence.terrorism"
     },
@@ -3140,10 +3068,6 @@
     {
       "term": "اخراج دستهجمعی",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "اخرالزمان",
-      "concept": "threat.direct"
     },
     {
       "term": "اخطار",
@@ -4046,14 +3970,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "اس‌اس",
-      "concept": "violence.genocide"
-    },
-    {
-      "term": "اساس",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "اس‌اس ها",
       "concept": "violence.genocide"
     },
@@ -4638,6 +4554,10 @@
       "concept": "violence.assault"
     },
     {
+      "term": "اسيد",
+      "concept": "weapon.blade"
+    },
+    {
       "term": "اسيد سولفوريك",
       "concept": "weapon.explosive"
     },
@@ -5086,10 +5006,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "افتخار",
-      "concept": "threat.direct"
-    },
-    {
       "term": "افتخارآميز",
       "concept": "threat.direct"
     },
@@ -5322,10 +5238,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "افسانه",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "افسانه هولوكوست",
       "concept": "violence.genocide"
     },
@@ -5460,26 +5372,6 @@
     {
       "term": "الخالها",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "الدنگ‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الدنگهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الدنگ‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الدنگهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الدنگ‌های",
-      "concept": "hate.slur"
     },
     {
       "term": "الشباب",
@@ -6682,14 +6574,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "انكار",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "انكار",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "انكار هولوكوست",
       "concept": "violence.genocide"
     },
@@ -6774,14 +6658,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "انکار",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "انکار",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "انکار هولوکوست",
       "concept": "violence.genocide"
     },
@@ -6864,6 +6740,14 @@
     {
       "term": "انکارگر‌های",
       "concept": "hate.antisemitism"
+    },
+    {
+      "term": "انگل",
+      "concept": "hate.dehumanization"
+    },
+    {
+      "term": "انگل",
+      "concept": "hate.slur"
     },
     {
       "term": "انگل ها",
@@ -7802,10 +7686,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "بارت",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "بارت ها",
       "concept": "weapon.firearm"
     },
@@ -7976,10 +7856,6 @@
     {
       "term": "بازگرداندن به عصر حجر",
       "concept": "violence.general"
-    },
-    {
-      "term": "بازگشت",
-      "concept": "hate.general"
     },
     {
       "term": "بازگشتان",
@@ -8734,35 +8610,11 @@
       "concept": "violence.killing"
     },
     {
-      "term": "بزدل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بزدل ها",
       "concept": "hate.slur"
     },
     {
-      "term": "بزدل‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بزدلها",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بزند",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنش",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنش",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "بزنم",
       "concept": "violence.assault"
     },
     {
@@ -8774,47 +8626,11 @@
       "concept": "violence.assault"
     },
     {
-      "term": "بزنه",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزني",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنيد",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنيد",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "بزنيدش",
       "concept": "violence.assault"
     },
     {
       "term": "بزنيدش",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "بزنيم",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنين",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنی",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنید",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنید",
       "concept": "weapon.firearm"
     },
     {
@@ -8824,14 +8640,6 @@
     {
       "term": "بزنیدش",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "بزنیم",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بزنین",
-      "concept": "violence.assault"
     },
     {
       "term": "بستن با طناب",
@@ -9002,15 +8810,7 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بشكن",
-      "concept": "violence.general"
-    },
-    {
       "term": "بشكند",
-      "concept": "violence.general"
-    },
-    {
-      "term": "بشكنم",
       "concept": "violence.general"
     },
     {
@@ -9054,15 +8854,7 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "بشکن",
-      "concept": "violence.general"
-    },
-    {
       "term": "بشکند",
-      "concept": "violence.general"
-    },
-    {
-      "term": "بشکنم",
       "concept": "violence.general"
     },
     {
@@ -9576,14 +9368,6 @@
     {
       "term": "بکوبین",
       "concept": "violence.assault"
-    },
-    {
-      "term": "بگير",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "بگیر",
-      "concept": "weapon.firearm"
     },
     {
       "term": "بلدوزر زرهي",
@@ -11026,10 +10810,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "بي پدر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بي پدر ها",
       "concept": "hate.slur"
     },
@@ -11040,10 +10820,6 @@
     {
       "term": "بي رحمانه ها",
       "concept": "threat.direct"
-    },
-    {
-      "term": "بي شرف",
-      "concept": "hate.slur"
     },
     {
       "term": "بي شرف ها",
@@ -11058,15 +10834,7 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "بي ناموس",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بي ناموس ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي همه چيز",
       "concept": "hate.slur"
     },
     {
@@ -11074,27 +10842,7 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بي‌پدر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيپدر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بي‌پدر ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌پدر‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌پدرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيپدرها",
       "concept": "hate.slur"
     },
     {
@@ -11158,155 +10906,11 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "بيشرف",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرف",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بي‌شرف ها",
       "concept": "hate.slur"
     },
     {
       "term": "بيشرف ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشرفان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشرف‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرفان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرف‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشرفها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشرف‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرفها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرف‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشرفهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشرف‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرفهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرف‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشرفهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشرف‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرفهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شرف‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعور",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعور",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعوران",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعور‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعوران",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعور‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعورها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعور‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعورها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعور‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعورهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعور‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعورهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعور‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعورهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيشعور‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعورهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌شعور‌های",
       "concept": "hate.slur"
     },
     {
@@ -11338,14 +10942,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "بيناموس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموس",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بي‌ناموس ها",
       "concept": "hate.slur"
     },
@@ -11354,163 +10950,7 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بيناموسان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيناموس‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموسان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموس‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيناموسها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيناموس‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموسها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموس‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيناموسهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيناموس‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموسهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموس‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيناموسهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيناموس‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموسهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌ناموس‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌همه‌چيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيهمهچيز",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بي‌همه‌چيز ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌همه‌چيز‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌همه‌چيزها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيهمهچيزها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدانان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدان‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدانان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدان‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدانها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدان‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدانها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدان‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدانهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدان‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدانهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدان‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدانهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بيوجدان‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدانهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بي‌وجدان‌های",
       "concept": "hate.slur"
     },
     {
@@ -11528,10 +10968,6 @@
     {
       "term": "بيولوژيکي",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "بی پدر",
-      "concept": "hate.slur"
     },
     {
       "term": "بی پدر ها",
@@ -11554,10 +10990,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "بی شرف",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بی شرف ها",
       "concept": "hate.slur"
     },
@@ -11578,19 +11010,11 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "بی ناموس",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بی ناموس ها",
       "concept": "hate.slur"
     },
     {
       "term": "بی ناموسها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی همه چیز",
       "concept": "hate.slur"
     },
     {
@@ -11602,31 +11026,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بی‌پدر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیپدر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بی‌پدر ها",
       "concept": "hate.slur"
     },
     {
       "term": "بیپدر ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌پدر‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌پدرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیپدرها",
       "concept": "hate.slur"
     },
     {
@@ -11694,123 +11098,11 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "بیشرف",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شرف",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بی‌شرف ها",
       "concept": "hate.slur"
     },
     {
       "term": "بیشرف ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشرفان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشرف‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شرفان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شرف‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشرفها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشرف‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شرفها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شرف‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشرفهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشرف‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شرفهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شرف‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشعور",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شعور",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشعوران",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشعور‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شعوران",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شعور‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشعورها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشعور‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شعورها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شعور‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشعورهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیشعور‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شعورهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌شعور‌های",
       "concept": "hate.slur"
     },
     {
@@ -11846,14 +11138,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "بیناموس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌ناموس",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بی‌ناموس ها",
       "concept": "hate.slur"
     },
@@ -11862,135 +11146,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بیناموسان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیناموس‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌ناموسان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌ناموس‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیناموسها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیناموس‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌ناموسها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌ناموس‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیناموسهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیناموس‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌ناموسهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌ناموس‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌همه‌چیز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیهمهچیز",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بی‌همه‌چیز ها",
       "concept": "hate.slur"
     },
     {
       "term": "بیهمهچیز ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌همه‌چیز‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌همه‌چیزها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیهمهچیزها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیوجدان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌وجدان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیوجدانان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیوجدان‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌وجدانان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌وجدان‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیوجدانها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیوجدان‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌وجدانها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌وجدان‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیوجدانهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بیوجدان‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌وجدانهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بی‌وجدان‌های",
       "concept": "hate.slur"
     },
     {
@@ -12530,23 +11690,7 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "پدر سگ",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پدرسگ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "پدرسگ ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پدرسگ‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پدرسگها",
       "concept": "hate.slur"
     },
     {
@@ -12730,150 +11874,6 @@
       "concept": "hate.dehumanization"
     },
     {
-      "term": "پستفطرت",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرت",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرت",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرت",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پستفطرتان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرت‌ان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرتان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرت‌ان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرتان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پستفطرت‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرتان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرت‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پستفطرتها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرت‌ها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرتها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرت‌ها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرتها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پستفطرت‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرتها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرت‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پستفطرتهاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرتهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پستفطرت‌هاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرت‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرتهاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرتهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرت‌هاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرت‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پستفطرتهای",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرت‌های",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرتهای",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پست‌فطرت‌های",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پستفطرتهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پستفطرت‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرتهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پست‌فطرت‌های",
-      "concept": "hate.slur"
-    },
-    {
       "term": "پستها",
       "concept": "hate.dehumanization"
     },
@@ -12914,75 +11914,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "پفيوز",
-      "concept": "hate.slur"
-    },
-    {
       "term": "پفيوز ها",
       "concept": "hate.slur"
     },
     {
-      "term": "پفيوزان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفيوز‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفيوزها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفيوز‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفيوزهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفيوز‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفيوزهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفيوز‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفیوز",
-      "concept": "hate.slur"
-    },
-    {
       "term": "پفیوز ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفیوزان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفیوز‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفیوزها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفیوز‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفیوزهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "پفیوز‌های",
       "concept": "hate.slur"
     },
     {
@@ -13070,14 +12006,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "پليد",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پليد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "پليد ها",
       "concept": "hate.slur"
     },
@@ -13156,14 +12084,6 @@
     {
       "term": "پليدي‌های",
       "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پلید",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "پلید",
-      "concept": "hate.slur"
     },
     {
       "term": "پلید ها",
@@ -13710,10 +12630,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "پيروزي",
-      "concept": "threat.direct"
-    },
-    {
       "term": "پيستول",
       "concept": "weapon.firearm"
     },
@@ -13784,10 +12700,6 @@
     {
       "term": "پیچگوشتی ها",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "پیروزی",
-      "concept": "threat.direct"
     },
     {
       "term": "پیستول",
@@ -13870,14 +12782,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "تابوت",
-      "concept": "violence.general"
-    },
-    {
-      "term": "تابوت",
-      "concept": "violence.torture"
-    },
-    {
       "term": "تابوت ها",
       "concept": "violence.torture"
     },
@@ -13904,10 +12808,6 @@
     {
       "term": "تابونها",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "تاد",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "تاد ها",
@@ -14252,6 +13152,14 @@
     {
       "term": "تبدیل به ویرانه",
       "concept": "violence.general"
+    },
+    {
+      "term": "تبر",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "تبر",
+      "concept": "weapon.general"
     },
     {
       "term": "تبر ها",
@@ -14738,10 +13646,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "تخم حرام",
-      "concept": "hate.slur"
-    },
-    {
       "term": "تربلينكا",
       "concept": "violence.genocide"
     },
@@ -14830,24 +13734,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "ترسو",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ترسو ها",
       "concept": "hate.slur"
     },
     {
       "term": "ترسوندن",
       "concept": "threat.direct"
-    },
-    {
-      "term": "ترسو‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ترسوها",
-      "concept": "hate.slur"
     },
     {
       "term": "تركان",
@@ -15566,14 +14458,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "تشويق",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "تشویق",
-      "concept": "threat.direct"
-    },
-    {
       "term": "تصادف عمدی",
       "concept": "violence.terrorism"
     },
@@ -15696,10 +14580,6 @@
     {
       "term": "تعصب‌آمیز",
       "concept": "violence.general"
-    },
-    {
-      "term": "تف",
-      "concept": "hate.slur"
     },
     {
       "term": "تفجير",
@@ -17850,10 +16730,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "توله سگ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "توماهاوك",
       "concept": "weapon.missile_rocket"
     },
@@ -18770,83 +17646,11 @@
       "concept": "hate.general"
     },
     {
-      "term": "جاكش",
-      "concept": "hate.slur"
-    },
-    {
       "term": "جاكش ها",
       "concept": "hate.slur"
     },
     {
-      "term": "جاكشان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاكش‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاكشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاكش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاكشهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاكش‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاكشهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاكش‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکش",
-      "concept": "hate.slur"
-    },
-    {
       "term": "جاکش ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکشان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکش‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکشهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکش‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکشهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جاکش‌های",
       "concept": "hate.slur"
     },
     {
@@ -18880,10 +17684,6 @@
     {
       "term": "جان‌گرفتن",
       "concept": "violence.killing"
-    },
-    {
-      "term": "جانور",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "جانوران",
@@ -19044,10 +17844,6 @@
     {
       "term": "جسدها",
       "concept": "violence.killing"
-    },
-    {
-      "term": "جعل",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "جعلان",
@@ -19264,10 +18060,6 @@
     {
       "term": "جمعه خشم",
       "concept": "violence.general"
-    },
-    {
-      "term": "جمعي",
-      "concept": "violence.killing"
     },
     {
       "term": "جنازه",
@@ -19494,19 +18286,7 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "جنده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "جنده ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جنده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "جندهها",
       "concept": "hate.slur"
     },
     {
@@ -19908,10 +18688,6 @@
     {
       "term": "جهان‌خوار‌های",
       "concept": "hate.general"
-    },
-    {
-      "term": "جهنم",
-      "concept": "threat.direct"
     },
     {
       "term": "جهنم به پا مي كنيم",
@@ -20918,10 +19694,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "حرام زاده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "حرام زاده ها",
       "concept": "hate.slur"
     },
@@ -20930,83 +19702,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "حرامزاده",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زاده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "حرامزاده ها",
       "concept": "hate.slur"
     },
     {
       "term": "حرام‌زاده ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرامزادهان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرامزاده‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زادهان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زاده‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرامزادهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرامزاده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زادهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زاده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرامزادههاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرامزاده‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زادههاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زاده‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرامزادههای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرامزاده‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زادههای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرام‌زاده‌های",
       "concept": "hate.slur"
     },
     {
@@ -21026,10 +19726,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "حروم زاده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "حروم زاده ها",
       "concept": "hate.slur"
     },
@@ -21038,35 +19734,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "حرومزاده",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حروم‌زاده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "حرومزاده ها",
       "concept": "hate.slur"
     },
     {
       "term": "حروم‌زاده ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرومزاده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حرومزادهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حروم‌زاده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حروم‌زادهها",
       "concept": "hate.slur"
     },
     {
@@ -21296,10 +19968,6 @@
     {
       "term": "حشرات",
       "concept": "hate.slur"
-    },
-    {
-      "term": "حشره",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "حشرهان",
@@ -22022,24 +20690,8 @@
       "concept": "hate.dehumanization"
     },
     {
-      "term": "خائن",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خائن ها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "خائن‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خائنها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خاكستر",
-      "concept": "violence.arson"
     },
     {
       "term": "خاكستر كردن",
@@ -22055,10 +20707,6 @@
     },
     {
       "term": "خاكسترها",
-      "concept": "violence.arson"
-    },
-    {
-      "term": "خاکستر",
       "concept": "violence.arson"
     },
     {
@@ -22182,35 +20830,11 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "خاين",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خاين ها",
       "concept": "hate.slur"
     },
     {
-      "term": "خاين‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خاينها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خاین",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خاین ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خاین‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خاینها",
       "concept": "hate.slur"
     },
     {
@@ -22276,14 +20900,6 @@
     {
       "term": "خرابکاریها",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "خران",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خر‌ان",
-      "concept": "hate.slur"
     },
     {
       "term": "خرج گود",
@@ -22372,22 +20988,6 @@
     {
       "term": "خرمشهرها",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "خرهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خر‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خرهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خر‌های",
-      "concept": "hate.slur"
     },
     {
       "term": "خزر",
@@ -23062,14 +21662,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "خفه",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "خفه شو",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خفه شو ها",
       "concept": "hate.slur"
     },
@@ -23130,39 +21722,11 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "خفهشو",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "خفه‌شو",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "خفه‌شو",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خفهشو",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خفه‌شو ها",
       "concept": "hate.slur"
     },
     {
       "term": "خفهشو ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خفه‌شو‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خفه‌شوها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خفهشوها",
       "concept": "hate.slur"
     },
     {
@@ -23490,19 +22054,7 @@
       "concept": "hate.slur"
     },
     {
-      "term": "خواهرجنده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خواهرجنده ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خواهرجنده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خواهرجندهها",
       "concept": "hate.slur"
     },
     {
@@ -23610,10 +22162,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "خودكار",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "خودكشي",
       "concept": "violence.killing"
     },
@@ -23630,10 +22178,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "خودکار",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "خودکشی",
       "concept": "violence.killing"
     },
@@ -23648,14 +22192,6 @@
     {
       "term": "خودکشیها",
       "concept": "violence.killing"
-    },
-    {
-      "term": "خوشحالي",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "خوشحالی",
-      "concept": "threat.direct"
     },
     {
       "term": "خوك ها",
@@ -24802,10 +23338,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "دروغ",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "دروغ هولوكوست",
       "concept": "violence.genocide"
     },
@@ -24819,14 +23351,6 @@
     },
     {
       "term": "دروغ‌ان",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "دروغگو",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "دروغ‌گو",
       "concept": "hate.antisemitism"
     },
     {
@@ -24980,10 +23504,6 @@
     {
       "term": "دروغین‌های",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "درون",
-      "concept": "weapon.drone"
     },
     {
       "term": "درون ها",
@@ -25626,35 +24146,11 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "ديوانه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ديوانه ها",
       "concept": "hate.slur"
     },
     {
-      "term": "ديوانه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ديوانهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ديوث",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ديوث ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ديوث‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ديوثها",
       "concept": "hate.slur"
     },
     {
@@ -25734,35 +24230,11 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "دیوانه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "دیوانه ها",
       "concept": "hate.slur"
     },
     {
-      "term": "دیوانه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "دیوانهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "دیوث",
-      "concept": "hate.slur"
-    },
-    {
       "term": "دیوث ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "دیوث‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "دیوثها",
       "concept": "hate.slur"
     },
     {
@@ -26614,35 +25086,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "رواني",
-      "concept": "hate.slur"
-    },
-    {
       "term": "رواني ها",
       "concept": "hate.slur"
     },
     {
-      "term": "رواني‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "روانيها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "روانی",
-      "concept": "hate.slur"
-    },
-    {
       "term": "روانی ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "روانی‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "روانیها",
       "concept": "hate.slur"
     },
     {
@@ -26806,19 +25254,7 @@
       "concept": "violence.torture"
     },
     {
-      "term": "ريدن",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ريدن ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ريدن‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ريدنها",
       "concept": "hate.slur"
     },
     {
@@ -27006,19 +25442,7 @@
       "concept": "violence.torture"
     },
     {
-      "term": "ریدن",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ریدن ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ریدن‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ریدنها",
       "concept": "hate.slur"
     },
     {
@@ -27530,10 +25954,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "زلزله",
-      "concept": "threat.direct"
-    },
-    {
       "term": "زلزله ها",
       "concept": "threat.direct"
     },
@@ -27570,10 +25990,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "زن جنده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "زن جنده ها",
       "concept": "hate.slur"
     },
@@ -27582,27 +25998,7 @@
       "concept": "hate.slur"
     },
     {
-      "term": "زنازاده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "زنازاده ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زنازاده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زنازادهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زن‌جنده",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زنجنده",
       "concept": "hate.slur"
     },
     {
@@ -27611,18 +26007,6 @@
     },
     {
       "term": "زنجنده ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زن‌جنده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زن‌جندهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زنجندهها",
       "concept": "hate.slur"
     },
     {
@@ -28322,10 +26706,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "ساختگي",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "ساختگيان",
       "concept": "hate.antisemitism"
     },
@@ -28355,10 +26735,6 @@
     },
     {
       "term": "ساختگي‌های",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "ساختگی",
       "concept": "hate.antisemitism"
     },
     {
@@ -28487,10 +26863,6 @@
     },
     {
       "term": "ساعرها",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "سام",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -28934,10 +27306,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "سرطان",
-      "concept": "hate.slur"
-    },
-    {
       "term": "سركوب",
       "concept": "violence.killing"
     },
@@ -29102,10 +27470,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "سگ پدر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "سگ پدر ها",
       "concept": "hate.slur"
     },
@@ -29134,31 +27498,11 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "سگ‌پدر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "سگپدر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "سگ‌پدر ها",
       "concept": "hate.slur"
     },
     {
       "term": "سگپدر ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "سگ‌پدر‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "سگ‌پدرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "سگپدرها",
       "concept": "hate.slur"
     },
     {
@@ -30082,10 +28426,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "سوءاستفاده",
-      "concept": "violence.assault"
-    },
-    {
       "term": "سوءاستفادهگر",
       "concept": "violence.assault"
     },
@@ -30228,14 +28568,6 @@
     {
       "term": "سوراخ سوراخ کردن",
       "concept": "violence.general"
-    },
-    {
-      "term": "سوز",
-      "concept": "violence.arson"
-    },
-    {
-      "term": "سوزان",
-      "concept": "violence.arson"
     },
     {
       "term": "سوزاند",
@@ -30910,31 +29242,7 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "شادي",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "شادی",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "شاش",
-      "concept": "hate.slur"
-    },
-    {
       "term": "شاش ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شاش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شاشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شاشيدن",
       "concept": "hate.slur"
     },
     {
@@ -30942,32 +29250,8 @@
       "concept": "hate.slur"
     },
     {
-      "term": "شاشيدن‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شاشيدنها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شاشیدن",
-      "concept": "hate.slur"
-    },
-    {
       "term": "شاشیدن ها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "شاشیدن‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شاشیدنها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شاهد",
-      "concept": "weapon.drone"
     },
     {
       "term": "شاهد ۱۰۱",
@@ -31618,10 +29902,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "شكست",
-      "concept": "violence.general"
-    },
-    {
       "term": "شكستگي",
       "concept": "violence.assault"
     },
@@ -31636,14 +29916,6 @@
     {
       "term": "شكستگيها",
       "concept": "violence.assault"
-    },
-    {
-      "term": "شكستم",
-      "concept": "violence.general"
-    },
-    {
-      "term": "شكستن",
-      "concept": "violence.general"
     },
     {
       "term": "شكستن استخوان",
@@ -31678,19 +29950,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "شكستي",
-      "concept": "violence.general"
-    },
-    {
       "term": "شكستيد",
       "concept": "violence.general"
     },
     {
       "term": "شكستيم",
-      "concept": "violence.general"
-    },
-    {
-      "term": "شكستی",
       "concept": "violence.general"
     },
     {
@@ -31704,10 +29968,6 @@
     {
       "term": "شكم دريدن",
       "concept": "violence.killing"
-    },
-    {
-      "term": "شكن",
-      "concept": "violence.general"
     },
     {
       "term": "شكنجه",
@@ -31902,10 +30162,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "شکست",
-      "concept": "violence.general"
-    },
-    {
       "term": "شکستگی",
       "concept": "violence.assault"
     },
@@ -31920,14 +30176,6 @@
     {
       "term": "شکستگیها",
       "concept": "violence.assault"
-    },
-    {
-      "term": "شکستم",
-      "concept": "violence.general"
-    },
-    {
-      "term": "شکستن",
-      "concept": "violence.general"
     },
     {
       "term": "شکستن استخوان",
@@ -31962,19 +30210,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "شکستي",
-      "concept": "violence.general"
-    },
-    {
       "term": "شکستيد",
       "concept": "violence.general"
     },
     {
       "term": "شکستيم",
-      "concept": "violence.general"
-    },
-    {
-      "term": "شکستی",
       "concept": "violence.general"
     },
     {
@@ -31988,10 +30228,6 @@
     {
       "term": "شکم دریدن",
       "concept": "violence.killing"
-    },
-    {
-      "term": "شکن",
-      "concept": "violence.general"
     },
     {
       "term": "شکنجه",
@@ -32191,6 +30427,14 @@
     },
     {
       "term": "شکنجههای وحشیانه",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "شلاق",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "شلاق",
       "concept": "violence.torture"
     },
     {
@@ -32740,10 +30984,6 @@
     {
       "term": "شنبه سیاه",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "شهاب",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "شهاب ۳",
@@ -35074,10 +33314,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "طاعون",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "طاعون ها",
       "concept": "weapon.cbrn"
     },
@@ -35120,10 +33356,6 @@
     {
       "term": "طناب‌دار",
       "concept": "violence.killing"
-    },
-    {
-      "term": "طوفان",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "طوفان ۱",
@@ -35434,10 +33666,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "عقب مانده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "عقب مانده ها",
       "concept": "hate.slur"
     },
@@ -35446,31 +33674,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "عقب‌مانده",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عقبمانده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "عقب‌مانده ها",
       "concept": "hate.slur"
     },
     {
       "term": "عقبمانده ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عقب‌مانده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عقب‌ماندهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عقبماندهها",
       "concept": "hate.slur"
     },
     {
@@ -35854,10 +34062,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "عن",
-      "concept": "hate.slur"
-    },
-    {
       "term": "عوامل انتحاري",
       "concept": "weapon.explosive"
     },
@@ -35896,70 +34100,6 @@
     {
       "term": "عوزیها",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "عوضي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضيان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضي‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضيها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضي‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضيهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضي‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضيهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضي‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضی",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضیان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضی‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضیها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضی‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضیهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عوضی‌های",
-      "concept": "hate.slur"
     },
     {
       "term": "عياش ۲۵۰",
@@ -36166,19 +34306,7 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "فاحشه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "فاحشه ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "فاحشه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "فاحشهها",
       "concept": "hate.slur"
     },
     {
@@ -36340,14 +34468,6 @@
     {
       "term": "فتاحها",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "فتح",
-      "concept": "hate.general"
-    },
-    {
-      "term": "فتح",
-      "concept": "violence.terrorism"
     },
     {
       "term": "فتح ها",
@@ -37494,19 +35614,7 @@
       "concept": "violence.killing"
     },
     {
-      "term": "قحبه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "قحبه ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قحبه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قحبهها",
       "concept": "hate.slur"
     },
     {
@@ -37520,10 +35628,6 @@
     {
       "term": "قداره",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "قدر",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "قدر ها",
@@ -37610,35 +35714,11 @@
       "concept": "violence.killing"
     },
     {
-      "term": "قرمساق",
-      "concept": "hate.slur"
-    },
-    {
       "term": "قرمساق ها",
       "concept": "hate.slur"
     },
     {
-      "term": "قرمساق‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قرمساقها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قرومساق",
-      "concept": "hate.slur"
-    },
-    {
       "term": "قرومساق ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قرومساق‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قرومساقها",
       "concept": "hate.slur"
     },
     {
@@ -37796,10 +35876,6 @@
     {
       "term": "قطعه‌قطعه",
       "concept": "violence.killing"
-    },
-    {
-      "term": "قفس",
-      "concept": "violence.torture"
     },
     {
       "term": "قفس آهني",
@@ -38338,10 +36414,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "كاكاسياه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كاكاسياه ها",
       "concept": "hate.slur"
     },
@@ -38654,207 +36726,7 @@
       "concept": "violence.assault"
     },
     {
-      "term": "كثافت",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافت",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كثافت ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثافتان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافت‌ان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافتان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثافت‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثافتها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافت‌ها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافتها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثافت‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثافتهاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافتهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثافت‌هاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافت‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثافتهای",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافت‌های",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثافتهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثافت‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيف",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيف",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيفان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيف‌ان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيفان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيف‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيفها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيف‌ها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيفها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيف‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيفهاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيفهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيف‌هاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيف‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيفهای",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيف‌های",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثيفهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثيف‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثیف",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثیف",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثیفان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثیف‌ان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثیفان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثیف‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثیفها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثیف‌ها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثیفها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثیف‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثیفهای",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثیف‌های",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كثیفهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كثیف‌های",
       "concept": "hate.slur"
     },
     {
@@ -38874,10 +36746,6 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "كرم",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كرم ها",
       "concept": "hate.slur"
     },
@@ -38888,10 +36756,6 @@
     {
       "term": "كرمها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "كروز",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "كريستال ناخت",
@@ -38926,27 +36790,7 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "كس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسخل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كسخل ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسخل‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسخلها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسشعر",
       "concept": "hate.slur"
     },
     {
@@ -38954,56 +36798,8 @@
       "concept": "hate.slur"
     },
     {
-      "term": "كسشعر‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسشعرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسكش",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كسكش ها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "كسكشان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسكش‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسكشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسكش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسكشهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسكش‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسكشهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسكش‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كش",
-      "concept": "violence.killing"
     },
     {
       "term": "كشاندن به كمين",
@@ -39422,27 +37218,7 @@
       "concept": "violence.torture"
     },
     {
-      "term": "كص",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصخل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كصخل ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصخل‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصخلها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصشعر",
       "concept": "hate.slur"
     },
     {
@@ -39450,43 +37226,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "كصشعر‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصشعرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصكش",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كصكش ها",
       "concept": "hate.slur"
     },
     {
-      "term": "كصكش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصكشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصمغز",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كصمغز ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصمغز‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كصمغزها",
       "concept": "hate.slur"
     },
     {
@@ -39894,10 +37638,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "كنترل",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "كنترل از راه دور",
       "concept": "weapon.explosive"
     },
@@ -40210,19 +37950,7 @@
       "concept": "hate.dehumanization"
     },
     {
-      "term": "كودن",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كودن ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كودن‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كودنها",
       "concept": "hate.slur"
     },
     {
@@ -40338,15 +38066,7 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "كون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كون ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كونكش",
       "concept": "hate.slur"
     },
     {
@@ -40354,39 +38074,7 @@
       "concept": "hate.slur"
     },
     {
-      "term": "كونكش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كونكشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كون‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كونها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كوني",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كوني ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كوني‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كونيها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كير",
       "concept": "hate.slur"
     },
     {
@@ -40394,43 +38082,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "كيرم",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كيرم ها",
       "concept": "hate.slur"
     },
     {
-      "term": "كيرم‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كيرمها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كير‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كيرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كيري",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كيري ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كيري‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كيريها",
       "concept": "hate.slur"
     },
     {
@@ -40619,10 +38275,6 @@
     },
     {
       "term": "کافرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کاکاسیاه",
       "concept": "hate.slur"
     },
     {
@@ -40950,207 +38602,7 @@
       "concept": "violence.assault"
     },
     {
-      "term": "کثافت",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافت",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کثافت ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثافتان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافت‌ان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافتان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثافت‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثافتها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافت‌ها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافتها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثافت‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثافتهاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافتهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثافت‌هاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافت‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثافتهای",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافت‌های",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثافتهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثافت‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيف",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيف",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيفان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيف‌ان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيفان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيف‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيفها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيف‌ها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيفها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيف‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيفهاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيفهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيف‌هاي",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيف‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيفهای",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيف‌های",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثيفهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثيف‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثیف",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثیف",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثیفان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثیف‌ان",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثیفان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثیف‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثیفها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثیف‌ها",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثیفها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثیف‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثیفهای",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثیف‌های",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "کثیفهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کثیف‌های",
       "concept": "hate.slur"
     },
     {
@@ -41170,10 +38622,6 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "کرم",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کرم ها",
       "concept": "hate.slur"
     },
@@ -41184,10 +38632,6 @@
     {
       "term": "کرمها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "کروز",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "کریستال ناخت",
@@ -41230,27 +38674,7 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "کس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسخل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کسخل ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسخل‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسخلها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسشعر",
       "concept": "hate.slur"
     },
     {
@@ -41258,56 +38682,8 @@
       "concept": "hate.slur"
     },
     {
-      "term": "کسشعر‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسشعرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسکش",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کسکش ها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "کسکشان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسکش‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسکشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسکش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسکشهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسکش‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسکشهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کسکش‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کش",
-      "concept": "violence.killing"
     },
     {
       "term": "کشاندن به کمین",
@@ -41746,27 +39122,7 @@
       "concept": "violence.torture"
     },
     {
-      "term": "کص",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصخل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کصخل ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصخل‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصخلها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصشعر",
       "concept": "hate.slur"
     },
     {
@@ -41774,43 +39130,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "کصشعر‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصشعرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصکش",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کصکش ها",
       "concept": "hate.slur"
     },
     {
-      "term": "کصکش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصکشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصمغز",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کصمغز ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصمغز‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کصمغزها",
       "concept": "hate.slur"
     },
     {
@@ -42234,10 +39558,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "کنترل",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "کنترل از راه دور",
       "concept": "weapon.explosive"
     },
@@ -42558,19 +39878,7 @@
       "concept": "hate.dehumanization"
     },
     {
-      "term": "کودن",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کودن ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کودن‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کودنها",
       "concept": "hate.slur"
     },
     {
@@ -42690,15 +39998,7 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "کون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کون ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کونکش",
       "concept": "hate.slur"
     },
     {
@@ -42706,35 +40006,7 @@
       "concept": "hate.slur"
     },
     {
-      "term": "کونکش‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کونکشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کون‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کونها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کونی",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کونی ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کونی‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کونیها",
       "concept": "hate.slur"
     },
     {
@@ -42746,15 +40018,7 @@
       "concept": "threat.retaliation"
     },
     {
-      "term": "کیر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کیر ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کیرم",
       "concept": "hate.slur"
     },
     {
@@ -42762,35 +40026,7 @@
       "concept": "hate.slur"
     },
     {
-      "term": "کیرم‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کیرمها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کیر‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کیرها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کیری",
-      "concept": "hate.slur"
-    },
-    {
       "term": "کیری ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کیری‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "کیریها",
       "concept": "hate.slur"
     },
     {
@@ -43950,23 +41186,7 @@
       "concept": "weapon.ammunition"
     },
     {
-      "term": "گم شو",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "گمشو",
-      "concept": "hate.slur"
-    },
-    {
       "term": "گمشو ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "گمشو‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "گمشوها",
       "concept": "hate.slur"
     },
     {
@@ -43984,14 +41204,6 @@
     {
       "term": "گنبد اهنین",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "گه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "گه نخور",
-      "concept": "hate.slur"
     },
     {
       "term": "گوئيم",
@@ -44126,23 +41338,7 @@
       "concept": "violence.general"
     },
     {
-      "term": "گوه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "گوه نخور",
-      "concept": "hate.slur"
-    },
-    {
       "term": "گوه ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "گوه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "گوهها",
       "concept": "hate.slur"
     },
     {
@@ -44218,35 +41414,11 @@
       "concept": "violence.killing"
     },
     {
-      "term": "لاشي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لاشي ها",
       "concept": "hate.slur"
     },
     {
-      "term": "لاشي‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لاشيها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لاشی",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لاشی ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لاشی‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لاشیها",
       "concept": "hate.slur"
     },
     {
@@ -44286,19 +41458,7 @@
       "concept": "violence.torture"
     },
     {
-      "term": "لجن",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لجن ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لجن‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لجنها",
       "concept": "hate.slur"
     },
     {
@@ -44332,10 +41492,6 @@
     {
       "term": "لشکر فاطمیون",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "لعنت",
-      "concept": "hate.slur"
     },
     {
       "term": "لعنت ها",
@@ -44374,10 +41530,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "لعنتي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لعنتي ها",
       "concept": "hate.slur"
     },
@@ -44411,10 +41563,6 @@
     },
     {
       "term": "لعنتي‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لعنتی",
       "concept": "hate.slur"
     },
     {
@@ -44598,15 +41746,7 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "لواط كار",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لواط كار ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواط کار",
       "concept": "hate.slur"
     },
     {
@@ -44618,35 +41758,7 @@
       "concept": "hate.slur"
     },
     {
-      "term": "لواط‌كار",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواطكار",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لواط‌كار ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواط‌كار‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواط‌كارها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواطكارها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواط‌کار",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواطکار",
       "concept": "hate.slur"
     },
     {
@@ -44655,18 +41767,6 @@
     },
     {
       "term": "لواطکار ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواط‌کار‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواط‌کارها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لواطکارها",
       "concept": "hate.slur"
     },
     {
@@ -44774,14 +41874,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "مادر به خطا",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادر جنده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مادر شيطان",
       "concept": "weapon.explosive"
     },
@@ -44790,47 +41882,7 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "مادر قحبه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجنده",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مادرجنده ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجندهان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجنده‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجندهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجنده‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجندههاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجنده‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجندههای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مادرجنده‌های",
       "concept": "hate.slur"
     },
     {
@@ -45108,14 +42160,6 @@
     {
       "term": "مثلث معکوس",
       "concept": "hate.anti_israel"
-    },
-    {
-      "term": "مثله",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "مثله",
-      "concept": "violence.torture"
     },
     {
       "term": "مثله كردن",
@@ -45718,19 +42762,7 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "مخنث",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مخنث ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مخنث‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مخنثها",
       "concept": "hate.slur"
     },
     {
@@ -45767,134 +42799,6 @@
     },
     {
       "term": "مرتدها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكهان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكه‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكههاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكه‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكههای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيكه‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکهان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکه‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکههاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکه‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکههای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتيکه‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیكه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیكهان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیكه‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیكهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیكه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیكههای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیكه‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیکه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیکهان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیکه‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیکهها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیکه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیکههای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مرتیکه‌های",
       "concept": "hate.slur"
     },
     {
@@ -45935,14 +42839,6 @@
     },
     {
       "term": "مرده",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "مرد‌ها",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "مردها",
       "concept": "violence.killing"
     },
     {
@@ -46558,10 +43454,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "مفت خور",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مفت خور ها",
       "concept": "hate.slur"
     },
@@ -46570,31 +43462,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "مفت‌خور",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مفتخور",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مفت‌خور ها",
       "concept": "hate.slur"
     },
     {
       "term": "مفتخور ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مفت‌خور‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مفت‌خورها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مفتخورها",
       "concept": "hate.slur"
     },
     {
@@ -46686,10 +43558,6 @@
       "concept": "threat.retaliation"
     },
     {
-      "term": "ملعون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ملعون ها",
       "concept": "hate.slur"
     },
@@ -46724,10 +43592,6 @@
     {
       "term": "ممنوعیت تردد کشتیها",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "منافق",
-      "concept": "hate.slur"
     },
     {
       "term": "منافق ها",
@@ -47132,18 +43996,6 @@
     {
       "term": "مهلکها",
       "concept": "violence.killing"
-    },
-    {
-      "term": "مهمات",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "مهمات",
-      "concept": "weapon.ammunition"
-    },
-    {
-      "term": "مهمات",
-      "concept": "weapon.explosive"
     },
     {
       "term": "مهمات خوشه اي",
@@ -47974,30 +44826,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "ميبرم",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "مي‌برم",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "ميبُرم",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "مي‌بُرم",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "ميبره",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "مي‌بره",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "ميترساند",
       "concept": "violence.terrorism"
     },
@@ -48246,14 +45074,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "ميزنن",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "مي‌زنن",
-      "concept": "violence.assault"
-    },
-    {
       "term": "ميزنند",
       "concept": "violence.assault"
     },
@@ -48262,35 +45082,11 @@
       "concept": "violence.assault"
     },
     {
-      "term": "ميزنه",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "مي‌زنه",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "ميزني",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "مي‌زني",
-      "concept": "violence.assault"
-    },
-    {
       "term": "ميزنيد",
       "concept": "violence.assault"
     },
     {
       "term": "مي‌زنيد",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "ميزنيم",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "مي‌زنيم",
       "concept": "violence.assault"
     },
     {
@@ -48874,10 +45670,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "ميله",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "ميله آهني",
       "concept": "weapon.blade"
     },
@@ -48902,10 +45694,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "ميمون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ميمون ها",
       "concept": "hate.slur"
     },
@@ -48916,10 +45704,6 @@
     {
       "term": "ميمونها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "مين",
-      "concept": "weapon.explosive"
     },
     {
       "term": "مين دريايي",
@@ -49052,30 +45836,6 @@
     {
       "term": "می کشیمها",
       "concept": "violence.killing"
-    },
-    {
-      "term": "میبرم",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "می‌برم",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "میبُرم",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "می‌بُرم",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "میبره",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "می‌بره",
-      "concept": "weapon.blade"
     },
     {
       "term": "میترساند",
@@ -49322,14 +46082,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "میزنن",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "می‌زنن",
-      "concept": "violence.assault"
-    },
-    {
       "term": "میزنند",
       "concept": "violence.assault"
     },
@@ -49338,35 +46090,11 @@
       "concept": "violence.assault"
     },
     {
-      "term": "میزنه",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "می‌زنه",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "میزنی",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "می‌زنی",
-      "concept": "violence.assault"
-    },
-    {
       "term": "میزنید",
       "concept": "violence.assault"
     },
     {
       "term": "می‌زنید",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "میزنیم",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "می‌زنیم",
       "concept": "violence.assault"
     },
     {
@@ -49962,10 +46690,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "میله",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "میله آهنی",
       "concept": "weapon.blade"
     },
@@ -49990,10 +46714,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "میمون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "میمون ها",
       "concept": "hate.slur"
     },
@@ -50004,10 +46724,6 @@
     {
       "term": "میمونها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "مین",
-      "concept": "weapon.explosive"
     },
     {
       "term": "مین دریایی",
@@ -51018,10 +47734,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "نزن",
-      "concept": "violence.assault"
-    },
-    {
       "term": "نزنيد",
       "concept": "violence.assault"
     },
@@ -51574,50 +48286,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "نفهم",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفهمان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفهم‌ان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفهمها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفهم‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفهمهاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفهم‌هاي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفهمهای",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفهم‌های",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "نفوذ",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "نفوذ",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "نفوذ از تونل",
       "concept": "violence.terrorism"
     },
@@ -51792,10 +48460,6 @@
     {
       "term": "نفوذی‌های",
       "concept": "hate.general"
-    },
-    {
-      "term": "نقاب",
-      "concept": "weapon.firearm"
     },
     {
       "term": "نقاب ها",
@@ -52127,14 +48791,6 @@
     },
     {
       "term": "نمي‌زند",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "نميزنم",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "نمي‌زنم",
       "concept": "violence.assault"
     },
     {
@@ -52751,14 +49407,6 @@
     },
     {
       "term": "نمی‌زند",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "نمیزنم",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "نمی‌زنم",
       "concept": "violence.assault"
     },
     {
@@ -53770,19 +50418,7 @@
       "concept": "violence.assault"
     },
     {
-      "term": "هرزه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "هرزه ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "هرزه‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "هرزهها",
       "concept": "hate.slur"
     },
     {
@@ -54046,10 +50682,6 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "همجنس باز",
-      "concept": "hate.slur"
-    },
-    {
       "term": "همجنس باز ها",
       "concept": "hate.slur"
     },
@@ -54058,31 +50690,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "همجنس‌باز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "همجنسباز",
-      "concept": "hate.slur"
-    },
-    {
       "term": "همجنس‌باز ها",
       "concept": "hate.slur"
     },
     {
       "term": "همجنسباز ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "همجنس‌باز‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "همجنس‌بازها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "همجنسبازها",
       "concept": "hate.slur"
     },
     {
@@ -54962,10 +51574,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "هيولا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "هيولا ها",
       "concept": "hate.slur"
     },
@@ -55036,10 +51644,6 @@
     {
       "term": "هیملرها",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "هیولا",
-      "concept": "hate.slur"
     },
     {
       "term": "هیولا ها",
@@ -55534,23 +52138,11 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "وطن فروش",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وطن فروش ها",
       "concept": "hate.slur"
     },
     {
       "term": "وطن فروشها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وطن‌فروش",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وطنفروش",
       "concept": "hate.slur"
     },
     {
@@ -55572,10 +52164,6 @@
     {
       "term": "وطنفروشها",
       "concept": "hate.slur"
-    },
-    {
-      "term": "وعده",
-      "concept": "threat.direct"
     },
     {
       "term": "وعده صادق",
@@ -55690,19 +52278,7 @@
       "concept": "violence.general"
     },
     {
-      "term": "ولدزنا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ولدزنا ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ولدزنا‌ها",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ولدزناها",
       "concept": "hate.slur"
     },
     {
@@ -55810,10 +52386,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "ويروس",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "ويروسي",
       "concept": "weapon.cbrn"
     },
@@ -55912,10 +52484,6 @@
     {
       "term": "ویرانیها",
       "concept": "violence.assault"
-    },
-    {
-      "term": "ویروس",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "ویروسی",

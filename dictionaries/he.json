@@ -46,6 +46,1022 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "אבולה",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "אבידות",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "אבעבועות שחורות",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "אגרוף",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "אולר",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "אולר",
+      "concept": "weapon.general"
+    },
+    {
+      "term": "אות חיים",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "אין כפרה",
+      "concept": "violence.general"
+    },
+    {
+      "term": "אין מחילה",
+      "concept": "violence.general"
+    },
+    {
+      "term": "אין סליחה",
+      "concept": "violence.general"
+    },
+    {
+      "term": "אכזרי",
+      "concept": "violence.general"
+    },
+    {
+      "term": "אכזרי",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "אל תחשבו שאתם חסינים",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אל תעופו על עצמכם",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אנחנו לא שוכחים ולא סולחים",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אנחנו עוקבים אחרי",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אסיר",
+      "concept": "violence.kidnapping"
+    },
+    {
+      "term": "אסיר",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "אצטון",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "אראק",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "אש",
+      "concept": "violence.arson"
+    },
+    {
+      "term": "אתם לא יודעים מה מחכה לכם",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אתם עוד תראו מה זה",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "אתם עוד תשלמו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "אתם תצטערו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "אתם תשלמו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "באים חשבון",
+      "concept": "violence.general"
+    },
+    {
+      "term": "בונקר",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "בושהר",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "בידוד מוחלט",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "ביולוגי",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "בלון גז",
+      "concept": "violence.arson"
+    },
+    {
+      "term": "בלוני גז",
+      "concept": "violence.arson"
+    },
+    {
+      "term": "בעט",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "בעיטה",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "בעיטה בראש",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "בעל הבית השתגע",
+      "concept": "violence.general"
+    },
+    {
+      "term": "ברוטלי",
+      "concept": "violence.general"
+    },
+    {
+      "term": "ברוטלי",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "ג'וקים",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "גבה מחיר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "גבו מחיר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "גביית מחיר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "גובה מחיר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "גובים מחיר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "גז",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "גזים",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "גיס חמישי",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "גירוש",
+      "concept": "violence.general"
+    },
+    {
+      "term": "גירש",
+      "concept": "violence.general"
+    },
+    {
+      "term": "גלובליסטים",
+      "concept": "hate.antisemitism"
+    },
+    {
+      "term": "גלשן אוויר",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "גלשן ממונע",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "גמר חשבון",
+      "concept": "violence.general"
+    },
+    {
+      "term": "דחפור",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "דימום",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "דימום מסיבי",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "דליקה",
+      "concept": "violence.arson"
+    },
+    {
+      "term": "דם",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "הגיע הזמן למעשים",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "הדק",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "הושפל",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "הזמן שלכם הולך ואוזל",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "החשבון איתכם פתוח",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "החשבון בינינו ייסגר",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "החשבון ייסגר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "החשבון ייסגר",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "החשבון פתוח",
+      "concept": "violence.general"
+    },
+    {
+      "term": "הלך עליכם",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "הלכה עליכם",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "הספירה לאחור",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "הספירה לאחור החלה",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "העניש",
+      "concept": "violence.general"
+    },
+    {
+      "term": "הפעם זה לא יעבור בשקט",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "הפשטה",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "הפשטה בכוח",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "השפילו",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "השפלה",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "התנגשויות",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "התנגשות",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "התפגר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "התרעה",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "זה לא יעבור לכם בשקט",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "זה לא נגמר",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "זה ממש לא נגמר",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "זוועה",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "זיקוקים",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "זעזוע מוח",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "זק\"א",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "חבט",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "חדירה",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "חוט תיל",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "חומצה",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "חיות אדם",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "חיות טרף",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "חייתי",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "חלאת המין האנושי",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "חרמש",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "טבח",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "טיימר",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "טפיל",
+      "concept": "hate.dehumanization"
+    },
+    {
+      "term": "טפיל",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "טרמפיאדה",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "טרנספר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "טרנספר",
+      "concept": "violence.genocide"
+    },
+    {
+      "term": "יהודים כוזרים",
+      "concept": "hate.antisemitism"
+    },
+    {
+      "term": "יימחק",
+      "concept": "threat.annihilation"
+    },
+    {
+      "term": "יימחק",
+      "concept": "violence.genocide"
+    },
+    {
+      "term": "יעניש",
+      "concept": "violence.general"
+    },
+    {
+      "term": "ירה",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "ירה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "ירה",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "ישלמו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "ישלמו על זה",
+      "concept": "violence.general"
+    },
+    {
+      "term": "כהנא צדק",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "כהנא צדק",
+      "concept": "violence.general"
+    },
+    {
+      "term": "כוזרים",
+      "concept": "hate.antisemitism"
+    },
+    {
+      "term": "כופר",
+      "concept": "violence.kidnapping"
+    },
+    {
+      "term": "כופר",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "כימי",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "כלור",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "כלורין",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "כרטיס בכיוון אחד",
+      "concept": "violence.general"
+    },
+    {
+      "term": "כריעה ממושכת",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "לא יהיה לכם שקט",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לא יוכלו להתחמק",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לא יעבור בשקט",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לא כדאי לזלזל",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לא שוכחים ולא סולחים",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לא תוכלו להתחמק",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "לבעוט",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "לגבות מחיר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "לגרש",
+      "concept": "violence.general"
+    },
+    {
+      "term": "להסיר את הכפפות",
+      "concept": "violence.general"
+    },
+    {
+      "term": "להסתתר מאחורי מסך",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "להפשיט",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "להשפיל",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "ללמד אותם לקח",
+      "concept": "violence.general"
+    },
+    {
+      "term": "לסגור חשבון",
+      "concept": "violence.general"
+    },
+    {
+      "term": "לפגוע",
+      "concept": "violence.general"
+    },
+    {
+      "term": "לפגוע",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "לפרוע את השטר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "לפרוץ",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "לפשוט",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "לקח שלא ישכחו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "לשים קץ",
+      "concept": "violence.general"
+    },
+    {
+      "term": "לשלם ביוקר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "לשתק",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "לתת אגרוף",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "לתת דין וחשבון",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "מוט ברזל",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "מזימה",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "מיגונית",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "מים רותחים",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "מיקוח",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "מישהו עוד ישלם על זה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "מכה",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "מכים",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "ממ\"ד",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "ממ\"ק",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "מסור חשמלי",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "מסתור",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "מעניש",
+      "concept": "violence.general"
+    },
+    {
+      "term": "מצנח רחיפה",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "מצנחי רחיפה",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "מקלט",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "מקקים",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "משפיל",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "נגיב",
+      "concept": "violence.general"
+    },
+    {
+      "term": "נמאס מהדיבורים",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "נעדר",
+      "concept": "violence.kidnapping"
+    },
+    {
+      "term": "נעניש",
+      "concept": "violence.general"
+    },
+    {
+      "term": "נפגע",
+      "concept": "violence.general"
+    },
+    {
+      "term": "נפצע",
+      "concept": "violence.general"
+    },
+    {
+      "term": "נפצע",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "סגירת חשבון",
+      "concept": "violence.general"
+    },
+    {
+      "term": "סגירת חשבונות",
+      "concept": "violence.general"
+    },
+    {
+      "term": "סגר חשבון",
+      "concept": "violence.general"
+    },
+    {
+      "term": "סדיזם",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "סדיסט",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "סוגר חשבון",
+      "concept": "violence.general"
+    },
+    {
+      "term": "סוגרים חשבון",
+      "concept": "violence.general"
+    },
+    {
+      "term": "עוד ישלם על זה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "עוד תצטער על",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עוד תצטערו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "עוד תצטערו על ההחלטות",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עוד תצטערו על היום",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עוד תשלמו על זה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "עוד תתחרטו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "עונש כבד",
+      "concept": "violence.general"
+    },
+    {
+      "term": "עוקבים אחרי כל צעד",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עוקבים אחריכם",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "עכברושים",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "עלוקות",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "ערובה",
+      "concept": "violence.kidnapping"
+    },
+    {
+      "term": "פגיעה",
+      "concept": "violence.general"
+    },
+    {
+      "term": "פגיעה",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "פוצע",
+      "concept": "violence.general"
+    },
+    {
+      "term": "פוצע",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "פטיש 5 קילו",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "פצוע",
+      "concept": "violence.general"
+    },
+    {
+      "term": "פצוע",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "פציעה",
+      "concept": "violence.general"
+    },
+    {
+      "term": "פציעה",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "פריצה",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "פרצו",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "פשטו",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "פשיטה",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "צינור ברזל",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "צלבנים",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "קטוע",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "קטיעה",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "קיצוני",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "קרב",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "קרינה",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "קרינתי",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "קשירה",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "רחפן",
+      "concept": "weapon.military"
+    },
+    {
+      "term": "רחפן",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "רחפניות",
+      "concept": "weapon.military"
+    },
+    {
+      "term": "רמש",
+      "concept": "hate.dehumanization"
+    },
+    {
+      "term": "רסיס",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "שוברים את הכלים",
+      "concept": "violence.general"
+    },
+    {
+      "term": "שוק חשמלי",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "שייגץ",
+      "concept": "hate.antisemitism"
+    },
+    {
+      "term": "שיישרף לכם הכפר",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "שיישרף לכם הכפר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "שיקסע",
+      "concept": "hate.antisemitism"
+    },
+    {
+      "term": "שמן רותח",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "שעת האפס",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "שעת האפס",
+      "concept": "violence.general"
+    },
+    {
+      "term": "שעת השין",
+      "concept": "violence.general"
+    },
+    {
+      "term": "שריפה",
+      "concept": "violence.arson"
+    },
+    {
+      "term": "שריפה",
+      "concept": "weapon.general"
+    },
+    {
+      "term": "שרץ",
+      "concept": "hate.dehumanization"
+    },
+    {
+      "term": "שתישרף בגיהנום",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "שתרגישו בעצמכם את הפחד",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "תיחנק",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "תירה",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "תירה",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "תישרף",
+      "concept": "hate.slur"
+    },
+    {
+      "term": "תיתנו דין וחשבון",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "תנוחת בננה",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "תענישו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "תצטערו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "תצטערו על היום",
+      "concept": "threat.intimidation"
+    },
+    {
+      "term": "תצטערו על זה",
+      "concept": "violence.general"
+    },
+    {
+      "term": "תשלמו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "תשלמו ביוקר",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "תשלמו ביוקר",
+      "concept": "violence.general"
+    },
+    {
+      "term": "תשלמו על זה",
+      "concept": "violence.general"
+    },
+    {
+      "term": "תשלמו על זה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "תתחרטו",
+      "concept": "violence.general"
+    },
+    {
+      "term": "תתחרטו על הרגע",
+      "concept": "violence.general"
+    },
+    {
       "term": "AK-47",
       "concept": "weapon.firearm"
     },
@@ -2770,10 +3786,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "בהנ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "בהנ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -5118,10 +6130,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "בנ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "בנ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -6578,10 +7586,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "בתולה",
-      "concept": "violence.killing"
-    },
-    {
       "term": "בתולים",
       "concept": "violence.killing"
     },
@@ -7958,10 +8962,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "הולם",
-      "concept": "violence.assault"
-    },
-    {
       "term": "הולמים",
       "concept": "violence.general"
     },
@@ -8772,10 +9772,6 @@
     {
       "term": "הירביצו",
       "concept": "violence.assault"
-    },
-    {
-      "term": "הירו",
-      "concept": "violence.killing"
     },
     {
       "term": "הירי",
@@ -10030,10 +11026,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "הנ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "הנ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -10876,10 +11868,6 @@
     {
       "term": "הפרוטוקולים של זקני ציון",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "הפרעות",
-      "concept": "violence.general"
     },
     {
       "term": "הפתאח",
@@ -14442,10 +15430,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "והנ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "והנ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -17582,10 +18566,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "ונ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "ונ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -20186,10 +21166,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "טאו",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "טבח במסיבת נובה",
       "concept": "violence.terrorism"
     },
@@ -21806,10 +22782,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "כירי",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "כיריות",
       "concept": "weapon.firearm"
     },
@@ -21924,10 +22896,6 @@
     {
       "term": "כפגיון",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "כפות",
-      "concept": "violence.torture"
     },
     {
       "term": "כפותים",
@@ -23454,10 +24422,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "להטיל",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "להטיל מום",
       "concept": "violence.assault"
     },
@@ -23972,10 +24936,6 @@
     {
       "term": "להמרדה",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "להנ\"ט",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "להנ\"מ",
@@ -26574,10 +27534,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "לנ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "לנ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -27976,14 +28932,6 @@
     {
       "term": "לשחיטה",
       "concept": "violence.killing"
-    },
-    {
-      "term": "לשטח",
-      "concept": "violence.genocide"
-    },
-    {
-      "term": "לשטח",
-      "concept": "violence.general"
     },
     {
       "term": "לשטח את",
@@ -29938,10 +30886,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "מהירו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "מהירי",
       "concept": "violence.killing"
     },
@@ -30164,10 +31108,6 @@
     {
       "term": "מהמרדה",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "מהנ\"ט",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "מהנ\"מ",
@@ -32098,10 +33038,6 @@
       "concept": "threat.annihilation"
     },
     {
-      "term": "מחורבן",
-      "concept": "violence.assault"
-    },
-    {
       "term": "מחושמל",
       "concept": "violence.torture"
     },
@@ -33342,10 +34278,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "מנ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "מנ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -34095,10 +35027,6 @@
     },
     {
       "term": "מפאגוט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "מפג'ר",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -35398,14 +36326,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "נ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "נ״ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "נ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -35788,10 +36708,6 @@
     {
       "term": "נחסל",
       "concept": "threat.direct"
-    },
-    {
-      "term": "נט",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "נטבח",
@@ -38200,10 +39116,6 @@
     {
       "term": "ראש־קרב",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "ראשים",
-      "concept": "violence.killing"
     },
     {
       "term": "ראשים ערופים",
@@ -40786,10 +41698,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "שהנ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "שהנ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -43306,10 +44214,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "שנ\"ט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "שנ\"מ",
       "concept": "weapon.missile_rocket"
     },
@@ -45023,14 +45927,6 @@
     },
     {
       "term": "תלה",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "תלו",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "תלוי",
       "concept": "violence.killing"
     },
     {

@@ -373,7 +373,6 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       "סופה חזקה מתקרבת לאזור הצפון",
       "המהנדס בדק את התוכניות של הדירה",
       "אין לו שום כוונת רווח בפרויקט הזה",
-      "הטבח במסעדה הכין מנה מעולה",
       "הילדים משחקים כדורגל בפארק",
       "היא קוראת ספר מעניין בסלון",
       "אנחנו נוסעים ברכבת לתל אביב",
@@ -466,6 +465,69 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       const res = analyzeText(s, "fa");
       expect(res.matched).toBe(false);
       expect(res.terms).toHaveLength(0);
+    }
+  });
+
+  it("does not reach dictionary terms by stripping affixes off everyday words", () => {
+    const innocent: [string, string][] = [
+      ["he", "בוא נשתה בירה ונדבר על השמירה מחר"],
+      ["he", "יש כמות גדולה של שמות ברשימה"],
+      ["he", "אני מכין ארוחה במטבח"],
+      ["he", "השירים של שירה מושמעים בשירות הלקוחות"],
+      ["he", "הרוסים הגיעו בקרב התיירים לפני כמה דקות"],
+      ["he", "רוצים להטיל מס חדש"],
+      ["en", "I was lying on the couch"],
+      ["en", "She takes the train and closes the gates"],
+      ["en", "The opera was falling apart"],
+      ["en", "Leaves were falling in the park"],
+      ["ar", "أرى البيانات على الشاشة"],
+      ["ar", "اشتريت السمك من السوق"],
+      ["ar", "حصلت على الجنسية الجديدة"],
+      ["ar", "صليت الفجر في المسجد"],
+      ["fa", "میگه بریم بازار"],
+      ["fa", "باید این کتاب رو بخونم"],
+      ["fa", "مهاجرت به کانادا سخت است"],
+    ];
+    for (const [lang, s] of innocent) {
+      const res = analyzeText(s, lang);
+      expect(res.terms, `${lang}: ${s}`).toHaveLength(0);
+    }
+  });
+
+  it("still matches real inflected threat words after affix-stripping limits", () => {
+    const cases: [string, string, string][] = [
+      ["he", "המחבל ירה בהם מטווח קצר", "ירה"],
+      ["he", "וירו על האוטובוס", "ירו"],
+      ["he", "בטבח בבארי נרצחו רבים", "טבח"],
+      ["he", "מחבלים חדרו עם מצנחי רחיפה", "מצנחי רחיפה"],
+      ["he", "אנחנו עוקבים אחריכם, עוד תשלמו על זה", "עוד תשלמו על זה"],
+      ["en", "they were stabbing people", "stab"],
+      ["en", "a truck rammed the crowd", "ram"],
+      ["en", "he was killing everyone", "kill"],
+      ["en", "the smallhat globalists", "smallhat"],
+      ["ar", "سأقتلكم جميعا", "اقتل"],
+      ["fa", "بکشمت", "بکشم"],
+    ];
+    for (const [lang, s, expected] of cases) {
+      const res = analyzeText(s, lang);
+      expect(res.matched, `${lang}: ${s}`).toBe(true);
+      expect(
+        res.matches.some((m) => m.term === expected || m.normalizedTerm === expected),
+        `${lang}: ${s} -> ${JSON.stringify(res.terms)}`,
+      ).toBe(true);
+    }
+  });
+
+  it("does not flag general profanity that carries no threat", () => {
+    const profanity: [string, string][] = [
+      ["en", "you are such an idiot, what a bitch"],
+      ["he", "איזה אידיוט, חרא של סרט"],
+      ["ar", "يا غبي يا حمار"],
+      ["fa", "خفه شو احمق"],
+    ];
+    for (const [lang, s] of profanity) {
+      const res = analyzeText(s, lang);
+      expect(res.terms, `${lang}: ${s}`).toHaveLength(0);
     }
   });
 

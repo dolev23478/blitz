@@ -450,6 +450,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "amputate",
+      "concept": "violence.assault"
+    },
+    {
       "term": "ansar allah",
       "concept": "threat.direct"
     },
@@ -474,6 +478,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "arson",
+      "concept": "violence.arson"
+    },
+    {
       "term": "aseer",
       "concept": "threat.direct"
     },
@@ -488,6 +496,10 @@
     {
       "term": "asra",
       "concept": "threat.direct"
+    },
+    {
+      "term": "assault",
+      "concept": "violence.assault"
     },
     {
       "term": "at5hom",
@@ -530,6 +542,14 @@
       "concept": "threat.direct"
     },
     {
+      "term": "bomb",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "bombing",
+      "concept": "violence.explosion"
+    },
+    {
       "term": "bondo2eya",
       "concept": "weapon.firearm"
     },
@@ -542,8 +562,20 @@
       "concept": "threat.direct"
     },
     {
+      "term": "brutal",
+      "concept": "violence.general"
+    },
+    {
+      "term": "brutality",
+      "concept": "violence.general"
+    },
+    {
       "term": "burkan",
       "concept": "threat.direct"
+    },
+    {
+      "term": "burning",
+      "concept": "violence.arson"
     },
     {
       "term": "byet5hom",
@@ -626,6 +658,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "detonator",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "dhab7",
       "concept": "threat.direct"
     },
@@ -706,6 +742,14 @@
       "concept": "threat.direct"
     },
     {
+      "term": "explosion",
+      "concept": "violence.explosion"
+    },
+    {
+      "term": "explosive",
+      "concept": "violence.explosion"
+    },
+    {
       "term": "failaq al-quds",
       "concept": "threat.direct"
     },
@@ -754,6 +798,18 @@
       "concept": "threat.direct"
     },
     {
+      "term": "genocid",
+      "concept": "violence.genocide"
+    },
+    {
+      "term": "genocidal",
+      "concept": "violence.genocide"
+    },
+    {
+      "term": "genocide",
+      "concept": "violence.genocide"
+    },
+    {
       "term": "ghazwa",
       "concept": "threat.direct"
     },
@@ -776,6 +832,10 @@
     {
       "term": "grad",
       "concept": "threat.direct"
+    },
+    {
+      "term": "gunfire",
+      "concept": "weapon.firearm"
     },
     {
       "term": "habba",
@@ -848,6 +908,10 @@
     {
       "term": "hodhod",
       "concept": "threat.direct"
+    },
+    {
+      "term": "holocaust",
+      "concept": "violence.genocide"
     },
     {
       "term": "holokost",
@@ -1162,6 +1226,18 @@
       "concept": "threat.direct"
     },
     {
+      "term": "kidnapped",
+      "concept": "violence.kidnapping"
+    },
+    {
+      "term": "kidnapping",
+      "concept": "violence.kidnapping"
+    },
+    {
+      "term": "kill",
+      "concept": "violence.killing"
+    },
+    {
       "term": "klash",
       "concept": "threat.direct"
     },
@@ -1256,6 +1332,10 @@
     {
       "term": "masira",
       "concept": "threat.direct"
+    },
+    {
+      "term": "massacres",
+      "concept": "violence.killing"
     },
     {
       "term": "mawt",
@@ -1386,6 +1466,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "murder",
+      "concept": "violence.killing"
+    },
+    {
       "term": "murtadd",
       "concept": "threat.direct"
     },
@@ -1488,6 +1572,14 @@
     {
       "term": "pkc",
       "concept": "threat.direct"
+    },
+    {
+      "term": "poison",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "poisoning",
+      "concept": "weapon.cbrn"
     },
     {
       "term": "qa3eda",
@@ -1608,6 +1700,14 @@
     {
       "term": "rantisi",
       "concept": "threat.direct"
+    },
+    {
+      "term": "rape",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "rapist",
+      "concept": "violence.assault"
     },
     {
       "term": "rasa9",
@@ -1770,6 +1870,22 @@
       "concept": "threat.direct"
     },
     {
+      "term": "shoot",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "shooter",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "shooting",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "shot",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "shuhada",
       "concept": "threat.direct"
     },
@@ -1798,8 +1914,28 @@
       "concept": "threat.direct"
     },
     {
+      "term": "slaughter",
+      "concept": "violence.killing"
+    },
+    {
       "term": "soleimani",
       "concept": "threat.direct"
+    },
+    {
+      "term": "stabbing",
+      "concept": "weapon.blade"
+    },
+    {
+      "term": "strangulation",
+      "concept": "violence.general"
+    },
+    {
+      "term": "suicide",
+      "concept": "violence.general"
+    },
+    {
+      "term": "suicide-bomber",
+      "concept": "violence.general"
     },
     {
       "term": "t3n",
@@ -1914,6 +2050,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "threat",
+      "concept": "threat.direct"
+    },
+    {
       "term": "TNT",
       "concept": "violence.explosion"
     },
@@ -1928,6 +2068,18 @@
     {
       "term": "tofan al-aqsa",
       "concept": "threat.direct"
+    },
+    {
+      "term": "torture",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "tortured",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "torturement",
+      "concept": "violence.torture"
     },
     {
       "term": "wa3eed",
@@ -2038,10 +2190,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "آري",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "آل روتشيلد",
       "concept": "hate.antisemitism"
     },
@@ -2088,6 +2236,10 @@
     {
       "term": "أبادوا",
       "concept": "violence.genocide"
+    },
+    {
+      "term": "أبارتهايد",
+      "concept": "hate.anti_israel"
     },
     {
       "term": "أبالسة",
@@ -2188,6 +2340,10 @@
     {
       "term": "أجهزوا علي",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "أحبار",
+      "concept": "hate.antisemitism"
     },
     {
       "term": "أحرق",
@@ -2410,6 +2566,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "أسيد",
+      "concept": "weapon.blade"
+    },
+    {
       "term": "أسير",
       "concept": "violence.kidnapping"
     },
@@ -2436,6 +2596,10 @@
     {
       "term": "أسيره",
       "concept": "violence.torture"
+    },
+    {
+      "term": "أشعل",
+      "concept": "violence.arson"
     },
     {
       "term": "أشعل النار",
@@ -2614,10 +2778,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "أكل خرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "أكملوا ما بدأه هتلر",
       "concept": "hate.antisemitism"
     },
@@ -2632,6 +2792,10 @@
     {
       "term": "أكياس الجثث",
       "concept": "violence.killing"
+    },
+    {
+      "term": "أكياس سوداء",
+      "concept": "violence.general"
     },
     {
       "term": "ألسنة اللهب",
@@ -2734,10 +2898,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "أنذال",
-      "concept": "hate.slur"
-    },
-    {
       "term": "أنصار الشريعة",
       "concept": "violence.terrorism"
     },
@@ -2806,44 +2966,12 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "أوغاد",
-      "concept": "hate.dehumanization"
-    },
-    {
       "term": "أوقعوا أفرادها بين قتيل وجريح",
       "concept": "violence.terrorism"
     },
     {
       "term": "أوقعوهم بين قتيل وجريح",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "أولاد الزنا",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "أولاد الشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "أولاد الشرموطه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "أولاد القحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "أولاد القحبه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "أولاد الكلب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "أولاد حرام",
-      "concept": "hate.slur"
     },
     {
       "term": "أولمبياد ميونخ",
@@ -3058,6 +3186,10 @@
       "concept": "hate.antisemitism"
     },
     {
+      "term": "إذلال",
+      "concept": "violence.torture"
+    },
+    {
       "term": "إراقة الدماء",
       "concept": "violence.killing"
     },
@@ -3238,6 +3370,10 @@
       "concept": "violence.killing"
     },
     {
+      "term": "إصابات",
+      "concept": "violence.assault"
+    },
+    {
       "term": "إصابات جماعية",
       "concept": "violence.terrorism"
     },
@@ -3247,6 +3383,10 @@
     },
     {
       "term": "إصاباتهم",
+      "concept": "violence.assault"
+    },
+    {
+      "term": "إصابة",
       "concept": "violence.assault"
     },
     {
@@ -3790,50 +3930,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "ابن الحرام",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن الشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن الشرموطه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن القحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن القحبه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن الكلب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن المتناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن المتناكه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن الوسخة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن الوسخه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ابن حرام",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ابو ابراهيم",
       "concept": "violence.terrorism"
     },
@@ -3972,6 +4068,14 @@
     {
       "term": "احباط مخطط",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "احتجاز",
+      "concept": "violence.kidnapping"
+    },
+    {
+      "term": "احتجاز",
+      "concept": "violence.torture"
     },
     {
       "term": "احتجاز رهائن",
@@ -4504,10 +4608,6 @@
     {
       "term": "ارو",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "اري",
-      "concept": "violence.genocide"
     },
     {
       "term": "ازالة اسرائيل",
@@ -5254,10 +5354,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "اعتقال",
-      "concept": "violence.kidnapping"
-    },
-    {
       "term": "اعتقالات",
       "concept": "violence.kidnapping"
     },
@@ -5918,10 +6014,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "اكل خرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "اكملوا ما بداه هتلر",
       "concept": "hate.antisemitism"
     },
@@ -6139,10 +6231,6 @@
     },
     {
       "term": "الأنجاس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الأنذال",
       "concept": "hate.slur"
     },
     {
@@ -6746,10 +6834,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "الاعتقال",
-      "concept": "violence.kidnapping"
-    },
-    {
       "term": "الاعدام",
       "concept": "violence.killing"
     },
@@ -7034,10 +7118,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "الانذال",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الانغماس",
       "concept": "violence.terrorism"
     },
@@ -7208,14 +7288,6 @@
     {
       "term": "البغدادي",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "البغي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "البقر",
-      "concept": "violence.killing"
     },
     {
       "term": "البلطة",
@@ -7482,10 +7554,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "التعريص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "التعريه",
       "concept": "violence.torture"
     },
@@ -7532,10 +7600,6 @@
     {
       "term": "التفخيخ",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "التفو",
-      "concept": "hate.slur"
     },
     {
       "term": "التقتل",
@@ -7598,14 +7662,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "التناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "التناكه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "التنتقم",
       "concept": "violence.general"
     },
@@ -7664,10 +7720,6 @@
     {
       "term": "التهشيم",
       "concept": "violence.assault"
-    },
-    {
-      "term": "التهم",
-      "concept": "violence.arson"
     },
     {
       "term": "التوابيت",
@@ -8034,14 +8086,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "الحقراء",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الحقير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الحل النهائي",
       "concept": "violence.genocide"
     },
@@ -8064,10 +8108,6 @@
     {
       "term": "الحيتس",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "الخائن",
-      "concept": "hate.slur"
     },
     {
       "term": "الخاطف",
@@ -8094,6 +8134,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "الخردل",
+      "concept": "weapon.cbrn"
+    },
+    {
       "term": "الخرطوش",
       "concept": "weapon.firearm"
     },
@@ -8110,16 +8154,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "الخره",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الخزر",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "الخسيس",
-      "concept": "hate.slur"
     },
     {
       "term": "الخطف",
@@ -8198,24 +8234,12 @@
       "concept": "hate.slur"
     },
     {
-      "term": "الخيانة",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "الخيانه",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "الخيبر",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "الداخاو",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "الداعر",
-      "concept": "hate.slur"
     },
     {
       "term": "الداعش",
@@ -8264,6 +8288,10 @@
     {
       "term": "الدكوا",
       "concept": "violence.general"
+    },
+    {
+      "term": "الدم",
+      "concept": "violence.assault"
     },
     {
       "term": "الدم بالدم",
@@ -8414,10 +8442,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "الرأس",
-      "concept": "violence.killing"
-    },
-    {
       "term": "الراجمة",
       "concept": "weapon.missile_rocket"
     },
@@ -8428,10 +8452,6 @@
     {
       "term": "الراديكالي",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "الراس",
-      "concept": "violence.killing"
     },
     {
       "term": "الرافضي",
@@ -8472,10 +8492,6 @@
     {
       "term": "الرجوم",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "الرد",
-      "concept": "violence.general"
     },
     {
       "term": "الرد المزلزل",
@@ -8646,18 +8662,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "الزانية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الزانيه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الزبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الزخات",
       "concept": "weapon.general"
     },
@@ -8694,10 +8698,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "الزنجي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الزنديق",
       "concept": "hate.slur"
     },
@@ -8708,10 +8708,6 @@
     {
       "term": "الزنزانه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "الزنوج",
-      "concept": "hate.slur"
     },
     {
       "term": "الزواري",
@@ -8776,10 +8772,6 @@
     {
       "term": "السافوط",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "الساقطه",
-      "concept": "hate.slur"
     },
     {
       "term": "السام",
@@ -8912,14 +8904,6 @@
     {
       "term": "السرقه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "السفلة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "السفله",
-      "concept": "hate.slur"
     },
     {
       "term": "السكاكين",
@@ -9086,10 +9070,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "الشاذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الشباب المجاهدين",
       "concept": "violence.terrorism"
     },
@@ -9124,22 +9104,6 @@
     {
       "term": "الشخلهم",
       "concept": "violence.general"
-    },
-    {
-      "term": "الشراميط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الشرموط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الشرموطه",
-      "concept": "hate.slur"
     },
     {
       "term": "الشطب",
@@ -9230,10 +9194,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "الشواذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الشواظ",
       "concept": "weapon.explosive"
     },
@@ -9322,14 +9282,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "الصرماية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الصرمايه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الصفع",
       "concept": "violence.assault"
     },
@@ -9355,10 +9307,6 @@
     },
     {
       "term": "الصفي",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "الصلب",
       "concept": "violence.killing"
     },
     {
@@ -9478,10 +9426,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "الضرر",
-      "concept": "violence.assault"
-    },
-    {
       "term": "الضيف",
       "concept": "violence.terrorism"
     },
@@ -9598,14 +9542,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "الطيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الطيزك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الظواهري",
       "concept": "violence.terrorism"
     },
@@ -9628,22 +9564,6 @@
     {
       "term": "العاقبوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "العاهر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "العاهرة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "العاهره",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "العبد",
-      "concept": "hate.slur"
     },
     {
       "term": "العبوات",
@@ -9686,10 +9606,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "العبيد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "العتاد",
       "concept": "weapon.general"
     },
@@ -9708,10 +9624,6 @@
     {
       "term": "العذبوا",
       "concept": "violence.torture"
-    },
-    {
-      "term": "العرص",
-      "concept": "hate.slur"
     },
     {
       "term": "العرق الآري",
@@ -9742,14 +9654,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "العقاب",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "العقاب",
-      "concept": "violence.general"
-    },
-    {
       "term": "العقاب الجماعي",
       "concept": "violence.general"
     },
@@ -9776,10 +9680,6 @@
     {
       "term": "العمل الفدائي",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "العميل",
-      "concept": "hate.slur"
     },
     {
       "term": "العنتيبي",
@@ -9866,20 +9766,12 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "الغبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الغدة السرطانية",
       "concept": "hate.anti_israel"
     },
     {
       "term": "الغده السرطانيه",
       "concept": "hate.anti_israel"
-    },
-    {
-      "term": "الغذاء",
-      "concept": "violence.general"
     },
     {
       "term": "الغراد",
@@ -9954,18 +9846,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "الفاجر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الفاسق",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الفاشل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الفاغنر",
       "concept": "violence.terrorism"
     },
@@ -10003,10 +9883,6 @@
     },
     {
       "term": "الفتيل",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "الفجر",
       "concept": "weapon.explosive"
     },
     {
@@ -10124,10 +10000,6 @@
     {
       "term": "الفلقه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "الفناء",
-      "concept": "violence.genocide"
     },
     {
       "term": "الفوردو",
@@ -10342,18 +10214,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "القحاب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "القحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "القحبه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "القدر",
       "concept": "weapon.missile_rocket"
     },
@@ -10364,14 +10224,6 @@
     {
       "term": "القذائف",
       "concept": "violence.explosion"
-    },
-    {
-      "term": "القذارة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "القذاره",
-      "concept": "hate.slur"
     },
     {
       "term": "القذيفة",
@@ -10498,10 +10350,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "القواد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "القواص",
       "concept": "weapon.general"
     },
@@ -10582,10 +10430,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "الكسمك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الكسور",
       "concept": "violence.assault"
     },
@@ -10640,10 +10484,6 @@
     {
       "term": "الكمين",
       "concept": "violence.assault"
-    },
-    {
-      "term": "الكهرباء",
-      "concept": "violence.torture"
     },
     {
       "term": "الكوادكوبتر",
@@ -10738,10 +10578,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "اللقيط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "اللكم",
       "concept": "violence.assault"
     },
@@ -10758,20 +10594,12 @@
       "concept": "violence.assault"
     },
     {
-      "term": "اللواء",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "اللوبي الصهيوني",
       "concept": "hate.antisemitism"
     },
     {
       "term": "اللوبي اليهودي",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "اللوطي",
-      "concept": "hate.slur"
     },
     {
       "term": "اللون الأحمر",
@@ -10790,10 +10618,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "المأبون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "المأسور",
       "concept": "violence.torture"
     },
@@ -10804,10 +10628,6 @@
     {
       "term": "المؤامره",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "المابون",
-      "concept": "hate.slur"
     },
     {
       "term": "المات",
@@ -10886,10 +10706,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "المتخلف",
-      "concept": "hate.slur"
-    },
-    {
       "term": "المتسلل",
       "concept": "violence.terrorism"
     },
@@ -10962,10 +10778,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "المتناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "المتنورين",
       "concept": "hate.antisemitism"
     },
@@ -11024,10 +10836,6 @@
     {
       "term": "المجزره",
       "concept": "violence.killing"
-    },
-    {
-      "term": "المجنون",
-      "concept": "hate.slur"
     },
     {
       "term": "المجوس",
@@ -11094,24 +10902,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "المختل",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "المخزن",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "المخطوف",
       "concept": "violence.terrorism"
     },
     {
       "term": "المخطوفين",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "المخنث",
-      "concept": "hate.slur"
     },
     {
       "term": "المخنوق",
@@ -11426,10 +11222,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "المعتوه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "المعدوم",
       "concept": "violence.killing"
     },
@@ -11438,20 +11230,12 @@
       "concept": "violence.torture"
     },
     {
-      "term": "المعرص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "المعركة",
       "concept": "violence.assault"
     },
     {
       "term": "المعركه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "المعوق",
-      "concept": "hate.slur"
     },
     {
       "term": "المغتال",
@@ -11702,15 +11486,7 @@
       "concept": "violence.killing"
     },
     {
-      "term": "المنافق",
-      "concept": "hate.slur"
-    },
-    {
       "term": "المنافقين",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "المناك",
       "concept": "hate.slur"
     },
     {
@@ -11720,10 +11496,6 @@
     {
       "term": "المنتقمون",
       "concept": "violence.general"
-    },
-    {
-      "term": "المنحط",
-      "concept": "hate.slur"
     },
     {
       "term": "المنحور",
@@ -11736,22 +11508,6 @@
     {
       "term": "المنغيله",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "المنيك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "المنيوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "المنيوكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "المنيوكه",
-      "concept": "hate.slur"
     },
     {
       "term": "المهاجم",
@@ -11986,10 +11742,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "الندل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الندمر",
       "concept": "violence.general"
     },
@@ -12000,10 +11752,6 @@
     {
       "term": "النذبح",
       "concept": "violence.killing"
-    },
-    {
-      "term": "النذل",
-      "concept": "hate.slur"
     },
     {
       "term": "النرد",
@@ -12178,10 +11926,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "النيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "النيونازي",
       "concept": "violence.genocide"
     },
@@ -12332,10 +12076,6 @@
     {
       "term": "الهيملر",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "الواطي",
-      "concept": "hate.slur"
     },
     {
       "term": "الوباء",
@@ -12734,10 +12474,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "الينيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "اليهجم",
       "concept": "violence.assault"
     },
@@ -12950,10 +12686,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "انتظروا",
-      "concept": "violence.general"
-    },
-    {
       "term": "انتظروا الرد",
       "concept": "threat.direct"
     },
@@ -13108,10 +12840,6 @@
     {
       "term": "انذار",
       "concept": "threat.direct"
-    },
-    {
-      "term": "انذال",
-      "concept": "hate.slur"
     },
     {
       "term": "انزال العقاب",
@@ -13338,44 +13066,12 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "اوغاد",
-      "concept": "hate.dehumanization"
-    },
-    {
       "term": "اوقعوا افرادها بين قتيل وجريح",
       "concept": "violence.terrorism"
     },
     {
       "term": "اوقعوهم بين قتيل وجريح",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "اولاد الزنا",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "اولاد الشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "اولاد الشرموطه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "اولاد القحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "اولاد القحبه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "اولاد الكلب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "اولاد حرام",
-      "concept": "hate.slur"
     },
     {
       "term": "اولمبياد ميونخ",
@@ -13599,10 +13295,6 @@
     },
     {
       "term": "بأنجاس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بأنذال",
       "concept": "hate.slur"
     },
     {
@@ -14366,10 +14058,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بالأنذال",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالأوشفيتز",
       "concept": "violence.genocide"
     },
@@ -15042,10 +14730,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "بالانذال",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالانغماس",
       "concept": "violence.terrorism"
     },
@@ -15200,10 +14884,6 @@
     {
       "term": "بالبغدادي",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بالبغي",
-      "concept": "hate.slur"
     },
     {
       "term": "بالبقر",
@@ -15458,10 +15138,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بالتعريص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالتعريه",
       "concept": "violence.torture"
     },
@@ -15496,10 +15172,6 @@
     {
       "term": "بالتفخيخ",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بالتفو",
-      "concept": "hate.slur"
     },
     {
       "term": "بالتقتل",
@@ -15552,14 +15224,6 @@
     {
       "term": "بالتمويه",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بالتناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالتناكه",
-      "concept": "hate.slur"
     },
     {
       "term": "بالتنتقم",
@@ -15842,14 +15506,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "بالحقراء",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالحقير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالحماس",
       "concept": "violence.terrorism"
     },
@@ -15886,20 +15542,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بالخرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالخرازة",
       "concept": "weapon.firearm"
     },
     {
       "term": "بالخرازه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "بالخرة",
-      "concept": "hate.slur"
     },
     {
       "term": "بالخردق",
@@ -15922,16 +15570,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "بالخره",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالخزر",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "بالخسيس",
-      "concept": "hate.slur"
     },
     {
       "term": "بالخطف",
@@ -16006,14 +15646,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بالخول",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالخولات",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالخونة",
       "concept": "hate.slur"
     },
@@ -16036,10 +15668,6 @@
     {
       "term": "بالداخاو",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "بالداعر",
-      "concept": "hate.slur"
     },
     {
       "term": "بالداعش",
@@ -16140,10 +15768,6 @@
     {
       "term": "بالديناميت",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "بالديوث",
-      "concept": "hate.slur"
     },
     {
       "term": "بالذابح",
@@ -16342,26 +15966,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "بالزانية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالزانيه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالزبالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالزباله",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالزبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالزخات",
       "concept": "weapon.general"
     },
@@ -16398,10 +16002,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بالزنجي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالزنديق",
       "concept": "hate.slur"
     },
@@ -16412,10 +16012,6 @@
     {
       "term": "بالزنزانه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "بالزنوج",
-      "concept": "hate.slur"
     },
     {
       "term": "بالزواري",
@@ -16454,20 +16050,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "بالسافل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالسافوط",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بالساقطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالساقطه",
-      "concept": "hate.slur"
     },
     {
       "term": "بالسام",
@@ -16564,14 +16148,6 @@
     {
       "term": "بالسرقه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "بالسفلة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالسفله",
-      "concept": "hate.slur"
     },
     {
       "term": "بالسكاكين",
@@ -16686,10 +16262,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "بالشاذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالشبح",
       "concept": "violence.torture"
     },
@@ -16712,22 +16284,6 @@
     {
       "term": "بالشخلهم",
       "concept": "violence.general"
-    },
-    {
-      "term": "بالشراميط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالشرموط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالشرموطه",
-      "concept": "hate.slur"
     },
     {
       "term": "بالشطب",
@@ -16810,10 +16366,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "بالشواذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالشواظ",
       "concept": "weapon.explosive"
     },
@@ -16864,14 +16416,6 @@
     {
       "term": "بالصرع",
       "concept": "violence.killing"
-    },
-    {
-      "term": "بالصرماية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالصرمايه",
-      "concept": "hate.slur"
     },
     {
       "term": "بالصفع",
@@ -17070,14 +16614,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بالطيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالطيزك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالظواهري",
       "concept": "violence.terrorism"
     },
@@ -17092,18 +16628,6 @@
     {
       "term": "بالعاقبوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "بالعاهر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالعاهرة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالعاهره",
-      "concept": "hate.slur"
     },
     {
       "term": "بالعبد",
@@ -17160,10 +16684,6 @@
     {
       "term": "بالعذبوا",
       "concept": "violence.torture"
-    },
-    {
-      "term": "بالعرص",
-      "concept": "hate.slur"
     },
     {
       "term": "بالعصابات",
@@ -17258,10 +16778,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "بالغبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالغراد",
       "concept": "weapon.missile_rocket"
     },
@@ -17330,20 +16846,8 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بالفاجر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالفاس",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "بالفاسق",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالفاشل",
-      "concept": "hate.slur"
     },
     {
       "term": "بالفاغنر",
@@ -17622,18 +17126,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "بالقحاب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالقحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالقحبه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالقدر",
       "concept": "weapon.missile_rocket"
     },
@@ -17644,14 +17136,6 @@
     {
       "term": "بالقذائف",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "بالقذارة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالقذاره",
-      "concept": "hate.slur"
     },
     {
       "term": "بالقذيفة",
@@ -17762,10 +17246,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "بالقواد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالقواص",
       "concept": "weapon.general"
     },
@@ -17828,10 +17308,6 @@
     {
       "term": "بالكسر",
       "concept": "violence.assault"
-    },
-    {
-      "term": "بالكسمك",
-      "concept": "hate.slur"
     },
     {
       "term": "بالكسور",
@@ -17946,10 +17422,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "باللقيط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "باللكم",
       "concept": "violence.assault"
     },
@@ -17958,20 +17430,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "باللوطي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالليحي",
       "concept": "violence.terrorism"
     },
     {
       "term": "بالليزر",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "بالمأبون",
-      "concept": "hate.slur"
     },
     {
       "term": "بالمأسور",
@@ -17984,10 +17448,6 @@
     {
       "term": "بالمؤامره",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بالمابون",
-      "concept": "hate.slur"
     },
     {
       "term": "بالمات",
@@ -18052,10 +17512,6 @@
     {
       "term": "بالمتحصن",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بالمتخلف",
-      "concept": "hate.slur"
     },
     {
       "term": "بالمتسلل",
@@ -18130,10 +17586,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بالمتناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالمتنورين",
       "concept": "hate.antisemitism"
     },
@@ -18164,10 +17616,6 @@
     {
       "term": "بالمجزره",
       "concept": "violence.killing"
-    },
-    {
-      "term": "بالمجنون",
-      "concept": "hate.slur"
     },
     {
       "term": "بالمجوس",
@@ -18222,10 +17670,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بالمختل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالمخزن",
       "concept": "weapon.firearm"
     },
@@ -18236,10 +17680,6 @@
     {
       "term": "بالمخطوفين",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بالمخنث",
-      "concept": "hate.slur"
     },
     {
       "term": "بالمخنوق",
@@ -18514,10 +17954,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بالمعتوه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالمعدوم",
       "concept": "violence.killing"
     },
@@ -18526,20 +17962,12 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بالمعرص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالمعركة",
       "concept": "violence.assault"
     },
     {
       "term": "بالمعركه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "بالمعوق",
-      "concept": "hate.slur"
     },
     {
       "term": "بالمعول",
@@ -18718,10 +18146,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بالمناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالمنتقم",
       "concept": "violence.general"
     },
@@ -18734,10 +18158,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "بالمنحط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالمنحور",
       "concept": "violence.killing"
     },
@@ -18748,22 +18168,6 @@
     {
       "term": "بالمنغيله",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "بالمنيك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالمنيوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالمنيوكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بالمنيوكه",
-      "concept": "hate.slur"
     },
     {
       "term": "بالمهاجم",
@@ -18930,10 +18334,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "بالندل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالندمر",
       "concept": "violence.general"
     },
@@ -18944,10 +18344,6 @@
     {
       "term": "بالنذبح",
       "concept": "violence.killing"
-    },
-    {
-      "term": "بالنذل",
-      "concept": "hate.slur"
     },
     {
       "term": "بالنرد",
@@ -19106,10 +18502,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "بالنيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بالنيونازي",
       "concept": "violence.genocide"
     },
@@ -19248,10 +18640,6 @@
     {
       "term": "بالهيملر",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "بالواطي",
-      "concept": "hate.slur"
     },
     {
       "term": "بالوباء",
@@ -19598,10 +18986,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بالينيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "باليهجم",
       "concept": "violence.assault"
     },
@@ -19684,10 +19068,6 @@
     {
       "term": "بانحروا",
       "concept": "violence.killing"
-    },
-    {
-      "term": "بانذال",
-      "concept": "hate.slur"
     },
     {
       "term": "بانغماس",
@@ -19950,10 +19330,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بتعريص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بتعريه",
       "concept": "violence.torture"
     },
@@ -19980,10 +19356,6 @@
     {
       "term": "بتفخيخ",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بتفو",
-      "concept": "hate.slur"
     },
     {
       "term": "بتقتل",
@@ -20036,14 +19408,6 @@
     {
       "term": "بتمويه",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بتناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بتناكه",
-      "concept": "hate.slur"
     },
     {
       "term": "بتنتقم",
@@ -20290,14 +19654,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "بحقراء",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بحقير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بحماس",
       "concept": "violence.terrorism"
     },
@@ -20326,20 +19682,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بخرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بخرازة",
       "concept": "weapon.firearm"
     },
     {
       "term": "بخرازه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "بخرة",
-      "concept": "hate.slur"
     },
     {
       "term": "بخردق",
@@ -20360,14 +19708,6 @@
     {
       "term": "بخرمشهر",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "بخره",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بخسيس",
-      "concept": "hate.slur"
     },
     {
       "term": "بخطف",
@@ -20434,14 +19774,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بخول",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بخولات",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بخونة",
       "concept": "hate.slur"
     },
@@ -20464,10 +19796,6 @@
     {
       "term": "بداخاو",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "بداعر",
-      "concept": "hate.slur"
     },
     {
       "term": "بداعش",
@@ -20596,10 +19924,6 @@
     {
       "term": "بديناميت",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "بديوث",
-      "concept": "hate.slur"
     },
     {
       "term": "بذابح",
@@ -20834,26 +20158,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بزانية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بزانيه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بزبالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بزباله",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بزبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بزخات",
       "concept": "weapon.general"
     },
@@ -20882,10 +20186,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بزنجي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بزنديق",
       "concept": "hate.slur"
     },
@@ -20896,10 +20196,6 @@
     {
       "term": "بزنزانه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "بزنوج",
-      "concept": "hate.slur"
     },
     {
       "term": "بزيك",
@@ -20930,20 +20226,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "بسافل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بسافوط",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بساقطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بساقطه",
-      "concept": "hate.slur"
     },
     {
       "term": "بسام",
@@ -21023,22 +20307,6 @@
     },
     {
       "term": "بسرطان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بسرقة",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بسرقه",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "بسفلة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بسفله",
       "concept": "hate.slur"
     },
     {
@@ -21146,10 +20414,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "بشاذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بشبح",
       "concept": "violence.torture"
     },
@@ -21172,22 +20436,6 @@
     {
       "term": "بشخلهم",
       "concept": "violence.general"
-    },
-    {
-      "term": "بشراميط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بشرموط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بشرموطه",
-      "concept": "hate.slur"
     },
     {
       "term": "بشطب",
@@ -21258,10 +20506,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "بشواذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بشواظ",
       "concept": "weapon.explosive"
     },
@@ -21304,14 +20548,6 @@
     {
       "term": "بصرع",
       "concept": "violence.killing"
-    },
-    {
-      "term": "بصرماية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بصرمايه",
-      "concept": "hate.slur"
     },
     {
       "term": "بصفع",
@@ -21478,32 +20714,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بطيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بطيزك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بعاقب",
       "concept": "violence.general"
     },
     {
       "term": "بعاقبوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "بعاهر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بعاهرة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بعاهره",
-      "concept": "hate.slur"
     },
     {
       "term": "بعبد",
@@ -21544,10 +20760,6 @@
     {
       "term": "بعذبوا",
       "concept": "violence.torture"
-    },
-    {
-      "term": "بعرص",
-      "concept": "hate.slur"
     },
     {
       "term": "بعصابات",
@@ -21622,10 +20834,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "بغبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بغراد",
       "concept": "weapon.missile_rocket"
     },
@@ -21676,10 +20884,6 @@
     {
       "term": "بغوييم",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "بغي",
-      "concept": "hate.slur"
     },
     {
       "term": "بغيتو",
@@ -21766,32 +20970,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "بقحاب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بقحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بقحبه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بقدر",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "بقذائف",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "بقذارة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بقذاره",
-      "concept": "hate.slur"
     },
     {
       "term": "بقذيفة",
@@ -21878,10 +21062,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "بقواد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بقواص",
       "concept": "weapon.general"
     },
@@ -21944,10 +21124,6 @@
     {
       "term": "بكسر",
       "concept": "violence.assault"
-    },
-    {
-      "term": "بكسمك",
-      "concept": "hate.slur"
     },
     {
       "term": "بكسور",
@@ -22074,10 +21250,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "بمأبون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بمأسور",
       "concept": "violence.torture"
     },
@@ -22088,10 +21260,6 @@
     {
       "term": "بمؤامره",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بمابون",
-      "concept": "hate.slur"
     },
     {
       "term": "بمات",
@@ -22146,10 +21314,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بمتخلف",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بمتسلل",
       "concept": "violence.terrorism"
     },
@@ -22202,10 +21366,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بمتناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بمتوحشين",
       "concept": "hate.slur"
     },
@@ -22232,10 +21392,6 @@
     {
       "term": "بمجزره",
       "concept": "violence.killing"
-    },
-    {
-      "term": "بمجنون",
-      "concept": "hate.slur"
     },
     {
       "term": "بمجوس",
@@ -22290,10 +21446,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بمختل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بمخزن",
       "concept": "weapon.firearm"
     },
@@ -22304,10 +21456,6 @@
     {
       "term": "بمخطوفين",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "بمخنث",
-      "concept": "hate.slur"
     },
     {
       "term": "بمخنوق",
@@ -22562,10 +21710,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بمعتوه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بمعدوم",
       "concept": "violence.killing"
     },
@@ -22574,20 +21718,12 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بمعرص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بمعركة",
       "concept": "violence.assault"
     },
     {
       "term": "بمعركه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "بمعوق",
-      "concept": "hate.slur"
     },
     {
       "term": "بمعول",
@@ -22758,10 +21894,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "بمناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بمنتقم",
       "concept": "violence.general"
     },
@@ -22774,10 +21906,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "بمنحط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بمنحور",
       "concept": "violence.killing"
     },
@@ -22788,22 +21916,6 @@
     {
       "term": "بمنغيله",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "بمنيك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بمنيوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بمنيوكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "بمنيوكه",
-      "concept": "hate.slur"
     },
     {
       "term": "بمهاجم",
@@ -23026,10 +22138,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "بندل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بندمر",
       "concept": "violence.general"
     },
@@ -23040,10 +22148,6 @@
     {
       "term": "بنذبح",
       "concept": "violence.killing"
-    },
-    {
-      "term": "بنذل",
-      "concept": "hate.slur"
     },
     {
       "term": "بنرد",
@@ -23210,10 +22314,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "بنيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بنيونازي",
       "concept": "violence.genocide"
     },
@@ -23224,6 +22324,10 @@
     {
       "term": "بهاء ابو العطا",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "بهائم",
+      "concept": "hate.slur"
     },
     {
       "term": "بهاجم",
@@ -23479,10 +22583,6 @@
     },
     {
       "term": "بيدعس",
-      "concept": "violence.general"
-    },
-    {
-      "term": "بيدك",
       "concept": "violence.general"
     },
     {
@@ -23758,10 +22858,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "بينيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بيهجم",
       "concept": "violence.assault"
     },
@@ -23790,10 +22886,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "تآكل",
-      "concept": "violence.general"
-    },
-    {
       "term": "تأديب العدو",
       "concept": "violence.general"
     },
@@ -23816,10 +22908,6 @@
     {
       "term": "تافور",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "تاكل",
-      "concept": "violence.general"
     },
     {
       "term": "تاكيد القتل",
@@ -23880,6 +22968,14 @@
     {
       "term": "تجهيز الاستشهادي",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "تجويع",
+      "concept": "violence.general"
+    },
+    {
+      "term": "تجويع",
+      "concept": "violence.torture"
     },
     {
       "term": "تجويعها",
@@ -24154,6 +23250,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "تسمم",
+      "concept": "weapon.cbrn"
+    },
+    {
       "term": "تسممهم",
       "concept": "weapon.cbrn"
     },
@@ -24248,10 +23348,6 @@
     {
       "term": "تشدد",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "تشريح",
-      "concept": "violence.killing"
     },
     {
       "term": "تشوه",
@@ -24382,10 +23478,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "تطلق",
-      "concept": "violence.killing"
-    },
-    {
       "term": "تطهير",
       "concept": "violence.killing"
     },
@@ -24460,10 +23552,6 @@
     {
       "term": "تعرية قسرية",
       "concept": "violence.torture"
-    },
-    {
-      "term": "تعريص",
-      "concept": "hate.slur"
     },
     {
       "term": "تعريه",
@@ -24686,10 +23774,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "تفو",
-      "concept": "hate.slur"
-    },
-    {
       "term": "تقاتل",
       "concept": "violence.killing"
     },
@@ -24848,14 +23932,6 @@
     {
       "term": "تمويه",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "تناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "تناكه",
-      "concept": "hate.slur"
     },
     {
       "term": "تنتقم",
@@ -25214,8 +24290,8 @@
       "concept": "threat.direct"
     },
     {
-      "term": "جائع",
-      "concept": "violence.general"
+      "term": "جاسوس",
+      "concept": "hate.slur"
     },
     {
       "term": "جافلين",
@@ -25348,6 +24424,10 @@
     {
       "term": "جرائم ضد الانسانيه",
       "concept": "violence.killing"
+    },
+    {
+      "term": "جرافة",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "جرافة دي 9",
@@ -25722,10 +24802,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "جيف",
-      "concept": "violence.general"
-    },
-    {
       "term": "جيفة",
       "concept": "violence.general"
     },
@@ -25788,6 +24864,14 @@
     {
       "term": "حبل المشنقه",
       "concept": "violence.killing"
+    },
+    {
+      "term": "حجارة",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "حجارة",
+      "concept": "weapon.blade"
     },
     {
       "term": "حجارة السجيل",
@@ -26166,6 +25250,14 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "حشرات",
+      "concept": "hate.dehumanization"
+    },
+    {
+      "term": "حشرات",
+      "concept": "hate.slur"
+    },
+    {
       "term": "حشوة بلاستيكية",
       "concept": "weapon.explosive"
     },
@@ -26230,10 +25322,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "حقراء",
-      "concept": "hate.slur"
-    },
-    {
       "term": "حقل ألغام",
       "concept": "weapon.explosive"
     },
@@ -26264,22 +25352,6 @@
     {
       "term": "حقيبه مفخخه",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "حقير",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "حقير",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حقيرة",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "حقيره",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "حكماء صهيون",
@@ -26383,10 +25455,6 @@
     },
     {
       "term": "حيوانات بشريه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خائن",
       "concept": "hate.slur"
     },
     {
@@ -26496,10 +25564,6 @@
     {
       "term": "خزريون",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "خسيس",
-      "concept": "hate.slur"
     },
     {
       "term": "خط النار",
@@ -26690,6 +25754,14 @@
       "concept": "weapon.blade"
     },
     {
+      "term": "خنازير",
+      "concept": "hate.dehumanization"
+    },
+    {
+      "term": "خنازير",
+      "concept": "hate.slur"
+    },
+    {
       "term": "خناق",
       "concept": "violence.killing"
     },
@@ -26712,6 +25784,14 @@
     {
       "term": "خندق",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "خنزير",
+      "concept": "hate.dehumanization"
+    },
+    {
+      "term": "خنزير",
+      "concept": "hate.slur"
     },
     {
       "term": "خنق",
@@ -26778,24 +25858,8 @@
       "concept": "hate.slur"
     },
     {
-      "term": "خونة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خونه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خيار شمشون",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "خيانة",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "خيانه",
-      "concept": "violence.terrorism"
     },
     {
       "term": "خيبر",
@@ -26820,10 +25884,6 @@
     {
       "term": "داسوا",
       "concept": "violence.assault"
-    },
-    {
-      "term": "داعر",
-      "concept": "hate.slur"
     },
     {
       "term": "داعش",
@@ -26984,6 +26044,10 @@
     {
       "term": "دلال المغربي",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "دم",
+      "concept": "violence.assault"
     },
     {
       "term": "دم الشهداء مش رخيص",
@@ -27198,10 +26262,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "دورك",
-      "concept": "violence.general"
-    },
-    {
       "term": "دوشكا",
       "concept": "weapon.firearm"
     },
@@ -27398,10 +26458,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "رأسه",
-      "concept": "violence.killing"
-    },
-    {
       "term": "رأسهم",
       "concept": "violence.killing"
     },
@@ -27492,10 +26548,6 @@
     {
       "term": "راس حربي",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "راسه",
-      "concept": "violence.killing"
     },
     {
       "term": "راسهم",
@@ -28022,31 +27074,11 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "زانية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زانيه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "زجاجات حارقة",
       "concept": "weapon.explosive"
     },
     {
       "term": "زجاجات حارقه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "زجاجة",
       "concept": "weapon.explosive"
     },
     {
@@ -28056,10 +27088,6 @@
     {
       "term": "زجاجة مكسورة",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "زجاجه",
-      "concept": "weapon.explosive"
     },
     {
       "term": "زجاجه حارقه",
@@ -28094,10 +27122,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "زق",
-      "concept": "hate.slur"
-    },
-    {
       "term": "زلزال",
       "concept": "weapon.missile_rocket"
     },
@@ -28126,10 +27150,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "زنجي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "زنديق",
       "concept": "hate.slur"
     },
@@ -28148,10 +27168,6 @@
     {
       "term": "زنزانه انفراديه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "زنوج",
-      "concept": "hate.slur"
     },
     {
       "term": "زوال إسرائيل",
@@ -28314,22 +27330,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "ساقطه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "سام",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "سام",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "سامّ",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "سام 7",
       "concept": "weapon.missile_rocket"
     },
@@ -28482,10 +27482,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "سجن",
-      "concept": "violence.kidnapping"
-    },
-    {
       "term": "سجن سري",
       "concept": "violence.torture"
     },
@@ -28566,10 +27562,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "سحقا",
-      "concept": "violence.general"
-    },
-    {
       "term": "سحقهم",
       "concept": "violence.killing"
     },
@@ -28626,18 +27618,6 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "سرطان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "سرقة",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "سرقه",
-      "concept": "violence.assault"
-    },
-    {
       "term": "سريع الاشتعال",
       "concept": "violence.arson"
     },
@@ -28648,14 +27628,6 @@
     {
       "term": "سفك دم",
       "concept": "violence.killing"
-    },
-    {
-      "term": "سفلة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "سفله",
-      "concept": "hate.slur"
     },
     {
       "term": "سفينة حربية",
@@ -28966,10 +27938,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "سنصل",
-      "concept": "violence.general"
-    },
-    {
       "term": "سنطاردكم",
       "concept": "threat.direct"
     },
@@ -29146,10 +28114,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "شاذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "شاهد ۱۰۱",
       "concept": "weapon.drone"
     },
@@ -29164,10 +28128,6 @@
     {
       "term": "شاهد ۱۳۶",
       "concept": "weapon.drone"
-    },
-    {
-      "term": "شبح",
-      "concept": "violence.torture"
     },
     {
       "term": "شبرية",
@@ -29258,24 +28218,8 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "شراميط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "شرب من دمائهم",
       "concept": "violence.general"
-    },
-    {
-      "term": "شرموط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "شرموطه",
-      "concept": "hate.slur"
     },
     {
       "term": "شريط رصاص",
@@ -29420,10 +28364,6 @@
     {
       "term": "شواء",
       "concept": "violence.general"
-    },
-    {
-      "term": "شواذ",
-      "concept": "hate.slur"
     },
     {
       "term": "شواظ",
@@ -29870,14 +28810,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "صرماية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "صرمايه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "صعد على الرصيف",
       "concept": "violence.terrorism"
     },
@@ -29892,14 +28824,6 @@
     {
       "term": "صعق كهربائي",
       "concept": "violence.torture"
-    },
-    {
-      "term": "صف",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "صفّ",
-      "concept": "threat.direct"
     },
     {
       "term": "صفارات الإنذار",
@@ -30028,10 +28952,6 @@
     {
       "term": "صلاح شحاده",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "صلب",
-      "concept": "violence.killing"
     },
     {
       "term": "صلم الآذان",
@@ -30315,10 +29235,6 @@
     },
     {
       "term": "ضربوا",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "ضرر",
       "concept": "violence.assault"
     },
     {
@@ -30758,14 +29674,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "طيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "طيزك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ظرف فارغ",
       "concept": "weapon.firearm"
     },
@@ -30792,18 +29700,6 @@
     {
       "term": "عاقبوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "عاهر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عاهرة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "عاهره",
-      "concept": "hate.slur"
     },
     {
       "term": "عبد العزيز الرنتيسي",
@@ -31134,10 +30030,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "عبيد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "عتاد",
       "concept": "weapon.general"
     },
@@ -31192,10 +30084,6 @@
     {
       "term": "عربه مفخخه",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "عرص",
-      "concept": "hate.slur"
     },
     {
       "term": "عرقي",
@@ -31254,14 +30142,6 @@
       "concept": "hate.dehumanization"
     },
     {
-      "term": "عقاب",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "عقاب",
-      "concept": "violence.general"
-    },
-    {
       "term": "عقاب جماعي",
       "concept": "threat.direct"
     },
@@ -31278,19 +30158,11 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "عقوبة",
-      "concept": "violence.general"
-    },
-    {
       "term": "عقوبة الإعدام",
       "concept": "violence.general"
     },
     {
       "term": "عقوبة الاعدام",
-      "concept": "violence.general"
-    },
-    {
-      "term": "عقوبه",
       "concept": "violence.general"
     },
     {
@@ -31818,10 +30690,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "عميل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "عن بكرة أبيهم",
       "concept": "violence.genocide"
     },
@@ -32086,10 +30954,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "غبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "غراد",
       "concept": "weapon.missile_rocket"
     },
@@ -32246,10 +31110,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "فاجر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "فادي 1",
       "concept": "violence.terrorism"
     },
@@ -32264,14 +31124,6 @@
     {
       "term": "فادي 4",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "فاسق",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "فاشل",
-      "concept": "hate.slur"
     },
     {
       "term": "فاغنر",
@@ -33374,14 +32226,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "فظيعة",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "فظيعه",
-      "concept": "violence.killing"
-    },
-    {
       "term": "فقء العيون",
       "concept": "violence.torture"
     },
@@ -33454,14 +32298,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "فناء",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "فناء",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "فندق الملك داوود",
       "concept": "violence.terrorism"
     },
@@ -33484,14 +32320,6 @@
     {
       "term": "فوسفور ابيض",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "فوضى",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "فوضي",
-      "concept": "violence.assault"
     },
     {
       "term": "فوق أكسيد الهيدروجين",
@@ -33643,14 +32471,6 @@
     },
     {
       "term": "قاسون",
-      "concept": "violence.general"
-    },
-    {
-      "term": "قاسية",
-      "concept": "violence.general"
-    },
-    {
-      "term": "قاسيه",
       "concept": "violence.general"
     },
     {
@@ -33922,22 +32742,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "قحاب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قحبه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قدر",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "قدس 1",
       "concept": "violence.terrorism"
     },
@@ -33972,30 +32776,6 @@
     {
       "term": "قذائف هاون",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "قذارة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قذاره",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "قذر",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "قذرة",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "قذره",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "قذرين",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "قذيفة",
@@ -34194,14 +32974,6 @@
       "concept": "hate.dehumanization"
     },
     {
-      "term": "قريبا",
-      "concept": "violence.general"
-    },
-    {
-      "term": "قريباً",
-      "concept": "violence.general"
-    },
-    {
       "term": "قسام",
       "concept": "weapon.missile_rocket"
     },
@@ -34318,14 +33090,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "قطع",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "قطّع",
-      "concept": "violence.killing"
-    },
-    {
       "term": "قطع الرأس",
       "concept": "violence.killing"
     },
@@ -34368,10 +33132,6 @@
     {
       "term": "قطع راس الافعي",
       "concept": "violence.general"
-    },
-    {
-      "term": "قطعه",
-      "concept": "violence.assault"
     },
     {
       "term": "قطعهم",
@@ -34834,10 +33594,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "قواد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "قواص",
       "concept": "weapon.general"
     },
@@ -34920,10 +33676,6 @@
     {
       "term": "كارلو",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "كارلوس",
-      "concept": "violence.terrorism"
     },
     {
       "term": "كافر",
@@ -35742,10 +34494,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "كتل",
-      "concept": "violence.killing"
-    },
-    {
       "term": "كتلت",
       "concept": "violence.killing"
     },
@@ -35755,10 +34503,6 @@
     },
     {
       "term": "كتلتهم",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "كتله",
       "concept": "violence.killing"
     },
     {
@@ -35878,34 +34622,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "كس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كس أختك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كس أمك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كس اختك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كس امك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "كسر",
-      "concept": "violence.general"
-    },
-    {
-      "term": "كسر",
-      "concept": "violence.assault"
-    },
-    {
       "term": "كسر الأصابع",
       "concept": "violence.torture"
     },
@@ -35916,10 +34632,6 @@
     {
       "term": "كسر العظم",
       "concept": "violence.general"
-    },
-    {
-      "term": "كسمك",
-      "concept": "hate.slur"
     },
     {
       "term": "كسور",
@@ -35950,11 +34662,11 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "كل خرا",
-      "concept": "hate.slur"
+      "term": "كلاب",
+      "concept": "hate.dehumanization"
     },
     {
-      "term": "كل زق",
+      "term": "كلاب",
       "concept": "hate.slur"
     },
     {
@@ -35996,6 +34708,10 @@
     {
       "term": "كلهم مستوطنين",
       "concept": "hate.anti_israel"
+    },
+    {
+      "term": "كلور",
+      "concept": "weapon.cbrn"
     },
     {
       "term": "كلورات البوتاسيوم",
@@ -36046,10 +34762,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "كهرباء",
-      "concept": "violence.torture"
-    },
-    {
       "term": "كوادكوبتر",
       "concept": "weapon.drone"
     },
@@ -36086,10 +34798,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "كي",
-      "concept": "violence.torture"
-    },
-    {
       "term": "كي بالحديد المحمى",
       "concept": "violence.torture"
     },
@@ -36100,6 +34808,10 @@
     {
       "term": "كي بالنار",
       "concept": "violence.torture"
+    },
+    {
+      "term": "كيروسين",
+      "concept": "violence.arson"
     },
     {
       "term": "كيس جثث",
@@ -36119,6 +34831,14 @@
     },
     {
       "term": "كيماوي",
+      "concept": "weapon.cbrn"
+    },
+    {
+      "term": "كيميائي",
+      "concept": "violence.general"
+    },
+    {
+      "term": "كيميائي",
       "concept": "weapon.cbrn"
     },
     {
@@ -36275,10 +34995,6 @@
     },
     {
       "term": "لأنجاس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لأنذال",
       "concept": "hate.slur"
     },
     {
@@ -38078,10 +36794,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "لانذال",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لانغماس",
       "concept": "violence.terrorism"
     },
@@ -38306,10 +37018,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "لتعريص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لتعريه",
       "concept": "violence.torture"
     },
@@ -38336,10 +37044,6 @@
     {
       "term": "لتفخيخ",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "لتفو",
-      "concept": "hate.slur"
     },
     {
       "term": "لتقتل",
@@ -38392,14 +37096,6 @@
     {
       "term": "لتمويه",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "لتناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لتناكه",
-      "concept": "hate.slur"
     },
     {
       "term": "لتنتقم",
@@ -38654,14 +37350,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "لحقراء",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لحقير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لحم مفروم",
       "concept": "violence.general"
     },
@@ -38690,20 +37378,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "لخرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لخرازة",
       "concept": "weapon.firearm"
     },
     {
       "term": "لخرازه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "لخرة",
-      "concept": "hate.slur"
     },
     {
       "term": "لخردق",
@@ -38724,14 +37404,6 @@
     {
       "term": "لخرمشهر",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "لخره",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لخسيس",
-      "concept": "hate.slur"
     },
     {
       "term": "لخطف",
@@ -38794,14 +37466,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "لخول",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لخولات",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لخونة",
       "concept": "hate.slur"
     },
@@ -38824,10 +37488,6 @@
     {
       "term": "لداخاو",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "لداعر",
-      "concept": "hate.slur"
     },
     {
       "term": "لداعش",
@@ -38924,10 +37584,6 @@
     {
       "term": "لديناميت",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "لديوث",
-      "concept": "hate.slur"
     },
     {
       "term": "لذابح",
@@ -39098,26 +37754,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "لزانية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لزانيه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لزبالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لزباله",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لزبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لزخات",
       "concept": "weapon.general"
     },
@@ -39146,10 +37782,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "لزنجي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لزنديق",
       "concept": "hate.slur"
     },
@@ -39160,10 +37792,6 @@
     {
       "term": "لزنزانه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "لزنوج",
-      "concept": "hate.slur"
     },
     {
       "term": "لزيك",
@@ -39194,20 +37822,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "لسافل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لسافوط",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "لساقطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لساقطه",
-      "concept": "hate.slur"
     },
     {
       "term": "لسام",
@@ -39287,22 +37903,6 @@
     },
     {
       "term": "لسرطان",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لسرقة",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "لسرقه",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "لسفلة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لسفله",
       "concept": "hate.slur"
     },
     {
@@ -39410,10 +38010,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "لشاذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لشبح",
       "concept": "violence.torture"
     },
@@ -39436,22 +38032,6 @@
     {
       "term": "لشخلهم",
       "concept": "violence.general"
-    },
-    {
-      "term": "لشراميط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لشرموط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لشرموطه",
-      "concept": "hate.slur"
     },
     {
       "term": "لشطب",
@@ -39530,10 +38110,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "لشواذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لشواظ",
       "concept": "weapon.explosive"
     },
@@ -39576,14 +38152,6 @@
     {
       "term": "لصرع",
       "concept": "violence.killing"
-    },
-    {
-      "term": "لصرماية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لصرمايه",
-      "concept": "hate.slur"
     },
     {
       "term": "لصفع",
@@ -39746,32 +38314,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "لطيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لطيزك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لعاقب",
       "concept": "violence.general"
     },
     {
       "term": "لعاقبوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "لعاهر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لعاهرة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لعاهره",
-      "concept": "hate.slur"
     },
     {
       "term": "لعبد",
@@ -39812,10 +38360,6 @@
     {
       "term": "لعذبوا",
       "concept": "violence.torture"
-    },
-    {
-      "term": "لعرص",
-      "concept": "hate.slur"
     },
     {
       "term": "لعصابات",
@@ -39900,10 +38444,6 @@
     {
       "term": "لغاره",
       "concept": "violence.assault"
-    },
-    {
-      "term": "لغبي",
-      "concept": "hate.slur"
     },
     {
       "term": "لغراد",
@@ -40078,32 +38618,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "لقحاب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لقحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لقحبه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لقدر",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "لقذائف",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "لقذارة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لقذاره",
-      "concept": "hate.slur"
     },
     {
       "term": "لقذيفة",
@@ -40186,10 +38706,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "لقواد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لقواص",
       "concept": "weapon.general"
     },
@@ -40208,10 +38724,6 @@
     {
       "term": "لقي مصرعه",
       "concept": "violence.killing"
-    },
-    {
-      "term": "لقيط",
-      "concept": "hate.slur"
     },
     {
       "term": "لكاتيوشا",
@@ -40264,10 +38776,6 @@
     {
       "term": "لكسر",
       "concept": "violence.assault"
-    },
-    {
-      "term": "لكسمك",
-      "concept": "hate.slur"
     },
     {
       "term": "لكسور",
@@ -40523,10 +39031,6 @@
     },
     {
       "term": "للأنجاس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للأنذال",
       "concept": "hate.slur"
     },
     {
@@ -41194,10 +39698,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "للانذال",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للانغماس",
       "concept": "violence.terrorism"
     },
@@ -41340,10 +39840,6 @@
     {
       "term": "للبطش",
       "concept": "violence.general"
-    },
-    {
-      "term": "للبغي",
-      "concept": "hate.slur"
     },
     {
       "term": "للبقر",
@@ -41598,10 +40094,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "للتعريص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للتعريه",
       "concept": "violence.torture"
     },
@@ -41636,10 +40128,6 @@
     {
       "term": "للتفخيخ",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "للتفو",
-      "concept": "hate.slur"
     },
     {
       "term": "للتقتل",
@@ -41692,14 +40180,6 @@
     {
       "term": "للتمويه",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "للتناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للتناكه",
-      "concept": "hate.slur"
     },
     {
       "term": "للتنتقم",
@@ -41966,14 +40446,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "للحقراء",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للحقير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للحماس",
       "concept": "violence.terrorism"
     },
@@ -41998,20 +40470,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "للخرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للخرازة",
       "concept": "weapon.firearm"
     },
     {
       "term": "للخرازه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "للخرة",
-      "concept": "hate.slur"
     },
     {
       "term": "للخردق",
@@ -42032,14 +40496,6 @@
     {
       "term": "للخرمشهر",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "للخره",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للخسيس",
-      "concept": "hate.slur"
     },
     {
       "term": "للخطف",
@@ -42110,14 +40566,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "للخول",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للخولات",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للخونة",
       "concept": "hate.slur"
     },
@@ -42140,10 +40588,6 @@
     {
       "term": "للداخاو",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "للداعر",
-      "concept": "hate.slur"
     },
     {
       "term": "للداعش",
@@ -42240,10 +40684,6 @@
     {
       "term": "للديناميت",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "للديوث",
-      "concept": "hate.slur"
     },
     {
       "term": "للذابح",
@@ -42430,26 +40870,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "للزانية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للزانيه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للزبالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للزباله",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للزبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للزخات",
       "concept": "weapon.general"
     },
@@ -42478,10 +40898,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "للزنجي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للزنديق",
       "concept": "hate.slur"
     },
@@ -42492,10 +40908,6 @@
     {
       "term": "للزنزانه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "للزنوج",
-      "concept": "hate.slur"
     },
     {
       "term": "للزيك",
@@ -42530,20 +40942,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "للسافل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للسافوط",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "للساقطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للساقطه",
-      "concept": "hate.slur"
     },
     {
       "term": "للسام",
@@ -42640,14 +41040,6 @@
     {
       "term": "للسرقه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "للسفلة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للسفله",
-      "concept": "hate.slur"
     },
     {
       "term": "للسكاكين",
@@ -42758,10 +41150,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "للشاذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للشبح",
       "concept": "violence.torture"
     },
@@ -42784,22 +41172,6 @@
     {
       "term": "للشخلهم",
       "concept": "violence.general"
-    },
-    {
-      "term": "للشراميط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للشرموط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للشرموطه",
-      "concept": "hate.slur"
     },
     {
       "term": "للشطب",
@@ -42882,10 +41254,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "للشواذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للشواظ",
       "concept": "weapon.explosive"
     },
@@ -42936,14 +41304,6 @@
     {
       "term": "للصرع",
       "concept": "violence.killing"
-    },
-    {
-      "term": "للصرماية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للصرمايه",
-      "concept": "hate.slur"
     },
     {
       "term": "للصفع",
@@ -43126,32 +41486,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "للطيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للطيزك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للعاقب",
       "concept": "violence.general"
     },
     {
       "term": "للعاقبوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "للعاهر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للعاهرة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للعاهره",
-      "concept": "hate.slur"
     },
     {
       "term": "للعبد",
@@ -43208,10 +41548,6 @@
     {
       "term": "للعذبوا",
       "concept": "violence.torture"
-    },
-    {
-      "term": "للعرص",
-      "concept": "hate.slur"
     },
     {
       "term": "للعصابات",
@@ -43298,10 +41634,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "للغبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للغراد",
       "concept": "weapon.missile_rocket"
     },
@@ -43370,20 +41702,8 @@
       "concept": "hate.slur"
     },
     {
-      "term": "للفاجر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للفاس",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "للفاسق",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للفاشل",
-      "concept": "hate.slur"
     },
     {
       "term": "للفاغنر",
@@ -43642,18 +41962,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "للقحاب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للقحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للقحبه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للقدر",
       "concept": "weapon.missile_rocket"
     },
@@ -43664,14 +41972,6 @@
     {
       "term": "للقذائف",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "للقذارة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للقذاره",
-      "concept": "hate.slur"
     },
     {
       "term": "للقذيفة",
@@ -43782,10 +42082,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "للقواد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للقواص",
       "concept": "weapon.general"
     },
@@ -43848,10 +42144,6 @@
     {
       "term": "للكسر",
       "concept": "violence.assault"
-    },
-    {
-      "term": "للكسمك",
-      "concept": "hate.slur"
     },
     {
       "term": "للكسور",
@@ -43962,10 +42254,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "لللقيط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لللكم",
       "concept": "violence.assault"
     },
@@ -43974,20 +42262,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "لللوطي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للليحي",
       "concept": "violence.terrorism"
     },
     {
       "term": "للليزر",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "للمأبون",
-      "concept": "hate.slur"
     },
     {
       "term": "للمأسور",
@@ -44000,10 +42280,6 @@
     {
       "term": "للمؤامره",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "للمابون",
-      "concept": "hate.slur"
     },
     {
       "term": "للمات",
@@ -44056,10 +42332,6 @@
     {
       "term": "للمتحصن",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "للمتخلف",
-      "concept": "hate.slur"
     },
     {
       "term": "للمتسلل",
@@ -44134,10 +42406,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "للمتناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للمتوحشين",
       "concept": "hate.slur"
     },
@@ -44164,10 +42432,6 @@
     {
       "term": "للمجزره",
       "concept": "violence.killing"
-    },
-    {
-      "term": "للمجنون",
-      "concept": "hate.slur"
     },
     {
       "term": "للمجوس",
@@ -44222,10 +42486,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "للمختل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للمخزن",
       "concept": "weapon.firearm"
     },
@@ -44236,10 +42496,6 @@
     {
       "term": "للمخطوفين",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "للمخنث",
-      "concept": "hate.slur"
     },
     {
       "term": "للمخنوق",
@@ -44514,10 +42770,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "للمعتوه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للمعدوم",
       "concept": "violence.killing"
     },
@@ -44526,20 +42778,12 @@
       "concept": "violence.torture"
     },
     {
-      "term": "للمعرص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للمعركة",
       "concept": "violence.assault"
     },
     {
       "term": "للمعركه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "للمعوق",
-      "concept": "hate.slur"
     },
     {
       "term": "للمعول",
@@ -44710,10 +42954,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "للمناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للمنتقم",
       "concept": "violence.general"
     },
@@ -44726,10 +42966,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "للمنحط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للمنحور",
       "concept": "violence.killing"
     },
@@ -44740,22 +42976,6 @@
     {
       "term": "للمنغيله",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "للمنيك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للمنيوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للمنيوكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "للمنيوكه",
-      "concept": "hate.slur"
     },
     {
       "term": "للمهاجم",
@@ -44898,10 +43118,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "للندل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للندمر",
       "concept": "violence.general"
     },
@@ -44912,10 +43128,6 @@
     {
       "term": "للنذبح",
       "concept": "violence.killing"
-    },
-    {
-      "term": "للنذل",
-      "concept": "hate.slur"
     },
     {
       "term": "للنرد",
@@ -45066,10 +43278,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "للنيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "للنيونازي",
       "concept": "violence.genocide"
     },
@@ -45200,10 +43408,6 @@
     {
       "term": "للهيملر",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "للواطي",
-      "concept": "hate.slur"
     },
     {
       "term": "للوباء",
@@ -45534,10 +43738,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "للينيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لليهجم",
       "concept": "violence.assault"
     },
@@ -45562,10 +43762,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "لمأبون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لمأسور",
       "concept": "violence.torture"
     },
@@ -45576,14 +43772,6 @@
     {
       "term": "لمؤامره",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "لمابون",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لمات",
-      "concept": "violence.killing"
     },
     {
       "term": "لماتوا",
@@ -45632,10 +43820,6 @@
     {
       "term": "لمتحصن",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "لمتخلف",
-      "concept": "hate.slur"
     },
     {
       "term": "لمتسلل",
@@ -45690,10 +43874,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "لمتناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لمتوحشين",
       "concept": "hate.slur"
     },
@@ -45720,10 +43900,6 @@
     {
       "term": "لمجزره",
       "concept": "violence.killing"
-    },
-    {
-      "term": "لمجنون",
-      "concept": "hate.slur"
     },
     {
       "term": "لمجوس",
@@ -45778,10 +43954,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "لمختل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لمخزن",
       "concept": "weapon.firearm"
     },
@@ -45792,10 +43964,6 @@
     {
       "term": "لمخطوفين",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "لمخنث",
-      "concept": "hate.slur"
     },
     {
       "term": "لمخنوق",
@@ -46050,10 +44218,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "لمعتوه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لمعدوم",
       "concept": "violence.killing"
     },
@@ -46062,20 +44226,12 @@
       "concept": "violence.torture"
     },
     {
-      "term": "لمعرص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لمعركة",
       "concept": "violence.assault"
     },
     {
       "term": "لمعركه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "لمعوق",
-      "concept": "hate.slur"
     },
     {
       "term": "لمعول",
@@ -46246,10 +44402,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "لمناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لمنتقم",
       "concept": "violence.general"
     },
@@ -46262,10 +44414,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "لمنحط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لمنحور",
       "concept": "violence.killing"
     },
@@ -46276,22 +44424,6 @@
     {
       "term": "لمنغيله",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "لمنيك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لمنيوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لمنيوكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "لمنيوكه",
-      "concept": "hate.slur"
     },
     {
       "term": "لمهاجم",
@@ -46430,10 +44562,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "لندل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لندمر",
       "concept": "violence.general"
     },
@@ -46444,10 +44572,6 @@
     {
       "term": "لنذبح",
       "concept": "violence.killing"
-    },
-    {
-      "term": "لنذل",
-      "concept": "hate.slur"
     },
     {
       "term": "لنرد",
@@ -46590,10 +44714,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "لنيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "لنيونازي",
       "concept": "violence.genocide"
     },
@@ -46714,20 +44834,12 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "لواء",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "لواء زينبيون",
       "concept": "violence.terrorism"
     },
     {
       "term": "لواء فاطميون",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "لوطي",
-      "concept": "hate.slur"
     },
     {
       "term": "ليؤدب",
@@ -47034,10 +45146,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "لينيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ليهجم",
       "concept": "violence.assault"
     },
@@ -47060,10 +45168,6 @@
     {
       "term": "م.ق.ا.و.م.ه",
       "concept": "threat.direct"
-    },
-    {
-      "term": "مأبون",
-      "concept": "hate.slur"
     },
     {
       "term": "مأسور",
@@ -47146,10 +45250,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "مابون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مات",
       "concept": "violence.killing"
     },
@@ -47215,10 +45315,6 @@
     },
     {
       "term": "ماسوره",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "ماغ",
       "concept": "weapon.firearm"
     },
     {
@@ -47288,10 +45384,6 @@
     {
       "term": "متحصن",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "متخلف",
-      "concept": "hate.slur"
     },
     {
       "term": "متسلل",
@@ -47416,10 +45508,6 @@
     {
       "term": "متمردين",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "متناك",
-      "concept": "hate.slur"
     },
     {
       "term": "متوحشين",
@@ -47614,10 +45702,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "مجنون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مجوس",
       "concept": "hate.slur"
     },
@@ -47758,14 +45842,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "محق",
-      "concept": "violence.genocide"
-    },
-    {
-      "term": "محق",
-      "concept": "violence.general"
-    },
-    {
       "term": "محمد السنوار",
       "concept": "violence.terrorism"
     },
@@ -47862,20 +45938,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "مختل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مخرب",
       "concept": "violence.killing"
     },
     {
       "term": "مخربون",
       "concept": "violence.killing"
-    },
-    {
-      "term": "مخزن",
-      "concept": "weapon.firearm"
     },
     {
       "term": "مخزن أسلحة",
@@ -47952,10 +46020,6 @@
     {
       "term": "مخلفات حرب",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "مخنث",
-      "concept": "hate.slur"
     },
     {
       "term": "مخنوق",
@@ -48206,10 +46270,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "مريض نفسي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "مزق",
       "concept": "violence.killing"
     },
@@ -48276,10 +46336,6 @@
     {
       "term": "مسجونون",
       "concept": "violence.kidnapping"
-    },
-    {
-      "term": "مسح",
-      "concept": "violence.genocide"
     },
     {
       "term": "مسحوق",
@@ -48786,6 +46842,10 @@
       "concept": "weapon.blade"
     },
     {
+      "term": "مطبع",
+      "concept": "hate.anti_israel"
+    },
+    {
       "term": "مطعم سبارو",
       "concept": "violence.terrorism"
     },
@@ -48926,10 +46986,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "معتوه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "معدوم",
       "concept": "violence.killing"
     },
@@ -48968,10 +47024,6 @@
     {
       "term": "معذبين",
       "concept": "violence.torture"
-    },
-    {
-      "term": "معرص",
-      "concept": "hate.slur"
     },
     {
       "term": "معركة",
@@ -49036,10 +47088,6 @@
     {
       "term": "معطف الريح",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "معوق",
-      "concept": "hate.slur"
     },
     {
       "term": "مغتال",
@@ -49370,6 +47418,10 @@
       "concept": "violence.killing"
     },
     {
+      "term": "مقلاع",
+      "concept": "weapon.blade"
+    },
+    {
       "term": "مقلاع داوود",
       "concept": "weapon.missile_rocket"
     },
@@ -49546,28 +47598,12 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "منافق",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "منافقين",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "مناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "منتقم",
       "concept": "violence.general"
     },
     {
       "term": "منتقمون",
       "concept": "violence.general"
-    },
-    {
-      "term": "منحط",
-      "concept": "hate.slur"
     },
     {
       "term": "منحور",
@@ -49682,10 +47718,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "منع",
-      "concept": "violence.general"
-    },
-    {
       "term": "منغيله",
       "concept": "violence.genocide"
     },
@@ -49704,22 +47736,6 @@
     {
       "term": "منفذ عمليه الطعن",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "منيك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "منيوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "منيوكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "منيوكه",
-      "concept": "hate.slur"
     },
     {
       "term": "مهاجر 6",
@@ -50154,10 +48170,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "ندل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ندمر",
       "concept": "violence.general"
     },
@@ -50176,10 +48188,6 @@
     {
       "term": "نذبحهم",
       "concept": "violence.killing"
-    },
-    {
-      "term": "نذل",
-      "concept": "hate.slur"
     },
     {
       "term": "نزار عوض الله",
@@ -50414,6 +48422,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "نفق",
+      "concept": "violence.general"
+    },
+    {
       "term": "نفق مفخخ",
       "concept": "weapon.explosive"
     },
@@ -50602,16 +48614,16 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "نيران",
+      "concept": "violence.arson"
+    },
+    {
       "term": "نيران كثيفة",
       "concept": "weapon.firearm"
     },
     {
       "term": "نيران معادية",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "نيك",
-      "concept": "hate.slur"
     },
     {
       "term": "نيونازي",
@@ -51470,10 +49482,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "وآري",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "وأبابيل",
       "concept": "weapon.drone"
     },
@@ -51611,10 +49619,6 @@
     },
     {
       "term": "وأنجاس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وأنذال",
       "concept": "hate.slur"
     },
     {
@@ -51926,10 +49930,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "واري",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "واستئصال",
       "concept": "violence.general"
     },
@@ -52072,10 +50072,6 @@
     {
       "term": "واطعنوا",
       "concept": "violence.killing"
-    },
-    {
-      "term": "واطي",
-      "concept": "hate.slur"
     },
     {
       "term": "واعتداء",
@@ -52351,10 +50347,6 @@
     },
     {
       "term": "والأنجاس",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والأنذال",
       "concept": "hate.slur"
     },
     {
@@ -53030,10 +51022,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "والانذال",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والانغماس",
       "concept": "violence.terrorism"
     },
@@ -53196,10 +51184,6 @@
     {
       "term": "والبغدادي",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "والبغي",
-      "concept": "hate.slur"
     },
     {
       "term": "والبقر",
@@ -53454,10 +51438,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "والتعريص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والتعريه",
       "concept": "violence.torture"
     },
@@ -53492,10 +51472,6 @@
     {
       "term": "والتفخيخ",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "والتفو",
-      "concept": "hate.slur"
     },
     {
       "term": "والتقتل",
@@ -53548,14 +51524,6 @@
     {
       "term": "والتمويه",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "والتناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والتناكه",
-      "concept": "hate.slur"
     },
     {
       "term": "والتنتقم",
@@ -53838,14 +51806,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "والحقراء",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والحقير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والحماس",
       "concept": "violence.terrorism"
     },
@@ -53882,20 +51842,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "والخرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والخرازة",
       "concept": "weapon.firearm"
     },
     {
       "term": "والخرازه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "والخرة",
-      "concept": "hate.slur"
     },
     {
       "term": "والخردق",
@@ -53918,16 +51870,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "والخره",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والخزر",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "والخسيس",
-      "concept": "hate.slur"
     },
     {
       "term": "والخطف",
@@ -54002,14 +51946,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "والخول",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والخولات",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والخونة",
       "concept": "hate.slur"
     },
@@ -54032,10 +51968,6 @@
     {
       "term": "والداخاو",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "والداعر",
-      "concept": "hate.slur"
     },
     {
       "term": "والداعش",
@@ -54136,10 +52068,6 @@
     {
       "term": "والديناميت",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "والديوث",
-      "concept": "hate.slur"
     },
     {
       "term": "والذابح",
@@ -54338,26 +52266,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "والزانية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والزانيه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والزبالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والزباله",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والزبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والزخات",
       "concept": "weapon.general"
     },
@@ -54394,10 +52302,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "والزنجي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والزنديق",
       "concept": "hate.slur"
     },
@@ -54408,10 +52312,6 @@
     {
       "term": "والزنزانه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "والزنوج",
-      "concept": "hate.slur"
     },
     {
       "term": "والزواري",
@@ -54450,20 +52350,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "والسافل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والسافوط",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "والساقطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والساقطه",
-      "concept": "hate.slur"
     },
     {
       "term": "والسام",
@@ -54560,14 +52448,6 @@
     {
       "term": "والسرقه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "والسفلة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والسفله",
-      "concept": "hate.slur"
     },
     {
       "term": "والسكاكين",
@@ -54686,10 +52566,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "والشاذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والشبح",
       "concept": "violence.torture"
     },
@@ -54712,22 +52588,6 @@
     {
       "term": "والشخلهم",
       "concept": "violence.general"
-    },
-    {
-      "term": "والشراميط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والشرموط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والشرموطه",
-      "concept": "hate.slur"
     },
     {
       "term": "والشطب",
@@ -54810,10 +52670,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "والشواذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والشواظ",
       "concept": "weapon.explosive"
     },
@@ -54864,14 +52720,6 @@
     {
       "term": "والصرع",
       "concept": "violence.killing"
-    },
-    {
-      "term": "والصرماية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والصرمايه",
-      "concept": "hate.slur"
     },
     {
       "term": "والصفع",
@@ -55070,14 +52918,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "والطيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والطيزك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والظواهري",
       "concept": "violence.terrorism"
     },
@@ -55100,18 +52940,6 @@
     {
       "term": "والعاقبوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "والعاهر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والعاهرة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والعاهره",
-      "concept": "hate.slur"
     },
     {
       "term": "والعبد",
@@ -55168,10 +52996,6 @@
     {
       "term": "والعذبوا",
       "concept": "violence.torture"
-    },
-    {
-      "term": "والعرص",
-      "concept": "hate.slur"
     },
     {
       "term": "والعصابات",
@@ -55266,10 +53090,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "والغبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والغراد",
       "concept": "weapon.missile_rocket"
     },
@@ -55338,20 +53158,8 @@
       "concept": "hate.slur"
     },
     {
-      "term": "والفاجر",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والفاس",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "والفاسق",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والفاشل",
-      "concept": "hate.slur"
     },
     {
       "term": "والفاغنر",
@@ -55630,18 +53438,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "والقحاب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والقحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والقحبه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والقدر",
       "concept": "weapon.missile_rocket"
     },
@@ -55652,14 +53448,6 @@
     {
       "term": "والقذائف",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "والقذارة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والقذاره",
-      "concept": "hate.slur"
     },
     {
       "term": "والقذيفة",
@@ -55770,10 +53558,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "والقواد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والقواص",
       "concept": "weapon.general"
     },
@@ -55836,10 +53620,6 @@
     {
       "term": "والكسر",
       "concept": "violence.assault"
-    },
-    {
-      "term": "والكسمك",
-      "concept": "hate.slur"
     },
     {
       "term": "والكسور",
@@ -55954,10 +53734,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "واللقيط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "واللكم",
       "concept": "violence.assault"
     },
@@ -55982,20 +53758,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "واللوطي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والليحي",
       "concept": "violence.terrorism"
     },
     {
       "term": "والليزر",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "والمأبون",
-      "concept": "hate.slur"
     },
     {
       "term": "والمأسور",
@@ -56008,10 +53776,6 @@
     {
       "term": "والمؤامره",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "والمابون",
-      "concept": "hate.slur"
     },
     {
       "term": "والمات",
@@ -56076,10 +53840,6 @@
     {
       "term": "والمتحصن",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "والمتخلف",
-      "concept": "hate.slur"
     },
     {
       "term": "والمتسلل",
@@ -56154,10 +53914,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "والمتناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والمتنورين",
       "concept": "hate.antisemitism"
     },
@@ -56188,10 +53944,6 @@
     {
       "term": "والمجزره",
       "concept": "violence.killing"
-    },
-    {
-      "term": "والمجنون",
-      "concept": "hate.slur"
     },
     {
       "term": "والمجوس",
@@ -56246,10 +53998,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "والمختل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والمخزن",
       "concept": "weapon.firearm"
     },
@@ -56260,10 +54008,6 @@
     {
       "term": "والمخطوفين",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "والمخنث",
-      "concept": "hate.slur"
     },
     {
       "term": "والمخنوق",
@@ -56538,10 +54282,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "والمعتوه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والمعدوم",
       "concept": "violence.killing"
     },
@@ -56550,20 +54290,12 @@
       "concept": "violence.torture"
     },
     {
-      "term": "والمعرص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والمعركة",
       "concept": "violence.assault"
     },
     {
       "term": "والمعركه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "والمعوق",
-      "concept": "hate.slur"
     },
     {
       "term": "والمعول",
@@ -56742,10 +54474,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "والمناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والمنتقم",
       "concept": "violence.general"
     },
@@ -56758,10 +54486,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "والمنحط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والمنحور",
       "concept": "violence.killing"
     },
@@ -56772,22 +54496,6 @@
     {
       "term": "والمنغيله",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "والمنيك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والمنيوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والمنيوكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "والمنيوكه",
-      "concept": "hate.slur"
     },
     {
       "term": "والمهاجم",
@@ -56954,10 +54662,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "والندل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والندمر",
       "concept": "violence.general"
     },
@@ -56968,10 +54672,6 @@
     {
       "term": "والنذبح",
       "concept": "violence.killing"
-    },
-    {
-      "term": "والنذل",
-      "concept": "hate.slur"
     },
     {
       "term": "والنرد",
@@ -57130,10 +54830,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "والنيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "والنيونازي",
       "concept": "violence.genocide"
     },
@@ -57276,10 +54972,6 @@
     {
       "term": "والهيملر",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "والواطي",
-      "concept": "hate.slur"
     },
     {
       "term": "والوباء",
@@ -57610,10 +55302,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "والينيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "واليهجم",
       "concept": "violence.assault"
     },
@@ -57702,10 +55390,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "وانذال",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وانغماس",
       "concept": "violence.terrorism"
     },
@@ -57784,14 +55468,6 @@
     {
       "term": "وايغلا",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "وباء",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "وباء",
-      "concept": "hate.slur"
     },
     {
       "term": "وبنادق",
@@ -57954,10 +55630,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "وتعريص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وتعريه",
       "concept": "violence.torture"
     },
@@ -57996,10 +55668,6 @@
     {
       "term": "وتفخيخ",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "وتفو",
-      "concept": "hate.slur"
     },
     {
       "term": "وتقتل",
@@ -58052,14 +55720,6 @@
     {
       "term": "وتمويه",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "وتناكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وتناكه",
-      "concept": "hate.slur"
     },
     {
       "term": "وتنتقم",
@@ -58326,14 +55986,6 @@
       "concept": "violence.arson"
     },
     {
-      "term": "وحش",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "وحش",
-      "concept": "violence.general"
-    },
-    {
       "term": "وحشي",
       "concept": "violence.general"
     },
@@ -58374,14 +56026,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "وحقراء",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وحقير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وحماس",
       "concept": "violence.terrorism"
     },
@@ -58418,20 +56062,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "وخرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وخرازة",
       "concept": "weapon.firearm"
     },
     {
       "term": "وخرازه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "وخرة",
-      "concept": "hate.slur"
     },
     {
       "term": "وخردق",
@@ -58452,14 +56088,6 @@
     {
       "term": "وخرمشهر",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "وخره",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وخسيس",
-      "concept": "hate.slur"
     },
     {
       "term": "وخطف",
@@ -58530,14 +56158,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "وخول",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وخولات",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وخونة",
       "concept": "hate.slur"
     },
@@ -58560,10 +56180,6 @@
     {
       "term": "وداخاو",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "وداعر",
-      "concept": "hate.slur"
     },
     {
       "term": "وداعش",
@@ -58664,10 +56280,6 @@
     {
       "term": "وديناميت",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "وديوث",
-      "concept": "hate.slur"
     },
     {
       "term": "وذابح",
@@ -58862,26 +56474,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "وزانية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وزانيه",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وزبالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وزباله",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وزبي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وزخات",
       "concept": "weapon.general"
     },
@@ -58910,10 +56502,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "وزنجي",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وزنديق",
       "concept": "hate.slur"
     },
@@ -58924,10 +56512,6 @@
     {
       "term": "وزنزانه",
       "concept": "violence.torture"
-    },
-    {
-      "term": "وزنوج",
-      "concept": "hate.slur"
     },
     {
       "term": "وزيك",
@@ -58998,24 +56582,12 @@
       "concept": "violence.general"
     },
     {
-      "term": "وسافل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وسافوط",
       "concept": "violence.terrorism"
     },
     {
       "term": "وساقتلك",
       "concept": "violence.general"
-    },
-    {
-      "term": "وساقطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وساقطه",
-      "concept": "hate.slur"
     },
     {
       "term": "وسام",
@@ -59120,14 +56692,6 @@
     {
       "term": "وسفك",
       "concept": "violence.killing"
-    },
-    {
-      "term": "وسفلة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وسفله",
-      "concept": "hate.slur"
     },
     {
       "term": "وسكاكين",
@@ -59266,10 +56830,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "وشاذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وشبح",
       "concept": "violence.torture"
     },
@@ -59292,22 +56852,6 @@
     {
       "term": "وشخلهم",
       "concept": "violence.general"
-    },
-    {
-      "term": "وشراميط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وشرموط",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وشرموطة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وشرموطه",
-      "concept": "hate.slur"
     },
     {
       "term": "وشطب",
@@ -59394,10 +56938,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "وشواذ",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وشواظ",
       "concept": "weapon.explosive"
     },
@@ -59448,14 +56988,6 @@
     {
       "term": "وصرع",
       "concept": "violence.killing"
-    },
-    {
-      "term": "وصرماية",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وصرمايه",
-      "concept": "hate.slur"
     },
     {
       "term": "وصفع",
@@ -59662,32 +57194,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "وطيز",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وطيزك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وعاقب",
       "concept": "violence.general"
     },
     {
       "term": "وعاقبوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "وعاهر",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وعاهرة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وعاهره",
-      "concept": "hate.slur"
     },
     {
       "term": "وعبد",
@@ -59760,10 +57272,6 @@
     {
       "term": "وعذبوا",
       "concept": "violence.torture"
-    },
-    {
-      "term": "وعرص",
-      "concept": "hate.slur"
     },
     {
       "term": "وعصابات",
@@ -59844,14 +57352,6 @@
     {
       "term": "وغاره",
       "concept": "violence.assault"
-    },
-    {
-      "term": "وغبي",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وغد",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "وغراد",
@@ -60014,32 +57514,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "وقحاب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وقحبة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وقحبه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وقدر",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "وقذائف",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "وقذارة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "وقذاره",
-      "concept": "hate.slur"
     },
     {
       "term": "وقذيفة",
@@ -60138,10 +57618,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "وقواد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وقواص",
       "concept": "weapon.general"
     },
@@ -60208,10 +57684,6 @@
     {
       "term": "وكسر",
       "concept": "violence.assault"
-    },
-    {
-      "term": "وكسمك",
-      "concept": "hate.slur"
     },
     {
       "term": "وكسور",
@@ -60314,10 +57786,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "ومأبون",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ومأسور",
       "concept": "violence.torture"
     },
@@ -60344,10 +57812,6 @@
     {
       "term": "وما رميت اذ رميت ولكن الله رمي",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "ومابون",
-      "concept": "hate.slur"
     },
     {
       "term": "ومات",
@@ -60400,10 +57864,6 @@
     {
       "term": "ومتحصن",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "ومتخلف",
-      "concept": "hate.slur"
     },
     {
       "term": "ومتسلل",
@@ -60462,10 +57922,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "ومتناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ومتوحشين",
       "concept": "hate.slur"
     },
@@ -60492,10 +57948,6 @@
     {
       "term": "ومجزره",
       "concept": "violence.killing"
-    },
-    {
-      "term": "ومجنون",
-      "concept": "hate.slur"
     },
     {
       "term": "ومجوس",
@@ -60550,10 +58002,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "ومختل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ومخزن",
       "concept": "weapon.firearm"
     },
@@ -60564,10 +58012,6 @@
     {
       "term": "ومخطوفين",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "ومخنث",
-      "concept": "hate.slur"
     },
     {
       "term": "ومخنوق",
@@ -60842,10 +58286,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "ومعتوه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ومعدوم",
       "concept": "violence.killing"
     },
@@ -60854,20 +58294,12 @@
       "concept": "violence.torture"
     },
     {
-      "term": "ومعرص",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ومعركة",
       "concept": "violence.assault"
     },
     {
       "term": "ومعركه",
       "concept": "violence.assault"
-    },
-    {
-      "term": "ومعوق",
-      "concept": "hate.slur"
     },
     {
       "term": "ومعول",
@@ -61050,10 +58482,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "ومناك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ومنتقم",
       "concept": "violence.general"
     },
@@ -61066,10 +58494,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "ومنحط",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ومنحور",
       "concept": "violence.killing"
     },
@@ -61080,22 +58504,6 @@
     {
       "term": "ومنغيله",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "ومنيك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ومنيوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ومنيوكة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ومنيوكه",
-      "concept": "hate.slur"
     },
     {
       "term": "ومهاجم",
@@ -61246,10 +58654,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "وندل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "وندمر",
       "concept": "violence.general"
     },
@@ -61260,10 +58664,6 @@
     {
       "term": "ونذبح",
       "concept": "violence.killing"
-    },
-    {
-      "term": "ونذل",
-      "concept": "hate.slur"
     },
     {
       "term": "ونرد",
@@ -61412,10 +58812,6 @@
     {
       "term": "ونيتروغليسرين",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "ونيك",
-      "concept": "hate.slur"
     },
     {
       "term": "ونيونازي",
@@ -61822,10 +59218,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "وينيك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ويهجم",
       "concept": "violence.assault"
     },
@@ -62143,14 +59535,6 @@
     },
     {
       "term": "يدفع الثمن",
-      "concept": "violence.general"
-    },
-    {
-      "term": "يدك",
-      "concept": "violence.genocide"
-    },
-    {
-      "term": "يدك",
       "concept": "violence.general"
     },
     {
@@ -62488,14 +59872,6 @@
     {
       "term": "يطعنون",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "يطلق",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "يطلق",
-      "concept": "weapon.firearm"
     },
     {
       "term": "يطلق النار",
@@ -62862,26 +60238,6 @@
       "concept": "violence.arson"
     },
     {
-      "term": "يلعن أبوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "يلعن ابوك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "يلعن دينك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "يلعن ربك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "يلعن شرفك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "يلكم",
       "concept": "violence.killing"
     },
@@ -62994,14 +60350,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "ينعل أمك",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ينعل امك",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ينفجر",
       "concept": "violence.killing"
     },
@@ -63024,10 +60372,6 @@
     {
       "term": "ينكل",
       "concept": "violence.torture"
-    },
-    {
-      "term": "ينيك",
-      "concept": "hate.slur"
     },
     {
       "term": "يهاجم",
