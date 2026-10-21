@@ -81,7 +81,7 @@ Inputs are `ParsedMessage` (Telegram), `ProfileScrapeResult` (X), and
 `RadioTranscript` (radio). Radio identity uses the clip's archive URL, not the
 station's shared stream URL. Its platform is `AM/FM-RADIO`. Producers do not
 assign or publish `report_id`; the consumer owns ID assignment. Kafka records
-contain JSON values without keys. Internal outbox job IDs only coordinate retries.
+use the unchanged `report_url` as their string key. Internal outbox job IDs only coordinate retries.
 `schema_version` is the integer `1`; `languages` and `categories` are arrays.
 Legacy collector `language` is normalized to `languages`. The supplied HTML field
 table is not an executable DE JSON Schema; local validation remains provisional.

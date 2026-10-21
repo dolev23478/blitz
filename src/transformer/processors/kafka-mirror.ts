@@ -15,7 +15,7 @@ type Mechanism = 'plain' | 'scram-sha-256' | 'scram-sha-512';
  */
 export class KafkaMirror {
   private readonly logger = new Logger(KafkaMirror.name);
-  private readonly queue: Array<{ value: string }> = [];
+  private readonly queue: Array<{ key: string; value: string }> = [];
   private readonly producer: Producer;
   private readonly topic: string;
   private readonly retryIntervalMs: number;
@@ -63,10 +63,10 @@ export class KafkaMirror {
     }
   }
 
-  enqueue(value: string): void {
+  enqueue(key: string, value: string): void {
     if (this.closing) return;
     if (this.queue.length >= MAX_QUEUE) this.queue.shift();
-    this.queue.push({ value });
+    this.queue.push({ key, value });
     this.startDrain();
   }
 
@@ -91,7 +91,7 @@ export class KafkaMirror {
           topic: this.topic,
           acks: -1,
           timeout: 30000,
-          messages: batch.map(({ value }) => ({ value })),
+          messages: batch.map(({ key, value }) => ({ key, value })),
         });
         if (!ack.length || ack.some((r) => r.errorCode !== 0)) throw new Error('Kafka publication was not confirmed.');
       } catch (err) {

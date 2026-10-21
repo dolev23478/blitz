@@ -35,8 +35,8 @@ recordings, model downloads and Python environments are gitignored.
 
 All collectors use the same Transformer workflow. Output uses integer
 `schema_version: 1`, ISO `languages: string[]`, collector `categories: string[]`,
-and supported `media_type` values. Producer `report_id` and Kafka keys are omitted;
-consumers assign IDs. Radio platform is `AM/FM-RADIO`. Dev dictionaries and their
+and supported `media_type` values. Producer `report_id` is omitted; consumers assign IDs. Kafka keys use the exact
+`report_url` from each report. Radio platform is `AM/FM-RADIO`. Dev dictionaries and their
 report categories remain the shared source of truth.
 
 The backend defaults to port 3000. Routes include `/api/health`, `/api/telegram`,

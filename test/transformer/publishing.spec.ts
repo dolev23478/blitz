@@ -84,11 +84,33 @@ function deferred<T = void>() {
 }
 
 describe('Kafka publication', () => {
-  it('serializes reports as JSON without report_id or Kafka key', async () => {
+  it('preserves each exact URL key through retries and remote mirroring', async () => {
+    const url = 'https://example.com/A%2Fb?z=2&a=1#original';
+    const ctx = { ...context(), reports: [rawReport({ report_url: url })] };
+    const processor = publisher({
+      KAFKA_REMOTE_BROKERS: 'remote:9093',
+      KAFKA_RETRY_INTERVAL_MS: 1,
+    });
+    kafka.send.mockRejectedValueOnce(new Error('Temporary primary failure'));
+    try {
+      await processor.execute(ctx);
+      await vi.waitFor(() =>
+        expect(kafka.send.mock.calls.length).toBeGreaterThanOrEqual(3),
+      );
+      for (const [record] of kafka.send.mock.calls) {
+        expect(record.messages[0].key).toBe(url);
+        expect(JSON.parse(record.messages[0].value).report_url).toBe(url);
+      }
+    } finally {
+      await processor.onModuleDestroy();
+    }
+  });
+
+  it('uses the unchanged report_url as Kafka key without adding report_id', async () => {
     const ctx = { ...context(), reports: [rawReport()] };
     await publisher().execute(ctx);
     const record = kafka.send.mock.calls[0]![0] as ProducerRecord;
-    expect(record.messages[0]!.key).toBeUndefined();
+    expect(record.messages[0]!.key).toBe(ctx.reports[0]!.report_url);
     const parsed = JSON.parse(record.messages[0]!.value as string);
     expect(parsed).not.toHaveProperty('report_id');
   });
@@ -101,7 +123,9 @@ describe('Kafka publication', () => {
       topic: 'reports.raw',
       acks: -1,
       timeout: 30000,
-      messages: [{ value: expect.any(String) }],
+      messages: [
+        { key: ctx.reports[0]!.report_url, value: expect.any(String) },
+      ],
     });
     expect(JSON.parse(kafka.send.mock.calls[0]![0].messages[0].value)).toEqual(
       ctx.reports[0],

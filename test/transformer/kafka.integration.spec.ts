@@ -101,7 +101,7 @@ describe.runIf(Boolean(brokers.length) && Boolean(redisUrl))(
         ]);
 
         const report = JSON.parse(record.value);
-        expect(record.key).toBeNull();
+        expect(record.key).toBe(input.posts[0]!.url);
         expect(results).toEqual([
           {
             status: 'completed',

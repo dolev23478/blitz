@@ -105,7 +105,7 @@ describe('radio JSON through the shared Transformer workflow', () => {
       collected_at: input.endedAt,
     });
     expect(report).not.toHaveProperty('report_id');
-    expect(message).not.toHaveProperty('key');
+    expect(message.key).toBe(report.report_url);
     expect(new ReportValidator(config).validate(report)).toEqual(report);
     expect(results).toEqual([
       {
@@ -144,7 +144,9 @@ describe('radio JSON through the shared Transformer workflow', () => {
       },
     );
     const record = send.mock.calls[0]![0];
-    expect(record.messages[0]).not.toHaveProperty('key');
+    expect(record.messages[0].key).toBe(
+      JSON.parse(record.messages[0].value).report_url,
+    );
     expect(JSON.parse(record.messages[0].value)).not.toHaveProperty(
       'report_id',
     );

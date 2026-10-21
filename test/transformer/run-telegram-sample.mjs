@@ -88,7 +88,7 @@ try {
     const record = published.at(-1);
     const report = JSON.parse(record.messages[0].value);
     assert.ok(validate(report), JSON.stringify(validate.errors));
-    assert.equal(record.messages[0].key, undefined);
+    assert.equal(record.messages[0].key, JSON.parse(record.messages[0].value).report_url);
     assert.equal(report.report_url, original.url);
     assert.equal(report.published_at, original.postedAt.toISOString());
     assert.equal(report.account_name, original.senderName);

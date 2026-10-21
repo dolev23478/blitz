@@ -103,20 +103,18 @@ it('boots the actual three collector lifecycles and publishes each source throug
     );
     expect(scrapeBatch).toHaveBeenCalledOnce();
     expect(capture).toHaveBeenCalledOnce();
-    await app
-      .get(MessageEventsService)
-      .emit({
-        channelId: 1,
-        channel: 'test-channel',
-        inserted: 1,
-        messages: [{ ...telegramInput(), text: 'A bomb was reported.' }],
-      });
+    await app.get(MessageEventsService).emit({
+      channelId: 1,
+      channel: 'test-channel',
+      inserted: 1,
+      messages: [{ ...telegramInput(), text: 'A bomb was reported.' }],
+    });
     await vi.waitFor(() => expect(send).toHaveBeenCalledTimes(3), {
       timeout: 5000,
     });
     const reports = send.mock.calls.map(([record]) => {
-      expect(record.messages[0]).not.toHaveProperty('key');
       const report = JSON.parse(record.messages[0].value);
+      expect(record.messages[0].key).toBe(report.report_url);
       expect(report).not.toHaveProperty('report_id');
       expect(report.categories).toContain('terror');
       return report;

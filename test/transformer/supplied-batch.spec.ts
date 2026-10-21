@@ -111,7 +111,7 @@ describe('the exact user-supplied ProfileScrapeResult', () => {
       expect(Object.keys(report).sort()).toEqual(
         [...provisionalRawReportSchema.required].sort(),
       );
-      expect(record.messages[0]!.key).toBeUndefined();
+      expect(record.messages[0]!.key).toBe(report.report_url);
       return report;
     });
     expect(actualReports).toEqual(expectedReportsWithSharedLanguage);

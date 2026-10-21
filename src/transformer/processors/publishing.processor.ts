@@ -220,6 +220,7 @@ export class PublishingProcessor
             event: 'radio_kafka_sending',
             publicationId: job.id,
             topic: REPORT_TOPIC,
+            key: job.report.report_url,
             attempt: job.attempts,
             payload: JSON.parse(value),
           });
@@ -227,7 +228,7 @@ export class PublishingProcessor
           topic: REPORT_TOPIC,
           acks: -1,
           timeout: 30000,
-          messages: [{ value }],
+          messages: [{ key: job.report.report_url, value }],
         });
         if (
           !Array.isArray(acknowledgment) ||
@@ -247,7 +248,7 @@ export class PublishingProcessor
             acknowledgment,
           });
         // Best-effort copy to the remote cluster, only once the primary confirmed it.
-        this.mirror?.enqueue(value);
+        this.mirror?.enqueue(job.report.report_url, value);
       } catch (error) {
         this.connection = undefined;
         if (!leaseValid)

@@ -66,7 +66,7 @@ function reports() {
     expect(Object.keys(report).sort()).toEqual(
       [...provisionalRawReportSchema.required].sort(),
     );
-    expect(record.messages[0]!.key).toBeUndefined();
+    expect(record.messages[0]!.key).toBe(report.report_url);
     expect(report.schema_version).toBe(1);
     expect(report.is_official).toBe(false);
     return report;

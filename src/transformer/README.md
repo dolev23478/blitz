@@ -58,7 +58,8 @@ collector analyzer supplies dev dictionary report labels (`terror`,
 Transformer does not detect languages, translate content or infer categories.
 
 `schema_version` is the integer major version `1`. The `report_id` field is
-omitted from RawReport and generated on the consumer side.
+omitted from RawReport and generated on the consumer side. Kafka keys use the
+exact `report_url`, including retries and optional remote mirroring.
 
 Only `text`, `photo`, `video` are allowed in RAW_REPORT.media_type:
 
@@ -165,5 +166,5 @@ npx vitest run test/transformer/kafka.integration.spec.ts
 
 Only use isolated test infrastructure. The Redis suite runs actual Lua and client
 restart checks. The Kafka suite needs both endpoints and checks actual JSON/key
-round-trip (with no producer-assigned ID or Kafka key). Both skip when their endpoints are not supplied; a skip is not an
+round-trip (with `report_url` as key and no producer-assigned ID). Both skip when their endpoints are not supplied; a skip is not an
 integration success. A test-specific JSON Schema is not the final DE contract.

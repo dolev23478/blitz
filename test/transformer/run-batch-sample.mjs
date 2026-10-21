@@ -106,7 +106,7 @@ try {
       Object.keys(report).sort(),
       [...provisionalRawReportSchema.required].sort(),
     );
-    assert.equal(message.key, undefined);
+    assert.equal(message.key, JSON.parse(message.value).report_url);
     assert.equal(report.report_url, input.posts[index].url);
     assert.equal(report.content, input.posts[index].text);
     assert.equal(report.published_at, input.posts[index].publishedAt);
@@ -199,7 +199,7 @@ try {
         Object.keys(report).sort(),
         [...provisionalRawReportSchema.required].sort(),
       );
-      assert.equal(record.messages[0].key, undefined);
+      assert.equal(record.messages[0].key, JSON.parse(record.messages[0].value).report_url);
       assert.equal(report.schema_version, 1);
       assert.equal(report.is_official, false);
       assert.equal(report.content, posts[index].text.normalize('NFC').trim());
