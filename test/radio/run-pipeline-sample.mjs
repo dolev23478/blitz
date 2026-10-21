@@ -38,7 +38,6 @@ Kafka.prototype.producer = () => ({
 const settings = loadConfig({
   RADIO_ENABLED: 'false',
   KAFKA_BROKERS: 'capture.invalid:9092',
-  RADIO_PUBLIC_BASE_URL: 'https://radio-test.invalid',
   REDIS_URL: '',
 });
 const config = new ConfigService({

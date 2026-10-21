@@ -29,7 +29,6 @@ Kafka.prototype.producer = function () {
 };
 const config = new ConfigService({
   KAFKA_BROKERS: 'capture.invalid:9092',
-  RADIO_PUBLIC_BASE_URL: 'https://radio-test.invalid',
   KAFKA_REMOTE_BROKERS: '',
   KAFKA_SSL: 'false',
   KAFKA_SASL_USERNAME: '',
