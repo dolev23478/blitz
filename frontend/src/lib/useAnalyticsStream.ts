@@ -318,9 +318,15 @@ export function useAnalyticsStream() {
     let eventSource: EventSource | null = null;
     let retryTimeout: NodeJS.Timeout | null = null;
 
+    const apiBase = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY || '';
+
     const connect = () => {
       setStatus('connecting');
-      const url = '/api/kafka/analytics/stream';
+      const params = new URLSearchParams();
+      if (apiKey) params.set('api_key', apiKey);
+      const queryStr = params.toString() ? `?${params.toString()}` : '';
+      const url = `${apiBase}/api/kafka/analytics/stream${queryStr}`;
 
       try {
         eventSource = new EventSource(url);
@@ -379,10 +385,16 @@ export function useAnalyticsStream() {
   // Client-side simulation fallback if backend isn't reached or when user clicks simulate
   const simulate = useCallback(
     async (count = 1) => {
+      const apiBase = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY || '';
+      const headers: Record<string, string> = {};
+      if (apiKey) headers['X-API-Key'] = apiKey;
+
       // First try calling backend simulate API
       try {
-        const res = await fetch(`/api/kafka/analytics/simulate?count=${count}`, {
+        const res = await fetch(`${apiBase}/api/kafka/analytics/simulate?count=${count}`, {
           method: 'POST',
+          headers,
         });
         if (res.ok) {
           const result = await res.json();
@@ -447,8 +459,13 @@ export function useAnalyticsStream() {
   );
 
   const reset = useCallback(async () => {
+    const apiBase = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY || '';
+    const headers: Record<string, string> = {};
+    if (apiKey) headers['X-API-Key'] = apiKey;
+
     try {
-      await fetch('/api/kafka/analytics/reset', { method: 'POST' });
+      await fetch(`${apiBase}/api/kafka/analytics/reset`, { method: 'POST', headers });
     } catch {
       // Local fallback
     }
