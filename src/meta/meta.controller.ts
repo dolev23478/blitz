@@ -110,20 +110,18 @@ export class MetaController {
         }
 
         postsEl.innerHTML = posts.map((post) => {
-          const keywords = (post.matches || []).map((match) => `<span class="keyword">${match.term}</span>`).join('');
-          return `
-            <article class="card">
-              <div class="meta">
-                <div class="channel">${(post.channel || post.source || 'unknown').toString()}</div>
-                <div class="time">${formatTime(post.createdAt)}</div>
-              </div>
-              <div class="body">${renderHighlight(post.text || '', post.matches || [])}</div>
-              <div class="footer">
-                <span class="badge ${post.severity || 'medium'}">${post.severity || 'medium'}</span>
-                ${keywords}
-              </div>
-            </article>
-          `;
+          const keywords = (post.matches || []).map((match) => '<span class="keyword">' + match.term + '</span>').join('');
+          return '<article class="card">' +
+            '<div class="meta">' +
+              '<div class="channel">' + String(post.channel || post.source || 'unknown') + '</div>' +
+              '<div class="time">' + formatTime(post.createdAt) + '</div>' +
+            '</div>' +
+            '<div class="body">' + renderHighlight(post.text || '', post.matches || []) + '</div>' +
+            '<div class="footer">' +
+              '<span class="badge ' + (post.severity || 'medium') + '">' + (post.severity || 'medium') + '</span>' +
+              keywords +
+            '</div>' +
+          '</article>';
         }).join('');
       }
 

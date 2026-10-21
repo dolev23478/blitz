@@ -1,15 +1,26 @@
 'use client';
 
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
-import type { FilteredPost, WarningMatch } from '@blitz/shared';
+import React, { useEffect, useState } from 'react';
+import {
+  buildDemoAnalyticsSummary,
+  type FilteredPost,
+  type KafkaAnalyticsSummary,
+  type KafkaStreamEvent,
+} from '@blitz/shared';
+import { Header, type ActiveTab } from './components/Header';
+import { KpiCards } from './components/KpiCards';
+import { ChannelDistributionChart } from './components/ChannelDistributionChart';
+import { FilterFailureChart } from './components/FilterFailureChart';
+import { LiveTelemetryStream } from './components/LiveTelemetryStream';
+import { FilteredPostsFeed } from './components/FilteredPostsFeed';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
-const initialPosts: FilteredPost[] = [
+const initialThreatPosts: FilteredPost[] = [
   {
     id: 'demo-1',
     source: 'telegram',
-    channel: 'alerts-channel',
+    channel: 't.me/military_intel_tg',
     text: 'We are preparing explosives near the station and will strike before sunrise.',
     createdAt: new Date(Date.now() - 120000).toISOString(),
     severity: 'high',
@@ -22,7 +33,7 @@ const initialPosts: FilteredPost[] = [
   {
     id: 'demo-2',
     source: 'x',
-    channel: 'watchdesk',
+    channel: '@idf_spokesperson',
     text: 'The team is moving a drone toward the military checkpoint.',
     createdAt: new Date(Date.now() - 300000).toISOString(),
     severity: 'medium',
@@ -33,127 +44,173 @@ const initialPosts: FilteredPost[] = [
   },
 ];
 
-function formatTime(value: string) {
-  return new Date(value).toLocaleString();
-}
-
-function renderHighlightedText(text: string, matches: WarningMatch[]) {
-  if (!matches.length) return text;
-
-  const sorted = [...matches].sort((a, b) => a.start - b.start);
-  const nodes: Array<ReactNode> = [];
-  let cursor = 0;
-
-  sorted.forEach((match, index) => {
-    const start = Math.max(0, match.start);
-    const end = Math.min(text.length, match.end);
-
-    if (start > cursor) {
-      nodes.push(<span key={`plain-${index}`}>{text.slice(cursor, start)}</span>);
-    }
-
-    if (end > start) {
-      nodes.push(<mark key={`mark-${index}`}>{text.slice(start, end)}</mark>);
-      cursor = end;
-    }
-  });
-
-  if (cursor < text.length) {
-    nodes.push(<span key="tail">{text.slice(cursor)}</span>);
-  }
-
-  return nodes;
-}
-
 export default function Page() {
-  const [posts, setPosts] = useState<FilteredPost[]>(initialPosts);
+  const [activeTab, setActiveTab] = useState<ActiveTab>('analytics');
+  const [summary, setSummary] = useState<KafkaAnalyticsSummary>(buildDemoAnalyticsSummary);
+  const [threatPosts, setThreatPosts] = useState<FilteredPost[]>(initialThreatPosts);
   const [connected, setConnected] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
+  // Initial Fetch & SSE streams
   useEffect(() => {
-    const loadInitial = async () => {
+    // 1. Initial snapshot fetch for analytics
+    const loadSnapshot = async () => {
       try {
-        const response = await fetch(`${API_BASE}/api/posts`, { cache: 'no-store' });
-        if (!response.ok) {
-          return;
-        }
-
-        const items = (await response.json()) as FilteredPost[];
-        if (Array.isArray(items) && items.length) {
-          setPosts(items.slice(0, 50));
+        const res = await fetch(`${API_BASE}/api/analytics/snapshot`, { cache: 'no-store' });
+        if (res.ok) {
+          const data = (await res.json()) as KafkaAnalyticsSummary;
+          if (data && typeof data.totalPublished === 'number') {
+            setSummary(data);
+          }
         }
       } catch {
-        // backend may not be running yet
+        // Backend might still be starting up; fallback remains active
       }
     };
 
-    void loadInitial();
+    // 2. Initial fetch for filtered posts
+    const loadPosts = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/posts`, { cache: 'no-store' });
+        if (res.ok) {
+          const items = (await res.json()) as FilteredPost[];
+          if (Array.isArray(items) && items.length) {
+            setThreatPosts(items.slice(0, 50));
+          }
+        }
+      } catch {
+        // Backend not ready yet
+      }
+    };
 
-    const source = new EventSource(`${API_BASE}/api/posts/stream`);
+    void loadSnapshot();
+    void loadPosts();
 
-    source.onopen = () => setConnected(true);
-    source.onerror = () => setConnected(false);
-    source.addEventListener('filtered-post', (event: MessageEvent<string>) => {
+    // 3. Connect to Analytics SSE Stream
+    const analyticsSource = new EventSource(`${API_BASE}/api/analytics/stream`);
+
+    analyticsSource.onopen = () => setConnected(true);
+    analyticsSource.onerror = () => setConnected(false);
+
+    analyticsSource.onmessage = (event: MessageEvent<string>) => {
+      if (isPaused) return;
+      try {
+        const payload = JSON.parse(event.data) as {
+          type?: string;
+          payload?: any;
+          summary?: KafkaAnalyticsSummary;
+        };
+
+        if (payload.type === 'snapshot' && payload.payload) {
+          setSummary(payload.payload as KafkaAnalyticsSummary);
+        } else if (payload.summary) {
+          setSummary(payload.summary);
+        }
+      } catch {
+        // Ignore unparseable frames
+      }
+    };
+
+    // 4. Connect to Filtered Posts SSE Stream
+    const postsSource = new EventSource(`${API_BASE}/api/posts/stream`);
+
+    postsSource.addEventListener('filtered-post', (event: MessageEvent<string>) => {
+      if (isPaused) return;
       try {
         const payload = JSON.parse(event.data) as { payload?: FilteredPost };
-        const post = payload.payload ?? payload;
-        if (!post || !post.text) {
-          return;
+        const post = payload.payload ?? (payload as unknown as FilteredPost);
+        if (post && post.text) {
+          setThreatPosts((current) => [post, ...current].slice(0, 50));
         }
-
-        setPosts((current) => [post, ...current].slice(0, 50));
       } catch {
-        // ignore malformed SSE payloads until backend is stable
+        // Ignore malformed frames
       }
     });
 
-    return () => source.close();
-  }, []);
+    return () => {
+      analyticsSource.close();
+      postsSource.close();
+    };
+  }, [isPaused]);
 
-  const totalMatches = useMemo(
-    () => posts.reduce((sum, post) => sum + (post.matches?.length ?? 0), 0),
-    [posts],
-  );
+  const handleRefresh = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/analytics/snapshot`);
+      if (res.ok) {
+        const data = (await res.json()) as KafkaAnalyticsSummary;
+        setSummary(data);
+      }
+    } catch {
+      // Ignore
+    }
+  };
 
   return (
-    <main>
-      <header className="page-header">
-        <div>
-          <h1>Front Page</h1>
-          <p>Live posts that crossed the filter</p>
+    <main className="dashboard-container">
+      <Header
+        activeTab={activeTab}
+        onSelectTab={setActiveTab}
+        connected={connected}
+        isPaused={isPaused}
+        onTogglePause={() => setIsPaused(!isPaused)}
+        onRefresh={handleRefresh}
+        totalPublished={summary.totalPublished}
+        totalRejected={summary.totalRejected}
+        threatPostsCount={threatPosts.length}
+      />
+
+      {/* TAB 1: KAFKA ANALYTICS & TELEMETRY */}
+      {activeTab === 'analytics' && (
+        <div className="tab-pane">
+          <KpiCards summary={summary} />
+
+          <div className="charts-split-grid">
+            <ChannelDistributionChart
+              distribution={summary.distribution}
+              totalPublished={summary.totalPublished}
+            />
+            <FilterFailureChart
+              topFailingChannels={summary.topFailingChannels}
+              totalRejected={summary.totalRejected}
+            />
+          </div>
+
+          <LiveTelemetryStream events={summary.recentEvents} />
         </div>
-        <div className="status-pill">{connected ? 'Live stream connected' : 'Waiting for backend'}</div>
-      </header>
+      )}
 
-      <div className="page-header" style={{ marginTop: 0, marginBottom: 22 }}>
-        <div className="status-pill">Total posts: {posts.length}</div>
-        <div className="status-pill">Warning hits: {totalMatches}</div>
-      </div>
+      {/* TAB 2: FILTERED THREAT POSTS FEED */}
+      {activeTab === 'threats' && (
+        <div className="tab-pane">
+          <FilteredPostsFeed posts={threatPosts} />
+        </div>
+      )}
 
-      <section className="posts-grid">
-        {posts.length === 0 ? (
-          <div className="empty-state">No filtered posts yet.</div>
-        ) : (
-          posts.map((post) => (
-            <article className="post-card" key={post.id}>
-              <div className="post-card-header">
-                <div className="post-channel">{post.channel}</div>
-                <div className="post-time">{formatTime(post.createdAt)}</div>
-              </div>
+      {/* TAB 3: UNIFIED INTELLIGENCE VIEW */}
+      {activeTab === 'unified' && (
+        <div className="tab-pane">
+          <KpiCards summary={summary} />
 
-              <div className="post-body">{renderHighlightedText(post.text, post.matches ?? [])}</div>
+          <div className="unified-layout-grid">
+            <div className="unified-left-col">
+              <ChannelDistributionChart
+                distribution={summary.distribution}
+                totalPublished={summary.totalPublished}
+              />
+              <FilterFailureChart
+                topFailingChannels={summary.topFailingChannels}
+                totalRejected={summary.totalRejected}
+              />
+            </div>
 
-              <div className="post-footer">
-                <span className={`severity-tag ${post.severity}`}>{post.severity}</span>
-                {(post.matches ?? []).map((match, index) => (
-                  <span key={`${match.term}-${index}`} className="keyword-tag">
-                    {match.term}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))
-        )}
-      </section>
+            <div className="unified-right-col">
+              <FilteredPostsFeed posts={threatPosts} />
+            </div>
+          </div>
+
+          <LiveTelemetryStream events={summary.recentEvents} />
+        </div>
+      )}
     </main>
   );
 }
