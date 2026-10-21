@@ -8,7 +8,9 @@
     "start": "next start -p 3000"
   },
   "dependencies": {
-    "@blitz/shared": "workspace:*",
+    "@blitz/shared": "file:../../packages/shared",
+    "blitz": "file:../..",
+    "lucide-react": "^1.16.0",
     "next": "15.0.4",
     "react": "19.0.0",
     "react-dom": "19.0.0"

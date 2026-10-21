@@ -95,3 +95,8 @@ reference/
 /.radio
 
 ca.crt
+
+# Monorepo subpackage build outputs & dependencies
+dist/
+.next/
+node_modules/

@@ -1,4 +1,5 @@
-import { Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, Logger, Optional, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
+import { randomUUID } from 'node:crypto';
 import { MONITORED_X_SOURCES } from './constants/monitored-sources.js';
 import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
 import { XScraperService } from './x-scraper.service.js';
@@ -7,6 +8,7 @@ import { analyzeText } from '../text-analyzer.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 import { FilteredPostsService } from '../events/filtered-posts.service.js';
 import type { FilteredPost } from '../types.js';
+import { KafkaAnalyticsService } from '../analytics/kafka-analytics.service.js';
 
 @Injectable()
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
@@ -18,6 +20,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     private readonly redis: RedisService,
     private readonly transformer: TransformerWorkflow,
     private readonly filteredPosts: FilteredPostsService,
+    @Optional() @Inject(KafkaAnalyticsService) private readonly analytics?: KafkaAnalyticsService,
   ) {}
 
   onModuleInit(): void {
@@ -75,10 +78,32 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       if (!post.text || !post.text.trim()) continue;
 
       const analysis = analyzeText(post.text, 'auto');
-      if (!analysis.matched) continue;
+      if (!analysis.matched) {
+        this.analytics?.recordRejected({
+          id: String(post.id ?? randomUUID()),
+          channel: post.authorHandle ?? result.handle ?? 'x',
+          source: 'x',
+          content: post.text,
+          reason: 'Keyword filter rejected: did not match any threat terms',
+          attemptedLanguages: ['auto'],
+          timestamp: new Date().toISOString(),
+        });
+        continue;
+      }
 
       const matchedLanguage = analysis.languages?.[0] ?? analysis.language ?? null;
-      if (!matchedLanguage) continue;
+      if (!matchedLanguage) {
+        this.analytics?.recordRejected({
+          id: String(post.id ?? randomUUID()),
+          channel: post.authorHandle ?? result.handle ?? 'x',
+          source: 'x',
+          content: post.text,
+          reason: 'Keyword filter rejected: no matching language identified',
+          attemptedLanguages: ['auto'],
+          timestamp: new Date().toISOString(),
+        });
+        continue;
+      }
 
       this.logger.log(
         `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
@@ -113,11 +138,11 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         });
 
         const filteredPost: FilteredPost = {
-          id: `${post.id ?? post.url ?? post.createdAt ?? Date.now()}`,
+          id: `${post.id ?? post.url ?? post.publishedAt ?? Date.now()}`,
           source: 'x',
-          channel: post.username ?? post.handle ?? 'x',
+          channel: post.authorHandle ?? result.handle ?? 'x',
           text: post.text,
-          createdAt: new Date(post.createdAt ?? Date.now()).toISOString(),
+          createdAt: new Date(post.publishedAt ?? Date.now()).toISOString(),
           severity: 'high',
           matches: analysisMatches(post.text, post.matches ?? []).map((match) => ({
             term: match.term,

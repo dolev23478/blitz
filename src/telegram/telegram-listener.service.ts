@@ -1,11 +1,13 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger, Optional } from '@nestjs/common';
+import { randomUUID } from 'node:crypto';
 import type { NewMessagesEvent } from '../events/message-events.service.js';
-import { FilteredPostsService } from '../events/filtered-posts.service.js';
 import { analyzeText } from '../text-analyzer.js';
 import { RedisService } from '../redis/redis.service.js';
 import { TelegramService } from './telegram.service.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 import type { FilteredPost, ParsedMessage } from '../types.js';
+import { FilteredPostsService } from '../events/filtered-posts.service.js';
+import { KafkaAnalyticsService } from '../analytics/kafka-analytics.service.js';
 
 /** Longer than the pull overlap and the sync interval, so re-pulled messages are always recognised. */
 const SEEN_TTL_SECONDS = 2 * 24 * 60 * 60;
@@ -15,10 +17,11 @@ export class TelegramListenerService {
   private readonly logger = new Logger(TelegramListenerService.name);
 
   constructor(
-    private readonly telegram: TelegramService,
-    private readonly redis: RedisService,
-    private readonly transformer: TransformerWorkflow,
-    private readonly filteredPosts: FilteredPostsService,
+    @Inject(TelegramService) private readonly telegram: TelegramService,
+    @Inject(RedisService) private readonly redis: RedisService,
+    @Inject(TransformerWorkflow) private readonly transformer: TransformerWorkflow,
+    @Inject(FilteredPostsService) private readonly filteredPosts: FilteredPostsService,
+    @Optional() @Inject(KafkaAnalyticsService) private readonly analytics?: KafkaAnalyticsService,
   ) {
     this.telegram.watchResults((event) => this.onTelegramResult(event));
   }
@@ -33,10 +36,32 @@ export class TelegramListenerService {
         if (!(await this.claim(event.channel, message))) continue;
 
         const analysis = analyzeText(message.text, 'auto');
-        if (!analysis.matched) continue;
+        if (!analysis.matched) {
+          this.analytics?.recordRejected({
+            id: String(message.messageId ?? randomUUID()),
+            channel: event.channel,
+            source: 'telegram',
+            content: message.text,
+            reason: 'Keyword filter rejected: did not match any threat terms',
+            attemptedLanguages: ['auto'],
+            timestamp: new Date().toISOString(),
+          });
+          continue;
+        }
 
         const matchedLanguage = analysis.languages?.[0] ?? analysis.language ?? null;
-        if (!matchedLanguage) continue;
+        if (!matchedLanguage) {
+          this.analytics?.recordRejected({
+            id: String(message.messageId ?? randomUUID()),
+            channel: event.channel,
+            source: 'telegram',
+            content: message.text,
+            reason: 'Keyword filter rejected: no matching language identified',
+            attemptedLanguages: ['auto'],
+            timestamp: new Date().toISOString(),
+          });
+          continue;
+        }
 
         this.logger.log(
           `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,

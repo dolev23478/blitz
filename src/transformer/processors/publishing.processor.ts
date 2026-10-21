@@ -1,6 +1,7 @@
 import {
   Injectable,
   Logger,
+  Optional,
   type OnApplicationBootstrap,
   type OnModuleDestroy,
 } from '@nestjs/common';
@@ -13,6 +14,7 @@ import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
 import type { TransformContext } from '../transformer.types.js';
 import { ReportValidator } from '../report-validator.js';
+import { KafkaAnalyticsService } from '../../analytics/kafka-analytics.service.js';
 import {
   RedisRetryQueue,
   RETRY_LEASE_MS,
@@ -46,6 +48,7 @@ export class PublishingProcessor
   constructor(
     private readonly config: ConfigService,
     private readonly queue: RedisRetryQueue,
+    @Optional() private readonly analytics?: KafkaAnalyticsService,
   ) {
     this.validator = new ReportValidator(config);
     this.mirror = KafkaMirror.fromConfig(config);
@@ -287,6 +290,17 @@ export class PublishingProcessor
         throw new Error(
           'Publication lease lost after acknowledgment; record retained.',
         );
+      this.analytics?.recordPublished({
+        id: String(job.report.report_id),
+        channel: job.report.channel_name || job.report.account_name || 'unknown_channel',
+        source: job.report.platform || 'kafka',
+        content: job.report.content,
+        reportId: job.report.report_id,
+        termsMatched: job.report.matches,
+        language: job.report.languages?.join(', ') || 'unknown',
+        timestamp: job.report.collected_at || new Date().toISOString(),
+        topic: REPORT_TOPIC,
+      });
       await this.queue.finish(job, token, 'confirmed');
     } finally {
       clearInterval(heartbeat);

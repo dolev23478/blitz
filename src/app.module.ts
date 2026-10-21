@@ -10,13 +10,19 @@ import { RedisModule } from './redis/redis.module.js';
 import { XScraperModule } from './x-scraper/x-scraper.module.js';
 import { XScraperCronService } from './x-scraper/x-scraper.cron.service.js';
 import { TransformerModule } from './transformer/transformer.module.js';
+import { KafkaAnalyticsModule } from './analytics/kafka-analytics.module.js';
 import { RadioTransformerModule } from './radio/radio-transformer.module.js';
 
 @Module({
   imports: [
-    AppConfigModule, RedisModule, EventsModule, TelegramModule, MetaModule,
+    AppConfigModule,
+    RedisModule,
+    EventsModule,
+    TelegramModule,
+    MetaModule,
     XScraperModule,
     TransformerModule,
+    KafkaAnalyticsModule,
     RadioTransformerModule,
   ],
   providers: [
