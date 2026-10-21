@@ -35,6 +35,8 @@ let app: Awaited<
 let radio: RadioService;
 const send = vi.fn();
 const capture = vi.fn();
+const analyze = vi.hoisted(() => vi.fn());
+vi.mock('../../src/text-analyzer.js', () => ({ analyzeText: analyze }));
 beforeEach(async () => {
   directory = resolve('.tmp', `radio-handoff-${randomUUID()}`);
   const settings = loadConfig({
@@ -50,8 +52,25 @@ beforeEach(async () => {
       { topicName: 'reports.raw', partition: 0, errorCode: 0 },
     ]);
   capture.mockReset().mockResolvedValue(captured);
+  analyze
+    .mockReset()
+    .mockReturnValue({
+      matched: true,
+      languages: ['en'],
+      language: 'en',
+      terms: ['report'],
+      issues: [],
+      evaluation: {
+        mode: 'dictionary_only',
+        threatCategories: ['context.alert'],
+        riskScore: 20,
+        riskLevel: 'medium',
+        flaggedReasons: ['Dictionary term matched'],
+      },
+    });
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
+  vi.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined);
   vi.spyOn(Kafka.prototype, 'producer').mockReturnValue({
     connect: async () => undefined,
     send,
@@ -90,6 +109,13 @@ it('automatically hands archived radio JSON to the real shared workflow before c
       await readFile(resolve(directory, 'clips', clipId + '.json'), 'utf8'),
     );
     expect(archived.text).toBe(captured.text); // Archive confirmed before any Kafka attempt.
+    expect(Logger.prototype.log).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event: 'radio_kafka_sending',
+        key: String(report.report_id),
+        payload: report,
+      }),
+    ); // This exact wire payload is logged before the transport is called.
     return [{ topicName: record.topic, partition: 0, errorCode: 0 }];
   });
   const result = await radio.collectOnce([station]);
@@ -101,6 +127,8 @@ it('automatically hands archived radio JSON to the real shared workflow before c
     media_type: ['text'],
     languages: ['en'],
     content: captured.text,
+    matches: ['report'],
+    categories: ['context.alert'],
     report_url: `https://blitz.example.com/api/radio/clips/${result.clips[0]!.clipId}`,
   });
 });
@@ -111,6 +139,70 @@ it('archives no-speech clips and never sends them to Kafka', async () => {
   expect(result.clips[0]!.status).toBe('no_speech');
   expect(result.failedStations).toEqual([]);
   expect(send).not.toHaveBeenCalled();
+  expect(analyze).not.toHaveBeenCalled();
+  expect(Logger.prototype.log).toHaveBeenCalledWith(
+    expect.objectContaining({
+      event: 'radio_filter_result',
+      passed: false,
+      reason: 'no_speech',
+    }),
+  );
+});
+
+it('archives unmatched text, logs its rejection and never invokes publication', async () => {
+  analyze.mockReturnValue({
+    matched: false,
+    languages: ['en'],
+    language: 'en',
+    terms: [],
+    issues: [],
+  });
+  const result = await radio.collectOnce([station]);
+  expect(result.clips).toHaveLength(1);
+  expect(result.failedStations).toEqual([]);
+  expect(analyze).toHaveBeenCalledWith(captured.text, 'auto');
+  expect(send).not.toHaveBeenCalled();
+  expect(Logger.prototype.log).toHaveBeenCalledWith(
+    expect.objectContaining({
+      event: 'radio_filter_result',
+      passed: false,
+      reason: 'no_dictionary_match',
+    }),
+  );
+  expect((await radio.readClip(result.clips[0]!.clipId)).text).toBe(
+    captured.text,
+  );
+});
+
+it('keeps ASR language as ISO metadata when an emoji dictionary was matched', async () => {
+  capture.mockResolvedValue({ ...captured, language: 'fa' });
+  analyze.mockReturnValue({
+    matched: true,
+    languages: ['em'],
+    language: 'em',
+    terms: ['emoji-match'],
+    issues: [],
+  });
+  const result = await radio.collectOnce([station]);
+  expect(result.failedStations).toEqual([]);
+  expect(
+    JSON.parse(send.mock.calls[0]![0].messages[0].value).languages,
+  ).toEqual(['fa']);
+  expect(
+    (await radio.readClip(result.clips[0]!.clipId)).languages,
+  ).toBeUndefined(); // Original archive is not enriched in place.
+});
+
+it('fails closed on analyzer errors and keeps the original archived clip', async () => {
+  analyze.mockImplementation(() => {
+    throw new Error('Dictionary loading failed');
+  });
+  const result = await radio.collectOnce([station]);
+  expect(result.failedStations).toEqual([station.id]);
+  expect(send).not.toHaveBeenCalled();
+  expect((await radio.readClip(result.clips[0]!.clipId)).text).toBe(
+    captured.text,
+  );
 });
 
 it('retries a radio report using the existing publisher without recapturing audio', async () => {

@@ -173,12 +173,11 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
           language: clip.language,
           transcript: clip.text,
         });
-        if (clip.status === 'transcribed' && clip.text.trim()) {
-          for (const listener of this.transcriptListeners) {
-            if (this.closing) break;
-            // Publisher shutdown retains admitted reports in Redis; do not block Nest teardown on retries.
-            await Promise.race([listener(clip), this.shutdown]);
-          }
+        for (const listener of this.transcriptListeners) {
+          if (this.closing) break;
+          // The pipeline logs a filter decision for every clip, including no-speech input.
+          // Publisher shutdown retains admitted reports in Redis; do not block Nest teardown on retries.
+          await Promise.race([listener(clip), this.shutdown]);
         }
       } catch (error) {
         result.failedStations.push(station.id);

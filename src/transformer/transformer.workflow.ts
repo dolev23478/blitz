@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import StateMachine from 'javascript-state-machine';
 import { randomUUID } from 'node:crypto';
 import { State } from '../common/enums.js';
@@ -20,6 +20,7 @@ import type {
 
 @Injectable()
 export class TransformerWorkflow {
+  private readonly logger = new Logger(TransformerWorkflow.name);
   constructor(
     private readonly parser: ParsingProcessor,
     private readonly mapper: MappingProcessor,
@@ -88,12 +89,35 @@ export class TransformerWorkflow {
         const processor = processors[machine.state as State];
         if (!processor) throw new Error('Unknown transformer state.');
         await processor.execute(context);
+        if (format === 'RadioTranscript') {
+          this.logger.log({
+            event: 'radio_transformer_stage_completed',
+            clipId: context.inputId,
+            stage: machine.state,
+            ...(machine.state === State.Mapping
+              ? { reports: context.candidates }
+              : {}),
+            ...(machine.state === State.Validation
+              ? { reports: context.reports }
+              : {}),
+          });
+        }
         machine.success();
       }
       await this.completion.execute(context);
       if (!context.result) throw new Error('Missing transformer result.');
       return context.result;
     } catch (error) {
+      if (format === 'RadioTranscript')
+        this.logger.error({
+          event: 'radio_transformer_stage_failed',
+          clipId: context.inputId,
+          stage: machine.state,
+          reason:
+            error instanceof Error
+              ? error.message
+              : 'Unknown Transformer error',
+        });
       machine.fail();
       throw error;
     }

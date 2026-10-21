@@ -19,10 +19,15 @@ Capture end becomes `collected_at`; `published_at` is null because original
 broadcast time is unknown. Waveforms/segment data are not extra wire fields.
 
 The full application's `RadioTransformerModule` registers the handoff after
-archiving and logging. No-speech clips stay local. The handoff awaits the existing
+archiving and logging. It applies the same shared auto-language dictionary
+analysis used by Telegram/X before invoking the Transformer. No-speech and
+unmatched clips stay local. Analysis terms/categories enrich a copy of the input;
+ASR/collector ISO languages are preserved. The handoff awaits the existing
 publisher confirmation/retries; invalid content is rejected and archives remain
 on failure. Shutdown leaves admitted reports to the publisher's Redis recovery.
-Standalone radio commands import `RadioModule` only and never publish. Archives
+Capture-only `radio:once`/`radio:demo` commands import `RadioModule` only and never publish.
+`radio:start` imports the same integrated path as the full app; it runs only radio
+with filtering and real publication (optionally `--once`). Archives
 are not automatically replayed.
 
 To test archived radio JSON through the compiled workflow without infrastructure:

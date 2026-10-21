@@ -2,8 +2,9 @@
 
 Radio runs inside the existing Nest application, alongside Telegram and X.
 It records public internet audio and transcribes locally on CPU. In the full
-application, nonempty transcripts now pass through the shared Transformer after
-archiving and logging. Local diagnostic commands still collect without
+application, transcripts pass through the same `analyzeText(text, 'auto')`
+dictionary gate used by Telegram and X after archiving and logging. Only accepted
+text continues through the shared Transformer. Local diagnostic commands still collect without
 publishing or starting Redis/Kafka.
 
 ## Run
@@ -36,13 +37,42 @@ To run continuously with the entire existing application:
 npm run start
 ```
 
+To run **only radio with the full filter/Transformer/Kafka path** (build included):
+
+```powershell
+npm run radio:start
+```
+
+For one cycle, or one selected station:
+
+```powershell
+npm run radio:start -- --once
+npm run radio:start -- --once --station=iran-international
+```
+
+This imports the same `RadioTransformerModule` as the full app, starts no Telegram
+or X collectors, and serves the protected radio clip routes on `PORT` while it
+runs. It uses the existing `REDIS_URL`, `KAFKA_BROKERS`, TLS/SASL and outbox settings
+for actual publication. The once mode closes HTTP and workers at the end. Normal
+mode repeats according to the recording/pause constants. `radio:once` remains
+the separate capture-only diagnostic, without filtering or publication.
+
 `AppModule` imports `RadioTransformerModule`, connecting radio to the existing
 Transformer. Collection starts after Nest initializes and repeats until shutdown.
 The normal app still needs its
 existing collector credentials/infrastructure; use `radio:once` to test radio
 independently. No background process is installed by this feature.
 
-The handoff calls `transformer.run('RadioTranscript', clip)` and awaits the normal
+The handoff first applies the shared analyzer's default `dictionary_only` mode,
+matching the current Telegram/X integrations. A non-matching clip stays in the
+archive and is not submitted to the Transformer. Analyzer errors fail the handoff;
+they do not bypass filtering. Accepted input receives unique dictionary terms
+in `matches` and category labels from the existing evaluation unless collector
+categories were already provided. Existing multilingual metadata is preserved;
+otherwise ASR language supplies `languages`. Dictionary languages are logged
+separately; emoji dictionary labels are not ISO language codes.
+
+The handoff then calls `transformer.run('RadioTranscript', clip)` and awaits the normal
 Kafka publisher. It uses `platform: 'internet_radio'`, `media_type: ['text']` and
 `languages: [clip.language]`. Original audio remains archived; `audio` is not
 added to the RAW_REPORT enum. Unknown original broadcast time becomes
@@ -54,6 +84,26 @@ Each URL identifies `/api/radio/clips/<uuid>`, not a shared station stream.
 Access still follows the API-key guard. No-speech clips stay local. A failed
 handoff preserves evidence without automatic archive replay. Kafka retry storage
 and policy remain owned by the existing Transformer publisher.
+
+## Read each processing stage in the logs
+
+| Event | What it shows |
+| --- | --- |
+| `radio_capture_started`, `radio_transcribed` | Station, capture ID, audio duration and original transcript |
+| `radio_input_received` | The full collector JSON received by the pipeline |
+| `radio_analysis_completed` | ASR/ISO languages, dictionary languages, matches, categories/evaluation and issues |
+| `radio_filter_result` | `passed: true/false` and the explicit reason (including no speech) |
+| `radio_transformer_input` | Accepted JSON with collector-side analysis metadata |
+| `radio_transformer_stage_completed` | Parsing, mapping, validation and publishing; mapping/validation include report data |
+| `radio_kafka_sending` | Exact validated wire payload, topic, string key and attempt, immediately before producer.send |
+| `radio_kafka_acknowledged` | Successful Kafka acknowledgment, not just a queued attempt |
+| `radio_pipeline_completed` | Workflow completed after the publisher's confirmation |
+| `radio_pipeline_failed`, `radio_transformer_stage_failed` | Failure reason and the stage that failed |
+
+`clipId` connects input/filter/Transformer events; `reportId` and the UUID in
+`report_url` connect the publisher events. Validation logs show the formatted
+report even when broker configuration/connectivity prevents a send. A sending
+event alone does not mean Kafka accepted the report. Retries log each attempt.
 
 ## Change recording behavior
 
@@ -167,7 +217,14 @@ npx vitest run test/radio.spec.ts test/radio-worker.spec.ts
 npm test
 npm run radio:demo
 npm run radio:once
+node --import tsx test/radio/run-pipeline-sample.mjs
 ```
+
+The pipeline sample runs actual archived JSON through the actual analyzer and
+compiled integration modules, with Redis/Kafka test doubles. Full stage logs,
+filtered/published counts and validated wire reports are written under
+`.radio/pipeline-verification`. It does not contact real Kafka or prove real
+broker integration. Real-analyzer unit tests use controlled fixture dictionaries.
 
 Unit tests use controlled workers for scheduling, failures, shutdown and archive
 rules. `radio:demo` uses actual Python/PyAV/faster-whisper with public recorded
