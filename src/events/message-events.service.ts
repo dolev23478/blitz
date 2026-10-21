@@ -6,6 +6,8 @@ export interface NewMessagesEvent {
   channel: string;
   inserted: number;
   messages?: ParsedMessage[];
+  /** Downloads the photo of one message of this channel; only called for messages that matched. */
+  downloadPhoto?: (messageId: number) => Promise<{ data: Uint8Array; mimeType: string | null } | null>;
 }
 
 /** In-process bus between the Telegram collector and its listeners; emit() resolves once every listener finished. */

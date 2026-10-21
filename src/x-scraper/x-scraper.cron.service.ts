@@ -1,8 +1,9 @@
 import { Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
 import { MONITORED_X_SOURCES } from './constants/monitored-sources.js';
-import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
+import type { ProfileScrapeResult, ScrapedPostMedia } from './contracts/x-scraper.interfaces.js';
 import { XScraperService } from './x-scraper.service.js';
 import { RedisService } from '../redis/redis.service.js';
+import { MediaStorageService } from '../media/media-storage.service.js';
 import { analyzeText } from '../text-analyzer.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 import { FilteredPostsService } from '../events/filtered-posts.service.js';
@@ -18,6 +19,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     private readonly redis: RedisService,
     private readonly transformer: TransformerWorkflow,
     private readonly filteredPosts: FilteredPostsService,
+    private readonly media: MediaStorageService,
   ) {}
 
   onModuleInit(): void {
@@ -66,6 +68,18 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
+  /** Re-hosts the photos of a matched post in our storage; a photo that cannot be uploaded keeps its original X URL. */
+  private async storePhotos(post: ProfileScrapeResult['posts'][number]): Promise<ScrapedPostMedia[]> {
+    if (!this.media.enabled) return post.media;
+    return Promise.all(
+      post.media.map(async (item) => {
+        if (item.type !== 'photo') return item;
+        const url = await this.media.uploadPhoto({ source: 'x', owner: post.authorHandle, id: post.id, url: item.url });
+        return url ? { ...item, url, stored: true } : item;
+      }),
+    );
+  }
+
   /** Called automatically every time the cron cycle gets a result from X. */
   private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
     const cursor = startedAt.toISOString();
@@ -102,7 +116,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       const singleResult: ProfileScrapeResult = {
         ...result,
         totalPosts: 1,
-        posts: [post],
+        posts: [{ ...post, media: await this.storePhotos(post) }],
       };
       try {
         await this.transformer.run('ProfileScrapeResult', singleResult, {

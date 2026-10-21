@@ -44,6 +44,7 @@ export const provisionalRawReportSchema = {
       items: { type: 'string', enum: ['text', 'photo', 'video'] },
     },
     report_title: { type: ['string', 'null'] },
+    media_urls: { type: 'array', items: { type: 'string', minLength: 1, format: 'uri' } },
     content: { type: 'string', minLength: 1, pattern: '\\S' },
     languages: {
       type: 'array',

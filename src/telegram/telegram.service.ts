@@ -258,7 +258,13 @@ export class TelegramService implements OnApplicationBootstrap, OnModuleDestroy 
     const channel = this.usernameByChatId.get(chatId);
     if (!channel || dtos.length === 0) return Promise.resolve();
     const ordered = [...dtos].sort((a, b) => a.messageId - b.messageId);
-    return this.events.emit({ channelId: chatId, channel, inserted: ordered.length, messages: ordered.map((dto) => toParsedMessage(dto, channel)) });
+    return this.events.emit({
+      channelId: chatId,
+      channel,
+      inserted: ordered.length,
+      messages: ordered.map((dto) => toParsedMessage(dto, channel)),
+      downloadPhoto: (messageId) => this.extractor?.downloadMessageMedia(chatId, messageId) ?? Promise.resolve(null),
+    });
   }
 
   /**

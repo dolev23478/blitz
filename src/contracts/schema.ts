@@ -13,6 +13,8 @@ export interface RawReport {
   channel_name: string | null;
   report_url: string;
   media_type: ReportMediaType[];
+  /** Public S3 URLs of uploaded photos; omitted when none were uploaded. */
+  media_urls?: string[];
   report_title: string | null;
   content: string;
   /** ISO 639-1 codes; missing collector language becomes an empty array. */

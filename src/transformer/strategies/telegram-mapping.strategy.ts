@@ -6,7 +6,7 @@ import type { ReportMetadata } from '../../contracts/mappings.js';
 import type { RawReportCandidate } from '../../contracts/schema.js';
 import { reportId } from '../report-id.js';
 import { collectorFields } from '../collector-fields.js';
-import { reportMediaTypes } from '../media-types.js';
+import { reportMediaTypes, storedMediaUrls } from '../media-types.js';
 
 @Injectable()
 export class TelegramMappingStrategy {
@@ -23,6 +23,7 @@ export class TelegramMappingStrategy {
       channel_name: metadata.channelName ?? null,
       report_url: message.url,
       media_type: reportMediaTypes(message.media),
+      ...(storedMediaUrls(message.media).length ? { media_urls: storedMediaUrls(message.media) } : {}),
       report_title: null,
       content: message.text,
       ...collectorFields(message, metadata),

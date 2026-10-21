@@ -37,6 +37,7 @@
     "start:web": "npm run start --workspace @blitz/web"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1154.0",
     "@fastify/cors": "^11.3.1",
     "@mtcute/dispatcher": "^0.32.5",
     "@mtcute/node": "^0.32.5",

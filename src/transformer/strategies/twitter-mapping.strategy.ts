@@ -4,7 +4,7 @@ import type { ReportMetadata } from '../../contracts/mappings.js';
 import type { RawReportCandidate } from '../../contracts/schema.js';
 import { reportId } from '../report-id.js';
 import { collectorFields } from '../collector-fields.js';
-import { reportMediaTypes } from '../media-types.js';
+import { reportMediaTypes, storedMediaUrls } from '../media-types.js';
 
 @Injectable()
 export class TwitterMappingStrategy {
@@ -20,6 +20,7 @@ export class TwitterMappingStrategy {
       channel_name: null,
       report_url: post.url,
       media_type: reportMediaTypes(post.media),
+      ...(storedMediaUrls(post.media).length ? { media_urls: storedMediaUrls(post.media) } : {}),
       report_title: null,
       content: post.text,
       ...collectorFields(post, {

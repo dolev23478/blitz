@@ -7,6 +7,8 @@ import type { NewMessagesEvent } from '../../src/events/message-events.service.j
 import { TelegramListenerService } from '../../src/telegram/telegram-listener.service.js';
 import type { TelegramService } from '../../src/telegram/telegram.service.js';
 import type { RedisService } from '../../src/redis/redis.service.js';
+import type { FilteredPostsService } from '../../src/events/filtered-posts.service.js';
+import type { MediaStorageService } from '../../src/media/media-storage.service.js';
 import { PublishingProcessor } from '../../src/transformer/processors/publishing.processor.js';
 import { telegramInput, workflow } from './fixtures.js';
 
@@ -57,7 +59,9 @@ beforeEach(() => {
     },
   } as unknown as TelegramService;
   const redis = { isEnabled: () => false } as unknown as RedisService;
-  new TelegramListenerService(telegram, redis, workflow(publisher));
+  const filteredPosts = { push: () => undefined } as unknown as FilteredPostsService;
+  const media = { enabled: false } as unknown as MediaStorageService;
+  new TelegramListenerService(telegram, redis, workflow(publisher), filteredPosts, media);
 });
 
 afterEach(async () => {

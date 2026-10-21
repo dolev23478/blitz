@@ -14,6 +14,7 @@ this comparison. This is a field-table reference, not an executable JSON Schema.
 | `channel_name` | string | string or null when unavailable; nullability remains a local assumption |
 | `report_url` | string; unchanged; unique with platform | Original collector URL |
 | `media_type` | string[]; text, photo, video | Array restricted to `text`, `photo`, `video` |
+| `media_urls` | string[]; optional | Public S3 URLs of uploaded photos (X and Telegram); omitted when none. Local extension, needs DE sign-off |
 | `report_title` | string; null if none | string or null |
 | `content` | string; required, never empty; parsed text, not HTML | Nonblank parsed text |
 | `language` | string; ISO 639-1; collector-supplied | **`languages: string[]`**, per the user's explicit newer requirement; legacy collector `language` is accepted before normalization |

@@ -86,6 +86,34 @@ const schema = z.object({
     .string()
     .optional()
     .transform((v) => v || undefined),
+  /** Media upload (photos). Disabled unless S3_BUCKET and S3_PUBLIC_BASE_URL are both set; any S3-compatible store works via S3_ENDPOINT. */
+  S3_BUCKET: z
+    .string()
+    .optional()
+    .transform((v) => v || undefined),
+  S3_REGION: z.string().default('us-east-1'),
+  /** Custom endpoint for S3-compatible stores (MinIO, etc.); empty = AWS. */
+  S3_ENDPOINT: z
+    .string()
+    .optional()
+    .transform((v) => v || undefined),
+  /** Optional: when unset the default AWS credential chain (env, role, profile) is used. */
+  S3_ACCESS_KEY_ID: z
+    .string()
+    .optional()
+    .transform((v) => v || undefined),
+  S3_SECRET_ACCESS_KEY: z
+    .string()
+    .optional()
+    .transform((v) => v || undefined),
+  S3_FORCE_PATH_STYLE: z.enum(['true', 'false']).optional(),
+  /** Public base of the bucket or CDN; stored URLs are <base>/<key>. */
+  S3_PUBLIC_BASE_URL: z
+    .string()
+    .optional()
+    .transform((v) => v || undefined),
+  S3_KEY_PREFIX: z.string().default('media'),
+  MEDIA_MAX_MB: z.coerce.number().positive().default(50),
   DE_RAW_REPORT_SCHEMA_PATH: z
     .string()
     .optional()

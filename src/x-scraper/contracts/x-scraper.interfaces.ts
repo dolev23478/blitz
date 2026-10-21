@@ -36,6 +36,8 @@ export interface BatchSourcesRequestDto {
 export interface ScrapedPostMedia {
   type: 'photo' | 'video' | 'animated_gif';
   url: string;
+  /** True when `url` points at our own storage (the media was uploaded). */
+  stored?: boolean;
   previewUrl?: string;
 }
 

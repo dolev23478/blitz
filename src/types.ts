@@ -3,6 +3,8 @@ import type { CollectorReportFields } from './contracts/collector-report.js';
 export interface MediaItem {
   type: 'photo' | 'video' | 'document' | 'audio' | 'other';
   url: string;
+  /** True when `url` points at our own storage (the media was uploaded). */
+  stored?: boolean;
   thumbnail?: string;
   fileName?: string | null;
   mimeType?: string | null;

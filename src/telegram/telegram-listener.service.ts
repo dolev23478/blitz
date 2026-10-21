@@ -3,6 +3,7 @@ import type { NewMessagesEvent } from '../events/message-events.service.js';
 import { FilteredPostsService } from '../events/filtered-posts.service.js';
 import { analyzeText } from '../text-analyzer.js';
 import { RedisService } from '../redis/redis.service.js';
+import { MediaStorageService } from '../media/media-storage.service.js';
 import { TelegramService } from './telegram.service.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
 import type { FilteredPost, ParsedMessage } from '../types.js';
@@ -19,8 +20,31 @@ export class TelegramListenerService {
     private readonly redis: RedisService,
     private readonly transformer: TransformerWorkflow,
     private readonly filteredPosts: FilteredPostsService,
+    private readonly media: MediaStorageService,
   ) {
     this.telegram.watchResults((event) => this.onTelegramResult(event));
+  }
+
+  /** Uploads the photo of a matched message and stores its URL; on any failure the report goes out without it. */
+  private async storePhotos(event: NewMessagesEvent, message: ParsedMessage): Promise<void> {
+    if (!this.media.enabled || !event.downloadPhoto) return;
+    for (const item of message.media) {
+      if (item.type !== 'photo' || !this.media.withinLimit(item.sizeBytes)) continue;
+      try {
+        const file = await event.downloadPhoto(message.messageId);
+        if (!file) continue;
+        const url = await this.media.uploadPhoto({
+          source: 'telegram',
+          owner: event.channel,
+          id: message.messageId,
+          bytes: file.data,
+          mimeType: file.mimeType ?? item.mimeType,
+        });
+        if (url) Object.assign(item, { url, stored: true });
+      } catch (err) {
+        this.logger.warn(`photo of ${message.url} not uploaded: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    }
   }
 
   /** Runs automatically every time Telegram emits a stored-message result. The pull cursor is owned by TelegramService only. */
@@ -58,6 +82,7 @@ export class TelegramListenerService {
     let failed = 0;
     for (const item of filteredMessages) {
       try {
+        await this.storePhotos(event, item.message);
         await this.transformer.run('ParsedMessage', item.message, {
           language: item.matchedLanguage,
           matches: item.matches,
