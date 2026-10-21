@@ -3,6 +3,10 @@ import { mapMember, mapMessage } from '../mappers.js';
 import type { MemberDto, MessageDto } from '../types.js';
 import { sleepRandom, withFloodWait } from '../utils/resilience.js';
 
+/** Pause between two history pages. */
+const PAGE_PAUSE_MIN_MS = 200;
+const PAGE_PAUSE_MAX_MS = 500;
+
 export interface ExtractorOptions {
   scanDelayMinMs: number;
   scanDelayMaxMs: number;
@@ -43,6 +47,28 @@ export class ExtractorService {
       await this.pause();
     }
     return out;
+  }
+
+  /**
+   * Streams the messages posted at or after `since` page by page, OLDEST FIRST, so a consumer can commit its resume
+   * point after every page and continue exactly there after a failure. Pages are `pageSize` long and a short random
+   * pause separates the requests to stay clear of rate limits. Ends when Telegram has nothing newer.
+   */
+  async *historyPages(chat: InputPeerLike, since: Date, pageSize = 100): AsyncGenerator<MessageDto[]> {
+    const sinceSec = Math.floor(since.getTime() / 1000);
+    let offset: { id: number; date: number } = { id: 0, date: sinceSec };
+    let lastId = 0;
+    for (;;) {
+      // reverse + offset date: the first `pageSize` messages from `since` on, returned oldest to newest.
+      const page = await this.call(() => this.client.getHistory(chat, { limit: pageSize, offset, reverse: true }));
+      const fresh = page.filter((m) => m.id > lastId && m.date.getTime() / 1000 >= sinceSec);
+      if (page.length === 0 || fresh.length === 0) return;
+      lastId = Math.max(...fresh.map((m) => m.id));
+      yield fresh.map((m) => mapMessage(m, false));
+      if (!page.next) return;
+      offset = page.next;
+      await sleepRandom(PAGE_PAUSE_MIN_MS, PAGE_PAUSE_MAX_MS);
+    }
   }
 
   /** Comments (discussion thread) of a channel post. */

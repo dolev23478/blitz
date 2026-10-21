@@ -7,7 +7,12 @@ import { AppModule } from './app.module.js';
 import { APP_CONFIG, type AppConfig } from './config/app-config.js';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), { bodyParser: false });
+  // debug lines (state hydration, peer cache) are hidden in production; set LOG_DEBUG=1 to see them.
+  const showDebug = process.env.NODE_ENV !== 'production' || process.env.LOG_DEBUG === '1';
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
+    bodyParser: false,
+    logger: showDebug ? ['log', 'warn', 'error', 'debug'] : ['log', 'warn', 'error'],
+  });
   const config = app.get<AppConfig>(APP_CONFIG);
   const fastify = app.getHttpAdapter().getInstance();
 

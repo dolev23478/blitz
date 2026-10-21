@@ -10,13 +10,13 @@ export interface ClientCredentials {
 }
 
 /**
- * Headless client: the session lives only in memory and is loaded from TG_SESSION_STRING.
- * No files are written and there is never a phone / code prompt. Network reconnects are
- * handled by mtcute; FLOOD_WAIT by `withFloodWait`; stalls by the watchdog.
+ * Headless client: no files are written and there is never a phone / code prompt. The session is loaded from
+ * TG_SESSION_STRING; `storage` (default: in memory only) can persist the update state, e.g. `createRedisStorage`.
+ * Network reconnects are handled by mtcute; FLOOD_WAIT by `withFloodWait`; stalls by the watchdog.
  */
-export function createClient(cfg: ClientCredentials): TelegramClient {
+export function createClient(cfg: ClientCredentials, storage: MemoryStorage = new MemoryStorage()): TelegramClient {
   if (!cfg.sessionString) throw new Error(MISSING_SESSION_MESSAGE);
-  return new TelegramClient({ apiId: cfg.apiId, apiHash: cfg.apiHash, storage: new MemoryStorage() });
+  return new TelegramClient({ apiId: cfg.apiId, apiHash: cfg.apiHash, storage });
 }
 
 /** Signs in with the session string. A rejected/expired session fails fast instead of asking for a code. */
