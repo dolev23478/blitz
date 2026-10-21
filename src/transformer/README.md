@@ -10,7 +10,6 @@ The current user-requested output includes:
 
 ```json
 {
-  "report_id": 42,
   "schema_version": 1,
   "languages": ["he", "en"],
   "categories": ["news"],
@@ -26,14 +25,8 @@ blank language becomes `[]`; invalid nonempty codes or invalid array entries fai
 Categories are passed through as string arrays, with `[]` when absent. The
 Transformer does not detect languages, translate content or infer categories.
 
-`schema_version` is the integer major version `1`. A supplied collector `report_id`
-is preserved only when it is an integer in `[0, 2147483647]`, including zero.
-Invalid supplied IDs are rejected, not rounded or replaced. Platform-native IDs
-such as X's decimal `post.id` remain source identifiers; they are not presumed to
-be allocated contract report IDs. When `report_id` is absent, SHA-256 of platform
-and unchanged report URL is masked into the nonnegative signed-int32 range.
-Hash collisions remain possible; this is not a global ID allocation service.
-Kafka message keys always use `String(report_id)`.
+`schema_version` is the integer major version `1`. The `report_id` field is
+omitted from RawReport and generated on the consumer side.
 
 Only `text`, `photo`, `video` are allowed in RAW_REPORT.media_type:
 
@@ -49,9 +42,8 @@ present. Original collector objects/attachments are not mutated. Direct wire
 objects containing unsupported media values fail validation as well.
 
 The supplied `schemas-new-2.html` RAW_REPORT table has been compared with this
-contract. Its `categories` has no defined enum. It still lists `language: string`
-and `report_id: int64`; the user's explicit `languages: string[]` and nonnegative
-int32 requirements take precedence. See the complete
+contract. Its `categories` has no defined enum. It still lists `language: string`;
+the user's explicit `languages: string[]` requirement takes precedence. See the complete
 [field comparison](../contracts/raw-report.reference.md), including unresolved
 nullability and global ID uniqueness.
 

@@ -66,11 +66,11 @@ function publishingContext() {
   return { ...context(), reports: [rawReport()] };
 }
 
-function sentIds(): number[] {
+function sentContents(): string[] {
   return kafka.send.mock.calls.map(
     ([record]) =>
       JSON.parse((record as ProducerRecord).messages[0]!.value as string)
-        .report_id,
+        .content,
   );
 }
 
@@ -83,20 +83,16 @@ function deferred<T = void>() {
 }
 
 describe('Kafka publication', () => {
-  it.each([0, 1, 2147483647])(
-    'serializes int32 boundary %s as a JSON number with a string Kafka key',
-    async (id) => {
-      const ctx = { ...context(), reports: [rawReport({ report_id: id })] };
-      await publisher().execute(ctx);
-      const record = kafka.send.mock.calls[0]![0] as ProducerRecord;
-      expect(record.messages[0]!.key).toBe(String(id));
-      const parsed = JSON.parse(record.messages[0]!.value as string);
-      expect(parsed.report_id).toBe(id);
-      expect(typeof parsed.report_id).toBe('number');
-    },
-  );
+  it('serializes reports as JSON without report_id or Kafka key', async () => {
+    const ctx = { ...context(), reports: [rawReport()] };
+    await publisher().execute(ctx);
+    const record = kafka.send.mock.calls[0]![0] as ProducerRecord;
+    expect(record.messages[0]!.key).toBeUndefined();
+    const parsed = JSON.parse(record.messages[0]!.value as string);
+    expect(parsed).not.toHaveProperty('report_id');
+  });
 
-  it('sends JSON to reports.raw with the exact decimal string key and all-replica acknowledgment', async () => {
+  it('sends JSON to reports.raw with all-replica acknowledgment', async () => {
     const processor = publisher();
     const ctx = publishingContext();
     await processor.execute(ctx);
@@ -104,7 +100,7 @@ describe('Kafka publication', () => {
       topic: 'reports.raw',
       acks: -1,
       timeout: 30000,
-      messages: [{ key: '2147483647', value: expect.any(String) }],
+      messages: [{ value: expect.any(String) }],
     });
     expect(JSON.parse(kafka.send.mock.calls[0]![0].messages[0].value)).toEqual(
       ctx.reports[0],
@@ -242,14 +238,14 @@ describe('Kafka publication', () => {
       .mockResolvedValueOnce(acknowledgment)
       .mockRejectedValueOnce(new Error('unavailable'));
     const ctx = publishingContext();
-    ctx.reports.push(rawReport({ report_id: 2 }), rawReport({ report_id: 3 }));
+    ctx.reports.push(rawReport({ content: 'report-2' }), rawReport({ content: 'report-3' }));
     const running = publisher().execute(ctx);
     await vi.advanceTimersByTimeAsync(0);
     expect(kafka.send).toHaveBeenCalledTimes(2);
     expect(ctx.publishedReports).toEqual([ctx.reports[0]]);
     await vi.advanceTimersByTimeAsync(60000);
     await running;
-    expect(sentIds()).toEqual([2147483647, 2, 2, 3]);
+    expect(sentContents()).toEqual(['Telegram report', 'report-2', 'report-2', 'report-3']);
     expect(ctx.publishedReports).toEqual(ctx.reports);
   });
 
@@ -282,22 +278,22 @@ describe('Kafka publication', () => {
     const processor = publisher();
     const first = {
       ...context(),
-      reports: [rawReport({ report_id: 1 }), rawReport({ report_id: 2 })],
+      reports: [rawReport({ content: 'report-1' }), rawReport({ content: 'report-2' })],
     };
     const second = {
       ...context(),
-      reports: [rawReport({ report_id: 3 }), rawReport({ report_id: 4 })],
+      reports: [rawReport({ content: 'report-3' }), rawReport({ content: 'report-4' })],
     };
     const runningFirst = processor.execute(first);
     await vi.advanceTimersByTimeAsync(30000);
     const runningSecond = processor.execute(second);
     await vi.advanceTimersByTimeAsync(29999);
-    expect(sentIds()).toEqual([1]);
+    expect(sentContents()).toEqual(['report-1']);
     expect(first.publishedReports).toEqual([]);
     expect(second.publishedReports).toEqual([]);
     await vi.advanceTimersByTimeAsync(1);
     await Promise.all([runningFirst, runningSecond]);
-    expect(sentIds()).toEqual([1, 1, 2, 3, 4]);
+    expect(sentContents()).toEqual(['report-1', 'report-1', 'report-2', 'report-3', 'report-4']);
     expect(first.publishedReports).toEqual(first.reports);
     expect(second.publishedReports).toEqual(second.reports);
   });
@@ -318,7 +314,7 @@ describe('Kafka publication', () => {
       expect(ctx.publishedReports).toEqual([]);
       await vi.advanceTimersByTimeAsync(60000);
       await running;
-      expect(sentIds()).toEqual([2147483647, 2147483647]);
+      expect(sentContents()).toEqual(['Telegram report', 'Telegram report']);
       expect(ctx.publishedReports).toEqual(ctx.reports);
     },
   );
@@ -358,33 +354,33 @@ describe('Kafka publication', () => {
     const processor = publisher();
     const first = processor.execute({
       ...context(),
-      reports: [rawReport({ report_id: 1 })],
+      reports: [rawReport({ content: 'report-1' })],
     });
     await vi.waitFor(() => expect(kafka.send).toHaveBeenCalledOnce());
     const second = processor.execute({
       ...context(),
-      reports: [rawReport({ report_id: 2 })],
+      reports: [rawReport({ content: 'report-2' })],
     });
-    expect(sentIds()).toEqual([1]);
+    expect(sentContents()).toEqual(['report-1']);
     ack.resolve(acknowledgment);
     await Promise.all([first, second]);
-    expect(sentIds()).toEqual([1, 2]);
+    expect(sentContents()).toEqual(['report-1', 'report-2']);
   });
 
   it('retains an independent payload snapshot while queued, including later reports in the batch', async () => {
     vi.useFakeTimers();
     kafka.send.mockRejectedValueOnce(new Error('unavailable'));
     const ctx = publishingContext();
-    ctx.reports.push(rawReport({ report_id: 2 }));
+    ctx.reports.push(rawReport({ content: 'report-2' }));
     const original = structuredClone(ctx.reports);
     const running = publisher().execute(ctx);
     await vi.advanceTimersByTimeAsync(0);
     ctx.reports[0]!.content = 'changed after admission';
-    ctx.reports[1]!.report_id = 99;
+    ctx.reports[1]!.channel_name = 'changed';
     ctx.reports[1]!.matches.push('changed');
     await vi.advanceTimersByTimeAsync(60000);
     await running;
-    expect(sentIds()).toEqual([2147483647, 2147483647, 2]);
+    expect(sentContents()).toEqual(['Telegram report', 'Telegram report', 'report-2']);
     expect(
       kafka.send.mock.calls
         .slice(1)
@@ -418,7 +414,7 @@ describe('Kafka publication', () => {
     kafka.send.mockReturnValueOnce(ack.promise);
     const processor = publisher();
     const ctx = publishingContext();
-    ctx.reports.push(rawReport({ report_id: 2 }));
+    ctx.reports.push(rawReport({ content: 'report-2' }));
     const running = processor.execute(ctx);
     const rejected = expect(running).rejects.toMatchObject({
       code: 'publication_failed',
@@ -461,8 +457,7 @@ describe('Transformer workflow through the Kafka boundary', () => {
         {
           status: 'completed',
           inputId: 'workflow-input',
-          reportId: report.report_id,
-        },
+          },
       ]);
       expect(report).toMatchObject({
         schema_version: 1,

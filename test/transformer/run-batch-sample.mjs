@@ -106,7 +106,7 @@ try {
       Object.keys(report).sort(),
       [...provisionalRawReportSchema.required].sort(),
     );
-    assert.equal(message.key, String(report.report_id));
+    assert.equal(message.key, undefined);
     assert.equal(report.report_url, input.posts[index].url);
     assert.equal(report.content, input.posts[index].text);
     assert.equal(report.published_at, input.posts[index].publishedAt);
@@ -114,7 +114,6 @@ try {
     assert.deepEqual(results[index], {
       status: 'completed',
       inputId: 'original-whole-batch',
-      reportId: report.report_id,
     });
     return report;
   });
@@ -200,7 +199,7 @@ try {
         Object.keys(report).sort(),
         [...provisionalRawReportSchema.required].sort(),
       );
-      assert.equal(record.messages[0].key, String(report.report_id));
+      assert.equal(record.messages[0].key, undefined);
       assert.equal(report.schema_version, 1);
       assert.equal(report.is_official, false);
       assert.equal(report.content, posts[index].text.normalize('NFC').trim());
@@ -322,8 +321,6 @@ try {
     contractNotes: {
       schema_version: 'Integer major version 1.',
       language: 'ISO 639-1 array; missing language is []. Final DE schema pending.',
-      report_id:
-        'Non-negative signed-int32-compatible JSON integer; Kafka key is String(report_id).',
       nullableNames:
         'account_name and channel_name remain nullable in the provisional local rules.',
     },

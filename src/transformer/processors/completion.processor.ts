@@ -1,4 +1,4 @@
-﻿import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { State } from '../../common/enums.js';
 import type { TransformContext } from '../transformer.types.js';
 
@@ -15,10 +15,9 @@ export class CompletionProcessor {
       publishedReports.length !== reports.length
     )
       throw new Error('Cannot complete before all reports are acknowledged.');
-    context.result = publishedReports.map((report) => ({
+    context.result = publishedReports.map(() => ({
       status: 'completed',
       inputId: context.inputId,
-      reportId: report.report_id,
     }));
     for (const result of context.result) {
       this.logger.log({

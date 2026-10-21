@@ -58,7 +58,7 @@ FloodWait: `withFloodWait` sleeps the requested seconds plus 0.5–2 s jitter. A
 
 ## Transformer and Kafka
 
-`TransformerWorkflow` runs one input through `parsing → mapping → validation → publishing → completion`. Inputs are `ParsedMessage` (Telegram) and `ProfileScrapeResult` (X). Reports have a deterministic `report_id`, so the same post always maps to the same id.
+`TransformerWorkflow` runs one input through `parsing → mapping → validation → publishing → completion`. Inputs are `ParsedMessage` (Telegram) and `ProfileScrapeResult` (X).
 
 - **Primary Kafka** (`KAFKA_BROKERS`, optional SASL/SSL): topic `reports.raw`, acks from all replicas. Failed sends stay in an in-memory queue and are retried every `KAFKA_RETRY_INTERVAL_MS`; the queue is lost on restart. The topic must exist (auto-create is off).
 - **Remote Kafka mirror** (`KAFKA_REMOTE_*`): every report is also sent to a second cluster over SASL_SSL (SCRAM-SHA-512, optional custom CA via `KAFKA_REMOTE_SSL_CA_FILE`). It has its own bounded in-memory queue (5000 reports) and never blocks the primary publisher. Off unless `KAFKA_REMOTE_BROKERS` is set.

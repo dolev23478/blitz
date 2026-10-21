@@ -66,11 +66,7 @@ function reports() {
     expect(Object.keys(report).sort()).toEqual(
       [...provisionalRawReportSchema.required].sort(),
     );
-    expect(record.messages[0]!.key).toBe(String(report.report_id));
-    expect(typeof report.report_id).toBe('number');
-    expect(Number.isInteger(report.report_id)).toBe(true);
-    expect(report.report_id).toBeGreaterThanOrEqual(0);
-    expect(report.report_id).toBeLessThanOrEqual(2147483647);
+    expect(record.messages[0]!.key).toBeUndefined();
     expect(report.schema_version).toBe(1);
     expect(report.is_official).toBe(false);
     return report;
@@ -306,7 +302,6 @@ describe('Telegram ParsedMessage through the complete workflow', () => {
       const result = await workflow(publisher).run('ParsedMessage', input);
       const [report] = reports(); // Validates the serialized output with Ajv and checks every field.
       expect(report).toEqual({
-        report_id: expect.any(Number),
         schema_version: 1,
         is_official: false,
         platform: 'telegram',
@@ -333,7 +328,6 @@ describe('Telegram ParsedMessage through the complete workflow', () => {
         {
           status: 'completed',
           inputId: expect.any(String),
-          reportId: report.report_id,
         },
       ]);
       expect(input).toEqual(snapshot);

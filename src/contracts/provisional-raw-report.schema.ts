@@ -1,6 +1,4 @@
 import {
-  REPORT_ID_MIN,
-  INT32_MAX,
   IS_OFFICIAL,
   SCHEMA_VERSION,
 } from '../common/constants.js';
@@ -11,7 +9,6 @@ export const provisionalRawReportSchema = {
   type: 'object',
   additionalProperties: false,
   required: [
-    'report_id',
     'schema_version',
     'is_official',
     'platform',
@@ -28,11 +25,6 @@ export const provisionalRawReportSchema = {
     'collected_at',
   ],
   properties: {
-    report_id: {
-      type: 'integer',
-      minimum: REPORT_ID_MIN,
-      maximum: INT32_MAX,
-    },
     schema_version: { type: 'integer', const: SCHEMA_VERSION },
     is_official: { const: IS_OFFICIAL },
     platform: { type: 'string', minLength: 1, pattern: '\\S' },

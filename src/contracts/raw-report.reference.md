@@ -6,7 +6,7 @@ this comparison. This is a field-table reference, not an executable JSON Schema.
 
 | Field in the supplied table | Table type / notes | Transformer wire representation |
 | --- | --- | --- |
-| `report_id` | int64; unique, non-null; collector-generated; message key | Nonnegative integer `0..2147483647`, per the user's explicit int32 requirement |
+| `report_id` | int64; unique, non-null; generated on consumer | Omitted; generated on the consumer side |
 | `schema_version` | int; contract major version | Integer `1`, per the user's approved major version |
 | `is_official` | boolean | `false` for Blitz |
 | `platform` | string; free text | string |
@@ -22,19 +22,14 @@ this comparison. This is a field-table reference, not an executable JSON Schema.
 | `published_at` | datetime; UTC, nullable | UTC ISO 8601 string or null |
 | `collected_at` | datetime; UTC | UTC ISO 8601 string; Telegram uses receipt time as previously approved |
 
-The language name/type and the accepted ID range deliberately follow the user's
-explicit requirements rather than silently reverting to the attached table.
+The language name/type deliberately follows the user's explicit requirements
+rather than silently reverting to the attached table. The `report_id` field is
+omitted because it is generated on the consumer side.
 The table does not establish missing-language behavior; the user selected `[]`.
-The int32 hash fallback does not guarantee the table's global ID uniqueness across
-Blitz and Atlas. Upstream deduplication remains outside this component.
+Upstream deduplication remains outside this component.
 
 The table does not specify all required fields, array cardinalities, category
 values, additional-property handling or account/channel nullability. Local
 validation remains provisional on those details. The executable DE JSON Schema
 is still needed to verify complete compatibility; this HTML cannot be used as
 `DE_RAW_REPORT_SCHEMA_PATH`.
-
-The table's mention of `reports.dlq` does not grant this publisher ownership of
-DE's failure pipeline. Invalid input is rejected before publication. Publication
-exhaustion follows the user's separately approved policy: initial attempt plus
-three retries, then permanent removal from the Redis queue.
