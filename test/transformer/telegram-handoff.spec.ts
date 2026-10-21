@@ -38,6 +38,7 @@ beforeEach(() => {
       language: 'en',
       languages: ['en'],
       terms: ['report'],
+      categories: [],
     });
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
@@ -111,8 +112,24 @@ describe('Telegram collector handoff', () => {
     });
   });
 
+  it('publishes the dictionary categories of the matched terms', async () => {
+    analyze.mockReturnValue({
+      matched: true,
+      language: 'he',
+      languages: ['he'],
+      terms: ['צבע אדום', 'מחבל'],
+      categories: ['rockets_aerial', 'terror'],
+    });
+    await deliver({ channelId: 2, channel: 'blitz', inserted: 1, messages: [telegramInput()] });
+    const record = send.mock.calls[0]![0] as ProducerRecord;
+    expect(JSON.parse(record.messages[0]!.value as string)).toMatchObject({
+      matches: ['צבע אדום', 'מחבל'],
+      categories: ['rockets_aerial', 'terror'],
+    });
+  });
+
   it('keeps upstream filtering when no keyword matched', async () => {
-    analyze.mockReturnValue({ matched: false, terms: [] });
+    analyze.mockReturnValue({ matched: false, terms: [], categories: [] });
     await deliver({
       channelId: 2,
       channel: 'blitz',

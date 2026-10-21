@@ -17,23 +17,13 @@ async function validate(overrides: Record<string, unknown>) {
   return ctx.reports![0]!;
 }
 describe('provisional updated RAW_REPORT validation', () => {
-  it.each([0, 1, 2147483647])(
-    'accepts non-negative int32 boundary %s',
+  it.each([0, 1, 42, 2147483647, -1, '123'])(
+    'rejects candidate containing report_id %s because report_id is omitted from schema',
     async (report_id) => {
-      expect((await validate({ report_id })).report_id).toBe(report_id);
+      await expect(validate({ report_id })).rejects.toThrow();
     },
   );
   it.each([
-    { report_id: -1 },
-    { report_id: 2147483648 },
-    { report_id: 1.5 },
-    { report_id: '123' },
-    { report_id: null },
-    { report_id: undefined },
-    { report_id: NaN },
-    { report_id: Infinity },
-    { report_id: 9007199254740992 },
-    { report_id: 1847321098492019482n },
     { content: '' },
     { content: ' ' },
     { content: '<p>HTML</p>' },

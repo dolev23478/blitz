@@ -27,6 +27,17 @@ const SUFFIXES = ["هما", "كما", "هم", "هن", "كم", "كن", "نا", "�
 
 const MIN_STEM_LENGTH = 3;
 
+/**
+ * Everyday words that only look like clitic + dictionary term (السمك = السم + ك, أرى = اري).
+ * They are matched as-is and never affix-stripped. Folded at load (see foldArabicLetters).
+ */
+const NO_AFFIX_STRIP_WORDS: string[] = [
+  "البيانات", "بيانات", "والبيانات", "السمك", "والسمك", "بالسمك", "السمين",
+  "الجنسية", "جنسية", "بالجنسية", "القدرة", "بقدرة", "الدمى", "سامحني", "ماتي", "بوارو",
+  "أرى", "سأرى", "لأرى", "أراك", "أريك", "كاري", "باري", "لاري",
+  "الفجر", "والفجر", "للفجر", "بالفجر", "سنصل", "كتلة",
+];
+
 const ARABIZI_DIGITS: Record<string, string> = {
   "2": "ا",
   "3": "ع",
@@ -92,6 +103,8 @@ function foldArabicLetters(text: string): string {
     .replace(WAW_HAMZA, "و")
     .replace(YAA_HAMZA, "ي");
 }
+
+const NO_AFFIX_STRIP = new Set(NO_AFFIX_STRIP_WORDS.map(foldArabicLetters));
 
 function looksLikeArabizi(token: string): boolean {
   return /[a-z]/i.test(token) && !/\p{Script=Arabic}/u.test(token);
@@ -193,7 +206,10 @@ export class ArabicNormalizer implements TextNormalizer {
         variants.add(arabizi);
       }
     }
-    for (const base of [...variants]) {
+    for (const base of Array.from(variants)) {
+      if (NO_AFFIX_STRIP.has(base)) {
+        continue;
+      }
       for (const stem of stripAffixes(base)) {
         variants.add(stem);
       }

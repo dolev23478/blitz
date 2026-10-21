@@ -63,8 +63,8 @@ describe.runIf(Boolean(brokers.length) && Boolean(redisUrl))(
         input.posts[0]!.text = marker;
         input.posts[0]!.url = `https://x.com/blitz/status/1?run=${randomUUID()}`;
 
-        let accept!: (record: { key: string; value: string }) => void;
-        const received = new Promise<{ key: string; value: string }>(
+        let accept!: (record: { key: string | null; value: string }) => void;
+        const received = new Promise<{ key: string | null; value: string }>(
           (resolve, reject) => {
             accept = resolve;
             timeout = setTimeout(
@@ -85,7 +85,7 @@ describe.runIf(Boolean(brokers.length) && Boolean(redisUrl))(
             try {
               const report = JSON.parse(value);
               if (report.content === marker)
-                accept({ key: message.key!.toString(), value });
+                accept({ key: message.key ? message.key.toString() : null, value });
             } catch {
               // Ignore malformed messages from a shared test topic.
             }
@@ -101,12 +101,11 @@ describe.runIf(Boolean(brokers.length) && Boolean(redisUrl))(
         ]);
 
         const report = JSON.parse(record.value);
-        expect(record.key).toBe(String(report.report_id));
+        expect(record.key).toBeNull();
         expect(results).toEqual([
           {
             status: 'completed',
             inputId: 'integration-test',
-            reportId: report.report_id,
           },
         ]);
         expect(report).toMatchObject({

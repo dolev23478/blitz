@@ -59,10 +59,6 @@ function resolveDictionariesDir(override?: string): string {
   return candidates[0] ?? join(process.cwd(), "dictionaries");
 }
 
-function indexKey(entry: IndexedTerm): string {
-  return `${entry.term}\u0000${entry.concept ?? ""}\u0000${entry.sourceFile}`;
-}
-
 export function loadDictionaries(
   options: LoadDictionariesOptions = {},
 ): DictionaryStore {
@@ -147,11 +143,15 @@ export function loadDictionaries(
       const existing = bucket.terms.get(normalizedTerm);
       if (existing) {
         const duplicate = existing.find(
-          (e) =>
-            e.term.trim().toLowerCase() === entry.term.trim().toLowerCase() &&
-            (e.concept ?? "") === (entry.concept ?? ""),
+          (e) => (e.concept ?? "") === (entry.concept ?? ""),
         );
         if (duplicate) {
+          // Prefer canonical term representation without special wrapping punctuation (e.g. 'jews' over '(((jews)))')
+          const entryClean = entry.term.trim().toLowerCase();
+          const dupClean = duplicate.term.trim().toLowerCase();
+          if (entryClean === normalizedTerm && dupClean !== normalizedTerm) {
+            duplicate.term = entry.term;
+          }
           if (!duplicate.sourceFile.includes(fileName)) {
             duplicate.sourceFile = `${duplicate.sourceFile}, ${fileName}`;
           }
@@ -162,6 +162,7 @@ export function loadDictionaries(
       const indexed: IndexedTerm = {
         term: entry.term,
         ...(entry.concept !== undefined ? { concept: entry.concept } : {}),
+        ...(entry.category !== undefined ? { category: entry.category } : {}),
         sourceFile: fileName,
         language: parsed.language,
       };

@@ -41,27 +41,27 @@ stage log events and test modes.
 
 ## Modules (`src/`)
 
-| Path | Role |
-|---|---|
-| `main.ts` | Bootstrap: loads `.env`, Nest + Fastify, JSON parser, CORS, shutdown hooks. |
-| `config/` | zod-validated environment (`APP_CONFIG`). Only keys declared in the schema reach `ConfigService`. |
-| `redis/` | `RedisService`: `get`/`set`, `setIfAbsent` (`SET NX EX`), `del`, hashes. Disabled when `REDIS_URL` is empty. |
-| `telegram/` | `TelegramService` (connection, channel resolution, ordered pulls, cursor), `TelegramListenerService` (dedupe, dictionary match, hand-off), `telegram-channels.ts` (the `TELEGRAM_CHANNELS` constant), `telegram.mapper.ts`. |
-| `tg-realtime/` | MTProto helpers: login, message listener, history extractor, watchdog, flood-wait handling. |
-| `x-scraper/` | `XScraperCronService` (5-minute cycle), `XScraperService` (query building and chunking), twitterapi.io / Apify providers, monitored handles. |
-| `events/` | `MessageEventsService`: in-process bus between `TelegramService` and the listener. |
-| `radio/` | Sequential internet audio capture/local ASR and WAV/JSON/text archive. `RadioTransformerHandoff` applies the shared analyzer, logs filter decisions, and hands accepted JSON to the common Transformer. |
-| `match/`, `dictionaries/`, `normalize/`, `text-analyzer.ts` | Keyword dictionaries and text analysis used to decide which posts are kept. |
-| `transformer/` | State machine that turns a source payload into a validated `RAW_REPORT` and publishes it. |
-| `meta/` | `GET /api/health`. `GET /api/telegram` (in `telegram/`) reports the connection state. |
+| Path                                                        | Role                                                                                                                                                                                                                        |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `main.ts`                                                   | Bootstrap: loads `.env`, Nest + Fastify, JSON parser, CORS, shutdown hooks.                                                                                                                                                 |
+| `config/`                                                   | zod-validated environment (`APP_CONFIG`). Only keys declared in the schema reach `ConfigService`.                                                                                                                           |
+| `redis/`                                                    | `RedisService`: `get`/`set`, `setIfAbsent` (`SET NX EX`), `del`, hashes. Disabled when `REDIS_URL` is empty.                                                                                                                |
+| `telegram/`                                                 | `TelegramService` (connection, channel resolution, ordered pulls, cursor), `TelegramListenerService` (dedupe, dictionary match, hand-off), `telegram-channels.ts` (the `TELEGRAM_CHANNELS` constant), `telegram.mapper.ts`. |
+| `tg-realtime/`                                              | MTProto helpers: login, message listener, history extractor, watchdog, flood-wait handling.                                                                                                                                 |
+| `x-scraper/`                                                | `XScraperCronService` (5-minute cycle), `XScraperService` (query building and chunking), twitterapi.io / Apify providers, monitored handles.                                                                                |
+| `events/`                                                   | `MessageEventsService`: in-process bus between `TelegramService` and the listener.                                                                                                                                          |
+| `radio/`                                                    | Sequential internet audio capture/local ASR and WAV/JSON/text archive. `RadioTransformerHandoff` applies the shared analyzer, logs filter decisions, and hands accepted JSON to the common Transformer.                     |
+| `match/`, `dictionaries/`, `normalize/`, `text-analyzer.ts` | Keyword dictionaries and text analysis used to decide which posts are kept.                                                                                                                                                 |
+| `transformer/`                                              | State machine that turns a source payload into a validated `RAW_REPORT` and publishes it.                                                                                                                                   |
+| `meta/`                                                     | `GET /api/health`. `GET /api/telegram` (in `telegram/`) reports the connection state.                                                                                                                                       |
 
 ## Resuming without gaps (Redis)
 
-| Key | Written by | Meaning |
-|---|---|---|
-| `telegram:cursor:<channelId>` | `TelegramService` only | JSON `{channelId, channel, messageId, date}` of the newest message handed over for that channel. Only ever moves forward (atomic Lua compare on `date`). |
-| `telegram:session-lock` | `TelegramService` | `SET NX EX 120` lock holding this process's token. Startup is aborted when it is held elsewhere or Redis is down; the watchdog renews it every tick; it is released on shutdown (SIGTERM/SIGINT). Lost lock = collector stops. `REDIS_URL` is required (fails closed). The standalone `src/tg-realtime/index.ts` runner takes the same lock. TTL is 120 s because the watchdog renews every 30 s. |
-| `telegram:peer:<username>` | `TelegramService` | `{id}` cache of a resolved channel, 30-day TTL, so restarts don't call ResolveUsername. Dropped when a pull hits a stale-peer error. |
+| Key                           | Written by             | Meaning                                                                                                                                                                                                                                                                                                                                                                                           |
+| ----------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `telegram:cursor:<channelId>` | `TelegramService` only | JSON `{channelId, channel, messageId, date}` of the newest message handed over for that channel. Only ever moves forward (atomic Lua compare on `date`).                                                                                                                                                                                                                                          |
+| `telegram:session-lock`       | `TelegramService`      | `SET NX EX 120` lock holding this process's token. Startup is aborted when it is held elsewhere or Redis is down; the watchdog renews it every tick; it is released on shutdown (SIGTERM/SIGINT). Lost lock = collector stops. `REDIS_URL` is required (fails closed). The standalone `src/tg-realtime/index.ts` runner takes the same lock. TTL is 120 s because the watchdog renews every 30 s. |
+| `telegram:peer:<username>`    | `TelegramService`      | `{id}` cache of a resolved channel, 30-day TTL, so restarts don't call ResolveUsername. Dropped when a pull hits a stale-peer error.                                                                                                                                                                                                                                                              |
 
 FloodWait: `withFloodWait` sleeps the requested seconds plus 0.5–2 s jitter. A wait above 300 s is not slept: it starts a cooldown, the pull cycle stops, and the next sync retries.
 | `telegram:mtcute-state` | `TelegramService` (mtcute storage) | JSON snapshot of mtcute's storage (update state pts/qts/seq/date, per-channel pts, auth keys, peer cache), written at most every 5 s and on shutdown. After a restart mtcute asks Telegram for the updates it missed. Tied to a hash of `TG_SESSION_STRING`; a different string starts clean. **Contains the auth key: keep Redis private.** |

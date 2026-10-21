@@ -78,19 +78,16 @@ describe.each(['telegram', 'twitter'] as const)(
     ])(
       'maps both legacy and modern language fields: $fields',
       async ({ fields, expected }) => {
-        const { report, key } = await run({
+        const { report } = await run({
           ...fields,
-          report_id: 42,
-          categories: ['news', 'politics'],
+                    categories: ['news', 'politics'],
         });
         expect(report.languages).toEqual(expected);
         expect(report).not.toHaveProperty('language');
         expect(report.categories).toEqual(['news', 'politics']);
         expect(report.schema_version).toBe(1);
         expect(typeof report.schema_version).toBe('number');
-        expect(report.report_id).toBe(42);
-        expect(key).toBe('42');
-      },
+        },
     );
     it('maps array metadata without inventing a collector wrapper', async () => {
       expect(
@@ -99,10 +96,9 @@ describe.each(['telegram', 'twitter'] as const)(
       ).toMatchObject({ languages: ['ar', 'he'], categories: ['news'] });
     });
     it('emits the complete RAW_REPORT field set from schemas-new-2.html with the approved language override', async () => {
-      const { report, key } = await run(
+      const { report } = await run(
         {
-          report_id: 42,
-          languages: ['he', 'en'],
+                    languages: ['he', 'en'],
           // The reference explicitly leaves category values undefined.
           categories: ['collector-defined-category', 'another-category'],
         },
@@ -110,7 +106,6 @@ describe.each(['telegram', 'twitter'] as const)(
       );
       expect(Object.keys(report).sort()).toEqual(
         [
-          'report_id',
           'schema_version',
           'is_official',
           'platform',
@@ -128,15 +123,13 @@ describe.each(['telegram', 'twitter'] as const)(
         ].sort(),
       );
       expect(report).toMatchObject({
-        report_id: 42,
-        schema_version: 1,
+                schema_version: 1,
         is_official: false,
         languages: ['he', 'en'],
         categories: ['collector-defined-category', 'another-category'],
         matches: ['news'],
         report_title: null,
       });
-      expect(key).toBe('42');
       expect(report.platform).toBe(source === 'telegram' ? 'telegram' : 'twitter');
       expect(report.report_url).toBe(
         source === 'telegram'
@@ -157,12 +150,7 @@ describe.each(['telegram', 'twitter'] as const)(
       { languages: ['unknown'] },
       { categories: ['news', 42] },
       { categories: 'news' },
-      { report_id: -1 },
-      { report_id: 2147483648 },
-      { report_id: '1847321098492019482' },
-      { report_id: 1847321098492019482n },
-      { report_id: Number('1847321098492019482') },
-    ])(
+      ])(
       'rejects malformed or out-of-range metadata case %# before Kafka',
       async (fields) => {
         await expect(run(fields)).rejects.toBeInstanceOf(Error);

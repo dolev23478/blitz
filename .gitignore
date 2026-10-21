@@ -100,3 +100,6 @@ ca.crt
 dist/
 .next/
 node_modules/
+# Backups
+dictionaries_backup_before_canonical/
+

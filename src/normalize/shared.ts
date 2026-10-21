@@ -28,12 +28,21 @@ function padEmojis(text: string): string {
 }
 
 /**
- * Keep letters, numbers, apostrophes, and emojis. Everything else becomes a space so
+ * Keep letters, numbers, apostrophes, emojis, and intra-word hyphens. Everything else becomes a space so
  * matching is token-based rather than raw substring search.
+ * Intra-word hyphens (e.g. 'a-bomb', 'ak-47', 'f-16', '14-88', 'אל-קאעידה') are preserved so that
+ * 'a bomb' (article + noun) is never confused with 'a-bomb'.
  */
 function punctuationToSpace(text: string): string {
   const padded = padEmojis(text);
-  return padded.replace(/[^\p{L}\p{N}\p{Extended_Pictographic}']+/gu, " ");
+  const normalizedHyphens = padded.replace(
+    /(?<=[\p{L}\p{N}])[\u002D\u05BE\u2010-\u2015]+(?=[\p{L}\p{N}])/gu,
+    "-",
+  );
+  return normalizedHyphens.replace(
+    /[^\p{L}\p{N}\p{Extended_Pictographic}'-]+|(?<![\p{L}\p{N}])-|-+(?![\p{L}\p{N}])/gu,
+    " ",
+  );
 }
 
 function tokenizeNormalized(text: string): string[] {

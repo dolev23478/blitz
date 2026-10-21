@@ -1,11 +1,9 @@
-﻿import type { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
+import type { IS_OFFICIAL, SCHEMA_VERSION } from '../common/constants.js';
 
 export type ReportMediaType = 'text' | 'photo' | 'video';
 
 /** Provisional local report model until DE provides its JSON Schema. */
 export interface RawReport {
-  /** Non-negative signed-int32-compatible JSON integer. */
-  report_id: number;
   schema_version: typeof SCHEMA_VERSION;
   is_official: typeof IS_OFFICIAL;
   platform: string;

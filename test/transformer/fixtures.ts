@@ -66,7 +66,6 @@ export function metadata(
 
 export function rawReport(overrides: Partial<RawReport> = {}): RawReport {
   return {
-    report_id: 2147483647,
     schema_version: 1,
     is_official: false,
     platform: 'telegram',

@@ -10,6 +10,7 @@ import type {
   AnalyzeMatch,
   AnalyzeTextOptions,
   AnalyzeTextResult,
+  ReportCategoryValue,
   RiskLevel,
   ThreatEvaluation,
   ThreatEvaluationMode,
@@ -18,6 +19,34 @@ import type {
 export interface TextAnalyzerDependencies {
   store: DictionaryStore;
   matcher?: TermMatcher;
+}
+
+export function extractOrderedTerms(matches: AnalyzeMatch[]): string[] {
+  const sorted = [...matches].sort((a, b) => {
+    if (a.tokenStart !== b.tokenStart) {
+      return a.tokenStart - b.tokenStart;
+    }
+    return a.tokenEnd - b.tokenEnd;
+  });
+
+  const seen = new Set<string>();
+  const terms: string[] = [];
+
+  for (const m of sorted) {
+    const term = m.normalizedTerm || m.term;
+    if (!seen.has(term)) {
+      seen.add(term);
+      terms.push(term);
+    }
+  }
+
+  return terms;
+}
+
+/** Distinct report categories of the matches, in text order. */
+export function extractOrderedCategories(matches: AnalyzeMatch[]): ReportCategoryValue[] {
+  const sorted = [...matches].sort((a, b) => a.tokenStart - b.tokenStart || a.tokenEnd - b.tokenEnd);
+  return [...new Set(sorted.flatMap((m) => (m.category ? [m.category] : [])))];
 }
 
 export function toOutputLanguage(lang: string): string {
@@ -91,7 +120,7 @@ export function resolveAnalyzeArgs(
     effectiveOptions = { ...(languageOrOptions as AnalyzeTextOptions) };
   } else {
     language = languageOrOptions as string | string[] | undefined;
-    effectiveOptions = { ...(options ?? {}) };
+    effectiveOptions = { ...options };
   }
 
   // Support simple boolean toggles in options:
@@ -219,7 +248,7 @@ export class TextAnalyzer {
       allMatches.splice(effectiveOptions.maxMatches);
     }
 
-    const terms = [...new Set(allMatches.map((match) => match.term))];
+    const terms = extractOrderedTerms(allMatches);
     const usedSources = [
       ...new Set(allMatches.map((match) => match.sourceFile)),
     ].sort();
@@ -250,6 +279,7 @@ export class TextAnalyzer {
       languages: finalLanguages,
       matched,
       terms,
+      categories: extractOrderedCategories(allMatches),
       matches: allMatches,
       usedSources,
       issues: allIssues,
@@ -301,7 +331,7 @@ export class TextAnalyzer {
       matches = matches.slice(0, options.maxMatches);
     }
 
-    const terms = [...new Set(matches.map((match) => match.term))];
+    const terms = extractOrderedTerms(matches);
     const usedSources = [
       ...new Set(matches.map((match) => match.sourceFile)),
     ].sort();
@@ -323,6 +353,7 @@ export class TextAnalyzer {
       languages: [outputLang],
       matched,
       terms,
+      categories: extractOrderedCategories(matches),
       matches,
       usedSources,
       issues,
@@ -621,6 +652,7 @@ function emptyResult(
     languages: outputLang ? [outputLang] : [],
     matched: false,
     terms: [],
+    categories: [],
     matches: [],
     usedSources: [],
     issues,

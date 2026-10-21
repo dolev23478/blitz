@@ -206,7 +206,6 @@ export class PublishingProcessor
         await this.queue.finish(job, token, 'discarded');
         this.logger.error({
           event: 'kafka_report_discarded',
-          reportId: job.report.report_id,
           attempts: job.attempts,
         });
         return;
@@ -229,7 +228,7 @@ export class PublishingProcessor
           topic: REPORT_TOPIC,
           acks: -1,
           timeout: 30000,
-          messages: [{ key: String(job.report.report_id), value }],
+          messages: [{ value }],
         });
         if (
           !Array.isArray(acknowledgment) ||
@@ -249,7 +248,7 @@ export class PublishingProcessor
             acknowledgment,
           });
         // Best-effort copy to the remote cluster, only once the primary confirmed it.
-        this.mirror?.enqueue(String(job.report.report_id), value);
+        this.mirror?.enqueue(value);
       } catch (error) {
         this.connection = undefined;
         if (!leaseValid)
@@ -258,7 +257,6 @@ export class PublishingProcessor
           await this.queue.finish(job, token, 'discarded');
           this.logger.error({
             event: 'kafka_report_discarded',
-            reportId: job.report.report_id,
             attempts: job.attempts,
           });
         } else {
@@ -277,7 +275,6 @@ export class PublishingProcessor
           );
           this.logger.warn({
             event: 'kafka_publish_retry',
-            reportId: job.report.report_id,
             retryCount: job.retryCount,
             retryInMs: this.retryIntervalMs,
           });
