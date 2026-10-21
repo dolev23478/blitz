@@ -29,6 +29,19 @@ Use the manifests committed alongside them to verify the matching bundle. These
 are actual binary files, not LFS pointers; copying them requires no package/model
 download on the target. Keep `.offline/`, `.radio/` and `.venv-radio/` ignored.
 
+### Uploading the binaries to GitHub
+
+Use a [GitHub Release](https://github.com/lev03lev/blitz/releases/new?target=experiment)
+and attach the files or a ZIP containing the `vendor/` directory as release assets.
+The regular repository browser upload is limited to 25 MiB per file; release
+assets support files below 2 GiB. See [GitHub's upload limits](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)
+and [release limits](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases).
+
+Download and extract the assets before transferring the prepared checkout into
+the closed network. Extract the ZIP at the project root so its files end up in
+`vendor/offline-base/` and `vendor/radio-models/tiny/`. A source-only Git clone
+does not include release assets; the build/runtime never downloads them automatically.
+
 `Dockerfile.dependencies` is ONLY a preparation recipe for the connected machine.
 Do not build that file on the closed network. Re-run preparation, commit the
 updated manifests and manually transfer the matching binaries when Python/system
