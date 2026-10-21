@@ -64,7 +64,12 @@ export function fingerprint(sessionString: string): string {
  * process was down; auth keys and the peer cache avoid re-resolving every channel after a restart.
  * A snapshot taken for a different session string is ignored, so rotating TG_SESSION_STRING starts clean.
  */
-export function createRedisStorage(store: SnapshotStore, sessionFingerprint: string, key = MTCUTE_STATE_KEY): MemoryStorage {
+export function createRedisStorage(
+  store: SnapshotStore,
+  sessionFingerprint: string,
+  key = MTCUTE_STATE_KEY,
+  log: (message: string) => void = () => undefined,
+): MemoryStorage {
   const storage = new MemoryStorage();
   const driver = storage.driver;
   let lastWritten: string | null = null;
@@ -85,20 +90,28 @@ export function createRedisStorage(store: SnapshotStore, sessionFingerprint: str
       try {
         raw = await store.get(key);
       } catch {
+        log(`${key} unavailable (Redis error), starting with fresh state`);
         return; // Redis down: start with an empty state, the session string still logs in
       }
-      if (!raw) return;
+      if (!raw) {
+        log(`${key} not found, starting with fresh state`);
+        return;
+      }
       try {
         const snapshot = JSON.parse(raw) as { fingerprint?: string; states?: Record<string, unknown> };
-        if (snapshot.fingerprint !== sessionFingerprint || !snapshot.states) return;
+        if (snapshot.fingerprint !== sessionFingerprint || !snapshot.states) {
+          log(`${key} belongs to another session, starting with fresh state`);
+          return;
+        }
         const states = decode(snapshot.states) as Record<string, unknown>;
         for (const [name, state] of Object.entries(states)) {
           const target = driver.states.get(name);
           if (target) fill(target, state);
         }
         lastWritten = raw;
+        log(`${key} loaded successfully`);
       } catch {
-        // a corrupt snapshot is treated as missing
+        log(`${key} is corrupt, starting with fresh state`); // treated as missing
       }
     },
     async save(): Promise<void> {

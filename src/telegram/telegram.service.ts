@@ -231,9 +231,11 @@ export class TelegramService implements OnApplicationBootstrap, OnModuleDestroy 
       if (this.resolved.has(username)) continue;
       const cached = await this.loadPeer(username);
       if (cached !== null) {
+        this.logger.debug(`cache hit for @${username} -> ${cached}`);
         this.track(cached, username);
         continue;
       }
+      this.logger.debug(`resolving @${username} via RPC`);
       try {
         const chat = await withFloodWait(() => c.getChat(username), {
           onWait: (s) => this.logger.warn(`Telegram flood wait of ${s}s while resolving @${username}`),
@@ -356,7 +358,7 @@ export class TelegramService implements OnApplicationBootstrap, OnModuleDestroy 
     try {
       c = createClient(
         cfg,
-        this.redis.isEnabled() ? createRedisStorage(this.redis, fingerprint(cfg.sessionString ?? '')) : undefined,
+        this.redis.isEnabled() ? createRedisStorage(this.redis, fingerprint(cfg.sessionString ?? ''), undefined, (m) => this.logger.debug(m)) : undefined,
       );
       me = await login(c, cfg);
     } catch (err) {
