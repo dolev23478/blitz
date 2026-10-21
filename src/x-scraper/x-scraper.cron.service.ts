@@ -1,4 +1,11 @@
-import { Inject, Injectable, Logger, Optional, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  Logger,
+  Optional,
+  type OnModuleDestroy,
+  type OnModuleInit,
+} from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { MONITORED_X_SOURCES } from './constants/monitored-sources.js';
 import type { ProfileScrapeResult } from './contracts/x-scraper.interfaces.js';
@@ -14,24 +21,32 @@ import { KafkaAnalyticsService } from '../analytics/kafka-analytics.service.js';
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(XScraperCronService.name);
   private intervalId: NodeJS.Timeout | null = null;
+  private running = false;
+  private closing = false;
 
   constructor(
     private readonly xScraper: XScraperService,
     private readonly redis: RedisService,
     private readonly transformer: TransformerWorkflow,
     private readonly filteredPosts: FilteredPostsService,
-    @Optional() @Inject(KafkaAnalyticsService) private readonly analytics?: KafkaAnalyticsService,
+    @Optional()
+    @Inject(KafkaAnalyticsService)
+    private readonly analytics?: KafkaAnalyticsService,
   ) {}
 
   onModuleInit(): void {
-    this.intervalId = setInterval(() => {
-      void this.runCycle();
-    }, 5 * 60 * 1000);
+    this.intervalId = setInterval(
+      () => {
+        void this.runCycle();
+      },
+      5 * 60 * 1000,
+    );
 
     void this.runCycle();
   }
 
   onModuleDestroy(): void {
+    this.closing = true;
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
@@ -39,6 +54,8 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
   }
 
   private async runCycle(): Promise<void> {
+    if (this.running || this.closing) return;
+    this.running = true;
     try {
       const handles = MONITORED_X_SOURCES.map((source) => source.handle);
 
@@ -48,10 +65,16 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       }
 
       const startedAt = new Date();
-      const lastScrapeAt = this.redis.isEnabled() ? await this.redis.get('x:last-scrape-at') : null;
-      const since = lastScrapeAt ? new Date(lastScrapeAt) : new Date(Date.now() - 24 * 60 * 60 * 1000);
+      const lastScrapeAt = this.redis.isEnabled()
+        ? await this.redis.get('x:last-scrape-at')
+        : null;
+      const since = lastScrapeAt
+        ? new Date(lastScrapeAt)
+        : new Date(Date.now() - 24 * 60 * 60 * 1000);
 
-      this.logger.log(`Running X scraper cycle for ${handles.length} handles since ${since.toISOString()}`);
+      this.logger.log(
+        `Running X scraper cycle for ${handles.length} handles since ${since.toISOString()}`,
+      );
       const result = await this.xScraper.scrapeBatch({
         handles,
         since,
@@ -65,12 +88,19 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
 
       await this.onXResult(result, startedAt);
     } catch (err) {
-      this.logger.error(`X scraper cycle failed: ${err instanceof Error ? err.message : String(err)}`);
+      this.logger.error(
+        `X scraper cycle failed: ${err instanceof Error ? err.message : String(err)}`,
+      );
+    } finally {
+      this.running = false;
     }
   }
 
   /** Called automatically every time the cron cycle gets a result from X. */
-  private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
+  private async onXResult(
+    result: ProfileScrapeResult,
+    startedAt: Date,
+  ): Promise<void> {
     const cursor = startedAt.toISOString();
     const keptPosts: Array<(typeof result.posts)[number]> = [];
     const categoriesByPost = new Map<(typeof result.posts)[number], string[]>();
@@ -92,7 +122,8 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         continue;
       }
 
-      const matchedLanguage = analysis.languages?.[0] ?? analysis.language ?? null;
+      const matchedLanguage =
+        analysis.languages?.[0] ?? analysis.language ?? null;
       if (!matchedLanguage) {
         this.analytics?.recordRejected({
           id: String(post.id ?? randomUUID()),
@@ -120,7 +151,9 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       if (this.redis.isEnabled()) {
         await this.redis.set('x:last-scrape-at', cursor);
       }
-      this.logger.log(`X result ready: 0 posts from ${result.handle}; saved timestamp=${cursor}`);
+      this.logger.log(
+        `X result ready: 0 posts from ${result.handle}; saved timestamp=${cursor}`,
+      );
       return;
     }
 
@@ -147,13 +180,15 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
           text: post.text,
           createdAt: new Date(post.publishedAt ?? Date.now()).toISOString(),
           severity: 'high',
-          matches: analysisMatches(post.text, post.matches ?? []).map((match) => ({
-            term: match.term,
-            normalized: match.term,
-            start: match.start,
-            end: match.end,
-            category: 'threat',
-          })),
+          matches: analysisMatches(post.text, post.matches ?? []).map(
+            (match) => ({
+              term: match.term,
+              normalized: match.term,
+              start: match.start,
+              end: match.end,
+              category: 'threat',
+            }),
+          ),
         };
 
         this.filteredPosts.push(filteredPost);
@@ -166,7 +201,9 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     }
 
     if (failed) {
-      this.logger.warn(`X result: ${failed}/${keptPosts.length} posts failed from ${result.handle}; cursor not advanced`);
+      this.logger.warn(
+        `X result: ${failed}/${keptPosts.length} posts failed from ${result.handle}; cursor not advanced`,
+      );
       return;
     }
 
@@ -174,11 +211,16 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       await this.redis.set('x:last-scrape-at', cursor);
     }
 
-    this.logger.log(`X result ready: ${keptPosts.length} posts from ${result.handle}; saved timestamp=${cursor}`);
+    this.logger.log(
+      `X result ready: ${keptPosts.length} posts from ${result.handle}; saved timestamp=${cursor}`,
+    );
   }
 }
 
-function analysisMatches(text: string, terms: string[]): Array<{ term: string; start: number; end: number }> {
+function analysisMatches(
+  text: string,
+  terms: string[],
+): Array<{ term: string; start: number; end: number }> {
   const matches: Array<{ term: string; start: number; end: number }> = [];
   const lowerText = text.toLowerCase();
 

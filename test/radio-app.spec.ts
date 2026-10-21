@@ -1,10 +1,14 @@
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
+import {
+  FastifyAdapter,
+  type NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import { Kafka, type Producer } from 'kafkajs';
 import { randomUUID } from 'node:crypto';
 import { relative, resolve } from 'node:path';
-import { rm, writeFile } from 'node:fs/promises';
+import { rm, writeFile, readdir } from 'node:fs/promises';
 import { expect, it, vi } from 'vitest';
 import { AppModule } from '../src/app.module.js';
 import { APP_CONFIG, loadConfig } from '../src/config/app-config.js';
@@ -13,20 +17,30 @@ import { RadioService } from '../src/radio/radio.service.js';
 import { RedisService } from '../src/redis/redis.service.js';
 import { RedisRetryQueue } from '../src/transformer/retry-queue.js';
 import { TelegramService } from '../src/telegram/telegram.service.js';
-import { XScraperCronService } from '../src/x-scraper/x-scraper.cron.service.js';
+import { XScraperService } from '../src/x-scraper/x-scraper.service.js';
+import { MessageEventsService } from '../src/events/message-events.service.js';
 import { FakeRetryQueue } from './transformer/fake-retry-queue.js';
+import { telegramInput, twitterInput } from './transformer/fixtures.js';
 
-it('boots the full app with radio filtering/handoff registered alongside Telegram and X (external I/O doubled)', async () => {
+it('boots the actual three collector lifecycles and publishes each source through the shared contract (external I/O doubled)', async () => {
   const directory = resolve('.tmp', `radio-app-${randomUUID()}`);
   const settings = loadConfig({
     RADIO_ENABLED: 'true',
     RADIO_MAX_CLIPS: '1',
     RADIO_DATA_DIR: directory,
     KAFKA_BROKERS: 'capture.invalid:9092',
+    REDIS_URL: 'redis://test.invalid:6379',
+    TG_API_ID: '1',
+    TG_API_HASH: 'test',
+    TG_SESSION_STRING: 'test',
   });
-  const watchResults = vi.fn();
-  const startX = vi.fn();
-  const startTelegram = vi.fn();
+  const startTelegram = vi
+    .spyOn(TelegramService.prototype, 'start')
+    .mockResolvedValue(undefined);
+  const setIfAbsent = vi.fn().mockResolvedValue(true);
+  const batch = twitterInput();
+  batch.posts[0]!.text = 'A bomb was reported.';
+  const scrapeBatch = vi.fn().mockResolvedValue(batch);
   const send = vi
     .fn()
     .mockResolvedValue([
@@ -50,37 +64,95 @@ it('boots the full app with radio filtering/handoff registered alongside Telegra
     send,
     disconnect: async () => undefined,
   } as unknown as Producer);
-  let app;
+  let app: NestFastifyApplication | undefined;
   try {
-    app = await Test.createTestingModule({ imports: [AppModule] })
+    const module = await Test.createTestingModule({ imports: [AppModule] })
       .overrideProvider(APP_CONFIG)
       .useValue(settings)
       .overrideProvider(ConfigService)
       .useValue(new ConfigService({ ...settings, KAFKA_REMOTE_BROKERS: '' }))
-      .overrideProvider(TelegramService)
-      .useValue({ watchResults, onModuleInit: startTelegram })
-      .overrideProvider(XScraperCronService)
-      .useValue({ onModuleInit: startX })
+      .overrideProvider(XScraperService)
+      .useValue({ scrapeBatch })
       .overrideProvider(LocalRadioWorker)
       .useValue({ capture, onModuleDestroy: async () => undefined })
       .overrideProvider(RedisService)
-      .useValue({ isEnabled: () => false })
+      .useValue({
+        isEnabled: () => true,
+        get: async () => null,
+        set: async () => undefined,
+        setIfAbsent,
+        eval: async () => 1,
+      })
       .overrideProvider(RedisRetryQueue)
       .useValue(new FakeRetryQueue())
       .compile();
+    app = module.createNestApplication<NestFastifyApplication>(
+      new FastifyAdapter(),
+    );
     app.useLogger(false);
     await app.init();
-    await vi.waitFor(() => expect(send).toHaveBeenCalledOnce());
-    expect(startTelegram).toHaveBeenCalledOnce();
-    expect(startX).toHaveBeenCalledOnce();
-    expect(watchResults).toHaveBeenCalledOnce();
-    expect(capture).toHaveBeenCalledOnce();
-    expect(JSON.parse(send.mock.calls[0]![0].messages[0].value)).toMatchObject({
-      platform: 'internet_radio',
-      languages: ['en'],
-      matches: expect.arrayContaining(['bomb']),
+    await app.getHttpAdapter().getInstance().ready();
+    await vi.waitFor(() => expect(send).toHaveBeenCalledTimes(2), {
+      timeout: 5000,
     });
-    expect(await app.get(RadioService).listClips()).toHaveLength(1);
+    expect(startTelegram).toHaveBeenCalledOnce();
+    expect(setIfAbsent).toHaveBeenCalledWith(
+      'telegram:session-lock',
+      expect.any(String),
+      120,
+    );
+    expect(scrapeBatch).toHaveBeenCalledOnce();
+    expect(capture).toHaveBeenCalledOnce();
+    await app
+      .get(MessageEventsService)
+      .emit({
+        channelId: 1,
+        channel: 'test-channel',
+        inserted: 1,
+        messages: [{ ...telegramInput(), text: 'A bomb was reported.' }],
+      });
+    await vi.waitFor(() => expect(send).toHaveBeenCalledTimes(3), {
+      timeout: 5000,
+    });
+    const reports = send.mock.calls.map(([record]) => {
+      expect(record.messages[0]).not.toHaveProperty('key');
+      const report = JSON.parse(record.messages[0].value);
+      expect(report).not.toHaveProperty('report_id');
+      expect(report.categories).toContain('terror');
+      return report;
+    });
+    expect(reports.map((r) => r.platform).sort()).toEqual([
+      'AM/FM-RADIO',
+      'telegram',
+      'twitter',
+    ]);
+    const saved = await app.get(RadioService).listClips();
+    expect(saved).toHaveLength(1);
+    expect(saved[0]!.station.name).toBeTruthy();
+    expect((await readdir(resolve(directory, 'clips'))).sort()).toEqual([
+      saved[0]!.clipId + '.json',
+      saved[0]!.clipId + '.wav',
+    ]);
+    const http = app.getHttpAdapter().getInstance();
+    expect(
+      (await http.inject({ method: 'GET', url: '/api/health' })).statusCode,
+    ).toBe(200);
+    expect(
+      (await http.inject({ method: 'GET', url: '/health' })).statusCode,
+    ).toBe(200);
+    expect(
+      (await http.inject({ method: 'GET', url: '/api/posts' })).json(),
+    ).toHaveLength(2);
+    const stats = (
+      await http.inject({ method: 'GET', url: '/api/kafka/analytics/stats' })
+    ).json();
+    expect(stats.totalPublished).toBe(3);
+    expect(stats.totalRejected).toBe(0);
+    expect(
+      stats.recentEvents.every(
+        (event: object) => !Object.hasOwn(event, 'reportId'),
+      ),
+    ).toBe(true);
   } finally {
     await app?.close();
     vi.restoreAllMocks();

@@ -1,7 +1,7 @@
 import { Controller, Get, Sse } from '@nestjs/common';
 import { Observable, interval, map } from 'rxjs';
 import type { FilteredPost, FilteredPostSseEvent } from '@blitz/shared';
-import { PostsService } from './posts.service';
+import { PostsService } from './posts.service.js';
 
 @Controller('posts')
 export class PostsController {
@@ -15,11 +15,13 @@ export class PostsController {
   @Sse('stream')
   stream(): Observable<MessageEvent> {
     return new Observable<MessageEvent>((subscriber) => {
-      const unsubscribe = this.postsService.subscribe((event: FilteredPostSseEvent) => {
-        subscriber.next({
-          data: JSON.stringify(event),
-        } as MessageEvent);
-      });
+      const unsubscribe = this.postsService.subscribe(
+        (event: FilteredPostSseEvent) => {
+          subscriber.next({
+            data: JSON.stringify(event),
+          } as MessageEvent);
+        },
+      );
 
       const immediate = this.postsService.getRecentPosts();
       if (immediate.length) {

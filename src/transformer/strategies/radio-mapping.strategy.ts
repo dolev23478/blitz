@@ -8,7 +8,7 @@ import {
 } from '../../radio/radio.types.js';
 import { radioPublicBaseUrlSchema } from '../../radio/radio.config.js';
 import { collectorFields } from '../collector-fields.js';
-import { reportId } from '../report-id.js';
+import { RADIO_PLATFORM } from '../../common/constants.js';
 
 @Injectable()
 export class RadioMappingStrategy {
@@ -22,8 +22,7 @@ export class RadioMappingStrategy {
       ) ?? `http://localhost:${this.config.get<number>('PORT') ?? 3000}`;
     const reportUrl = `${baseUrl.replace(/\/+$/, '')}/api/radio/clips/${clip.clipId}`;
     return {
-      report_id: reportId('internet_radio', reportUrl, clip.report_id),
-      platform: 'internet_radio',
+      platform: RADIO_PLATFORM,
       account_name: clip.station.name,
       channel_name: clip.station.name,
       report_url: reportUrl,

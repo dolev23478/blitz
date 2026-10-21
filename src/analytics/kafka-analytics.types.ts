@@ -6,7 +6,6 @@ export interface KafkaPublishedEvent {
   channel: string;
   source: 'telegram' | 'x' | 'manual' | string;
   content: string;
-  reportId?: number | string;
   termsMatched?: string[];
   language?: string;
   timestamp: string;

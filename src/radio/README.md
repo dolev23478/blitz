@@ -67,13 +67,13 @@ The handoff first applies the shared analyzer's default `dictionary_only` mode,
 matching the current Telegram/X integrations. A non-matching clip is discarded, including temporary audio,
 and is not submitted to the Transformer. Analyzer errors discard the unapproved
 clip and log a failure; they do not bypass filtering. Accepted input receives unique dictionary terms
-in `matches` and category labels from the existing evaluation unless collector
+in `matches` and report categories from `analysis.categories` unless collector
 categories were already provided. Existing multilingual metadata is preserved;
 otherwise ASR language supplies `languages`. Dictionary languages are logged
 separately; emoji dictionary labels are not ISO language codes.
 
 The handoff then calls `transformer.run('RadioTranscript', clip)` and awaits the normal
-Kafka publisher. It uses `platform: 'internet_radio'`, `media_type: ['text']` and
+Kafka publisher. It uses `platform: 'AM/FM-RADIO'`, `media_type: ['text']` and
 `languages: [clip.language]`. Original audio remains archived; `audio` is not
 added to the RAW_REPORT enum. Unknown original broadcast time becomes
 `published_at: null`; observed capture end becomes `collected_at`.
@@ -87,21 +87,24 @@ and policy remain owned by the existing Transformer publisher.
 
 ## Read each processing stage in the logs
 
-| Event | What it shows |
-| --- | --- |
-| `radio_capture_started`, `radio_transcribed` | Station, capture ID, audio duration and original transcript |
-| `radio_input_received` | The full collector JSON received by the pipeline |
-| `radio_analysis_completed` | ASR/ISO languages, dictionary languages, matches, categories/evaluation and issues |
-| `radio_filter_result` | `passed: true/false` and the explicit reason (including no speech) |
-| `radio_transformer_input` | Accepted JSON with collector-side analysis metadata |
-| `radio_transformer_stage_completed` | Parsing, mapping, validation and publishing; mapping/validation include report data |
-| `radio_kafka_sending` | Exact validated wire payload, topic, string key and attempt, immediately before producer.send |
-| `radio_kafka_acknowledged` | Successful Kafka acknowledgment, not just a queued attempt |
-| `radio_pipeline_completed` | Workflow completed after the publisher's confirmation |
-| `radio_pipeline_failed`, `radio_transformer_stage_failed` | Failure reason and the stage that failed |
+| Event                                                     | What it shows                                                                                              |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `radio_capture_started`, `radio_transcribed`              | Station, capture ID, audio duration and original transcript                                                |
+| `radio_input_received`                                    | The full collector JSON received by the pipeline                                                           |
+| `radio_analysis_completed`                                | ASR/ISO languages, dictionary languages, matches, categories/evaluation and issues                         |
+| `radio_filter_result`                                     | `passed: true/false` and the explicit reason (including no speech)                                         |
+| `radio_transformer_input`                                 | Accepted JSON with collector-side analysis metadata                                                        |
+| `radio_transformer_stage_completed`                       | Parsing, mapping, validation and publishing; mapping/validation include report data                        |
+| `radio_kafka_sending`                                     | Exact validated wire payload, topic, internal publication ID and attempt, immediately before producer.send |
+| `radio_kafka_acknowledged`                                | Successful Kafka acknowledgment, not just a queued attempt                                                 |
+| `radio_pipeline_completed`                                | Workflow completed after the publisher's confirmation                                                      |
+| `radio_pipeline_failed`, `radio_transformer_stage_failed` | Failure reason and the stage that failed                                                                   |
 
-`clipId` connects input/filter/Transformer events; `reportId` and the UUID in
-`report_url` connect the publisher events. Validation logs show the formatted
+`clipId` connects input/filter/Transformer events; the internal `publicationId`
+and the UUID in `report_url` connect the publisher events. Reports contain no
+`report_id` or Kafka key; consumers assign their own IDs. Report categories are
+the dev dictionary labels (`terror`, `civil_emergency`, `riots`, `rockets_aerial`),
+not the evaluator's concept labels. Validation logs show the formatted
 report even when broker configuration/connectivity prevents a send. A sending
 event alone does not mean Kafka accepted the report. Retries log each attempt.
 
@@ -132,11 +135,11 @@ apply to all sources. Public reporting/interviews may include statements of
 interest; source affiliation does not establish that an individual clip is an
 actual threat or that a report about an attack is accurate.
 
-| Source ID | Source / documented affiliation | Capture |
-| --- | --- | --- |
-| `radio-al-nour` | Lebanese Al-Nour; [US Treasury identifies it as a Hezbollah media arm](https://home.treasury.gov/news/press-releases/js4134) | Radio, Arabic |
-| `al-aqsa-tv-audio` | Al-Aqsa Television; [US Treasury documents Hamas control](https://home.treasury.gov/news/press-releases/tg594) | Public TV audio relay, Arabic; **not** Al-Aqsa Voice Radio |
-| `al-masirah-tv-audio` | Al-Masirah; described as Houthi media in [UN Panel of Experts report S/2025/650](https://documents.un.org/doc/undoc/gen/n25/234/10/pdf/n2523410.pdf) | Public TV audio relay, Arabic |
+| Source ID             | Source / documented affiliation                                                                                                                      | Capture                                                    |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `radio-al-nour`       | Lebanese Al-Nour; [US Treasury identifies it as a Hezbollah media arm](https://home.treasury.gov/news/press-releases/js4134)                         | Radio, Arabic                                              |
+| `al-aqsa-tv-audio`    | Al-Aqsa Television; [US Treasury documents Hamas control](https://home.treasury.gov/news/press-releases/tg594)                                       | Public TV audio relay, Arabic; **not** Al-Aqsa Voice Radio |
+| `al-masirah-tv-audio` | Al-Masirah; described as Houthi media in [UN Panel of Experts report S/2025/650](https://documents.un.org/doc/undoc/gen/n25/234/10/pdf/n2523410.pdf) | Public TV audio relay, Arabic                              |
 
 The HLS relay URLs were discovered in public player/channel listings and tested
 with the actual PyAV worker settings. They are third-party delivery endpoints,
@@ -228,17 +231,17 @@ Move/archive old captures manually or increase capacity to resume.
 
 All output/cache/temp paths stay inside the project. `.radio`, `.venv-radio`
 and Python bytecode are gitignored. A path outside the project (including the
-Desktop archive from an earlier branch) is not used. Docker deployment requires
-Python dependencies, model storage and an archive volume; this change does not
-provision them.
+Desktop archive from an earlier branch) is not used. The Dockerfile installs the
+Python dependencies; persist `/app/.radio` for model storage and accepted clips.
+The first model download and station access still require network connectivity.
 
 While the full app is running:
 
-| Route | Result |
-| --- | --- |
-| `GET /api/radio/clips` | Completed clips, newest first, including text |
-| `GET /api/radio/clips/<uuid>` | One clip's JSON |
-| `GET /api/radio/clips/<uuid>/audio` | WAV audio |
+| Route                               | Result                                        |
+| ----------------------------------- | --------------------------------------------- |
+| `GET /api/radio/clips`              | Completed clips, newest first, including text |
+| `GET /api/radio/clips/<uuid>`       | One clip's JSON                               |
+| `GET /api/radio/clips/<uuid>/audio` | WAV audio                                     |
 
 These routes inherit the application's API-key guard. If `API_KEY` is set,
 send `X-API-Key` or the existing Bearer/query authentication. Invalid UUIDs

@@ -8,7 +8,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'node:crypto';
 import { Kafka, logLevel, type Producer, type SASLOptions } from 'kafkajs';
-import { REPORT_TOPIC } from '../../common/constants.js';
+import { RADIO_PLATFORM, REPORT_TOPIC } from '../../common/constants.js';
 import { KafkaMirror } from './kafka-mirror.js';
 import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
@@ -215,12 +215,11 @@ export class PublishingProcessor
         const producer = await this.connect();
         if (!leaseValid || !(await this.queue.renew(token)))
           throw new Error('Publication lease lost.');
-        if (job.report.platform === 'internet_radio')
+        if (job.report.platform === RADIO_PLATFORM)
           this.logger.log({
             event: 'radio_kafka_sending',
-            reportId: job.report.report_id,
+            publicationId: job.id,
             topic: REPORT_TOPIC,
-            key: String(job.report.report_id),
             attempt: job.attempts,
             payload: JSON.parse(value),
           });
@@ -239,10 +238,10 @@ export class PublishingProcessor
           )
         )
           throw new Error('Kafka publication was not confirmed.');
-        if (job.report.platform === 'internet_radio')
+        if (job.report.platform === RADIO_PLATFORM)
           this.logger.log({
             event: 'radio_kafka_acknowledged',
-            reportId: job.report.report_id,
+            publicationId: job.id,
             topic: REPORT_TOPIC,
             attempt: job.attempts,
             acknowledgment,
@@ -287,18 +286,28 @@ export class PublishingProcessor
         throw new Error(
           'Publication lease lost after acknowledgment; record retained.',
         );
-      this.analytics?.recordPublished({
-        id: String(job.report.report_id),
-        channel: job.report.channel_name || job.report.account_name || 'unknown_channel',
-        source: job.report.platform || 'kafka',
-        content: job.report.content,
-        reportId: job.report.report_id,
-        termsMatched: job.report.matches,
-        language: job.report.languages?.join(', ') || 'unknown',
-        timestamp: job.report.collected_at || new Date().toISOString(),
-        topic: REPORT_TOPIC,
-      });
       await this.queue.finish(job, token, 'confirmed');
+      try {
+        this.analytics?.recordPublished({
+          id: job.id,
+          channel:
+            job.report.channel_name ||
+            job.report.account_name ||
+            'unknown_channel',
+          source: job.report.platform || 'kafka',
+          content: job.report.content,
+          termsMatched: job.report.matches,
+          language: job.report.languages?.join(', ') || 'unknown',
+          timestamp: job.report.collected_at || new Date().toISOString(),
+          topic: REPORT_TOPIC,
+        });
+      } catch {
+        // Observability must never turn an acknowledged send into another Kafka attempt.
+        this.logger.warn({
+          event: 'publication_analytics_failed',
+          publicationId: job.id,
+        });
+      }
     } finally {
       clearInterval(heartbeat);
     }

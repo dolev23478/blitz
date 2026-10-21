@@ -1,3 +1,4 @@
+import { KafkaAnalyticsService } from '../../src/analytics/kafka-analytics.service.js';
 import { FakeRetryQueue } from './fake-retry-queue.js';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -238,14 +239,22 @@ describe('Kafka publication', () => {
       .mockResolvedValueOnce(acknowledgment)
       .mockRejectedValueOnce(new Error('unavailable'));
     const ctx = publishingContext();
-    ctx.reports.push(rawReport({ content: 'report-2' }), rawReport({ content: 'report-3' }));
+    ctx.reports.push(
+      rawReport({ content: 'report-2' }),
+      rawReport({ content: 'report-3' }),
+    );
     const running = publisher().execute(ctx);
     await vi.advanceTimersByTimeAsync(0);
     expect(kafka.send).toHaveBeenCalledTimes(2);
     expect(ctx.publishedReports).toEqual([ctx.reports[0]]);
     await vi.advanceTimersByTimeAsync(60000);
     await running;
-    expect(sentContents()).toEqual(['Telegram report', 'report-2', 'report-2', 'report-3']);
+    expect(sentContents()).toEqual([
+      'Telegram report',
+      'report-2',
+      'report-2',
+      'report-3',
+    ]);
     expect(ctx.publishedReports).toEqual(ctx.reports);
   });
 
@@ -278,11 +287,17 @@ describe('Kafka publication', () => {
     const processor = publisher();
     const first = {
       ...context(),
-      reports: [rawReport({ content: 'report-1' }), rawReport({ content: 'report-2' })],
+      reports: [
+        rawReport({ content: 'report-1' }),
+        rawReport({ content: 'report-2' }),
+      ],
     };
     const second = {
       ...context(),
-      reports: [rawReport({ content: 'report-3' }), rawReport({ content: 'report-4' })],
+      reports: [
+        rawReport({ content: 'report-3' }),
+        rawReport({ content: 'report-4' }),
+      ],
     };
     const runningFirst = processor.execute(first);
     await vi.advanceTimersByTimeAsync(30000);
@@ -293,7 +308,13 @@ describe('Kafka publication', () => {
     expect(second.publishedReports).toEqual([]);
     await vi.advanceTimersByTimeAsync(1);
     await Promise.all([runningFirst, runningSecond]);
-    expect(sentContents()).toEqual(['report-1', 'report-1', 'report-2', 'report-3', 'report-4']);
+    expect(sentContents()).toEqual([
+      'report-1',
+      'report-1',
+      'report-2',
+      'report-3',
+      'report-4',
+    ]);
     expect(first.publishedReports).toEqual(first.reports);
     expect(second.publishedReports).toEqual(second.reports);
   });
@@ -380,7 +401,11 @@ describe('Kafka publication', () => {
     ctx.reports[1]!.matches.push('changed');
     await vi.advanceTimersByTimeAsync(60000);
     await running;
-    expect(sentContents()).toEqual(['Telegram report', 'Telegram report', 'report-2']);
+    expect(sentContents()).toEqual([
+      'Telegram report',
+      'Telegram report',
+      'report-2',
+    ]);
     expect(
       kafka.send.mock.calls
         .slice(1)
@@ -457,7 +482,7 @@ describe('Transformer workflow through the Kafka boundary', () => {
         {
           status: 'completed',
           inputId: 'workflow-input',
-          },
+        },
       ]);
       expect(report).toMatchObject({
         schema_version: 1,
@@ -584,4 +609,38 @@ describe('Transformer workflow through the Kafka boundary', () => {
     ).rejects.toMatchObject({ code: 'unsupported_format' });
     expect(kafka.send).not.toHaveBeenCalled();
   });
+});
+
+it('confirms Redis after Kafka acknowledgment even if analytics fails', async () => {
+  const queue = new FakeRetryQueue();
+  const finish = vi.spyOn(queue, 'finish');
+  const analytics = {
+    recordPublished: vi.fn((_event: unknown) => {
+      expect(finish).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.any(String),
+        'confirmed',
+      );
+      throw new Error('Dashboard unavailable');
+    }),
+  };
+  const processor = new PublishingProcessor(
+    new ConfigService({ KAFKA_BROKERS: 'broker:9092' }),
+    queue,
+    analytics as unknown as KafkaAnalyticsService,
+  );
+  try {
+    const ctx = publishingContext();
+    await processor.execute(ctx);
+    expect(ctx.publishedReports).toEqual(ctx.reports);
+    expect(kafka.send).toHaveBeenCalledOnce();
+    expect(analytics.recordPublished).toHaveBeenCalledWith(
+      expect.objectContaining({ id: expect.any(String) }),
+    );
+    expect(analytics.recordPublished.mock.calls[0]![0]).not.toHaveProperty(
+      'reportId',
+    );
+  } finally {
+    await processor.onModuleDestroy();
+  }
 });

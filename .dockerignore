@@ -11,6 +11,10 @@ dist/
 build/
 .temp/
 .tmp/
+.radio/
+.venv-radio/
+**/__pycache__/
+.next/
 *.tsbuildinfo
 pids/
 *.pid

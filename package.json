@@ -33,7 +33,7 @@
     "radio:demo": "node test/radio/run-real-sample.mjs",
     "radio:start": "npm run build && node scripts/radio-pipeline.mjs",
     "dev:web": "npm run dev --workspace @blitz/web",
-    "build:web": "npm run build --workspace @blitz/web",
+    "build:web": "npm run build --workspace @blitz/shared && npm run build --workspace @blitz/web",
     "start:web": "npm run start --workspace @blitz/web"
   },
   "dependencies": {

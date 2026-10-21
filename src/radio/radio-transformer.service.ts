@@ -16,7 +16,7 @@ export type RadioPipelineResult =
       clipId: string;
       reason: 'no_speech' | 'no_dictionary_match';
     }
-  | { status: 'published'; clipId: string; reportIds: number[] };
+  | { status: 'published'; clipId: string };
 
 /** The same analyzeText(auto) dictionary gate used by Telegram and X, before transformation. */
 @Injectable()
@@ -73,6 +73,7 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
         languages,
         dictionaryLanguages: analysis.languages ?? [],
         matches: analysis.terms,
+        categories: analysis.categories,
         issues: analysis.issues,
         evaluation: analysis.evaluation,
       });
@@ -95,26 +96,22 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
         languages,
         matches: [...new Set([...(clip.matches ?? []), ...analysis.terms])],
         categories:
-          clip.categories !== undefined
-            ? clip.categories
-            : (analysis.evaluation?.threatCategories ?? []),
+          clip.categories !== undefined ? clip.categories : analysis.categories,
       };
       this.logger.log({
         event: 'radio_transformer_input',
         clipId: clip.clipId,
         payload: enriched,
       });
-      const results = await this.transformer.run('RadioTranscript', enriched, {
+      await this.transformer.run('RadioTranscript', enriched, {
         inputId: clip.clipId,
         source: 'radio',
       });
-      const reportIds = results.map((result) => result.reportId);
       this.logger.log({
         event: 'radio_pipeline_completed',
         clipId: clip.clipId,
-        reportIds,
       });
-      return { status: 'published', clipId: clip.clipId, reportIds };
+      return { status: 'published', clipId: clip.clipId };
     } catch (error) {
       this.logger.error({
         event: 'radio_pipeline_failed',

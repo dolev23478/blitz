@@ -37,7 +37,7 @@ beforeEach(() => {
   );
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined);
-  run.mockReset().mockResolvedValue([{ status: 'completed', reportId: 42 }]);
+  run.mockReset().mockResolvedValue([{ status: 'completed', inputId: 'test' }]);
   handoff = new RadioTransformerHandoff(
     {} as RadioService,
     { run } as unknown as TransformerWorkflow,
@@ -110,4 +110,29 @@ it('preserves explicit null collector arrays for shared normalization', async ()
     languages: null,
     categories: null,
   });
+});
+
+it('uses dev report categories, not evaluation concept labels', async () => {
+  vi.mocked(textAnalyzer.analyzeText).mockReturnValue({
+    text: 'bomb',
+    content: 'bomb',
+    language: 'en',
+    languages: ['en'],
+    matched: true,
+    terms: ['bomb'],
+    categories: ['terror'],
+    matches: [],
+    usedSources: [],
+    issues: [],
+    evaluation: {
+      mode: 'dictionary_only',
+      riskScore: 10,
+      riskLevel: 'low',
+      threatCategories: ['weapon.explosive'],
+      flaggedReasons: [],
+    },
+  });
+  const result = await handoff.process(clip('bomb'));
+  expect(result).toEqual({ status: 'published', clipId: clip('bomb').clipId });
+  expect(run.mock.calls[0]![1].categories).toEqual(['terror']);
 });

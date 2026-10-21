@@ -6,22 +6,22 @@ other services. Redis stores publication jobs, not collector input. One shared
 
 Radio uses `workflow.run('RadioTranscript', clip)`. Its mapper accepts the existing
 archived JSON and maps `text` to content, ASR language to `languages`, and station
-name to account/channel/title. Platform is `internet_radio`; media is `['text']`
+name to account/channel/title. Platform is `AM/FM-RADIO`; media is `['text']`
 because RAW_REPORT does not permit audio. Original WAV evidence stays archived.
-Optional collector `languages`, categories, matches and valid supplied IDs are
+Optional collector `languages`, categories and matches are
 preserved. Caller metadata fills missing fields; absent categories/matches become
 empty arrays. The ASR language remains the fallback when no language array exists.
 
 Each report URL is `/api/radio/clips/<clipId>` under `RADIO_PUBLIC_BASE_URL`
 (or `http://localhost:PORT` locally), giving separate clips distinct URLs rather
-than reusing the live stream address. IDs use the existing nonnegative helper.
+than reusing the live stream address. No producer report ID is assigned.
 Capture end becomes `collected_at`; `published_at` is null because original
 broadcast time is unknown. Waveforms/segment data are not extra wire fields.
 
 The full application's `RadioTransformerModule` registers the handoff after
-archiving and logging. It applies the same shared auto-language dictionary
+filtering and archiving. It applies the same shared auto-language dictionary
 analysis used by Telegram/X before invoking the Transformer. No-speech and
-unmatched clips stay local. Analysis terms/categories enrich a copy of the input;
+unmatched clips are discarded. Analysis terms/categories enrich a copy of the input;
 ASR/collector ISO languages are preserved. The handoff awaits the existing
 publisher confirmation/retries; invalid content is rejected and archives remain
 on failure. Shutdown leaves admitted reports to the publisher's Redis recovery.
@@ -42,7 +42,7 @@ The current user-requested output includes:
 {
   "schema_version": 1,
   "languages": ["he", "en"],
-  "categories": ["news"],
+  "categories": ["terror"],
   "media_type": ["text", "photo"]
 }
 ```
@@ -52,7 +52,9 @@ set is in `src/contracts/schema.ts`. Outgoing JSON never includes `language`.
 New collector `languages` takes precedence over legacy `language`; per-message
 values precede batch/caller fallbacks. Legacy strings are wrapped. Missing/null/
 blank language becomes `[]`; invalid nonempty codes or invalid array entries fail.
-Categories are passed through as string arrays, with `[]` when absent. The
+Categories are passed through as string arrays, with `[]` when absent. The shared
+collector analyzer supplies dev dictionary report labels (`terror`,
+`civil_emergency`, `riots`, `rockets_aerial`), rather than evaluation concept IDs. The
 Transformer does not detect languages, translate content or infer categories.
 
 `schema_version` is the integer major version `1`. The `report_id` field is
@@ -60,12 +62,12 @@ omitted from RawReport and generated on the consumer side.
 
 Only `text`, `photo`, `video` are allowed in RAW_REPORT.media_type:
 
-| Collector type | Mapping policy |
-|---|---|
-| `photo`, `video` | Preserve the supported type |
-| `gif`, `animated_gif` | Map animation to `video` |
+| Collector type               | Mapping policy                                          |
+| ---------------------------- | ------------------------------------------------------- |
+| `photo`, `video`             | Preserve the supported type                             |
+| `gif`, `animated_gif`        | Map animation to `video`                                |
 | `audio`, `document`, `other` | Omit the unsupported attachment label; keep parsed text |
-| Unrecognized label | Reject mapping instead of guessing |
+| Unrecognized label           | Reject mapping instead of guessing                      |
 
 Every mapped report includes `text`. Empty content still fails even if media is
 present. Original collector objects/attachments are not mutated. Direct wire
@@ -75,13 +77,13 @@ The supplied `schemas-new-2.html` RAW_REPORT table has been compared with this
 contract. Its `categories` has no defined enum. It still lists `language: string`;
 the user's explicit `languages: string[]` requirement takes precedence. See the complete
 [field comparison](../contracts/raw-report.reference.md), including unresolved
-nullability and global ID uniqueness.
+nullability assumptions.
 
 The executable DE JSON Schema has **not yet been supplied**; the new HTML is a
 human-readable field table. The local schema is explicitly provisional.
 `DE_RAW_REPORT_SCHEMA_PATH` loads a trusted JSON Schema
 (draft-07, 2019-09 or 2020-12) and applies it in addition to local safety rules.
-Language/category enums, requiredness, media constraints, ID range and major
+Language/category enums, requiredness, media constraints and major
 version must be reconciled with that file once received. ISO code membership is
 checked locally meanwhile.
 
@@ -163,5 +165,5 @@ npx vitest run test/transformer/kafka.integration.spec.ts
 
 Only use isolated test infrastructure. The Redis suite runs actual Lua and client
 restart checks. The Kafka suite needs both endpoints and checks actual JSON/key
-round-trip. Both skip when their endpoints are not supplied; a skip is not an
+round-trip (with no producer-assigned ID or Kafka key). Both skip when their endpoints are not supplied; a skip is not an
 integration success. A test-specific JSON Schema is not the final DE contract.

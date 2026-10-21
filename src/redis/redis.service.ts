@@ -31,12 +31,13 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
       });
       this.client.on('error', (err: Error) => {
         this.logger.warn(`Redis error: ${err.message}`);
-        this.client = null;
+        // node-redis reconnects this client; keep its reference for recovery/shutdown.
       });
 
       await this.client.connect();
       this.logger.log('Redis connected');
     } catch (error) {
+      if (this.client?.isOpen) this.client.destroy();
       this.client = null;
       this.logger.warn(
         `Redis is unavailable; continuing without Redis. ${error instanceof Error ? error.message : String(error)}`,
@@ -45,13 +46,14 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   }
 
   async onModuleDestroy(): Promise<void> {
-    if (!this.client) return;
-    await this.client.quit();
+    const client = this.client;
     this.client = null;
+    if (client?.isReady) await client.quit();
+    else if (client?.isOpen) client.destroy();
   }
 
   isEnabled(): boolean {
-    return this.enabled && this.client !== null;
+    return this.enabled && this.client?.isReady === true;
   }
 
   /** Atomic queue/lease operations reuse this application's existing connection. */
@@ -104,9 +106,15 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   }
 
   /** Atomically sets the key only when it does not exist yet; true when this call claimed it. */
-  async setIfAbsent(key: string, value: string, ttlSeconds: number): Promise<boolean> {
+  async setIfAbsent(
+    key: string,
+    value: string,
+    ttlSeconds: number,
+  ): Promise<boolean> {
     if (!this.client) throw new Error('Redis is not connected');
-    return (await this.client.set(key, value, { NX: true, EX: ttlSeconds })) === 'OK';
+    return (
+      (await this.client.set(key, value, { NX: true, EX: ttlSeconds })) === 'OK'
+    );
   }
 
   async del(key: string): Promise<number> {

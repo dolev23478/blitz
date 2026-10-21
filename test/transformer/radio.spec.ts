@@ -89,10 +89,9 @@ describe('radio JSON through the shared Transformer workflow', () => {
     const report = JSON.parse(message.value as string);
     expect(record).toMatchObject({ topic: 'reports.raw', acks: -1 });
     expect(report).toEqual({
-      report_id: expect.any(Number),
       schema_version: 1,
       is_official: false,
-      platform: 'internet_radio',
+      platform: 'AM/FM-RADIO',
       account_name: input.station.name,
       channel_name: input.station.name,
       report_title: input.station.name,
@@ -105,21 +104,19 @@ describe('radio JSON through the shared Transformer workflow', () => {
       published_at: null,
       collected_at: input.endedAt,
     });
-    expect(report.report_id).toBeGreaterThanOrEqual(0);
-    expect(report.report_id).toBeLessThanOrEqual(2147483647);
-    expect(message.key).toBe(String(report.report_id));
+    expect(report).not.toHaveProperty('report_id');
+    expect(message).not.toHaveProperty('key');
     expect(new ReportValidator(config).validate(report)).toEqual(report);
     expect(results).toEqual([
       {
         status: 'completed',
         inputId: input.clipId,
-        reportId: report.report_id,
       },
     ]);
     expect(input).toEqual(original);
   });
 
-  it('gives two clips of the same station distinct report URLs and IDs', () => {
+  it('gives two clips of the same station distinct archive URLs', () => {
     const mapper = new RadioMappingStrategy(config);
     const first = mapper.map(clip(), {});
     const second = mapper.map(
@@ -127,20 +124,19 @@ describe('radio JSON through the shared Transformer workflow', () => {
       {},
     );
     expect(first.report_url).not.toBe(second.report_url);
-    expect(first.report_id).not.toBe(second.report_id);
-    expect(mapper.map(clip(), {}).report_id).toBe(first.report_id);
+    expect(first).not.toHaveProperty('report_id');
+    expect(second).not.toHaveProperty('report_id');
   });
 
-  it('preserves optional multilingual collector metadata and a valid supplied report ID', async () => {
+  it('preserves multilingual metadata and omits a legacy collector report ID', async () => {
     await runner.run(
       'RadioTranscript',
-      {
-        ...clip(),
+      Object.assign(clip(), {
         report_id: 0,
         languages: ['he', 'en'],
         categories: ['collector-category'],
         matches: ['collector-keyword'],
-      },
+      }),
       {
         languages: ['fa'],
         categories: ['caller-category'],
@@ -148,9 +144,11 @@ describe('radio JSON through the shared Transformer workflow', () => {
       },
     );
     const record = send.mock.calls[0]![0];
-    expect(record.messages[0].key).toBe('0');
+    expect(record.messages[0]).not.toHaveProperty('key');
+    expect(JSON.parse(record.messages[0].value)).not.toHaveProperty(
+      'report_id',
+    );
     expect(JSON.parse(record.messages[0].value)).toMatchObject({
-      report_id: 0,
       languages: ['he', 'en'],
       categories: ['collector-category'],
       matches: ['collector-keyword'],
@@ -201,8 +199,6 @@ describe('radio JSON through the shared Transformer workflow', () => {
   });
 
   it.each([
-    { report_id: -1 },
-    { report_id: '1847321098492019482' },
     { languages: ['ar', 'zz'] },
     { categories: ['news', 42] },
     { language: 'zz' },
@@ -220,14 +216,4 @@ describe('radio JSON through the shared Transformer workflow', () => {
       expect(send).not.toHaveBeenCalled();
     },
   );
-
-  it('rejects an unsafe int64 number at the JSON boundary before mapping', async () => {
-    await expect(
-      runner.run('RadioTranscript', {
-        ...clip(),
-        report_id: Number('1847321098492019482'),
-      }),
-    ).rejects.toMatchObject({ code: 'parsing_failed' });
-    expect(send).not.toHaveBeenCalled();
-  });
 });

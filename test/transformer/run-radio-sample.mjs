@@ -77,8 +77,9 @@ try {
     const message = record.messages[0];
     const report = validator.validate(JSON.parse(message.value));
     assert.equal(record.topic, 'reports.raw');
-    assert.equal(message.key, String(report.report_id));
-    assert.equal(report.platform, 'internet_radio');
+    assert.equal(message.key, undefined);
+    assert.equal(Object.hasOwn(report, 'report_id'), false);
+    assert.equal(report.platform, 'AM/FM-RADIO');
     assert.deepEqual(report.media_type, ['text']);
     assert(Array.isArray(report.languages));
     assert.equal(report.schema_version, 1);

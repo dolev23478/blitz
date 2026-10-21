@@ -6,11 +6,14 @@ publishes accepted content as `RAW_REPORT` messages to **Kafka**. There is no
 database. Redis stores collector cursors/claims and the Transformer's durable
 publication outbox.
 
-Radio flow: public stream -> bounded WAV capture -> local ASR -> local archive ->
-`RadioTransformerHandoff` -> `analyzeText(text, 'auto')` -> accepted metadata ->
-the same `TransformerWorkflow` -> existing Redis outbox -> Kafka. Empty or
-unmatched transcripts remain archived. Language/dictionary matching is done
-before the Transformer; the Transformer maps and validates the contract.
+Radio flow: public stream -> bounded temporary WAV capture -> local ASR ->
+`analyzeText(text, 'auto')` -> accepted-only WAV + JSON archive ->
+`RadioTransformerHandoff` -> shared `TransformerWorkflow` -> Redis outbox -> Kafka.
+Empty or unmatched transcripts and their temporary audio are discarded. Each
+accepted clip has exactly two files; JSON includes the station name and transcript.
+Language/dictionary matching happens before the Transformer. All collectors use
+`analysis.categories` from dev dictionaries (`terror`, `civil_emergency`, `riots`,
+`rockets_aerial`); evaluator concept labels are not report categories.
 
 `npm start` initializes all three integrations. `npm run radio:start` builds and
 starts only the radio integration and protected clip HTTP routes; add
@@ -18,25 +21,23 @@ starts only the radio integration and protected clip HTTP routes; add
 `radio:once` remains a capture-only diagnostic. See `src/radio/README.md` for
 stage log events and test modes.
 
-```
- Telegram (MTProto)                         X (twitterapi.io)
-   │ live push + catch-up pull                │ cron, every 5 min
-   ▼                                          ▼
- TelegramService ──emit──▶ MessageEvents   XScraperCronService
-   │ (Redis cursor)            │              │ (Redis cursor)
-   │                           ▼              │
-   │                  TelegramListenerService │
-   │                   dedupe (Redis) ·       │ dictionary match
-   │                   dictionary match       │
-   └──────────────┬───────────────────────────┘
-                  ▼
-        TransformerWorkflow
-   parsing → mapping → validation → publishing → completion
-                                        │
-                     ┌──────────────────┴──────────────────┐
-                     ▼                                     ▼
-              local Kafka (primary)               remote Kafka (optional mirror)
-              reports.raw, retry queue            SASL_SSL, best effort
+```text
+Telegram (MTProto)       X (twitterapi.io / Apify)       Radio (HTTP audio + local ASR)
+      |                            |                               |
+MessageEventsService      XScraperCronService               RadioService
+      |                            |                               |
+TelegramListenerService     shared analyzer                 shared analyzer
+      |                            |                      accepted WAV + JSON
+      +----------------------------+-------------------------------+
+                                   |
+                         TransformerWorkflow
+             parsing -> mapping -> validation -> publishing -> completion
+                                                     |
+                                          durable Redis outbox
+                                                     |
+                                          primary Kafka reports.raw
+                                                     |
+                                       optional best-effort Kafka mirror
 ```
 
 ## Modules (`src/`)
@@ -50,7 +51,7 @@ stage log events and test modes.
 | `tg-realtime/`                                              | MTProto helpers: login, message listener, history extractor, watchdog, flood-wait handling.                                                                                                                                 |
 | `x-scraper/`                                                | `XScraperCronService` (5-minute cycle), `XScraperService` (query building and chunking), twitterapi.io / Apify providers, monitored handles.                                                                                |
 | `events/`                                                   | `MessageEventsService`: in-process bus between `TelegramService` and the listener.                                                                                                                                          |
-| `radio/`                                                    | Sequential internet audio capture/local ASR and WAV/JSON/text archive. `RadioTransformerHandoff` applies the shared analyzer, logs filter decisions, and hands accepted JSON to the common Transformer.                     |
+| `radio/`                                                    | Sequential internet audio capture/local ASR and accepted-only WAV/JSON archive. `RadioTransformerHandoff` applies the shared analyzer, logs filter decisions, and hands accepted JSON to the common Transformer.            |
 | `match/`, `dictionaries/`, `normalize/`, `text-analyzer.ts` | Keyword dictionaries and text analysis used to decide which posts are kept.                                                                                                                                                 |
 | `transformer/`                                              | State machine that turns a source payload into a validated `RAW_REPORT` and publishes it.                                                                                                                                   |
 | `meta/`                                                     | `GET /api/health`. `GET /api/telegram` (in `telegram/`) reports the connection state.                                                                                                                                       |
@@ -71,15 +72,20 @@ FloodWait: `withFloodWait` sleeps the requested seconds plus 0.5–2 s jitter. A
 - A cursor is saved only after its batch succeeded, so a failure re-pulls the same window next time.
 - **Telegram:** on connect/reconnect and on every watchdog sync (`TG_SYNC_SECONDS`) it pulls each channel from its saved cursor time (last 24 h when no cursor). The pull is paginated: pages of 100 messages are read oldest first with a 200-500 ms pause between requests, and the cursor is committed after every page the listener handled, so a failure resumes at the last committed page and there is no size ceiling. A pull stops as soon as a page's newest message precedes the cursor, or equals it (that page is handled once, the dedupe claim removes the repeats). Channels are pulled one at a time. Live messages are accepted by username even if the channel was not resolved yet.
 - A live message advances its channel's cursor after the listener succeeded, but only once that channel's catch-up pull has completed on this connection and no pull is running (otherwise a failed pull would leave a permanent gap). The `telegram:seen:` claim still removes the re-read duplicates. If publishing fails, the claim is released so the next pull retries it.
-- **X:** each cycle searches posts since the cursor. Handles are split into queries of at most 500 characters (twitterapi.io limit is 512) with a pause between them to avoid 429s.
+- **X:** each cycle searches posts since the cursor. Handles are split into queries of at most 500 characters (twitterapi.io limit is 512) with a pause between them to avoid 429s. A running cycle skips subsequent timer ticks, preventing overlapping scrapes/publications when a provider or Kafka is slow.
 
 ## Transformer and Kafka
 
 `TransformerWorkflow` runs one input through `parsing → mapping → validation → publishing → completion`.
 Inputs are `ParsedMessage` (Telegram), `ProfileScrapeResult` (X), and
 `RadioTranscript` (radio). Radio identity uses the clip's archive URL, not the
-station's shared stream URL. Nonnegative int32 hash IDs are deterministic but can
-collide; they are not a globally unique allocation service.
+station's shared stream URL. Its platform is `AM/FM-RADIO`. Producers do not
+assign or publish `report_id`; the consumer owns ID assignment. Kafka records
+contain JSON values without keys. Internal outbox job IDs only coordinate retries.
+`schema_version` is the integer `1`; `languages` and `categories` are arrays.
+Legacy collector `language` is normalized to `languages`. The supplied HTML field
+table is not an executable DE JSON Schema; local validation remains provisional.
+A trusted final schema can be supplied through `DE_RAW_REPORT_SCHEMA_PATH`.
 
 - **Primary Kafka** (`KAFKA_BROKERS`, optional SASL/SSL): topic `reports.raw`, acks from all replicas. Reports are admitted to the existing Redis outbox before sending. It survives application restarts, uses token-checked processing leases and retries after `KAFKA_RETRY_INTERVAL_MS`. The approved policy is initial attempt plus three retries, then permanent discard. Lost acknowledgments/crashes can cause redelivery; this is at-least-once. The topic must exist (auto-create is off).
 - **Remote Kafka mirror** (`KAFKA_REMOTE_*`): every report is also sent to a second cluster over SASL_SSL (SCRAM-SHA-512, optional custom CA via `KAFKA_REMOTE_SSL_CA_FILE`). It has its own bounded in-memory queue (5000 reports) and never blocks the primary publisher. Off unless `KAFKA_REMOTE_BROKERS` is set.
@@ -87,5 +93,36 @@ collide; they are not a globally unique allocation service.
 ## Operational rules
 
 - Run **one** instance. A Telegram session can only be active in one place; do not run the app locally while it runs in the remote environment.
-- Redis is required for gap-free resume. Without it, Telegram and X fall back to a 24 h window on every start.
+- Redis is required for Telegram session ownership and durable publication. Telegram refuses to start with configured credentials but unavailable Redis; it does not bypass the session lock. A missing cursor uses a 24 h catch-up window.
 - Secrets (`TG_SESSION_STRING`, `TWITTERAPI_IO_KEY`, Kafka passwords) live in `.env`, which is git-ignored.
+
+## HTTP and dashboard
+
+The root Nest application exposes `/api/health`, `/api/telegram`,
+`/api/posts`, `/api/posts/stream`, `/api/radio/clips` and
+`/api/kafka/analytics/{stats,stream}`. Legacy `/health` and `/posts` aliases remain
+available. Analytics SSE emits named `snapshot` and `kafka_event` events. Counters
+start empty and reflect observed activity; they are in-memory operational stats,
+not an audit log. Only confirmed primary Kafka publication increments published
+counts. Statistics failures cannot retry already acknowledged reports.
+
+`apps/web` connects to the root backend (default port 3000) and runs on port 3001.
+`npm run build:web` builds the shared package and dashboard. `apps/api` is an
+optional standalone demo API, not the collector backend; it also defaults to
+3001, so do not run it alongside the dashboard on that port. Production uses the
+root application's collector and analytics endpoints.
+
+## Starting all collectors
+
+`npm run start` builds and boots the root application, including Telegram, X and
+radio. Set Telegram credentials, `TWITTERAPI_IO_KEY` (or the selected Apify
+provider's credentials), `REDIS_URL` and `KAFKA_BROKERS` in `.env`. Create the
+`reports.raw` topic and configure any required TLS/SASL credentials. For local
+radio, install `requirements-radio.txt` in `.venv-radio` and allow the first model
+download; subsequent runs reuse `.radio/models`. Settings, recording/pause
+constants and station URLs are documented in `src/radio/README.md`.
+
+Docker installs the radio Python worker dependencies as well as Node dependencies.
+Persist `/app/.radio` for accepted clips/model cache and provide the same runtime
+configuration. Docker builds/runtime still require verification in deployment;
+a successful local TypeScript build is not a Docker or broker integration test.

@@ -1,3 +1,4 @@
+import { FilteredPostsService } from '../../src/events/filtered-posts.service.js';
 import { FakeRetryQueue } from './fake-retry-queue.js';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -44,7 +45,12 @@ beforeEach(() => {
     },
   } as unknown as TelegramService;
   const redis = { isEnabled: () => false } as unknown as RedisService;
-  new TelegramListenerService(telegram, redis, workflow(publisher));
+  new TelegramListenerService(
+    telegram,
+    redis,
+    workflow(publisher),
+    new FilteredPostsService(),
+  );
 });
 
 afterEach(async () => {
@@ -65,7 +71,10 @@ async function publish(texts: string[]): Promise<Record<string, unknown>[]> {
     })),
   });
   return send.mock.calls.map(
-    ([record]) => JSON.parse((record as ProducerRecord).messages[0]!.value as string) as Record<string, unknown>,
+    ([record]) =>
+      JSON.parse(
+        (record as ProducerRecord).messages[0]!.value as string,
+      ) as Record<string, unknown>,
   );
 }
 
@@ -86,7 +95,10 @@ describe('dictionary → RAW_REPORT handoff', () => {
     ];
     expected.forEach(([language, category], i) => {
       expect(reports[i]!.languages).toEqual([language]);
-      expect(reports[i]!.categories, `${language}: ${String(reports[i]!.categories)}`).toContain(category);
+      expect(
+        reports[i]!.categories,
+        `${language}: ${String(reports[i]!.categories)}`,
+      ).toContain(category);
     });
     for (const report of reports) {
       expect((report.matches as string[]).length).toBeGreaterThan(0);

@@ -1,11 +1,15 @@
 # Blitz web frontend
 
-This React frontend expects the backend API at `NEXT_PUBLIC_API_URL`.
+Run `npm install` from the project root. Start the collector backend with
+`npm start` (port 3000), then `npm run dev:web` in another terminal (port 3001).
 
-Default for local development:
+The dashboard uses the real collector backend, not the optional demo API:
 
+```dotenv
+NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
-NEXT_PUBLIC_API_URL=http://localhost:3001
-```
 
-For preprod/prod, set the same variable to your public API origin.
+It reads `/api/posts`, `/api/posts/stream`, `/api/kafka/analytics/stats` and
+`/api/kafka/analytics/stream` (named SSE events: `snapshot`, `kafka_event`).
+Set the API URL to an address reachable from the browser in deployment.
+Build with `npm run build:web`; serve with `npm run start:web`.

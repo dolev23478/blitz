@@ -3,12 +3,16 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
 import { Public } from '../common/api-key.guard.js';
 import { KafkaAnalyticsService } from './kafka-analytics.service.js';
-import type { KafkaAnalyticsSummary, KafkaStreamEvent } from './kafka-analytics.types.js';
+import type {
+  KafkaAnalyticsSummary,
+  KafkaStreamEvent,
+} from './kafka-analytics.types.js';
 
 @Controller('api/kafka/analytics')
 export class KafkaAnalyticsController {
   constructor(
-    @Inject(KafkaAnalyticsService) private readonly analytics: KafkaAnalyticsService,
+    @Inject(KafkaAnalyticsService)
+    private readonly analytics: KafkaAnalyticsService,
     @Inject(APP_CONFIG) private readonly config: AppConfig,
   ) {}
 
@@ -89,6 +93,6 @@ export class KafkaAnalyticsController {
   @Post('reset')
   reset(): { message: string } {
     this.analytics.reset();
-    return { message: 'Kafka stream analytics reset to baseline.' };
+    return { message: 'Kafka stream analytics reset.' };
   }
 }

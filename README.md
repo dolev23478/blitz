@@ -1,20 +1,62 @@
-# blitz
+# Blitz
 
-NestJS (Fastify) service that collects OSINT posts and forwards dictionary matches to the transformer (Kafka).
+One NestJS/Fastify application collects Telegram, X and public internet radio,
+filters content with the shared analyzer, and publishes accepted RAW_REPORT JSON
+to Kafka. No SQL database is used. Redis stores collector state/session ownership
+and the durable publication outbox.
 
-- **Telegram** — pulls the channels listed in `src/telegram/telegram-channels.ts` (`TELEGRAM_CHANNELS`) through a Telegram account (MTProto, `TG_API_ID`, `TG_API_HASH`, `TG_SESSION_STRING`; generate the session with `npm run auth`). Live push plus a watchdog catch-up.
-- **X** — polls the handles in `src/x-scraper/constants/monitored-sources.ts` every 5 minutes.
-- **No database.** Resume points live in Redis (`REDIS_URL`): Telegram keeps one cursor per channel (`telegram:cursor:<channelId>` = channel, time of the last handled message; the resume is by time, not id) and X keeps `x:last-scrape-at`. Each pull continues from the saved point (24h fallback when none), so there are no gaps. Telegram messages are also claimed in Redis (`telegram:seen:*`, 2 days) so overlapping pulls don't publish a message twice.
-- **Kafka** — reports go to `reports.raw` on `KAFKA_BROKERS`. Set `KAFKA_REMOTE_BROKERS` (+ `KAFKA_REMOTE_SASL_*`, `KAFKA_REMOTE_SSL_CA_FILE`) to also mirror them to a remote cluster. See `docs/ARCHITECTURE.md`.
+## Run all three collectors
 
-## Run
-
-```
-cp .env.example .env
+```powershell
+Copy-Item .env.example .env
 npm install
-npm run start:dev
+python -m venv .venv-radio
+.\.venv-radio\Scripts\python.exe -m pip install -r requirements-radio.txt
+npm run start
 ```
 
-Config is validated at startup with zod in `src/config`: `PORT`, `REDIS_URL`, `TG_*`, `KAFKA_*`, optional `API_KEY` and `CORS_ORIGIN`.
+Populate `.env` before starting:
 
-`GET /api/health` and `GET /api/telegram` (connection status) are the only HTTP endpoints.
+- Telegram: `TG_API_ID`, `TG_API_HASH`, `TG_SESSION_STRING` (`npm run auth` generates a session), and reachable `REDIS_URL`. Telegram refuses to run without its Redis session lock.
+- X: `TWITTERAPI_IO_KEY` for the default provider, or the configured Apify credentials. Handles are in `src/x-scraper/constants/monitored-sources.ts`.
+- Publication: `KAFKA_BROKERS`, existing `reports.raw` topic, and any required TLS/SASL credentials. Optional remote mirroring uses `KAFKA_REMOTE_*`.
+- Radio: enabled by default; stations and recording/pause durations are in `src/radio/radio.constants.ts`. The first local ASR run downloads a model; later runs reuse `.radio/models`.
+
+On Linux/macOS, use `.venv-radio/bin/python` for pip. `npm run start:dev` enables
+watch mode. Radio-only full pipeline: `npm run radio:start`. Capture/filter-only
+check without Redis/Kafka: `npm run build`, then
+`npm run radio:once -- --station=radio-al-nour`.
+
+Accepted radio clips have exactly two files under `.radio/clips`: a WAV and a
+JSON transcript with station metadata. Unmatched captures are discarded. Runtime
+recordings, model downloads and Python environments are gitignored.
+
+## Contract and services
+
+All collectors use the same Transformer workflow. Output uses integer
+`schema_version: 1`, ISO `languages: string[]`, collector `categories: string[]`,
+and supported `media_type` values. Producer `report_id` and Kafka keys are omitted;
+consumers assign IDs. Radio platform is `AM/FM-RADIO`. Dev dictionaries and their
+report categories remain the shared source of truth.
+
+The backend defaults to port 3000. Routes include `/api/health`, `/api/telegram`,
+`/api/posts`, `/api/posts/stream`, `/api/radio/clips`, and
+`/api/kafka/analytics/{stats,stream}`. Route access follows the existing
+`ApiKeyGuard` and `@Public` declarations. The dashboard uses this backend: `npm run build:web`, then
+`npm run start:web` on port 3001. `apps/api` is a separate demo and is not required
+for collectors or the live dashboard.
+
+## Checks
+
+```powershell
+npm run build
+npx tsc --noEmit
+npm run lint
+npm test
+npm run build:web
+```
+
+Redis/Kafka integration suites require explicitly configured isolated test
+infrastructure; skipped suites do not establish integration success. See
+[architecture](docs/ARCHITECTURE.md), [radio](src/radio/README.md), and
+[Transformer contract/retries](src/transformer/README.md) for details.

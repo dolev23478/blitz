@@ -61,7 +61,11 @@ export class AnalyticsService {
     this.addRecentEvent(fullEvent);
     this.recalculateSummary();
 
-    this.emit({ type: 'kafka_published', payload: fullEvent, summary: this.getSnapshot() });
+    this.emit({
+      type: 'kafka_published',
+      payload: fullEvent,
+      summary: this.getSnapshot(),
+    });
   }
 
   recordRejected(event: Omit<FilterRejectedEvent, 'type'>): void {
@@ -76,10 +80,18 @@ export class AnalyticsService {
     this.addRecentEvent(fullEvent);
     this.recalculateSummary();
 
-    this.emit({ type: 'filter_rejected', payload: fullEvent, summary: this.getSnapshot() });
+    this.emit({
+      type: 'filter_rejected',
+      payload: fullEvent,
+      summary: this.getSnapshot(),
+    });
   }
 
-  private updateChannel(channelName: string, source: string, passed: boolean): void {
+  private updateChannel(
+    channelName: string,
+    source: string,
+    passed: boolean,
+  ): void {
     if (!this.summary.channels[channelName]) {
       this.summary.channels[channelName] = {
         channel: channelName,
@@ -102,8 +114,10 @@ export class AnalyticsService {
       chan.rejectedCount++;
     }
 
-    chan.rejectionRate = Math.round((chan.rejectedCount / chan.totalFetched) * 1000) / 10;
-    chan.acceptanceRate = Math.round((chan.publishedCount / chan.totalFetched) * 1000) / 10;
+    chan.rejectionRate =
+      Math.round((chan.rejectedCount / chan.totalFetched) * 1000) / 10;
+    chan.acceptanceRate =
+      Math.round((chan.publishedCount / chan.totalFetched) * 1000) / 10;
   }
 
   private addRecentEvent(event: KafkaStreamEvent): void {
@@ -122,13 +136,20 @@ export class AnalyticsService {
         Math.round((this.summary.totalRejected / total) * 1000) / 10;
     }
 
-    const channelList: ChannelAnalytics[] = Object.values(this.summary.channels);
+    const channelList: ChannelAnalytics[] = Object.values(
+      this.summary.channels,
+    );
 
     // 1. Top publishing channels
-    const publishedList = channelList.filter((c: ChannelAnalytics) => c.publishedCount > 0);
+    const publishedList = channelList.filter(
+      (c: ChannelAnalytics) => c.publishedCount > 0,
+    );
     const totalPub = this.summary.totalPublished || 1;
     this.summary.topPublishingChannels = publishedList
-      .sort((a: ChannelAnalytics, b: ChannelAnalytics) => b.publishedCount - a.publishedCount)
+      .sort(
+        (a: ChannelAnalytics, b: ChannelAnalytics) =>
+          b.publishedCount - a.publishedCount,
+      )
       .slice(0, 10)
       .map((c: ChannelAnalytics) => ({
         channel: c.channel,
@@ -145,11 +166,14 @@ export class AnalyticsService {
     }));
 
     // 3. Channels that fail criteria most often
-    const rejectedList = channelList.filter((c: ChannelAnalytics) => c.rejectedCount > 0);
+    const rejectedList = channelList.filter(
+      (c: ChannelAnalytics) => c.rejectedCount > 0,
+    );
     this.summary.topFailingChannels = rejectedList
       .sort(
         (a: ChannelAnalytics, b: ChannelAnalytics) =>
-          b.rejectedCount - a.rejectedCount || b.rejectionRate - a.rejectionRate,
+          b.rejectedCount - a.rejectedCount ||
+          b.rejectionRate - a.rejectionRate,
       )
       .slice(0, 10)
       .map((c: ChannelAnalytics) => ({
@@ -179,8 +203,8 @@ export class AnalyticsService {
         id: `demo-pub-${Date.now()}`,
         channel: chosenChannel,
         source: sourcePlatform,
-        content: 'Tactical alert: air patrol confirms interception over northern sector.',
-        reportId: `rep-${Math.floor(Math.random() * 9000 + 1000)}`,
+        content:
+          'Tactical alert: air patrol confirms interception over northern sector.',
         termsMatched: ['air patrol', 'interception'],
         language: 'en',
         timestamp: now,
@@ -194,7 +218,8 @@ export class AnalyticsService {
         id: `demo-rej-${Date.now()}`,
         channel: chosenChannel,
         source: sourcePlatform,
-        content: 'Routine sports report: match concluded with tie in regional stadium.',
+        content:
+          'Routine sports report: match concluded with tie in regional stadium.',
         reason: 'Failed threat keyword filter (no qualifying security terms)',
         attemptedLanguages: ['en'],
         timestamp: now,

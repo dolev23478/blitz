@@ -60,6 +60,7 @@ beforeEach(async () => {
     languages: ['en'],
     language: 'en',
     terms: ['report'],
+    categories: ['terror'],
     issues: [],
     evaluation: {
       mode: 'dictionary_only',
@@ -113,7 +114,7 @@ it('automatically hands archived radio JSON to the real shared workflow before c
     expect(Logger.prototype.log).toHaveBeenCalledWith(
       expect.objectContaining({
         event: 'radio_kafka_sending',
-        key: String(report.report_id),
+        publicationId: expect.any(String),
         payload: report,
       }),
     ); // This exact wire payload is logged before the transport is called.
@@ -124,12 +125,12 @@ it('automatically hands archived radio JSON to the real shared workflow before c
   expect(send).toHaveBeenCalledOnce();
   const report = JSON.parse(send.mock.calls[0]![0].messages[0].value);
   expect(report).toMatchObject({
-    platform: 'internet_radio',
+    platform: 'AM/FM-RADIO',
     media_type: ['text'],
     languages: ['en'],
     content: captured.text,
     matches: ['report'],
-    categories: ['context.alert'],
+    categories: ['terror'],
     report_url: `https://blitz.example.com/api/radio/clips/${result.clips[0]!.clipId}`,
   });
 });

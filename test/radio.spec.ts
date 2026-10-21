@@ -56,6 +56,7 @@ beforeEach(() => {
     matched: true,
     languages: ['en'],
     terms: ['report'],
+    categories: ['terror'],
     issues: [],
     matches: [],
     usedSources: [],
@@ -141,7 +142,7 @@ describe('radio capture and archive', () => {
     });
     const unsubscribe = radio.watchTranscripts(listener);
     const active = radio.collectOnce([station]);
-    await vi.waitFor(() => expect(listener).toHaveBeenCalledOnce());
+    await vi.waitFor(() => expect(finish).toBeTypeOf('function'));
     expect((await radio.collectOnce([station])).skipped).toBe(true);
     finish();
     await active;

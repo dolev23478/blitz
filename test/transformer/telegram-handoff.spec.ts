@@ -1,3 +1,4 @@
+import { FilteredPostsService } from '../../src/events/filtered-posts.service.js';
 import { FakeRetryQueue } from './fake-retry-queue.js';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -31,15 +32,13 @@ beforeEach(() => {
     .mockResolvedValue([
       { topicName: 'reports.raw', partition: 0, errorCode: 0 },
     ]);
-  analyze
-    .mockReset()
-    .mockReturnValue({
-      matched: true,
-      language: 'en',
-      languages: ['en'],
-      terms: ['report'],
-      categories: [],
-    });
+  analyze.mockReset().mockReturnValue({
+    matched: true,
+    language: 'en',
+    languages: ['en'],
+    terms: ['report'],
+    categories: [],
+  });
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Kafka.prototype, 'producer').mockReturnValue({
@@ -58,7 +57,12 @@ beforeEach(() => {
     },
   } as unknown as TelegramService;
   const redis = { isEnabled: () => false } as unknown as RedisService;
-  new TelegramListenerService(telegram, redis, workflow(publisher));
+  new TelegramListenerService(
+    telegram,
+    redis,
+    workflow(publisher),
+    new FilteredPostsService(),
+  );
 });
 
 afterEach(async () => {
@@ -120,7 +124,12 @@ describe('Telegram collector handoff', () => {
       terms: ['צבע אדום', 'מחבל'],
       categories: ['rockets_aerial', 'terror'],
     });
-    await deliver({ channelId: 2, channel: 'blitz', inserted: 1, messages: [telegramInput()] });
+    await deliver({
+      channelId: 2,
+      channel: 'blitz',
+      inserted: 1,
+      messages: [telegramInput()],
+    });
     const record = send.mock.calls[0]![0] as ProducerRecord;
     expect(JSON.parse(record.messages[0]!.value as string)).toMatchObject({
       matches: ['צבע אדום', 'מחבל'],

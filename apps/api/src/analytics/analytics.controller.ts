@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Sse } from '@nestjs/common';
 import { Observable, interval } from 'rxjs';
 import type { KafkaAnalyticsSummary } from '@blitz/shared';
-import { AnalyticsService } from './analytics.service';
+import { AnalyticsService } from './analytics.service.js';
 
 @Controller('analytics')
 export class AnalyticsController {

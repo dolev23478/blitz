@@ -5,11 +5,12 @@ import { FilteredPostsService } from '../events/filtered-posts.service.js';
 import type { FilteredPost, FilteredPostEvent } from '../types.js';
 import { MetaService } from './meta.service.js';
 
-@Controller()
+@Controller(['', 'api'])
 export class MetaController {
   constructor(
     @Inject(MetaService) private readonly meta: MetaService,
-    @Inject(FilteredPostsService) private readonly filtered: FilteredPostsService,
+    @Inject(FilteredPostsService)
+    private readonly filtered: FilteredPostsService,
   ) {}
 
   @Public()
@@ -75,27 +76,25 @@ export class MetaController {
       const statusEl = document.getElementById('live-status');
       const state = { posts: [] };
 
-      function renderHighlight(text, matches = []) {
-        if (!matches.length) return text;
-        const sorted = [...matches].sort((a, b) => a.start - b.start);
-        const nodes = [];
+      function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = String(text);
+        return node;
+      }
+
+      function appendHighlightedText(target, text, matches = []) {
         let cursor = 0;
-
-        sorted.forEach((match) => {
-          const start = Math.max(0, Number(match.start) || 0);
-          const end = Math.min(text.length, Number(match.end) || text.length);
-          if (start > cursor) nodes.push(document.createTextNode(text.slice(cursor, start)));
-          if (end > start) {
-            const mark = document.createElement('mark');
-            mark.textContent = text.slice(start, end);
-            nodes.push(mark);
-            cursor = end;
-          }
-        });
-
-        if (cursor < text.length) nodes.push(document.createTextNode(text.slice(cursor)));
-
-        return nodes;
+        const sorted = [...matches].sort((a, b) => a.start - b.start);
+        for (const match of sorted) {
+          const start = Math.max(cursor, 0, Number(match.start) || 0);
+          const end = Math.min(text.length, Number(match.end) || 0);
+          if (end <= start) continue;
+          if (start > cursor) target.append(document.createTextNode(text.slice(cursor, start)));
+          target.append(element('mark', '', text.slice(start, end)));
+          cursor = end;
+        }
+        if (cursor < text.length) target.append(document.createTextNode(text.slice(cursor)));
       }
 
       function formatTime(value) {
@@ -103,26 +102,25 @@ export class MetaController {
       }
 
       function render() {
-        const posts = state.posts;
-        if (!posts.length) {
-          postsEl.innerHTML = '<div class="empty">No filtered posts yet.</div>';
+        postsEl.replaceChildren();
+        if (!state.posts.length) {
+          postsEl.append(element('div', 'empty', 'No filtered posts yet.'));
           return;
         }
-
-        postsEl.innerHTML = posts.map((post) => {
-          const keywords = (post.matches || []).map((match) => '<span class="keyword">' + match.term + '</span>').join('');
-          return '<article class="card">' +
-            '<div class="meta">' +
-              '<div class="channel">' + String(post.channel || post.source || 'unknown') + '</div>' +
-              '<div class="time">' + formatTime(post.createdAt) + '</div>' +
-            '</div>' +
-            '<div class="body">' + renderHighlight(post.text || '', post.matches || []) + '</div>' +
-            '<div class="footer">' +
-              '<span class="badge ' + (post.severity || 'medium') + '">' + (post.severity || 'medium') + '</span>' +
-              keywords +
-            '</div>' +
-          '</article>';
-        }).join('');
+        for (const post of state.posts) {
+          const card = element('article', 'card');
+          const meta = element('div', 'meta');
+          meta.append(element('div', 'channel', post.channel || post.source || 'unknown'));
+          meta.append(element('div', 'time', formatTime(post.createdAt)));
+          const body = element('div', 'body');
+          appendHighlightedText(body, String(post.text || ''), post.matches || []);
+          const footer = element('div', 'footer');
+          const severity = ['low', 'medium', 'high'].includes(post.severity) ? post.severity : 'medium';
+          footer.append(element('span', 'badge ' + severity, severity));
+          for (const match of post.matches || []) footer.append(element('span', 'keyword', match.term));
+          card.append(meta, body, footer);
+          postsEl.append(card);
+        }
       }
 
       function addPost(post) {
@@ -178,11 +176,13 @@ export class MetaController {
   @Sse('posts/stream')
   streamPosts(): Observable<MessageEvent> {
     return new Observable<MessageEvent>((subscriber) => {
-      const unsubscribe = this.filtered.subscribe((event: FilteredPostEvent) => {
-        subscriber.next({
-          data: JSON.stringify(event),
-        } as MessageEvent);
-      });
+      const unsubscribe = this.filtered.subscribe(
+        (event: FilteredPostEvent) => {
+          subscriber.next({
+            data: JSON.stringify(event),
+          } as MessageEvent);
+        },
+      );
 
       return () => unsubscribe();
     }).pipe(
