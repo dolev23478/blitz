@@ -18,7 +18,7 @@ this comparison. This is a field-table reference, not an executable JSON Schema.
 | `content` | string; required, never empty; parsed text, not HTML | Nonblank parsed text |
 | `language` | string; ISO 639-1; collector-supplied | **`languages: string[]`**, per the user's explicit newer requirement; legacy collector `language` is accepted before normalization |
 | `matches` | string[]; collector trigger keywords | string[] |
-| `categories` | string[]; collector-supplied; allowed values not defined yet | string[]; the schema stays open, Telegram and X fill it from the dictionary entries of the matched terms: `terror` (פח"ע), `civil_emergency` (חירום אזרחי ורפואי), `riots` (הפרות סדר ואלימות המונית), `rockets_aerial` (תלול-מסלול, ירי רקטי ואווירי); see `ReportCategory` in `src/types.ts` |
+| `categories` | string[]; collector-supplied; allowed values not defined yet | string[]; the schema stays open, Telegram and X fill it with the Hebrew names of the categories of the matched terms: `פח"ע`, `חירום אזרחי ורפואי`, `הפרעות סדר ואלימות המונית`, `תלול מסלול, ירי רקטי ואווירי`. The dictionaries keep the codes `terror` / `civil_emergency` / `riots` / `rockets_aerial`; see `ReportCategory` and `ReportCategoryLabel` in `src/types.ts` |
 | `published_at` | datetime; UTC, nullable | UTC ISO 8601 string or null |
 | `collected_at` | datetime; UTC | UTC ISO 8601 string; Telegram uses receipt time as previously approved |
 
