@@ -20,6 +20,11 @@ export const TELEGRAM_CHANNELS: readonly string[] = [
   'youthdemand',
   'NationalSJP',
   'blitz111222',
+  // Added 21.10 — not yet confirmed by a real collection run
+  'daraa24_org', // Daraa 24 (ar)
+  'Middle_East_Spectator', // Middle East Spectator (en)
+  'LebUpdate', // Lebanese News and Updates (en)
+  'me_observer_TG', // Middle East Observer (mostly en)
 ];
 
 /** Redis key prefix of the per-channel resume point: telegram:cursor:<chatId> -> { channelId, channel, messageId, date }. */
