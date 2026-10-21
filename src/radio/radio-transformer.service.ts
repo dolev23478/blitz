@@ -31,8 +31,8 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
   ) {}
 
   onModuleInit(): void {
-    this.unsubscribe = this.radio.watchTranscripts(async (clip) => {
-      await this.process(clip);
+    this.unsubscribe = this.radio.watchTranscripts(async (clip, analysis) => {
+      await this.process(clip, analysis);
     });
     this.logger.log({
       event: 'radio_pipeline_ready',
@@ -41,7 +41,10 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
     });
   }
 
-  async process(input: RadioTranscript): Promise<RadioPipelineResult> {
+  async process(
+    input: RadioTranscript,
+    collectedAnalysis?: ReturnType<typeof analyzeText>,
+  ): Promise<RadioPipelineResult> {
     this.logger.log({
       event: 'radio_input_received',
       clipId: input?.clipId,
@@ -59,7 +62,7 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
         return { status: 'filtered', clipId: clip.clipId, reason: 'no_speech' };
       }
 
-      const analysis = analyzeText(clip.text, 'auto');
+      const analysis = collectedAnalysis ?? analyzeText(clip.text, 'auto');
       const languages =
         clip.languages !== undefined ? clip.languages : [clip.language];
       this.logger.log({

@@ -6,10 +6,18 @@ import {
   type OnModuleDestroy,
 } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import { mkdir, readFile, readdir, rename, writeFile } from 'node:fs/promises';
+import {
+  mkdir,
+  readFile,
+  readdir,
+  rename,
+  rm,
+  writeFile,
+} from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
 import { LocalRadioWorker } from './local-radio.worker.js';
+import { analyzeText } from '../text-analyzer.js';
 import {
   radioDataDirectory,
   radioStationsSchema,
@@ -37,12 +45,18 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
     this.finishHandoffOnShutdown = resolve;
   });
   private readonly transcriptListeners = new Set<
-    (clip: RadioTranscript) => Promise<void>
+    (
+      clip: RadioTranscript,
+      analysis: ReturnType<typeof analyzeText>,
+    ) => Promise<void>
   >();
 
   /** Collection stays usable alone; the application registers its Transformer handoff. */
   watchTranscripts(
-    listener: (clip: RadioTranscript) => Promise<void>,
+    listener: (
+      clip: RadioTranscript,
+      analysis: ReturnType<typeof analyzeText>,
+    ) => Promise<void>,
   ): () => void {
     this.transcriptListeners.add(listener);
     return () => {
@@ -129,6 +143,12 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
         break; // Pause collection; never evict audio or the user's saves directory.
       }
       const clipId = randomUUID();
+      const temporaryAudio = resolve(
+        this.dataDirectory(),
+        'tmp',
+        `${clipId}.wav`,
+      );
+      let archived = false;
       try {
         this.logger.log({
           event: 'radio_capture_started',
@@ -139,7 +159,7 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
         });
         const captured = await this.worker.capture(
           station,
-          this.audioPath(clipId),
+          temporaryAudio,
           this.settings,
         );
         const clip: RadioTranscript = radioTranscriptSchema.parse({
@@ -148,10 +168,30 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
           station,
           status: captured.text.trim() ? 'transcribed' : 'no_speech',
         });
-        // JSON is the completion marker; rename exposes a complete file to HTTP readers.
-        await writeFile(this.clipFile(clipId, 'txt'), clip.text + '\n', {
-          flag: 'wx',
+        this.logger.log({
+          event: 'radio_input_received',
+          clipId,
+          payload: clip,
         });
+        const analysis = clip.text.trim()
+          ? analyzeText(clip.text, 'auto')
+          : undefined;
+        this.logger.log({
+          event: 'radio_filter_result',
+          clipId,
+          stationId: station.id,
+          passed: analysis?.matched ?? false,
+          reason: !analysis
+            ? 'no_speech'
+            : analysis.matched
+              ? 'dictionary_match'
+              : 'no_dictionary_match',
+        });
+        if (!analysis?.matched) continue;
+
+        // Only accepted clips become an archive. Never expose rejected audio over HTTP.
+        await rename(temporaryAudio, this.audioPath(clipId));
+        // JSON is the completion marker; rename exposes a complete file to HTTP readers.
         await writeFile(
           this.clipFile(clipId, 'json.tmp'),
           JSON.stringify(clip, null, 2) + '\n',
@@ -161,6 +201,7 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
           this.clipFile(clipId, 'json.tmp'),
           this.clipFile(clipId, 'json'),
         );
+        archived = true;
         result.clips.push(clip);
         this.logger.log({
           event:
@@ -175,9 +216,8 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
         });
         for (const listener of this.transcriptListeners) {
           if (this.closing) break;
-          // The pipeline logs a filter decision for every clip, including no-speech input.
           // Publisher shutdown retains admitted reports in Redis; do not block Nest teardown on retries.
-          await Promise.race([listener(clip), this.shutdown]);
+          await Promise.race([listener(clip, analysis), this.shutdown]);
         }
       } catch (error) {
         result.failedStations.push(station.id);
@@ -188,20 +228,14 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
           clipId,
           reason,
         });
-        await writeFile(
-          this.clipFile(clipId, 'error.json'),
-          JSON.stringify(
-            {
-              clipId,
-              station,
-              failedAt: new Date().toISOString(),
-              reason,
-            },
-            null,
-            2,
-          ) + '\n',
-          { flag: 'wx' },
-        ).catch(() => undefined);
+      } finally {
+        await rm(temporaryAudio, { force: true });
+        if (!archived) {
+          // Remove only this job's known paths; never touch historical clips or saves.
+          for (const extension of ['wav', 'json.tmp', 'json']) {
+            await rm(this.clipFile(clipId, extension), { force: true });
+          }
+        }
       }
     }
     return result;
@@ -213,7 +247,7 @@ export class RadioService implements OnApplicationBootstrap, OnModuleDestroy {
     );
   }
 
-  /** Newest completed clips only; partial/failed jobs are left intact on disk. */
+  /** Newest completed clips only. */
   async listClips(): Promise<RadioTranscript[]> {
     const files = await readdir(this.clipsDirectory()).catch(
       (error: NodeJS.ErrnoException) => {

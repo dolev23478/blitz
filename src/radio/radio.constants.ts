@@ -6,12 +6,13 @@ export const RECORDING_SECONDS = 30;
 /** Pause AFTER the whole cycle finishes, including transcription (0–86400 seconds). */
 export const PAUSE_SECONDS = 60;
 
-/** Trusted direct public HTTP(S) audio streams. Add/remove stations here. */
+/** Public radio streams and TV feeds captured as audio only. Add/remove sources here. */
 export const RADIO_STATIONS: RadioStation[] = [
   {
     id: 'radio-al-balad',
     name: 'Radio Al-Balad 92.5 — Amman',
-    streamUrl: 'http://s3.voscast.com:8964/;stream.mp3',
+    // HTTPS relay from the official player at https://ammannet.net/live
+    streamUrl: 'https://s3.voscast.com/cdn/?k=6ad86d4e0f0e1&m=',
     language: 'ar',
   },
   {
@@ -25,12 +26,6 @@ export const RADIO_STATIONS: RadioStation[] = [
     name: 'Radio Hayat FM — Nablus',
     streamUrl: 'https://rstream.hadara.ps/proxy/hayat/stream.mp3',
     language: 'ar',
-  },
-  {
-    id: 'iran-international',
-    name: 'Iran International — Persian news',
-    streamUrl: 'https://stream.radiojar.com/dfnrphnr5f0uv',
-    language: 'fa',
   },
   {
     id: 'radio-husna',
@@ -48,6 +43,29 @@ export const RADIO_STATIONS: RadioStation[] = [
     id: 'mosaique-fm',
     name: 'Mosaique FM — Tunis, Tunisia',
     streamUrl: 'https://radio.mosaiquefm.net/mosalive',
+    language: 'ar',
+  },
+  {
+    id: 'radio-al-nour',
+    name: 'Radio Al-Nour — Lebanon',
+    // Direct audio source published at https://www.alnour.com.lb/live
+    streamUrl: 'https://l3.itworkscdn.net/itwaudio/9066/stream',
+    language: 'ar',
+  },
+  {
+    id: 'al-aqsa-tv-audio',
+    name: 'Al-Aqsa TV — audio only, Arabic',
+    // Public HLS relay; this is TV audio, not Al-Aqsa Voice Radio.
+    streamUrl:
+      'https://43869de4e1a0d641.servers.dvcloud.tv/hls/al_aqsa_channel/6udfi7v8a3eof6nlps6e9ovfrs65c7l7.m3u8',
+    language: 'ar',
+  },
+  {
+    id: 'al-masirah-tv-audio',
+    name: 'Al-Masirah TV — audio only, Yemen',
+    // Public HLS relay; the worker decodes and saves only the audio track.
+    streamUrl:
+      'https://live.cdnbridge.tv/Almasirah/Almasirah_all/Almasirah/Almasirah_360p/chunks.m3u8',
     language: 'ar',
   },
 ];

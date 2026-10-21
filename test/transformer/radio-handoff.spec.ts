@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import { Kafka, type Producer } from 'kafkajs';
 import { randomUUID } from 'node:crypto';
-import { readFile, rm } from 'node:fs/promises';
+import { readFile, rm, readdir, writeFile } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { APP_CONFIG, loadConfig } from '../../src/config/app-config.js';
@@ -51,23 +51,24 @@ beforeEach(async () => {
     .mockResolvedValue([
       { topicName: 'reports.raw', partition: 0, errorCode: 0 },
     ]);
-  capture.mockReset().mockResolvedValue(captured);
-  analyze
-    .mockReset()
-    .mockReturnValue({
-      matched: true,
-      languages: ['en'],
-      language: 'en',
-      terms: ['report'],
-      issues: [],
-      evaluation: {
-        mode: 'dictionary_only',
-        threatCategories: ['context.alert'],
-        riskScore: 20,
-        riskLevel: 'medium',
-        flaggedReasons: ['Dictionary term matched'],
-      },
-    });
+  capture.mockReset().mockImplementation(async (_station, path) => {
+    await writeFile(path, 'test audio');
+    return captured;
+  });
+  analyze.mockReset().mockReturnValue({
+    matched: true,
+    languages: ['en'],
+    language: 'en',
+    terms: ['report'],
+    issues: [],
+    evaluation: {
+      mode: 'dictionary_only',
+      threatCategories: ['context.alert'],
+      riskScore: 20,
+      riskLevel: 'medium',
+      flaggedReasons: ['Dictionary term matched'],
+    },
+  });
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'error').mockImplementation(() => undefined);
@@ -133,10 +134,11 @@ it('automatically hands archived radio JSON to the real shared workflow before c
   });
 });
 
-it('archives no-speech clips and never sends them to Kafka', async () => {
+it('discards no-speech clips and never sends them to Kafka', async () => {
   capture.mockResolvedValue({ ...captured, text: '', language: 'unknown' });
   const result = await radio.collectOnce([station]);
-  expect(result.clips[0]!.status).toBe('no_speech');
+  expect(result.clips).toEqual([]);
+  expect(await radio.listClips()).toEqual([]);
   expect(result.failedStations).toEqual([]);
   expect(send).not.toHaveBeenCalled();
   expect(analyze).not.toHaveBeenCalled();
@@ -149,7 +151,7 @@ it('archives no-speech clips and never sends them to Kafka', async () => {
   );
 });
 
-it('archives unmatched text, logs its rejection and never invokes publication', async () => {
+it('discards unmatched text, logs its rejection and never invokes publication', async () => {
   analyze.mockReturnValue({
     matched: false,
     languages: ['en'],
@@ -158,7 +160,7 @@ it('archives unmatched text, logs its rejection and never invokes publication', 
     issues: [],
   });
   const result = await radio.collectOnce([station]);
-  expect(result.clips).toHaveLength(1);
+  expect(result.clips).toHaveLength(0);
   expect(result.failedStations).toEqual([]);
   expect(analyze).toHaveBeenCalledWith(captured.text, 'auto');
   expect(send).not.toHaveBeenCalled();
@@ -169,13 +171,15 @@ it('archives unmatched text, logs its rejection and never invokes publication', 
       reason: 'no_dictionary_match',
     }),
   );
-  expect((await radio.readClip(result.clips[0]!.clipId)).text).toBe(
-    captured.text,
-  );
+  expect(await readdir(resolve(directory, 'clips'))).toEqual([]);
+  expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
 });
 
 it('keeps ASR language as ISO metadata when an emoji dictionary was matched', async () => {
-  capture.mockResolvedValue({ ...captured, language: 'fa' });
+  capture.mockImplementation(async (_station, path) => {
+    await writeFile(path, 'test audio');
+    return { ...captured, language: 'fa' };
+  });
   analyze.mockReturnValue({
     matched: true,
     languages: ['em'],
@@ -193,16 +197,16 @@ it('keeps ASR language as ISO metadata when an emoji dictionary was matched', as
   ).toBeUndefined(); // Original archive is not enriched in place.
 });
 
-it('fails closed on analyzer errors and keeps the original archived clip', async () => {
+it('fails closed on analyzer errors without keeping an unfiltered clip', async () => {
   analyze.mockImplementation(() => {
     throw new Error('Dictionary loading failed');
   });
   const result = await radio.collectOnce([station]);
   expect(result.failedStations).toEqual([station.id]);
   expect(send).not.toHaveBeenCalled();
-  expect((await radio.readClip(result.clips[0]!.clipId)).text).toBe(
-    captured.text,
-  );
+  expect(result.clips).toEqual([]);
+  expect(await readdir(resolve(directory, 'clips'))).toEqual([]);
+  expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
 });
 
 it('retries a radio report using the existing publisher without recapturing audio', async () => {
@@ -231,15 +235,20 @@ it('keeps the clip after 3 failed retries and continues with the next station', 
   expect(result.clips).toHaveLength(2);
   expect(capture).toHaveBeenCalledTimes(2);
   expect(send).toHaveBeenCalledTimes(5);
+  expect((await readdir(resolve(directory, 'clips'))).sort()).toEqual(
+    result.clips
+      .flatMap((clip) => [clip.clipId + '.json', clip.clipId + '.wav'])
+      .sort(),
+  );
   expect((await radio.readClip(result.clips[0]!.clipId)).text).toBe(
     captured.text,
   );
 });
 
 it('keeps the archive when Transformer validation fails and continues to the next station', async () => {
-  capture.mockResolvedValueOnce({
-    ...captured,
-    text: '<div>not parsed text</div>',
+  capture.mockImplementationOnce(async (_station, path) => {
+    await writeFile(path, 'test audio');
+    return { ...captured, text: '<div>not parsed text</div>' };
   });
   const result = await radio.collectOnce([
     station,

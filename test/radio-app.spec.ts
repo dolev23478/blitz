@@ -4,7 +4,7 @@ import { Test } from '@nestjs/testing';
 import { Kafka, type Producer } from 'kafkajs';
 import { randomUUID } from 'node:crypto';
 import { relative, resolve } from 'node:path';
-import { rm } from 'node:fs/promises';
+import { rm, writeFile } from 'node:fs/promises';
 import { expect, it, vi } from 'vitest';
 import { AppModule } from '../src/app.module.js';
 import { APP_CONFIG, loadConfig } from '../src/config/app-config.js';
@@ -32,16 +32,17 @@ it('boots the full app with radio filtering/handoff registered alongside Telegra
     .mockResolvedValue([
       { topicName: 'reports.raw', partition: 0, errorCode: 0 },
     ]);
-  const capture = vi
-    .fn()
-    .mockResolvedValue({
+  const capture = vi.fn().mockImplementation(async (_station, path) => {
+    await writeFile(path, 'test audio');
+    return {
       startedAt: '2026-10-21T06:00:00.000Z',
       endedAt: '2026-10-21T06:00:30.000Z',
       durationSeconds: 30,
       text: 'A bomb was reported.',
       language: 'en',
       segments: [],
-    });
+    };
+  });
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
   vi.spyOn(Kafka.prototype, 'producer').mockReturnValue({

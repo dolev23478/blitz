@@ -3,9 +3,9 @@
 Radio runs inside the existing Nest application, alongside Telegram and X.
 It records public internet audio and transcribes locally on CPU. In the full
 application, transcripts pass through the same `analyzeText(text, 'auto')`
-dictionary gate used by Telegram and X after archiving and logging. Only accepted
-text continues through the shared Transformer. Local diagnostic commands still collect without
-publishing or starting Redis/Kafka.
+dictionary gate used by Telegram and X before archiving. Only accepted
+clips are retained and continue through the shared Transformer. Local diagnostic
+commands apply the same filter without publishing or starting Redis/Kafka.
 
 ## Run
 
@@ -55,7 +55,7 @@ or X collectors, and serves the protected radio clip routes on `PORT` while it
 runs. It uses the existing `REDIS_URL`, `KAFKA_BROKERS`, TLS/SASL and outbox settings
 for actual publication. The once mode closes HTTP and workers at the end. Normal
 mode repeats according to the recording/pause constants. `radio:once` remains
-the separate capture-only diagnostic, without filtering or publication.
+the separate capture-only diagnostic, with filtering but without publication.
 
 `AppModule` imports `RadioTransformerModule`, connecting radio to the existing
 Transformer. Collection starts after Nest initializes and repeats until shutdown.
@@ -64,9 +64,9 @@ existing collector credentials/infrastructure; use `radio:once` to test radio
 independently. No background process is installed by this feature.
 
 The handoff first applies the shared analyzer's default `dictionary_only` mode,
-matching the current Telegram/X integrations. A non-matching clip stays in the
-archive and is not submitted to the Transformer. Analyzer errors fail the handoff;
-they do not bypass filtering. Accepted input receives unique dictionary terms
+matching the current Telegram/X integrations. A non-matching clip is discarded, including temporary audio,
+and is not submitted to the Transformer. Analyzer errors discard the unapproved
+clip and log a failure; they do not bypass filtering. Accepted input receives unique dictionary terms
 in `matches` and category labels from the existing evaluation unless collector
 categories were already provided. Existing multilingual metadata is preserved;
 otherwise ASR language supplies `languages`. Dictionary languages are logged
@@ -81,7 +81,7 @@ added to the RAW_REPORT enum. Unknown original broadcast time becomes
 Set `RADIO_PUBLIC_BASE_URL=https://your-reachable-blitz-host.example` for report
 URLs reachable by remote consumers; locally it defaults to `http://localhost:PORT`.
 Each URL identifies `/api/radio/clips/<uuid>`, not a shared station stream.
-Access still follows the API-key guard. No-speech clips stay local. A failed
+Access still follows the API-key guard. No-speech clips are discarded. A failed
 handoff preserves evidence without automatic archive replay. Kafka retry storage
 and policy remain owned by the existing Transformer publisher.
 
@@ -123,12 +123,46 @@ there can be 1–10 stations with unique IDs and direct HTTP(S) audio URLs.
 Stations run sequentially. After ALL stations have finished recording and
 transcribing, a full pause begins. There is no recording during the pause,
 and a slow station or pending publication cannot start overlapping cycles. Shutdown cancels the timer,
-kills active Python jobs, waits for their exit and preserves partial evidence.
+kills active Python jobs, waits for their exit and removes unaccepted temporary audio.
 
-The initial list restores Al-Balad, Nisaa, Hayat, Iran International, Husna,
-Voice of Lebanon and Mosaique. Availability/programming can change. Iran
-International is a Persian broadcaster based outside Iran; these are public
-internet streams, not RF reception or access to private communications.
+The list in `radio.constants.ts` includes the existing community stations,
+Al-Nour, and two public TV feeds captured as **audio only**. Nothing records or
+archives video. The same transcript filter and accepted-only archive policy
+apply to all sources. Public reporting/interviews may include statements of
+interest; source affiliation does not establish that an individual clip is an
+actual threat or that a report about an attack is accurate.
+
+| Source ID | Source / documented affiliation | Capture |
+| --- | --- | --- |
+| `radio-al-nour` | Lebanese Al-Nour; [US Treasury identifies it as a Hezbollah media arm](https://home.treasury.gov/news/press-releases/js4134) | Radio, Arabic |
+| `al-aqsa-tv-audio` | Al-Aqsa Television; [US Treasury documents Hamas control](https://home.treasury.gov/news/press-releases/tg594) | Public TV audio relay, Arabic; **not** Al-Aqsa Voice Radio |
+| `al-masirah-tv-audio` | Al-Masirah; described as Houthi media in [UN Panel of Experts report S/2025/650](https://documents.un.org/doc/undoc/gen/n25/234/10/pdf/n2523410.pdf) | Public TV audio relay, Arabic |
+
+The HLS relay URLs were discovered in public player/channel listings and tested
+with the actual PyAV worker settings. They are third-party delivery endpoints,
+not an authenticity guarantee; URLs and programming may change. Al-Masirah's
+[own public channel](https://t.me/s/almasirah2/125578) also advertises audio listening.
+To sample the newly added sources without Kafka:
+
+```powershell
+npm run build
+npm run radio:once -- --station=al-aqsa-tv-audio --station=al-masirah-tv-audio
+```
+
+For the complete filter/Transformer/publication path, use `npm run radio:start`
+with the same `--station` arguments and `--once`. The full application includes
+all configured sources automatically after rebuild/restart.
+
+Al-Balad now uses the HTTPS relay supplied by its
+[official player](https://ammannet.net/live); the old port-8964 URL returned
+`ICY 401 Service Unavailable` during investigation.
+
+Not enabled: Al-Aqsa Voice Radio (its discovered radio feed did not decode),
+Al-Quds Radio (audio host did not resolve), and IRIB Goftogoo/Radio Iran (stream
+hosts did not resolve from this environment). Goftogoo is an interview/talk
+candidate, but belongs to Iran's **state** broadcaster, unlike Iran International.
+No unverified Iranian stream was enabled. Existing stations are not classified
+as hostile merely because they are Arabic-speaking or pro-Palestinian.
 
 ## Settings
 
@@ -170,24 +204,27 @@ Each capture uses a fresh UUID:
 .radio/
   clips/
     <uuid>.wav          # recorded audio
-    <uuid>.txt          # plain UTF-8 transcript
     <uuid>.json         # station, observed times, language, text and segments
-    <uuid>.error.json   # failure diagnostics, only for failed jobs
   models/               # local Whisper cache
   tmp/                  # worker temporary files
 ```
 
-`radio_transcribed` logs include the complete text, station, UUID and duration.
-`radio_no_speech` means no speech was detected: audio/JSON/text are still saved,
-with empty text and local `language: "unknown"`. This internal collector model
-is separate from RAW_REPORT's `languages: string[]` wire contract.
+`radio_input_received` logs each received transcript; `radio_filter_result`
+shows acceptance/rejection. Audio is recorded temporarily under `.radio/tmp`.
+Only a nonempty transcript accepted by `analyzeText(text, 'auto')` is moved into
+`clips`, alongside one JSON file containing `text`, `station.name` and the other clip metadata. Both `radio:once` and
+the full pipeline use this rule. Analysis runs once per captured clip; its result
+is passed to the handoff. No-speech, unmatched, invalid or failed captures leave
+no recording/transcript archive, and their temporary WAV is removed in `finally`.
+A hard process termination can leave a temporary WAV; it is not an archived clip.
 
-JSON is written via a temporary file and renamed only when complete. A failed
-ASR job can leave a WAV without a completed transcript; its error record explains
-the failure. The archive counts each UUID once, including partial/failed jobs.
-At `RADIO_MAX_CLIPS`, collection pauses without deleting anything. Move/archive
-old captures manually or increase capacity to resume; there is no automatic
-cleanup/replay. `.radio/saves`, if you create it, is never managed or deleted.
+JSON is written via a temporary file and renamed only when complete. If Kafka or
+Transformer processing fails AFTER filter acceptance, the accepted recording is
+kept as the same two files; failure diagnostics go to the logs, without a separate
+error file. This is independent of Kafka success.
+The archive counts each UUID once; at `RADIO_MAX_CLIPS`, collection pauses.
+Existing historical clips and `.radio/saves` are not modified by this change.
+Move/archive old captures manually or increase capacity to resume.
 
 All output/cache/temp paths stay inside the project. `.radio`, `.venv-radio`
 and Python bytecode are gitignored. A path outside the project (including the
@@ -229,7 +266,7 @@ broker integration. Real-analyzer unit tests use controlled fixture dictionaries
 Unit tests use controlled workers for scheduling, failures, shutdown and archive
 rules. `radio:demo` uses actual Python/PyAV/faster-whisper with public recorded
 English speech replayed over local HTTP, plus generated silence. It verifies
-WAV duration/format, UTF-8 text/JSON files, unique clips and protected HTTP routes.
+WAV duration/format, UTF-8 JSON transcripts with station names and exactly two files per accepted clip, unique clips and protected HTTP routes.
 Evidence is in `.radio/demo/sample-run.json`; it is not a live Arabic/Persian
 quality benchmark and never calls Kafka. `radio:once` checks real public streams;
 listen to the WAV and compare the text before claiming accuracy. Neither command

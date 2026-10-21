@@ -18,6 +18,7 @@ import {
   readRadioSettings,
   radioPublicBaseUrlSchema,
 } from '../src/radio/radio.config.js';
+import * as textAnalyzer from '../src/text-analyzer.js';
 import { RadioService } from '../src/radio/radio.service.js';
 import {
   captureResultSchema,
@@ -44,7 +45,21 @@ let capture: ReturnType<typeof vi.fn>;
 let stop: ReturnType<typeof vi.fn>;
 beforeEach(() => {
   directory = resolve('.tmp', `radio-test-${randomUUID()}`);
-  capture = vi.fn().mockResolvedValue(captured);
+  capture = vi.fn().mockImplementation(async (_station, path) => {
+    await writeFile(path, 'test audio');
+    return captured;
+  });
+  vi.spyOn(textAnalyzer, 'analyzeText').mockReturnValue({
+    text: captured.text,
+    content: captured.text,
+    language: 'en',
+    matched: true,
+    languages: ['en'],
+    terms: ['report'],
+    issues: [],
+    matches: [],
+    usedSources: [],
+  });
   stop = vi.fn().mockResolvedValue(undefined);
   vi.spyOn(Logger.prototype, 'log').mockImplementation(() => undefined);
   vi.spyOn(Logger.prototype, 'warn').mockImplementation(() => undefined);
@@ -80,7 +95,6 @@ describe('radio configuration', () => {
     expect(settings.recordingSeconds).toBe(RECORDING_SECONDS);
     expect(settings.pauseSeconds).toBe(PAUSE_SECONDS);
     expect(settings.stations).toEqual(RADIO_STATIONS);
-    expect(settings.stations).toHaveLength(7);
   });
   it('does not let obsolete ENV durations/station files override the constants', () => {
     const settings = readRadioSettings(
@@ -143,18 +157,17 @@ describe('radio capture and archive', () => {
     await radio.onModuleDestroy();
     expect((await active).clips).toHaveLength(1);
   });
-  it('archives complete JSON and readable text and logs the actual transcript', async () => {
+  it('archives only WAV and JSON with the transcript and station name', async () => {
     const result = await radio.collectOnce([station]);
     expect(result.failedStations).toEqual([]);
     const clip = result.clips[0]!;
     expect(clip.status).toBe('transcribed');
     expect(await radio.readClip(clip.clipId)).toEqual(clip);
-    expect(
-      await readFile(resolve(directory, 'clips', clip.clipId + '.txt'), 'utf8'),
-    ).toBe(captured.text + '\n');
+    expect((await radio.readClip(clip.clipId)).text).toBe(captured.text);
+    expect((await radio.readClip(clip.clipId)).station.name).toBe(station.name);
     expect(capture).toHaveBeenCalledWith(
       station,
-      radio.audioPath(clip.clipId),
+      resolve(directory, 'tmp', clip.clipId + '.wav'),
       expect.objectContaining({ recordingSeconds: RECORDING_SECONDS }),
     );
     expect(Logger.prototype.log).toHaveBeenCalledWith(
@@ -164,6 +177,11 @@ describe('radio capture and archive', () => {
       }),
     );
     expect(await radio.listClips()).toEqual([clip]);
+    expect((await readdir(resolve(directory, 'clips'))).sort()).toEqual([
+      clip.clipId + '.json',
+      clip.clipId + '.wav',
+    ]);
+    expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
   });
   it('uses a fresh UUID for every clip of the same station', async () => {
     const first = (await radio.collectOnce([station])).clips[0]!;
@@ -171,21 +189,32 @@ describe('radio capture and archive', () => {
     expect(second.clipId).not.toBe(first.clipId);
     expect(await radio.listClips()).toHaveLength(2);
   });
-  it('preserves no-speech evidence without inventing text', async () => {
-    capture.mockResolvedValue({
-      ...captured,
-      text: '',
-      language: 'unknown',
-      segments: [],
-    });
-    const clip = (await radio.collectOnce([station])).clips[0]!;
-    expect(clip.status).toBe('no_speech');
-    expect((await radio.readClip(clip.clipId)).text).toBe('');
-    expect(Logger.prototype.log).toHaveBeenCalledWith(
-      expect.objectContaining({ event: 'radio_no_speech' }),
-    );
-  });
-  it('continues after a station failure and leaves an error record and partial WAV', async () => {
+  it.each(['', 'Good morning everyone'])(
+    'does not archive rejected text %s or notify the publisher',
+    async (text) => {
+      vi.mocked(textAnalyzer.analyzeText).mockReturnValue({
+        matched: false,
+      } as ReturnType<typeof textAnalyzer.analyzeText>);
+      capture.mockImplementationOnce(async (_station, path) => {
+        await writeFile(path, 'rejected audio');
+        return {
+          ...captured,
+          text,
+          language: text ? 'en' : 'unknown',
+          segments: [],
+        };
+      });
+      const listener = vi.fn();
+      radio.watchTranscripts(listener);
+      const result = await radio.collectOnce([station]);
+      expect(result.clips).toEqual([]);
+      expect(result.failedStations).toEqual([]);
+      expect(listener).not.toHaveBeenCalled();
+      expect(await readdir(resolve(directory, 'clips'))).toEqual([]);
+      expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
+    },
+  );
+  it('continues after a station failure and removes partial audio', async () => {
     capture.mockImplementationOnce(async (_station, path) => {
       await writeFile(path, 'partial audio');
       throw new Error('ASR failed');
@@ -196,10 +225,13 @@ describe('radio capture and archive', () => {
     ]);
     expect(result.failedStations).toEqual([station.id]);
     expect(result.clips).toHaveLength(1);
-    const files = await readdir(resolve(directory, 'clips'));
-    expect(files.some((file) => file.endsWith('.error.json'))).toBe(true);
-    expect(files.some((file) => file.endsWith('.wav'))).toBe(true);
     expect(await radio.listClips()).toHaveLength(1);
+    expect(await readdir(resolve(directory, 'tmp'))).toEqual([]);
+    const files = await readdir(resolve(directory, 'clips'));
+    expect(files).toHaveLength(2);
+    expect(
+      files.every((file) => file.startsWith(result.clips[0]!.clipId)),
+    ).toBe(true);
   });
   it('stops at archive capacity without deleting or modifying existing clips or saves', async () => {
     radio.settings.RADIO_MAX_CLIPS = 1;

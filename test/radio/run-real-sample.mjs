@@ -1,22 +1,26 @@
 // Real HTTP capture and local ASR. No Telegram, X, Transformer, Redis or Kafka imports.
 import 'reflect-metadata';
 import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
 import { createServer } from 'node:http';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { Module } from '@nestjs/common';
 import { APP_GUARD, NestFactory } from '@nestjs/core';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 
 process.env.RADIO_ENABLED = 'false';
-process.env.RADIO_DATA_DIR = '.radio/demo';
+process.env.RADIO_DATA_DIR = `.radio/demo/run-${randomUUID()}`;
 process.env.API_KEY = 'radio-local-demo-only';
 const { RadioModule } = await import('../../dist/radio/radio.module.js');
 const { RadioService } = await import('../../dist/radio/radio.service.js');
+const { LocalRadioWorker } =
+  await import('../../dist/radio/local-radio.worker.js');
+const { analyzeText } = await import('../../dist/text-analyzer.js');
 const { ApiKeyGuard } = await import('../../dist/common/api-key.guard.js');
-const directory = resolve('.radio/demo');
+const directory = resolve(process.env.RADIO_DATA_DIR);
 await mkdir(directory, { recursive: true });
-const samplePath = resolve(directory, 'jfk.wav');
+const samplePath = resolve('.radio/demo/jfk.wav');
 let speech;
 try {
   speech = await readFile(samplePath);
@@ -73,6 +77,14 @@ try {
   await app.init();
   await app.getHttpAdapter().getInstance().ready();
   const radio = app.get(RadioService);
+  const worker = app.get(LocalRadioWorker);
+  const capture = worker.capture.bind(worker);
+  const rawCaptures = [];
+  worker.capture = async (...args) => {
+    const captured = await capture(...args);
+    rawCaptures.push(captured);
+    return captured;
+  };
   const result = await radio.collectOnce([
     {
       id: 'speech-demo',
@@ -88,14 +100,17 @@ try {
     },
   ]);
   assert.deepEqual(result.failedStations, [], JSON.stringify(result));
-  assert.equal(result.clips.length, 2);
-  const [spoken, quiet] = result.clips;
-  assert.notEqual(spoken.clipId, quiet.clipId);
+  assert.equal(rawCaptures.length, 2);
+  const [spoken, quiet] = rawCaptures;
+  assert.equal(
+    result.clips.length,
+    analyzeText(spoken.text, 'auto').matched ? 1 : 0,
+  );
+  assert.equal((await radio.listClips()).length, result.clips.length);
+  assert.deepEqual(await readdir(resolve(directory, 'tmp')), []);
   assert.match(spoken.text.toLowerCase(), /country/);
   assert.equal(spoken.language, 'en');
-  assert.equal(spoken.status, 'transcribed');
   assert.equal(quiet.text, '');
-  assert.equal(quiet.status, 'no_speech');
   assert.equal(quiet.language, 'unknown');
   const http = app.getHttpAdapter().getInstance();
   const headers = { 'x-api-key': process.env.API_KEY };
@@ -108,6 +123,7 @@ try {
     const json = await http.inject({ method: 'GET', url, headers });
     assert.equal(json.statusCode, 200);
     assert.equal(json.json().text, clip.text);
+    assert.equal(json.json().station.name, clip.station.name);
     const audio = await http.inject({
       method: 'GET',
       url: url + '/audio',
@@ -123,15 +139,6 @@ try {
     assert(
       Math.abs(wav.readUInt32LE(40) / 32000 - clip.durationSeconds) < 0.01,
     );
-    assert.equal(
-      (
-        await readFile(
-          resolve(directory, 'clips', clip.clipId + '.txt'),
-          'utf8',
-        )
-      ).trim(),
-      clip.text,
-    );
   }
   assert.equal(
     (
@@ -142,6 +149,12 @@ try {
       })
     ).statusCode,
     400,
+  );
+  assert.deepEqual(
+    (await readdir(resolve(directory, 'clips'))).sort(),
+    result.clips
+      .flatMap((clip) => [clip.clipId + '.json', clip.clipId + '.wav'])
+      .sort(),
   );
   const summary = {
     verifiedAt: new Date().toISOString(),
