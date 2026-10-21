@@ -3319,7 +3319,15 @@
     },
     {
       "term": "إسـرائـيل",
-      "concept": "threat.direct"
+      "concept": "target.israel"
+    },
+    {
+      "term": "إسرائيل",
+      "concept": "target.israel"
+    },
+    {
+      "term": "إسرائيلي",
+      "concept": "target.israel"
     },
     {
       "term": "إسكندر",
@@ -4907,7 +4915,11 @@
     },
     {
       "term": "اسـرائـيل",
-      "concept": "threat.direct"
+      "concept": "target.israel"
+    },
+    {
+      "term": "اسرائيل",
+      "concept": "target.israel"
     },
     {
       "term": "اسروا",
@@ -6344,6 +6356,10 @@
     {
       "term": "الإرهابيين",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "الإسرائيليين",
+      "concept": "target.israel"
     },
     {
       "term": "الإسكندر",
@@ -12487,11 +12503,11 @@
     },
     {
       "term": "اليهود",
-      "concept": "hate.antisemitism"
+      "concept": "target.jewish"
     },
     {
       "term": "الـيـهـود",
-      "concept": "threat.direct"
+      "concept": "target.jewish"
     },
     {
       "term": "اليهودي",
@@ -24818,6 +24834,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "حاخام",
+      "concept": "target.jewish"
+    },
+    {
       "term": "حادث دهس",
       "concept": "violence.terrorism"
     },
@@ -34752,6 +34772,10 @@
     {
       "term": "كمين هندسي",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "كنيس",
+      "concept": "target.jewish"
     },
     {
       "term": "كنيس الشيطان",
@@ -60491,11 +60515,11 @@
     },
     {
       "term": "يهود",
-      "concept": "hate.antisemitism"
+      "concept": "target.jewish"
     },
     {
       "term": "يـهـود",
-      "concept": "threat.direct"
+      "concept": "target.jewish"
     },
     {
       "term": "يهود الخزر",
@@ -60507,7 +60531,7 @@
     },
     {
       "term": "يهودي",
-      "concept": "hate.antisemitism"
+      "concept": "target.jewish"
     },
     {
       "term": "يهودي بخيل",

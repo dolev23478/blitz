@@ -4163,11 +4163,11 @@
     },
     {
       "term": "اسرائيل",
-      "concept": "threat.direct"
+      "concept": "target.israel"
     },
     {
       "term": "اسـرائـيل",
-      "concept": "threat.direct"
+      "concept": "target.israel"
     },
     {
       "term": "اسرائيل ۲۵ سال آينده را نخواهد ديد",
@@ -4191,11 +4191,11 @@
     },
     {
       "term": "اسرائیل",
-      "concept": "threat.direct"
+      "concept": "target.israel"
     },
     {
       "term": "اسـرائـیل",
-      "concept": "threat.direct"
+      "concept": "target.israel"
     },
     {
       "term": "اسرائیل ۲۵ سال آینده را نخواهد دید",
@@ -4227,7 +4227,7 @@
     },
     {
       "term": "اسـرايـيل",
-      "concept": "threat.direct"
+      "concept": "target.israel"
     },
     {
       "term": "اسراييل ۲۵ سال اينده را نخواهد ديد",
@@ -4251,7 +4251,7 @@
     },
     {
       "term": "اسـرایـیل",
-      "concept": "threat.direct"
+      "concept": "target.israel"
     },
     {
       "term": "اسراییل ۲۵ سال اینده را نخواهد دید",
@@ -20692,6 +20692,10 @@
     {
       "term": "خائن ها",
       "concept": "hate.slur"
+    },
+    {
+      "term": "خاخام",
+      "concept": "target.jewish"
     },
     {
       "term": "خاكستر كردن",
@@ -39642,6 +39646,10 @@
       "concept": "hate.general"
     },
     {
+      "term": "کنیسه",
+      "concept": "target.jewish"
+    },
+    {
       "term": "کنیسه شیطان",
       "concept": "hate.antisemitism"
     },
@@ -52579,11 +52587,11 @@
     },
     {
       "term": "يهود",
-      "concept": "hate.general"
+      "concept": "target.jewish"
     },
     {
       "term": "يـهـود",
-      "concept": "threat.direct"
+      "concept": "target.jewish"
     },
     {
       "term": "يهودان",
@@ -52711,11 +52719,7 @@
     },
     {
       "term": "يهودي",
-      "concept": "hate.general"
-    },
-    {
-      "term": "يهودي",
-      "concept": "threat.direct"
+      "concept": "target.jewish"
     },
     {
       "term": "يهودي ستيزي",
@@ -53043,11 +53047,11 @@
     },
     {
       "term": "یهود",
-      "concept": "hate.general"
+      "concept": "target.jewish"
     },
     {
       "term": "یـهـود",
-      "concept": "threat.direct"
+      "concept": "target.jewish"
     },
     {
       "term": "یهودان",
@@ -53151,11 +53155,7 @@
     },
     {
       "term": "یهودی",
-      "concept": "hate.general"
-    },
-    {
-      "term": "یهودی",
-      "concept": "threat.direct"
+      "concept": "target.jewish"
     },
     {
       "term": "یهودی ستیزی",

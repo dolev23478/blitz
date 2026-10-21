@@ -346,8 +346,6 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       "My left shoulder hurts after exercising",
       "We signed a business contract yesterday",
       "Take accountability for your decisions",
-      "I love Israel and Israeli culture",
-      "We visited an ancient synagogue in Prague",
       "A pedestrian was crossing the street",
       "Node.js garbage collection cleans up memory",
       "Please remove the file from the directory",
@@ -516,6 +514,28 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
         `${lang}: ${s} -> ${JSON.stringify(res.terms)}`,
       ).toBe(true);
     }
+  });
+
+  it("passes mentions of Jews and Israel on as targets without scoring them as threats", () => {
+    const mentions: [string, string][] = [
+      ["en", "I love Israel and Israeli culture"],
+      ["en", "We visited an ancient synagogue in Prague"],
+      ["ar", "زرت إسرائيل الصيف الماضي"],
+      ["fa", "خبرهای امروز درباره اسرائیل"],
+    ];
+    for (const [lang, s] of mentions) {
+      // dictionary_only (the pipeline default) forwards them to the downstream model...
+      const res = analyzeText(s, lang);
+      expect(res.matched, `${lang}: ${s}`).toBe(true);
+      expect(res.matches.every((m) => m.concept?.startsWith("target.")), `${lang}: ${s}`).toBe(true);
+      // ...but a target alone is not a threat in the scoring modes
+      expect(analyzeText(s, lang, { mode: ThreatMode.Smart }).matched, `${lang}: ${s}`).toBe(false);
+      expect(analyzeText(s, lang, { mode: ThreatMode.CategoryFilter }).matched, `${lang}: ${s}`).toBe(false);
+    }
+
+    const threat = analyzeText("We will bomb the synagogue", "en", { mode: ThreatMode.Smart });
+    expect(threat.matched).toBe(true);
+    expect(threat.evaluation?.threatCategories).toContain("target.jewish");
   });
 
   it("does not flag general profanity that carries no threat", () => {

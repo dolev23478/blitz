@@ -23466,6 +23466,10 @@
       "concept": "hate.antisemitism"
     },
     {
+      "term": "hebrew",
+      "concept": "target.jewish"
+    },
+    {
       "term": "hebrew university bombing",
       "concept": "violence.terrorism"
     },
@@ -26634,6 +26638,10 @@
       "concept": "violence.general"
     },
     {
+      "term": "idf",
+      "concept": "target.israel"
+    },
+    {
       "term": "idfterrorist",
       "concept": "hate.anti_israel"
     },
@@ -27710,6 +27718,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "israel",
+      "concept": "target.israel"
+    },
+    {
       "term": "israel has no right to exist",
       "concept": "hate.anti_israel"
     },
@@ -27772,6 +27784,10 @@
     {
       "term": "israel wont exist",
       "concept": "threat.direct"
+    },
+    {
+      "term": "israeli",
+      "concept": "target.israel"
     },
     {
       "term": "israeli embassy bombing",
@@ -28044,6 +28060,10 @@
     {
       "term": "jericho941",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "jew",
+      "concept": "target.jewish"
     },
     {
       "term": "jew bastard",
@@ -28412,6 +28432,10 @@
     {
       "term": "jewing",
       "concept": "hate.antisemitism"
+    },
+    {
+      "term": "jewish",
+      "concept": "target.jewish"
     },
     {
       "term": "jewish bankers",
@@ -28900,6 +28924,10 @@
     {
       "term": "jewry",
       "concept": "hate.antisemitism"
+    },
+    {
+      "term": "jews",
+      "concept": "target.jewish"
     },
     {
       "term": "jews are a disease",
@@ -60666,6 +60694,10 @@
       "concept": "hate.neonazi"
     },
     {
+      "term": "mossad",
+      "concept": "target.israel"
+    },
+    {
       "term": "mossberg",
       "concept": "weapon.firearm"
     },
@@ -66104,6 +66136,10 @@
     {
       "term": "ra'anana attack",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "rabbi",
+      "concept": "target.jewish"
     },
     {
       "term": "rabid",
@@ -88788,6 +88824,10 @@
     {
       "term": "swp",
       "concept": "hate.neonazi"
+    },
+    {
+      "term": "synagogue",
+      "concept": "target.jewish"
     },
     {
       "term": "synagogue of satan",
@@ -127179,7 +127219,7 @@
     },
     {
       "term": "zionism",
-      "concept": "hate.anti_israel"
+      "concept": "target.israel"
     },
     {
       "term": "zionist",
@@ -127380,6 +127420,10 @@
     {
       "term": "zionists",
       "concept": "hate.anti_israel"
+    },
+    {
+      "term": "zionists",
+      "concept": "target.israel"
     },
     {
       "term": "zionists are a disease",
