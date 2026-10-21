@@ -116,7 +116,7 @@ it('boots the actual three collector lifecycles and publishes each source throug
       const report = JSON.parse(record.messages[0].value);
       expect(record.messages[0].key).toBe(report.report_url);
       expect(report).not.toHaveProperty('report_id');
-      expect(report.categories).toContain('terror');
+      expect(report.categories).toContain('פח"ע');
       return report;
     });
     expect(reports.map((r) => r.platform).sort()).toEqual([

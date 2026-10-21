@@ -60,7 +60,7 @@ beforeEach(async () => {
     languages: ['en'],
     language: 'en',
     terms: ['report'],
-    categories: ['terror'],
+    categories: ['פח"ע'],
     issues: [],
     evaluation: {
       mode: 'dictionary_only',
@@ -130,7 +130,7 @@ it('automatically hands archived radio JSON to the real shared workflow before c
     languages: ['en'],
     content: captured.text,
     matches: ['report'],
-    categories: ['terror'],
+    categories: ['פח"ע'],
     report_url: `https://blitz.example.com/api/radio/clips/${result.clips[0]!.clipId}`,
   });
 });

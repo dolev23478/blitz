@@ -42,7 +42,7 @@ The current user-requested output includes:
 {
   "schema_version": 1,
   "languages": ["he", "en"],
-  "categories": ["terror"],
+  "categories": ["פח\"ע"],
   "media_type": ["text", "photo"]
 }
 ```
@@ -53,8 +53,9 @@ New collector `languages` takes precedence over legacy `language`; per-message
 values precede batch/caller fallbacks. Legacy strings are wrapped. Missing/null/
 blank language becomes `[]`; invalid nonempty codes or invalid array entries fail.
 Categories are passed through as string arrays, with `[]` when absent. The shared
-collector analyzer supplies dev dictionary report labels (`terror`,
-`civil_emergency`, `riots`, `rockets_aerial`), rather than evaluation concept IDs. The
+collector analyzer supplies the Hebrew report categories (`פח"ע`,
+`חירום אזרחי ורפואי`, `הפרעות סדר ואלימות המונית`, `תלול מסלול, ירי רקטי ואווירי`),
+rather than evaluation concept IDs. The
 Transformer does not detect languages, translate content or infer categories.
 
 `schema_version` is the integer major version `1`. The `report_id` field is

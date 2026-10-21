@@ -103,7 +103,7 @@ and policy remain owned by the existing Transformer publisher.
 `clipId` connects input/filter/Transformer events; the internal `publicationId`
 and the UUID in `report_url` connect the publisher events. Reports contain no
 `report_id`; consumers assign their own IDs. The Kafka key is the unchanged `report_url`. Report categories are
-the dev dictionary labels (`terror`, `civil_emergency`, `riots`, `rockets_aerial`),
+the Hebrew report categories (`פח"ע`, `חירום אזרחי ורפואי`, `הפרעות סדר ואלימות המונית`, `תלול מסלול, ירי רקטי ואווירי`),
 not the evaluator's concept labels. Validation logs show the formatted
 report even when broker configuration/connectivity prevents a send. A sending
 event alone does not mean Kafka accepted the report. Retries log each attempt.

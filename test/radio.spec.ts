@@ -56,7 +56,7 @@ beforeEach(() => {
     matched: true,
     languages: ['en'],
     terms: ['report'],
-    categories: ['terror'],
+    categories: ['פח"ע'],
     issues: [],
     matches: [],
     usedSources: [],
