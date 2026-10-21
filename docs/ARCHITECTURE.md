@@ -42,13 +42,18 @@ blitz is a NestJS (Fastify) service that collects OSINT posts from **Telegram** 
 
 | Key | Written by | Meaning |
 |---|---|---|
-| `telegram:cursor:<channelId>` | `TelegramService` only | JSON `{channelId, channel, messageId, date}` of the newest message handed over for that channel. |
+| `telegram:cursor:<channelId>` | `TelegramService` only | JSON `{channelId, channel, messageId, date}` of the newest message handed over for that channel. Only ever moves forward (atomic Lua compare on `date`). |
+| `telegram:session-lock` | `TelegramService` | `SET NX EX 120` lock holding this process's token. Startup is aborted when it is held elsewhere or Redis is down; the watchdog renews it every tick; it is released on shutdown (SIGTERM/SIGINT). Lost lock = collector stops. `REDIS_URL` is required (fails closed). The standalone `src/tg-realtime/index.ts` runner takes the same lock. TTL is 120 s because the watchdog renews every 30 s. |
+| `telegram:peer:<username>` | `TelegramService` | `{id}` cache of a resolved channel, 30-day TTL, so restarts don't call ResolveUsername. Dropped when a pull hits a stale-peer error. |
+
+FloodWait: `withFloodWait` sleeps the requested seconds plus 0.5–2 s jitter. A wait above 300 s is not slept: it starts a cooldown, the pull cycle stops, and the next sync retries.
+| `telegram:mtcute-state` | `TelegramService` (mtcute storage) | JSON snapshot of mtcute's storage (update state pts/qts/seq/date, per-channel pts, auth keys, peer cache), written at most every 5 s and on shutdown. After a restart mtcute asks Telegram for the updates it missed. Tied to a hash of `TG_SESSION_STRING`; a different string starts clean. **Contains the auth key: keep Redis private.** |
 | `x:last-scrape-at` | `XScraperCronService` only | Start time of the last X cycle that was handed to the transformer. |
 | `telegram:seen:<channel>:<id>:<n\|e>` | `TelegramListenerService` | Claim marker, kept 2 days, so a message is published once. `e` marks an edited message. |
 
 - A cursor is saved only after its batch succeeded, so a failure re-pulls the same window next time.
-- **Telegram:** on connect/reconnect and on every watchdog sync (`TG_SYNC_SECONDS`) it re-pulls each channel's messages posted at or after its saved cursor time (ids are not used; the boundary message is re-read and removed by the dedupe claim) (last 24 h when no cursor; at most the newest 5000 per pull). A channel cursor advances only after the listener handled the batch. Channels are pulled one at a time and each channel's messages are emitted oldest to newest. Live messages are accepted by username even if the channel was not resolved yet.
-- Live updates don't move the cursor, so the next pull can re-read them; the `telegram:seen:` claim removes those duplicates. If publishing fails, the claim is released so the next pull retries it.
+- **Telegram:** on connect/reconnect and on every watchdog sync (`TG_SYNC_SECONDS`) it pulls each channel from its saved cursor time (last 24 h when no cursor). The pull is paginated: pages of 100 messages are read oldest first with a 200-500 ms pause between requests, and the cursor is committed after every page the listener handled, so a failure resumes at the last committed page and there is no size ceiling. A pull stops as soon as a page's newest message precedes the cursor, or equals it (that page is handled once, the dedupe claim removes the repeats). Channels are pulled one at a time. Live messages are accepted by username even if the channel was not resolved yet.
+- A live message advances its channel's cursor after the listener succeeded, but only once that channel's catch-up pull has completed on this connection and no pull is running (otherwise a failed pull would leave a permanent gap). The `telegram:seen:` claim still removes the re-read duplicates. If publishing fails, the claim is released so the next pull retries it.
 - **X:** each cycle searches posts since the cursor. Handles are split into queries of at most 500 characters (twitterapi.io limit is 512) with a pause between them to avoid 429s.
 
 ## Transformer and Kafka
