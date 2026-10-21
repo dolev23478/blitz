@@ -85,10 +85,27 @@ const SUFFIXES = [
   "ו",
   "י",
   "ת",
-  "ם",
-  "ן",
   "ך",
 ];
+
+/** Minimum stem length when both a prefix and a suffix were stripped (e.g. שירים must not reach ירי). */
+const MIN_STEM_BOTH_AFFIXES = 4;
+
+/**
+ * Everyday words that only look like prefix + dictionary term (בירה = ב + ירה, שאלה = ש + אלה).
+ * They are matched as-is and never affix-stripped.
+ */
+const NO_AFFIX_STRIP = new Set<string>([
+  "בירה", "הבירה", "בבירה", "לבירה", "בירות", "שבירה", "השבירה",
+  "שירה", "השירה", "שמירה", "השמירה", "מהירה", "שאלה", "השאלה", "שאלות", "שואלים", "שואלת",
+  "שמות", "השמות", "כמות", "הכמות", "שלמות",
+  "בקרב", "לקרב", "מטבח", "המטבח", "במטבח",
+  "הרוסים", "הרוסי", "הרוסית", "הדקות", "בדקות",
+  "הליכה", "לטייל", "בעיירה", "אשפה", "האשפה", "בהשוואה",
+  "שמיכה", "משיכה", "מוחות", "שרצית", "שרצה", "היכונו",
+  "איימי", "אוונס", "בארני", "ארני", "סיירוס",
+  "להטיל", "בתולה", "הפרעות", "מפגר", "מחורבן", "מחורבנת",
+]);
 
 function applySofit(str: string): string {
   if (str.length === 0) return str;
@@ -136,10 +153,9 @@ function stripHebrewAffixes(token: string): string[] {
       const withoutPrefix = token.slice(prefix.length);
       addStem(withoutPrefix);
       for (const suffix of SUFFIXES) {
-        const minLen = suffix.length === 1 ? 3 : 2;
         if (
           withoutPrefix.endsWith(suffix) &&
-          withoutPrefix.length - suffix.length >= minLen
+          withoutPrefix.length - suffix.length >= MIN_STEM_BOTH_AFFIXES
         ) {
           const stemBoth = withoutPrefix.slice(
             0,
@@ -150,7 +166,7 @@ function stripHebrewAffixes(token: string): string[] {
             addStem(stemBoth + "ה");
             addStem(stemBoth + "ית");
           }
-          if (suffix === "ת" && stemBoth.length >= 3) {
+          if (suffix === "ת") {
             addStem(stemBoth + "ה");
           }
         }
@@ -202,6 +218,10 @@ export class HebrewNormalizer implements TextNormalizer {
       const sofit = applySofit(base);
       if (sofit !== base) {
         variants.add(sofit);
+      }
+
+      if (NO_AFFIX_STRIP.has(base)) {
+        continue;
       }
 
       // Affix stripping

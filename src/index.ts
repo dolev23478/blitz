@@ -21,6 +21,8 @@ export { emojiNormalizer } from "./normalize/emoji-normalizer.js";
 export { padEmojis } from "./normalize/shared.js";
 export { parseDictionaryFile } from "./dictionaries/schema.js";
 export {
+  REPORT_CATEGORIES,
+  ReportCategory,
   ThreatCategory,
   ThreatMode,
 } from "./types.js";
@@ -33,6 +35,7 @@ export type {
   DictionaryEntry,
   DictionaryLoadIssue,
   IndexedTerm,
+  ReportCategoryValue,
   RiskLevel,
   ThreatEvaluation,
   ThreatEvaluationMode,

@@ -162,6 +162,7 @@ export function loadDictionaries(
       const indexed: IndexedTerm = {
         term: entry.term,
         ...(entry.concept !== undefined ? { concept: entry.concept } : {}),
+        ...(entry.category !== undefined ? { category: entry.category } : {}),
         sourceFile: fileName,
         language: parsed.language,
       };

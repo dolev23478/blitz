@@ -10,6 +10,7 @@ import type {
   AnalyzeMatch,
   AnalyzeTextOptions,
   AnalyzeTextResult,
+  ReportCategoryValue,
   RiskLevel,
   ThreatEvaluation,
   ThreatEvaluationMode,
@@ -40,6 +41,12 @@ export function extractOrderedTerms(matches: AnalyzeMatch[]): string[] {
   }
 
   return terms;
+}
+
+/** Distinct report categories of the matches, in text order. */
+export function extractOrderedCategories(matches: AnalyzeMatch[]): ReportCategoryValue[] {
+  const sorted = [...matches].sort((a, b) => a.tokenStart - b.tokenStart || a.tokenEnd - b.tokenEnd);
+  return [...new Set(sorted.flatMap((m) => (m.category ? [m.category] : [])))];
 }
 
 export function toOutputLanguage(lang: string): string {
@@ -272,6 +279,7 @@ export class TextAnalyzer {
       languages: finalLanguages,
       matched,
       terms,
+      categories: extractOrderedCategories(allMatches),
       matches: allMatches,
       usedSources,
       issues: allIssues,
@@ -345,6 +353,7 @@ export class TextAnalyzer {
       languages: [outputLang],
       matched,
       terms,
+      categories: extractOrderedCategories(matches),
       matches,
       usedSources,
       issues,
@@ -643,6 +652,7 @@ function emptyResult(
     languages: outputLang ? [outputLang] : [],
     matched: false,
     terms: [],
+    categories: [],
     matches: [],
     usedSources: [],
     issues,

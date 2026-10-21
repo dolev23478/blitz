@@ -62,6 +62,20 @@ const SUFFIXES = [
   "م",
 ];
 
+/**
+ * Everyday words that only look like affix + dictionary term (بازار = ب + آزار, میگه = می + گه).
+ * They are matched as-is and never affix-stripped. Stored folded (see foldFarsiLetters).
+ */
+const NO_AFFIX_STRIP = new Set<string>(
+  [
+    "بازار", "بازارها", "بازاری",
+    "بخون", "بخونم", "بخونی", "بخونه", "بخونیم", "بخونید", "بخونش",
+    "میخونم", "میخونی", "میخونه", "میخونیم", "میخونید", "میخونن",
+    "میگه", "بگه", "نمیگه",
+    "مهاجرت", "مهاجرین", "بسمت", "جودی", "مینی", "جعلی", "خاکستری",
+  ].map(foldFarsiLetters),
+);
+
 const PREFIXES = ["نمی", "می", "بی", "غیر", "ضد", "ب"];
 const VERBAL_PREFIXES = ["نمی", "می", "ب"];
 const VERBAL_SUFFIXES = ["ند", "ید", "یم", "د", "م", "ت"];
@@ -148,6 +162,9 @@ export class FarsiNormalizer implements TextNormalizer {
     const baseTokens = getRepeatedCharVariants(token);
     const variants = new Set<string>(baseTokens);
     for (const b of baseTokens) {
+      if (NO_AFFIX_STRIP.has(b)) {
+        continue;
+      }
       for (const stem of stripAffixes(b)) {
         variants.add(stem);
       }

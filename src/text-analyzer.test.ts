@@ -7,6 +7,9 @@ import {
   evaluateThreat,
   getDictionaryStore,
   getNormalizer,
+  parseDictionaryFile,
+  REPORT_CATEGORIES,
+  ReportCategory,
   ThreatCategory,
   ThreatMode,
 } from "./index.js";
@@ -346,8 +349,6 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       "My left shoulder hurts after exercising",
       "We signed a business contract yesterday",
       "Take accountability for your decisions",
-      "I love Israel and Israeli culture",
-      "We visited an ancient synagogue in Prague",
       "A pedestrian was crossing the street",
       "Node.js garbage collection cleans up memory",
       "Please remove the file from the directory",
@@ -373,7 +374,6 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       "סופה חזקה מתקרבת לאזור הצפון",
       "המהנדס בדק את התוכניות של הדירה",
       "אין לו שום כוונת רווח בפרויקט הזה",
-      "הטבח במסעדה הכין מנה מעולה",
       "הילדים משחקים כדורגל בפארק",
       "היא קוראת ספר מעניין בסלון",
       "אנחנו נוסעים ברכבת לתל אביב",
@@ -466,6 +466,122 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       const res = analyzeText(s, "fa");
       expect(res.matched).toBe(false);
       expect(res.terms).toHaveLength(0);
+    }
+  });
+
+  it("does not reach dictionary terms by stripping affixes off everyday words", () => {
+    const innocent: [string, string][] = [
+      ["he", "בוא נשתה בירה ונדבר על השמירה מחר"],
+      ["he", "יש כמות גדולה של שמות ברשימה"],
+      ["he", "אני מכין ארוחה במטבח"],
+      ["he", "השירים של שירה מושמעים בשירות הלקוחות"],
+      ["he", "הרוסים הגיעו בקרב התיירים לפני כמה דקות"],
+      ["he", "רוצים להטיל מס חדש"],
+      ["en", "I was lying on the couch"],
+      ["en", "She takes the train and closes the gates"],
+      ["en", "The opera was falling apart"],
+      ["en", "Leaves were falling in the park"],
+      ["ar", "أرى البيانات على الشاشة"],
+      ["ar", "اشتريت السمك من السوق"],
+      ["ar", "حصلت على الجنسية الجديدة"],
+      ["ar", "صليت الفجر في المسجد"],
+      ["fa", "میگه بریم بازار"],
+      ["fa", "باید این کتاب رو بخونم"],
+      ["fa", "مهاجرت به کانادا سخت است"],
+    ];
+    for (const [lang, s] of innocent) {
+      const res = analyzeText(s, lang);
+      expect(res.terms, `${lang}: ${s}`).toHaveLength(0);
+    }
+  });
+
+  it("still matches real inflected threat words after affix-stripping limits", () => {
+    const cases: [string, string, string][] = [
+      ["he", "המחבל ירה בהם מטווח קצר", "ירה"],
+      ["he", "וירו על האוטובוס", "ירו"],
+      ["he", "בטבח בבארי נרצחו רבים", "טבח"],
+      ["he", "מחבלים חדרו עם מצנחי רחיפה", "מצנחי רחיפה"],
+      ["he", "אנחנו עוקבים אחריכם, עוד תשלמו על זה", "עוד תשלמו על זה"],
+      ["en", "they were stabbing people", "stab"],
+      ["en", "a truck rammed the crowd", "ram"],
+      ["en", "he was killing everyone", "kill"],
+      ["en", "the smallhat globalists", "smallhat"],
+      ["ar", "سأقتلكم جميعا", "اقتل"],
+      ["fa", "بکشمت", "بکشم"],
+    ];
+    for (const [lang, s, expected] of cases) {
+      const res = analyzeText(s, lang);
+      expect(res.matched, `${lang}: ${s}`).toBe(true);
+      expect(
+        res.matches.some((m) => m.term === expected || m.normalizedTerm === expected),
+        `${lang}: ${s} -> ${JSON.stringify(res.terms)}`,
+      ).toBe(true);
+    }
+  });
+
+  it("passes mentions of Jews and Israel on as targets without scoring them as threats", () => {
+    const mentions: [string, string][] = [
+      ["en", "I love Israel and Israeli culture"],
+      ["en", "We visited an ancient synagogue in Prague"],
+      ["ar", "زرت إسرائيل الصيف الماضي"],
+      ["fa", "خبرهای امروز درباره اسرائیل"],
+    ];
+    for (const [lang, s] of mentions) {
+      // dictionary_only (the pipeline default) forwards them to the downstream model...
+      const res = analyzeText(s, lang);
+      expect(res.matched, `${lang}: ${s}`).toBe(true);
+      expect(res.matches.every((m) => m.concept?.startsWith("target.")), `${lang}: ${s}`).toBe(true);
+      // ...but a target alone is not a threat in the scoring modes
+      expect(analyzeText(s, lang, { mode: ThreatMode.Smart }).matched, `${lang}: ${s}`).toBe(false);
+      expect(analyzeText(s, lang, { mode: ThreatMode.CategoryFilter }).matched, `${lang}: ${s}`).toBe(false);
+    }
+
+    const threat = analyzeText("We will bomb the synagogue", "en", { mode: ThreatMode.Smart });
+    expect(threat.matched).toBe(true);
+    expect(threat.evaluation?.threatCategories).toContain("target.jewish");
+  });
+
+  it("assigns every dictionary entry one of the report categories", () => {
+    for (const lang of ["he", "en", "ar", "fa", "emoji"]) {
+      const raw = JSON.parse(readFileSync(`dictionaries/${lang}.json`, "utf8")) as {
+        entries: { term: string; category?: string }[];
+      };
+      const missing = raw.entries.filter((e) => !REPORT_CATEGORIES.includes(e.category ?? ""));
+      expect(missing.map((e) => e.term), lang).toEqual([]);
+    }
+    expect(() =>
+      parseDictionaryFile({ language: "en", entries: [{ term: "x", category: "news" }] }, "bad.json"),
+    ).toThrow(/category must be one of/);
+  });
+
+  it("reports the categories of matched terms in text order", () => {
+    const cases: [string, string, string[]][] = [
+      ["he", "צבע אדום בעוטף, נפילות בשטח פתוח", [ReportCategory.RocketsAerial]],
+      ["he", "מחבל ביצע פיגוע דקירה", [ReportCategory.Terror]],
+      ["he", "הפרות סדר ויידוי אבנים בצומת", [ReportCategory.Riots]],
+      ["he", "אירוע רב נפגעים לאחר קריסת מבנה", [ReportCategory.CivilEmergency]],
+      ["en", "riots and looting after the rocket barrage", [ReportCategory.Riots, ReportCategory.RocketsAerial]],
+      ["ar", "صفارات الإنذار بعد إطلاق صواريخ", [ReportCategory.RocketsAerial]],
+      ["fa", "آتش‌سوزی بزرگ و ریزش ساختمان", [ReportCategory.CivilEmergency]],
+    ];
+    for (const [lang, s, expected] of cases) {
+      const res = analyzeText(s, lang);
+      // a text can carry several categories; the expected ones must appear in text order
+      expect(res.categories.filter((c) => expected.includes(c)), `${lang}: ${s} -> ${res.categories}`).toEqual(expected);
+    }
+    expect(analyzeText("a quiet afternoon in the park", "en").categories).toEqual([]);
+  });
+
+  it("does not flag general profanity that carries no threat", () => {
+    const profanity: [string, string][] = [
+      ["en", "you are such an idiot, what a bitch"],
+      ["he", "איזה אידיוט, חרא של סרט"],
+      ["ar", "يا غبي يا حمار"],
+      ["fa", "خفه شو احمق"],
+    ];
+    for (const [lang, s] of profanity) {
+      const res = analyzeText(s, lang);
+      expect(res.terms, `${lang}: ${s}`).toHaveLength(0);
     }
   });
 

@@ -3,751 +3,938 @@
   "entries": [
     {
       "term": "☠️",
-      "concept": "threat.direct"
+      "concept": "threat.direct",
+      "category": "terror"
     },
     {
       "term": "☠",
-      "concept": "threat.direct"
+      "concept": "threat.direct",
+      "category": "terror"
     },
     {
       "term": "☠",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "☠️",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "☠️",
-      "concept": "violence.killing"
+      "concept": "violence.killing",
+      "category": "terror"
     },
     {
       "term": "☢️",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "☢️☠️",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "☣️",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "☣️💀",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "☪️",
-      "concept": "target.general"
+      "concept": "target.general",
+      "category": "terror"
     },
     {
       "term": "⚔️",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "⚔",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "⚔️💀",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "⚗️",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "⚠️",
-      "concept": "threat.intimidation"
+      "concept": "threat.intimidation",
+      "category": "terror"
     },
     {
       "term": "⚡",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "⚰️",
-      "concept": "threat.direct"
+      "concept": "threat.direct",
+      "category": "terror"
     },
     {
       "term": "⚰",
-      "concept": "threat.direct"
+      "concept": "threat.direct",
+      "category": "terror"
     },
     {
       "term": "⚰️",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "⛏️",
-      "concept": "weapon.general"
+      "concept": "weapon.general",
+      "category": "terror"
     },
     {
       "term": "⛪🔥",
-      "concept": "target.general"
+      "concept": "target.general",
+      "category": "terror"
     },
     {
       "term": "⛴️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🇮🇱",
-      "concept": "target.israel"
+      "concept": "target.israel",
+      "category": "terror"
     },
     {
       "term": "🇮🇱💥",
-      "concept": "target.israel"
+      "concept": "target.israel",
+      "category": "terror"
     },
     {
       "term": "🇮🇱🔥",
-      "concept": "target.israel"
+      "concept": "target.israel",
+      "category": "terror"
     },
     {
       "term": "🇮🇱🔫",
-      "concept": "target.israel"
+      "concept": "target.israel",
+      "category": "terror"
     },
     {
       "term": "✈️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "rockets_aerial"
     },
     {
       "term": "✊",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "✊🏻",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "✊🏼",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "✊🏽",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "✊🏾",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "✊🏿",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "✝️",
-      "concept": "target.general"
+      "concept": "target.general",
+      "category": "terror"
     },
     {
       "term": "✡️",
-      "concept": "target.jewish"
+      "concept": "target.jewish",
+      "category": "terror"
     },
     {
       "term": "✡️🔥",
-      "concept": "target.jewish"
+      "concept": "target.jewish",
+      "category": "terror"
     },
     {
       "term": "❌",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "❗",
-      "concept": "threat.intimidation"
+      "concept": "threat.intimidation",
+      "category": "terror"
     },
     {
       "term": "🌉",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🌊",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🌋",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "civil_emergency"
     },
     {
       "term": "🌪️",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "civil_emergency"
     },
     {
       "term": "🌫️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🎖️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🎯",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🎯🇮🇱",
-      "concept": "target.israel"
+      "concept": "target.israel",
+      "category": "terror"
     },
     {
       "term": "🏅",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🏚️",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "civil_emergency"
     },
     {
       "term": "🏛️",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🏟️",
-      "concept": "target.general"
+      "concept": "target.general",
+      "category": "terror"
     },
     {
       "term": "🏠",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🏢",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🏥",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🏦",
-      "concept": "target.general"
+      "concept": "target.general",
+      "category": "terror"
     },
     {
       "term": "🏫",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🏬",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🏳️‍🌈",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🏴",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🏴‍☠️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🏴‍☠️🔫",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🏹",
-      "concept": "weapon.general"
+      "concept": "weapon.general",
+      "category": "terror"
     },
     {
       "term": "👀",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "👁️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "👊",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "👊🩸",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "👥",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "👹",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "👺",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "👿",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "💀",
-      "concept": "threat.direct"
+      "concept": "threat.direct",
+      "category": "terror"
     },
     {
       "term": "💀",
-      "concept": "violence.killing"
+      "concept": "violence.killing",
+      "category": "terror"
     },
     {
       "term": "💀🩸",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "💉",
-      "concept": "weapon.general"
+      "concept": "weapon.general",
+      "category": "terror"
     },
     {
       "term": "💢",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "💣",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "terror"
     },
     {
       "term": "💣",
-      "concept": "weapon.explosive"
+      "concept": "weapon.explosive",
+      "category": "terror"
     },
     {
       "term": "💣💥",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "terror"
     },
     {
       "term": "💥",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "terror"
     },
     {
       "term": "💨",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "💬",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "📍",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "📛",
-      "concept": "threat.intimidation"
+      "concept": "threat.intimidation",
+      "category": "terror"
     },
     {
       "term": "📡",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "📢",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "📣",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "🔊",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🔐",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🔒",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🔗",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🔥",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "🔥🏠",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "🔥🏢",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "🔨",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "🔩",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🔪",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "🔪",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "🔪🩸",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "🔫",
-      "concept": "weapon.firearm"
+      "concept": "weapon.firearm",
+      "category": "terror"
     },
     {
       "term": "🔫🎯",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🔫💥",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "terror"
     },
     {
       "term": "🔴",
-      "concept": "context.alert"
+      "concept": "context.alert",
+      "category": "rockets_aerial"
     },
     {
       "term": "🔻",
-      "concept": "violence.terrorism"
+      "concept": "violence.terrorism",
+      "category": "terror"
     },
     {
       "term": "🕌",
-      "concept": "target.general"
+      "concept": "target.general",
+      "category": "terror"
     },
     {
       "term": "🕌🔥",
-      "concept": "target.general"
+      "concept": "target.general",
+      "category": "terror"
     },
     {
       "term": "🕍",
-      "concept": "target.jewish"
+      "concept": "target.jewish",
+      "category": "terror"
     },
     {
       "term": "🕍💥",
-      "concept": "target.jewish"
+      "concept": "target.jewish",
+      "category": "terror"
     },
     {
       "term": "🕍🔥",
-      "concept": "target.jewish"
+      "concept": "target.jewish",
+      "category": "terror"
     },
     {
       "term": "🕎",
-      "concept": "target.jewish"
+      "concept": "target.jewish",
+      "category": "terror"
     },
     {
       "term": "🕳️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🕵️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🖕",
-      "concept": "hate.slur"
+      "concept": "hate.slur",
+      "category": "terror"
     },
     {
       "term": "🗡️",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "🗡",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "🗯️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🤐",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🤒",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🤕",
-      "concept": "violence.assault"
+      "concept": "violence.assault",
+      "category": "terror"
     },
     {
       "term": "🤛",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🤜",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🤫",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🤬",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🤬🔫",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🥀",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🥊",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🥋",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🦠",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "🦴",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "🦾",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🧑‍🤝‍🧑",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🧠",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🧨",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "terror"
     },
     {
       "term": "🧨",
-      "concept": "weapon.explosive"
+      "concept": "weapon.explosive",
+      "category": "terror"
     },
     {
       "term": "🧨💥",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "terror"
     },
     {
       "term": "🧪",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "🧪☠️",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "🧫",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "🧬",
-      "concept": "weapon.cbrn"
+      "concept": "weapon.cbrn",
+      "category": "terror"
     },
     {
       "term": "🧯",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "civil_emergency"
     },
     {
       "term": "🧱",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "riots"
     },
     {
       "term": "🧿",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🩸",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "🩹",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "civil_emergency"
     },
     {
       "term": "🩼",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "civil_emergency"
     },
     {
       "term": "🪂",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🪃",
-      "concept": "weapon.general"
+      "concept": "weapon.general",
+      "category": "terror"
     },
     {
       "term": "🪈",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🪓",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "🪓🩸",
-      "concept": "weapon.blade"
+      "concept": "weapon.blade",
+      "category": "terror"
     },
     {
       "term": "🪖",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🪚",
-      "concept": "weapon.general"
+      "concept": "weapon.general",
+      "category": "terror"
     },
     {
       "term": "🪛",
-      "concept": "weapon.general"
+      "concept": "weapon.general",
+      "category": "terror"
     },
     {
       "term": "🪢",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🪤",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🪦",
-      "concept": "violence.general"
+      "concept": "violence.general",
+      "category": "terror"
     },
     {
       "term": "🪧",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "riots"
     },
     {
       "term": "🫀",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🫁",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "😈",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "😠",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "😡",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "😡🔪",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "😵",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "😵‍💫",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🚀",
-      "concept": "weapon.missile_rocket"
+      "concept": "weapon.missile_rocket",
+      "category": "rockets_aerial"
     },
     {
       "term": "🚀💥",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "terror"
     },
     {
       "term": "🚁",
-      "concept": "weapon.military"
+      "concept": "weapon.military",
+      "category": "terror"
     },
     {
       "term": "🚑",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "civil_emergency"
     },
     {
       "term": "🚒",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "civil_emergency"
     },
     {
       "term": "🚓",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🚔",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🚢",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🚤",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🚧",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🚨",
-      "concept": "threat.intimidation"
+      "concept": "threat.intimidation",
+      "category": "rockets_aerial"
     },
     {
       "term": "🚨💥",
-      "concept": "violence.explosion"
+      "concept": "violence.explosion",
+      "category": "terror"
     },
     {
       "term": "🚩",
-      "concept": "threat.intimidation"
+      "concept": "threat.intimidation",
+      "category": "terror"
     },
     {
       "term": "🚪",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🚫",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🚬",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🛐",
-      "concept": "target.general"
+      "concept": "target.general",
+      "category": "terror"
     },
     {
       "term": "🛞",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🛡️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "terror"
     },
     {
       "term": "🛣️",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🛤️",
-      "concept": "target.infrastructure"
+      "concept": "target.infrastructure",
+      "category": "terror"
     },
     {
       "term": "🛩️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "rockets_aerial"
     },
     {
       "term": "🛰️",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "rockets_aerial"
     },
     {
       "term": "🆘",
-      "concept": "context.general"
+      "concept": "context.general",
+      "category": "civil_emergency"
     }
   ]
 }
