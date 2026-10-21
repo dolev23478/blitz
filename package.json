@@ -29,6 +29,9 @@
     "benchmark": "tsx scripts/benchmark-dataset.ts",
     "merge:dicts": "tsx scripts/merge-dictionaries.ts",
     "auth": "tsx scripts/generate-session.ts",
+    "radio:once": "node scripts/radio-once.mjs",
+    "radio:demo": "node test/radio/run-real-sample.mjs",
+    "radio:start": "npm run build && node scripts/radio-pipeline.mjs",
     "dev:web": "npm run dev --workspace @blitz/web",
     "build:web": "npm run build --workspace @blitz/web",
     "start:web": "npm run start --workspace @blitz/web"

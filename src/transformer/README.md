@@ -1,8 +1,38 @@
 # Transformer contract and durable publication
 
-The Transformer receives `ParsedMessage` or `ProfileScrapeResult` directly from
+The Transformer receives `ParsedMessage`, `ProfileScrapeResult` or `RadioTranscript` directly from
 other services. Redis stores publication jobs, not collector input. One shared
 `javascript-state-machine` workflow maps, validates, publishes and completes.
+
+Radio uses `workflow.run('RadioTranscript', clip)`. Its mapper accepts the existing
+archived JSON and maps `text` to content, ASR language to `languages`, and station
+name to account/channel/title. Platform is `internet_radio`; media is `['text']`
+because RAW_REPORT does not permit audio. Original WAV evidence stays archived.
+Optional collector `languages`, categories, matches and valid supplied IDs are
+preserved. Caller metadata fills missing fields; absent categories/matches become
+empty arrays. The ASR language remains the fallback when no language array exists.
+
+Each report URL is `/api/radio/clips/<clipId>` under `RADIO_PUBLIC_BASE_URL`
+(or `http://localhost:PORT` locally), giving separate clips distinct URLs rather
+than reusing the live stream address. IDs use the existing nonnegative helper.
+Capture end becomes `collected_at`; `published_at` is null because original
+broadcast time is unknown. Waveforms/segment data are not extra wire fields.
+
+The full application's `RadioTransformerModule` registers the handoff after
+archiving and logging. It applies the same shared auto-language dictionary
+analysis used by Telegram/X before invoking the Transformer. No-speech and
+unmatched clips stay local. Analysis terms/categories enrich a copy of the input;
+ASR/collector ISO languages are preserved. The handoff awaits the existing
+publisher confirmation/retries; invalid content is rejected and archives remain
+on failure. Shutdown leaves admitted reports to the publisher's Redis recovery.
+Capture-only `radio:once`/`radio:demo` commands import `RadioModule` only and never publish.
+`radio:start` imports the same integrated path as the full app; it runs only radio
+with filtering and real publication (optionally `--once`). Archives
+are not automatically replayed.
+
+To test archived radio JSON through the compiled workflow without infrastructure:
+`node --import tsx test/transformer/run-radio-sample.mjs` after building. Outputs
+are in `.radio/transformer-verification`; Redis/Kafka are mocked in this runner.
 
 ## Wire contract
 

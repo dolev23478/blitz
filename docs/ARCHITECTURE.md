@@ -1,6 +1,22 @@
 # Architecture
 
-blitz is a NestJS (Fastify) service that collects OSINT posts from **Telegram** and **X**, keeps only those that match a keyword dictionary, and publishes them as `RAW_REPORT` messages to **Kafka**. There is no database: **Redis** only stores the last pull time per source and a short-lived "already seen" marker for Telegram messages.
+blitz is a NestJS (Fastify) service that collects OSINT from **Telegram**, **X** and
+public internet **radio**, filters content through the shared text analyzer, and
+publishes accepted content as `RAW_REPORT` messages to **Kafka**. There is no
+database. Redis stores collector cursors/claims and the Transformer's durable
+publication outbox.
+
+Radio flow: public stream -> bounded WAV capture -> local ASR -> local archive ->
+`RadioTransformerHandoff` -> `analyzeText(text, 'auto')` -> accepted metadata ->
+the same `TransformerWorkflow` -> existing Redis outbox -> Kafka. Empty or
+unmatched transcripts remain archived. Language/dictionary matching is done
+before the Transformer; the Transformer maps and validates the contract.
+
+`npm start` initializes all three integrations. `npm run radio:start` builds and
+starts only the radio integration and protected clip HTTP routes; add
+`-- --once --station=<id>` for a bounded cycle. It imports no Telegram/X modules.
+`radio:once` remains a capture-only diagnostic. See `src/radio/README.md` for
+stage log events and test modes.
 
 ```
  Telegram (MTProto)                         X (twitterapi.io)
@@ -34,6 +50,7 @@ blitz is a NestJS (Fastify) service that collects OSINT posts from **Telegram** 
 | `tg-realtime/` | MTProto helpers: login, message listener, history extractor, watchdog, flood-wait handling. |
 | `x-scraper/` | `XScraperCronService` (5-minute cycle), `XScraperService` (query building and chunking), twitterapi.io / Apify providers, monitored handles. |
 | `events/` | `MessageEventsService`: in-process bus between `TelegramService` and the listener. |
+| `radio/` | Sequential internet audio capture/local ASR and WAV/JSON/text archive. `RadioTransformerHandoff` applies the shared analyzer, logs filter decisions, and hands accepted JSON to the common Transformer. |
 | `match/`, `dictionaries/`, `normalize/`, `text-analyzer.ts` | Keyword dictionaries and text analysis used to decide which posts are kept. |
 | `transformer/` | State machine that turns a source payload into a validated `RAW_REPORT` and publishes it. |
 | `meta/` | `GET /api/health`. `GET /api/telegram` (in `telegram/`) reports the connection state. |
@@ -58,9 +75,13 @@ FloodWait: `withFloodWait` sleeps the requested seconds plus 0.5–2 s jitter. A
 
 ## Transformer and Kafka
 
-`TransformerWorkflow` runs one input through `parsing → mapping → validation → publishing → completion`. Inputs are `ParsedMessage` (Telegram) and `ProfileScrapeResult` (X). Reports have a deterministic `report_id`, so the same post always maps to the same id.
+`TransformerWorkflow` runs one input through `parsing → mapping → validation → publishing → completion`.
+Inputs are `ParsedMessage` (Telegram), `ProfileScrapeResult` (X), and
+`RadioTranscript` (radio). Radio identity uses the clip's archive URL, not the
+station's shared stream URL. Nonnegative int32 hash IDs are deterministic but can
+collide; they are not a globally unique allocation service.
 
-- **Primary Kafka** (`KAFKA_BROKERS`, optional SASL/SSL): topic `reports.raw`, acks from all replicas. Failed sends stay in an in-memory queue and are retried every `KAFKA_RETRY_INTERVAL_MS`; the queue is lost on restart. The topic must exist (auto-create is off).
+- **Primary Kafka** (`KAFKA_BROKERS`, optional SASL/SSL): topic `reports.raw`, acks from all replicas. Reports are admitted to the existing Redis outbox before sending. It survives application restarts, uses token-checked processing leases and retries after `KAFKA_RETRY_INTERVAL_MS`. The approved policy is initial attempt plus three retries, then permanent discard. Lost acknowledgments/crashes can cause redelivery; this is at-least-once. The topic must exist (auto-create is off).
 - **Remote Kafka mirror** (`KAFKA_REMOTE_*`): every report is also sent to a second cluster over SASL_SSL (SCRAM-SHA-512, optional custom CA via `KAFKA_REMOTE_SSL_CA_FILE`). It has its own bounded in-memory queue (5000 reports) and never blocks the primary publisher. Off unless `KAFKA_REMOTE_BROKERS` is set.
 
 ## Operational rules
