@@ -4,6 +4,9 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "assets": [{ "include": "database/migrations/*.sql", "outDir": "dist" }]
+    "assets": [
+      { "include": "database/migrations/*.sql", "outDir": "dist" },
+      { "include": "radio/*.py", "outDir": "dist" }
+    ]
   }
 }

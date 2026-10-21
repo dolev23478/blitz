@@ -3,11 +3,13 @@ import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
 import type { ProfileScrapeResult } from '../../x-scraper/contracts/x-scraper.interfaces.js';
 import type { ParsedMessage } from '../../types.js';
+import type { RadioTranscript } from '../../radio/radio.types.js';
 import type { RawReportCandidate } from '../../contracts/schema.js';
 import type { TransformContext } from '../transformer.types.js';
 import { normalizeReport } from '../normalization.js';
 import { TwitterMappingStrategy } from '../strategies/twitter-mapping.strategy.js';
 import { TelegramMappingStrategy } from '../strategies/telegram-mapping.strategy.js';
+import { RadioMappingStrategy } from '../strategies/radio-mapping.strategy.js';
 
 @Injectable()
 export class MappingProcessor {
@@ -16,6 +18,7 @@ export class MappingProcessor {
   constructor(
     private readonly twitter: TwitterMappingStrategy,
     private readonly telegram: TelegramMappingStrategy,
+    private readonly radio: RadioMappingStrategy,
   ) {}
 
   async execute(context: TransformContext): Promise<void> {
@@ -28,6 +31,9 @@ export class MappingProcessor {
           break;
         case 'ParsedMessage':
           candidates = [this.telegram.map(input as ParsedMessage, metadata)];
+          break;
+        case 'RadioTranscript':
+          candidates = [this.radio.map(input as RadioTranscript, metadata)];
           break;
         default:
           throw new TransformerException(

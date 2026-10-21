@@ -216,6 +216,15 @@ export class PublishingProcessor
         const producer = await this.connect();
         if (!leaseValid || !(await this.queue.renew(token)))
           throw new Error('Publication lease lost.');
+        if (job.report.platform === 'internet_radio')
+          this.logger.log({
+            event: 'radio_kafka_sending',
+            reportId: job.report.report_id,
+            topic: REPORT_TOPIC,
+            key: String(job.report.report_id),
+            attempt: job.attempts,
+            payload: JSON.parse(value),
+          });
         const acknowledgment = await producer.send({
           topic: REPORT_TOPIC,
           acks: -1,
@@ -231,6 +240,14 @@ export class PublishingProcessor
           )
         )
           throw new Error('Kafka publication was not confirmed.');
+        if (job.report.platform === 'internet_radio')
+          this.logger.log({
+            event: 'radio_kafka_acknowledged',
+            reportId: job.report.report_id,
+            topic: REPORT_TOPIC,
+            attempt: job.attempts,
+            acknowledgment,
+          });
         // Best-effort copy to the remote cluster, only once the primary confirmed it.
         this.mirror?.enqueue(String(job.report.report_id), value);
       } catch (error) {

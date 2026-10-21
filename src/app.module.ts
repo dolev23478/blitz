@@ -11,6 +11,7 @@ import { XScraperModule } from './x-scraper/x-scraper.module.js';
 import { XScraperCronService } from './x-scraper/x-scraper.cron.service.js';
 import { TransformerModule } from './transformer/transformer.module.js';
 import { KafkaAnalyticsModule } from './analytics/kafka-analytics.module.js';
+import { RadioTransformerModule } from './radio/radio-transformer.module.js';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { KafkaAnalyticsModule } from './analytics/kafka-analytics.module.js';
     XScraperModule,
     TransformerModule,
     KafkaAnalyticsModule,
+    RadioTransformerModule,
   ],
   providers: [
     XScraperCronService,
