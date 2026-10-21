@@ -280,7 +280,7 @@ export class PublishingProcessor
         content: job.report.content,
         reportId: job.report.report_id,
         termsMatched: job.report.matches,
-        language: job.report.language,
+        language: job.report.languages?.join(', ') || 'unknown',
         timestamp: job.report.collected_at || new Date().toISOString(),
         topic: REPORT_TOPIC,
       });
