@@ -1,3 +1,5 @@
+import type { CollectorReportFields } from './contracts/collector-report.js';
+
 export interface MediaItem {
   type: 'photo' | 'video' | 'document' | 'audio' | 'other';
   url: string;
@@ -12,7 +14,7 @@ export interface Reaction {
   count: number;
 }
 
-export interface ParsedMessage {
+export interface ParsedMessage extends CollectorReportFields {
   messageId: number;
   postedAt: Date;
   text: string | null;
@@ -28,6 +30,8 @@ export interface ParsedMessage {
   senderName?: string | null;
   forwards?: number | null;
   reactions?: Reaction[];
+  language?: string;
+  matches?: string[];
 }
 
 export interface ChannelPage {
@@ -90,6 +94,93 @@ export interface AnalyzeMatch {
   tokenEnd: number;
 }
 
+export const ThreatMode = {
+  DictionaryOnly: 'dictionary_only',
+  CategoryFilter: 'category_filter',
+  Smart: 'smart',
+  Basic: 'basic',
+} as const;
+
+export type ThreatEvaluationMode =
+  | (typeof ThreatMode)[keyof typeof ThreatMode]
+  | 'dictionary_only'
+  | 'category_filter'
+  | 'smart'
+  | 'basic';
+
+export const ThreatCategory = {
+  // Weapon
+  WeaponFirearm: 'weapon.firearm',
+  WeaponExplosive: 'weapon.explosive',
+  WeaponMissileRocket: 'weapon.missile_rocket',
+  WeaponDrone: 'weapon.drone',
+  WeaponBlade: 'weapon.blade',
+  WeaponCbrn: 'weapon.cbrn',
+  WeaponAmmunition: 'weapon.ammunition',
+  WeaponMilitary: 'weapon.military',
+  WeaponGeneral: 'weapon.general',
+
+  // Violence
+  ViolenceTerrorism: 'violence.terrorism',
+  ViolenceKilling: 'violence.killing',
+  ViolenceAssault: 'violence.assault',
+  ViolenceKidnapping: 'violence.kidnapping',
+  ViolenceExplosion: 'violence.explosion',
+  ViolenceArson: 'violence.arson',
+  ViolenceTorture: 'violence.torture',
+  ViolenceGenocide: 'violence.genocide',
+  ViolenceGeneral: 'violence.general',
+
+  // Threat
+  ThreatDirect: 'threat.direct',
+  ThreatIntimidation: 'threat.intimidation',
+  ThreatRetaliation: 'threat.retaliation',
+  ThreatAnnihilation: 'threat.annihilation',
+  ThreatGeneral: 'threat.general',
+
+  // Target
+  TargetIsrael: 'target.israel',
+  TargetIsraelLocation: 'target.israel_location',
+  TargetIsraelInstitution: 'target.israel_institution',
+  TargetJewish: 'target.jewish',
+  TargetCivilian: 'target.civilian',
+  TargetMilitary: 'target.military',
+  TargetInfrastructure: 'target.infrastructure',
+  TargetGeneral: 'target.general',
+
+  // Hate
+  HateAntisemitism: 'hate.antisemitism',
+  HateAntiIsrael: 'hate.anti_israel',
+  HateExtremistGroup: 'hate.extremist_group',
+  HateDehumanization: 'hate.dehumanization',
+  HateSlur: 'hate.slur',
+  HateNeonazi: 'hate.neonazi',
+  HateGeneral: 'hate.general',
+
+  // Context
+  ContextConflict: 'context.conflict',
+  ContextAlert: 'context.alert',
+  ContextSlang: 'context.slang',
+  ContextTemporal: 'context.temporal',
+  ContextDualUseMaterial: 'context.dual_use_material',
+  ContextGeneral: 'context.general',
+} as const;
+
+export type CanonicalThreatCategory =
+  (typeof ThreatCategory)[keyof typeof ThreatCategory];
+
+export type RiskLevel = 'none' | 'low' | 'medium' | 'high' | 'critical';
+
+export interface ThreatEvaluation {
+  mode: 'dictionary_only' | 'category_filter' | 'smart';
+  riskScore: number;
+  riskLevel: RiskLevel;
+  threatCategories: string[];
+  flaggedReasons: string[];
+  wordCount?: number;
+  threatDensity?: number;
+}
+
 export interface AnalyzeTextResult {
   text: string;
   content: string;
@@ -100,6 +191,7 @@ export interface AnalyzeTextResult {
   matches: AnalyzeMatch[];
   usedSources: string[];
   issues: AnalyzeIssue[];
+  evaluation?: ThreatEvaluation;
 }
 
 export interface AnalyzeTextOptions {
@@ -119,4 +211,34 @@ export interface AnalyzeTextOptions {
    * Cap on the number of matches to return per text.
    */
   maxMatches?: number;
+
+  /**
+   * Threat analysis evaluation mode:
+   * - 'dictionary_only' (or 'basic'): Default legacy mode. Any dictionary hit -> matched = true.
+   * - 'category_filter': Requires confirmed threat domain (weapon, violence, threat, hate).
+   *   Neutral/dual-use words alone (e.g. gasoline, today) DO NOT trigger matched = true.
+   * - 'smart': Multi-factor risk scoring (0-100) based on category weights and dangerous combinations.
+   */
+  mode?: ThreatEvaluationMode;
+
+  /**
+   * Simple boolean toggle for smart mode.
+   * If true, enables 'smart' mode with zero extra configuration.
+   */
+  smart?: boolean;
+
+  /**
+   * Simple boolean toggle for category filter mode.
+   * If true, enables 'category_filter' mode.
+   */
+  filter?: boolean;
+
+  /**
+   * Risk threshold score when using 'smart' mode (optional, default: 40).
+   */
+  threatThreshold?: number;
+  /**
+   * Alias for threatThreshold (optional, default: 40).
+   */
+  smartThreshold?: number;
 }

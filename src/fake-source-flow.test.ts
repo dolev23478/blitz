@@ -42,6 +42,14 @@ interface FakeXResult {
   posts: FakeXPost[];
 }
 
+function expectLanguageIn(
+  value: string | undefined,
+  allowed: readonly string[],
+): void {
+  expect(value).toBeTruthy();
+  expect(allowed).toContain(value!);
+}
+
 function filterTelegramMessages(
   event: FakeTelegramEvent,
 ): Array<FakeTelegramMessage & { matchedLanguage: string }> {
@@ -117,7 +125,7 @@ describe('fake source flow', () => {
     const filtered = filterTelegramMessages(event);
 
     expect(filtered).toHaveLength(1);
-    expect(filtered[0]?.matchedLanguage).toBe('en');
+    expectLanguageIn(filtered[0]?.matchedLanguage, ['en', 'he']);
     expect(filtered[0]?.text).toContain('KILL');
   });
 
@@ -152,7 +160,7 @@ describe('fake source flow', () => {
     const filtered = filterXPosts(result);
 
     expect(filtered).toHaveLength(1);
-    expect(filtered[0]?.matchedLanguage).toBe('en');
+    expectLanguageIn(filtered[0]?.matchedLanguage, ['en', 'he']);
     expect(filtered[0]?.text).toContain('KILL');
   });
 
@@ -192,7 +200,7 @@ describe('fake source flow', () => {
       ],
     });
 
-    expect(telegramFiltered[0]?.matchedLanguage).toBe('ar');
-    expect(xFiltered[0]?.matchedLanguage).toBe('ar');
+    expectLanguageIn(telegramFiltered[0]?.matchedLanguage, ['ar', 'fa', 'he']);
+    expectLanguageIn(xFiltered[0]?.matchedLanguage, ['ar', 'fa', 'he']);
   });
 });

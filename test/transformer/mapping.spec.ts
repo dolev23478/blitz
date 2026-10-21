@@ -34,6 +34,70 @@ async function mapReports(
 }
 
 describe('collector JSON mapping', () => {
+  it.each(['telegram', 'twitter'] as const)(
+    'preserves %s collector languages and matches ahead of caller defaults',
+    async (source) => {
+      const input = source === 'telegram' ? telegramInput() : twitterInput();
+      const message = 'posts' in input ? input.posts[0]! : input;
+      message.languages = ['he', 'en'];
+      message.language = 'ar';
+      message.matches = ['collector-keyword'];
+      message.categories = ['collector-category'];
+      const [report] = await mapReports(input, {
+        languages: ['fa'],
+        matches: ['caller-keyword'],
+        categories: ['caller-category'],
+      });
+      expect(report).toMatchObject({
+        languages: ['he', 'en'],
+        matches: ['collector-keyword'],
+        categories: ['collector-category'],
+      });
+      expect(report).not.toHaveProperty('language');
+    },
+  );
+
+  it.each(['telegram', 'twitter'] as const)(
+    'normalizes legacy %s collector language and retains caller matches when none were found',
+    async (source) => {
+      const input = source === 'telegram' ? telegramInput() : twitterInput();
+      const message = 'posts' in input ? input.posts[0]! : input;
+      message.language = 'ar';
+      message.matches = [];
+      const [report] = await mapReports(input, {
+        languages: ['en'],
+        matches: ['caller-keyword'],
+      });
+      expect(report).toMatchObject({
+        languages: ['ar'],
+        matches: ['caller-keyword'],
+      });
+    },
+  );
+
+  it('uses X matchedLanguage when post language is missing', async () => {
+    const input = twitterInput();
+    input.posts[0]!.matchedLanguage = 'ar';
+    expect((await mapReports(input))[0]!.languages).toEqual(['ar']);
+  });
+
+  it('keeps X batch languages and categories as defaults for posts', async () => {
+    const input = twitterInput();
+    input.languages = ['he', 'en'];
+    input.categories = ['batch-category'];
+    expect(
+      (
+        await mapReports(input, {
+          languages: ['ar'],
+          categories: ['caller-category'],
+        })
+      )[0],
+    ).toMatchObject({
+      languages: ['he', 'en'],
+      categories: ['batch-category'],
+    });
+  });
+
   it('maps Twitter fields, preserves URLs and text, and ignores raw HTML', async () => {
     const input = twitterInput();
     const snapshot = structuredClone(input);
@@ -41,7 +105,7 @@ describe('collector JSON mapping', () => {
     expect(reports).toHaveLength(1);
     expect(reports[0]).toEqual({
       report_id: expect.any(Number),
-      schema_version: '1.0.0',
+      schema_version: 1,
       is_official: false,
       platform: 'twitter',
       account_name: 'blitz',
@@ -50,7 +114,8 @@ describe('collector JSON mapping', () => {
       media_type: ['text', 'photo'],
       report_title: null,
       content: 'דיווח חדש',
-      language: 'he',
+      languages: ['he'],
+      categories: [],
       matches: ['news'],
       published_at: '2026-10-19T09:00:00.000Z',
       collected_at: '2026-10-19T10:00:00.000Z',
@@ -88,7 +153,7 @@ describe('collector JSON mapping', () => {
     const [report] = await mapReports(input);
     expect(report).toEqual({
       report_id: expect.any(Number),
-      schema_version: '1.0.0',
+      schema_version: 1,
       is_official: false,
       platform: 'telegram',
       account_name: 'Dana',
@@ -97,7 +162,8 @@ describe('collector JSON mapping', () => {
       media_type: ['text', 'video'],
       report_title: null,
       content: 'Telegram report',
-      language: 'en',
+      languages: ['en'],
+      categories: [],
       matches: [],
       published_at: '2026-10-19T09:00:00.000Z',
       collected_at: '2026-10-19T10:00:00.000Z',
@@ -145,7 +211,9 @@ describe('collector JSON mapping', () => {
       const input = telegramInput();
       input.media = [{ type: kind, url: 'https://example.com/media' }];
       const [report] = await mapReports(input);
-      expect(report!.media_type).toEqual(['text', kind]);
+      expect(report!.media_type).toEqual(
+        kind === 'photo' || kind === 'video' ? ['text', kind] : ['text'],
+      );
     },
   );
 

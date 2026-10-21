@@ -16,7 +16,7 @@ import { APP_CONFIG, type AppConfig } from '../config/app-config.js';
 import { MessageEventsService, type NewMessagesEvent } from '../events/message-events.service.js';
 import { RedisService } from '../redis/redis.service.js';
 import { toParsedMessage } from './telegram.mapper.js';
-import { TELEGRAM_CHANNELS, TELEGRAM_CURSOR_KEY } from './telegram-channels.js';
+import { TELEGRAM_CHANNELS, TELEGRAM_CURSOR_PREFIX } from './telegram-channels.js';
 
 export type TelegramState = 'disabled' | 'connecting' | 'ready' | 'offline' | 'error';
 
@@ -28,7 +28,14 @@ export interface TelegramStatus {
 }
 
 const DEFAULT_LOOKBACK_MS = 24 * 60 * 60 * 1000;
-const CURSOR_OVERLAP_MS = 60_000;
+
+/** Resume point of one channel: the newest message that was handed over. */
+interface TelegramCursor {
+  channelId: number;
+  channel: string;
+  messageId: number;
+  date: string;
+}
 
 /** Collects the monitored channels (TELEGRAM_CHANNELS) through the Telegram account (MTProto), headless via TG_SESSION_STRING. */
 @Injectable()
@@ -66,10 +73,13 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
 
   /** Subscribes once and calls the callback whenever Telegram delivers new messages. */
   watchResults(callback: (event: NewMessagesEvent) => void | Promise<void>): () => void {
-    return this.events.subscribe((event) => {
-      void Promise.resolve(callback(event)).catch((err) => {
+    return this.events.subscribe(async (event) => {
+      try {
+        await callback(event);
+      } catch (err) {
         this.logger.error(`telegram result callback failed: ${err instanceof Error ? err.message : String(err)}`);
-      });
+        throw err;
+      }
     });
   }
 
@@ -97,18 +107,21 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     }
   }
 
-  /** Last successful pull time from Redis (same key semantics as X's x:last-scrape-at); 24h ago if missing. */
-  private async recoverSince(): Promise<Date> {
-    const fallback = new Date(Date.now() - DEFAULT_LOOKBACK_MS);
-    if (!this.redis.isEnabled()) return fallback;
-    const saved = await this.redis.get(TELEGRAM_CURSOR_KEY).catch(() => null);
-    const parsed = saved ? new Date(saved) : fallback;
-    return Number.isNaN(parsed.getTime()) ? fallback : parsed;
+  /** Last processed message of a channel (id + time) from Redis, or null when none was saved yet. */
+  private async loadCursor(chatId: number): Promise<TelegramCursor | null> {
+    if (!this.redis.isEnabled()) return null;
+    try {
+      const raw = await this.redis.get(`${TELEGRAM_CURSOR_PREFIX}${chatId}`);
+      const cursor = raw ? (JSON.parse(raw) as TelegramCursor) : null;
+      return cursor && !Number.isNaN(new Date(cursor.date).getTime()) ? cursor : null;
+    } catch {
+      return null;
+    }
   }
 
-  private async saveCursor(at: number): Promise<void> {
+  private async saveCursor(cursor: TelegramCursor): Promise<void> {
     if (!this.redis.isEnabled()) return;
-    await this.redis.set(TELEGRAM_CURSOR_KEY, new Date(at).toISOString()).catch(() => undefined);
+    await this.redis.set(`${TELEGRAM_CURSOR_PREFIX}${cursor.channelId}`, JSON.stringify(cursor)).catch(() => undefined);
   }
 
   /** Resolves every not-yet-resolved username to its chat id and starts tracking it. */
@@ -131,44 +144,55 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     }
   }
 
-  private publish(chatId: number, dtos: MessageDto[]): void {
+  /** Live messages are best effort; the pull cursor is not moved by them, the next pull re-reads them and the listener dedupes. */
+  private publish(chatId: number, dtos: MessageDto[]): Promise<void> {
     const channel = this.usernameByChatId.get(chatId);
-    if (!channel || dtos.length === 0) return;
-    const ordered = [...dtos].sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
-    this.events.emit({ channelId: chatId, channel, inserted: ordered.length, messages: ordered.map((dto) => toParsedMessage(dto, channel)) });
+    if (!channel || dtos.length === 0) return Promise.resolve();
+    const ordered = [...dtos].sort((a, b) => a.messageId - b.messageId);
+    return this.events.emit({ channelId: chatId, channel, inserted: ordered.length, messages: ordered.map((dto) => toParsedMessage(dto, channel)) });
   }
 
-  /** Pulls one chat's history since the given time; true when it completed. */
-  private async pullChat(chatId: number, since: Date): Promise<boolean> {
-    if (!this.extractor) return false;
+  /**
+   * Pulls one chat from its saved resume time (messages posted at or after it), or from the last 24h when it has none.
+   * The point advances to the newest pulled message only after the listener handled the whole batch; true when it completed.
+   */
+  private async pullChat(chatId: number): Promise<boolean> {
+    const extractor = this.extractor;
+    const channel = this.usernameByChatId.get(chatId);
+    if (!extractor || !channel) return false;
     try {
-      this.publish(chatId, await this.extractor.getHistory(chatId, since));
+      const cursor = await this.loadCursor(chatId);
+      const since = cursor ? new Date(cursor.date) : new Date(Date.now() - DEFAULT_LOOKBACK_MS);
+      // Inclusive on the cursor time (dates have 1s resolution); the listener's seen-claim drops the repeats.
+      const dtos = await extractor.getHistory(chatId, since);
+      if (dtos.length === 0) return true;
+      await this.publish(chatId, dtos);
+      const newest = dtos.reduce((a, b) => (new Date(b.date) > new Date(a.date) ? b : a));
+      await this.saveCursor({ channelId: chatId, channel, messageId: newest.messageId, date: newest.date });
       return true;
     } catch (err) {
-      this.logger.error(`@${this.usernameByChatId.get(chatId)}: ${err instanceof Error ? err.message : String(err)}`);
+      this.logger.error(`@${channel}: ${err instanceof Error ? err.message : String(err)}`);
       return false;
     }
   }
 
-  /** Pulls every resolved chat since `since`; the Redis cursor only advances when every pull succeeded. */
-  private async pullSince(since: Date): Promise<void> {
+  /** Pulls every resolved chat in order, each from its own resume point. */
+  private async pullAll(): Promise<void> {
     if (this.pulling) return;
     this.pulling = true;
     try {
-      const startedAt = Date.now();
       await this.resolveChannels();
-      const results: boolean[] = [];
-      for (const id of this.chatIds) results.push(await this.pullChat(id, since));
-      this.logger.log(`pulled ${results.length} chat(s) since ${since.toISOString()}`);
-      if (results.every(Boolean)) await this.saveCursor(startedAt);
+      let ok = 0;
+      for (const id of this.chatIds) if (await this.pullChat(id)) ok++;
+      this.logger.log(`pulled ${ok}/${this.chatIds.size} chat(s) from their saved resume points`);
     } finally {
       this.pulling = false;
     }
   }
 
-  /** Safety net in case live push stalls silently: re-pull from the saved cursor. */
+  /** Safety net in case live push stalls silently: re-pull from the saved resume points. */
   private async catchUp(): Promise<void> {
-    await this.pullSince(new Date((await this.recoverSince()).getTime() - CURSOR_OVERLAP_MS));
+    await this.pullAll();
   }
 
   private async teardown(): Promise<void> {
@@ -227,10 +251,9 @@ export class TelegramService implements OnApplicationBootstrap, OnApplicationShu
     this.chatIds.clear();
     this.usernameByChatId.clear();
     this.resolved.clear();
-    // Resume from the saved cursor (24h fallback) and re-pull everything missed while down.
-    const since = new Date((await this.recoverSince()).getTime() - CURSOR_OVERLAP_MS);
-    this.logger.log(`recovering missed messages since ${since.toISOString()}`);
-    void this.pullSince(since).catch((err) =>
+    // Resume every channel from its saved message id (24h fallback) and re-pull what was missed while down.
+    this.logger.log('recovering missed messages from the saved per-channel resume points');
+    void this.pullAll().catch((err) =>
       this.logger.error(`initial pull failed: ${err instanceof Error ? err.message : String(err)}`),
     );
     this.state = 'ready';

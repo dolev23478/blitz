@@ -3,7 +3,10 @@ export type MappingFormat = 'ProfileScrapeResult' | 'ParsedMessage';
 
 /** Only fields missing from collector JSON; passed separately from the payload. */
 export interface ReportMetadata {
-  language?: string | null;
+  languages?: string[] | null;
+  /** Legacy caller metadata. */
+  language?: string | string[] | null;
+  categories?: string[] | null;
   matches?: string[];
   /** Optional source names missing from ParsedMessage. */
   accountName?: string | null;

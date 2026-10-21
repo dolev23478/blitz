@@ -1,3 +1,4 @@
+import { FakeRetryQueue } from './fake-retry-queue.js';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Ajv } from 'ajv';
@@ -44,6 +45,7 @@ beforeEach(() => {
       KAFKA_SASL_USERNAME: '',
       KAFKA_SASL_PASSWORD: '',
     }),
+    new FakeRetryQueue(),
   );
 });
 
@@ -67,9 +69,9 @@ function reports() {
     expect(record.messages[0]!.key).toBe(String(report.report_id));
     expect(typeof report.report_id).toBe('number');
     expect(Number.isInteger(report.report_id)).toBe(true);
-    expect(report.report_id).toBeGreaterThanOrEqual(-2147483648);
+    expect(report.report_id).toBeGreaterThanOrEqual(0);
     expect(report.report_id).toBeLessThanOrEqual(2147483647);
-    expect(report.schema_version).toBe('1.0.0');
+    expect(report.schema_version).toBe(1);
     expect(report.is_official).toBe(false);
     return report;
   });
@@ -127,7 +129,7 @@ describe('generated ProfileScrapeResult variations', () => {
           posts[postIndex]!.text.normalize('NFC').trim(),
         );
         expect(report.report_url).toBe(posts[postIndex]!.url);
-        expect(report.language).toBe(postIndex % 2 ? 'ar' : 'unknown');
+        expect(report.languages).toEqual(postIndex % 2 ? ['ar'] : []);
         expect(report.media_type).toEqual([
           'text',
           ...posts[postIndex]!.media.map((media) => media.type),
@@ -139,8 +141,8 @@ describe('generated ProfileScrapeResult variations', () => {
     },
   );
 
-  it.each([undefined, null, '', '   ', '\n\t', 'unknown'])(
-    'defaults missing/empty collector language %j to unknown',
+  it.each([undefined, null, '', '   ', '\n\t'])(
+    'defaults missing/empty collector language %j to an empty array',
     async (language) => {
       const post = createMockScrapedPost();
       Reflect.set(post, 'language', language);
@@ -148,7 +150,7 @@ describe('generated ProfileScrapeResult variations', () => {
         'ProfileScrapeResult',
         createMockBatchResult({ posts: [post] }),
       );
-      expect(reports()[0]!.language).toBe('unknown');
+      expect(reports()[0]!.languages).toEqual([]);
     },
   );
 
@@ -163,10 +165,10 @@ describe('generated ProfileScrapeResult variations', () => {
       createMockBatchResult({ posts }),
       { language: 'fr' },
     );
-    expect(reports().map((report) => report.language)).toEqual([
-      'en',
-      'ar',
-      'he',
+    expect(reports().map((report) => report.languages)).toEqual([
+      ['en'],
+      ['ar'],
+      ['he'],
     ]);
   });
 
@@ -178,11 +180,20 @@ describe('generated ProfileScrapeResult variations', () => {
         createMockBatchResult(),
         { language },
       );
-      expect(reports()[0]!.language).toBe('unknown');
+      expect(reports()[0]!.languages).toEqual([]);
     },
   );
 
-  it.each(['zz', 'eng', 'EN', 'not-a-language', 42, {}, ['en']])(
+  it.each([
+    'zz',
+    'eng',
+    'EN',
+    'unknown',
+    'not-a-language',
+    42,
+    {},
+    ['en', 'zz'],
+  ])(
     'rejects an invalid collector language %j without publishing',
     async (language) => {
       const post = createMockScrapedPost();
@@ -220,7 +231,10 @@ describe('generated ProfileScrapeResult variations', () => {
   ])('rejects invalid source fields %j without publication', async (fields) => {
     const post = createMockScrapedPost(fields as Partial<ScrapedPost>);
     // Non-string account values remain invalid; nullable names follow the local contract.
-    const error = fields.publishedAt ? 'mapping_failed' : 'validation_failed';
+    const error =
+      fields.publishedAt || fields.media
+        ? 'mapping_failed'
+        : 'validation_failed';
     await expect(
       workflow(publisher).run(
         'ProfileScrapeResult',
@@ -242,22 +256,19 @@ describe('generated ProfileScrapeResult variations', () => {
 });
 
 describe('language handling in Telegram ParsedMessage', () => {
-  it('defaults language to unknown and preserves a supplied collector code', async () => {
+  it('defaults language to an empty array and preserves a supplied collector code', async () => {
     const runner = workflow(publisher);
     await runner.run('ParsedMessage', telegramInput());
     const message = telegramInput();
     Reflect.set(message, 'language', 'he');
     await runner.run('ParsedMessage', message);
-    expect(reports().map((report) => report.language)).toEqual([
-      'unknown',
-      'he',
-    ]);
+    expect(reports().map((report) => report.languages)).toEqual([[], ['he']]);
   });
 
   it('uses caller language metadata when the collector did not provide a language field', async () => {
     const runner = workflow(publisher);
     await runner.run('ParsedMessage', telegramInput(), { language: 'ar' });
-    expect(reports().map((report) => report.language)).toEqual(['ar']);
+    expect(reports().map((report) => report.languages)).toEqual([['ar']]);
   });
 });
 
@@ -296,16 +307,20 @@ describe('Telegram ParsedMessage through the complete workflow', () => {
       const [report] = reports(); // Validates the serialized output with Ajv and checks every field.
       expect(report).toEqual({
         report_id: expect.any(Number),
-        schema_version: '1.0.0',
+        schema_version: 1,
         is_official: false,
         platform: 'telegram',
         account_name: message.senderName,
         channel_name: null,
         report_url: message.url,
-        media_type: index % 2 ? ['text', kind] : ['text'],
+        media_type:
+          index % 2 && (kind === 'photo' || kind === 'video')
+            ? ['text', kind]
+            : ['text'],
         report_title: null,
         content: message.text!.normalize('NFC').trim(),
-        language: 'unknown',
+        languages: [],
+        categories: [],
         matches: [],
         published_at: message.postedAt.toISOString(),
         collected_at: expect.any(String),

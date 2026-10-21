@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { performance } from "node:perf_hooks";
 import { analyzeText } from "../src/index.js";
-type LanguageInput = string | string[];
+type LanguageInput = Parameters<typeof analyzeText>[1];
 
 interface DatasetItem {
   id: string;
@@ -94,11 +94,12 @@ function parseRawDataset(rawContent: string, filePath: string): DatasetItem[] {
 }
 
 async function runBenchmark() {
-  const customPath = process.argv[2];
+  const modeArg = (process.argv.find((a) => a.startsWith("--mode="))?.split("=")[1] as any) || "category_filter";
+  const customPath = process.argv.find((a) => !a.startsWith("--") && a !== process.argv[0] && a !== process.argv[1]);
   const targetPath = resolve(process.cwd(), customPath || "test/fixtures/terror-dataset.json");
 
   console.log("================================================================");
-  console.log("       TEXT ANALYZER BENCHMARK & DATASET VERIFICATION           ");
+  console.log(`  TEXT ANALYZER BENCHMARK [Mode: ${modeArg.toUpperCase()}]`);
   console.log("================================================================");
   console.log(`Loading dataset from: ${targetPath}\n`);
 
@@ -135,7 +136,7 @@ async function runBenchmark() {
 
   for (const item of dataset) {
     const lang = item.lang ?? "auto";
-    const result = analyzeText(item.text, lang);
+    const result = analyzeText(item.text, lang, { mode: modeArg });
 
     // Track languages
     if (result.languages) {
