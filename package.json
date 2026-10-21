@@ -6,6 +6,10 @@
   "private": true,
   "license": "UNLICENSED",
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "nest build",
     "deploy": "nest deploy",
@@ -24,7 +28,10 @@
     "check:text": "tsx scripts/test-text.ts",
     "benchmark": "tsx scripts/benchmark-dataset.ts",
     "merge:dicts": "tsx scripts/merge-dictionaries.ts",
-    "auth": "tsx scripts/generate-session.ts"
+    "auth": "tsx scripts/generate-session.ts",
+    "dev:web": "npm run dev --workspace @blitz/web",
+    "build:web": "npm run build --workspace @blitz/web",
+    "start:web": "npm run start --workspace @blitz/web"
   },
   "dependencies": {
     "@fastify/cors": "^11.3.1",
