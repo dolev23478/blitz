@@ -36,6 +36,14 @@ FROM node:${NODE_VERSION} AS runner
 
 WORKDIR /app
 
+# Local radio ASR runs in the same container; model downloads stay in /app/.radio.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 python3-venv ca-certificates libgomp1 \
+  && rm -rf /var/lib/apt/lists/*
+COPY requirements-radio.txt ./
+RUN python3 -m venv /app/.venv-radio \
+  && /app/.venv-radio/bin/python -m pip install --no-cache-dir -r requirements-radio.txt
+
 # DICTIONARIES_DIR: read at runtime by the filter (src/dictionaries/load-dictionaries.ts).
 # OUTPUT_DIR: the X scraper writes its JSON/HTML exports here (src/x-scraper/x-scraper.service.ts).
 ENV NODE_ENV=production \
@@ -51,7 +59,7 @@ COPY --from=builder --chown=node:node /app/dist ./dist
 COPY --chown=node:node dictionaries ./dictionaries
 
 # Writable directory for the non-root user
-RUN mkdir -p /app/output && chown node:node /app/output
+RUN mkdir -p /app/output /app/.radio && chown node:node /app/output /app/.radio
 
 USER node
 

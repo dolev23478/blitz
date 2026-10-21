@@ -7,7 +7,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'node:crypto';
 import { Kafka, logLevel, type Producer, type SASLOptions } from 'kafkajs';
-import { REPORT_TOPIC } from '../../common/constants.js';
+import { RADIO_PLATFORM, REPORT_TOPIC } from '../../common/constants.js';
 import { KafkaMirror } from './kafka-mirror.js';
 import { State, TransformerErrorCode } from '../../common/enums.js';
 import { TransformerException } from '../../common/exceptions.js';
@@ -212,6 +212,14 @@ export class PublishingProcessor
         const producer = await this.connect();
         if (!leaseValid || !(await this.queue.renew(token)))
           throw new Error('Publication lease lost.');
+        if (job.report.platform === RADIO_PLATFORM)
+          this.logger.log({
+            event: 'radio_kafka_sending',
+            publicationId: job.id,
+            topic: REPORT_TOPIC,
+            attempt: job.attempts,
+            payload: JSON.parse(value),
+          });
         const acknowledgment = await producer.send({
           topic: REPORT_TOPIC,
           acks: -1,
@@ -227,6 +235,14 @@ export class PublishingProcessor
           )
         )
           throw new Error('Kafka publication was not confirmed.');
+        if (job.report.platform === RADIO_PLATFORM)
+          this.logger.log({
+            event: 'radio_kafka_acknowledged',
+            publicationId: job.id,
+            topic: REPORT_TOPIC,
+            attempt: job.attempts,
+            acknowledgment,
+          });
         // Best-effort copy to the remote cluster, only once the primary confirmed it.
         this.mirror?.enqueue(value);
       } catch (error) {

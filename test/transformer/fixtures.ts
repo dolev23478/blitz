@@ -13,6 +13,7 @@ import { PublishingProcessor } from '../../src/transformer/processors/publishing
 import { ValidationProcessor } from '../../src/transformer/processors/validation.processor.js';
 import { TelegramMappingStrategy } from '../../src/transformer/strategies/telegram-mapping.strategy.js';
 import { TwitterMappingStrategy } from '../../src/transformer/strategies/twitter-mapping.strategy.js';
+import { RadioMappingStrategy } from '../../src/transformer/strategies/radio-mapping.strategy.js';
 import { TransformerWorkflow } from '../../src/transformer/transformer.workflow.js';
 import type { TransformContext } from '../../src/transformer/transformer.types.js';
 
@@ -102,6 +103,7 @@ export function mappingProcessor(): MappingProcessor {
   return new MappingProcessor(
     new TwitterMappingStrategy(),
     new TelegramMappingStrategy(),
+    new RadioMappingStrategy(new ConfigService()),
   );
 }
 

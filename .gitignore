@@ -87,7 +87,10 @@ AGENTS.md
 BLITZ_CONTEXT.md
 reference/
 
-/.radio
+# Local radio recordings, transcripts, model downloads and Python environment
+/.radio/
+/.venv-radio/
+**/__pycache__/
 
 ca.crt
 

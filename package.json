@@ -24,7 +24,10 @@
     "check:text": "tsx scripts/test-text.ts",
     "benchmark": "tsx scripts/benchmark-dataset.ts",
     "merge:dicts": "tsx scripts/merge-dictionaries.ts",
-    "auth": "tsx scripts/generate-session.ts"
+    "auth": "tsx scripts/generate-session.ts",
+    "radio:once": "node scripts/radio-once.mjs",
+    "radio:demo": "node test/radio/run-real-sample.mjs",
+    "radio:start": "npm run build && node scripts/radio-pipeline.mjs"
   },
   "dependencies": {
     "@fastify/cors": "^11.3.1",
