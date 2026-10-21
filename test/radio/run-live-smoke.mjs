@@ -22,7 +22,6 @@ const settings = loadConfig({
   RADIO_ENABLED: 'false',
   RADIO_DATA_DIR: directory,
   RADIO_PYTHON_PATH: process.env.RADIO_E2E_PYTHON_PATH,
-  RADIO_MODELS_DIR: process.env.RADIO_E2E_MODELS_DIR || 'vendor/radio-models',
   RADIO_JOB_TIMEOUT_SECONDS: '60',
   REDIS_URL: process.env.REDIS_TEST_URL,
   KAFKA_BROKERS: process.env.KAFKA_TEST_BROKERS,

@@ -58,13 +58,14 @@ it('runs Python directly with bounded resources and JSON stdin, keeping caches i
   });
   expect(options.shell).toBeUndefined();
   expect(options.env.HF_HOME).toBe(resolve('.radio/models'));
-  expect(options.env.HF_HUB_OFFLINE).toBe('1');
-  expect(options.env.TRANSFORMERS_OFFLINE).toBe('1');
+  // The model hub stays reachable: a missing model is downloaded into the project cache.
+  expect(options.env.HF_HUB_OFFLINE).toBeUndefined();
+  expect(options.env.TRANSFORMERS_OFFLINE).toBeUndefined();
   expect(JSON.parse(processMock.end.mock.calls[0]![0])).not.toHaveProperty(
     'audioPath',
   );
-  expect(JSON.parse(processMock.end.mock.calls[0]![0]).modelDirectory).toBe(
-    resolve('vendor/radio-models'),
+  expect(JSON.parse(processMock.end.mock.calls[0]![0]).modelCache).toBe(
+    resolve('.radio/models'),
   );
   expect(JSON.parse(processMock.end.mock.calls[0]![0])).toMatchObject({
     streamUrl: station.streamUrl,

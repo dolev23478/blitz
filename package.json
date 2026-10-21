@@ -26,7 +26,6 @@
     "merge:dicts": "tsx scripts/merge-dictionaries.ts",
     "auth": "tsx scripts/generate-session.ts",
     "radio:once": "node scripts/radio-once.mjs",
-    "radio:prepare-model": "node scripts/prepare-radio-model.mjs",
     "radio:demo": "node test/radio/run-real-sample.mjs",
     "radio:start": "npm run build && node scripts/radio-pipeline.mjs"
   },

@@ -35,8 +35,6 @@ export class LocalRadioWorker implements OnModuleDestroy {
             ...process.env,
             PYTHONUTF8: '1',
             PYTHONDONTWRITEBYTECODE: '1',
-            HF_HUB_OFFLINE: '1',
-            TRANSFORMERS_OFFLINE: '1',
             HF_HUB_DISABLE_TELEMETRY: '1',
             HF_HOME: resolve(dataDirectory, 'models'),
             XDG_CACHE_HOME: resolve(dataDirectory, 'cache'),
@@ -74,7 +72,7 @@ export class LocalRadioWorker implements OnModuleDestroy {
           seconds: settings.recordingSeconds,
           model: settings.RADIO_MODEL,
           cpuThreads: settings.RADIO_CPU_THREADS,
-          modelDirectory: radioDataDirectory(settings.RADIO_MODELS_DIR),
+          modelCache: resolve(dataDirectory, 'models'),
         }),
       );
     });

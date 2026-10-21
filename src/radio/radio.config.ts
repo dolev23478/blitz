@@ -32,7 +32,6 @@ export const radioEnvironment = {
     .min(30)
     .max(3600)
     .default(900),
-  RADIO_MODELS_DIR: z.string().min(1).default('vendor/radio-models'),
 };
 
 export const radioStationSchema = z.object({
@@ -82,6 +81,5 @@ export function readRadioSettings(config: RadioEnvironment): RadioSettings {
     stations: radioStationsSchema.parse(RADIO_STATIONS),
   };
   radioDataDirectory(settings.RADIO_DATA_DIR);
-  radioDataDirectory(settings.RADIO_MODELS_DIR);
   return settings;
 }

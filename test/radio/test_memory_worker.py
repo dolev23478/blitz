@@ -79,11 +79,33 @@ class MemoryWorkerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "enough audio"):
                 worker.capture("https://example.com/live", 1)
 
-    def test_missing_model_fails_without_triggering_a_download(self):
-        with patch("faster_whisper.WhisperModel") as model:
-            with self.assertRaisesRegex(RuntimeError, "Local Whisper model is missing"):
-                worker.transcribe(io.BytesIO(), {"modelDirectory": ".tmp/missing-model-test", "model": "tiny"}, 1)
-            model.assert_not_called()
+    def test_cached_model_is_used_without_contacting_the_model_hub(self):
+        request = {"modelCache": ".tmp/model-cache-test", "model": "tiny", "cpuThreads": 1}
+        with patch("faster_whisper.utils.download_model", return_value="cached-model") as download, \
+                patch("faster_whisper.WhisperModel") as model:
+            model.return_value.transcribe.return_value = ([], None)
+            worker.transcribe(io.BytesIO(), request, 1)
+        download.assert_called_once_with("tiny", cache_dir=".tmp/model-cache-test", local_files_only=True)
+        self.assertEqual(model.call_args.args[0], "cached-model")
+
+    def test_missing_model_is_downloaded_into_the_cache(self):
+        from huggingface_hub.errors import LocalEntryNotFoundError
+
+        request = {"modelCache": ".tmp/model-cache-test", "model": "tiny", "cpuThreads": 1}
+        calls = []
+
+        def fake_download(model, cache_dir, local_files_only=False):
+            calls.append(local_files_only)
+            if local_files_only:
+                raise LocalEntryNotFoundError("not cached")
+            return "downloaded-model"
+
+        with patch("faster_whisper.utils.download_model", side_effect=fake_download), \
+                patch("faster_whisper.WhisperModel") as model:
+            model.return_value.transcribe.return_value = ([], None)
+            worker.transcribe(io.BytesIO(), request, 1)
+        self.assertEqual(calls, [True, False])
+        self.assertEqual(model.call_args.args[0], "downloaded-model")
 
 
 if __name__ == "__main__":

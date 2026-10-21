@@ -4,7 +4,6 @@ import json
 import sys
 import wave
 from datetime import datetime, timezone
-from pathlib import Path
 from urllib.parse import urlsplit
 
 import av
@@ -58,19 +57,17 @@ def capture(url, seconds):
     return started, utc_now(), written / SAMPLE_RATE, audio
 
 
-def local_model_path(request):
-    model_path = Path(request["modelDirectory"]) / request["model"]
-    required = ("model.bin", "config.json", "tokenizer.json", "vocabulary.txt")
-    if not all((model_path / name).is_file() for name in required):
-        raise RuntimeError("Local Whisper model is missing or incomplete. Run radio:prepare-model on the connected build machine.")
-    return model_path
-
-
 def transcribe(audio, request, duration):
     from faster_whisper import WhisperModel
+    from faster_whisper.utils import download_model
+    from huggingface_hub.errors import LocalEntryNotFoundError
 
-    model_path = local_model_path(request)
-    model = WhisperModel(str(model_path), device="cpu", compute_type="int8", cpu_threads=request["cpuThreads"], local_files_only=True)
+    # An already downloaded model must work without contacting the model hub.
+    try:
+        model_path = download_model(request["model"], cache_dir=request["modelCache"], local_files_only=True)
+    except LocalEntryNotFoundError:
+        model_path = download_model(request["model"], cache_dir=request["modelCache"])
+    model = WhisperModel(model_path, device="cpu", compute_type="int8", cpu_threads=request["cpuThreads"])
     segments, info = model.transcribe(
         audio, language=request.get("language"), task="transcribe",
         vad_filter=True, condition_on_previous_text=False, beam_size=5,
@@ -100,7 +97,6 @@ def main():
         raise ValueError("Only public HTTP(S) audio streams are accepted")
     if type(request["cpuThreads"]) is not int or not 1 <= request["cpuThreads"] <= 16:
         raise ValueError("Invalid CPU thread count")
-    local_model_path(request)  # Fail before contacting a station if preparation was skipped.
     started, ended, duration, audio = capture(request["streamUrl"], seconds)
     try:
         result = transcribe(audio, request, duration)

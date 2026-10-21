@@ -13,28 +13,20 @@ HTTP API.
 
 ## Prepare
 
-For Linux Docker deployment from Git, use the
-[offline deployment guide](../../docs/OFFLINE_DEPLOYMENT.md). Python packages and
-model files must be prepared on the connected machine. Git contains the small
-metadata; transfer `runtime-*.part` and `model.bin` manually into their vendor
-paths. Normal image builds need only npm registry access; runtime does not
-install packages or download models.
-
-For development on a connected Windows machine:
+Install the Python dependencies into the project environment:
 
 ```powershell
 python -m venv .venv-radio
 .\.venv-radio\Scripts\python.exe -m pip install -r requirements-radio.txt
 npm ci
-npm run radio:prepare-model
 npm run build
 ```
 
-Linux uses `.venv-radio/bin/python`. Model files live in
-`vendor/radio-models/<RADIO_MODEL>`. Runtime loads only these local files with
-Hugging Face offline mode enabled. Missing files fail before contacting a station;
-there is no download fallback or external transcription API. Changing the model
-requires preparing its files before deployment.
+Linux uses `.venv-radio/bin/python`. The Docker image runs the same pip install
+at build time. The first radio job downloads the `RADIO_MODEL` Whisper model from
+Hugging Face into `RADIO_DATA_DIR/models` (`.radio/models`); later jobs load the
+cached copy without contacting the model hub. Transcription itself is local; there
+is no external transcription API.
 
 ## Run
 
@@ -77,7 +69,6 @@ not establish that a report is an actual threat.
 ```dotenv
 RADIO_ENABLED=true
 RADIO_MODEL=tiny
-RADIO_MODELS_DIR=vendor/radio-models
 RADIO_DATA_DIR=.radio
 RADIO_CPU_THREADS=2
 RADIO_JOB_TIMEOUT_SECONDS=900
@@ -85,8 +76,8 @@ RADIO_JOB_TIMEOUT_SECONDS=900
 # RADIO_PYTHON_PATH=.venv-radio/Scripts/python.exe
 ```
 
-Data/model paths must stay inside the project. `RADIO_DATA_DIR` is reserved for
-library cache/temp locations, not recordings. `RADIO_MAX_CLIPS`,
+`RADIO_DATA_DIR` must stay inside the project. It holds the model download cache
+and library temp locations, not recordings. `RADIO_MAX_CLIPS`,
 `RADIO_PUBLIC_BASE_URL`, `RADIO_CLIP_SECONDS`, `RADIO_INTERVAL_SECONDS` and
 `RADIO_STATIONS_FILE` no longer control behavior.
 
@@ -108,8 +99,7 @@ assign report IDs; Blitz does not generate them.
 
 `report_url` is the station stream URL plus `#clip=<UUID>` (or `&clip=<UUID>`
 after an existing fragment). This identifies an observation at the live source,
-not a downloadable historical recording. Kafka keys are exactly this URL,
-including retries and remote mirroring.
+not a downloadable historical recording.
 
 The existing Redis FIFO retains the original validated report and retry errors
 until Kafka confirms delivery. Its approved policy is an initial attempt plus
@@ -127,7 +117,7 @@ completion can still cause a duplicate.
 | `radio_analysis_completed`                      | Accepted matches, categories and language metadata      |
 | `radio_transformer_input`                       | Accepted clip/station identity                          |
 | `radio_transformer_stage_completed`             | Completed processing stage, metadata only               |
-| `radio_kafka_sending`                           | Topic, key, publication ID and attempt, without content |
+| `radio_kafka_sending`                           | Topic, publication ID and attempt, without content      |
 | `radio_kafka_acknowledged`                      | Broker acknowledgment                                   |
 | `radio_pipeline_completed`                      | Confirmed publication                                   |
 | `radio_station_failed`, `radio_pipeline_failed` | Failure and stage metadata                              |
@@ -144,13 +134,11 @@ npx tsc --noEmit
 npm run lint
 npm test
 .\.venv-radio\Scripts\python.exe -B -m unittest discover -s test/radio -p 'test_*.py'
-.\.venv-radio\Scripts\python.exe -B scripts/check-radio-offline.py
 npm run radio:demo
 ```
 
-The Python tests exercise real PyAV frames and RAM WAV bounds. Offline checking
-verifies model hashes and actual silence ASR with socket connections blocked.
-`radio:demo` performs real loopback HTTP capture, ASR and filtering. If its public
+The Python tests exercise real PyAV frames, RAM WAV bounds and the cache-first
+model download. `radio:demo` performs real loopback HTTP capture, ASR and filtering. If its public
 speech fixture is absent, this explicit diagnostic fetches it into RAM only.
 
 To run real infrastructure tests, configure isolated test services, never
@@ -160,28 +148,9 @@ production endpoints:
 $env:REDIS_TEST_URL='redis://127.0.0.1:16379'
 $env:KAFKA_TEST_BROKERS='127.0.0.1:19092'
 npm test
-# An EXISTING audio fixture whose speech passes the current dictionaries:
-$env:RADIO_E2E_AUDIO_PATH='path/to/existing-arabic-speech.wav'
-# Optional existing speech that does not pass the dictionaries:
-$env:RADIO_E2E_REJECTED_AUDIO_PATH='path/to/existing-nonmatching-speech.wav'
-npm run radio:test:e2e
 ```
 
-`radio:test:e2e` builds, then uses real Python/ASR, dictionaries, Nest modules,
-Redis and Kafka. Audio fixtures are read into RAM and never copied or saved.
-It checks acceptance, silence, optional non-matching speech, stream failure,
-payload/key, logging and absence of output files. It also forces an actual TCP
-publication failure, restarts publisher/client instances, verifies the persisted
-retry delay and report, and checks concurrent recovery publishes one record.
-The retry recovery phase deliberately waits about 60 seconds. Only a unique test
-Redis namespace is removed; existing radio files and application queues are left
-untouched. Normal unit tests use I/O doubles unless test endpoints are supplied.
-
-The E2E runner also verifies discard after the initial attempt plus three retries.
-To additionally restart the isolated Redis server during recovery, explicitly set
-`RADIO_E2E_RESTART_REDIS_CONTAINER=blitz-radio-e2e-redis`. Docker must be available
-to the runner; only container names beginning with `blitz-radio-e2e-` are accepted.
-Redis needs persistence enabled for that server-restart check.
+Normal unit tests use I/O doubles unless test endpoints are supplied.
 
 To sample all configured live streams with short RAM-only captures:
 
@@ -198,28 +167,3 @@ constants remain unchanged. Three seconds checks connectivity and short ASR, not
 speech accuracy or continuous availability. Accepted samples are published only
 to the configured test broker. Opening/probing is bounded to 20 seconds; stalled
 reads to 15 seconds, in addition to the configured whole-worker timeout.
-
-## Verification performed on 2026-10-21
-
-- Build, TypeScript checking and lint passed; lint retains two existing spread
-  warnings outside radio. All 466 Vitest tests passed with real Redis/Kafka
-  integration enabled. Four Python tests passed, including delayed HTTP opening.
-- Full real-ASR pipeline accepted one Arabic speech fixture, rejected speech
-  without dictionary matches and silence, and handled an unavailable stream.
-  Kafka consumption verified the JSON contract fields and exact URL key.
-- A real TCP failure retained the report/error/due time in Redis. Publisher/client
-  restart and a separate Redis container restart preserved it. Two publishers
-  recovered one observed Kafka record. Initial attempt plus three failed retries
-  discarded a separate report according to the approved policy.
-- The full pipeline also passed inside the final Linux image with a read-only
-  filesystem. No recordings or transcript files were written. Model ASR and full
-  Nest health checks passed with Docker networking disabled.
-- All nine configured live feeds were sampled for three seconds. Intermittent
-  opening timeouts recovered on recheck after increasing the bounded opening
-  timeout to 20 seconds. This is a connectivity sample, not an availability or
-  transcription-accuracy guarantee.
-- A source-transfer snapshot without host Node/Python dependencies or radio
-  caches rebuilt successfully using the local vendor image and npm registry
-  access. A completely network-disabled clean build requires a complete npm
-  cache; the optional check initially found a missing npm tarball. Non-npm build
-  stages and runtime model loading need no internet access.
