@@ -120,7 +120,7 @@ it('uses dev report categories, not evaluation concept labels', async () => {
     languages: ['en'],
     matched: true,
     terms: ['bomb'],
-    categories: ['terror'],
+    categories: ['פח"ע'],
     matches: [],
     usedSources: [],
     issues: [],
@@ -134,5 +134,5 @@ it('uses dev report categories, not evaluation concept labels', async () => {
   });
   const result = await handoff.process(clip('bomb'));
   expect(result).toEqual({ status: 'published', clipId: clip('bomb').clipId });
-  expect(run.mock.calls[0]![1].categories).toEqual(['terror']);
+  expect(run.mock.calls[0]![1].categories).toEqual(['פח"ע']);
 });

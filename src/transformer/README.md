@@ -4,35 +4,21 @@ The Transformer receives `ParsedMessage`, `ProfileScrapeResult` or `RadioTranscr
 other services. Redis stores publication jobs, not collector input. One shared
 `javascript-state-machine` workflow maps, validates, publishes and completes.
 
-Radio uses `workflow.run('RadioTranscript', clip)`. Its mapper accepts the existing
-archived JSON and maps `text` to content, ASR language to `languages`, and station
-name to account/channel/title. Platform is `AM/FM-RADIO`; media is `['text']`
-because RAW_REPORT does not permit audio. Original WAV evidence stays archived.
-Optional collector `languages`, categories and matches are
-preserved. Caller metadata fills missing fields; absent categories/matches become
-empty arrays. The ASR language remains the fallback when no language array exists.
+Radio uses `workflow.run('RadioTranscript', clip)`. The collector captures and
+transcribes in RAM, filters with the shared analyzer, and logs only accepted
+transcript text. No local recording/JSON/TXT archive or clip HTTP API exists.
 
-Each report URL is `/api/radio/clips/<clipId>` under `RADIO_PUBLIC_BASE_URL`
-(or `http://localhost:PORT` locally), giving separate clips distinct URLs rather
-than reusing the live stream address. No producer report ID is assigned.
-Capture end becomes `collected_at`; `published_at` is null because original
-broadcast time is unknown. Waveforms/segment data are not extra wire fields.
+The mapper uses platform `AM/FM-RADIO`, text media, ASR ISO languages and station
+names. The URL is the original stream URL with `#clip=<UUID>` (or appended to an
+existing fragment), distinguishing observations without altering the network
+request. This URL is also the Kafka key; it is not a historical clip download.
+Capture end becomes `collected_at`, and `published_at` is null.
 
-The full application's `RadioTransformerModule` registers the handoff after
-filtering and archiving. It applies the same shared auto-language dictionary
-analysis used by Telegram/X before invoking the Transformer. No-speech and
-unmatched clips are discarded. Analysis terms/categories enrich a copy of the input;
-ASR/collector ISO languages are preserved. The handoff awaits the existing
-publisher confirmation/retries; invalid content is rejected and archives remain
-on failure. Shutdown leaves admitted reports to the publisher's Redis recovery.
-Capture-only `radio:once`/`radio:demo` commands import `RadioModule` only and never publish.
-`radio:start` imports the same integrated path as the full app; it runs only radio
-with filtering and real publication (optionally `--once`). Archives
-are not automatically replayed.
-
-To test archived radio JSON through the compiled workflow without infrastructure:
-`node --import tsx test/transformer/run-radio-sample.mjs` after building. Outputs
-are in `.radio/transformer-verification`; Redis/Kafka are mocked in this runner.
+The handoff supplies matches and `analysis.categories` from dev dictionaries.
+Existing collector metadata is preserved. Accepted reports still use the shared
+validation/publication workflow and Redis retry policy below. No archives are
+replayed. Stage/publication logs contain metadata rather than repeating the full
+transcript; accepted text is logged once by the radio collector.
 
 ## Wire contract
 
@@ -42,7 +28,7 @@ The current user-requested output includes:
 {
   "schema_version": 1,
   "languages": ["he", "en"],
-  "categories": ["terror"],
+  "categories": ["פח\"ע"],
   "media_type": ["text", "photo"]
 }
 ```
@@ -53,8 +39,9 @@ New collector `languages` takes precedence over legacy `language`; per-message
 values precede batch/caller fallbacks. Legacy strings are wrapped. Missing/null/
 blank language becomes `[]`; invalid nonempty codes or invalid array entries fail.
 Categories are passed through as string arrays, with `[]` when absent. The shared
-collector analyzer supplies dev dictionary report labels (`terror`,
-`civil_emergency`, `riots`, `rockets_aerial`), rather than evaluation concept IDs. The
+collector analyzer supplies the Hebrew report categories (`פח"ע`,
+`חירום אזרחי ורפואי`, `הפרעות סדר ואלימות המונית`, `תלול מסלול, ירי רקטי ואווירי`),
+rather than evaluation concept IDs. The
 Transformer does not detect languages, translate content or infer categories.
 
 `schema_version` is the integer major version `1`. The `report_id` field is

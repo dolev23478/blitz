@@ -53,7 +53,6 @@ export const radioTranscriptSchema = captureResultSchema.safeExtend({
 export type RadioTranscript = z.infer<typeof radioTranscriptSchema>;
 export interface RadioCycleResult {
   skipped: boolean;
-  archiveFull: boolean;
   clips: RadioTranscript[];
   failedStations: string[];
 }

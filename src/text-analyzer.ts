@@ -5,12 +5,13 @@ import {
   type TermMatcher,
 } from "./match/term-matcher.js";
 import { getNormalizer } from "./normalize/registry.js";
+import { ReportCategoryLabel } from "./types.js";
 import type {
   AnalyzeIssue,
   AnalyzeMatch,
   AnalyzeTextOptions,
   AnalyzeTextResult,
-  ReportCategoryValue,
+  ReportCategoryLabelValue,
   RiskLevel,
   ThreatEvaluation,
   ThreatEvaluationMode,
@@ -43,10 +44,10 @@ export function extractOrderedTerms(matches: AnalyzeMatch[]): string[] {
   return terms;
 }
 
-/** Distinct report categories of the matches, in text order. */
-export function extractOrderedCategories(matches: AnalyzeMatch[]): ReportCategoryValue[] {
+/** Distinct Hebrew report categories of the matches, in text order. */
+export function extractOrderedCategories(matches: AnalyzeMatch[]): ReportCategoryLabelValue[] {
   const sorted = [...matches].sort((a, b) => a.tokenStart - b.tokenStart || a.tokenEnd - b.tokenEnd);
-  return [...new Set(sorted.flatMap((m) => (m.category ? [m.category] : [])))];
+  return [...new Set(sorted.flatMap((m) => (m.category ? [ReportCategoryLabel[m.category]] : [])))];
 }
 
 export function toOutputLanguage(lang: string): string {

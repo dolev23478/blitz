@@ -29,9 +29,14 @@ try {
       })
     : undefined;
   const result = await radio.collectOnce(stations);
-  console.log(JSON.stringify(result, null, 2));
-  if (result.failedStations.length || result.archiveFull || result.skipped)
-    process.exitCode = 1;
+  console.log(
+    JSON.stringify({
+      accepted: result.clips.length,
+      failedStations: result.failedStations,
+      skipped: result.skipped,
+    }),
+  );
+  if (result.failedStations.length || result.skipped) process.exitCode = 1;
 } finally {
   await app.close();
 }

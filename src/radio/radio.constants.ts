@@ -63,7 +63,7 @@ export const RADIO_STATIONS: RadioStation[] = [
   {
     id: 'al-masirah-tv-audio',
     name: 'Al-Masirah TV — audio only, Yemen',
-    // Public HLS relay; the worker decodes and saves only the audio track.
+    // Public HLS relay; the worker decodes only audio, in memory.
     streamUrl:
       'https://live.cdnbridge.tv/Almasirah/Almasirah_all/Almasirah/Almasirah_360p/chunks.m3u8',
     language: 'ar',

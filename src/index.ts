@@ -23,6 +23,7 @@ export { parseDictionaryFile } from "./dictionaries/schema.js";
 export {
   REPORT_CATEGORIES,
   ReportCategory,
+  ReportCategoryLabel,
   ThreatCategory,
   ThreatMode,
 } from "./types.js";
@@ -35,6 +36,7 @@ export type {
   DictionaryEntry,
   DictionaryLoadIssue,
   IndexedTerm,
+  ReportCategoryLabelValue,
   ReportCategoryValue,
   RiskLevel,
   ThreatEvaluation,

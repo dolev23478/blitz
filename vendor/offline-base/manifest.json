@@ -1,0 +1,47 @@
+{
+  "image": "blitz-deps:node24-radio-v1",
+  "imageId": "sha256:d1020ca3fd011469d5daf42273c2cf12d06d64c72e8973a21a9ad941f194ae45",
+  "platform": "linux/amd64",
+  "sha256": "628e413db972b1300246defe485c7cd8c02bee37850389077b52cbbb8e81ff76",
+  "sources": {
+    "Dockerfile.dependencies": "daf7b96b520a928144b93b8bb02a7bfa0ea878b97a075b916bdb85543aa6ca7d",
+    "requirements-radio.txt": "80b55a1a8665f41611b625c5994570d0a84ff456c27da921709e9427f8df5bd1"
+  },
+  "parts": [
+    {
+      "name": "runtime-0001.part",
+      "bytes": 50331648,
+      "sha256": "3cde6b6f26e6298b7df90ad3bf2fe507a4098c99e7e2eafec28d83309562621f"
+    },
+    {
+      "name": "runtime-0002.part",
+      "bytes": 50331648,
+      "sha256": "52799487fac440a6136d5c804fa9545473d4b934ba0d39dcce1ca2b86c7082b1"
+    },
+    {
+      "name": "runtime-0003.part",
+      "bytes": 50331648,
+      "sha256": "5f85f8d18ebd9310184b8bd971722c548c2bf2b891e964cc969f1de30decdb5e"
+    },
+    {
+      "name": "runtime-0004.part",
+      "bytes": 50331648,
+      "sha256": "fc53618f19ed37db3b82b95798ad448d7b3c6598e66e49e28ea8c50ccd48d66f"
+    },
+    {
+      "name": "runtime-0005.part",
+      "bytes": 50331648,
+      "sha256": "c3302e684114413b9f3ce6fbcccaf54709be4bf6ae46b576501b5e917407a203"
+    },
+    {
+      "name": "runtime-0006.part",
+      "bytes": 50331648,
+      "sha256": "86f57234ae3355622adad83c53cdf1626bce2332d8f660fa947e39dfcfc651ee"
+    },
+    {
+      "name": "runtime-0007.part",
+      "bytes": 34164201,
+      "sha256": "837099ede38178c5e630d192f97dc0db331ae61ce1ac16974546a5e7832369bd"
+    }
+  ]
+}

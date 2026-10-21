@@ -14,6 +14,7 @@ import {
   filterPostsByTimestamp,
 } from '../src/x-scraper/x-scraper.service.js';
 import { MONITORED_X_SOURCES } from '../src/x-scraper/constants/monitored-sources.js';
+import { TELEGRAM_CHANNELS } from '../src/telegram/telegram-channels.js';
 import type {
   IScraperProvider,
   ScrapedPost,
@@ -440,7 +441,7 @@ describe('XScraperService - Timestamp Filtering', () => {
 
 describe('MONITORED_X_SOURCES', () => {
   it('contains verified OSINT channels with valid handles', () => {
-    expect(MONITORED_X_SOURCES.length).toBe(76);
+    expect(MONITORED_X_SOURCES.length).toBe(84);
     for (const source of MONITORED_X_SOURCES) {
       expect(source.name).toBeTruthy();
       expect(source.handle).toBeTruthy();
@@ -449,5 +450,18 @@ describe('MONITORED_X_SOURCES', () => {
       expect(source.lang).toBeTruthy();
       expect(source.region).toBeTruthy();
     }
+  });
+
+  it('has no duplicate handles', () => {
+    const handles = MONITORED_X_SOURCES.map((source) => source.handle.toLowerCase());
+    expect(handles.length - new Set(handles).size).toBe(0);
+  });
+});
+
+describe('TELEGRAM_CHANNELS', () => {
+  it('has no duplicate usernames', () => {
+    const usernames = TELEGRAM_CHANNELS.map((u) => u.toLowerCase());
+    expect(usernames.length - new Set(usernames).size).toBe(0);
+    expect(TELEGRAM_CHANNELS.every((u) => !u.startsWith('@'))).toBe(true);
   });
 });

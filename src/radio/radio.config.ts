@@ -11,26 +11,8 @@ const flag = z
   .union([z.boolean(), z.enum(['true', 'false'])])
   .transform((value) => value === true || value === 'true');
 
-export const radioPublicBaseUrlSchema = z.preprocess(
-  (value) => (value === '' ? undefined : value),
-  z
-    .url()
-    .refine((value) => {
-      const url = new URL(value);
-      return (
-        ['http:', 'https:'].includes(url.protocol) &&
-        !url.username &&
-        !url.password &&
-        !url.search &&
-        !url.hash
-      );
-    }, 'Expected an HTTP(S) base URL without credentials, query or fragment.')
-    .optional(),
-);
-
 export const radioEnvironment = {
   RADIO_ENABLED: flag.default(true),
-  RADIO_PUBLIC_BASE_URL: radioPublicBaseUrlSchema,
   RADIO_DATA_DIR: z.string().min(1).default('.radio'),
   RADIO_PYTHON_PATH: z
     .string()
@@ -50,7 +32,7 @@ export const radioEnvironment = {
     .min(30)
     .max(3600)
     .default(900),
-  RADIO_MAX_CLIPS: z.coerce.number().int().min(1).max(10000).default(100),
+  RADIO_MODELS_DIR: z.string().min(1).default('vendor/radio-models'),
 };
 
 export const radioStationSchema = z.object({
@@ -100,5 +82,6 @@ export function readRadioSettings(config: RadioEnvironment): RadioSettings {
     stations: radioStationsSchema.parse(RADIO_STATIONS),
   };
   radioDataDirectory(settings.RADIO_DATA_DIR);
+  radioDataDirectory(settings.RADIO_MODELS_DIR);
   return settings;
 }

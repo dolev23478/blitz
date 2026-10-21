@@ -91,6 +91,9 @@ reference/
 /.radio/
 /.venv-radio/
 /vendor/radio-models/**/.cache/
+# Offline binaries are transferred manually; keep manifests/configuration in Git.
+/vendor/offline-base/*.part
+/vendor/radio-models/**/model.bin
 /.offline/
 **/__pycache__/
 

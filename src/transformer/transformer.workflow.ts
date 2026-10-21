@@ -94,12 +94,6 @@ export class TransformerWorkflow {
             event: 'radio_transformer_stage_completed',
             clipId: context.inputId,
             stage: machine.state,
-            ...(machine.state === State.Mapping
-              ? { reports: context.candidates }
-              : {}),
-            ...(machine.state === State.Validation
-              ? { reports: context.reports }
-              : {}),
           });
         }
         machine.success();

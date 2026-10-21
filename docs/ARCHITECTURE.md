@@ -1,22 +1,19 @@
 # Architecture
 
-blitz is a NestJS (Fastify) service that collects OSINT from **Telegram**, **X** and
-public internet **radio**, filters content through the shared text analyzer, and
+blitz is a NestJS (based Fastify server) micro-mono-service that collects OSINT from **Telegram**, **X** and **radio**, filters content through the shared text analyzer, and
 publishes accepted content as `RAW_REPORT` messages to **Kafka**. There is no
 database. Redis stores collector cursors/claims and the Transformer's durable
 publication outbox.
 
-Radio flow: public stream -> bounded temporary WAV capture -> local ASR ->
-`analyzeText(text, 'auto')` -> accepted-only WAV + JSON archive ->
-`RadioTransformerHandoff` -> shared `TransformerWorkflow` -> Redis outbox -> Kafka.
-Empty or unmatched transcripts and their temporary audio are discarded. Each
-accepted clip has exactly two files; JSON includes the station name and transcript.
-Language/dictionary matching happens before the Transformer. All collectors use
-`analysis.categories` from dev dictionaries (`terror`, `civil_emergency`, `riots`,
-`rockets_aerial`); evaluator concept labels are not report categories.
+Radio flow: public stream -> bounded in-memory WAV capture -> local offline ASR ->
+`analyzeText(text, 'auto')` -> accepted transcript log -> `RadioTransformerHandoff`
+-> shared `TransformerWorkflow` -> Redis outbox -> Kafka. There are no audio,
+JSON/TXT transcript files or archive HTTP routes. Rejected transcript text is not
+logged. All collectors use `analysis.categories` from dev dictionaries (`terror`,
+`civil_emergency`, `riots`, `rockets_aerial`), not evaluator concept labels.
 
 `npm start` initializes all three integrations. `npm run radio:start` builds and
-starts only the radio integration and protected clip HTTP routes; add
+starts only the radio integration and the Transformer/Kafka path; add
 `-- --once --station=<id>` for a bounded cycle. It imports no Telegram/X modules.
 `radio:once` remains a capture-only diagnostic. See `src/radio/README.md` for
 stage log events and test modes.
@@ -27,7 +24,7 @@ Telegram (MTProto)       X (twitterapi.io / Apify)       Radio (HTTP audio + loc
 MessageEventsService      XScraperCronService               RadioService
       |                            |                               |
 TelegramListenerService     shared analyzer                 shared analyzer
-      |                            |                      accepted WAV + JSON
+      |                            |                      accepted transcript log
       +----------------------------+-------------------------------+
                                    |
                          TransformerWorkflow
@@ -42,19 +39,19 @@ TelegramListenerService     shared analyzer                 shared analyzer
 
 ## Modules (`src/`)
 
-| Path                                                        | Role                                                                                                                                                                                                                        |
-| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `main.ts`                                                   | Bootstrap: loads `.env`, Nest + Fastify, JSON parser, CORS, shutdown hooks.                                                                                                                                                 |
-| `config/`                                                   | zod-validated environment (`APP_CONFIG`). Only keys declared in the schema reach `ConfigService`.                                                                                                                           |
-| `redis/`                                                    | `RedisService`: `get`/`set`, `setIfAbsent` (`SET NX EX`), `del`, hashes. Disabled when `REDIS_URL` is empty.                                                                                                                |
-| `telegram/`                                                 | `TelegramService` (connection, channel resolution, ordered pulls, cursor), `TelegramListenerService` (dedupe, dictionary match, hand-off), `telegram-channels.ts` (the `TELEGRAM_CHANNELS` constant), `telegram.mapper.ts`. |
-| `tg-realtime/`                                              | MTProto helpers: login, message listener, history extractor, watchdog, flood-wait handling.                                                                                                                                 |
-| `x-scraper/`                                                | `XScraperCronService` (5-minute cycle), `XScraperService` (query building and chunking), twitterapi.io / Apify providers, monitored handles.                                                                                |
-| `events/`                                                   | `MessageEventsService`: in-process bus between `TelegramService` and the listener.                                                                                                                                          |
-| `radio/`                                                    | Sequential internet audio capture/local ASR and accepted-only WAV/JSON archive. `RadioTransformerHandoff` applies the shared analyzer, logs filter decisions, and hands accepted JSON to the common Transformer.            |
-| `match/`, `dictionaries/`, `normalize/`, `text-analyzer.ts` | Keyword dictionaries and text analysis used to decide which posts are kept.                                                                                                                                                 |
-| `transformer/`                                              | State machine that turns a source payload into a validated `RAW_REPORT` and publishes it.                                                                                                                                   |
-| `meta/`                                                     | `GET /api/health`. `GET /api/telegram` (in `telegram/`) reports the connection state.                                                                                                                                       |
+| Path                                                        | Role                                                                                                                                                                                                                           |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `main.ts`                                                   | Bootstrap: loads `.env`, Nest + Fastify, JSON parser, CORS, shutdown hooks.                                                                                                                                                    |
+| `config/`                                                   | zod-validated environment (`APP_CONFIG`). Only keys declared in the schema reach `ConfigService`.                                                                                                                              |
+| `redis/`                                                    | `RedisService`: `get`/`set`, `setIfAbsent` (`SET NX EX`), `del`, hashes. Disabled when `REDIS_URL` is empty.                                                                                                                   |
+| `telegram/`                                                 | `TelegramService` (connection, channel resolution, ordered pulls, cursor), `TelegramListenerService` (dedupe, dictionary match, hand-off), `telegram-channels.ts` (the `TELEGRAM_CHANNELS` constant), `telegram.mapper.ts`.    |
+| `tg-realtime/`                                              | MTProto helpers: login, message listener, history extractor, watchdog, flood-wait handling.                                                                                                                                    |
+| `x-scraper/`                                                | `XScraperCronService` (5-minute cycle), `XScraperService` (query building and chunking), twitterapi.io / Apify providers, monitored handles.                                                                                   |
+| `events/`                                                   | `MessageEventsService`: in-process bus between `TelegramService` and the listener.                                                                                                                                             |
+| `radio/`                                                    | Sequential in-memory audio capture and local offline ASR, with accepted-only transcript logs. `RadioTransformerHandoff` applies the shared analyzer, logs filter decisions, and hands accepted JSON to the common Transformer. |
+| `match/`, `dictionaries/`, `normalize/`, `text-analyzer.ts` | Keyword dictionaries and text analysis used to decide which posts are kept.                                                                                                                                                    |
+| `transformer/`                                              | State machine that turns a source payload into a validated `RAW_REPORT` and publishes it.                                                                                                                                      |
+| `meta/`                                                     | `GET /api/health`. `GET /api/telegram` (in `telegram/`) reports the connection state.                                                                                                                                          |
 
 ## Resuming without gaps (Redis)
 
@@ -78,8 +75,8 @@ FloodWait: `withFloodWait` sleeps the requested seconds plus 0.5–2 s jitter. A
 
 `TransformerWorkflow` runs one input through `parsing → mapping → validation → publishing → completion`.
 Inputs are `ParsedMessage` (Telegram), `ProfileScrapeResult` (X), and
-`RadioTranscript` (radio). Radio identity uses the clip's archive URL, not the
-station's shared stream URL. Its platform is `AM/FM-RADIO`. Producers do not
+`RadioTranscript` (radio). Radio identity uses the station stream URL
+with a unique `#clip=<UUID>` fragment; no historical recording is retained. Its platform is `AM/FM-RADIO`. Producers do not
 assign or publish `report_id`; the consumer owns ID assignment. Kafka records
 use the unchanged `report_url` as their string key. Internal outbox job IDs only coordinate retries.
 `schema_version` is the integer `1`; `languages` and `categories` are arrays.
@@ -99,7 +96,7 @@ A trusted final schema can be supplied through `DE_RAW_REPORT_SCHEMA_PATH`.
 ## HTTP and dashboard
 
 The root Nest application exposes `/api/health`, `/api/telegram`,
-`/api/posts`, `/api/posts/stream`, `/api/radio/clips` and
+`/api/posts`, `/api/posts/stream` and
 `/api/kafka/analytics/{stats,stream}`. Legacy `/health` and `/posts` aliases remain
 available. Analytics SSE emits named `snapshot` and `kafka_event` events. Counters
 start empty and reflect observed activity; they are in-memory operational stats,
@@ -118,11 +115,17 @@ root application's collector and analytics endpoints.
 radio. Set Telegram credentials, `TWITTERAPI_IO_KEY` (or the selected Apify
 provider's credentials), `REDIS_URL` and `KAFKA_BROKERS` in `.env`. Create the
 `reports.raw` topic and configure any required TLS/SASL credentials. For local
-radio, install `requirements-radio.txt` in `.venv-radio` and allow the first model
-download; subsequent runs reuse `.radio/models`. Settings, recording/pause
-constants and station URLs are documented in `src/radio/README.md`.
+radio, prepare `vendor/radio-models/<model>` using `npm run radio:prepare-model`
+on the connected machine. Runtime always uses local model files and fails clearly
+if they are missing; it never downloads a model. Settings, durations and stations
+are documented in `src/radio/README.md`.
 
-Docker installs the radio Python worker dependencies as well as Node dependencies.
-Persist `/app/.radio` for accepted clips/model cache and provide the same runtime
-configuration. Docker builds/runtime still require verification in deployment;
-a successful local TypeScript build is not a Docker or broker integration test.
+For Linux closed-network builds from Git, prepare the Linux/Python dependency
+image and models with `npm run offline:vendor` on the connected machine. Commit
+`vendor/` (real binary files, no external/LFS download) and `.gitattributes` with
+the source. `npm run image:build` on the target imports those assets locally;
+only npm registry access is allowed/needed during the application build. The
+normal Dockerfile does no apt/pip/GitHub/model downloads. A prebuilt image export
+is also available through `npm run offline:prepare`. See
+`docs/OFFLINE_DEPLOYMENT.md`. Live-source and Redis/Kafka connectivity remain
+runtime infrastructure requirements.

@@ -222,7 +222,6 @@ export class PublishingProcessor
             topic: REPORT_TOPIC,
             key: job.report.report_url,
             attempt: job.attempts,
-            payload: JSON.parse(value),
           });
         const acknowledgment = await producer.send({
           topic: REPORT_TOPIC,

@@ -11,6 +11,8 @@ dist/
 build/
 .temp/
 .tmp/
+.offline/
+vendor/offline-base/
 .radio/
 .venv-radio/
 **/__pycache__/

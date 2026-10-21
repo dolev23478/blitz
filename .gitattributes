@@ -1,0 +1,2 @@
+vendor/offline-base/*.part -text -diff -filter
+vendor/radio-models/** -text -diff -filter

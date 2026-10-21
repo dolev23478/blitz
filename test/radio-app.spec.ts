@@ -8,7 +8,7 @@ import {
 import { Kafka, type Producer } from 'kafkajs';
 import { randomUUID } from 'node:crypto';
 import { relative, resolve } from 'node:path';
-import { rm, writeFile, readdir } from 'node:fs/promises';
+import { rm, readdir } from 'node:fs/promises';
 import { expect, it, vi } from 'vitest';
 import { AppModule } from '../src/app.module.js';
 import { APP_CONFIG, loadConfig } from '../src/config/app-config.js';
@@ -26,7 +26,6 @@ it('boots the actual three collector lifecycles and publishes each source throug
   const directory = resolve('.tmp', `radio-app-${randomUUID()}`);
   const settings = loadConfig({
     RADIO_ENABLED: 'true',
-    RADIO_MAX_CLIPS: '1',
     RADIO_DATA_DIR: directory,
     KAFKA_BROKERS: 'capture.invalid:9092',
     REDIS_URL: 'redis://test.invalid:6379',
@@ -46,8 +45,7 @@ it('boots the actual three collector lifecycles and publishes each source throug
     .mockResolvedValue([
       { topicName: 'reports.raw', partition: 0, errorCode: 0 },
     ]);
-  const capture = vi.fn().mockImplementation(async (_station, path) => {
-    await writeFile(path, 'test audio');
+  const capture = vi.fn().mockImplementation(async () => {
     return {
       startedAt: '2026-10-21T06:00:00.000Z',
       endedAt: '2026-10-21T06:00:30.000Z',
@@ -90,6 +88,9 @@ it('boots the actual three collector lifecycles and publishes each source throug
       new FastifyAdapter(),
     );
     app.useLogger(false);
+    app.get(RadioService).settings.stations = [
+      app.get(RadioService).settings.stations[0]!,
+    ];
     await app.init();
     await app.getHttpAdapter().getInstance().ready();
     await vi.waitFor(() => expect(send).toHaveBeenCalledTimes(2), {
@@ -116,7 +117,7 @@ it('boots the actual three collector lifecycles and publishes each source throug
       const report = JSON.parse(record.messages[0].value);
       expect(record.messages[0].key).toBe(report.report_url);
       expect(report).not.toHaveProperty('report_id');
-      expect(report.categories).toContain('terror');
+      expect(report.categories).toContain('פח"ע');
       return report;
     });
     expect(reports.map((r) => r.platform).sort()).toEqual([
@@ -124,13 +125,7 @@ it('boots the actual three collector lifecycles and publishes each source throug
       'telegram',
       'twitter',
     ]);
-    const saved = await app.get(RadioService).listClips();
-    expect(saved).toHaveLength(1);
-    expect(saved[0]!.station.name).toBeTruthy();
-    expect((await readdir(resolve(directory, 'clips'))).sort()).toEqual([
-      saved[0]!.clipId + '.json',
-      saved[0]!.clipId + '.wav',
-    ]);
+    await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
     const http = app.getHttpAdapter().getInstance();
     expect(
       (await http.inject({ method: 'GET', url: '/api/health' })).statusCode,

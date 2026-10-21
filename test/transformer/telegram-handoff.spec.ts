@@ -122,7 +122,7 @@ describe('Telegram collector handoff', () => {
       language: 'he',
       languages: ['he'],
       terms: ['צבע אדום', 'מחבל'],
-      categories: ['rockets_aerial', 'terror'],
+      categories: ['תלול מסלול, ירי רקטי ואווירי', 'פח"ע'],
     });
     await deliver({
       channelId: 2,
@@ -133,7 +133,7 @@ describe('Telegram collector handoff', () => {
     const record = send.mock.calls[0]![0] as ProducerRecord;
     expect(JSON.parse(record.messages[0]!.value as string)).toMatchObject({
       matches: ['צבע אדום', 'מחבל'],
-      categories: ['rockets_aerial', 'terror'],
+      categories: ['תלול מסלול, ירי רקטי ואווירי', 'פח"ע'],
     });
   });
 

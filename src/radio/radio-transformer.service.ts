@@ -45,11 +45,6 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
     input: RadioTranscript,
     collectedAnalysis?: ReturnType<typeof analyzeText>,
   ): Promise<RadioPipelineResult> {
-    this.logger.log({
-      event: 'radio_input_received',
-      clipId: input?.clipId,
-      payload: input,
-    });
     try {
       const clip = radioTranscriptSchema.parse(input);
       if (clip.status === 'no_speech' || !clip.text.trim()) {
@@ -66,18 +61,6 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
       const languages =
         clip.languages !== undefined ? clip.languages : [clip.language];
       this.logger.log({
-        event: 'radio_analysis_completed',
-        clipId: clip.clipId,
-        stationId: clip.station.id,
-        asrLanguage: clip.language,
-        languages,
-        dictionaryLanguages: analysis.languages ?? [],
-        matches: analysis.terms,
-        categories: analysis.categories,
-        issues: analysis.issues,
-        evaluation: analysis.evaluation,
-      });
-      this.logger.log({
         event: 'radio_filter_result',
         clipId: clip.clipId,
         passed: analysis.matched,
@@ -90,7 +73,20 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
           reason: 'no_dictionary_match',
         };
 
-      // Keep the archived ASR object intact. Dictionary labels (including em/emoji) are not spoken-language codes.
+      this.logger.log({
+        event: 'radio_analysis_completed',
+        clipId: clip.clipId,
+        stationId: clip.station.id,
+        asrLanguage: clip.language,
+        languages,
+        dictionaryLanguages: analysis.languages ?? [],
+        matches: analysis.terms,
+        categories: analysis.categories,
+        issues: analysis.issues,
+        evaluation: analysis.evaluation,
+      });
+
+      // Keep the original ASR object intact. Dictionary labels (including em/emoji) are not spoken-language codes.
       const enriched: RadioTranscript = {
         ...clip,
         languages,
@@ -101,7 +97,7 @@ export class RadioTransformerHandoff implements OnModuleInit, OnModuleDestroy {
       this.logger.log({
         event: 'radio_transformer_input',
         clipId: clip.clipId,
-        payload: enriched,
+        stationId: clip.station.id,
       });
       await this.transformer.run('RadioTranscript', enriched, {
         inputId: clip.clipId,

@@ -88,10 +88,10 @@ describe('dictionary → RAW_REPORT handoff', () => {
     ]);
     expect(reports).toHaveLength(4);
     const expected: [string, string][] = [
-      ['he', 'rockets_aerial'],
-      ['en', 'riots'],
-      ['ar', 'terror'],
-      ['fa', 'civil_emergency'],
+      ['he', 'תלול מסלול, ירי רקטי ואווירי'],
+      ['en', 'הפרעות סדר ואלימות המונית'],
+      ['ar', 'פח"ע'],
+      ['fa', 'חירום אזרחי ורפואי'],
     ];
     expected.forEach(([language, category], i) => {
       expect(reports[i]!.languages).toEqual([language]);

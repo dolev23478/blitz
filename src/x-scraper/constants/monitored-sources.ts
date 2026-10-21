@@ -698,4 +698,62 @@ export const MONITORED_X_SOURCES: MonitoredSource[] = [
     mentionOfIsrael: 'גבוהה',
     incitement: 'כן',
   },
+
+  // 3. Added 21.10 — not yet confirmed by a real collection run
+  {
+    name: 'CST',
+    handle: 'CST_UK',
+    category: 'Major Regional & International Networks',
+    lang: 'English',
+    region: 'בריטניה',
+  },
+  {
+    name: 'Secure Community Network',
+    handle: 'Official_SCN',
+    category: 'Major Regional & International Networks',
+    lang: 'English',
+    region: 'ארה"ב',
+  },
+  {
+    name: 'Institute for Strategic Dialogue',
+    handle: 'ISDglobal',
+    category: 'Major Regional & International Networks',
+    lang: 'English',
+    region: 'גלובלי',
+  },
+  {
+    name: 'ADL',
+    handle: 'ADL',
+    category: 'Major Regional & International Networks',
+    lang: 'English',
+    region: 'ארה"ב',
+  },
+  {
+    name: 'ECAJ',
+    handle: 'ECAJewry',
+    category: 'Major Regional & International Networks',
+    lang: 'English',
+    region: 'אוסטרליה',
+  },
+  {
+    name: 'HOPE not hate',
+    handle: 'hopenothate',
+    category: 'Major Regional & International Networks',
+    lang: 'English',
+    region: 'בריטניה',
+  },
+  {
+    name: 'Daraa 24',
+    handle: 'Daraa24_24',
+    category: 'Local, Field, Campaign & Operational Channels',
+    lang: 'Arabic',
+    region: 'סוריה',
+  },
+  {
+    name: 'Middle East Spectator',
+    handle: 'spectator_mena',
+    category: 'Major Regional & International Networks',
+    lang: 'English',
+    region: 'המזרח התיכון',
+  },
 ];
