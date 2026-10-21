@@ -1,10 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { NewMessagesEvent } from '../events/message-events.service.js';
+import { FilteredPostsService } from '../events/filtered-posts.service.js';
 import { analyzeText } from '../text-analyzer.js';
 import { RedisService } from '../redis/redis.service.js';
 import { TelegramService } from './telegram.service.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
-import type { ParsedMessage } from '../types.js';
+import type { FilteredPost, ParsedMessage } from '../types.js';
 
 /** Longer than the pull overlap and the sync interval, so re-pulled messages are always recognised. */
 const SEEN_TTL_SECONDS = 2 * 24 * 60 * 60;
@@ -17,6 +18,7 @@ export class TelegramListenerService {
     private readonly telegram: TelegramService,
     private readonly redis: RedisService,
     private readonly transformer: TransformerWorkflow,
+    private readonly filteredPosts: FilteredPostsService,
   ) {
     this.telegram.watchResults((event) => this.onTelegramResult(event));
   }
@@ -49,9 +51,7 @@ export class TelegramListenerService {
     }
 
     if (!filteredMessages.length) {
-      this.logger.log(
-        `telegram result: channel=${event.channel}, inserted=${event.inserted}, matched=0`,
-      );
+      this.logger.log(`telegram result: channel=${event.channel}, inserted=${event.inserted}, matched=0`);
       return;
     }
 
@@ -65,9 +65,26 @@ export class TelegramListenerService {
           accountName: event.channel,
           source: 'telegram',
         });
+
+        const post: FilteredPost = {
+          id: `${item.message.messageId}-${event.channel}`,
+          source: 'telegram',
+          channel: event.channel,
+          text: item.message.text ?? '',
+          createdAt: new Date(item.message.postedAt ?? Date.now()).toISOString(),
+          severity: 'high',
+          matches: (analysisMatches(item.message.text ?? '', item.matches) ?? []).map((match) => ({
+            term: match.term,
+            normalized: match.term,
+            start: match.start,
+            end: match.end,
+            category: 'threat',
+          })),
+        };
+
+        this.filteredPosts.push(post);
       } catch (err) {
         failed++;
-        // Free the claim so the next pull retries this message; keep going with the rest.
         await this.release(event.channel, item.message);
         this.logger.error(
           `Telegram message failed: ${item.message.url}: ${err instanceof Error ? err.message : String(err)}`,
@@ -99,4 +116,23 @@ export class TelegramListenerService {
   private async release(channel: string, message: ParsedMessage): Promise<void> {
     if (this.redis.isEnabled()) await this.redis.del(this.seenKey(channel, message)).catch(() => undefined);
   }
+}
+
+function analysisMatches(text: string, terms: string[]): Array<{ term: string; start: number; end: number }> {
+  const matches: Array<{ term: string; start: number; end: number }> = [];
+  const lowerText = text.toLowerCase();
+
+  for (const term of terms) {
+    const lowerTerm = term.toLowerCase();
+    const idx = lowerText.indexOf(lowerTerm);
+    if (idx >= 0) {
+      matches.push({
+        term,
+        start: idx,
+        end: idx + term.length,
+      });
+    }
+  }
+
+  return matches;
 }
