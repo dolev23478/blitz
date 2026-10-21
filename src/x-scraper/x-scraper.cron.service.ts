@@ -127,11 +127,11 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         });
 
         const filteredPost: FilteredPost = {
-          id: `${post.id ?? post.url ?? post.createdAt ?? Date.now()}`,
+          id: post.id,
           source: 'x',
-          channel: post.username ?? post.handle ?? 'x',
+          channel: post.authorHandle || result.handle,
           text: post.text,
-          createdAt: new Date(post.createdAt ?? Date.now()).toISOString(),
+          createdAt: new Date(post.publishedAt ?? Date.now()).toISOString(),
           severity: 'high',
           matches: analysisMatches(post.text, post.matches ?? []).map((match) => ({
             term: match.term,
