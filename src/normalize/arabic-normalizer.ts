@@ -193,7 +193,7 @@ export class ArabicNormalizer implements TextNormalizer {
         variants.add(arabizi);
       }
     }
-    for (const base of [...variants]) {
+    for (const base of Array.from(variants)) {
       for (const stem of stripAffixes(base)) {
         variants.add(stem);
       }

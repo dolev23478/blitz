@@ -20,6 +20,28 @@ export interface TextAnalyzerDependencies {
   matcher?: TermMatcher;
 }
 
+export function extractOrderedTerms(matches: AnalyzeMatch[]): string[] {
+  const sorted = [...matches].sort((a, b) => {
+    if (a.tokenStart !== b.tokenStart) {
+      return a.tokenStart - b.tokenStart;
+    }
+    return a.tokenEnd - b.tokenEnd;
+  });
+
+  const seen = new Set<string>();
+  const terms: string[] = [];
+
+  for (const m of sorted) {
+    const term = m.normalizedTerm || m.term;
+    if (!seen.has(term)) {
+      seen.add(term);
+      terms.push(term);
+    }
+  }
+
+  return terms;
+}
+
 export function toOutputLanguage(lang: string): string {
   const lower = lang.toLowerCase();
   if (lower === "emoji" || lower === "emojis") {
@@ -91,7 +113,7 @@ export function resolveAnalyzeArgs(
     effectiveOptions = { ...(languageOrOptions as AnalyzeTextOptions) };
   } else {
     language = languageOrOptions as string | string[] | undefined;
-    effectiveOptions = { ...(options ?? {}) };
+    effectiveOptions = { ...options };
   }
 
   // Support simple boolean toggles in options:
@@ -219,7 +241,7 @@ export class TextAnalyzer {
       allMatches.splice(effectiveOptions.maxMatches);
     }
 
-    const terms = [...new Set(allMatches.map((match) => match.term))];
+    const terms = extractOrderedTerms(allMatches);
     const usedSources = [
       ...new Set(allMatches.map((match) => match.sourceFile)),
     ].sort();
@@ -301,7 +323,7 @@ export class TextAnalyzer {
       matches = matches.slice(0, options.maxMatches);
     }
 
-    const terms = [...new Set(matches.map((match) => match.term))];
+    const terms = extractOrderedTerms(matches);
     const usedSources = [
       ...new Set(matches.map((match) => match.sourceFile)),
     ].sort();

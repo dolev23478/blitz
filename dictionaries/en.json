@@ -122,23 +122,7 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "(((",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "((( )))",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "((()))",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "(((jews)))",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": ")))",
       "concept": "hate.antisemitism"
     },
     {
@@ -168,6 +152,10 @@
     {
       "term": "100 round drum",
       "concept": "weapon.general"
+    },
+    {
+      "term": "107mm rocket",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "109",
@@ -344,10 +332,6 @@
     {
       "term": "271k",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "2x4",
-      "concept": "weapon.blade"
     },
     {
       "term": "3 percenters",
@@ -530,6 +514,30 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "9k111 fagot",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "9k333 verba",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "9k38 igla",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "9k720 iskander",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "9m113 konkurs",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "9m131 metis",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "9m133",
       "concept": "weapon.missile_rocket"
     },
@@ -571,6 +579,14 @@
     },
     {
       "term": "ababil",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "ababil-3",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "ababil-5",
       "concept": "weapon.drone"
     },
     {
@@ -930,10 +946,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "abolish",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "abolish israel",
       "concept": "hate.anti_israel"
     },
@@ -1004,18 +1016,6 @@
     {
       "term": "abusayyaf",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "abuse",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "abuse",
-      "concept": "violence.general"
-    },
-    {
-      "term": "abuse",
-      "concept": "violence.torture"
     },
     {
       "term": "abused",
@@ -1106,23 +1106,11 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "accountability",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "accountable",
-      "concept": "threat.retaliation"
-    },
-    {
       "term": "accuracy",
       "concept": "weapon.firearm"
     },
     {
       "term": "accuracy international",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "ace",
       "concept": "weapon.firearm"
     },
     {
@@ -1152,18 +1140,6 @@
     {
       "term": "achzarit",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "acid",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "acid",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "acid",
-      "concept": "weapon.explosive"
     },
     {
       "term": "acid attack",
@@ -1246,32 +1222,12 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "adulterate",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "adulterated",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "adulterates",
       "concept": "weapon.cbrn"
     },
     {
       "term": "adulterating",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "adulteration",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "adze",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "adzes",
-      "concept": "weapon.blade"
     },
     {
       "term": "aegis",
@@ -1286,63 +1242,19 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "aerosol",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "aerosol",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "aerosol bomb",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "aerosolised",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "aerosolized",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "aerosols",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "aflatoxin",
       "concept": "weapon.cbrn"
     },
     {
-      "term": "afraid",
-      "concept": "threat.intimidation"
-    },
-    {
       "term": "agartha",
       "concept": "hate.neonazi"
     },
     {
-      "term": "agents",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "aggression",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "aggression",
-      "concept": "violence.general"
-    },
-    {
       "term": "aggressions",
-      "concept": "violence.general"
-    },
-    {
-      "term": "aggressive",
-      "concept": "violence.general"
-    },
-    {
-      "term": "aggressively",
       "concept": "violence.general"
     },
     {
@@ -1372,10 +1284,6 @@
     {
       "term": "agonize",
       "concept": "violence.torture"
-    },
-    {
-      "term": "agro",
-      "concept": "violence.terrorism"
     },
     {
       "term": "agro-terrorism",
@@ -1436,6 +1344,10 @@
     {
       "term": "air strike",
       "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "air strike",
+      "concept": "violence.assault"
     },
     {
       "term": "air strikes",
@@ -1500,6 +1412,10 @@
     {
       "term": "airstrike",
       "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "airstrike",
+      "concept": "violence.assault"
     },
     {
       "term": "airstrikes",
@@ -1858,15 +1774,15 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "alligator",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "allout",
       "concept": "threat.direct"
     },
     {
       "term": "almas",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "almas atgm",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -1932,10 +1848,6 @@
     {
       "term": "alumim massacre",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "aluminum",
-      "concept": "weapon.explosive"
     },
     {
       "term": "aluminum powder",
@@ -2450,19 +2362,15 @@
       "concept": "weapon.general"
     },
     {
-      "term": "ammonia",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "ammonium",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "ammonium",
+      "term": "ammonal",
       "concept": "weapon.explosive"
     },
     {
       "term": "ammonium nitrate",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "ammonium nitrate bomb",
       "concept": "weapon.explosive"
     },
     {
@@ -2498,10 +2406,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "amputate",
-      "concept": "violence.killing"
-    },
-    {
       "term": "amputated",
       "concept": "violence.killing"
     },
@@ -2511,10 +2415,6 @@
     },
     {
       "term": "amputating",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "amputation",
       "concept": "violence.killing"
     },
     {
@@ -2538,10 +2438,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "anal",
-      "concept": "hate.slur"
-    },
-    {
       "term": "anders",
       "concept": "violence.terrorism"
     },
@@ -2554,24 +2450,12 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "anfo bomb",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "angle grinder",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "anglegrinder",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "animal",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "animals",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "animals",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "annihalate",
@@ -3046,16 +2930,16 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "anschluß",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "anschluss",
       "concept": "violence.genocide"
     },
     {
       "term": "anschluss",
       "concept": "hate.neonazi"
+    },
+    {
+      "term": "anschluß",
+      "concept": "violence.genocide"
     },
     {
       "term": "anthracis",
@@ -3326,10 +3210,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "ar",
-      "concept": "weapon.general"
-    },
-    {
       "term": "ar-10",
       "concept": "weapon.firearm"
     },
@@ -3350,11 +3230,11 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "arak",
-      "concept": "weapon.cbrn"
+      "term": "arash",
+      "concept": "weapon.drone"
     },
     {
-      "term": "arash",
+      "term": "arash-2",
       "concept": "weapon.drone"
     },
     {
@@ -3408,10 +3288,6 @@
     {
       "term": "armed",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "armed",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "armed attack",
@@ -3558,10 +3434,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "arrow",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "arrow-2",
       "concept": "weapon.missile_rocket"
     },
@@ -3582,14 +3454,6 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "arrows",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "arse",
-      "concept": "hate.slur"
-    },
-    {
       "term": "arsehole",
       "concept": "hate.slur"
     },
@@ -3604,10 +3468,6 @@
     {
       "term": "arsenals",
       "concept": "weapon.general"
-    },
-    {
-      "term": "arsenic",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "arsenical",
@@ -3783,14 +3643,6 @@
     },
     {
       "term": "asphyxiator",
-      "concept": "violence.general"
-    },
-    {
-      "term": "ass",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "ass",
       "concept": "violence.general"
     },
     {
@@ -4734,10 +4586,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "assured",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "aster",
       "concept": "weapon.missile_rocket"
     },
@@ -4778,23 +4626,11 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "atom",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "atom bomb",
       "concept": "weapon.explosive"
     },
     {
       "term": "atombomb",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "atomic",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "atomic",
       "concept": "weapon.explosive"
     },
     {
@@ -4840,10 +4676,6 @@
     {
       "term": "atrocity",
       "concept": "violence.general"
-    },
-    {
-      "term": "atropine",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "attack",
@@ -5322,10 +5154,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "aug",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "aum",
       "concept": "violence.terrorism"
     },
@@ -5390,11 +5218,11 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "autogénocide",
+      "term": "autogenocide",
       "concept": "violence.genocide"
     },
     {
-      "term": "autogenocide",
+      "term": "autogénocide",
       "concept": "violence.genocide"
     },
     {
@@ -5458,22 +5286,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "avenger",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "avenger",
-      "concept": "violence.general"
-    },
-    {
-      "term": "avengers",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "avengers",
-      "concept": "violence.general"
-    },
-    {
       "term": "avenges",
       "concept": "threat.retaliation"
     },
@@ -5506,10 +5318,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "awl",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "awlaki",
       "concept": "violence.terrorism"
     },
@@ -5540,10 +5348,6 @@
     {
       "term": "axeattack",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "axed",
-      "concept": "violence.killing"
     },
     {
       "term": "axes",
@@ -5602,10 +5406,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "aziz",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "b-1",
       "concept": "weapon.missile_rocket"
     },
@@ -5624,10 +5424,6 @@
     {
       "term": "b*mb",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "b0m(b)",
-      "concept": "violence.explosion"
     },
     {
       "term": "b0mb",
@@ -5722,10 +5518,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "backed",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "backpack bomb",
       "concept": "weapon.explosive"
     },
@@ -5740,14 +5532,6 @@
     {
       "term": "backpackbombs",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "bacteria",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "bacterial",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "badass",
@@ -5866,10 +5650,6 @@
       "concept": "weapon.ammunition"
     },
     {
-      "term": "ballpeen",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "ban zionists",
       "concept": "hate.anti_israel"
     },
@@ -5888,18 +5668,6 @@
     {
       "term": "bang-bang",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "banged",
-      "concept": "violence.general"
-    },
-    {
-      "term": "banging",
-      "concept": "violence.general"
-    },
-    {
-      "term": "bangs",
-      "concept": "violence.general"
     },
     {
       "term": "bankster",
@@ -5950,6 +5718,14 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "barrel bomb",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "barrel bombs",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "barrels",
       "concept": "weapon.firearm"
     },
@@ -5986,10 +5762,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "baseball",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "baseball bat",
       "concept": "weapon.blade"
     },
@@ -6004,10 +5776,6 @@
     {
       "term": "baseballbats",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "bash",
-      "concept": "violence.killing"
     },
     {
       "term": "bashed",
@@ -6034,11 +5802,11 @@
       "concept": "hate.slur"
     },
     {
-      "term": "bathe",
+      "term": "bathe in blood",
       "concept": "threat.direct"
     },
     {
-      "term": "bathe in blood",
+      "term": "bathed in blood",
       "concept": "threat.direct"
     },
     {
@@ -6186,6 +5954,22 @@
       "concept": "weapon.drone"
     },
     {
+      "term": "bayraktar akinci",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "bayraktar kizilelma",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "bayraktar tb2",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "bayraktar tb3",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "bazooka",
       "concept": "weapon.explosive"
     },
@@ -6226,10 +6010,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "beam",
-      "concept": "weapon.general"
-    },
-    {
       "term": "bean bag round",
       "concept": "weapon.firearm"
     },
@@ -6264,18 +6044,6 @@
     {
       "term": "bearings",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "beast",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "beasts",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "beasts",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "beat to death",
@@ -6898,10 +6666,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "billy",
-      "concept": "weapon.general"
-    },
-    {
       "term": "billy club",
       "concept": "weapon.general"
     },
@@ -7090,18 +6854,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "blackjack",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "blackjack",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "blackjacks",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "blackmail",
       "concept": "violence.terrorism"
     },
@@ -7182,18 +6934,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "blast",
-      "concept": "violence.explosion"
-    },
-    {
-      "term": "blast",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "blast",
-      "concept": "violence.general"
-    },
-    {
       "term": "blast radius",
       "concept": "violence.explosion"
     },
@@ -7202,32 +6942,12 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "blasted",
-      "concept": "violence.explosion"
-    },
-    {
-      "term": "blasted",
-      "concept": "violence.general"
-    },
-    {
       "term": "blaster",
       "concept": "violence.explosion"
     },
     {
       "term": "blasters",
       "concept": "violence.explosion"
-    },
-    {
-      "term": "blasting",
-      "concept": "violence.explosion"
-    },
-    {
-      "term": "blasting",
-      "concept": "violence.general"
-    },
-    {
-      "term": "blasting",
-      "concept": "weapon.explosive"
     },
     {
       "term": "blasting cap",
@@ -7266,18 +6986,6 @@
       "concept": "violence.explosion"
     },
     {
-      "term": "blasts",
-      "concept": "violence.explosion"
-    },
-    {
-      "term": "blasts",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "blasts",
-      "concept": "violence.general"
-    },
-    {
       "term": "blastwave",
       "concept": "violence.explosion"
     },
@@ -7286,19 +6994,11 @@
       "concept": "violence.explosion"
     },
     {
-      "term": "blaze",
-      "concept": "violence.arson"
-    },
-    {
       "term": "blazed",
       "concept": "violence.arson"
     },
     {
       "term": "blazes",
-      "concept": "violence.arson"
-    },
-    {
-      "term": "blazing",
       "concept": "violence.arson"
     },
     {
@@ -7338,14 +7038,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "blew",
-      "concept": "violence.explosion"
-    },
-    {
-      "term": "blew",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "blew up",
       "concept": "violence.explosion"
     },
@@ -7382,8 +7074,8 @@
       "concept": "violence.torture"
     },
     {
-      "term": "blister",
-      "concept": "weapon.cbrn"
+      "term": "blindfolds",
+      "concept": "violence.torture"
     },
     {
       "term": "blister agent",
@@ -7560,14 +7252,6 @@
     {
       "term": "bloody",
       "concept": "violence.assault"
-    },
-    {
-      "term": "blow",
-      "concept": "violence.explosion"
-    },
-    {
-      "term": "blow",
-      "concept": "weapon.explosive"
     },
     {
       "term": "blow me",
@@ -8378,6 +8062,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "blowfish a3",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "blowgun",
       "concept": "weapon.general"
     },
@@ -8539,6 +8227,14 @@
     },
     {
       "term": "bm-21 grad",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "bm-27 uragan",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "bm-30 smerch",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -8724,10 +8420,6 @@
     {
       "term": "bomb",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "bomb",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "bomb a chabad house",
@@ -9458,28 +9150,8 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "boom",
-      "concept": "violence.general"
-    },
-    {
-      "term": "boom",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "boombing",
       "concept": "violence.explosion"
-    },
-    {
-      "term": "boomed",
-      "concept": "violence.general"
-    },
-    {
-      "term": "booming",
-      "concept": "violence.general"
-    },
-    {
-      "term": "booms",
-      "concept": "violence.general"
     },
     {
       "term": "boomstick",
@@ -9490,16 +9162,16 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "bora ballistic missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "border breach",
       "concept": "violence.terrorism"
     },
     {
       "term": "bormann",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "botox",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "botulinum",
@@ -9580,10 +9252,6 @@
     {
       "term": "boxcutters",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "boycott",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "boycott israel",
@@ -10038,10 +9706,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "bump",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "bump stock",
       "concept": "weapon.firearm"
     },
@@ -10096,10 +9760,6 @@
     {
       "term": "burn",
       "concept": "violence.killing"
-    },
-    {
-      "term": "burn",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "burn a chabad house",
@@ -10970,10 +10630,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "burning",
-      "concept": "hate.neonazi"
-    },
-    {
       "term": "burning alive",
       "concept": "violence.killing"
     },
@@ -11066,10 +10722,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "bust",
-      "concept": "violence.general"
-    },
-    {
       "term": "bust a cap",
       "concept": "violence.general"
     },
@@ -11146,19 +10798,15 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "button",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "bw",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "by any means necessary",
       "concept": "hate.anti_israel"
     },
     {
       "term": "c-4",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "c-4 explosive",
       "concept": "weapon.explosive"
     },
     {
@@ -11175,6 +10823,10 @@
     },
     {
       "term": "c4",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "c4 explosive",
       "concept": "weapon.explosive"
     },
     {
@@ -11210,10 +10862,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "caesar",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "caesium",
       "concept": "weapon.cbrn"
     },
@@ -11222,32 +10870,16 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "cage",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "cage",
-      "concept": "violence.kidnapping"
-    },
-    {
       "term": "caged",
       "concept": "violence.torture"
     },
     {
       "term": "caged",
-      "concept": "violence.kidnapping"
-    },
-    {
-      "term": "cages",
       "concept": "violence.kidnapping"
     },
     {
       "term": "caging",
       "concept": "violence.kidnapping"
-    },
-    {
-      "term": "cal",
-      "concept": "weapon.firearm"
     },
     {
       "term": "caliber",
@@ -11270,10 +10902,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "camel",
-      "concept": "hate.slur"
-    },
-    {
       "term": "camel jockey",
       "concept": "hate.slur"
     },
@@ -11286,24 +10914,8 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "cancel",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "cancel israel",
       "concept": "hate.anti_israel"
-    },
-    {
-      "term": "cancer",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "cancer",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "cancerous",
-      "concept": "hate.slur"
     },
     {
       "term": "caning",
@@ -11346,36 +10958,12 @@
       "concept": "weapon.military"
     },
     {
-      "term": "canoe",
-      "concept": "violence.general"
-    },
-    {
-      "term": "canoed",
-      "concept": "violence.general"
-    },
-    {
-      "term": "cap",
-      "concept": "violence.general"
-    },
-    {
       "term": "cap his ass",
       "concept": "violence.general"
     },
     {
       "term": "capacity",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "capped",
-      "concept": "violence.general"
-    },
-    {
-      "term": "capping",
-      "concept": "violence.general"
-    },
-    {
-      "term": "caps",
-      "concept": "violence.general"
     },
     {
       "term": "captive",
@@ -11534,20 +11122,12 @@
       "concept": "violence.general"
     },
     {
-      "term": "carpet",
-      "concept": "violence.general"
-    },
-    {
       "term": "carpet bomb",
       "concept": "violence.general"
     },
     {
       "term": "carpet knife",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "carpetbagger",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "carpetbomb",
@@ -11578,56 +11158,8 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "cartridge",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "cartridge",
-      "concept": "weapon.ammunition"
-    },
-    {
-      "term": "cartridge",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "cartridges",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "cartridges",
-      "concept": "weapon.ammunition"
-    },
-    {
-      "term": "cartridges",
-      "concept": "weapon.general"
-    },
-    {
       "term": "carving knife",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "casing",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "casing",
-      "concept": "weapon.ammunition"
-    },
-    {
-      "term": "casing",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "casings",
-      "concept": "weapon.ammunition"
-    },
-    {
-      "term": "casings",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "casings",
-      "concept": "weapon.general"
     },
     {
       "term": "cast lead",
@@ -11658,14 +11190,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "catch",
-      "concept": "violence.general"
-    },
-    {
-      "term": "caterpillar",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "caterpillar d9",
       "concept": "weapon.missile_rocket"
     },
@@ -11682,14 +11206,6 @@
       "concept": "violence.explosion"
     },
     {
-      "term": "caustic",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "cavalry",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "cavalry saber",
       "concept": "weapon.blade"
     },
@@ -11702,24 +11218,8 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "cell",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "cell",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "cellphone trigger",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "centrifuge",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "centrifuges",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "cesium",
@@ -11732,6 +11232,14 @@
     {
       "term": "cesium137",
       "concept": "weapon.cbrn"
+    },
+    {
+      "term": "ch-4 drone",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "ch-5 drone",
+      "concept": "weapon.drone"
     },
     {
       "term": "ch-53",
@@ -11762,32 +11270,12 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "chainsaw",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "chainsaws",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "challenger",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "chamber",
       "concept": "weapon.firearm"
     },
     {
       "term": "chambers",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "changer",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "char",
-      "concept": "violence.arson"
     },
     {
       "term": "charbroil",
@@ -11808,10 +11296,6 @@
     {
       "term": "chars",
       "concept": "violence.arson"
-    },
-    {
-      "term": "chastise",
-      "concept": "violence.general"
     },
     {
       "term": "cheap jew",
@@ -11844,10 +11328,6 @@
     {
       "term": "chelmno",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "chemical",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "chemical agent",
@@ -11891,10 +11371,6 @@
     },
     {
       "term": "chemicalattack",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "chemicals",
       "concept": "weapon.cbrn"
     },
     {
@@ -11950,10 +11426,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "chimney",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "chimneys",
       "concept": "hate.antisemitism"
     },
@@ -11976,14 +11448,6 @@
     {
       "term": "chlorate",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "chloride",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "chlorine",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "chlorine gas",
@@ -12046,16 +11510,8 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "cholera",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "chomo",
       "concept": "hate.slur"
-    },
-    {
-      "term": "chop",
-      "concept": "violence.killing"
     },
     {
       "term": "chop off a head",
@@ -12106,10 +11562,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "christ",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "christ killer",
       "concept": "hate.antisemitism"
     },
@@ -12142,10 +11594,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "cinderblock",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "circlejerk",
       "concept": "hate.slur"
     },
@@ -12156,6 +11604,10 @@
     {
       "term": "circular saw",
       "concept": "weapon.blade"
+    },
+    {
+      "term": "cirit missile",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "civil war",
@@ -12176,22 +11628,6 @@
     {
       "term": "claimed responsibility",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "clap",
-      "concept": "violence.general"
-    },
-    {
-      "term": "clapped",
-      "concept": "violence.general"
-    },
-    {
-      "term": "clapping",
-      "concept": "violence.general"
-    },
-    {
-      "term": "claps",
-      "concept": "violence.general"
     },
     {
       "term": "clash",
@@ -12260,18 +11696,6 @@
     {
       "term": "clericalfascist",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "clipped",
-      "concept": "violence.general"
-    },
-    {
-      "term": "clipper",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "clipping",
-      "concept": "violence.general"
     },
     {
       "term": "clobber",
@@ -12366,28 +11790,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "cobalt",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "cobalt-60",
       "concept": "weapon.cbrn"
     },
     {
       "term": "cobalt60",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "cobblestone",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "cobra",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "cock",
-      "concept": "hate.slur"
     },
     {
       "term": "cockroach",
@@ -12446,32 +11854,8 @@
       "concept": "threat.direct"
     },
     {
-      "term": "coercion",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "coercion",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "coercion",
-      "concept": "violence.general"
-    },
-    {
-      "term": "coercion",
-      "concept": "violence.assault"
-    },
-    {
       "term": "coercions",
       "concept": "threat.direct"
-    },
-    {
-      "term": "coercive",
-      "concept": "violence.general"
-    },
-    {
-      "term": "coercive",
-      "concept": "violence.assault"
     },
     {
       "term": "coilgun",
@@ -12480,10 +11864,6 @@
     {
       "term": "coilguns",
       "concept": "weapon.military"
-    },
-    {
-      "term": "coin",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "coinclipper",
@@ -12498,26 +11878,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "coli",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "collaborator",
-      "concept": "hate.neonazi"
-    },
-    {
-      "term": "collaborators",
-      "concept": "hate.neonazi"
-    },
-    {
-      "term": "collapse",
-      "concept": "violence.general"
-    },
-    {
-      "term": "collapse",
-      "concept": "threat.direct"
-    },
-    {
       "term": "collapse of israel",
       "concept": "threat.direct"
     },
@@ -12526,20 +11886,8 @@
       "concept": "threat.direct"
     },
     {
-      "term": "collapsed",
-      "concept": "violence.general"
-    },
-    {
-      "term": "collapses",
-      "concept": "violence.general"
-    },
-    {
       "term": "collapsible stock",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "collapsing",
-      "concept": "violence.general"
     },
     {
       "term": "collective",
@@ -12558,20 +11906,8 @@
       "concept": "violence.general"
     },
     {
-      "term": "collision",
-      "concept": "violence.general"
-    },
-    {
       "term": "collisions",
       "concept": "violence.general"
-    },
-    {
-      "term": "colonial",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "colonialism",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "colonialist",
@@ -12590,23 +11926,11 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "colonist",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "colonists",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "colonizer",
       "concept": "hate.anti_israel"
     },
     {
       "term": "colonizers",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "colony",
       "concept": "hate.anti_israel"
     },
     {
@@ -12616,14 +11940,6 @@
     {
       "term": "colts",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "column",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "columnist",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "combat",
@@ -12714,10 +12030,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "comp",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "comp b",
       "concept": "weapon.explosive"
     },
@@ -12747,6 +12059,10 @@
     },
     {
       "term": "composition c-4",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "composition c4",
       "concept": "weapon.explosive"
     },
     {
@@ -12834,20 +12150,8 @@
       "concept": "violence.arson"
     },
     {
-      "term": "consequence",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "consequences",
-      "concept": "threat.retaliation"
-    },
-    {
       "term": "conservatard",
       "concept": "hate.slur"
-    },
-    {
-      "term": "conspiracies",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "conspiracist",
@@ -12858,40 +12162,8 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "conspiracy",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "conspirator",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "conspiratorial",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "conspirators",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "contagion",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "contagions",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "contaminant",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "contaminants",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "contaminate",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "contaminate food",
@@ -12902,19 +12174,7 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "contaminated",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "contaminates",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "contaminating",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "contamination",
       "concept": "weapon.cbrn"
     },
     {
@@ -12926,16 +12186,16 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "contract",
-      "concept": "violence.general"
-    },
-    {
       "term": "contract killer",
       "concept": "violence.general"
     },
     {
-      "term": "controlled",
-      "concept": "hate.antisemitism"
+      "term": "contract killer",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "contract murder",
+      "concept": "violence.killing"
     },
     {
       "term": "contusion",
@@ -12970,14 +12230,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "corvette",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "corvette",
-      "concept": "weapon.military"
-    },
-    {
       "term": "corvettes",
       "concept": "weapon.military"
     },
@@ -12994,15 +12246,7 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "cosmopolitan",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "cosmopolitanism",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "cosmopolitans",
       "concept": "hate.antisemitism"
     },
     {
@@ -13034,24 +12278,8 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "countries",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "coup",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "coup",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "coup d'etat",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "coward",
-      "concept": "hate.slur"
     },
     {
       "term": "cqbr",
@@ -13059,14 +12287,6 @@
     },
     {
       "term": "cracker",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "craft",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "crap",
       "concept": "hate.slur"
     },
     {
@@ -13150,10 +12370,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "cricketbat",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "crime",
       "concept": "violence.killing"
     },
@@ -13214,10 +12430,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "crop",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "crop duster",
       "concept": "weapon.cbrn"
     },
@@ -13274,14 +12486,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "crowbar",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "crowbars",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "crucified",
       "concept": "violence.killing"
     },
@@ -13302,14 +12506,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "cruise",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "cruise",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "cruise missile",
       "concept": "weapon.missile_rocket"
     },
@@ -13326,20 +12522,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "cruiser",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "crusade",
       "concept": "threat.direct"
-    },
-    {
-      "term": "crusader",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "crusaders",
-      "concept": "hate.slur"
     },
     {
       "term": "crush",
@@ -13348,10 +12532,6 @@
     {
       "term": "crush",
       "concept": "violence.killing"
-    },
-    {
-      "term": "crush",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "crush israel",
@@ -13422,24 +12602,12 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "cult",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "cultural genocide",
       "concept": "violence.genocide"
     },
     {
       "term": "cultural marxism",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "cum",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "cunt",
-      "concept": "hate.slur"
     },
     {
       "term": "cunts",
@@ -13522,10 +12690,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "cw",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "cyanide",
       "concept": "weapon.cbrn"
     },
@@ -13556,10 +12720,6 @@
     {
       "term": "cyclosarin",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "cz",
-      "concept": "weapon.firearm"
     },
     {
       "term": "cz 75",
@@ -13682,10 +12842,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "damn",
-      "concept": "hate.slur"
-    },
-    {
       "term": "damned",
       "concept": "hate.slur"
     },
@@ -13800,10 +12956,6 @@
     {
       "term": "death",
       "concept": "violence.killing"
-    },
-    {
-      "term": "death",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "death camp",
@@ -14466,6 +13618,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "defensive grenade",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "defensive shield",
       "concept": "violence.terrorism"
     },
@@ -14480,10 +13636,6 @@
     {
       "term": "defiled",
       "concept": "violence.assault"
-    },
-    {
-      "term": "degeneracy",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "degenerate",
@@ -14504,6 +13656,10 @@
     {
       "term": "degraded",
       "concept": "violence.torture"
+    },
+    {
+      "term": "dehlavieh atgm",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "dehydrate",
@@ -15014,18 +14170,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "demons",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "den",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "denial",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "denialist",
       "concept": "hate.antisemitism"
     },
@@ -15035,30 +14179,6 @@
     },
     {
       "term": "denials",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "denied",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "denier",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "deniers",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "denies",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "deny",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "denying",
       "concept": "hate.antisemitism"
     },
     {
@@ -15118,10 +14238,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "descendants",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "descendants of apes and pigs",
       "concept": "hate.antisemitism"
     },
@@ -15150,22 +14266,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "deserve",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "deserved",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "deserves",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "deserving",
-      "concept": "threat.retaliation"
-    },
-    {
       "term": "designated",
       "concept": "violence.terrorism"
     },
@@ -15188,10 +14288,6 @@
     {
       "term": "destroy",
       "concept": "violence.assault"
-    },
-    {
-      "term": "destroy",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "destroy a building",
@@ -15610,10 +14706,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "destroyed",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "destroyer",
       "concept": "weapon.missile_rocket"
     },
@@ -15660,10 +14752,6 @@
     {
       "term": "destruction",
       "concept": "violence.assault"
-    },
-    {
-      "term": "destruction",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "destruction of israel",
@@ -16078,6 +15166,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "detonation cord",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "detonations",
       "concept": "violence.explosion"
     },
@@ -16170,10 +15262,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "devils",
-      "concept": "hate.slur"
-    },
-    {
       "term": "dezful",
       "concept": "weapon.missile_rocket"
     },
@@ -16186,10 +15274,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "diaper",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "diaper army",
       "concept": "hate.anti_israel"
     },
@@ -16198,16 +15282,8 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "diaries",
-      "concept": "hate.neonazi"
-    },
-    {
       "term": "dias",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "dick",
-      "concept": "hate.slur"
     },
     {
       "term": "dickbag",
@@ -16378,22 +15454,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "disease",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "disease",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "diseased",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "diseases",
-      "concept": "hate.dehumanization"
-    },
-    {
       "term": "disembowel",
       "concept": "violence.killing"
     },
@@ -16472,14 +15532,6 @@
     {
       "term": "disintegrating",
       "concept": "violence.general"
-    },
-    {
-      "term": "dismantle",
-      "concept": "violence.general"
-    },
-    {
-      "term": "dismantle",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "dismantle israel",
@@ -17010,10 +16062,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "dodger",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "dogfight",
       "concept": "weapon.missile_rocket"
     },
@@ -17028,10 +16076,6 @@
     {
       "term": "dolchstosslegende",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "dolphin",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "dolphin class",
@@ -17112,14 +16156,6 @@
     {
       "term": "downs",
       "concept": "threat.direct"
-    },
-    {
-      "term": "dox",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "doxx",
-      "concept": "violence.terrorism"
     },
     {
       "term": "doxxed",
@@ -17998,8 +17034,8 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "dud",
-      "concept": "weapon.explosive"
+      "term": "duct tape",
+      "concept": "violence.torture"
     },
     {
       "term": "dumb bomb",
@@ -18008,10 +17044,6 @@
     {
       "term": "dumbass",
       "concept": "hate.slur"
-    },
-    {
-      "term": "dump",
-      "concept": "violence.general"
     },
     {
       "term": "dump in the sea",
@@ -18023,10 +17055,6 @@
     },
     {
       "term": "dunce",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "dune",
       "concept": "hate.slur"
     },
     {
@@ -18046,20 +17074,12 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "dust",
-      "concept": "violence.general"
-    },
-    {
       "term": "dusted",
       "concept": "violence.general"
     },
     {
       "term": "duster",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "dusters",
-      "concept": "weapon.general"
     },
     {
       "term": "dusting",
@@ -18094,6 +17114,14 @@
       "concept": "violence.explosion"
     },
     {
+      "term": "dynamite stick",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "dynamite sticks",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "dynamited",
       "concept": "violence.explosion"
     },
@@ -18114,20 +17142,8 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "eagle",
-      "concept": "violence.general"
-    },
-    {
       "term": "early life check",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "earlylife",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "earnest",
-      "concept": "hate.neonazi"
     },
     {
       "term": "eat a dick",
@@ -18146,10 +17162,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "echoes",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "ecocide",
       "concept": "hate.anti_israel"
     },
@@ -18166,19 +17178,7 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "eden",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "eden yerushalmi",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "edge",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "edge",
       "concept": "violence.terrorism"
     },
     {
@@ -18191,6 +17191,10 @@
     },
     {
       "term": "efp",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "efp ied",
       "concept": "weapon.explosive"
     },
     {
@@ -18226,8 +17230,8 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "electric",
-      "concept": "violence.torture"
+      "term": "electric detonator",
+      "concept": "weapon.explosive"
     },
     {
       "term": "electric shock",
@@ -18758,10 +17762,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "elite",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "elliot",
       "concept": "violence.general"
     },
@@ -18784,10 +17784,6 @@
     {
       "term": "emirate",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "emp",
-      "concept": "weapon.explosive"
     },
     {
       "term": "end a life",
@@ -18818,11 +17814,11 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "endlösung",
+      "term": "endlosung",
       "concept": "hate.neonazi"
     },
     {
-      "term": "endlosung",
+      "term": "endlösung",
       "concept": "hate.neonazi"
     },
     {
@@ -18852,10 +17848,6 @@
     {
       "term": "enhanced interrogation",
       "concept": "violence.torture"
-    },
-    {
-      "term": "enough",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "enriched",
@@ -19554,10 +18546,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "europe",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "euthanise",
       "concept": "violence.killing"
     },
@@ -19602,10 +18590,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "evil",
-      "concept": "hate.slur"
-    },
-    {
       "term": "evil jew",
       "concept": "hate.antisemitism"
     },
@@ -19646,10 +18630,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "evo",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "evola",
       "concept": "hate.neonazi"
     },
@@ -19664,10 +18644,6 @@
     {
       "term": "exacto knife",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "example",
-      "concept": "threat.direct"
     },
     {
       "term": "excrement",
@@ -20116,10 +19092,6 @@
     {
       "term": "executionstyle",
       "concept": "violence.killing"
-    },
-    {
-      "term": "exist",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "exocet",
@@ -20942,6 +19914,10 @@
       "concept": "violence.general"
     },
     {
+      "term": "f-1 grenade",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "f-15",
       "concept": "weapon.missile_rocket"
     },
@@ -21010,6 +19986,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "fab-3000",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "fab-500",
       "concept": "weapon.explosive"
     },
@@ -21024,6 +20004,14 @@
     {
       "term": "faction",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "fadi-1",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "fadi-2",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "fae",
@@ -21043,6 +20031,10 @@
     },
     {
       "term": "fagot",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "fagot atgm",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -21194,10 +20186,6 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "fast",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "fast attack craft",
       "concept": "weapon.missile_rocket"
     },
@@ -21266,6 +20254,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "fattah hypersonic",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "fattah-2",
       "concept": "weapon.missile_rocket"
     },
@@ -21276,10 +20268,6 @@
     {
       "term": "faurisson",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "fear",
-      "concept": "threat.intimidation"
     },
     {
       "term": "featherwood",
@@ -21302,12 +20290,12 @@
       "concept": "violence.general"
     },
     {
-      "term": "felch",
-      "concept": "hate.slur"
+      "term": "feinu-6",
+      "concept": "weapon.missile_rocket"
     },
     {
-      "term": "fellow",
-      "concept": "hate.antisemitism"
+      "term": "felch",
+      "concept": "hate.slur"
     },
     {
       "term": "fellow white people",
@@ -21344,10 +20332,6 @@
     {
       "term": "fertilizerbomb",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "feud",
-      "concept": "violence.general"
     },
     {
       "term": "fever",
@@ -21496,10 +20480,6 @@
     {
       "term": "fim92",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "final",
-      "concept": "violence.genocide"
     },
     {
       "term": "final solution",
@@ -21930,6 +20910,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "flashbang grenade",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "flashbangs",
       "concept": "weapon.explosive"
     },
@@ -21952,10 +20936,6 @@
     {
       "term": "flatten",
       "concept": "violence.general"
-    },
-    {
-      "term": "flatten",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "flatten tel aviv",
@@ -22062,10 +21042,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "flood",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "fluid",
       "concept": "violence.arson"
     },
@@ -22099,6 +21075,10 @@
     },
     {
       "term": "fn-6",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "fn-6 manpads",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -22242,10 +21222,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "forty",
-      "concept": "weapon.general"
-    },
-    {
       "term": "forty-caliber",
       "concept": "weapon.firearm"
     },
@@ -22318,6 +21294,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "frag grenades",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "frag-bomb",
       "concept": "weapon.explosive"
     },
@@ -22366,10 +21346,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "frankfurt",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "frankfurt school",
       "concept": "hate.antisemitism"
     },
@@ -22392,10 +21368,6 @@
     {
       "term": "free palestine from the jews",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "freedom",
-      "concept": "violence.terrorism"
     },
     {
       "term": "freedom fighter",
@@ -22424,10 +21396,6 @@
     {
       "term": "frigates",
       "concept": "weapon.military"
-    },
-    {
-      "term": "frog",
-      "concept": "hate.slur"
     },
     {
       "term": "frogman",
@@ -22538,12 +21506,12 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "führer",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "fuhrer",
       "concept": "hate.neonazi"
+    },
+    {
+      "term": "führer",
+      "concept": "violence.genocide"
     },
     {
       "term": "führer",
@@ -22600,10 +21568,6 @@
     {
       "term": "fundamentalists",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "funded",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "fury",
@@ -22674,15 +21638,19 @@
       "concept": "threat.direct"
     },
     {
-      "term": "ga",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "gag",
       "concept": "violence.torture"
     },
     {
       "term": "gagged",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "gagging",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "gags",
       "concept": "violence.torture"
     },
     {
@@ -22734,7 +21702,7 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "garbage",
+      "term": "garbage human",
       "concept": "hate.slur"
     },
     {
@@ -22994,10 +21962,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "gb",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "gbu-28",
       "concept": "weapon.explosive"
     },
@@ -23014,10 +21978,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "gd",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "gdl",
       "concept": "violence.terrorism"
     },
@@ -23032,6 +21992,10 @@
     {
       "term": "geigercounter",
       "concept": "weapon.cbrn"
+    },
+    {
+      "term": "gelatin dynamite",
+      "concept": "weapon.explosive"
     },
     {
       "term": "gelignite",
@@ -23170,6 +22134,10 @@
       "concept": "weapon.drone"
     },
     {
+      "term": "geran-1",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "geran-2",
       "concept": "weapon.drone"
     },
@@ -23188,10 +22156,6 @@
     {
       "term": "get the fuck out",
       "concept": "hate.slur"
-    },
-    {
-      "term": "gf",
-      "concept": "weapon.cbrn"
     },
     {
       "term": "gfy",
@@ -23326,14 +22290,6 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "globalism",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "globalist",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "globalist cabal",
       "concept": "hate.antisemitism"
     },
@@ -23348,14 +22304,6 @@
     {
       "term": "globalistcontrolled",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "globalists",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "globalize",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "globalize the intifada",
@@ -23410,10 +22358,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "glory",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "glory to our martyrs",
       "concept": "hate.anti_israel"
     },
@@ -23447,10 +22391,6 @@
     },
     {
       "term": "go to hell",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "goat",
       "concept": "hate.slur"
     },
     {
@@ -23606,11 +22546,15 @@
       "concept": "threat.direct"
     },
     {
-      "term": "grabber",
-      "concept": "hate.antisemitism"
+      "term": "grad",
+      "concept": "weapon.missile_rocket"
     },
     {
-      "term": "grad",
+      "term": "grad rocket",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "grad rockets",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -23630,6 +22574,10 @@
       "concept": "hate.antisemitism"
     },
     {
+      "term": "great replacement",
+      "concept": "hate.neonazi"
+    },
+    {
       "term": "great satan",
       "concept": "hate.anti_israel"
     },
@@ -23640,10 +22588,6 @@
     {
       "term": "greatsatan",
       "concept": "hate.anti_israel"
-    },
-    {
-      "term": "greedy",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "greedy jew",
@@ -23740,10 +22684,6 @@
     {
       "term": "grinder",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "grip",
-      "concept": "weapon.firearm"
     },
     {
       "term": "gripen",
@@ -24478,10 +23418,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "gut",
-      "concept": "violence.killing"
-    },
-    {
       "term": "guts",
       "concept": "violence.assault"
     },
@@ -24556,14 +23492,6 @@
     {
       "term": "habba",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "hack",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "hack",
-      "concept": "weapon.blade"
     },
     {
       "term": "hack to death",
@@ -24742,10 +23670,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "hang",
-      "concept": "violence.killing"
-    },
-    {
       "term": "hang glider",
       "concept": "violence.terrorism"
     },
@@ -24792,10 +23716,6 @@
     {
       "term": "hannibaldirective",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "happy",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "happy merchant",
@@ -24868,14 +23788,6 @@
     {
       "term": "hard target",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "harm",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "harm",
-      "concept": "violence.general"
     },
     {
       "term": "harmed",
@@ -25010,20 +23922,8 @@
       "concept": "threat.direct"
     },
     {
-      "term": "hatred",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "hatred",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "hauptsturmfuhrer",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "hawk",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "hayat",
@@ -25066,18 +23966,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "heat",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "heater",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "heater",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "heaters",
       "concept": "weapon.firearm"
     },
@@ -25095,10 +23983,6 @@
     },
     {
       "term": "hebes",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "hebrew",
       "concept": "hate.antisemitism"
     },
     {
@@ -25178,40 +24062,12 @@
       "concept": "violence.kidnapping"
     },
     {
-      "term": "helicopter",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "helicopter",
-      "concept": "violence.general"
-    },
-    {
-      "term": "helicopter",
-      "concept": "weapon.general"
-    },
-    {
       "term": "helicopter gunship",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "helicopter-gunship",
       "concept": "weapon.military"
-    },
-    {
-      "term": "helicopters",
-      "concept": "violence.general"
-    },
-    {
-      "term": "helicopters",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "hell",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "hell",
-      "concept": "threat.direct"
     },
     {
       "term": "hellfire",
@@ -25232,10 +24088,6 @@
     {
       "term": "hemorrhagic fever",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "heretic",
-      "concept": "hate.slur"
     },
     {
       "term": "hermes",
@@ -25438,10 +24290,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "hit",
-      "concept": "violence.general"
-    },
-    {
       "term": "hit back",
       "concept": "violence.general"
     },
@@ -25502,10 +24350,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "hits",
-      "concept": "violence.assault"
-    },
-    {
       "term": "hitting",
       "concept": "violence.assault"
     },
@@ -25542,7 +24386,15 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "hj-12 atgm",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "hj-8",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "hj-8 atgm",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -25606,10 +24458,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "hoes",
-      "concept": "hate.slur"
-    },
-    {
       "term": "hold hostage",
       "concept": "violence.kidnapping"
     },
@@ -25618,16 +24466,8 @@
       "concept": "violence.kidnapping"
     },
     {
-      "term": "holding",
-      "concept": "violence.kidnapping"
-    },
-    {
       "term": "holdoutpistol",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "holds",
-      "concept": "violence.kidnapping"
     },
     {
       "term": "holit massacre",
@@ -25826,10 +24666,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "holy",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "holy war",
       "concept": "violence.terrorism"
     },
@@ -25874,6 +24710,10 @@
       "concept": "violence.killing"
     },
     {
+      "term": "hongjian-8",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "honkpill",
       "concept": "hate.neonazi"
     },
@@ -25892,10 +24732,6 @@
     {
       "term": "hooded",
       "concept": "violence.torture"
-    },
-    {
-      "term": "hook",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "hook nosed jew",
@@ -25998,12 +24834,12 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "hot",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "hot lead",
       "concept": "weapon.general"
+    },
+    {
+      "term": "hot missile",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "hotlead",
@@ -26062,6 +24898,10 @@
       "concept": "hate.slur"
     },
     {
+      "term": "human animals",
+      "concept": "hate.dehumanization"
+    },
+    {
       "term": "human remains",
       "concept": "violence.killing"
     },
@@ -26104,10 +24944,6 @@
     {
       "term": "humvee",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "hung",
-      "concept": "violence.killing"
     },
     {
       "term": "hunt down",
@@ -26562,24 +25398,8 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "hurt",
-      "concept": "violence.general"
-    },
-    {
-      "term": "hurt",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "hurtful",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "hurting",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "hurts",
-      "concept": "violence.assault"
+      "term": "hurt you",
+      "concept": "threat.direct"
     },
     {
       "term": "husseini",
@@ -26676,10 +25496,6 @@
     {
       "term": "hypodermic needle",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "hypothesis",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "i am going to assassinate all israelis",
@@ -28062,6 +26878,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "i will hurt you",
+      "concept": "threat.direct"
+    },
+    {
       "term": "i will kill",
       "concept": "threat.direct"
     },
@@ -28334,20 +27154,12 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "ice",
-      "concept": "violence.general"
-    },
-    {
       "term": "ice pick",
       "concept": "weapon.blade"
     },
     {
       "term": "ice-pick",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "iced",
-      "concept": "violence.general"
     },
     {
       "term": "icedout",
@@ -28366,16 +27178,8 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "ices",
-      "concept": "violence.general"
-    },
-    {
       "term": "icing",
       "concept": "violence.general"
-    },
-    {
-      "term": "idf",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "idfterrorist",
@@ -28419,6 +27223,14 @@
     },
     {
       "term": "igla",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "igla manpads",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "igla-s",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -28468,10 +27280,6 @@
     {
       "term": "ikhwan",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "illuminati",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "illuminist",
@@ -28580,14 +27388,6 @@
     {
       "term": "impaling",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "imperialism",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "imperialist",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "implode",
@@ -28886,10 +27686,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "infection",
-      "concept": "hate.slur"
-    },
-    {
       "term": "infectious",
       "concept": "weapon.cbrn"
     },
@@ -28936,10 +27732,6 @@
     {
       "term": "infests",
       "concept": "hate.dehumanization"
-    },
-    {
-      "term": "infidel",
-      "concept": "hate.slur"
     },
     {
       "term": "infidels",
@@ -29060,14 +27852,6 @@
     {
       "term": "injury",
       "concept": "violence.general"
-    },
-    {
-      "term": "insect",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "insects",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "instinct",
@@ -29274,10 +28058,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "inverted",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "inverted red triangle",
       "concept": "hate.anti_israel"
     },
@@ -29426,6 +28206,14 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "iskander missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "iskander-m",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "islam",
       "concept": "violence.terrorism"
     },
@@ -29510,10 +28298,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "israel",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "israel has no right to exist",
       "concept": "hate.anti_israel"
     },
@@ -29578,10 +28362,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "israeli",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "israeli embassy bombing",
       "concept": "violence.terrorism"
     },
@@ -29591,10 +28371,6 @@
     },
     {
       "term": "israeli offensive forces",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "israelis",
       "concept": "hate.anti_israel"
     },
     {
@@ -29766,10 +28542,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "jail",
-      "concept": "violence.kidnapping"
-    },
-    {
       "term": "jailed",
       "concept": "violence.kidnapping"
     },
@@ -29884,10 +28656,6 @@
     {
       "term": "jerkoff",
       "concept": "hate.slur"
-    },
-    {
-      "term": "jew",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "jew bastard",
@@ -30255,10 +29023,6 @@
     },
     {
       "term": "jewing",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "jewish",
       "concept": "hate.antisemitism"
     },
     {
@@ -30750,10 +29514,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "jews",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "jews are a disease",
       "concept": "hate.dehumanization"
     },
@@ -30954,14 +29714,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "jizz",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "jockey",
-      "concept": "hate.slur"
-    },
-    {
       "term": "john earnest",
       "concept": "violence.terrorism"
     },
@@ -31106,10 +29858,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "justified",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "juw",
       "concept": "hate.antisemitism"
     },
@@ -31124,10 +29872,6 @@
     {
       "term": "juws",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "k",
-      "concept": "weapon.general"
     },
     {
       "term": "k-i-k-e",
@@ -31306,6 +30050,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "kalibr missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "kaltenbrunner",
       "concept": "hate.neonazi"
     },
@@ -31323,6 +30071,10 @@
     },
     {
       "term": "kamikaze drone",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "kamikaze drones",
       "concept": "weapon.drone"
     },
     {
@@ -31366,7 +30118,15 @@
       "concept": "weapon.blade"
     },
     {
+      "term": "kargu drone",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "karrar",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "karrar drone",
       "concept": "weapon.drone"
     },
     {
@@ -31418,7 +30178,15 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "kh-101 missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "kh-22",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "kh-47m2 kinzhal",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -31562,6 +30330,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "khorramshahr-4",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "khukuri",
       "concept": "weapon.blade"
     },
@@ -31580,14 +30352,6 @@
     {
       "term": "kibitzers",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "kick",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "kick",
-      "concept": "violence.killing"
     },
     {
       "term": "kicked",
@@ -32074,10 +30838,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "kill",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "kill a chabad house",
       "concept": "threat.direct"
     },
@@ -32522,16 +31282,8 @@
       "concept": "violence.killing"
     },
     {
-      "term": "killer",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "killers",
       "concept": "violence.killing"
-    },
-    {
-      "term": "killers",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "killfest",
@@ -32642,12 +31394,12 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "kiryat shmona massacre",
-      "concept": "violence.terrorism"
+      "term": "kinzhal missile",
+      "concept": "weapon.missile_rocket"
     },
     {
-      "term": "kiss",
-      "concept": "hate.slur"
+      "term": "kiryat shmona massacre",
+      "concept": "violence.terrorism"
     },
     {
       "term": "kiss my ass",
@@ -32656,10 +31408,6 @@
     {
       "term": "kissufim massacre",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "kitchen",
-      "concept": "weapon.blade"
     },
     {
       "term": "kitchen knife",
@@ -32838,10 +31586,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "knob",
-      "concept": "hate.slur"
-    },
-    {
       "term": "knobhead",
       "concept": "hate.slur"
     },
@@ -32898,6 +31642,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "konkurs atgm",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "konzentrationslager",
       "concept": "hate.neonazi"
     },
@@ -32907,6 +31655,18 @@
     },
     {
       "term": "kornet",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "kornet atgm",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "kornet missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "kornet-em",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -32924,10 +31684,6 @@
     {
       "term": "kpv",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "krab",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "kraut",
@@ -33082,6 +31838,14 @@
       "concept": "weapon.blade"
     },
     {
+      "term": "lancet drone",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "lancet-3",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "land mine",
       "concept": "weapon.explosive"
     },
@@ -33218,10 +31982,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "law",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "layedout",
       "concept": "violence.general"
     },
@@ -33244,10 +32004,6 @@
     {
       "term": "leadpipe",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "learned",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "learned elders",
@@ -59218,10 +57974,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "level",
-      "concept": "violence.general"
-    },
-    {
       "term": "level it",
       "concept": "violence.general"
     },
@@ -59334,10 +58086,6 @@
       "concept": "violence.arson"
     },
     {
-      "term": "lightning",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "lightning link",
       "concept": "weapon.firearm"
     },
@@ -59378,15 +58126,15 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "lion",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "lion's",
       "concept": "violence.terrorism"
     },
     {
       "term": "lion's den",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "lions' den",
       "concept": "violence.terrorism"
     },
     {
@@ -59442,10 +58190,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "lit",
-      "concept": "violence.arson"
-    },
-    {
       "term": "lit on fire",
       "concept": "violence.arson"
     },
@@ -59490,14 +58234,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "locust",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "locusts",
-      "concept": "hate.slur"
-    },
-    {
       "term": "lodz",
       "concept": "violence.genocide"
     },
@@ -59514,16 +58250,16 @@
       "concept": "weapon.drone"
     },
     {
+      "term": "loitering munitions",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "loitering-munition",
       "concept": "weapon.explosive"
     },
     {
       "term": "loiteringmunition",
       "concept": "weapon.drone"
-    },
-    {
-      "term": "lone",
-      "concept": "violence.terrorism"
     },
     {
       "term": "lone actor",
@@ -59574,10 +58310,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "loot",
-      "concept": "violence.assault"
-    },
-    {
       "term": "looted",
       "concept": "violence.assault"
     },
@@ -59606,24 +58338,12 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "loyalist",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "loyalty",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "lrad",
       "concept": "weapon.firearm"
     },
     {
       "term": "ltte",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "luau",
-      "concept": "violence.general"
     },
     {
       "term": "luftwaffe",
@@ -59634,19 +58354,15 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "lug",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "lug wrench",
       "concept": "weapon.blade"
     },
     {
-      "term": "lügenpresse",
+      "term": "lugenpresse",
       "concept": "hate.antisemitism"
     },
     {
-      "term": "lugenpresse",
+      "term": "lügenpresse",
       "concept": "hate.antisemitism"
     },
     {
@@ -60290,6 +59006,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "m249 saw",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "m4",
       "concept": "weapon.firearm"
     },
@@ -60318,12 +59038,20 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "m67 grenade",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "m72",
       "concept": "weapon.explosive"
     },
     {
       "term": "m72 law",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "m72 law",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "m72-law",
@@ -60356,10 +59084,6 @@
     {
       "term": "ma'alot massacre",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "mac",
-      "concept": "weapon.general"
     },
     {
       "term": "mac-10",
@@ -60422,10 +59146,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "machine",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "machine gun",
       "concept": "weapon.firearm"
     },
@@ -60470,22 +59190,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "mafia",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "mag",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "mag",
-      "concept": "weapon.ammunition"
-    },
-    {
-      "term": "mag",
-      "concept": "violence.general"
-    },
-    {
       "term": "mag dump",
       "concept": "violence.general"
     },
@@ -60498,36 +59202,20 @@
       "concept": "violence.general"
     },
     {
-      "term": "maggot",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "maggot",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "maggots",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "maggots",
-      "concept": "hate.dehumanization"
-    },
-    {
       "term": "magnesium",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "magnetic bomb",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "magnetic ied",
       "concept": "weapon.explosive"
     },
     {
       "term": "magnum",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "mags",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "mags",
-      "concept": "weapon.ammunition"
     },
     {
       "term": "mahmoud",
@@ -60986,10 +59674,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "main",
-      "concept": "weapon.missile_rocket"
-    },
-    {
       "term": "main battle tank",
       "concept": "weapon.missile_rocket"
     },
@@ -61046,6 +59730,14 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "mam-c",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "mam-l",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "mamad",
       "concept": "violence.terrorism"
     },
@@ -61056,6 +59748,14 @@
     {
       "term": "man's",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "manacle",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "manacles",
+      "concept": "violence.torture"
     },
     {
       "term": "maniac",
@@ -61210,16 +59910,8 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "marxism",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "mashal",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "mason",
-      "concept": "hate.neonazi"
     },
     {
       "term": "mass casualty",
@@ -61886,15 +60578,7 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "matzo",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "matzo blood",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "matzoh",
       "concept": "hate.antisemitism"
     },
     {
@@ -61938,10 +60622,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "mayo",
-      "concept": "hate.slur"
-    },
-    {
       "term": "mayya",
       "concept": "hate.anti_israel"
     },
@@ -61980,10 +60660,6 @@
     {
       "term": "megaton",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "mein",
-      "concept": "hate.neonazi"
     },
     {
       "term": "mein kampf",
@@ -62078,10 +60754,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "merchant",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "merciless",
       "concept": "violence.assault"
     },
@@ -62126,19 +60798,15 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "metal",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "metaphor",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "meteor",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "metis",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "metis-m",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -62298,10 +60966,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "mini",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "mini uzi",
       "concept": "weapon.firearm"
     },
@@ -62318,14 +60982,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "minimisation",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "minimise",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "minimised",
       "concept": "hate.antisemitism"
     },
@@ -62339,22 +60995,6 @@
     },
     {
       "term": "minimization",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "minimize",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "minimized",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "minimizes",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "minimizing",
       "concept": "hate.antisemitism"
     },
     {
@@ -62442,10 +61082,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "mission",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "mistral",
       "concept": "weapon.missile_rocket"
     },
@@ -62486,6 +61122,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "mk2 grenade",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "mk82",
       "concept": "weapon.explosive"
     },
@@ -62514,14 +61154,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "mob",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "mob",
-      "concept": "violence.killing"
-    },
-    {
       "term": "mob attack",
       "concept": "violence.assault"
     },
@@ -62534,18 +61166,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "mobs",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "mobs",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "mock",
-      "concept": "violence.torture"
-    },
-    {
       "term": "mock execution",
       "concept": "violence.torture"
     },
@@ -62555,6 +61175,10 @@
     },
     {
       "term": "mohajer",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "mohajer-10",
       "concept": "weapon.drone"
     },
     {
@@ -62682,10 +61306,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "moment",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "moment cafe",
       "concept": "violence.terrorism"
     },
@@ -62702,16 +61322,8 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "monkey",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "monkey wrench",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "monkeys",
-      "concept": "hate.slur"
     },
     {
       "term": "monkeywrench",
@@ -62724,10 +61336,6 @@
     {
       "term": "mooncricket",
       "concept": "hate.slur"
-    },
-    {
-      "term": "moral",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "morgue",
@@ -62874,10 +61482,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "mow",
-      "concept": "violence.killing"
-    },
-    {
       "term": "mow down",
       "concept": "violence.killing"
     },
@@ -62943,6 +61547,10 @@
     },
     {
       "term": "mp7",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "mpt-76 rifle",
       "concept": "weapon.firearm"
     },
     {
@@ -63096,10 +61704,6 @@
     {
       "term": "murder",
       "concept": "violence.killing"
-    },
-    {
-      "term": "murder",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "murder a chabad house",
@@ -64386,10 +62990,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "nap",
-      "concept": "violence.general"
-    },
-    {
       "term": "napalm",
       "concept": "weapon.explosive"
     },
@@ -64454,10 +63054,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "nationalist",
-      "concept": "hate.neonazi"
-    },
-    {
       "term": "naval",
       "concept": "weapon.military"
     },
@@ -64512,10 +63108,6 @@
     {
       "term": "nbc",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "necessary",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "neck yourself",
@@ -64588,18 +63180,6 @@
     {
       "term": "neocolonialism",
       "concept": "hate.anti_israel"
-    },
-    {
-      "term": "neocon",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "neocons",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "neoconservative",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "neofascism",
@@ -64754,10 +63334,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "never",
-      "concept": "violence.general"
-    },
-    {
       "term": "never forget",
       "concept": "violence.general"
     },
@@ -64840,14 +63416,6 @@
     {
       "term": "nightsticks",
       "concept": "weapon.general"
-    },
-    {
-      "term": "nine",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "nine",
-      "concept": "weapon.firearm"
     },
     {
       "term": "nine-millimeter",
@@ -65022,16 +63590,8 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "noa",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "noa argamani",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "noah",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "nomercy",
@@ -65114,24 +63674,12 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "nosed",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "not one jew alive",
       "concept": "threat.direct"
     },
     {
       "term": "not one will survive",
       "concept": "threat.direct"
-    },
-    {
-      "term": "nothing",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "noticing",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "nova massacre",
@@ -65304,10 +63852,6 @@
     {
       "term": "o9a",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "oath",
-      "concept": "violence.terrorism"
     },
     {
       "term": "oath keepers",
@@ -65798,10 +64342,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "occupied",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "occupier",
       "concept": "hate.anti_israel"
     },
@@ -65846,10 +64386,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "octopus",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "odal",
       "concept": "hate.neonazi"
     },
@@ -65878,8 +64414,8 @@
       "concept": "violence.killing"
     },
     {
-      "term": "offensive",
-      "concept": "hate.anti_israel"
+      "term": "offensive grenade",
+      "concept": "weapon.explosive"
     },
     {
       "term": "offing",
@@ -65896,18 +64432,6 @@
     {
       "term": "offs",
       "concept": "violence.killing"
-    },
-    {
-      "term": "oligarch",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "oligarchs",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "oligarchy",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "olympics",
@@ -65938,7 +64462,7 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "onyx",
+      "term": "oniks missile",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -65971,10 +64495,6 @@
     },
     {
       "term": "openfire",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "opening",
       "concept": "violence.killing"
     },
     {
@@ -66046,6 +64566,14 @@
       "concept": "weapon.drone"
     },
     {
+      "term": "orlan-10",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "orlan-30",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "osama",
       "concept": "violence.terrorism"
     },
@@ -66082,14 +64610,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "overlord",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "overlords",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "overpressure",
       "concept": "weapon.explosive"
     },
@@ -66110,10 +64630,6 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "owned",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "oxime",
       "concept": "weapon.cbrn"
     },
@@ -66124,6 +64640,10 @@
     {
       "term": "oyvey",
       "concept": "hate.antisemitism"
+    },
+    {
+      "term": "p-800 oniks",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "p0ison",
@@ -66222,10 +64742,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "palestine",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "palestine liberation front",
       "concept": "violence.terrorism"
     },
@@ -66294,22 +64810,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "paraglider",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "paraglider",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "paragliders",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "paragliders",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "paralyze",
       "concept": "violence.assault"
     },
@@ -66374,10 +64874,6 @@
       "concept": "hate.dehumanization"
     },
     {
-      "term": "parasitism",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "parcel bomb",
       "concept": "weapon.explosive"
     },
@@ -66388,10 +64884,6 @@
     {
       "term": "parcelbomb",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "parentheses",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "paring",
@@ -66440,10 +64932,6 @@
     {
       "term": "passover massacre",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "pathetic",
-      "concept": "hate.slur"
     },
     {
       "term": "pathogen",
@@ -66499,6 +64987,10 @@
     },
     {
       "term": "paveh",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "paveh cruise missile",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -66614,6 +65106,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "pecheneg machine gun",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "peckerwood",
       "concept": "hate.neonazi"
     },
@@ -66622,20 +65118,12 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "pedestrian",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "pedo",
       "concept": "hate.slur"
     },
     {
       "term": "pedophile",
       "concept": "hate.slur"
-    },
-    {
-      "term": "peen",
-      "concept": "weapon.blade"
     },
     {
       "term": "pellet",
@@ -66676,10 +65164,6 @@
     {
       "term": "penknives",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "penny",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "penny pincher",
@@ -66750,16 +65234,8 @@
       "concept": "hate.slur"
     },
     {
-      "term": "pestilence",
-      "concept": "hate.slur"
-    },
-    {
       "term": "pestis",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "pests",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "petn",
@@ -66934,10 +65410,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "pike",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "pikes",
       "concept": "weapon.blade"
     },
@@ -66968,14 +65440,6 @@
     {
       "term": "pilum",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "pimp",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "pincher",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "pineapple grenade",
@@ -67058,10 +65522,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "piss",
-      "concept": "hate.slur"
-    },
-    {
       "term": "piss off",
       "concept": "hate.slur"
     },
@@ -67118,19 +65578,7 @@
       "concept": "hate.dehumanization"
     },
     {
-      "term": "plague",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "plague",
-      "concept": "hate.dehumanization"
-    },
-    {
       "term": "plague-ridden",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "plagues",
       "concept": "hate.dehumanization"
     },
     {
@@ -67178,10 +65626,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "plot",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "plot to attack",
       "concept": "threat.direct"
     },
@@ -67204,14 +65648,6 @@
     {
       "term": "ploughs",
       "concept": "violence.general"
-    },
-    {
-      "term": "plow",
-      "concept": "violence.general"
-    },
-    {
-      "term": "plow",
-      "concept": "violence.terrorism"
     },
     {
       "term": "plow into",
@@ -67248,18 +65684,6 @@
     {
       "term": "plundered",
       "concept": "violence.assault"
-    },
-    {
-      "term": "plutocracy",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "plutocrat",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "plutocrats",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "plutonium",
@@ -67722,22 +66146,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "poland",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "pole",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "pole",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "pole",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "polearm",
       "concept": "weapon.blade"
     },
@@ -67790,10 +66198,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "polytheist",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ponary",
       "concept": "violence.genocide"
     },
@@ -67830,14 +66234,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "pops",
-      "concept": "violence.general"
-    },
-    {
-      "term": "popular",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "popular front",
       "concept": "violence.terrorism"
     },
@@ -67858,24 +66254,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "porch",
-      "concept": "hate.slur"
-    },
-    {
       "term": "porch monkey",
       "concept": "hate.slur"
     },
     {
       "term": "porchmonkey",
       "concept": "hate.slur"
-    },
-    {
-      "term": "pos",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "position",
-      "concept": "violence.torture"
     },
     {
       "term": "potassium",
@@ -67916,14 +66300,6 @@
     {
       "term": "pound",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "pow",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "pows",
-      "concept": "violence.torture"
     },
     {
       "term": "ppk",
@@ -68014,10 +66390,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "pride",
-      "concept": "hate.neonazi"
-    },
-    {
       "term": "primacord",
       "concept": "weapon.explosive"
     },
@@ -68040,10 +66412,6 @@
     {
       "term": "prisoners",
       "concept": "violence.torture"
-    },
-    {
-      "term": "privilege",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "projectile",
@@ -68126,10 +66494,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "protocols",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "protocols of the elders of zion",
       "concept": "hate.antisemitism"
     },
@@ -68176,10 +66540,6 @@
     {
       "term": "prussicacid",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "pry",
-      "concept": "weapon.blade"
     },
     {
       "term": "pry bar",
@@ -68298,14 +66658,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "pump",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "pump",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "pump action",
       "concept": "weapon.firearm"
     },
@@ -68320,14 +66672,6 @@
     {
       "term": "punani",
       "concept": "hate.slur"
-    },
-    {
-      "term": "punch",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "punch",
-      "concept": "violence.killing"
     },
     {
       "term": "punched",
@@ -68424,22 +66768,6 @@
     {
       "term": "punishments",
       "concept": "violence.general"
-    },
-    {
-      "term": "puppeteer",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "puppeteers",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "puppetmaster",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "puppetmasters",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "purge",
@@ -68674,6 +67002,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "qlz-87",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "quadcopter",
       "concept": "weapon.drone"
     },
@@ -68710,6 +67042,14 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "quds-3 missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "quds-4 missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "quisling",
       "concept": "hate.neonazi"
     },
@@ -68723,6 +67063,14 @@
     },
     {
       "term": "qw-1",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "qw-1 manpads",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "qw-2 manpads",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -68776,10 +67124,6 @@
     {
       "term": "rabid dog",
       "concept": "hate.slur"
-    },
-    {
-      "term": "race",
-      "concept": "violence.genocide"
     },
     {
       "term": "race war",
@@ -68922,10 +67266,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "rage",
-      "concept": "threat.direct"
-    },
-    {
       "term": "raghead",
       "concept": "hate.slur"
     },
@@ -68940,10 +67280,6 @@
     {
       "term": "rahowa",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "raid",
-      "concept": "violence.assault"
     },
     {
       "term": "raided",
@@ -68966,10 +67302,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "rail",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "railgun",
       "concept": "weapon.military"
     },
@@ -68980,6 +67312,10 @@
     {
       "term": "rain fire",
       "concept": "threat.direct"
+    },
+    {
+      "term": "rainbow ch-4",
+      "concept": "weapon.drone"
     },
     {
       "term": "ram",
@@ -69064,10 +67400,6 @@
     {
       "term": "rams",
       "concept": "violence.general"
-    },
-    {
-      "term": "ran",
-      "concept": "violence.terrorism"
     },
     {
       "term": "ran over",
@@ -69428,22 +67760,6 @@
     {
       "term": "rassenschande",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "rat",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "rat",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "rats",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "rats",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "ravage",
@@ -69934,10 +68250,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "real",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "real ira",
       "concept": "violence.terrorism"
     },
@@ -70034,6 +68346,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "red arrow 8",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "red beam",
       "concept": "weapon.general"
     },
@@ -70084,10 +68400,6 @@
     {
       "term": "redtriangle",
       "concept": "hate.anti_israel"
-    },
-    {
-      "term": "refuse",
-      "concept": "hate.slur"
     },
     {
       "term": "regicide",
@@ -70142,10 +68454,6 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "remains",
-      "concept": "violence.killing"
-    },
-    {
       "term": "remington",
       "concept": "weapon.firearm"
     },
@@ -70186,36 +68494,20 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "remove",
+      "term": "remove kebab",
       "concept": "hate.slur"
     },
     {
       "term": "remove kebab",
-      "concept": "hate.slur"
+      "concept": "hate.neonazi"
     },
     {
       "term": "remove the jews from the world",
       "concept": "hate.dehumanization"
     },
     {
-      "term": "reparation",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "reparations",
-      "concept": "threat.retaliation"
-    },
-    {
       "term": "repentance",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "replace",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "replacement",
-      "concept": "hate.neonazi"
     },
     {
       "term": "replacementism",
@@ -70227,14 +68519,6 @@
     },
     {
       "term": "replacementists",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "replacer",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "replacers",
       "concept": "hate.antisemitism"
     },
     {
@@ -70270,10 +68554,6 @@
       "concept": "threat.retaliation"
     },
     {
-      "term": "resistance",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "resistance against israel",
       "concept": "threat.direct"
     },
@@ -70282,8 +68562,8 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "responsibility",
-      "concept": "violence.terrorism"
+      "term": "restraints",
+      "concept": "violence.torture"
     },
     {
       "term": "retaliate",
@@ -70514,10 +68794,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "revolution",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "revolutionary",
       "concept": "violence.terrorism"
     },
@@ -70546,7 +68822,19 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "rgd-5 grenade",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "rgd5",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "rgn grenade",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "rgo grenade",
       "concept": "weapon.explosive"
     },
     {
@@ -70622,10 +68910,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "rig",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "rimjob",
       "concept": "hate.slur"
     },
@@ -70670,10 +68954,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "ritual",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "ritual murder by jews",
       "concept": "hate.antisemitism"
     },
@@ -70696,14 +68976,6 @@
     {
       "term": "rivers of blood",
       "concept": "threat.direct"
-    },
-    {
-      "term": "roach",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "roaches",
-      "concept": "hate.slur"
     },
     {
       "term": "roadside",
@@ -70834,16 +69106,12 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "rodent",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "rodents",
-      "concept": "hate.slur"
-    },
-    {
       "term": "rodger",
       "concept": "violence.general"
+    },
+    {
+      "term": "roket-san cirit",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "roof knocking",
@@ -70852,10 +69120,6 @@
     {
       "term": "roofknocking",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "rootless",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "rootless cosmopolitan",
@@ -70876,10 +69140,6 @@
     {
       "term": "rosen",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "rot",
-      "concept": "hate.slur"
     },
     {
       "term": "rot in hell",
@@ -70918,8 +69178,16 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "rpg-26",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "rpg-29",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "rpg-29 vampir",
+      "concept": "weapon.firearm"
     },
     {
       "term": "rpg-7",
@@ -70990,10 +69258,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "rubbing",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "ruger",
       "concept": "weapon.firearm"
     },
@@ -71008,14 +69272,6 @@
     {
       "term": "ruhollah khomeini",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "ruin",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "ruin",
-      "concept": "violence.general"
     },
     {
       "term": "ruined",
@@ -71554,10 +69810,6 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "sack",
-      "concept": "violence.assault"
-    },
-    {
       "term": "sacked",
       "concept": "violence.assault"
     },
@@ -71698,22 +69950,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "sanhedrin",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "sap",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "sap",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "saps",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "saraf",
       "concept": "weapon.missile_rocket"
     },
@@ -71740,10 +69976,6 @@
     {
       "term": "sarona market attack",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "satan",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "satanic",
@@ -71822,10 +70054,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "sawn",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "sawn-off",
       "concept": "weapon.firearm"
     },
@@ -71896,14 +70124,6 @@
     {
       "term": "scalps",
       "concept": "violence.killing"
-    },
-    {
-      "term": "scar",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "scar",
-      "concept": "weapon.firearm"
     },
     {
       "term": "scar-h",
@@ -72038,10 +70258,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "screwdriver",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "scud",
       "concept": "weapon.missile_rocket"
     },
@@ -72068,14 +70284,6 @@
     {
       "term": "scudd",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "scum",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "scum",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "scumbag",
@@ -72186,10 +70394,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "semi",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "semi-auto",
       "concept": "weapon.firearm"
     },
@@ -72214,28 +70418,12 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "semite",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "semites",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "semitic",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "semitism",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "semtex",
       "concept": "weapon.explosive"
     },
     {
-      "term": "send",
-      "concept": "violence.general"
+      "term": "semtex-h",
+      "concept": "weapon.explosive"
     },
     {
       "term": "send to hell",
@@ -73106,10 +71294,6 @@
       "concept": "violence.arson"
     },
     {
-      "term": "setting",
-      "concept": "violence.arson"
-    },
-    {
       "term": "setting fire",
       "concept": "violence.arson"
     },
@@ -73134,10 +71318,6 @@
       "concept": "threat.retaliation"
     },
     {
-      "term": "settler",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "settler colonial",
       "concept": "hate.anti_israel"
     },
@@ -73155,10 +71335,6 @@
     },
     {
       "term": "settlercolony",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "settlers",
       "concept": "hate.anti_israel"
     },
     {
@@ -73192,10 +71368,6 @@
     {
       "term": "severed head",
       "concept": "violence.killing"
-    },
-    {
-      "term": "sewage",
-      "concept": "hate.slur"
     },
     {
       "term": "sexual",
@@ -73354,6 +71526,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "shahed-101",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "shahed-129",
       "concept": "weapon.drone"
     },
@@ -73363,6 +71539,10 @@
     },
     {
       "term": "shahed-136",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "shahed-238",
       "concept": "weapon.drone"
     },
     {
@@ -73508,10 +71688,6 @@
     {
       "term": "sharpshooters",
       "concept": "violence.killing"
-    },
-    {
-      "term": "shat",
-      "concept": "hate.slur"
     },
     {
       "term": "shatila",
@@ -73744,14 +71920,6 @@
     {
       "term": "shiri bibas",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "shirts",
-      "concept": "hate.neonazi"
-    },
-    {
-      "term": "shit",
-      "concept": "hate.slur"
     },
     {
       "term": "shitbag",
@@ -75342,12 +73510,16 @@
       "concept": "threat.direct"
     },
     {
-      "term": "shoulder",
+      "term": "shoulder fired",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "shoulder-fired",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "shoulder-fired",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "shoulder-fired missile",
@@ -75574,14 +73746,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "silo",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "silver",
-      "concept": "hate.neonazi"
-    },
-    {
       "term": "silver fulminate",
       "concept": "weapon.explosive"
     },
@@ -75600,10 +73764,6 @@
     {
       "term": "sinai",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "single",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "sink them",
@@ -75790,10 +73950,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "slap",
-      "concept": "violence.assault"
-    },
-    {
       "term": "slapjack",
       "concept": "weapon.general"
     },
@@ -75864,14 +74020,6 @@
     {
       "term": "slaughter",
       "concept": "violence.killing"
-    },
-    {
-      "term": "slaughter",
-      "concept": "violence.general"
-    },
-    {
-      "term": "slaughter",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "slaughter a chabad house",
@@ -76362,10 +74510,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "sleep",
-      "concept": "violence.torture"
-    },
-    {
       "term": "sleep deprivation",
       "concept": "violence.torture"
     },
@@ -76474,14 +74618,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "slug",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "slug",
-      "concept": "weapon.ammunition"
-    },
-    {
       "term": "slugs",
       "concept": "weapon.general"
     },
@@ -76492,10 +74628,6 @@
     {
       "term": "slugs",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "slut",
-      "concept": "hate.slur"
     },
     {
       "term": "sluts",
@@ -76538,10 +74670,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "smallhat",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "smallhats",
       "concept": "hate.antisemitism"
     },
@@ -76564,10 +74692,6 @@
     {
       "term": "smash",
       "concept": "violence.killing"
-    },
-    {
-      "term": "smash",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "smash the zionist state",
@@ -76626,10 +74750,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "smirking",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "smirkingmerchant",
       "concept": "hate.antisemitism"
     },
@@ -76659,6 +74779,10 @@
     },
     {
       "term": "smoke grenade",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "smoke grenades",
       "concept": "weapon.explosive"
     },
     {
@@ -76748,22 +74872,6 @@
     {
       "term": "smuggling tunnel",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "snake",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "snake",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "snakes",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "snakes",
-      "concept": "hate.dehumanization"
     },
     {
       "term": "snatch",
@@ -76930,14 +75038,6 @@
       "concept": "violence.arson"
     },
     {
-      "term": "soap",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "sob",
-      "concept": "hate.slur"
-    },
-    {
       "term": "sobibor",
       "concept": "violence.genocide"
     },
@@ -76951,10 +75051,6 @@
     },
     {
       "term": "sociopath",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "sod",
       "concept": "hate.slur"
     },
     {
@@ -77026,10 +75122,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "soil",
-      "concept": "violence.genocide"
-    },
-    {
       "term": "soleimani",
       "concept": "violence.terrorism"
     },
@@ -77046,12 +75138,16 @@
       "concept": "violence.torture"
     },
     {
+      "term": "solntsepek",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "solntsepyok",
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "solution",
-      "concept": "hate.anti_israel"
+      "term": "som cruise missile",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "soman",
@@ -90286,10 +88382,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "stab",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "stab a chabad house",
       "concept": "threat.direct"
     },
@@ -90762,10 +88854,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "staff",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "stage club",
       "concept": "violence.terrorism"
     },
@@ -90820,10 +88908,6 @@
     {
       "term": "starstreak",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "started",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "starter-pistol",
@@ -90950,12 +89034,28 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "stick of dynamite",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "sticker",
       "concept": "weapon.general"
     },
     {
       "term": "sticks",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "sticks of dynamite",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "sticky bomb",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "sticky bombs",
+      "concept": "weapon.explosive"
     },
     {
       "term": "stiletto",
@@ -90982,12 +89082,16 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "stocks",
-      "concept": "weapon.firearm"
+      "term": "stm alpagu",
+      "concept": "weapon.drone"
     },
     {
-      "term": "stolen",
-      "concept": "hate.anti_israel"
+      "term": "stm kargu",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "stocks",
+      "concept": "weapon.firearm"
     },
     {
       "term": "stomp",
@@ -91230,10 +89334,6 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "straussian",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "straves",
       "concept": "weapon.firearm"
     },
@@ -91258,6 +89358,18 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "strela manpads",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "strela-2",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "strela-3",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "stress",
       "concept": "violence.torture"
     },
@@ -91266,28 +89378,12 @@
       "concept": "violence.torture"
     },
     {
-      "term": "strike",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "strike",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "striker",
       "concept": "violence.assault"
     },
     {
       "term": "striker",
       "concept": "weapon.drone"
-    },
-    {
-      "term": "strikes",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "striking",
-      "concept": "violence.assault"
     },
     {
       "term": "strontium",
@@ -91331,6 +89427,10 @@
     },
     {
       "term": "stun grenade",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "stun grenades",
       "concept": "weapon.explosive"
     },
     {
@@ -91542,18 +89642,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "subverter",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "subverters",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "suck",
-      "concept": "hate.slur"
-    },
-    {
       "term": "suck my",
       "concept": "hate.slur"
     },
@@ -91654,6 +89742,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "suicide belts",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "suicide bomb",
       "concept": "weapon.explosive"
     },
@@ -91716,6 +89808,10 @@
     {
       "term": "suicide vest",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "suicide vests",
+      "concept": "weapon.explosive"
     },
     {
       "term": "suicide-belt",
@@ -91870,10 +89966,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "surface",
-      "concept": "weapon.drone"
-    },
-    {
       "term": "surface-to-air",
       "concept": "weapon.missile_rocket"
     },
@@ -91932,10 +90024,6 @@
     {
       "term": "swastikas",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "swat",
-      "concept": "violence.terrorism"
     },
     {
       "term": "swatted",
@@ -92042,10 +90130,6 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "synagogue",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "synagogue of satan",
       "concept": "hate.antisemitism"
     },
@@ -92132,6 +90216,14 @@
     {
       "term": "tahrir",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "tai aksungur",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "tai anka",
+      "concept": "weapon.drone"
     },
     {
       "term": "taint",
@@ -92234,24 +90326,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "takes",
-      "concept": "threat.direct"
-    },
-    {
       "term": "takfir",
       "concept": "violence.terrorism"
     },
     {
       "term": "takfiri",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "taking",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "taking",
-      "concept": "violence.general"
     },
     {
       "term": "taking hostages",
@@ -92266,23 +90346,11 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "talmudic",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "talmudic evil",
       "concept": "hate.antisemitism"
     },
     {
       "term": "talmudism",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "talmudist",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "talmudists",
       "concept": "hate.antisemitism"
     },
     {
@@ -92354,19 +90422,11 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "tap",
-      "concept": "violence.general"
-    },
-    {
       "term": "tapped",
       "concept": "violence.general"
     },
     {
       "term": "tapping",
-      "concept": "violence.general"
-    },
-    {
-      "term": "taps",
       "concept": "violence.general"
     },
     {
@@ -92478,16 +90538,8 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "teach",
-      "concept": "threat.direct"
-    },
-    {
       "term": "teach them a lesson",
       "concept": "threat.direct"
-    },
-    {
-      "term": "tear",
-      "concept": "weapon.firearm"
     },
     {
       "term": "tear gas",
@@ -92538,10 +90590,6 @@
       "concept": "hate.anti_israel"
     },
     {
-      "term": "tentacles",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "terminate",
       "concept": "violence.general"
     },
@@ -92568,14 +90616,6 @@
     {
       "term": "termination",
       "concept": "violence.general"
-    },
-    {
-      "term": "termite",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "termites",
-      "concept": "hate.slur"
     },
     {
       "term": "terrie",
@@ -92744,14 +90784,6 @@
     {
       "term": "terroristically",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "terrorists",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "terrorists",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "terrorization",
@@ -106822,6 +104854,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "threaten to hurt",
+      "concept": "threat.direct"
+    },
+    {
       "term": "threatened",
       "concept": "violence.terrorism"
     },
@@ -107010,10 +105046,6 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "tick",
-      "concept": "threat.direct"
-    },
-    {
       "term": "tick tock",
       "concept": "threat.direct"
     },
@@ -107080,10 +105112,6 @@
     {
       "term": "timothy mcveigh",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "tiny",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "tiny hat",
@@ -107158,6 +105186,14 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "tnt block",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "tnt explosive",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "toad stabber",
       "concept": "weapon.general"
     },
@@ -107170,20 +105206,12 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "tock",
-      "concept": "threat.direct"
-    },
-    {
       "term": "toe tag",
       "concept": "violence.general"
     },
     {
       "term": "tokarev",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "toll",
-      "concept": "violence.killing"
     },
     {
       "term": "tomahawk",
@@ -107218,19 +105246,15 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "tool",
-      "concept": "weapon.general"
-    },
-    {
-      "term": "tool",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "toolie",
       "concept": "weapon.general"
     },
     {
       "term": "toophan",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "toophan atgm",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -107256,10 +105280,6 @@
     {
       "term": "toppling",
       "concept": "violence.general"
-    },
-    {
-      "term": "tor",
-      "concept": "weapon.missile_rocket"
     },
     {
       "term": "torch",
@@ -107726,6 +105746,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "tornado-s",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "torpedo",
       "concept": "weapon.missile_rocket"
     },
@@ -107826,16 +105850,16 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "tos-1a",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "tos1",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "tosser",
       "concept": "hate.slur"
-    },
-    {
-      "term": "total",
-      "concept": "violence.genocide"
     },
     {
       "term": "total aryan victory",
@@ -107871,10 +105895,6 @@
     },
     {
       "term": "toufan",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "tow",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -108026,10 +106046,6 @@
       "concept": "violence.kidnapping"
     },
     {
-      "term": "training",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "training camp",
       "concept": "violence.terrorism"
     },
@@ -108078,10 +106094,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "trap",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "trapped",
       "concept": "violence.terrorism"
     },
@@ -108090,24 +106102,12 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "trash",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "trash",
-      "concept": "hate.dehumanization"
-    },
-    {
       "term": "trauma",
       "concept": "violence.assault"
     },
     {
       "term": "traumatic",
       "concept": "violence.assault"
-    },
-    {
-      "term": "tray",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "treason",
@@ -108154,16 +106154,16 @@
       "concept": "weapon.general"
     },
     {
+      "term": "trg-300 tiger",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "triacetone",
       "concept": "weapon.explosive"
     },
     {
       "term": "triacetone triperoxide",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "tribe",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "trident",
@@ -108242,10 +106242,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "troll",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "troon",
       "concept": "hate.slur"
     },
@@ -108284,6 +106280,10 @@
     {
       "term": "truck bombs",
       "concept": "weapon.general"
+    },
+    {
+      "term": "truck ramming",
+      "concept": "violence.terrorism"
     },
     {
       "term": "truck-bomb",
@@ -108382,14 +106382,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "tumor",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "tumor",
-      "concept": "hate.anti_israel"
-    },
-    {
       "term": "tunnel shaft",
       "concept": "violence.terrorism"
     },
@@ -108422,12 +106414,12 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "turnerdiaries",
+      "term": "turner diaries",
       "concept": "hate.neonazi"
     },
     {
-      "term": "twat",
-      "concept": "hate.slur"
+      "term": "turnerdiaries",
+      "concept": "hate.neonazi"
     },
     {
       "term": "twats",
@@ -108442,12 +106434,20 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "twit",
-      "concept": "hate.slur"
-    },
-    {
       "term": "type 56",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "type 56 rifle",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "type 63 107mm",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "type 63 rocket",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "type-56",
@@ -108582,6 +106582,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "umtas missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "unabomber",
       "concept": "hate.neonazi"
     },
@@ -108596,10 +106600,6 @@
     {
       "term": "unaliving",
       "concept": "violence.general"
-    },
-    {
-      "term": "und",
-      "concept": "violence.genocide"
     },
     {
       "term": "underbarrel",
@@ -108722,10 +106722,6 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "unsafe",
-      "concept": "threat.intimidation"
-    },
-    {
       "term": "unserialized",
       "concept": "weapon.firearm"
     },
@@ -108794,10 +106790,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "urea",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "urea nitrate",
       "concept": "weapon.explosive"
     },
@@ -108822,28 +106814,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "usurer",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "usurers",
-      "concept": "hate.antisemitism"
-    },
-    {
-      "term": "usurious",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "usurper",
       "concept": "hate.anti_israel"
     },
     {
       "term": "usurpers",
       "concept": "hate.anti_israel"
-    },
-    {
-      "term": "usury",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "usv",
@@ -108918,20 +106894,8 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "val",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "valknut",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "vampire",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "vampires",
-      "concept": "hate.slur"
     },
     {
       "term": "vampiric",
@@ -109138,6 +107102,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "verba manpads",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "vermin",
       "concept": "hate.slur"
     },
@@ -109170,10 +107138,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "vey",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "vibrator",
       "concept": "hate.slur"
     },
@@ -109188,30 +107152,6 @@
     {
       "term": "vikhr",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "vindicate",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "vindicated",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "vindicates",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "vindicating",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "vindication",
-      "concept": "threat.retaliation"
-    },
-    {
-      "term": "vindications",
-      "concept": "threat.retaliation"
     },
     {
       "term": "vindictive",
@@ -109302,14 +107242,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "viper",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "vipers",
-      "concept": "hate.slur"
-    },
-    {
       "term": "viral",
       "concept": "weapon.cbrn"
     },
@@ -109370,19 +107302,11 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "vow",
-      "concept": "threat.direct"
-    },
-    {
       "term": "vowed",
       "concept": "threat.direct"
     },
     {
       "term": "vowing",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "vows",
       "concept": "threat.direct"
     },
     {
@@ -109442,10 +107366,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "wadi",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "wadi haddad",
       "concept": "violence.terrorism"
     },
@@ -109490,10 +107410,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "walking",
-      "concept": "threat.direct"
-    },
-    {
       "term": "wallop",
       "concept": "violence.killing"
     },
@@ -109512,10 +107428,6 @@
     {
       "term": "walther",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "wank",
-      "concept": "hate.slur"
     },
     {
       "term": "wanker",
@@ -109586,10 +107498,6 @@
       "concept": "weapon.ammunition"
     },
     {
-      "term": "warn",
-      "concept": "threat.direct"
-    },
-    {
       "term": "warned",
       "concept": "threat.direct"
     },
@@ -109644,10 +107552,6 @@
     {
       "term": "warthog",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "wasn't",
-      "concept": "hate.antisemitism"
     },
     {
       "term": "waste",
@@ -109712,10 +107616,6 @@
     {
       "term": "watercannons",
       "concept": "weapon.general"
-    },
-    {
-      "term": "wax",
-      "concept": "violence.general"
     },
     {
       "term": "waxed",
@@ -128994,10 +126894,6 @@
       "concept": "hate.neonazi"
     },
     {
-      "term": "weimar",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "weimarization",
       "concept": "hate.antisemitism"
     },
@@ -129202,8 +127098,12 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "wipe",
-      "concept": "hate.anti_israel"
+      "term": "wing loong",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "wing loong ii",
+      "concept": "weapon.drone"
     },
     {
       "term": "wipe israel off the face of the earth",
@@ -130106,10 +128006,6 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "wolf",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "wolfsangel",
       "concept": "hate.neonazi"
     },
@@ -130140,18 +128036,6 @@
     {
       "term": "world war 3",
       "concept": "threat.direct"
-    },
-    {
-      "term": "worms",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "worms",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "worthless",
-      "concept": "hate.slur"
     },
     {
       "term": "wotan",
@@ -130270,6 +128154,14 @@
       "concept": "violence.general"
     },
     {
+      "term": "ws-1 mlrs",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "ws-2 mlrs",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "ww3",
       "concept": "threat.direct"
     },
@@ -130376,10 +128268,6 @@
     {
       "term": "yellowcake",
       "concept": "weapon.cbrn"
-    },
-    {
-      "term": "yemen",
-      "concept": "hate.anti_israel"
     },
     {
       "term": "yemen blockade",
@@ -130490,10 +128378,6 @@
       "concept": "threat.direct"
     },
     {
-      "term": "yourself",
-      "concept": "violence.general"
-    },
-    {
       "term": "ywnru",
       "concept": "hate.neonazi"
     },
@@ -130552,6 +128436,10 @@
     {
       "term": "zainebiyoun",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "zala lancet",
+      "concept": "weapon.drone"
     },
     {
       "term": "zarqawi",
@@ -130787,10 +128675,6 @@
     },
     {
       "term": "zionazism",
-      "concept": "hate.anti_israel"
-    },
-    {
-      "term": "zionism",
       "concept": "hate.anti_israel"
     },
     {
@@ -131102,6 +128986,10 @@
       "concept": "violence.torture"
     },
     {
+      "term": "zip ties",
+      "concept": "violence.torture"
+    },
+    {
       "term": "zip-tied",
       "concept": "violence.torture"
     },
@@ -131122,7 +129010,15 @@
       "concept": "violence.torture"
     },
     {
+      "term": "zipties",
+      "concept": "violence.torture"
+    },
+    {
       "term": "zircon",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "zircon missile",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -131186,6 +129082,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "zolfaghar missile",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "zombie",
       "concept": "weapon.general"
     },
@@ -131236,594 +129136,6 @@
     {
       "term": "zyklonb",
       "concept": "hate.neonazi"
-    },
-    {
-      "term": "m249 saw",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "kornet atgm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "kornet missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "kornet-em",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "9k111 fagot",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "fagot atgm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "9m113 konkurs",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "konkurs atgm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "9m131 metis",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "metis-m",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "9k38 igla",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "igla manpads",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "igla-s",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "strela manpads",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "strela-2",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "strela-3",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "9k333 verba",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "verba manpads",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "grad rocket",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "grad rockets",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "bm-27 uragan",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "bm-30 smerch",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "tornado-s",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "9k720 iskander",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "iskander missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "iskander-m",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "kalibr missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "kinzhal missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "kh-47m2 kinzhal",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "kh-101 missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "oniks missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "p-800 oniks",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "zircon missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "tos-1a",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "solntsepek",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "lancet drone",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "lancet-3",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "zala lancet",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "orlan-10",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "orlan-30",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "geran-1",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "fab-3000",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "rpg-29 vampir",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "rpg-26",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "pecheneg machine gun",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "hj-8 atgm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "hongjian-8",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "red arrow 8",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "hj-12 atgm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "qw-1 manpads",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "qw-2 manpads",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "fn-6 manpads",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "feinu-6",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "wing loong",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "wing loong ii",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "ch-4 drone",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "rainbow ch-4",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "ch-5 drone",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "blowfish a3",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "type 63 rocket",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "type 63 107mm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "107mm rocket",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "ws-1 mlrs",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "ws-2 mlrs",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "type 56 rifle",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "qlz-87",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "bayraktar tb2",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "bayraktar tb3",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "bayraktar akinci",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "bayraktar kizilelma",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "tai anka",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "tai aksungur",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "kargu drone",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "stm kargu",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "stm alpagu",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "mam-l",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "mam-c",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "roket-san cirit",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "cirit missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "umtas missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "som cruise missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "bora ballistic missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "trg-300 tiger",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "mpt-76 rifle",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "kamikaze drones",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "loitering munitions",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "shahed-101",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "shahed-238",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "mohajer-10",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "ababil-3",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "ababil-5",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "karrar drone",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "arash-2",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "fadi-1",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "fadi-2",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "zolfaghar missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "khorramshahr-4",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "fattah hypersonic",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "paveh cruise missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "quds-3 missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "quds-4 missile",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "almas atgm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "toophan atgm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "dehlavieh atgm",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "lions' den",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "dynamite stick",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "dynamite sticks",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "stick of dynamite",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "sticks of dynamite",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "gelatin dynamite",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "c-4 explosive",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "c4 explosive",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "composition c4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "semtex-h",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "frag grenades",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "stun grenades",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "flashbang grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "smoke grenades",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "offensive grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "defensive grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "f-1 grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "rgd-5 grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "m67 grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "mk2 grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "rgo grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "rgn grenade",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "tnt explosive",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "tnt block",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "anfo bomb",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "ammonium nitrate bomb",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "ammonal",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "barrel bomb",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "barrel bombs",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "sticky bomb",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "sticky bombs",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "magnetic bomb",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "magnetic ied",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "suicide vests",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "suicide belts",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "efp ied",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "detonation cord",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "electric detonator",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "manacles",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "manacle",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "restraints",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "gagging",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "gags",
-      "concept": "violence.torture"
     }
   ]
 }

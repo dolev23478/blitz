@@ -260,11 +260,15 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
     // Long peaceful article that happens to mention an isolated non-violent word
     const longPeacefulArticle =
       "The university lecture on astronomy discussed the stars, planets, and galaxies. ".repeat(15) +
-      " The researchers were not afraid of the challenges.";
+      " The speaker briefly mentioned the political campaign of bds during discussion.";
     const longRes = analyzeText(longPeacefulArticle, { mode: ThreatMode.Smart });
     expect(longRes.evaluation?.wordCount).toBeGreaterThan(120);
     expect(longRes.matched).toBe(false); // Dampened! Doesn't flag whole article as a terror threat!
-    expect(longRes.evaluation?.flaggedReasons).toContain("Long text sparsity dampening applied (density: 0.58%)");
+    expect(
+      longRes.evaluation?.flaggedReasons.some((r) =>
+        r.includes("Long text sparsity dampening applied"),
+      ),
+    ).toBe(true);
   });
 
   it("handles character repetition evasion without corrupting double-letter words like killer", () => {
@@ -304,7 +308,7 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
   });
 
   it("prevents false alarms on everyday innocent sentences across English, Hebrew, Arabic, and Farsi", () => {
-    // 1. English: words like club, scissors, laptop, driving, shoes, entity
+    // 1. English: words like club, scissors, laptop, driving, shoes, entity, kitchen, machine, main, happy, etc.
     const innocentEn = [
       "Welcome to the chess club meeting",
       "I am driving my car to the office",
@@ -316,7 +320,38 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       "This is a legal business entity",
       "Please pass me the scissors for cutting paper",
       "I ate a banana and an apple for breakfast",
-      "Let us schedule a conference call tomorrow morning"
+      "Let us schedule a conference call tomorrow morning",
+      "Happy birthday to you!",
+      "I am cooking dinner in the kitchen",
+      "We are training a machine learning model",
+      "Merge the changes into the main branch",
+      "Our company mission is to provide great service",
+      "Please wait a moment while the page loads",
+      "Do it yourself tutorial",
+      "He is listening to a popular song",
+      "I applied for a new job position",
+      "For example, you can use this function",
+      "The students are studying for the final exam",
+      "We believe in freedom of speech and expression",
+      "Please send me an email with the details",
+      "I drank a cup of hot coffee this morning",
+      "She wants to teach English at the university",
+      "We respect the rule of law in democracy",
+      "The staff meeting starts at 10 AM",
+      "What is the total score of the game?",
+      "The water surface was calm and still",
+      "Never mind, we can do it tomorrow",
+      "Nothing is wrong with the code",
+      "He works as a real estate agent",
+      "My left shoulder hurts after exercising",
+      "We signed a business contract yesterday",
+      "Take accountability for your decisions",
+      "I love Israel and Israeli culture",
+      "We visited an ancient synagogue in Prague",
+      "A pedestrian was crossing the street",
+      "Node.js garbage collection cleans up memory",
+      "Please remove the file from the directory",
+      "Doctors treated his ear infection"
     ];
     for (const s of innocentEn) {
       const res = analyzeText(s, "en");
@@ -324,7 +359,7 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       expect(res.terms).toHaveLength(0);
     }
 
-    // 2. Hebrew: words like שאלה, מפתח, בירה, שנקל, בנקל, מטבח, יהלום, שירה, צרור, סופה
+    // 2. Hebrew: words like שאלה, מפתח, בירה, שנקל, בנקל, מטבח, יהלום, שירה, צרור, סופה, הטבח, וכו'
     const innocentHe = [
       "יש לי שאלה קטנה לגבי הפרויקט",
       "אני מפתח תוכנה בחברה בינלאומית",
@@ -337,7 +372,21 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       "יש לו צרור מפתחות בכיס",
       "סופה חזקה מתקרבת לאזור הצפון",
       "המהנדס בדק את התוכניות של הדירה",
-      "אין לו שום כוונת רווח בפרויקט הזה"
+      "אין לו שום כוונת רווח בפרויקט הזה",
+      "הטבח במסעדה הכין מנה מעולה",
+      "הילדים משחקים כדורגל בפארק",
+      "היא קוראת ספר מעניין בסלון",
+      "אנחנו נוסעים ברכבת לתל אביב",
+      "קניתי אוטו חדש אתמול",
+      "יש פקק תנועה גדול בכביש",
+      "שלחתי לך הודעה ומייל עם הפרטים",
+      "מזל טוב ליום ההולדת שלך",
+      "אני שותה כוס מים קרים",
+      "סיימתי את הפרויקט בהצלחה",
+      "צריך לקחת אחריות על ההחלטות",
+      "חתמנו על חוזה עסקי חדש",
+      "הכתף שלי כואבת אחרי אימון",
+      "החוק במדינה שומר על האזרחים"
     ];
     for (const s of innocentHe) {
       const res = analyzeText(s, "he");
@@ -345,7 +394,7 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       expect(res.terms).toHaveLength(0);
     }
 
-    // 3. Arabic: words like أراك, أبيض, إنسانية, إليك, الأسرة, الطائرة, إبرة, مقص, ألماس, على الإطلاق, أطلقت
+    // 3. Arabic: words like أراك, أبيض, إنسانية, إليك, الأسرة, الطائرة, إبرة, مقص, ألماس, على الإطلاق, أطلقت, فتح, رد, فرد
     const innocentAr = [
       "أنا أراك غداً إن شاء الله في المساء",
       "اشتريت قميصاً أبيض وحذاء جديداً",
@@ -364,7 +413,19 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       "رأيت قوس قزح في السماء بعد نزول المطر",
       "أطعمنا الكلب في الحديقة",
       "شاهدنا النمر في حديقة الحيوان",
-      "اشتريت جزمة مريحة للمشي"
+      "اشتريت جزمة مريحة للمشي",
+      "فتح الولد الباب",
+      "هو رد على الهاتف",
+      "كل فرد في المجتمع له دور",
+      "رصد النجوم في السماء",
+      "عبد الله طالب مجتهد",
+      "رش الماء على النباتات في الصباح",
+      "رأسي يؤلمني قليلا اليوم",
+      "أنا أطبخ العشاء في المطبخ",
+      "الطلاب يدرسون للاختبار النهائي غدا",
+      "وقعنا عقدا تجاريا جديدا",
+      "كتفي يؤلمني بعد ممارسة التمارين الرياضية",
+      "القانون يحمي جميع المواطنين"
     ];
     for (const s of innocentAr) {
       const res = analyzeText(s, "ar");
@@ -372,7 +433,7 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       expect(res.terms).toHaveLength(0);
     }
 
-    // 4. Farsi: words like می‌کنم, می‌کنند, هواپیما, قدم زدیم, بیمار, قیچی, چکش, الماس, سگ, سطل زباله
+    // 4. Farsi: words like می‌کنم, می‌کنند, هواپیما, قدم زدیم, بیمار, قیچی, چکش, الماس, سگ, سطل زباله, زدن, کاخ, آرش, صمد, دار, نفت
     const innocentFa = [
       "سلام صبح بخیر حال شما چطوره",
       "من در یک شرکت نرم‌افزاری به عنوان برنامه‌نویس کار می‌کنم",
@@ -387,7 +448,19 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
       "پلنگ در جنگل‌های دور زندگی می‌کند",
       "پزشک به بیمار یک نسخه دارو داد",
       "او در بیمارستان بستری است",
-      "آشغال‌ها را در سطل زباله ریختم"
+      "آشغال‌ها را در سطل زباله ریختم",
+      "لبخند زده و خوشحال بود",
+      "ماه تیر فصل تابستان است",
+      "کاخ گلستان در تهران بسیار دیدنی است",
+      "آرش یک مهندس نرم‌افزار است",
+      "صمد در دانشگاه درس می‌خواند",
+      "ایران دارای منابع نفت و گاز است",
+      "مادرم قالی را روی دار بافت",
+      "من در آشپزخانه شام درست می‌کنم",
+      "دانش‌آموزان برای امتحان نهایی فردا درس می‌خوانند",
+      "ما دیروز یک قرارداد تجاری جدید امضا کردیم",
+      "شانه‌ام بعد از تمرین ورزشی درد می‌کند",
+      "قانون از حقوق همه شهروندان دفاع می‌کند"
     ];
     for (const s of innocentFa) {
       const res = analyzeText(s, "fa");

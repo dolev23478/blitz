@@ -766,12 +766,12 @@
       "concept": "threat.direct"
     },
     {
-      "term": "Glock",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "glock",
       "concept": "threat.direct"
+    },
+    {
+      "term": "Glock",
+      "concept": "weapon.firearm"
     },
     {
       "term": "grad",
@@ -1190,12 +1190,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "M16",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "m16",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "M16",
+      "concept": "weapon.firearm"
     },
     {
       "term": "M4",
@@ -2246,10 +2246,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "أحماض",
-      "concept": "violence.general"
-    },
-    {
       "term": "أحمد الجعبري",
       "concept": "violence.terrorism"
     },
@@ -2414,10 +2410,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "أسيد",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "أسير",
       "concept": "violence.kidnapping"
     },
@@ -2460,6 +2452,10 @@
     {
       "term": "أشلاء الجنود",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "أصابع ديناميت",
+      "concept": "weapon.explosive"
     },
     {
       "term": "أصفاد",
@@ -2694,12 +2690,12 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "أموات",
-      "concept": "violence.killing"
+      "term": "أم العبد",
+      "concept": "weapon.explosive"
     },
     {
-      "term": "أمواس",
-      "concept": "weapon.blade"
+      "term": "أموات",
+      "concept": "violence.killing"
     },
     {
       "term": "أموت",
@@ -3062,10 +3058,6 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "إذلال",
-      "concept": "violence.torture"
-    },
-    {
       "term": "إراقة الدماء",
       "concept": "violence.killing"
     },
@@ -3102,11 +3094,11 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "إرهابياً",
+      "term": "إرهابيا",
       "concept": "violence.terrorism"
     },
     {
-      "term": "إرهابيا",
+      "term": "إرهابياً",
       "concept": "violence.terrorism"
     },
     {
@@ -3474,6 +3466,14 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "إلقاء قنابل",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "إلقاء قنبلة",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "إلقاء قنبلة من مسيرة",
       "concept": "violence.terrorism"
     },
@@ -3564,14 +3564,6 @@
     {
       "term": "إنكار الهولوكوست",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "إهانة",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "إهانه",
-      "concept": "violence.torture"
     },
     {
       "term": "إهدار دم",
@@ -3982,14 +3974,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "احتجاز",
-      "concept": "violence.kidnapping"
-    },
-    {
-      "term": "احتجاز",
-      "concept": "violence.torture"
-    },
-    {
       "term": "احتجاز رهائن",
       "concept": "violence.terrorism"
     },
@@ -4152,10 +4136,6 @@
     {
       "term": "احفاد القرده والخنازير",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "احماض",
-      "concept": "violence.general"
     },
     {
       "term": "احمد الجعبري",
@@ -4380,10 +4360,6 @@
     {
       "term": "اذبحوهم جميعا",
       "concept": "threat.direct"
-    },
-    {
-      "term": "اذلال",
-      "concept": "violence.torture"
     },
     {
       "term": "اذى",
@@ -4648,10 +4624,6 @@
     {
       "term": "استباحه الدماء",
       "concept": "violence.general"
-    },
-    {
-      "term": "استجواب",
-      "concept": "violence.torture"
     },
     {
       "term": "استدراج",
@@ -4950,10 +4922,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "اسيد",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "اسير",
       "concept": "violence.kidnapping"
     },
@@ -5084,6 +5052,10 @@
     {
       "term": "اصابة مباشرة",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "اصابع ديناميت",
+      "concept": "weapon.explosive"
     },
     {
       "term": "اصابه مباشره",
@@ -5330,11 +5302,11 @@
       "concept": "violence.torture"
     },
     {
-      "term": "اعداماً",
+      "term": "اعداما",
       "concept": "violence.killing"
     },
     {
-      "term": "اعداما",
+      "term": "اعداماً",
       "concept": "violence.killing"
     },
     {
@@ -5366,12 +5338,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "اُعدم",
-      "concept": "violence.killing"
-    },
-    {
       "term": "اعدم",
       "concept": "threat.direct"
+    },
+    {
+      "term": "اُعدم",
+      "concept": "violence.killing"
     },
     {
       "term": "اعدمت",
@@ -5386,12 +5358,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "اُعدموا",
-      "concept": "violence.killing"
-    },
-    {
       "term": "اعدموا",
       "concept": "threat.direct"
+    },
+    {
+      "term": "اُعدموا",
+      "concept": "violence.killing"
     },
     {
       "term": "اعدموه",
@@ -6086,10 +6058,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "الأسيد",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "الأسير",
       "concept": "violence.torture"
     },
@@ -6258,10 +6226,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "الإذلال",
-      "concept": "violence.torture"
-    },
-    {
       "term": "الإرباك الليلي",
       "concept": "violence.terrorism"
     },
@@ -6344,10 +6308,6 @@
     {
       "term": "الإنذار",
       "concept": "threat.direct"
-    },
-    {
-      "term": "الإهانة",
-      "concept": "violence.torture"
     },
     {
       "term": "الإهانه",
@@ -6474,14 +6434,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "الاحتجاز",
-      "concept": "violence.kidnapping"
-    },
-    {
-      "term": "الاحتجاز",
-      "concept": "violence.torture"
-    },
-    {
       "term": "الاحتراق",
       "concept": "violence.arson"
     },
@@ -6560,10 +6512,6 @@
     {
       "term": "الاذبحوا",
       "concept": "violence.killing"
-    },
-    {
-      "term": "الاذلال",
-      "concept": "violence.torture"
     },
     {
       "term": "الاذى",
@@ -6658,10 +6606,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "الاستجواب",
-      "concept": "violence.torture"
-    },
-    {
       "term": "الاستدراج",
       "concept": "violence.terrorism"
     },
@@ -6732,10 +6676,6 @@
     {
       "term": "الاسيتون",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "الاسيد",
-      "concept": "weapon.blade"
     },
     {
       "term": "الاسير",
@@ -7154,10 +7094,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "الاهانة",
-      "concept": "violence.torture"
-    },
-    {
       "term": "الاهانه",
       "concept": "violence.torture"
     },
@@ -7314,18 +7250,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "البهائم",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "البهيمة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "البهيمه",
-      "concept": "hate.slur"
-    },
-    {
       "term": "البواريد",
       "concept": "weapon.general"
     },
@@ -7404,14 +7328,6 @@
     {
       "term": "التجنيد",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "التجويع",
-      "concept": "violence.general"
-    },
-    {
-      "term": "التجويع",
-      "concept": "violence.torture"
     },
     {
       "term": "التحذير",
@@ -7938,10 +7854,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "الجلد",
-      "concept": "violence.torture"
-    },
-    {
       "term": "الجلدوا",
       "concept": "violence.torture"
     },
@@ -8050,18 +7962,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "الحبس",
-      "concept": "violence.kidnapping"
-    },
-    {
-      "term": "الحثالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الحثاله",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الحرائق",
       "concept": "violence.arson"
     },
@@ -8134,10 +8034,6 @@
       "concept": "violence.assault"
     },
     {
-      "term": "الحصد",
-      "concept": "violence.general"
-    },
-    {
       "term": "الحقراء",
       "concept": "hate.slur"
     },
@@ -8186,20 +8082,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "الخرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الخرازة",
       "concept": "weapon.firearm"
     },
     {
       "term": "الخرازه",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "الخرة",
-      "concept": "hate.slur"
     },
     {
       "term": "الخردق",
@@ -8270,10 +8158,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "الخنازير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الخنجر",
       "concept": "weapon.blade"
     },
@@ -8284,10 +8168,6 @@
     {
       "term": "الخندق",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "الخنزير",
-      "concept": "hate.slur"
     },
     {
       "term": "الخنق",
@@ -8307,14 +8187,6 @@
     },
     {
       "term": "الخوارج",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الخول",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الخولات",
       "concept": "hate.slur"
     },
     {
@@ -8392,10 +8264,6 @@
     {
       "term": "الدكوا",
       "concept": "violence.general"
-    },
-    {
-      "term": "الدم",
-      "concept": "violence.assault"
     },
     {
       "term": "الدم بالدم",
@@ -8500,10 +8368,6 @@
     {
       "term": "الديناميت",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "الديوث",
-      "concept": "hate.slur"
     },
     {
       "term": "الذابح",
@@ -8790,14 +8654,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "الزبالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الزباله",
-      "concept": "hate.slur"
-    },
-    {
       "term": "الزبي",
       "concept": "hate.slur"
     },
@@ -8918,16 +8774,8 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "السافل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "السافوط",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "الساقطة",
-      "concept": "hate.slur"
     },
     {
       "term": "الساقطه",
@@ -9846,14 +9694,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "العتلة",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "العتله",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "العدو الصهيوني",
       "concept": "hate.anti_israel"
     },
@@ -10106,10 +9946,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "الفأس",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "الفؤوس",
       "concept": "weapon.blade"
     },
@@ -10120,10 +9956,6 @@
     {
       "term": "الفاجر",
       "concept": "hate.slur"
-    },
-    {
-      "term": "الفاس",
-      "concept": "weapon.blade"
     },
     {
       "term": "الفاسق",
@@ -10356,6 +10188,10 @@
     {
       "term": "القاء قنبلة يدوية",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "القاء قنبله",
+      "concept": "weapon.explosive"
     },
     {
       "term": "القاء قنبله من مسيره",
@@ -10771,10 +10607,6 @@
     },
     {
       "term": "الكفره",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "الكلاب",
       "concept": "hate.slur"
     },
     {
@@ -11470,20 +11302,20 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "المسيّرة",
-      "concept": "weapon.military"
-    },
-    {
       "term": "المسيرة",
       "concept": "weapon.drone"
     },
     {
-      "term": "المسيّره",
+      "term": "المسيّرة",
       "concept": "weapon.military"
     },
     {
       "term": "المسيره",
       "concept": "weapon.drone"
+    },
+    {
+      "term": "المسيّره",
+      "concept": "weapon.military"
     },
     {
       "term": "المشرحة",
@@ -11492,10 +11324,6 @@
     {
       "term": "المشرحه",
       "concept": "violence.killing"
-    },
-    {
-      "term": "المشرط",
-      "concept": "weapon.blade"
     },
     {
       "term": "المشرك",
@@ -11624,10 +11452,6 @@
     {
       "term": "المعوق",
       "concept": "hate.slur"
-    },
-    {
-      "term": "المعول",
-      "concept": "weapon.blade"
     },
     {
       "term": "المغتال",
@@ -11822,10 +11646,6 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "المقلاع",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "المقيد",
       "concept": "violence.torture"
     },
@@ -11900,10 +11720,6 @@
     {
       "term": "المنتقمون",
       "concept": "violence.general"
-    },
-    {
-      "term": "المنجل",
-      "concept": "weapon.blade"
     },
     {
       "term": "المنحط",
@@ -11996,14 +11812,6 @@
     {
       "term": "الموت لليهود",
       "concept": "hate.antisemitism"
-    },
-    {
-      "term": "الموس",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "الموس",
-      "concept": "weapon.general"
     },
     {
       "term": "المولوتوف",
@@ -12558,6 +12366,10 @@
       "concept": "violence.killing"
     },
     {
+      "term": "الوعد اقترب",
+      "concept": "threat.intimidation"
+    },
+    {
       "term": "الوعد الصادق",
       "concept": "violence.terrorism"
     },
@@ -12986,6 +12798,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "ام العبد",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "ام بي 5",
       "concept": "weapon.firearm"
     },
@@ -13040,10 +12856,6 @@
     {
       "term": "اموات",
       "concept": "violence.killing"
-    },
-    {
-      "term": "امواس",
-      "concept": "weapon.blade"
     },
     {
       "term": "اموت",
@@ -13488,14 +13300,6 @@
     {
       "term": "انور العولقي",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "اهانة",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "اهانه",
-      "concept": "violence.torture"
     },
     {
       "term": "اهدار دم",
@@ -23094,6 +22898,10 @@
       "concept": "violence.general"
     },
     {
+      "term": "بنتريت",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "بنثأر",
       "concept": "violence.general"
     },
@@ -23155,6 +22963,10 @@
     },
     {
       "term": "بندقية الية",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "بندقية تايب 56",
       "concept": "weapon.firearm"
     },
     {
@@ -23414,10 +23226,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "بهائم",
-      "concept": "hate.slur"
-    },
-    {
       "term": "بهاجم",
       "concept": "violence.assault"
     },
@@ -23528,10 +23336,6 @@
     {
       "term": "بهيلفاير",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "بهيمة",
-      "concept": "hate.slur"
     },
     {
       "term": "بهيملر",
@@ -23719,6 +23523,14 @@
     },
     {
       "term": "بيرقدار",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "بيرقدار أقنجي",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "بيرقدار تي بي 2",
       "concept": "weapon.drone"
     },
     {
@@ -24034,6 +23846,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "تبادل إطلاق النار",
+      "concept": "violence.killing"
+    },
+    {
       "term": "تبادل اسرى",
       "concept": "violence.terrorism"
     },
@@ -24066,14 +23882,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "تجويع",
-      "concept": "violence.general"
-    },
-    {
-      "term": "تجويع",
-      "concept": "violence.torture"
-    },
-    {
       "term": "تجويعها",
       "concept": "violence.general"
     },
@@ -24084,6 +23892,10 @@
     {
       "term": "تحت التراب",
       "concept": "violence.general"
+    },
+    {
+      "term": "تحت النار",
+      "concept": "weapon.firearm"
     },
     {
       "term": "تحذير",
@@ -24508,6 +24320,10 @@
     {
       "term": "تصفيتهم",
       "concept": "violence.killing"
+    },
+    {
+      "term": "تصفيد",
+      "concept": "violence.torture"
     },
     {
       "term": "تصفيه",
@@ -25234,6 +25050,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "توس-1",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "توشكا",
       "concept": "weapon.missile_rocket"
     },
@@ -25275,6 +25095,10 @@
     },
     {
       "term": "تي إن تي",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "تي إيه تي بي",
       "concept": "weapon.explosive"
     },
     {
@@ -25726,14 +25550,6 @@
       "concept": "violence.torture"
     },
     {
-      "term": "جلد",
-      "concept": "violence.assault"
-    },
-    {
-      "term": "جلد",
-      "concept": "violence.torture"
-    },
-    {
       "term": "جلدوا",
       "concept": "violence.torture"
     },
@@ -25866,12 +25682,12 @@
       "concept": "violence.general"
     },
     {
-      "term": "جورج حبش",
-      "concept": "violence.terrorism"
+      "term": "جهنم بانتظاركم",
+      "concept": "threat.direct"
     },
     {
-      "term": "جوع",
-      "concept": "violence.general"
+      "term": "جورج حبش",
+      "concept": "violence.terrorism"
     },
     {
       "term": "جياع",
@@ -25926,6 +25742,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "حادث دهس",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "حارس الأسوار",
       "concept": "violence.terrorism"
     },
@@ -25962,10 +25782,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "حبس",
-      "concept": "violence.kidnapping"
-    },
-    {
       "term": "حبل المشنقة",
       "concept": "violence.killing"
     },
@@ -25974,24 +25790,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "حثالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "حثاله",
-      "concept": "hate.slur"
-    },
-    {
       "term": "حجارة السجيل",
       "concept": "violence.terrorism"
     },
     {
       "term": "حجاره السجيل",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "حذر",
-      "concept": "threat.direct"
     },
     {
       "term": "حذروا",
@@ -26362,6 +26166,14 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "حشوة بلاستيكية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "حشوة بلاستيكيه",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "حشوة جوفاء",
       "concept": "weapon.explosive"
     },
@@ -26383,10 +26195,6 @@
     },
     {
       "term": "حصارهم",
-      "concept": "violence.general"
-    },
-    {
-      "term": "حصد",
       "concept": "violence.general"
     },
     {
@@ -26412,6 +26220,10 @@
     {
       "term": "حطموا",
       "concept": "violence.assault"
+    },
+    {
+      "term": "حق الرد",
+      "concept": "threat.retaliation"
     },
     {
       "term": "حقتلك",
@@ -26508,10 +26320,6 @@
     {
       "term": "حمامات دم",
       "concept": "violence.killing"
-    },
-    {
-      "term": "حمض",
-      "concept": "violence.general"
     },
     {
       "term": "حمض الكبريتيك",
@@ -26630,10 +26438,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "خرا",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خرازة",
       "concept": "weapon.firearm"
     },
@@ -26662,10 +26466,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "خرة",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خردق",
       "concept": "weapon.firearm"
     },
@@ -26686,10 +26486,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "خره",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خزر",
       "concept": "hate.antisemitism"
     },
@@ -26704,6 +26500,10 @@
     {
       "term": "خسيس",
       "concept": "hate.slur"
+    },
+    {
+      "term": "خط النار",
+      "concept": "weapon.firearm"
     },
     {
       "term": "خطف",
@@ -26890,14 +26690,6 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "خنازير",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "خنازير",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خناق",
       "concept": "violence.killing"
     },
@@ -26920,14 +26712,6 @@
     {
       "term": "خندق",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "خنزير",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "خنزير",
-      "concept": "hate.slur"
     },
     {
       "term": "خنق",
@@ -26994,14 +26778,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "خول",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "خولات",
-      "concept": "hate.slur"
-    },
-    {
       "term": "خونة",
       "concept": "hate.slur"
     },
@@ -27040,10 +26816,6 @@
     {
       "term": "داخاو",
       "concept": "violence.genocide"
-    },
-    {
-      "term": "داس",
-      "concept": "violence.assault"
     },
     {
       "term": "داسوا",
@@ -27120,6 +26892,10 @@
     {
       "term": "دبحوهم",
       "concept": "weapon.blade"
+    },
+    {
+      "term": "دراجة مفخخة",
+      "concept": "weapon.explosive"
     },
     {
       "term": "دراغونوف",
@@ -27210,10 +26986,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "دم",
-      "concept": "violence.assault"
-    },
-    {
       "term": "دم الشهداء مش رخيص",
       "concept": "violence.general"
     },
@@ -27246,12 +27018,12 @@
       "concept": "threat.direct"
     },
     {
-      "term": "دمّر",
-      "concept": "threat.direct"
-    },
-    {
       "term": "دمر",
       "concept": "violence.assault"
+    },
+    {
+      "term": "دمّر",
+      "concept": "threat.direct"
     },
     {
       "term": "دمره",
@@ -27262,24 +27034,24 @@
       "concept": "violence.general"
     },
     {
-      "term": "دمّرهم",
-      "concept": "violence.killing"
-    },
-    {
       "term": "دمرهم",
       "concept": "threat.direct"
     },
     {
-      "term": "دمروا",
-      "concept": "threat.direct"
+      "term": "دمّرهم",
+      "concept": "violence.killing"
     },
     {
-      "term": "دمّروا",
+      "term": "دمروا",
       "concept": "threat.direct"
     },
     {
       "term": "دمروا",
       "concept": "violence.assault"
+    },
+    {
+      "term": "دمّروا",
+      "concept": "threat.direct"
     },
     {
       "term": "دمروا تل أبيب",
@@ -27466,10 +27238,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "ديوث",
-      "concept": "hate.slur"
-    },
-    {
       "term": "ذ.ب.ح",
       "concept": "threat.direct"
     },
@@ -27598,6 +27366,14 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "ذخيرة مام-إل",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "ذخيرة مام-سي",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "ذخيرة متسكعة",
       "concept": "weapon.drone"
     },
@@ -27616,10 +27392,6 @@
     {
       "term": "ذو الفقار",
       "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "رأس",
-      "concept": "violence.killing"
     },
     {
       "term": "رأس حربي",
@@ -27670,7 +27442,27 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "راجمة أوراغان",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "راجمة تايب 63",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "راجمة سميرتش",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "راجمة سولنتسبيك",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "راجمة صواريخ",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "راجمة غراد",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -27696,10 +27488,6 @@
     {
       "term": "راديكالي",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "راس",
-      "concept": "violence.killing"
     },
     {
       "term": "راس حربي",
@@ -27738,6 +27526,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "ربط بالحبال",
+      "concept": "violence.torture"
+    },
+    {
       "term": "ربك ليلي",
       "concept": "violence.terrorism"
     },
@@ -27750,11 +27542,11 @@
       "concept": "violence.assault"
     },
     {
-      "term": "رجّم",
+      "term": "رجم",
       "concept": "violence.killing"
     },
     {
-      "term": "رجم",
+      "term": "رجّم",
       "concept": "violence.killing"
     },
     {
@@ -27834,10 +27626,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "رد",
-      "concept": "violence.general"
-    },
-    {
       "term": "رد اعتبار",
       "concept": "threat.direct"
     },
@@ -27846,7 +27634,15 @@
       "concept": "violence.general"
     },
     {
+      "term": "رد انتقامي",
+      "concept": "threat.retaliation"
+    },
+    {
       "term": "رد ساحق",
+      "concept": "violence.general"
+    },
+    {
+      "term": "رد عسكري",
       "concept": "violence.general"
     },
     {
@@ -27878,11 +27674,19 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "رش",
+      "term": "رش بالرصاص",
       "concept": "weapon.firearm"
     },
     {
       "term": "رشاش",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "رشاش بي كي إم",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "رشاش بيكيسي",
       "concept": "weapon.firearm"
     },
     {
@@ -28030,7 +27834,7 @@
       "concept": "violence.killing"
     },
     {
-      "term": "رصد",
+      "term": "رصد واستهداف",
       "concept": "violence.terrorism"
     },
     {
@@ -28102,11 +27906,19 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "رمانات يدوية",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "رمانة",
       "concept": "weapon.explosive"
     },
     {
       "term": "رمانة يدوية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "رمانة يدويه",
       "concept": "weapon.explosive"
     },
     {
@@ -28150,8 +27962,20 @@
       "concept": "weapon.blade"
     },
     {
+      "term": "رمي الرصاص",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "رمي بالرصاص",
       "concept": "violence.killing"
+    },
+    {
+      "term": "رمي بالرصاص",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "رمي قنابل",
+      "concept": "weapon.explosive"
     },
     {
       "term": "رميا بالرصاص",
@@ -28207,14 +28031,6 @@
     },
     {
       "term": "زب",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زبالة",
-      "concept": "hate.slur"
-    },
-    {
-      "term": "زباله",
       "concept": "hate.slur"
     },
     {
@@ -28490,20 +28306,12 @@
       "concept": "violence.general"
     },
     {
-      "term": "سافل",
-      "concept": "hate.slur"
-    },
-    {
       "term": "سافوط",
       "concept": "violence.terrorism"
     },
     {
       "term": "ساقتلك",
       "concept": "violence.general"
-    },
-    {
-      "term": "ساقطة",
-      "concept": "hate.slur"
     },
     {
       "term": "ساقطه",
@@ -28514,12 +28322,12 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "سامّ",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "سام",
       "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "سامّ",
+      "concept": "weapon.cbrn"
     },
     {
       "term": "سام 7",
@@ -28622,6 +28430,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "سترة ناسفه",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "سترة واقية",
       "concept": "weapon.firearm"
     },
@@ -28636,6 +28448,10 @@
     {
       "term": "ستره واقيه",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "سترون الجحيم",
+      "concept": "threat.direct"
     },
     {
       "term": "ستريلا",
@@ -28890,6 +28706,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "سلاح آلي",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "سلاح أبيض",
       "concept": "weapon.general"
     },
@@ -29018,12 +28838,12 @@
       "concept": "weapon.cbrn"
     },
     {
-      "term": "سُمّ",
-      "concept": "weapon.cbrn"
-    },
-    {
       "term": "سم",
       "concept": "violence.killing"
+    },
+    {
+      "term": "سُمّ",
+      "concept": "weapon.cbrn"
     },
     {
       "term": "سم قاتل",
@@ -29046,12 +28866,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "سمّم",
-      "concept": "violence.killing"
-    },
-    {
       "term": "سمم",
       "concept": "weapon.cbrn"
+    },
+    {
+      "term": "سمّم",
+      "concept": "violence.killing"
     },
     {
       "term": "سممت",
@@ -29226,6 +29046,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "سي-4",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "سيارات مفخخة",
       "concept": "weapon.explosive"
     },
@@ -29239,6 +29063,10 @@
     },
     {
       "term": "سيارة مفخخة يقودها انتحاري",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "سيارة مفخخه",
       "concept": "weapon.explosive"
     },
     {
@@ -29322,11 +29150,19 @@
       "concept": "hate.slur"
     },
     {
+      "term": "شاهد ۱۰۱",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "شاهد 131",
       "concept": "weapon.drone"
     },
     {
       "term": "شاهد 136",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "شاهد ۱۳۶",
       "concept": "weapon.drone"
     },
     {
@@ -29690,6 +29526,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "صاروخ 107 ملم",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ آر 160",
       "concept": "violence.terrorism"
     },
@@ -29702,6 +29542,26 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صاروخ أومتاس",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ أونيكس",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ إتش جيه-8",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ إسكندر",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ إف إن-6",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ إم 75",
       "concept": "violence.terrorism"
     },
@@ -29710,8 +29570,24 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صاروخ إيغلا",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ ار 160",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "صاروخ اسكندر",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ اف ان-6",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ السهم الأحمر",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "صاروخ الماس",
@@ -29728,6 +29604,10 @@
     {
       "term": "صاروخ ام 90",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "صاروخ ايغلا",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "صاروخ باليستي",
@@ -29754,6 +29634,14 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صاروخ بورا التركي",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ تسيركون",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ جعبري",
       "concept": "violence.terrorism"
     },
@@ -29766,8 +29654,44 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صاروخ خان التركي",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ خيبر",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ خيبر شكن",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ دهلاوية",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ ذو الفقار",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ ستريلا",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ سجيل",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "صاروخ سيريت",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ طوفان",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ عماد",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "صاروخ عياش",
@@ -29786,11 +29710,35 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صاروخ فادي 1",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ فادي ١",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ فادي 2",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ فادي ٢",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ فاغوت",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ فتاح",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "صاروخ فرط صوتي",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ فلسطين",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -29810,6 +29758,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صاروخ قدس 3",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ قسام",
       "concept": "weapon.missile_rocket"
     },
@@ -29818,11 +29770,23 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صاروخ كاليبر",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ كروز",
       "concept": "weapon.missile_rocket"
     },
     {
       "term": "صاروخ كورنيت",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ كونكورس",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صاروخ كينجال",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -29842,8 +29806,16 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صاروخ ميتيس",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صاروخ نور",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "صاروخ هونغ جيان-8",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "صاروخي",
@@ -29859,6 +29831,10 @@
     },
     {
       "term": "صاعق",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "صاعق تفجير",
       "concept": "weapon.explosive"
     },
     {
@@ -29880,6 +29856,10 @@
     {
       "term": "صبرا وشاتيلا",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "صدرية ناسفة",
+      "concept": "weapon.explosive"
     },
     {
       "term": "صراصير",
@@ -30102,6 +30082,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صماد ۳",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "صماد 4",
       "concept": "violence.terrorism"
     },
@@ -30174,6 +30158,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "صواريخ 107 ملم",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صواريخ القدس",
       "concept": "violence.terrorism"
     },
@@ -30198,11 +30186,27 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "صواريخ خيبر",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صواريخ رجوم",
       "concept": "violence.terrorism"
     },
     {
+      "term": "صواريخ غراد",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صواريخ فادي",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "صواريخ كاتيوشا",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "صواريخ كورنيت",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -30215,6 +30219,10 @@
     },
     {
       "term": "صواعق",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "صواعق تفجير",
       "concept": "weapon.explosive"
     },
     {
@@ -30378,6 +30386,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "طائرة بايراكتار",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "طائرة بدون طيار",
       "concept": "weapon.drone"
     },
@@ -30394,12 +30406,24 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "طائرة لانسيت",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "طائرة مسيرة",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "طائرة هدهد",
       "concept": "weapon.drone"
     },
     {
       "term": "طائرة ورقية حارقة",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "طائرة وينغ لونغ",
+      "concept": "weapon.drone"
     },
     {
       "term": "طائرة يافا",
@@ -30478,12 +30502,12 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "طخّ",
-      "concept": "weapon.firearm"
-    },
-    {
       "term": "طخ",
       "concept": "violence.killing"
+    },
+    {
+      "term": "طخّ",
+      "concept": "weapon.firearm"
     },
     {
       "term": "طخة",
@@ -30782,10 +30806,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "عبد",
-      "concept": "hate.slur"
-    },
-    {
       "term": "عبد العزيز الرنتيسي",
       "concept": "violence.terrorism"
     },
@@ -30854,8 +30874,28 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "عبوة أرضية",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "عبوة أنبوبية",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "عبوة أنفو",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة البرق",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة الرعد",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة السجيل",
+      "concept": "weapon.explosive"
     },
     {
       "term": "عبوة العمل الفدائي",
@@ -30868,6 +30908,10 @@
     {
       "term": "عبوة انبوبية",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "عبوة برق",
+      "concept": "weapon.explosive"
     },
     {
       "term": "عبوة تلفزيونية",
@@ -30894,8 +30938,16 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "عبوة رعد",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "عبوة رعدية",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "عبوة سجيل",
+      "concept": "weapon.explosive"
     },
     {
       "term": "عبوة شواظ",
@@ -30904,6 +30956,26 @@
     {
       "term": "عبوة شواظ",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "عبوة شواظ 1",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة شواظ 2",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة شواظ 3",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة شواظ 4",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة شواظ 5",
+      "concept": "weapon.explosive"
     },
     {
       "term": "عبوة صدمية",
@@ -30926,7 +30998,15 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "عبوة لاصقه",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "عبوة محلية الصنع",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة مضادة للأفراد",
       "concept": "weapon.explosive"
     },
     {
@@ -30934,7 +31014,27 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "عبوة مغناطيسية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة مغناطيسيه",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة موجهة",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة موجهه",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "عبوة ناسفة",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "عبوة ناسفه",
       "concept": "weapon.explosive"
     },
     {
@@ -31042,14 +31142,6 @@
       "concept": "weapon.general"
     },
     {
-      "term": "عتلة",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "عتله",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "عذاب",
       "concept": "violence.torture"
     },
@@ -31058,12 +31150,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "عذّب",
-      "concept": "violence.killing"
-    },
-    {
       "term": "عذب",
       "concept": "violence.torture"
+    },
+    {
+      "term": "عذّب",
+      "concept": "violence.killing"
     },
     {
       "term": "عذّب",
@@ -31082,12 +31174,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "عذّبوا",
-      "concept": "violence.killing"
-    },
-    {
       "term": "عذبوا",
       "concept": "violence.torture"
+    },
+    {
+      "term": "عذّبوا",
+      "concept": "violence.killing"
     },
     {
       "term": "عذبوهم",
@@ -31136,6 +31228,10 @@
     {
       "term": "عصابات",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "عصابة العينين",
+      "concept": "violence.torture"
     },
     {
       "term": "عصب العينين",
@@ -31443,6 +31539,10 @@
     },
     {
       "term": "عملية ديزنغوف",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "عملية رصد",
       "concept": "violence.terrorism"
     },
     {
@@ -32074,6 +32174,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "غطاء العينين",
+      "concept": "violence.torture"
+    },
+    {
       "term": "غلوك",
       "concept": "weapon.firearm"
     },
@@ -32118,10 +32222,6 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "فأس",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "فؤاد شكر",
       "concept": "violence.terrorism"
     },
@@ -32142,6 +32242,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "فاتح ۱۱۰",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "فاجر",
       "concept": "hate.slur"
     },
@@ -32160,10 +32264,6 @@
     {
       "term": "فادي 4",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "فاس",
-      "concept": "weapon.blade"
     },
     {
       "term": "فاسق",
@@ -32902,10 +33002,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "فتح",
-      "concept": "violence.terrorism"
-    },
-    {
       "term": "فتح أبواب الجحيم",
       "concept": "threat.direct"
     },
@@ -32950,24 +33046,32 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "فتيل إشعال",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "فتيل تفجير",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "فجر",
       "concept": "threat.direct"
     },
     {
-      "term": "فجّر",
-      "concept": "threat.direct"
-    },
-    {
       "term": "فجر",
-      "concept": "violence.explosion"
-    },
-    {
-      "term": "فجّر",
       "concept": "violence.explosion"
     },
     {
       "term": "فجر",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "فجّر",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "فجّر",
+      "concept": "violence.explosion"
     },
     {
       "term": "فجر 5",
@@ -33018,19 +33122,15 @@
       "concept": "violence.explosion"
     },
     {
-      "term": "فجّرهم",
-      "concept": "violence.killing"
-    },
-    {
       "term": "فجرهم",
       "concept": "threat.direct"
     },
     {
-      "term": "فجروا",
-      "concept": "threat.direct"
+      "term": "فجّرهم",
+      "concept": "violence.killing"
     },
     {
-      "term": "فجّروا",
+      "term": "فجروا",
       "concept": "threat.direct"
     },
     {
@@ -33040,6 +33140,10 @@
     {
       "term": "فجروا",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "فجّروا",
+      "concept": "threat.direct"
     },
     {
       "term": "فجروا أنفسهم",
@@ -33050,12 +33154,12 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "فجّروه",
-      "concept": "violence.explosion"
-    },
-    {
       "term": "فجروه",
       "concept": "violence.killing"
+    },
+    {
+      "term": "فجّروه",
+      "concept": "violence.explosion"
     },
     {
       "term": "فجروها",
@@ -33122,7 +33226,11 @@
       "concept": "violence.killing"
     },
     {
-      "term": "فرد",
+      "term": "فرد سلاح",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "فرد ناري",
       "concept": "weapon.firearm"
     },
     {
@@ -33494,6 +33602,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "قادمون لقتلكم",
+      "concept": "threat.direct"
+    },
+    {
       "term": "قاذف",
       "concept": "weapon.firearm"
     },
@@ -33504,6 +33616,10 @@
     {
       "term": "قاذف سافوط",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "قاذف فامبير",
+      "concept": "weapon.firearm"
     },
     {
       "term": "قاذف قنابل",
@@ -33554,6 +33670,14 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "قالب تي إن تي",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قالب متفجر",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "قاني",
       "concept": "violence.terrorism"
     },
@@ -33602,16 +33726,16 @@
       "concept": "violence.killing"
     },
     {
+      "term": "قـتـل",
+      "concept": "threat.direct"
+    },
+    {
       "term": "قتْل",
       "concept": "violence.killing"
     },
     {
       "term": "قُتل",
       "concept": "violence.killing"
-    },
-    {
-      "term": "قـتـل",
-      "concept": "threat.direct"
     },
     {
       "term": "قتل جماعي",
@@ -34190,6 +34314,10 @@
       "concept": "weapon.blade"
     },
     {
+      "term": "قضيب ديناميت",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "قطع",
       "concept": "violence.killing"
     },
@@ -34302,6 +34430,22 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "قنابل إنزلاقية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنابل انزلاقية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنابل صوتية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنابل صوتيه",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "قنابل عنقودية",
       "concept": "weapon.explosive"
     },
@@ -34358,6 +34502,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "قناصة دراغونوف",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "قناصة عدنان",
       "concept": "violence.terrorism"
     },
@@ -34402,7 +34550,23 @@
       "concept": "threat.direct"
     },
     {
+      "term": "قنبلة آر جي دي-5",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "قنبلة أنبوبية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة إف-1",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة إم 67",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة اف-1",
       "concept": "weapon.explosive"
     },
     {
@@ -34430,6 +34594,18 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "قنبلة دخانيه",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة دفاعية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة دفاعيه",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "قنبلة ذرية",
       "concept": "weapon.explosive"
     },
@@ -34438,11 +34614,23 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "قنبلة شظايا تشظية",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "قنبلة صوتية",
       "concept": "weapon.explosive"
     },
     {
+      "term": "قنبلة صوتيه",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "قنبلة عنقودية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة غاز",
       "concept": "weapon.explosive"
     },
     {
@@ -34451,6 +34639,14 @@
     },
     {
       "term": "قنبلة غبية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة فاب-1500",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة فاب-500",
       "concept": "weapon.explosive"
     },
     {
@@ -34478,11 +34674,23 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "قنبلة هجومية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة هجوميه",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "قنبلة هيدروجينية",
       "concept": "weapon.explosive"
     },
     {
       "term": "قنبلة يدوية",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "قنبلة يدويه",
       "concept": "weapon.explosive"
     },
     {
@@ -34632,6 +34840,10 @@
     {
       "term": "قواص",
       "concept": "weapon.general"
+    },
+    {
+      "term": "قوالب متفجرة",
+      "concept": "weapon.explosive"
     },
     {
       "term": "قوة الرضوان",
@@ -35498,11 +35710,19 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "كتائب النخبة",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "كتائب حزب الله",
       "concept": "violence.terrorism"
     },
     {
       "term": "كتائب شهداء الأقصى",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "كتائب شهداء الأقصى فتح",
       "concept": "violence.terrorism"
     },
     {
@@ -35574,11 +35794,19 @@
       "concept": "violence.general"
     },
     {
+      "term": "كتيبة الفارعة",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "كتيبة بلاطة",
       "concept": "violence.terrorism"
     },
     {
       "term": "كتيبة جنين",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "كتيبة طوباس",
       "concept": "violence.terrorism"
     },
     {
@@ -35730,14 +35958,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "كلاب",
-      "concept": "hate.dehumanization"
-    },
-    {
-      "term": "كلاب",
-      "concept": "hate.slur"
-    },
-    {
       "term": "كلاب مسعورة",
       "concept": "hate.slur"
     },
@@ -35788,6 +36008,10 @@
     {
       "term": "كمائن",
       "concept": "violence.assault"
+    },
+    {
+      "term": "كمامة الفم",
+      "concept": "violence.torture"
     },
     {
       "term": "كمين",
@@ -36252,6 +36476,10 @@
     {
       "term": "لا ننسي ولا نغفر",
       "concept": "violence.general"
+    },
+    {
+      "term": "لا يستحق أي رحمة",
+      "concept": "threat.direct"
     },
     {
       "term": "لابابيل",
@@ -39727,6 +39955,10 @@
     },
     {
       "term": "لغم بحري",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "لغم كلايمور",
       "concept": "weapon.explosive"
     },
     {
@@ -46930,6 +47162,26 @@
       "concept": "violence.killing"
     },
     {
+      "term": "مادة أم العبد",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "مادة السيمتكس",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "مادة تي إن تي",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "مادة سي 4",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "مادة سي-4",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "مادة متفجرة",
       "concept": "weapon.explosive"
     },
@@ -47118,11 +47370,31 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "متفجرات أنفو",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "متفجرات انفو",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "متفجرات بلاستيكية",
       "concept": "weapon.explosive"
     },
     {
       "term": "متفجرات بلاستيكيه",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "متفجرات ديناميت",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "متفجرات سي 4",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "متفجرات سي-4",
       "concept": "weapon.explosive"
     },
     {
@@ -47327,6 +47599,10 @@
     },
     {
       "term": "مجزره نوفا",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "مجموعات الرد السريع",
       "concept": "violence.terrorism"
     },
     {
@@ -48118,16 +48394,32 @@
       "concept": "weapon.military"
     },
     {
+      "term": "مسيرة",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "مسيّرة",
       "concept": "weapon.military"
     },
     {
-      "term": "مسيرة",
+      "term": "مسيرة آرش",
       "concept": "weapon.drone"
     },
     {
       "term": "مسيرة أبابيل",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "مسيرة أقنجي",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "مسيرة ألباغو",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "مسيرة أورلان",
+      "concept": "weapon.drone"
     },
     {
       "term": "مسيرة ابابيل",
@@ -48162,8 +48454,24 @@
       "concept": "weapon.drone"
     },
     {
+      "term": "مسيرة جيران",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "مسيرة جيران-2",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "مسيرة رجوم",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "مسيرة سي إتش-4",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "مسيرة شاهد",
+      "concept": "weapon.drone"
     },
     {
       "term": "مسيرة شهاب",
@@ -48174,12 +48482,32 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "مسيرة صمد",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "مسيرة صياد",
       "concept": "violence.terrorism"
     },
     {
+      "term": "مسيرة عنقاء",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "مسيرة قاصف",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "مسيرة كارغو الانتحارية",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "مسيرة كرار",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "مسيرة لانسيت",
+      "concept": "weapon.drone"
     },
     {
       "term": "مسيرة مرصاد",
@@ -48190,12 +48518,24 @@
       "concept": "weapon.drone"
     },
     {
+      "term": "مسيرة مهاجر",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "مسيرة هجومية",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "مسيرة هدهد",
       "concept": "weapon.drone"
     },
     {
       "term": "مسيرة وعيد",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "مسيرة وينغ لونغ",
+      "concept": "weapon.drone"
     },
     {
       "term": "مسيرة يافا",
@@ -48206,12 +48546,12 @@
       "concept": "weapon.military"
     },
     {
-      "term": "مسيّره",
-      "concept": "weapon.military"
-    },
-    {
       "term": "مسيره",
       "concept": "weapon.drone"
+    },
+    {
+      "term": "مسيّره",
+      "concept": "weapon.military"
     },
     {
       "term": "مسيره أبابيل",
@@ -48310,10 +48650,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "مشرط",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "مشرك",
       "concept": "hate.slur"
     },
@@ -48400,6 +48736,10 @@
     {
       "term": "مصطفي بدر الدين",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "مضاد دروع كورنيت",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "مضاد للدروع",
@@ -48542,12 +48882,12 @@
       "concept": "violence.assault"
     },
     {
-      "term": "معتدٍ",
-      "concept": "violence.killing"
-    },
-    {
       "term": "معتد",
       "concept": "violence.assault"
+    },
+    {
+      "term": "معتدٍ",
+      "concept": "violence.killing"
     },
     {
       "term": "معتدون",
@@ -48602,24 +48942,24 @@
       "concept": "violence.killing"
     },
     {
-      "term": "معذّب",
-      "concept": "violence.killing"
-    },
-    {
       "term": "معذب",
       "concept": "violence.torture"
     },
     {
-      "term": "معذبون",
+      "term": "معذّب",
       "concept": "violence.killing"
     },
     {
-      "term": "معذّبون",
+      "term": "معذبون",
       "concept": "violence.killing"
     },
     {
       "term": "معذبون",
       "concept": "violence.torture"
+    },
+    {
+      "term": "معذّبون",
+      "concept": "violence.killing"
     },
     {
       "term": "معذبين",
@@ -48702,10 +49042,6 @@
       "concept": "hate.slur"
     },
     {
-      "term": "معول",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "مغتال",
       "concept": "violence.killing"
     },
@@ -48764,6 +49100,10 @@
     {
       "term": "مغنيه",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "مفاعل أراك",
+      "concept": "weapon.cbrn"
     },
     {
       "term": "مفاعل ديمونا",
@@ -49030,10 +49370,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "مقلاع",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "مقلاع داوود",
       "concept": "weapon.missile_rocket"
     },
@@ -49230,10 +49566,6 @@
       "concept": "violence.general"
     },
     {
-      "term": "منجل",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "منحط",
       "concept": "hate.slur"
     },
@@ -49314,6 +49646,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "منظومة إيغلا",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "منظومة ثأر الله",
       "concept": "violence.terrorism"
     },
@@ -49324,6 +49660,14 @@
     {
       "term": "منظومة رجوم",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "منظومة فيربا",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "منظومة كيو دبليو-1",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "منظومه ثأر الله",
@@ -49376,6 +49720,14 @@
     {
       "term": "منيوكه",
       "concept": "hate.slur"
+    },
+    {
+      "term": "مهاجر 6",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "مهاجر ۶",
+      "concept": "weapon.drone"
     },
     {
       "term": "مهاجم",
@@ -49508,14 +49860,6 @@
     {
       "term": "موجه انفجاريه",
       "concept": "weapon.explosive"
-    },
-    {
-      "term": "موس",
-      "concept": "weapon.blade"
-    },
-    {
-      "term": "موس",
-      "concept": "weapon.general"
     },
     {
       "term": "موس حلاقة",
@@ -49682,6 +50026,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "نترات الأمونيوم المتفجرة",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "نترات الامونيوم",
       "concept": "weapon.explosive"
     },
@@ -49810,12 +50158,12 @@
       "concept": "hate.slur"
     },
     {
-      "term": "ندمّر",
-      "concept": "violence.killing"
-    },
-    {
       "term": "ندمر",
       "concept": "violence.general"
+    },
+    {
+      "term": "ندمّر",
+      "concept": "violence.killing"
     },
     {
       "term": "ندهس",
@@ -49832,10 +50180,6 @@
     {
       "term": "نذل",
       "concept": "hate.slur"
-    },
-    {
-      "term": "نرد",
-      "concept": "violence.general"
     },
     {
       "term": "نزار عوض الله",
@@ -50250,8 +50594,20 @@
       "concept": "weapon.cbrn"
     },
     {
+      "term": "نيتروجليسرين",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "نيتروغليسرين",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "نيران كثيفة",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "نيران معادية",
+      "concept": "weapon.firearm"
     },
     {
       "term": "نيك",
@@ -50518,20 +50874,20 @@
       "concept": "violence.general"
     },
     {
-      "term": "هدّد",
-      "concept": "violence.general"
-    },
-    {
       "term": "هدد",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "هدّد",
       "concept": "threat.direct"
     },
     {
       "term": "هدد",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "هدّد",
+      "concept": "violence.general"
+    },
+    {
+      "term": "هدّد",
+      "concept": "threat.direct"
     },
     {
       "term": "هددت",
@@ -50796,6 +51152,10 @@
     {
       "term": "هيرون",
       "concept": "weapon.drone"
+    },
+    {
+      "term": "هيكسوجين",
+      "concept": "weapon.explosive"
     },
     {
       "term": "هيلفاير",
@@ -57926,6 +58286,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "وحدة النخبة",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "وحده الساحات",
       "concept": "violence.terrorism"
     },
@@ -61570,6 +61934,10 @@
       "concept": "violence.general"
     },
     {
+      "term": "يجب القضاء عليهم",
+      "concept": "threat.direct"
+    },
+    {
       "term": "يجتاح",
       "concept": "violence.assault"
     },
@@ -61790,16 +62158,16 @@
       "concept": "violence.killing"
     },
     {
-      "term": "يدمّر",
-      "concept": "violence.killing"
-    },
-    {
       "term": "يدمر",
       "concept": "violence.assault"
     },
     {
       "term": "يدمر",
       "concept": "violence.general"
+    },
+    {
+      "term": "يدمّر",
+      "concept": "violence.killing"
     },
     {
       "term": "يدمرون",
@@ -61880,10 +62248,6 @@
     {
       "term": "يرجمون",
       "concept": "violence.killing"
-    },
-    {
-      "term": "يرد",
-      "concept": "violence.general"
     },
     {
       "term": "يردع",
@@ -61978,12 +62342,12 @@
       "concept": "violence.killing"
     },
     {
-      "term": "يسمّم",
-      "concept": "violence.killing"
-    },
-    {
       "term": "يسمم",
       "concept": "weapon.cbrn"
+    },
+    {
+      "term": "يسمّم",
+      "concept": "violence.killing"
     },
     {
       "term": "يسممهم",
@@ -62186,24 +62550,24 @@
       "concept": "violence.killing"
     },
     {
-      "term": "يعذّب",
-      "concept": "violence.killing"
-    },
-    {
       "term": "يعذب",
       "concept": "violence.torture"
     },
     {
-      "term": "يعذبون",
+      "term": "يعذّب",
       "concept": "violence.killing"
     },
     {
-      "term": "يعذّبون",
+      "term": "يعذبون",
       "concept": "violence.killing"
     },
     {
       "term": "يعذبون",
       "concept": "violence.torture"
+    },
+    {
+      "term": "يعذّبون",
+      "concept": "violence.killing"
     },
     {
       "term": "يعصف",
@@ -62262,16 +62626,16 @@
       "concept": "violence.killing"
     },
     {
-      "term": "يفجّر",
-      "concept": "violence.killing"
-    },
-    {
       "term": "يفجر",
       "concept": "violence.explosion"
     },
     {
       "term": "يفجر",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "يفجّر",
+      "concept": "violence.killing"
     },
     {
       "term": "يفجر نفسه",
@@ -62852,754 +63216,6 @@
     {
       "term": "يوم الغضب",
       "concept": "violence.general"
-    },
-    {
-      "term": "سلاح آلي",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "كتائب النخبة",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "وحدة النخبة",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "يجب القضاء عليهم",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "لا يستحق أي رحمة",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "قادمون لقتلكم",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "جهنم بانتظاركم",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "سترون الجحيم",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "الوعد اقترب",
-      "concept": "threat.intimidation"
-    },
-    {
-      "term": "صواريخ كورنيت",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "مضاد دروع كورنيت",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ فاغوت",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ كونكورس",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ ميتيس",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ إيغلا",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ ايغلا",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "منظومة إيغلا",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ ستريلا",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "منظومة فيربا",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صواريخ غراد",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "راجمة غراد",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "راجمة أوراغان",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "راجمة سميرتش",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ إسكندر",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ اسكندر",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ كاليبر",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ كينجال",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ أونيكس",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ تسيركون",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "راجمة سولنتسبيك",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "توس-1",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "مسيرة لانسيت",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "طائرة لانسيت",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة أورلان",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة جيران-2",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة جيران",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "قنبلة فاب-500",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة فاب-1500",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنابل إنزلاقية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنابل انزلاقية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "رشاش بي كي إم",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "رشاش بيكيسي",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "قاذف فامبير",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "قناصة دراغونوف",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "صاروخ السهم الأحمر",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ هونغ جيان-8",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ إتش جيه-8",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "منظومة كيو دبليو-1",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ إف إن-6",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ اف ان-6",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "مسيرة وينغ لونغ",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "طائرة وينغ لونغ",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة سي إتش-4",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "صاروخ 107 ملم",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صواريخ 107 ملم",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "راجمة تايب 63",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "بندقية تايب 56",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "بيرقدار تي بي 2",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "بيرقدار أقنجي",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة أقنجي",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة عنقاء",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة كارغو الانتحارية",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة ألباغو",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "طائرة بايراكتار",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "ذخيرة مام-إل",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "ذخيرة مام-سي",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ سيريت",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ أومتاس",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ بورا التركي",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ خان التركي",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "شاهد ۱۳۶",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "شاهد ۱۰۱",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة شاهد",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة هدهد",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "طائرة هدهد",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مهاجر 6",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مهاجر ۶",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة كرار",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة آرش",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "صماد ۳",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "صواريخ فادي",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ فادي 1",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ فادي 2",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ فادي ١",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ فادي ٢",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صواريخ خيبر",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ خيبر",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "فاتح ۱۱۰",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ فلسطين",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ قدس 3",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ ذو الفقار",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ خيبر شكن",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ عماد",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ طوفان",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "صاروخ دهلاوية",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "مجموعات الرد السريع",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "كتيبة طوباس",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "كتيبة الفارعة",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "أصابع ديناميت",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "اصابع ديناميت",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قضيب ديناميت",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "متفجرات ديناميت",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "سي-4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "مادة سي 4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "مادة سي-4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "متفجرات سي 4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "متفجرات سي-4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "حشوة بلاستيكية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "حشوة بلاستيكيه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "مادة السيمتكس",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "هيكسوجين",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "بنتريت",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "نيتروجليسرين",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة يدويه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "رمانة يدويه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "رمانات يدوية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة هجومية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة هجوميه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة دفاعية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة دفاعيه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة شظايا تشظية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة صوتيه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنابل صوتية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنابل صوتيه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة دخانيه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة غاز",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة إف-1",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة اف-1",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة آر جي دي-5",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قنبلة إم 67",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "إلقاء قنبلة",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "القاء قنبله",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "إلقاء قنابل",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "رمي قنابل",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "أم العبد",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "ام العبد",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "مادة أم العبد",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "تي إيه تي بي",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "مادة تي إن تي",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قالب تي إن تي",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قالب متفجر",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "قوالب متفجرة",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "متفجرات أنفو",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "متفجرات انفو",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "نترات الأمونيوم المتفجرة",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة أنفو",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة ناسفه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة موجهة",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة موجهه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة شواظ 1",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة شواظ 2",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة شواظ 3",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة شواظ 4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة شواظ 5",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة رعد",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة الرعد",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة برق",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة البرق",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة سجيل",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة السجيل",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة مضادة للأفراد",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة أرضية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة لاصقه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة مغناطيسية",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "عبوة مغناطيسيه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "سترة ناسفه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "صدرية ناسفة",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "سيارة مفخخه",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "دراجة مفخخة",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "لغم كلايمور",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "صاعق تفجير",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "صواعق تفجير",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "فتيل تفجير",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "فتيل إشعال",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "تبادل إطلاق النار",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "مفاعل أراك",
-      "concept": "weapon.cbrn"
-    },
-    {
-      "term": "عصابة العينين",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "غطاء العينين",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "كمامة الفم",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "تصفيد",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "ربط بالحبال",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "خط النار",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "تحت النار",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "نيران كثيفة",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "نيران معادية",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "مسيرة صمد",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "مسيرة مهاجر",
-      "concept": "weapon.drone"
     }
   ]
 }

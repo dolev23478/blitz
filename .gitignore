@@ -90,3 +90,7 @@ reference/
 /.radio
 
 ca.crt
+
+# Backups
+dictionaries_backup_before_canonical/
+

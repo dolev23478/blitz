@@ -342,6 +342,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "אופנוע תופת",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "אורניום",
       "concept": "weapon.cbrn"
     },
@@ -363,6 +367,10 @@
     },
     {
       "term": "אזוקים",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "אזיק",
       "concept": "violence.torture"
     },
     {
@@ -462,6 +470,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "איזוק",
+      "concept": "violence.torture"
+    },
+    {
       "term": "אייכמן",
       "concept": "violence.genocide"
     },
@@ -548,6 +560,10 @@
     {
       "term": "איסתשהאדי",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "אירוע ירי",
+      "concept": "violence.killing"
     },
     {
       "term": "אירוע פח\"ע",
@@ -746,6 +762,10 @@
       "concept": "threat.direct"
     },
     {
+      "term": "אנחנו באים אליכם",
+      "concept": "threat.direct"
+    },
+    {
       "term": "אנחנו יודעים איפה אתה גר",
       "concept": "threat.direct"
     },
@@ -922,6 +942,18 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "אר-פי-ג'י 29",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "אר-פי-ג'י 7",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "אר-פי-ג'י ומטענים",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "אר-פי-גי",
       "concept": "weapon.explosive"
     },
@@ -939,6 +971,10 @@
     },
     {
       "term": "ארגון טרור",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "ארגון פתח",
       "concept": "violence.terrorism"
     },
     {
@@ -1004,6 +1040,14 @@
     {
       "term": "אתה מת מהלך",
       "concept": "violence.general"
+    },
+    {
+      "term": "אתם הבאים בתור",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "אתם על הכוונת",
+      "concept": "threat.direct"
     },
     {
       "term": "בא-זווארי",
@@ -1124,6 +1168,18 @@
     {
       "term": "באיסתשהאדי",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "באירקטאר",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "באירקטאר TB2",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "באירקטאר אקינג'י",
+      "concept": "weapon.drone"
     },
     {
       "term": "באל-קאעידה",
@@ -2198,14 +2254,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "בהטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "בהטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "בהטביע",
       "concept": "violence.killing"
     },
@@ -2634,11 +2682,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "בהכטב\"ם",
+      "term": "בהכטב\"מ",
       "concept": "weapon.drone"
     },
     {
-      "term": "בהכטב\"מ",
+      "term": "בהכטב\"ם",
       "concept": "weapon.drone"
     },
     {
@@ -4474,14 +4522,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "בטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "בטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "בטובחים",
       "concept": "violence.killing"
     },
@@ -4706,6 +4746,10 @@
       "concept": "violence.killing"
     },
     {
+      "term": "ביירקטאר",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "ביכה",
       "concept": "violence.assault"
     },
@@ -4926,15 +4970,19 @@
       "concept": "violence.general"
     },
     {
-      "term": "בכטב\"ם",
-      "concept": "weapon.drone"
-    },
-    {
       "term": "בכטב\"מ",
       "concept": "weapon.drone"
     },
     {
+      "term": "בכטב\"ם",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "בכטב\"מים",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "בכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -4943,10 +4991,6 @@
     },
     {
       "term": "בכטבם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "בכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -5003,6 +5047,10 @@
     },
     {
       "term": "בלון תבערה",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "בלוני נפץ",
       "concept": "weapon.explosive"
     },
     {
@@ -6070,6 +6118,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "בקת\"בימ",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "בקת\"בים",
       "concept": "weapon.explosive"
     },
@@ -6078,19 +6130,15 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "בקת\"בימ",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "בקתב",
       "concept": "weapon.explosive"
     },
     {
-      "term": "בקתבים",
+      "term": "בקתבימ",
       "concept": "weapon.explosive"
     },
     {
-      "term": "בקתבימ",
+      "term": "בקתבים",
       "concept": "weapon.explosive"
     },
     {
@@ -6742,11 +6790,19 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "גדודי אל-קסאם",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "גדודי חללי אל-אקצא",
       "concept": "violence.terrorism"
     },
     {
       "term": "גדודי עז א-דין אל-קאסם",
+      "concept": "violence.terrorism"
+    },
+    {
+      "term": "גדודי עז א-דין אל-קסאם",
       "concept": "violence.terrorism"
     },
     {
@@ -7052,6 +7108,10 @@
     {
       "term": "דם הפקר",
       "concept": "violence.general"
+    },
+    {
+      "term": "דם יישפך",
+      "concept": "threat.direct"
     },
     {
       "term": "דם תחת דם",
@@ -7802,6 +7862,10 @@
       "concept": "violence.genocide"
     },
     {
+      "term": "הדם שלכם יישפך",
+      "concept": "threat.direct"
+    },
+    {
       "term": "הדמיית טביעה",
       "concept": "violence.torture"
     },
@@ -8338,10 +8402,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "הטבח",
-      "concept": "violence.killing"
-    },
-    {
       "term": "הטבח בבארי",
       "concept": "violence.terrorism"
     },
@@ -8364,10 +8424,6 @@
     {
       "term": "הטבח ברעים",
       "concept": "violence.terrorism"
-    },
-    {
-      "term": "הטבחו",
-      "concept": "violence.killing"
     },
     {
       "term": "הטביע",
@@ -8420,6 +8476,10 @@
     {
       "term": "הטלת מום",
       "concept": "violence.assault"
+    },
+    {
+      "term": "הטלת רימון",
+      "concept": "weapon.explosive"
     },
     {
       "term": "הטמיר",
@@ -8906,15 +8966,19 @@
       "concept": "violence.genocide"
     },
     {
-      "term": "הכטב\"ם",
-      "concept": "weapon.drone"
-    },
-    {
       "term": "הכטב\"מ",
       "concept": "weapon.drone"
     },
     {
+      "term": "הכטב\"ם",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "הכטב\"מים",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "הכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -8923,10 +8987,6 @@
     },
     {
       "term": "הכטבם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "הכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -11075,6 +11135,10 @@
     },
     {
       "term": "הקמיקזה",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "הקסוגן",
       "concept": "weapon.explosive"
     },
     {
@@ -13818,14 +13882,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "והטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "והטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "והטביע",
       "concept": "violence.killing"
     },
@@ -14274,11 +14330,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "והכטב\"ם",
+      "term": "והכטב\"מ",
       "concept": "weapon.drone"
     },
     {
-      "term": "והכטב\"מ",
+      "term": "והכטב\"ם",
       "concept": "weapon.drone"
     },
     {
@@ -16150,14 +16206,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "וטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "וטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "וטובחים",
       "concept": "violence.killing"
     },
@@ -16670,11 +16718,11 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "וכטב\"ם",
+      "term": "וכטב\"מ",
       "concept": "weapon.drone"
     },
     {
-      "term": "וכטב\"מ",
+      "term": "וכטב\"ם",
       "concept": "weapon.drone"
     },
     {
@@ -16682,8 +16730,8 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "וכטבח",
-      "concept": "violence.killing"
+      "term": "וכטבמ",
+      "concept": "weapon.drone"
     },
     {
       "term": "וכטבם",
@@ -16691,10 +16739,6 @@
     },
     {
       "term": "וכטבם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "וכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -17040,10 +17084,6 @@
     {
       "term": "ולחרב",
       "concept": "weapon.blade"
-    },
-    {
-      "term": "ולטבח",
-      "concept": "violence.killing"
     },
     {
       "term": "ולטיל",
@@ -19150,19 +19190,19 @@
       "concept": "weapon.firearm"
     },
     {
-      "term": "ז׳יד",
-      "concept": "hate.antisemitism"
-    },
-    {
       "term": "ז'יד",
       "concept": "hate.antisemitism"
     },
     {
-      "term": "ז׳ידים",
+      "term": "ז׳יד",
       "concept": "hate.antisemitism"
     },
     {
       "term": "ז'ידים",
+      "concept": "hate.antisemitism"
+    },
+    {
+      "term": "ז׳ידים",
       "concept": "hate.antisemitism"
     },
     {
@@ -19246,6 +19286,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "זריקת בקת\"בימ",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "זריקת בקת\"בים",
       "concept": "violence.terrorism"
     },
@@ -19254,7 +19298,7 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "זריקת בקת\"בימ",
+      "term": "זריקת בקתבימ",
       "concept": "violence.terrorism"
     },
     {
@@ -19262,8 +19306,12 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "זריקת בקתבימ",
-      "concept": "violence.terrorism"
+      "term": "זריקת רימון",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "זריקת רימונים",
+      "concept": "weapon.explosive"
     },
     {
       "term": "ח.מ.א.ס",
@@ -19280,6 +19328,10 @@
     {
       "term": "חאלד משעל",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "חביות נפץ",
+      "concept": "weapon.explosive"
     },
     {
       "term": "חבילת נפץ",
@@ -19478,11 +19530,27 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "חומר נפץ C4",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "חומר נפץ TATP",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "חומר נפץ אנפו",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "חומר נפץ מרסק",
       "concept": "weapon.explosive"
     },
     {
       "term": "חומר נפץ פלסטי",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "חומר נפץ פלסטיק",
       "concept": "weapon.explosive"
     },
     {
@@ -19495,6 +19563,10 @@
     },
     {
       "term": "חומרי נפץ",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "חומרי נפץ פלסטיים",
       "concept": "weapon.explosive"
     },
     {
@@ -19580,6 +19652,10 @@
     {
       "term": "חוסלו",
       "concept": "violence.killing"
+    },
+    {
+      "term": "חוסם פיות",
+      "concept": "violence.torture"
     },
     {
       "term": "חוף זיקים",
@@ -19814,6 +19890,14 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "חימוש MAM-C",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "חימוש MAM-L",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "חימוש מצרר",
       "concept": "weapon.explosive"
     },
@@ -19954,6 +20038,18 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "חנ\"מ C4",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "חנ\"מ פלסטי",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "חנ״מ פלסטי",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "חנוק",
       "concept": "threat.direct"
     },
@@ -20086,16 +20182,20 @@
       "concept": "threat.direct"
     },
     {
+      "term": "ט.נ.ט",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "טאו",
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "טבח",
-      "concept": "violence.killing"
-    },
-    {
       "term": "טבח במסיבת נובה",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "טבח המוני",
+      "concept": "violence.killing"
     },
     {
       "term": "טבח הספורטאים במינכן",
@@ -20114,42 +20214,6 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "טבחה",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "טבחו",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "טבחון",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "טבחי",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "טבחן",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "טבחני",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "טבחת",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "טבחתי",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "טבחתם",
-      "concept": "violence.killing"
-    },
-    {
       "term": "טובחים",
       "concept": "violence.killing"
     },
@@ -20159,6 +20223,10 @@
     },
     {
       "term": "טומהוק",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טוס-1",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -20222,7 +20290,43 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "טיל HJ-8",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל אומטאס",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל אוניקס",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל איגלה",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל איסקנדר",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל אלמאס",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל באליסטי בורה",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "טיל בליסטי",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל ג'יריט",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל גראד",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -20230,7 +20334,23 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "טיל זולפיקאר",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל ח'ייבר",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "טיל חוף-ים",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל חץ אדום",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל טופאן",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -20240,6 +20360,14 @@
     {
       "term": "טיל לאו",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "טיל מטיס",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל מטיס-M",
+      "concept": "weapon.missile_rocket"
     },
     {
       "term": "טיל נ\"ט",
@@ -20258,6 +20386,14 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "טיל נ\"מ FN-6",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל נ\"מ QW-1",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "טיל נט",
       "concept": "weapon.missile_rocket"
     },
@@ -20266,8 +20402,40 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "טיל סטרלה",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל פאגוט",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל פאדי",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל צירקון",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל קונקורס",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "טיל קורנט",
       "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל קינז'אל",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל קליבר",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טיל שאהד",
+      "concept": "weapon.drone"
     },
     {
       "term": "טיל שיוט",
@@ -20290,6 +20458,22 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "טילי איגלה",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טילי איסקנדר",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טילי אלמאס",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טילי גראד",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "טילי נ\"ט",
       "concept": "weapon.missile_rocket"
     },
@@ -20299,6 +20483,22 @@
     },
     {
       "term": "טילי נט",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טילי סטרלה",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טילי פאדי",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טילי קורנט",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "טילי קליבר",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -20436,6 +20636,10 @@
     {
       "term": "טריגיקון",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "טריניטרוטולואן",
+      "concept": "weapon.explosive"
     },
     {
       "term": "טרקטור משתולל",
@@ -20734,6 +20938,10 @@
       "concept": "violence.general"
     },
     {
+      "term": "ייסגר בדם",
+      "concept": "threat.direct"
+    },
+    {
       "term": "ייסורי גיהנום",
       "concept": "violence.torture"
     },
@@ -20904,6 +21112,38 @@
     {
       "term": "ירביצו",
       "concept": "violence.assault"
+    },
+    {
+      "term": "ירה באקדח",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "ירה באש",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "ירה בהם",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "ירה בו",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "ירה בנשק",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "ירה ברובה",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "ירה למוות",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "ירה לעבר",
+      "concept": "violence.killing"
     },
     {
       "term": "ירו",
@@ -21346,19 +21586,11 @@
       "concept": "weapon.blade"
     },
     {
-      "term": "כטב״ם",
-      "concept": "weapon.military"
+      "term": "כטב\"מ",
+      "concept": "weapon.drone"
     },
     {
       "term": "כטב\"ם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב״ם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב\"מ",
       "concept": "weapon.drone"
     },
     {
@@ -21366,16 +21598,88 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "כטב\"ם מתאבד",
+      "term": "כטב״ם",
+      "concept": "weapon.military"
+    },
+    {
+      "term": "כטב״ם",
       "concept": "weapon.drone"
     },
     {
-      "term": "כטב״ם מתאבד",
+      "term": "כטב\"מ CH-4",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב״מ CH-4",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מ אורלן",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב״מ אורלן",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מ אנקא",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מ באירקטאר",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב״מ באירקטאר",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מ גראן",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב״מ גראן",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מ ווינג לונג",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב״מ ווינג לונג",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מ לנצט",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב״מ לנצט",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מ מוהאג'ר",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מ מתאבד",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"ם מתאבד",
       "concept": "weapon.drone"
     },
     {
       "term": "כטב\"ם מתאבד",
       "concept": "weapon.explosive"
+    },
+    {
+      "term": "כטב״מ מתאבד",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב״ם מתאבד",
+      "concept": "weapon.drone"
     },
     {
       "term": "כטב״ם מתאבד",
@@ -21390,8 +21694,12 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "כטב״מים",
-      "concept": "weapon.military"
+      "term": "כטב\"מ קארגו",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "כטב\"מימ",
+      "concept": "weapon.drone"
     },
     {
       "term": "כטב\"מים",
@@ -21399,11 +21707,15 @@
     },
     {
       "term": "כטב״מים",
+      "concept": "weapon.military"
+    },
+    {
+      "term": "כטב״מים",
       "concept": "weapon.drone"
     },
     {
-      "term": "כטב\"מימ",
-      "concept": "weapon.drone"
+      "term": "כטב\"מים מתאבדימ",
+      "concept": "weapon.explosive"
     },
     {
       "term": "כטב\"מים מתאבדים",
@@ -21414,12 +21726,8 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "כטב\"מים מתאבדימ",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "כטבח",
-      "concept": "violence.killing"
+      "term": "כטבמ",
+      "concept": "weapon.drone"
     },
     {
       "term": "כטבם",
@@ -21427,10 +21735,6 @@
     },
     {
       "term": "כטבם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -21446,19 +21750,19 @@
       "concept": "weapon.drone"
     },
     {
-      "term": "כטבמים",
-      "concept": "weapon.drone"
-    },
-    {
       "term": "כטבמימ",
       "concept": "weapon.drone"
     },
     {
-      "term": "כטבמים מתאבדים",
-      "concept": "weapon.explosive"
+      "term": "כטבמים",
+      "concept": "weapon.drone"
     },
     {
       "term": "כטבמים מתאבדימ",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "כטבמים מתאבדים",
       "concept": "weapon.explosive"
     },
     {
@@ -21802,6 +22106,14 @@
       "concept": "violence.general"
     },
     {
+      "term": "לא תצאו מזה",
+      "concept": "threat.direct"
+    },
+    {
+      "term": "לא תצאו מזה בחיים",
+      "concept": "threat.direct"
+    },
+    {
       "term": "לא-זווארי",
       "concept": "weapon.drone"
     },
@@ -22080,6 +22392,10 @@
     {
       "term": "לבוא חשבון",
       "concept": "violence.general"
+    },
+    {
+      "term": "לבנות חבלה",
+      "concept": "weapon.explosive"
     },
     {
       "term": "לבנת חבלה",
@@ -23110,14 +23426,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "להטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "להטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "להטביע",
       "concept": "violence.killing"
     },
@@ -23570,11 +23878,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "להכטב\"ם",
+      "term": "להכטב\"מ",
       "concept": "weapon.drone"
     },
     {
-      "term": "להכטב\"מ",
+      "term": "להכטב\"ם",
       "concept": "weapon.drone"
     },
     {
@@ -25610,14 +25918,6 @@
       "concept": "violence.killing"
     },
     {
-      "term": "לטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "לטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "לטובחים",
       "concept": "violence.killing"
     },
@@ -25894,20 +26194,20 @@
       "concept": "violence.assault"
     },
     {
-      "term": "לינצ׳",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "לינץ׳",
-      "concept": "violence.killing"
-    },
-    {
       "term": "לינץ'",
       "concept": "violence.killing"
     },
     {
       "term": "לינץ'",
       "concept": "violence.assault"
+    },
+    {
+      "term": "לינצ׳",
+      "concept": "violence.killing"
+    },
+    {
+      "term": "לינץ׳",
+      "concept": "violence.killing"
     },
     {
       "term": "לינצ'ים",
@@ -26086,15 +26386,19 @@
       "concept": "violence.general"
     },
     {
-      "term": "לכטב\"ם",
-      "concept": "weapon.drone"
-    },
-    {
       "term": "לכטב\"מ",
       "concept": "weapon.drone"
     },
     {
+      "term": "לכטב\"ם",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "לכטב\"מים",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "לכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -26103,10 +26407,6 @@
     },
     {
       "term": "לכטבם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "לכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -29342,14 +29642,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "מהטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "מהטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "מהטביע",
       "concept": "violence.killing"
     },
@@ -29774,11 +30066,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "מהכטב\"ם",
+      "term": "מהכטב\"מ",
       "concept": "weapon.drone"
     },
     {
-      "term": "מהכטב\"מ",
+      "term": "מהכטב\"ם",
       "concept": "weapon.drone"
     },
     {
@@ -31354,6 +31646,10 @@
       "concept": "weapon.drone"
     },
     {
+      "term": "מוהאג'ר 6",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "מוהאגר",
       "concept": "weapon.drone"
     },
@@ -31478,6 +31774,14 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "מוקש כלימגור",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "מוקש כלימור",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "מוקש נ\"א",
       "concept": "weapon.explosive"
     },
@@ -31498,7 +31802,19 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "מוקש נגד אדם",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "מוקש נגד טנקים",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "מוקש נט",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "מוקשי נגד אדם",
       "concept": "weapon.explosive"
     },
     {
@@ -31982,6 +32298,10 @@
       "concept": "violence.killing"
     },
     {
+      "term": "מחסום פה",
+      "concept": "violence.torture"
+    },
+    {
       "term": "מחסל",
       "concept": "threat.annihilation"
     },
@@ -32146,6 +32466,10 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "מטח גראד",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "מטח טילים",
       "concept": "weapon.missile_rocket"
     },
@@ -32206,11 +32530,23 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "מטען אמוניום ניтраט",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "מטען גחון",
       "concept": "weapon.explosive"
     },
     {
+      "term": "מטען דביק",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "מטען דמה",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "מטען דשן",
       "concept": "weapon.explosive"
     },
     {
@@ -32219,6 +32555,10 @@
     },
     {
       "term": "מטען חלול",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "מטען מגנטי",
       "concept": "weapon.explosive"
     },
     {
@@ -32274,6 +32614,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "מטעני גחון",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "מטעני חבלה",
       "concept": "weapon.explosive"
     },
@@ -32284,6 +32628,14 @@
     {
       "term": "מטעני צינור",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "מטעני קלע",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "מטעני שוואז",
+      "concept": "weapon.explosive"
     },
     {
       "term": "מטענים",
@@ -32746,15 +33098,19 @@
       "concept": "hate.antisemitism"
     },
     {
-      "term": "מכטב\"ם",
-      "concept": "weapon.drone"
-    },
-    {
       "term": "מכטב\"מ",
       "concept": "weapon.drone"
     },
     {
+      "term": "מכטב\"ם",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "מכטב\"מים",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "מכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -32763,10 +33119,6 @@
     },
     {
       "term": "מכטבם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "מכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -32854,20 +33206,20 @@
       "concept": "violence.general"
     },
     {
-      "term": "מל״ט",
-      "concept": "weapon.military"
-    },
-    {
       "term": "מל\"ט",
       "concept": "weapon.drone"
     },
     {
       "term": "מל״ט",
+      "concept": "weapon.military"
+    },
+    {
+      "term": "מל״ט",
       "concept": "weapon.drone"
     },
     {
-      "term": "מל״טים",
-      "concept": "weapon.military"
+      "term": "מל\"טימ",
+      "concept": "weapon.drone"
     },
     {
       "term": "מל\"טים",
@@ -32875,10 +33227,10 @@
     },
     {
       "term": "מל״טים",
-      "concept": "weapon.drone"
+      "concept": "weapon.military"
     },
     {
-      "term": "מל\"טימ",
+      "term": "מל״טים",
       "concept": "weapon.drone"
     },
     {
@@ -32906,11 +33258,11 @@
       "concept": "threat.direct"
     },
     {
-      "term": "מלטים",
+      "term": "מלטימ",
       "concept": "weapon.drone"
     },
     {
-      "term": "מלטימ",
+      "term": "מלטים",
       "concept": "weapon.drone"
     },
     {
@@ -33710,6 +34062,10 @@
       "concept": "hate.slur"
     },
     {
+      "term": "מערכת ורבה",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "מערף",
       "concept": "violence.killing"
     },
@@ -33946,12 +34302,12 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "מצ׳טה",
-      "concept": "weapon.blade"
-    },
-    {
       "term": "מצ'טה",
       "concept": "weapon.general"
+    },
+    {
+      "term": "מצ׳טה",
+      "concept": "weapon.blade"
     },
     {
       "term": "מצ׳טות",
@@ -34118,6 +34474,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "מקל דינמיט",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "מקלאצ",
       "concept": "weapon.firearm"
     },
@@ -34134,6 +34494,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "מקלות דינמיט",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "מקליבר",
       "concept": "weapon.firearm"
     },
@@ -34147,6 +34511,18 @@
     },
     {
       "term": "מקלע",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "מקלע פק\"מ",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "מקלע פק״מ",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "מקלע פקמ",
       "concept": "weapon.firearm"
     },
     {
@@ -34555,6 +34931,22 @@
     },
     {
       "term": "משגר",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "משגר אורגאן",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "משגר גראד",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "משגר סמרץ'",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "משגר קורנט",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -35090,12 +35482,12 @@
       "concept": "violence.general"
     },
     {
-      "term": "נגמ״ש",
-      "concept": "weapon.military"
-    },
-    {
       "term": "נגמ\"ש",
       "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "נגמ״ש",
+      "concept": "weapon.military"
     },
     {
       "term": "נגמ״ש",
@@ -35542,6 +35934,10 @@
       "concept": "violence.general"
     },
     {
+      "term": "נמחק אתכם",
+      "concept": "threat.direct"
+    },
+    {
       "term": "ננקום",
       "concept": "violence.general"
     },
@@ -35636,6 +36032,10 @@
     {
       "term": "נפץ",
       "concept": "weapon.ammunition"
+    },
+    {
+      "term": "נפץ חשמלי",
+      "concept": "weapon.explosive"
     },
     {
       "term": "נפצים",
@@ -36018,6 +36418,14 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "סולנצפיוק",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "סופכם קרב",
+      "concept": "threat.direct"
+    },
+    {
       "term": "סוקל",
       "concept": "violence.killing"
     },
@@ -36052,6 +36460,10 @@
     {
       "term": "סטינגר",
       "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "סי 4",
+      "concept": "weapon.explosive"
     },
     {
       "term": "סי-4",
@@ -36218,6 +36630,10 @@
       "concept": "violence.torture"
     },
     {
+      "term": "סתימת פיות",
+      "concept": "violence.torture"
+    },
+    {
       "term": "עארורי",
       "concept": "violence.terrorism"
     },
@@ -36370,6 +36786,10 @@
       "concept": "violence.torture"
     },
     {
+      "term": "על הכוונת",
+      "concept": "threat.intimidation"
+    },
+    {
       "term": "עלה על המדרכה",
       "concept": "violence.terrorism"
     },
@@ -36434,7 +36854,15 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "עפיפון נפץ",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "עפיפון תבערה",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "עפיפוני נפץ",
       "concept": "weapon.explosive"
     },
     {
@@ -36515,6 +36943,14 @@
     },
     {
       "term": "פאגוט",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "פאדי 1",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "פאדי 2",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -36810,6 +37246,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "פיגוע טבח",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "פיגוע טרור",
       "concept": "violence.terrorism"
     },
@@ -36986,6 +37426,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "פלוגות ירושלים",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "פלוטוניום",
       "concept": "weapon.cbrn"
     },
@@ -37012,6 +37456,10 @@
     {
       "term": "פנאטים",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "פנטריט",
+      "concept": "weapon.explosive"
     },
     {
       "term": "פעולות תגמול",
@@ -37066,11 +37514,15 @@
       "concept": "violence.assault"
     },
     {
+      "term": "פצמ\"ר",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "פצמ״ר",
       "concept": "weapon.explosive"
     },
     {
-      "term": "פצמ\"ר",
+      "term": "פצמ\"רימ",
       "concept": "weapon.explosive"
     },
     {
@@ -37082,10 +37534,6 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "פצמ\"רימ",
-      "concept": "weapon.explosive"
-    },
-    {
       "term": "פצמורים",
       "concept": "weapon.explosive"
     },
@@ -37094,11 +37542,11 @@
       "concept": "weapon.explosive"
     },
     {
-      "term": "פצמרים",
+      "term": "פצמרימ",
       "concept": "weapon.explosive"
     },
     {
-      "term": "פצמרימ",
+      "term": "פצמרים",
       "concept": "weapon.explosive"
     },
     {
@@ -37154,6 +37602,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "פצצות דאייה",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "פצצות מצרר",
       "concept": "weapon.explosive"
     },
@@ -37182,6 +37634,10 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "פצצת דאייה",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "פצצת דלק-אוויר",
       "concept": "weapon.explosive"
     },
@@ -37199,6 +37655,14 @@
     },
     {
       "term": "פצצת מרגמה",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "פצצת פאב-1500",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "פצצת פאב-500",
       "concept": "weapon.explosive"
     },
     {
@@ -37275,6 +37739,10 @@
     },
     {
       "term": "פתיל",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "פתיל השהיה",
       "concept": "weapon.explosive"
     },
     {
@@ -37391,6 +37859,10 @@
     },
     {
       "term": "צלפים",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "צלפים דרגונוב",
       "concept": "weapon.firearm"
     },
     {
@@ -37610,6 +38082,10 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "קלאש",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "קליבר",
       "concept": "weapon.firearm"
     },
@@ -37642,11 +38118,15 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "קלצ׳ניקוב",
+      "term": "קלצ",
       "concept": "weapon.firearm"
     },
     {
       "term": "קלצ'ניקוב",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "קלצ׳ניקוב",
       "concept": "weapon.firearm"
     },
     {
@@ -37774,6 +38254,22 @@
       "concept": "weapon.firearm"
     },
     {
+      "term": "רובה גליל",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "רובה דרגונוב",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "רובה הגליל",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "רובה טייפ 56",
+      "concept": "weapon.firearm"
+    },
+    {
       "term": "רובה סער",
       "concept": "weapon.firearm"
     },
@@ -37783,6 +38279,14 @@
     },
     {
       "term": "רובה צלפים",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "רובה קלצ'ניקוב",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "רובה קלשניקוב",
       "concept": "weapon.firearm"
     },
     {
@@ -37811,6 +38315,10 @@
     },
     {
       "term": "רובהצלפים",
+      "concept": "weapon.firearm"
+    },
+    {
+      "term": "רובי גליל",
       "concept": "weapon.firearm"
     },
     {
@@ -37918,6 +38426,10 @@
       "concept": "violence.general"
     },
     {
+      "term": "רחפן לנצט",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "רחפן מטיל",
       "concept": "weapon.drone"
     },
@@ -37927,6 +38439,10 @@
     },
     {
       "term": "רחפן נפץ",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "רחפנים מתאבדים",
       "concept": "weapon.drone"
     },
     {
@@ -37946,6 +38462,18 @@
       "concept": "weapon.explosive"
     },
     {
+      "term": "רימון F-1",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "רימון M67",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "רימון RGD-5",
+      "concept": "weapon.explosive"
+    },
+    {
       "term": "רימון גז",
       "concept": "weapon.explosive"
     },
@@ -37955,6 +38483,14 @@
     },
     {
       "term": "רימון יד",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "רימון מילס",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "רימון נגד טנקים",
       "concept": "weapon.explosive"
     },
     {
@@ -37980,6 +38516,22 @@
     {
       "term": "רימוני גז",
       "concept": "weapon.firearm"
+    },
+    {
+      "term": "רימוני הלם",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "רימוני יד",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "רימוני עשן",
+      "concept": "weapon.explosive"
+    },
+    {
+      "term": "רימוני רסס",
+      "concept": "weapon.explosive"
     },
     {
       "term": "רימוןיד",
@@ -38214,6 +38766,14 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "רקטה 107 מ\"מ",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "רקטה 107 מ״מ",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "רקטות",
       "concept": "weapon.explosive"
     },
@@ -38226,7 +38786,23 @@
       "concept": "weapon.missile_rocket"
     },
     {
+      "term": "רקטות 107 מ\"מ",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "רקטות 107 מ״מ",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "רקטות גראד",
+      "concept": "weapon.missile_rocket"
+    },
+    {
       "term": "רקטת בורקאן",
+      "concept": "weapon.missile_rocket"
+    },
+    {
+      "term": "רקטת גראד",
       "concept": "weapon.missile_rocket"
     },
     {
@@ -38275,6 +38851,10 @@
     },
     {
       "term": "שאהד",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "שאהד 101",
       "concept": "weapon.drone"
     },
     {
@@ -39634,14 +40214,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "שהטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "שהטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "שהטביע",
       "concept": "violence.killing"
     },
@@ -40102,11 +40674,11 @@
       "concept": "violence.general"
     },
     {
-      "term": "שהכטב\"ם",
+      "term": "שהכטב\"מ",
       "concept": "weapon.drone"
     },
     {
-      "term": "שהכטב\"מ",
+      "term": "שהכטב\"ם",
       "concept": "weapon.drone"
     },
     {
@@ -42082,14 +42654,6 @@
       "concept": "weapon.missile_rocket"
     },
     {
-      "term": "שטבח",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "שטבחו",
-      "concept": "violence.killing"
-    },
-    {
       "term": "שטובחים",
       "concept": "violence.killing"
     },
@@ -42210,6 +42774,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "שיגור פצמ\"רימ",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "שיגור פצמ\"רים",
       "concept": "violence.terrorism"
     },
@@ -42218,15 +42786,11 @@
       "concept": "violence.terrorism"
     },
     {
-      "term": "שיגור פצמ\"רימ",
+      "term": "שיגור פצמרימ",
       "concept": "violence.terrorism"
     },
     {
       "term": "שיגור פצמרים",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "שיגור פצמרימ",
       "concept": "violence.terrorism"
     },
     {
@@ -42598,15 +43162,19 @@
       "concept": "violence.general"
     },
     {
-      "term": "שכטב\"ם",
-      "concept": "weapon.drone"
-    },
-    {
       "term": "שכטב\"מ",
       "concept": "weapon.drone"
     },
     {
+      "term": "שכטב\"ם",
+      "concept": "weapon.drone"
+    },
+    {
       "term": "שכטב\"מים",
+      "concept": "weapon.drone"
+    },
+    {
+      "term": "שכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -42615,10 +43183,6 @@
     },
     {
       "term": "שכטבם",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "שכטבמ",
       "concept": "weapon.drone"
     },
     {
@@ -42692,6 +43256,14 @@
     {
       "term": "שלף סכין",
       "concept": "violence.terrorism"
+    },
+    {
+      "term": "שלשלאות",
+      "concept": "violence.torture"
+    },
+    {
+      "term": "שלשלת",
+      "concept": "violence.torture"
     },
     {
       "term": "שמאלנאצי",
@@ -44538,6 +45110,10 @@
       "concept": "violence.terrorism"
     },
     {
+      "term": "תנועת פתח",
+      "concept": "violence.terrorism"
+    },
+    {
       "term": "תנקום",
       "concept": "violence.general"
     },
@@ -44724,706 +45300,6 @@
     {
       "term": "תתמקלעים",
       "concept": "weapon.firearm"
-    },
-    {
-      "term": "קלאש",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "קלצ",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "ייסגר בדם",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "לא תצאו מזה בחיים",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "לא תצאו מזה",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "אתם הבאים בתור",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "אתם על הכוונת",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "דם יישפך",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "הדם שלכם יישפך",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "סופכם קרב",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "נמחק אתכם",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "אנחנו באים אליכם",
-      "concept": "threat.direct"
-    },
-    {
-      "term": "רובה גליל",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "רובי גליל",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "רובה הגליל",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "טילי קורנט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "משגר קורנט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל פאגוט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל קונקורס",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל מטיס",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל מטיס-M",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל איגלה",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טילי איגלה",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל סטרלה",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טילי סטרלה",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "מערכת ורבה",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל גראד",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טילי גראד",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "משגר גראד",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "מטח גראד",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "רקטת גראד",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "רקטות גראד",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "משגר אורגאן",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "משגר סמרץ'",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל איסקנדר",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טילי איסקנדר",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל קליבר",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טילי קליבר",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל קינז'אל",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל אוניקס",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל צירקון",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "סולנצפיוק",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טוס-1",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "כטב\"מ לנצט",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב״מ לנצט",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "רחפן לנצט",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב\"מ אורלן",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב״מ אורלן",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב\"מ גראן",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב״מ גראן",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "פצצת פאב-500",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "פצצת פאב-1500",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "פצצת דאייה",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "פצצות דאייה",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רובה קלצ'ניקוב",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "רובה קלשניקוב",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "צלפים דרגונוב",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "רובה דרגונוב",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "מקלע פק\"מ",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "מקלע פק״מ",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "מקלע פקמ",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "אר-פי-ג'י 7",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "אר-פי-ג'י 29",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "אר-פי-ג'י ומטענים",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "טיל חץ אדום",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל HJ-8",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל נ\"מ FN-6",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל נ\"מ QW-1",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "כטב\"מ ווינג לונג",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב״מ ווינג לונג",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב\"מ CH-4",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב״מ CH-4",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "רקטות 107 מ\"מ",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "רקטות 107 מ״מ",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "רקטה 107 מ\"מ",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "רקטה 107 מ״מ",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "רובה טייפ 56",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "באירקטאר",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "ביירקטאר",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב\"מ באירקטאר",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב״מ באירקטאר",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "באירקטאר TB2",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "באירקטאר אקינג'י",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב\"מ אנקא",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב\"מ קארגו",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "חימוש MAM-L",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "חימוש MAM-C",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל ג'יריט",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל אומטאס",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל באליסטי בורה",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "כטב\"מ מתאבד",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב״מ מתאבד",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "רחפנים מתאבדים",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "טיל פאדי",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טילי פאדי",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "פאדי 1",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "פאדי 2",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל ח'ייבר",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל שאהד",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "שאהד 101",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "כטב\"מ מוהאג'ר",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "מוהאג'ר 6",
-      "concept": "weapon.drone"
-    },
-    {
-      "term": "טיל זולפיקאר",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל אלמאס",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טילי אלמאס",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "טיל טופאן",
-      "concept": "weapon.missile_rocket"
-    },
-    {
-      "term": "גדודי אל-קסאם",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "גדודי עז א-דין אל-קסאם",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "פלוגות ירושלים",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "מקל דינמיט",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מקלות דינמיט",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "סי 4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חומרי נפץ פלסטיים",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חומר נפץ פלסטיק",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חנ\"מ פלסטי",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חנ״מ פלסטי",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חומר נפץ C4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חנ\"מ C4",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "הקסוגן",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "פנטריט",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "טריניטרוטולואן",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "ט.נ.ט",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "לבנות חבלה",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימוני יד",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימוני רסס",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימוני הלם",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימוני עשן",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימון נגד טנקים",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימון F-1",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימון RGD-5",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימון M67",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "רימון מילס",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "הטלת רימון",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "זריקת רימון",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "זריקת רימונים",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חומר נפץ TATP",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חומר נפץ אנפו",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מטען דשן",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מטען אמוניום ניтраט",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מטעני גחון",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מטעני קלע",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מטעני שוואז",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מטען דביק",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מטען מגנטי",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "חביות נפץ",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "בלוני נפץ",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "עפיפון נפץ",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "עפיפוני נפץ",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "אופנוע תופת",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מוקש נגד אדם",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מוקשי נגד אדם",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מוקש נגד טנקים",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מוקש כלימגור",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "מוקש כלימור",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "נפץ חשמלי",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "פתיל השהיה",
-      "concept": "weapon.explosive"
-    },
-    {
-      "term": "אזיק",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "איזוק",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "שלשלאות",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "שלשלת",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "מחסום פה",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "חוסם פיות",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "סתימת פיות",
-      "concept": "violence.torture"
-    },
-    {
-      "term": "ירה לעבר",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "ירה בו",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "ירה בהם",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "ירה למוות",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "ירה באש",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "ירה בנשק",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "ירה באקדח",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "ירה ברובה",
-      "concept": "weapon.firearm"
-    },
-    {
-      "term": "אירוע ירי",
-      "concept": "violence.killing"
-    },
-    {
-      "term": "ארגון פתח",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "תנועת פתח",
-      "concept": "violence.terrorism"
-    },
-    {
-      "term": "על הכוונת",
-      "concept": "threat.intimidation"
     }
   ]
 }
