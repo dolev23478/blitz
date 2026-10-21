@@ -23,7 +23,12 @@ export class TelegramListenerService {
 
   /** Runs automatically every time Telegram emits a stored-message result. The pull cursor is owned by TelegramService only. */
   private async onTelegramResult(event: NewMessagesEvent): Promise<void> {
-    const filteredMessages: Array<{ message: ParsedMessage; matchedLanguage: string; matches: string[] }> = [];
+    const filteredMessages: Array<{
+      message: ParsedMessage;
+      matchedLanguage: string;
+      matches: string[];
+      categories: string[];
+    }> = [];
 
     if (event.messages?.length) {
       for (const message of event.messages) {
@@ -37,13 +42,14 @@ export class TelegramListenerService {
         if (!matchedLanguage) continue;
 
         this.logger.log(
-          `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,
+          `Telegram language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, categories=${analysis.categories.join(', ') || 'none'}, text=${message.text.slice(0, 120)}`,
         );
 
         filteredMessages.push({
           message,
           matchedLanguage,
           matches: analysis.terms,
+          categories: analysis.categories,
         });
       }
     }
@@ -61,6 +67,7 @@ export class TelegramListenerService {
         await this.transformer.run('ParsedMessage', item.message, {
           language: item.matchedLanguage,
           matches: item.matches,
+          categories: item.categories,
           channelName: event.channel,
           accountName: event.channel,
           source: 'telegram',

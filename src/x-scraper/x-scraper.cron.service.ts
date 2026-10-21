@@ -67,6 +67,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
   private async onXResult(result: ProfileScrapeResult, startedAt: Date): Promise<void> {
     const cursor = startedAt.toISOString();
     const keptPosts: Array<(typeof result.posts)[number]> = [];
+    const categoriesByPost = new Map<(typeof result.posts)[number], string[]>();
 
     for (const post of result.posts) {
       if (!post.text || !post.text.trim()) continue;
@@ -78,11 +79,12 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       if (!matchedLanguage) continue;
 
       this.logger.log(
-        `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
+        `X language match: lang=${matchedLanguage}, terms=${analysis.terms.join(', ') || 'none'}, categories=${analysis.categories.join(', ') || 'none'}, text=${post.text.slice(0, 120)}`,
       );
 
       post.language = matchedLanguage;
       post.matches = analysis.terms;
+      categoriesByPost.set(post, analysis.categories);
       keptPosts.push(post);
     }
 
@@ -105,6 +107,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
         await this.transformer.run('ProfileScrapeResult', singleResult, {
           language: post.language,
           matches: post.matches,
+          categories: categoriesByPost.get(post) ?? [],
           collectedAt: new Date().toISOString(),
           source: 'x',
         });

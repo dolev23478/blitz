@@ -62,6 +62,7 @@ export class DictionaryTermMatcher implements TermMatcher {
             const match: AnalyzeMatch = {
               term: entry.term,
               ...(entry.concept !== undefined ? { concept: entry.concept } : {}),
+              ...(entry.category !== undefined ? { category: entry.category } : {}),
               sourceFile: entry.sourceFile,
               normalizedTerm: candidate,
               tokenStart: start,

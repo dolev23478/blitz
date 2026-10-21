@@ -7,6 +7,9 @@ import {
   evaluateThreat,
   getDictionaryStore,
   getNormalizer,
+  parseDictionaryFile,
+  REPORT_CATEGORIES,
+  ReportCategory,
   ThreatCategory,
   ThreatMode,
 } from "./index.js";
@@ -536,6 +539,37 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
     const threat = analyzeText("We will bomb the synagogue", "en", { mode: ThreatMode.Smart });
     expect(threat.matched).toBe(true);
     expect(threat.evaluation?.threatCategories).toContain("target.jewish");
+  });
+
+  it("assigns every dictionary entry one of the report categories", () => {
+    for (const lang of ["he", "en", "ar", "fa", "emoji"]) {
+      const raw = JSON.parse(readFileSync(`dictionaries/${lang}.json`, "utf8")) as {
+        entries: { term: string; category?: string }[];
+      };
+      const missing = raw.entries.filter((e) => !REPORT_CATEGORIES.includes(e.category ?? ""));
+      expect(missing.map((e) => e.term), lang).toEqual([]);
+    }
+    expect(() =>
+      parseDictionaryFile({ language: "en", entries: [{ term: "x", category: "news" }] }, "bad.json"),
+    ).toThrow(/category must be one of/);
+  });
+
+  it("reports the categories of matched terms in text order", () => {
+    const cases: [string, string, string[]][] = [
+      ["he", "צבע אדום בעוטף, נפילות בשטח פתוח", [ReportCategory.RocketsAerial]],
+      ["he", "מחבל ביצע פיגוע דקירה", [ReportCategory.Terror]],
+      ["he", "הפרות סדר ויידוי אבנים בצומת", [ReportCategory.Riots]],
+      ["he", "אירוע רב נפגעים לאחר קריסת מבנה", [ReportCategory.CivilEmergency]],
+      ["en", "riots and looting after the rocket barrage", [ReportCategory.Riots, ReportCategory.RocketsAerial]],
+      ["ar", "صفارات الإنذار بعد إطلاق صواريخ", [ReportCategory.RocketsAerial]],
+      ["fa", "آتش‌سوزی بزرگ و ریزش ساختمان", [ReportCategory.CivilEmergency]],
+    ];
+    for (const [lang, s, expected] of cases) {
+      const res = analyzeText(s, lang);
+      // a text can carry several categories; the expected ones must appear in text order
+      expect(res.categories.filter((c) => expected.includes(c)), `${lang}: ${s} -> ${res.categories}`).toEqual(expected);
+    }
+    expect(analyzeText("a quiet afternoon in the park", "en").categories).toEqual([]);
   });
 
   it("does not flag general profanity that carries no threat", () => {

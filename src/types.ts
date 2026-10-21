@@ -62,15 +62,35 @@ export interface StoredMessage extends ParsedMessage {
   fetchedAt: Date;
 }
 
+/**
+ * Report categories published in RAW_REPORT.categories. Every dictionary entry belongs to exactly one.
+ */
+export const ReportCategory = {
+  /** פח"ע — terror and hostile activity */
+  Terror: 'terror',
+  /** חירום אזרחי ורפואי */
+  CivilEmergency: 'civil_emergency',
+  /** הפרות סדר ואלימות המונית */
+  Riots: 'riots',
+  /** תלול-מסלול, ירי רקטי ואווירי */
+  RocketsAerial: 'rockets_aerial',
+} as const;
+
+export type ReportCategoryValue = (typeof ReportCategory)[keyof typeof ReportCategory];
+
+export const REPORT_CATEGORIES: readonly string[] = Object.values(ReportCategory);
+
 export interface DictionaryEntry {
   term: string;
   concept?: string;
+  category?: ReportCategoryValue;
   extra?: Record<string, unknown>;
 }
 
 export interface IndexedTerm {
   term: string;
   concept?: string;
+  category?: ReportCategoryValue;
   sourceFile: string;
   language: string;
 }
@@ -88,6 +108,7 @@ export interface AnalyzeIssue {
 export interface AnalyzeMatch {
   term: string;
   concept?: string;
+  category?: ReportCategoryValue;
   sourceFile: string;
   normalizedTerm: string;
   tokenStart: number;
@@ -188,6 +209,8 @@ export interface AnalyzeTextResult {
   languages?: string[];
   matched: boolean;
   terms: string[];
+  /** Report categories of the matched terms, in order of first appearance. */
+  categories: ReportCategoryValue[];
   matches: AnalyzeMatch[];
   usedSources: string[];
   issues: AnalyzeIssue[];

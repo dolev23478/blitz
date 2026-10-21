@@ -1,4 +1,5 @@
-import type { DictionaryEntry } from "../types.js";
+import { REPORT_CATEGORIES } from "../types.js";
+import type { DictionaryEntry, ReportCategoryValue } from "../types.js";
 
 export interface ParsedDictionaryFile {
   language: string;
@@ -14,7 +15,7 @@ function extraFields(
 ): Record<string, unknown> | undefined {
   const extra: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(entry)) {
-    if (key === "term" || key === "concept") {
+    if (key === "term" || key === "concept" || key === "category") {
       continue;
     }
     extra[key] = value;
@@ -60,10 +61,22 @@ export function parseDictionaryFile(
       );
     }
 
+    if (
+      raw.category !== undefined &&
+      (typeof raw.category !== "string" || !REPORT_CATEGORIES.includes(raw.category))
+    ) {
+      throw new Error(
+        `${fileName}: entries[${i}].category must be one of ${REPORT_CATEGORIES.join(", ")}`,
+      );
+    }
+
     const extra = extraFields(raw);
     entries.push({
       term: raw.term,
       ...(typeof raw.concept === "string" ? { concept: raw.concept } : {}),
+      ...(typeof raw.category === "string"
+        ? { category: raw.category as ReportCategoryValue }
+        : {}),
       ...(extra ? { extra } : {}),
     });
   }
