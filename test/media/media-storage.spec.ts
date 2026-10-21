@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { loadConfig } from '../../src/config/app-config.js';
 import { MediaStorageService } from '../../src/media/media-storage.service.js';
-import type { MediaStore } from '../../src/media/media-store.js';
+import { createMediaStore, type MediaStore, S3MediaStore } from '../../src/media/media-store.js';
 import { storedMediaUrls } from '../../src/transformer/media-types.js';
 
 const config = (env: Record<string, string> = {}) =>
@@ -47,6 +47,36 @@ describe('MediaStorageService', () => {
     const svc = new MediaStorageService(config(), s);
     expect(await svc.uploadPhoto({ source: 'x', owner: 'a', id: 1, bytes })).toBeNull();
     expect(s.put).toHaveBeenCalledTimes(2);
+  });
+
+  it('defaults public base URL to direct S3 bucket URL when S3_PUBLIC_BASE_URL is omitted', async () => {
+    const s = store();
+    const preprodConfig = loadConfig({ S3_BUCKET: 'data-forge-pre', S3_REGION: 'il-central-1' });
+    const svc = new MediaStorageService(preprodConfig, s);
+    expect(svc.enabled).toBe(true);
+    const url = await svc.uploadPhoto({ source: 'x', owner: 'user1', id: '100', bytes, mimeType: 'image/jpeg' });
+    expect(url).toMatch(/^https:\/\/data-forge-pre\.s3\.il-central-1\.amazonaws\.com\/media\/x\/user1\/100\/[0-9a-f]{16}\.jpg$/);
+  });
+});
+
+describe('Config and MediaStore for IRSA pre-prod', () => {
+  it('loadConfig respects AWS_REGION and defaults S3_REGION to il-central-1', () => {
+    const c1 = loadConfig({});
+    expect(c1.S3_REGION).toBe('il-central-1');
+
+    const c2 = loadConfig({ AWS_REGION: 'il-central-1' });
+    expect(c2.S3_REGION).toBe('il-central-1');
+
+    const c3 = loadConfig({ S3_REGION: 'eu-west-1' });
+    expect(c3.S3_REGION).toBe('eu-west-1');
+  });
+
+  it('createMediaStore creates store when S3_BUCKET is provided without S3_PUBLIC_BASE_URL', () => {
+    const disabled = createMediaStore(loadConfig({}));
+    expect(disabled).toBeNull();
+
+    const enabled = createMediaStore(loadConfig({ S3_BUCKET: 'data-forge-pre' }));
+    expect(enabled).toBeInstanceOf(S3MediaStore);
   });
 });
 

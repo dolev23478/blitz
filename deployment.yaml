@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blitz-deployment
+  namespace: default
+  labels:
+    app: blitz
+    environment: preprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blitz
+  template:
+    metadata:
+      labels:
+        app: blitz
+        environment: preprod
+    spec:
+      serviceAccountName: s3-uploader-sa # Links to authorized IRSA role: arn:aws:iam::783197655513:role/k8s-s3-data-forge-role
+      containers:
+        - name: app-container
+          image: blitz:latest
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "3000"
+            # AWS Region & S3 Pre-prod Settings
+            - name: AWS_REGION
+              value: "il-central-1"
+            - name: S3_REGION
+              value: "il-central-1"
+            - name: S3_BUCKET
+              value: "data-forge-pre"
+            - name: S3_PUBLIC_BASE_URL
+              value: "https://data-forge-pre.s3.il-central-1.amazonaws.com"
+            - name: S3_KEY_PREFIX
+              value: "media"
+            - name: MEDIA_MAX_MB
+              value: "50"
+            # No AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY needed:
+            # AWS SDK automatically fetches temporary credentials from the IRSA WebIdentity token injected into the pod.

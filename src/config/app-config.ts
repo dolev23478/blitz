@@ -86,12 +86,16 @@ const schema = z.object({
     .string()
     .optional()
     .transform((v) => v || undefined),
-  /** Media upload (photos). Disabled unless S3_BUCKET and S3_PUBLIC_BASE_URL are both set; any S3-compatible store works via S3_ENDPOINT. */
+  /** Media upload (photos). Enabled when S3_BUCKET is set; defaults S3_PUBLIC_BASE_URL to direct S3 URL when omitted. */
   S3_BUCKET: z
     .string()
     .optional()
     .transform((v) => v || undefined),
-  S3_REGION: z.string().default('us-east-1'),
+  S3_REGION: z.string().default('il-central-1'),
+  AWS_REGION: z
+    .string()
+    .optional()
+    .transform((v) => v || undefined),
   /** Custom endpoint for S3-compatible stores (MinIO, etc.); empty = AWS. */
   S3_ENDPOINT: z
     .string()
@@ -124,8 +128,14 @@ export type AppConfig = z.output<typeof schema>;
 
 export const CONFIG_KEYS = Object.keys(schema.shape);
 
-export const loadConfig = (env: NodeJS.ProcessEnv = process.env): AppConfig =>
-  schema.parse(env);
+export const loadConfig = (env: NodeJS.ProcessEnv = process.env): AppConfig => {
+  const resolvedRegion =
+    env.S3_REGION || env.AWS_REGION || env.AWS_DEFAULT_REGION || process.env.S3_REGION || process.env.AWS_REGION || 'il-central-1';
+  return schema.parse({
+    ...env,
+    S3_REGION: resolvedRegion,
+  });
+};
 
 /** Injection token for the validated environment configuration. */
 export const APP_CONFIG = Symbol('APP_CONFIG');

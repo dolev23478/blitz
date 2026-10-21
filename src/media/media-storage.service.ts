@@ -42,9 +42,12 @@ export class MediaStorageService {
     @Inject(APP_CONFIG) private readonly config: AppConfig,
     @Inject(MEDIA_STORE) private readonly store: MediaStore | null,
   ) {
-    this.base = config.S3_PUBLIC_BASE_URL?.replace(/\/+$/, '') ?? null;
+    const rawBase =
+      config.S3_PUBLIC_BASE_URL ??
+      (config.S3_BUCKET ? `https://${config.S3_BUCKET}.s3.${config.S3_REGION}.amazonaws.com` : null);
+    this.base = rawBase?.replace(/\/+$/, '') ?? null;
     this.maxBytes = config.MEDIA_MAX_MB * 1024 * 1024;
-    if (!this.enabled) this.logger.log('media upload disabled (S3_BUCKET / S3_PUBLIC_BASE_URL not set); original media URLs are kept');
+    if (!this.enabled) this.logger.log('media upload disabled (S3_BUCKET not set); original media URLs are kept');
   }
 
   get enabled(): boolean {

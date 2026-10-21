@@ -39,8 +39,8 @@ export class S3MediaStore implements MediaStore {
   }
 }
 
-/** Returns null (uploads disabled) unless both the bucket and the public base URL are configured. */
+/** Returns null (uploads disabled) unless S3_BUCKET is configured. */
 export function createMediaStore(config: AppConfig): MediaStore | null {
-  if (!config.S3_BUCKET || !config.S3_PUBLIC_BASE_URL) return null;
+  if (!config.S3_BUCKET) return null;
   return new S3MediaStore(config.S3_BUCKET, config);
 }
