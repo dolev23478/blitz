@@ -62,11 +62,11 @@ export class ReportValidator {
   }
   serialize(candidate: unknown): string {
     const report = this.validate(candidate);
+    const keys = [...provisionalRawReportSchema.required];
+    if (report.media_urls?.length) keys.push('media_urls');
     return JSON.stringify(
       Object.fromEntries(
-        [...provisionalRawReportSchema.required]
-          .sort()
-          .map((key) => [key, report[key as keyof RawReport]]),
+        keys.sort().map((key) => [key, report[key as keyof RawReport]]),
       ),
     );
   }

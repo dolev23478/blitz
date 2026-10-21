@@ -21,6 +21,12 @@ export class S3MediaStore implements MediaStore {
     this.client = new S3Client({
       region: config.S3_REGION,
       endpoint: config.S3_ENDPOINT,
+      // Newer SDKs add CRC32 checksums by default, which several S3-compatible stores reject.
+      requestChecksumCalculation: 'WHEN_REQUIRED',
+      responseChecksumValidation: 'WHEN_REQUIRED',
+      // A dead or blackholed endpoint must fail fast instead of stalling a collector cycle.
+      requestHandler: { connectionTimeout: 10_000, requestTimeout: 30_000 },
+      maxAttempts: 2,
       forcePathStyle: config.S3_FORCE_PATH_STYLE === 'true' || (config.S3_ENDPOINT !== undefined && config.S3_FORCE_PATH_STYLE !== 'false'),
       ...(config.S3_ACCESS_KEY_ID && config.S3_SECRET_ACCESS_KEY
         ? { credentials: { accessKeyId: config.S3_ACCESS_KEY_ID, secretAccessKey: config.S3_SECRET_ACCESS_KEY } }

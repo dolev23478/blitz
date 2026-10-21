@@ -26,8 +26,11 @@ vi.mock('../../src/text-analyzer.js', () => ({ analyzeText: analyze }));
 let publisher: PublishingProcessor;
 let deliver: (event: NewMessagesEvent) => void | Promise<void>;
 const send = vi.fn();
+const mediaStub = { enabled: false, withinLimit: () => true, uploadPhoto: vi.fn() };
 
 beforeEach(() => {
+  mediaStub.enabled = false;
+  mediaStub.uploadPhoto.mockReset();
   send
     .mockReset()
     .mockResolvedValue([
@@ -60,7 +63,7 @@ beforeEach(() => {
   } as unknown as TelegramService;
   const redis = { isEnabled: () => false } as unknown as RedisService;
   const filteredPosts = { push: () => undefined } as unknown as FilteredPostsService;
-  const media = { enabled: false } as unknown as MediaStorageService;
+  const media = mediaStub as unknown as MediaStorageService;
   new TelegramListenerService(telegram, redis, workflow(publisher), filteredPosts, media);
 });
 
@@ -113,6 +116,28 @@ describe('Telegram collector handoff', () => {
       report_url: telegramInput().url,
       published_at: telegramInput().postedAt.toISOString(),
     });
+  });
+
+  it('uploads a matched photo and sends its S3 URL in media_urls, and publishes without it when the upload fails', async () => {
+    mediaStub.enabled = true;
+    const photo = () => {
+      const m = telegramInput();
+      m.media = [{ type: 'photo', url: '', mimeType: 'image/jpeg' }];
+      return m;
+    };
+    const downloadPhoto = vi.fn().mockResolvedValue({ data: new Uint8Array([1]), mimeType: 'image/jpeg' });
+
+    mediaStub.uploadPhoto.mockResolvedValueOnce('https://cdn.example.com/media/telegram/blitz/1/abc.jpg');
+    await deliver({ channelId: 2, channel: 'blitz', inserted: 1, messages: [photo()], downloadPhoto });
+    const first = JSON.parse((send.mock.calls[0]![0] as ProducerRecord).messages[0]!.value as string);
+    expect(first.media_type).toEqual(['text', 'photo']);
+    expect(first.media_urls).toEqual(['https://cdn.example.com/media/telegram/blitz/1/abc.jpg']);
+
+    mediaStub.uploadPhoto.mockResolvedValueOnce(null);
+    await deliver({ channelId: 2, channel: 'blitz', inserted: 1, messages: [photo()], downloadPhoto });
+    const second = JSON.parse((send.mock.calls[1]![0] as ProducerRecord).messages[0]!.value as string);
+    expect(second.media_type).toEqual(['text', 'photo']);
+    expect(second).not.toHaveProperty('media_urls');
   });
 
   it('keeps upstream filtering when no keyword matched', async () => {
