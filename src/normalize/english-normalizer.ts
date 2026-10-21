@@ -28,8 +28,11 @@ function expandEnglishWord(t: string, v: Set<string>): void {
     v.add(t.slice(0, -3) + "y"); // enemies -> enemy, communities -> community
   }
   if (t.endsWith("es") && t.length > 3) {
-    v.add(t.slice(0, -2));
     v.add(t.slice(0, -1));
+    // Only sibilant stems take "-es" (matches -> match), otherwise takes -> tak, gates -> gat
+    if (/(s|x|z|ch|sh|o)es$/.test(t)) {
+      v.add(t.slice(0, -2));
+    }
   }
   if (t.endsWith("s") && !t.endsWith("ss") && !t.endsWith("us") && t.length > 2) {
     v.add(t.slice(0, -1)); // attacks -> attack, civilians -> civilian, weapons -> weapon
@@ -38,16 +41,18 @@ function expandEnglishWord(t: string, v: Set<string>): void {
     const stem = t.slice(0, -2);
     v.add(stem);
     v.add(t.slice(0, -1));
-    if (stem.length > 3 && stem[stem.length - 1] === stem[stem.length - 2]) {
+    if (hasDoubledFinalConsonant(stem)) {
       v.add(stem.slice(0, -1)); // robbed -> rob
     }
   }
   if (t.endsWith("ing") && t.length > 4) {
     const stem = t.slice(0, -3);
     v.add(stem);
-    v.add(stem + "e"); // striking -> strike, hating -> hate
-    if (stem.length > 3 && stem[stem.length - 1] === stem[stem.length - 2]) {
-      v.add(stem.slice(0, -1)); // killing -> kill
+    if (stem.length >= 3) {
+      v.add(stem + "e"); // striking -> strike, hating -> hate (but not lying -> lye)
+    }
+    if (hasDoubledFinalConsonant(stem)) {
+      v.add(stem.slice(0, -1)); // stabbing -> stab
     }
   }
   if (t.endsWith("ers") && t.length > 4) {
@@ -58,13 +63,22 @@ function expandEnglishWord(t: string, v: Set<string>): void {
     v.add(t.slice(0, -2)); // attacker -> attack, bomber -> bomb
   }
   if (t.endsWith("tion") && t.length > 5) {
-    v.add(t.slice(0, -4) + "te"); // retaliation -> retaliate
-    v.add(t.slice(0, -4));
+    v.add(t.slice(0, -4) + "te"); // retaliation -> retaliate (bare stem would turn operation into opera)
   }
   if (t.endsWith("tions") && t.length > 6) {
     v.add(t.slice(0, -5) + "te");
-    v.add(t.slice(0, -5));
   }
+}
+
+/** robbed -> robb -> rob, but fall/kill/pass/buzz keep their double letter (falling must not reach fal). */
+function hasDoubledFinalConsonant(stem: string): boolean {
+  const last = stem[stem.length - 1];
+  return (
+    stem.length > 3 &&
+    last === stem[stem.length - 2] &&
+    last !== undefined &&
+    !"lsfz".includes(last)
+  );
 }
 
 function getEnglishVariants(token: string): string[] {
