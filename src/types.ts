@@ -63,22 +63,32 @@ export interface StoredMessage extends ParsedMessage {
 }
 
 /**
- * Report categories published in RAW_REPORT.categories. Every dictionary entry belongs to exactly one.
+ * Report category codes used in the dictionary files. Every dictionary entry belongs to exactly one.
  */
 export const ReportCategory = {
   /** פח"ע — terror and hostile activity */
   Terror: 'terror',
   /** חירום אזרחי ורפואי */
   CivilEmergency: 'civil_emergency',
-  /** הפרות סדר ואלימות המונית */
+  /** הפרעות סדר ואלימות המונית */
   Riots: 'riots',
-  /** תלול-מסלול, ירי רקטי ואווירי */
+  /** תלול מסלול, ירי רקטי ואווירי */
   RocketsAerial: 'rockets_aerial',
 } as const;
 
 export type ReportCategoryValue = (typeof ReportCategory)[keyof typeof ReportCategory];
 
 export const REPORT_CATEGORIES: readonly string[] = Object.values(ReportCategory);
+
+/** Hebrew names published in RAW_REPORT.categories, one per category code. */
+export const ReportCategoryLabel = {
+  [ReportCategory.Terror]: 'פח"ע',
+  [ReportCategory.CivilEmergency]: 'חירום אזרחי ורפואי',
+  [ReportCategory.Riots]: 'הפרעות סדר ואלימות המונית',
+  [ReportCategory.RocketsAerial]: 'תלול מסלול, ירי רקטי ואווירי',
+} as const satisfies Record<ReportCategoryValue, string>;
+
+export type ReportCategoryLabelValue = (typeof ReportCategoryLabel)[ReportCategoryValue];
 
 export interface DictionaryEntry {
   term: string;
@@ -209,8 +219,8 @@ export interface AnalyzeTextResult {
   languages?: string[];
   matched: boolean;
   terms: string[];
-  /** Report categories of the matched terms, in order of first appearance. */
-  categories: ReportCategoryValue[];
+  /** Hebrew report categories of the matched terms, in order of first appearance. */
+  categories: ReportCategoryLabelValue[];
   matches: AnalyzeMatch[];
   usedSources: string[];
   issues: AnalyzeIssue[];

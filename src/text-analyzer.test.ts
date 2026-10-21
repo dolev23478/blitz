@@ -10,6 +10,7 @@ import {
   parseDictionaryFile,
   REPORT_CATEGORIES,
   ReportCategory,
+  ReportCategoryLabel,
   ThreatCategory,
   ThreatMode,
 } from "./index.js";
@@ -554,16 +555,23 @@ describe("TextAnalyzer & Multi-Language Engine", () => {
     ).toThrow(/category must be one of/);
   });
 
-  it("reports the categories of matched terms in text order", () => {
+  it("reports the Hebrew categories of matched terms in text order", () => {
+    const { Terror, CivilEmergency, Riots, RocketsAerial } = ReportCategory;
     const cases: [string, string, string[]][] = [
-      ["he", "צבע אדום בעוטף, נפילות בשטח פתוח", [ReportCategory.RocketsAerial]],
-      ["he", "מחבל ביצע פיגוע דקירה", [ReportCategory.Terror]],
-      ["he", "הפרות סדר ויידוי אבנים בצומת", [ReportCategory.Riots]],
-      ["he", "אירוע רב נפגעים לאחר קריסת מבנה", [ReportCategory.CivilEmergency]],
-      ["en", "riots and looting after the rocket barrage", [ReportCategory.Riots, ReportCategory.RocketsAerial]],
-      ["ar", "صفارات الإنذار بعد إطلاق صواريخ", [ReportCategory.RocketsAerial]],
-      ["fa", "آتش‌سوزی بزرگ و ریزش ساختمان", [ReportCategory.CivilEmergency]],
+      ["he", "צבע אדום בעוטף, נפילות בשטח פתוח", [ReportCategoryLabel[RocketsAerial]]],
+      ["he", "מחבל ביצע פיגוע דקירה", [ReportCategoryLabel[Terror]]],
+      ["he", "הפרות סדר ויידוי אבנים בצומת", [ReportCategoryLabel[Riots]]],
+      ["he", "אירוע רב נפגעים לאחר קריסת מבנה", [ReportCategoryLabel[CivilEmergency]]],
+      ["en", "riots and looting after the rocket barrage", [ReportCategoryLabel[Riots], ReportCategoryLabel[RocketsAerial]]],
+      ["ar", "صفارات الإنذار بعد إطلاق صواريخ", [ReportCategoryLabel[RocketsAerial]]],
+      ["fa", "آتش‌سوزی بزرگ و ریزش ساختمان", [ReportCategoryLabel[CivilEmergency]]],
     ];
+    expect(Object.values(ReportCategoryLabel)).toEqual([
+      'פח"ע',
+      "חירום אזרחי ורפואי",
+      "הפרעות סדר ואלימות המונית",
+      "תלול מסלול, ירי רקטי ואווירי",
+    ]);
     for (const [lang, s, expected] of cases) {
       const res = analyzeText(s, lang);
       // a text can carry several categories; the expected ones must appear in text order
