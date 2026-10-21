@@ -2,6 +2,7 @@ import type { TextNormalizer } from "./types.js";
 import {
   applyUnicode,
   collapseSpaces,
+  getRepeatedCharVariants,
   punctuationToSpace,
   tokenizeNormalized,
 } from "./shared.js";
@@ -28,7 +29,7 @@ export class DefaultNormalizer implements TextNormalizer {
   }
 
   tokenVariants(token: string): string[] {
-    return [token];
+    return getRepeatedCharVariants(token);
   }
 }
 

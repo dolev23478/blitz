@@ -2,14 +2,12 @@ import type { TextNormalizer } from "./types.js";
 import {
   applyUnicode,
   collapseSpaces,
+  getRepeatedCharVariants,
   punctuationToSpace,
   tokenizeNormalized,
 } from "./shared.js";
 
-function getEnglishVariants(token: string): string[] {
-  const t = token.toLowerCase();
-  const v = new Set<string>([t]);
-
+function expandEnglishWord(t: string, v: Set<string>): void {
   // High-value domain roots
   if (t.startsWith("terror")) {
     v.add("terror");
@@ -66,6 +64,18 @@ function getEnglishVariants(token: string): string[] {
   if (t.endsWith("tions") && t.length > 6) {
     v.add(t.slice(0, -5) + "te");
     v.add(t.slice(0, -5));
+  }
+}
+
+function getEnglishVariants(token: string): string[] {
+  const t = token.toLowerCase();
+  // Safe repeated character collapsing: only triggers on 3+ identical chars (e.g. shoooooot -> shoot)
+  // Words with 2 identical chars (like 'killer', 'shoot', 'attack') are strictly untouched!
+  const baseTokens = getRepeatedCharVariants(t);
+  const v = new Set<string>(baseTokens);
+
+  for (const base of baseTokens) {
+    expandEnglishWord(base, v);
   }
 
   return [...v];

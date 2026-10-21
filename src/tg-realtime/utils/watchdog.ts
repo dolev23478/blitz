@@ -7,6 +7,8 @@ export interface WatchdogOptions {
   hard: () => Promise<void>;
   /** Pulls history for tracked chats to fill anything push missed. Runs after recovery and periodically. */
   sync: () => Promise<void>;
+  /** Runs at the start of every tick, even while the connection is down (e.g. renewing a lock). Errors are logged only. */
+  heartbeat?: () => Promise<void>;
   intervalMs?: number;
   probeTimeoutMs?: number;
   softAfter?: number;
@@ -41,6 +43,7 @@ export class Watchdog {
       softAfter: 2,
       hardAfter: 4,
       syncEveryMs: 300_000,
+      heartbeat: async () => undefined,
       log: (m) => console.log(`[watchdog] ${m}`),
       ...opts,
     };
@@ -63,6 +66,11 @@ export class Watchdog {
 
   /** One check; exposed for tests. Never throws. */
   async tick(): Promise<void> {
+    try {
+      await this.o.heartbeat();
+    } catch (e) {
+      this.o.log(`heartbeat failed: ${e instanceof Error ? e.message : String(e)}`);
+    }
     try {
       await withTimeout(this.o.probe(), this.o.probeTimeoutMs);
       this.failures = 0;

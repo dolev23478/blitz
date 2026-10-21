@@ -89,6 +89,13 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     return result;
   }
 
+  /** Sets a value that expires on its own after `ttlSeconds`. */
+  async setEx(key: string, value: string, ttlSeconds: number): Promise<void> {
+    if (!this.client) throw new Error('Redis is not connected');
+    const result = await this.client.set(key, value, { EX: ttlSeconds });
+    if (result !== 'OK') throw new Error('Redis did not confirm the write.');
+  }
+
   async get(key: string): Promise<string | null> {
     if (!this.client) {
       return null;
