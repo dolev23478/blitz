@@ -242,3 +242,26 @@ export interface AnalyzeTextOptions {
    */
   smartThreshold?: number;
 }
+
+export interface FilteredMatch {
+  term: string;
+  normalized: string;
+  start: number;
+  end: number;
+  category: string;
+}
+
+export interface FilteredPost {
+  id: string;
+  source: 'telegram' | 'x';
+  channel: string;
+  text: string;
+  createdAt: string;
+  severity: 'low' | 'medium' | 'high';
+  matches: FilteredMatch[];
+}
+
+export interface FilteredPostEvent {
+  type: 'filtered-post';
+  payload: FilteredPost;
+}

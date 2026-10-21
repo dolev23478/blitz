@@ -5,6 +5,8 @@ import { XScraperService } from './x-scraper.service.js';
 import { RedisService } from '../redis/redis.service.js';
 import { analyzeText } from '../text-analyzer.js';
 import { TransformerWorkflow } from '../transformer/transformer.workflow.js';
+import { FilteredPostsService } from '../events/filtered-posts.service.js';
+import type { FilteredPost } from '../types.js';
 
 @Injectable()
 export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
@@ -15,6 +17,7 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
     private readonly xScraper: XScraperService,
     private readonly redis: RedisService,
     private readonly transformer: TransformerWorkflow,
+    private readonly filteredPosts: FilteredPostsService,
   ) {}
 
   onModuleInit(): void {
@@ -108,6 +111,24 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
           collectedAt: new Date().toISOString(),
           source: 'x',
         });
+
+        const filteredPost: FilteredPost = {
+          id: `${post.id ?? post.url ?? post.createdAt ?? Date.now()}`,
+          source: 'x',
+          channel: post.username ?? post.handle ?? 'x',
+          text: post.text,
+          createdAt: new Date(post.createdAt ?? Date.now()).toISOString(),
+          severity: 'high',
+          matches: analysisMatches(post.text, post.matches ?? []).map((match) => ({
+            term: match.term,
+            normalized: match.term,
+            start: match.start,
+            end: match.end,
+            category: 'threat',
+          })),
+        };
+
+        this.filteredPosts.push(filteredPost);
       } catch (err) {
         failed++;
         this.logger.error(
@@ -116,7 +137,6 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
       }
     }
 
-    // Only advance the cursor once every post was handed over, so a failed cycle re-pulls it next time.
     if (failed) {
       this.logger.warn(`X result: ${failed}/${keptPosts.length} posts failed from ${result.handle}; cursor not advanced`);
       return;
@@ -128,4 +148,23 @@ export class XScraperCronService implements OnModuleInit, OnModuleDestroy {
 
     this.logger.log(`X result ready: ${keptPosts.length} posts from ${result.handle}; saved timestamp=${cursor}`);
   }
+}
+
+function analysisMatches(text: string, terms: string[]): Array<{ term: string; start: number; end: number }> {
+  const matches: Array<{ term: string; start: number; end: number }> = [];
+  const lowerText = text.toLowerCase();
+
+  for (const term of terms) {
+    const lowerTerm = term.toLowerCase();
+    const idx = lowerText.indexOf(lowerTerm);
+    if (idx >= 0) {
+      matches.push({
+        term,
+        start: idx,
+        end: idx + term.length,
+      });
+    }
+  }
+
+  return matches;
 }
