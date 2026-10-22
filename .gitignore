@@ -97,3 +97,8 @@ ca.crt
 # Backups
 dictionaries_backup_before_canonical/
 
+/.offline
+/.vscode
+/apps
+/packages
+/vendor
